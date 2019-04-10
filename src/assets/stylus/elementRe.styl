@@ -1,0 +1,210 @@
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+    width: 0.2857142857142857rem;
+    height: 0.2857142857142857rem;
+    background: rgba(13,186,127,0.20);
+    border: 1px solid #0DBA7F;
+    border-radius: 8px;
+  // display:none
+}
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+/* -webkit-box-shadow: inset 0 0 0.42857142857142855rem rgba(0,0,0,0.3);
+  */
+   background: #070709;
+    border-radius: 8px;
+}
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+  // border-radius: 1.4285714285714286rem;
+/* -webkit-box-shadow: inset 0 0 0.42857142857142855rem rgba(0,0,0,.3);
+  */
+    transform: scale(3, 1)
+    background: rgba(13,186,127,0.20);
+    border: 1px solid #0DBA7F;
+    border-radius: 8px;
+}
+// 滚动条 end
+
+
+//  下拉框--start
+.el-select-dropdown
+  background: rgba(22,22,28,0.9)!important
+  border: 1px solid #383D50!important
+  border-radius: 10px!important
+//   &:after
+    // content: ''
+    // size: 20px
+    // absolute bottom 6px left 6px
+    // display inline-block
+    // background: url("./assets/images/下拉菜单小方块@1x.svg") no-repeat 0 0px
+.el-select-dropdown__list
+  max-height: 175px!important
+  
+.el-scrollbar__thumb
+  background-color #0DBA7F!important
+.el-scrollbar__thumb:hover
+  background-color #0DBA7F!important
+.el-select-dropdown__item
+  color: #fff!important
+  padding: 0 0 0 15px!important
+.el-select-dropdown__item.hover, .el-select-dropdown__item:hover
+  background: none!important
+  color: #0DBA7F!important
+.el-select-dropdown__item.selected
+  color: #0DBA7F!important
+.el-input__inner
+  border: 1px solid rgba(56,61,80,0.60)!important;
+  border-radius: 16.5px!important;
+  background: rgba(0,0,0,0) !important;
+  // font-size: 20px!important
+  color: #fff!important
+  letter-spacing: 1px!important;
+  border-radius: 20px!important;
+  width: 120px!important;
+  height:28px!important;
+  line-height: 28px!important
+  // padding: 0 0 0 40px!important;
+.el-scrollbar__bar
+  right 8px!important
+.el-select .el-input .el-select__caret
+  color: #fff!important
+.el-date-editor.el-input, .el-date-editor.el-input__inner
+  width: 120px!important;
+// .el-icon-arrow-up:before {
+//   content: "\E60C"!important;
+// }
+.el-icon--right
+  color #BBFFBC!important
+.el-input__icon
+  line-height: 1!important;
+.el-popper .popper__arrow
+    border-width: 0!important;
+.el-popper .popper__arrow::after
+    border-width: 0!important;
+.el-scrollbar__wrap 
+  overflow-x: hidden !important;
+.el-scrollbar__bar.is-vertical
+  width: 6px!important;
+  background: black;
+
+
+
+// .el-icon-date:before {
+//     content: "\E60C"!important;
+// }
+// .el-icon-arrow-down:before {
+//   content: "\E60B"!important;
+// }
+// [class*=" el-icon-"], [class^=el-icon-]
+//   line-height: inherit!important;
+// 下拉框--end
+
+
+// 日历--start
+.el-picker-panel
+    background: rgba(22,22,28,0.9)!important
+    border: 1px solid #383D50!important
+    border-radius: 10px!important
+.el-date-picker__header-label
+    color #fff!important
+    font-size: 14px!important;
+.el-date-picker__header-label:hover
+    color #0DBA7F!important
+.el-picker-panel__icon-btn
+    color #fff!important
+.el-year-table td
+    padding: 5px 3px!important;
+.el-year-table td .cell
+    color: #fff!important;
+    font-size: 14px!important;
+.el-month-table td
+    padding: 5px 3px!important;
+.el-month-table td .cell
+    color: #fff!important;
+    font-size: 14px!important;
+.el-date-picker__header--bordered+.el-picker-panel__content
+    margin-top: 10px!important;
+.el-picker-panel__content
+    margin: 10px!important;
+.el-month-table td .cell:hover, .el-month-table td.current:not(.disabled) .cell
+    color: #0DBA7F!important;
+.el-picker-panel__icon-btn:hover
+    color: #0DBA7F!important;
+.el-month-table td.today .cell
+    color: #0DBA7F!important;
+.el-date-picker__header
+    margin: 5px 12px!important;
+.el-date-picker__header--bordered
+    padding-bottom: 5px!important;
+    border-bottom: solid 1px #272A36!important;
+.el-date-picker
+    width 260px!important
+.el-date-picker .el-picker-panel__content
+    width: auto!important;
+.el-year-table td .cell:hover, .el-year-table td.current:not(.disabled) .cell
+    color: #0DBA7F!important;
+.el-year-table td.today .cell
+    color: #0DBA7F!important;
+.el-input--prefix .el-input__inner
+    padding-left: 27px!important;
+// 日历--end
+
+
+
+// 表格--start
+.el-table
+    color #fff!important
+.el-table th, .el-table tr
+    background-color #16161C!important
+.tableBg.el-table th, .tableBg.el-table tr
+    background-color #1B1B23!important
+.el-table--enable-row-hover .el-table__body tr:hover>td
+    background-color:rgba(102,102,127,0.23)!important
+.el-table--border, .el-table--group
+    border: none!important
+.el-table td, .el-table th.is-leaf
+    border-bottom: 1px solid rgba(102,102,127,0.23)!important;
+.el-table--border td, .el-table--border th, .el-table__body-wrapper .el-table--border.is-scrolling-left~.el-table__fixed
+    border-right none!important
+.el-table::before
+    height: 0!important
+.el-table--border::after, .el-table--group::after
+    width: 0!important
+.el-table td, .el-table th
+    padding 6px 0!important
+.el-table thead
+    color #66667F!important;
+.el-table .descending .sort-caret.descending {  // 排序
+    border-top-color: #0DBA7F!important;
+}
+.el-table .ascending .sort-caret.ascending { // 排序
+    border-bottom-color: #0DBA7F!important;
+}
+.el-table .cell, .el-table th div, .el-table--border td:first-child .cell, .el-table--border th:first-child .cell
+    padding-left: 0px!important;
+.el-table .cell, .el-table th div
+    padding-right: 2px!important;
+.el-table, .el-table__expanded-cell
+    background-color #1B1B23!important
+.el-table .sort-caret
+    border: 4px solid transparent!important
+.el-table .sort-caret.ascending
+    border-bottom-color: #c0c4cc!important;
+.el-table .sort-caret.descending
+    border-top-color: #c0c4cc!important;
+.el-table .caret-wrapper
+    height: 30px!important;
+.el-table__column-filter-trigger
+    line-height: 24px!important;
+    margin-left: 10px!important;
+
+.el-table__empty-text
+    color #66667F!important;
+// 表格--end
+
+
+
+    
+

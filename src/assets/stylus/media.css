@@ -1,0 +1,6 @@
+@media screen and (max-width: 1910px) {
+
+  #MapContainer{
+    width: 100% !important;
+  }
+}

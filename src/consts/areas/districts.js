@@ -1,0 +1,14122 @@
+// 区
+export default [{
+  'id': 1,
+  'name': '东城区',
+  'cityID': 1,
+  'disSort': null
+}, {
+  'id': 2,
+  'name': '西城区',
+  'cityID': 1,
+  'disSort': null
+}, {
+  'id': 3,
+  'name': '崇文区',
+  'cityID': 1,
+  'disSort': null
+}, {
+  'id': 4,
+  'name': '宣武区',
+  'cityID': 1,
+  'disSort': null
+}, {
+  'id': 5,
+  'name': '朝阳区',
+  'cityID': 1,
+  'disSort': null
+}, {
+  'id': 6,
+  'name': '丰台区',
+  'cityID': 1,
+  'disSort': null
+}, {
+  'id': 7,
+  'name': '石景山区',
+  'cityID': 1,
+  'disSort': null
+}, {
+  'id': 8,
+  'name': '海淀区',
+  'cityID': 1,
+  'disSort': null
+}, {
+  'id': 9,
+  'name': '门头沟区',
+  'cityID': 1,
+  'disSort': null
+}, {
+  'id': 10,
+  'name': '房山区',
+  'cityID': 1,
+  'disSort': null
+}, {
+  'id': 11,
+  'name': '通州区',
+  'cityID': 1,
+  'disSort': null
+}, {
+  'id': 12,
+  'name': '顺义区',
+  'cityID': 1,
+  'disSort': null
+}, {
+  'id': 13,
+  'name': '昌平区',
+  'cityID': 1,
+  'disSort': null
+}, {
+  'id': 14,
+  'name': '大兴区',
+  'cityID': 1,
+  'disSort': null
+}, {
+  'id': 15,
+  'name': '怀柔区',
+  'cityID': 1,
+  'disSort': null
+}, {
+  'id': 16,
+  'name': '平谷区',
+  'cityID': 1,
+  'disSort': null
+}, {
+  'id': 17,
+  'name': '密云县',
+  'cityID': 1,
+  'disSort': null
+}, {
+  'id': 18,
+  'name': '延庆县',
+  'cityID': 1,
+  'disSort': null
+}, {
+  'id': 19,
+  'name': '和平区',
+  'cityID': 2,
+  'disSort': null
+}, {
+  'id': 20,
+  'name': '河东区',
+  'cityID': 2,
+  'disSort': null
+}, {
+  'id': 21,
+  'name': '河西区',
+  'cityID': 2,
+  'disSort': null
+}, {
+  'id': 22,
+  'name': '南开区',
+  'cityID': 2,
+  'disSort': null
+}, {
+  'id': 23,
+  'name': '河北区',
+  'cityID': 2,
+  'disSort': null
+}, {
+  'id': 24,
+  'name': '红桥区',
+  'cityID': 2,
+  'disSort': null
+}, {
+  'id': 25,
+  'name': '塘沽区',
+  'cityID': 2,
+  'disSort': null
+}, {
+  'id': 26,
+  'name': '汉沽区',
+  'cityID': 2,
+  'disSort': null
+}, {
+  'id': 27,
+  'name': '大港区',
+  'cityID': 2,
+  'disSort': null
+}, {
+  'id': 28,
+  'name': '东丽区',
+  'cityID': 2,
+  'disSort': null
+}, {
+  'id': 29,
+  'name': '西青区',
+  'cityID': 2,
+  'disSort': null
+}, {
+  'id': 30,
+  'name': '津南区',
+  'cityID': 2,
+  'disSort': null
+}, {
+  'id': 31,
+  'name': '北辰区',
+  'cityID': 2,
+  'disSort': null
+}, {
+  'id': 32,
+  'name': '武清区',
+  'cityID': 2,
+  'disSort': null
+}, {
+  'id': 33,
+  'name': '宝坻区',
+  'cityID': 2,
+  'disSort': null
+}, {
+  'id': 34,
+  'name': '宁河县',
+  'cityID': 2,
+  'disSort': null
+}, {
+  'id': 35,
+  'name': '静海县',
+  'cityID': 2,
+  'disSort': null
+}, {
+  'id': 36,
+  'name': '蓟县',
+  'cityID': 2,
+  'disSort': null
+}, {
+  'id': 37,
+  'name': '黄浦区',
+  'cityID': 3,
+  'disSort': null
+}, {
+  'id': 38,
+  'name': '卢湾区',
+  'cityID': 3,
+  'disSort': null
+}, {
+  'id': 39,
+  'name': '徐汇区',
+  'cityID': 3,
+  'disSort': null
+}, {
+  'id': 40,
+  'name': '长宁区',
+  'cityID': 3,
+  'disSort': null
+}, {
+  'id': 41,
+  'name': '静安区',
+  'cityID': 3,
+  'disSort': null
+}, {
+  'id': 42,
+  'name': '普陀区',
+  'cityID': 3,
+  'disSort': null
+}, {
+  'id': 43,
+  'name': '闸北区',
+  'cityID': 3,
+  'disSort': null
+}, {
+  'id': 44,
+  'name': '虹口区',
+  'cityID': 3,
+  'disSort': null
+}, {
+  'id': 45,
+  'name': '杨浦区',
+  'cityID': 3,
+  'disSort': null
+}, {
+  'id': 46,
+  'name': '闵行区',
+  'cityID': 3,
+  'disSort': null
+}, {
+  'id': 47,
+  'name': '宝山区',
+  'cityID': 3,
+  'disSort': null
+}, {
+  'id': 48,
+  'name': '嘉定区',
+  'cityID': 3,
+  'disSort': null
+}, {
+  'id': 49,
+  'name': '浦东新区',
+  'cityID': 3,
+  'disSort': null
+}, {
+  'id': 50,
+  'name': '金山区',
+  'cityID': 3,
+  'disSort': null
+}, {
+  'id': 51,
+  'name': '松江区',
+  'cityID': 3,
+  'disSort': null
+}, {
+  'id': 52,
+  'name': '青浦区',
+  'cityID': 3,
+  'disSort': null
+}, {
+  'id': 53,
+  'name': '南汇区',
+  'cityID': 3,
+  'disSort': null
+}, {
+  'id': 54,
+  'name': '奉贤区',
+  'cityID': 3,
+  'disSort': null
+}, {
+  'id': 55,
+  'name': '崇明县',
+  'cityID': 3,
+  'disSort': null
+}, {
+  'id': 56,
+  'name': '万州区',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 57,
+  'name': '涪陵区',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 58,
+  'name': '渝中区',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 59,
+  'name': '大渡口区',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 60,
+  'name': '江北区',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 61,
+  'name': '沙坪坝区',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 62,
+  'name': '九龙坡区',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 63,
+  'name': '南岸区',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 64,
+  'name': '北碚区',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 65,
+  'name': '万盛区',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 66,
+  'name': '双桥区',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 67,
+  'name': '渝北区',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 68,
+  'name': '巴南区',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 69,
+  'name': '黔江区',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 70,
+  'name': '长寿区',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 71,
+  'name': '江津区',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 72,
+  'name': '合川区',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 73,
+  'name': '永川区',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 74,
+  'name': '南川区',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 75,
+  'name': '綦江县',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 76,
+  'name': '潼南县',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 77,
+  'name': '铜梁县',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 78,
+  'name': '大足县',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 79,
+  'name': '荣昌县',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 80,
+  'name': '璧山县',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 81,
+  'name': '梁平县',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 82,
+  'name': '城口县',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 83,
+  'name': '丰都县',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 84,
+  'name': '垫江县',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 85,
+  'name': '武隆县',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 86,
+  'name': '忠县',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 87,
+  'name': '开县',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 88,
+  'name': '云阳县',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 89,
+  'name': '奉节县',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 90,
+  'name': '巫山县',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 91,
+  'name': '巫溪县',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 92,
+  'name': '石柱土家族自治县',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 93,
+  'name': '秀山土家族苗族自治县',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 94,
+  'name': '酉阳土家族苗族自治县',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 95,
+  'name': '彭水苗族土家族自治县',
+  'cityID': 4,
+  'disSort': null
+}, {
+  'id': 96,
+  'name': '邯山区',
+  'cityID': 5,
+  'disSort': null
+}, {
+  'id': 97,
+  'name': '丛台区',
+  'cityID': 5,
+  'disSort': null
+}, {
+  'id': 98,
+  'name': '复兴区',
+  'cityID': 5,
+  'disSort': null
+}, {
+  'id': 99,
+  'name': '峰峰矿区',
+  'cityID': 5,
+  'disSort': null
+}, {
+  'id': 100,
+  'name': '邯郸县',
+  'cityID': 5,
+  'disSort': null
+}, {
+  'id': 101,
+  'name': '临漳县',
+  'cityID': 5,
+  'disSort': null
+}, {
+  'id': 102,
+  'name': '成安县',
+  'cityID': 5,
+  'disSort': null
+}, {
+  'id': 103,
+  'name': '大名县',
+  'cityID': 5,
+  'disSort': null
+}, {
+  'id': 104,
+  'name': '涉县',
+  'cityID': 5,
+  'disSort': null
+}, {
+  'id': 105,
+  'name': '磁县',
+  'cityID': 5,
+  'disSort': null
+}, {
+  'id': 106,
+  'name': '肥乡县',
+  'cityID': 5,
+  'disSort': null
+}, {
+  'id': 107,
+  'name': '永年县',
+  'cityID': 5,
+  'disSort': null
+}, {
+  'id': 108,
+  'name': '邱县',
+  'cityID': 5,
+  'disSort': null
+}, {
+  'id': 109,
+  'name': '鸡泽县',
+  'cityID': 5,
+  'disSort': null
+}, {
+  'id': 110,
+  'name': '广平县',
+  'cityID': 5,
+  'disSort': null
+}, {
+  'id': 111,
+  'name': '馆陶县',
+  'cityID': 5,
+  'disSort': null
+}, {
+  'id': 112,
+  'name': '魏县',
+  'cityID': 5,
+  'disSort': null
+}, {
+  'id': 113,
+  'name': '曲周县',
+  'cityID': 5,
+  'disSort': null
+}, {
+  'id': 114,
+  'name': '武安市',
+  'cityID': 5,
+  'disSort': null
+}, {
+  'id': 115,
+  'name': '长安区',
+  'cityID': 6,
+  'disSort': null
+}, {
+  'id': 116,
+  'name': '桥东区',
+  'cityID': 6,
+  'disSort': null
+}, {
+  'id': 117,
+  'name': '桥西区',
+  'cityID': 6,
+  'disSort': null
+}, {
+  'id': 118,
+  'name': '新华区',
+  'cityID': 6,
+  'disSort': null
+}, {
+  'id': 119,
+  'name': '井陉矿区',
+  'cityID': 6,
+  'disSort': null
+}, {
+  'id': 120,
+  'name': '裕华区',
+  'cityID': 6,
+  'disSort': null
+}, {
+  'id': 121,
+  'name': '井陉县',
+  'cityID': 6,
+  'disSort': null
+}, {
+  'id': 122,
+  'name': '正定县',
+  'cityID': 6,
+  'disSort': null
+}, {
+  'id': 123,
+  'name': '栾城县',
+  'cityID': 6,
+  'disSort': null
+}, {
+  'id': 124,
+  'name': '行唐县',
+  'cityID': 6,
+  'disSort': null
+}, {
+  'id': 125,
+  'name': '灵寿县',
+  'cityID': 6,
+  'disSort': null
+}, {
+  'id': 126,
+  'name': '高邑县',
+  'cityID': 6,
+  'disSort': null
+}, {
+  'id': 127,
+  'name': '深泽县',
+  'cityID': 6,
+  'disSort': null
+}, {
+  'id': 128,
+  'name': '赞皇县',
+  'cityID': 6,
+  'disSort': null
+}, {
+  'id': 129,
+  'name': '无极县',
+  'cityID': 6,
+  'disSort': null
+}, {
+  'id': 130,
+  'name': '平山县',
+  'cityID': 6,
+  'disSort': null
+}, {
+  'id': 131,
+  'name': '元氏县',
+  'cityID': 6,
+  'disSort': null
+}, {
+  'id': 132,
+  'name': '赵县',
+  'cityID': 6,
+  'disSort': null
+}, {
+  'id': 133,
+  'name': '辛集市',
+  'cityID': 6,
+  'disSort': null
+}, {
+  'id': 134,
+  'name': '藁城市',
+  'cityID': 6,
+  'disSort': null
+}, {
+  'id': 135,
+  'name': '晋州市',
+  'cityID': 6,
+  'disSort': null
+}, {
+  'id': 136,
+  'name': '新乐市',
+  'cityID': 6,
+  'disSort': null
+}, {
+  'id': 137,
+  'name': '鹿泉市',
+  'cityID': 6,
+  'disSort': null
+}, {
+  'id': 138,
+  'name': '新市区',
+  'cityID': 7,
+  'disSort': null
+}, {
+  'id': 139,
+  'name': '北市区',
+  'cityID': 7,
+  'disSort': null
+}, {
+  'id': 140,
+  'name': '南市区',
+  'cityID': 7,
+  'disSort': null
+}, {
+  'id': 141,
+  'name': '满城县',
+  'cityID': 7,
+  'disSort': null
+}, {
+  'id': 142,
+  'name': '清苑县',
+  'cityID': 7,
+  'disSort': null
+}, {
+  'id': 143,
+  'name': '涞水县',
+  'cityID': 7,
+  'disSort': null
+}, {
+  'id': 144,
+  'name': '阜平县',
+  'cityID': 7,
+  'disSort': null
+}, {
+  'id': 145,
+  'name': '徐水县',
+  'cityID': 7,
+  'disSort': null
+}, {
+  'id': 146,
+  'name': '定兴县',
+  'cityID': 7,
+  'disSort': null
+}, {
+  'id': 147,
+  'name': '唐县',
+  'cityID': 7,
+  'disSort': null
+}, {
+  'id': 148,
+  'name': '高阳县',
+  'cityID': 7,
+  'disSort': null
+}, {
+  'id': 149,
+  'name': '容城县',
+  'cityID': 7,
+  'disSort': null
+}, {
+  'id': 150,
+  'name': '涞源县',
+  'cityID': 7,
+  'disSort': null
+}, {
+  'id': 151,
+  'name': '望都县',
+  'cityID': 7,
+  'disSort': null
+}, {
+  'id': 152,
+  'name': '安新县',
+  'cityID': 7,
+  'disSort': null
+}, {
+  'id': 153,
+  'name': '易县',
+  'cityID': 7,
+  'disSort': null
+}, {
+  'id': 154,
+  'name': '曲阳县',
+  'cityID': 7,
+  'disSort': null
+}, {
+  'id': 155,
+  'name': '蠡县',
+  'cityID': 7,
+  'disSort': null
+}, {
+  'id': 156,
+  'name': '顺平县',
+  'cityID': 7,
+  'disSort': null
+}, {
+  'id': 157,
+  'name': '博野县',
+  'cityID': 7,
+  'disSort': null
+}, {
+  'id': 158,
+  'name': '雄县',
+  'cityID': 7,
+  'disSort': null
+}, {
+  'id': 159,
+  'name': '涿州市',
+  'cityID': 7,
+  'disSort': null
+}, {
+  'id': 160,
+  'name': '定州市',
+  'cityID': 7,
+  'disSort': null
+}, {
+  'id': 161,
+  'name': '安国市',
+  'cityID': 7,
+  'disSort': null
+}, {
+  'id': 162,
+  'name': '高碑店市',
+  'cityID': 7,
+  'disSort': null
+}, {
+  'id': 163,
+  'name': '桥东区',
+  'cityID': 8,
+  'disSort': null
+}, {
+  'id': 164,
+  'name': '桥西区',
+  'cityID': 8,
+  'disSort': null
+}, {
+  'id': 165,
+  'name': '宣化区',
+  'cityID': 8,
+  'disSort': null
+}, {
+  'id': 166,
+  'name': '下花园区',
+  'cityID': 8,
+  'disSort': null
+}, {
+  'id': 167,
+  'name': '宣化县',
+  'cityID': 8,
+  'disSort': null
+}, {
+  'id': 168,
+  'name': '张北县',
+  'cityID': 8,
+  'disSort': null
+}, {
+  'id': 169,
+  'name': '康保县',
+  'cityID': 8,
+  'disSort': null
+}, {
+  'id': 170,
+  'name': '沽源县',
+  'cityID': 8,
+  'disSort': null
+}, {
+  'id': 171,
+  'name': '尚义县',
+  'cityID': 8,
+  'disSort': null
+}, {
+  'id': 172,
+  'name': '蔚县',
+  'cityID': 8,
+  'disSort': null
+}, {
+  'id': 173,
+  'name': '阳原县',
+  'cityID': 8,
+  'disSort': null
+}, {
+  'id': 174,
+  'name': '怀安县',
+  'cityID': 8,
+  'disSort': null
+}, {
+  'id': 175,
+  'name': '万全县',
+  'cityID': 8,
+  'disSort': null
+}, {
+  'id': 176,
+  'name': '怀来县',
+  'cityID': 8,
+  'disSort': null
+}, {
+  'id': 177,
+  'name': '涿鹿县',
+  'cityID': 8,
+  'disSort': null
+}, {
+  'id': 178,
+  'name': '赤城县',
+  'cityID': 8,
+  'disSort': null
+}, {
+  'id': 179,
+  'name': '崇礼县',
+  'cityID': 8,
+  'disSort': null
+}, {
+  'id': 180,
+  'name': '双桥区',
+  'cityID': 9,
+  'disSort': null
+}, {
+  'id': 181,
+  'name': '双滦区',
+  'cityID': 9,
+  'disSort': null
+}, {
+  'id': 182,
+  'name': '鹰手营子矿区',
+  'cityID': 9,
+  'disSort': null
+}, {
+  'id': 183,
+  'name': '承德县',
+  'cityID': 9,
+  'disSort': null
+}, {
+  'id': 184,
+  'name': '兴隆县',
+  'cityID': 9,
+  'disSort': null
+}, {
+  'id': 185,
+  'name': '平泉县',
+  'cityID': 9,
+  'disSort': null
+}, {
+  'id': 186,
+  'name': '滦平县',
+  'cityID': 9,
+  'disSort': null
+}, {
+  'id': 187,
+  'name': '隆化县',
+  'cityID': 9,
+  'disSort': null
+}, {
+  'id': 188,
+  'name': '丰宁满族自治县',
+  'cityID': 9,
+  'disSort': null
+}, {
+  'id': 189,
+  'name': '宽城满族自治县',
+  'cityID': 9,
+  'disSort': null
+}, {
+  'id': 190,
+  'name': '围场满族蒙古族自治县',
+  'cityID': 9,
+  'disSort': null
+}, {
+  'id': 191,
+  'name': '路南区',
+  'cityID': 10,
+  'disSort': null
+}, {
+  'id': 192,
+  'name': '路北区',
+  'cityID': 10,
+  'disSort': null
+}, {
+  'id': 193,
+  'name': '古冶区',
+  'cityID': 10,
+  'disSort': null
+}, {
+  'id': 194,
+  'name': '开平区',
+  'cityID': 10,
+  'disSort': null
+}, {
+  'id': 195,
+  'name': '丰南区',
+  'cityID': 10,
+  'disSort': null
+}, {
+  'id': 196,
+  'name': '丰润区',
+  'cityID': 10,
+  'disSort': null
+}, {
+  'id': 197,
+  'name': '滦县',
+  'cityID': 10,
+  'disSort': null
+}, {
+  'id': 198,
+  'name': '滦南县',
+  'cityID': 10,
+  'disSort': null
+}, {
+  'id': 199,
+  'name': '乐亭县',
+  'cityID': 10,
+  'disSort': null
+}, {
+  'id': 200,
+  'name': '迁西县',
+  'cityID': 10,
+  'disSort': null
+}, {
+  'id': 201,
+  'name': '玉田县',
+  'cityID': 10,
+  'disSort': null
+}, {
+  'id': 202,
+  'name': '唐海县',
+  'cityID': 10,
+  'disSort': null
+}, {
+  'id': 203,
+  'name': '遵化市',
+  'cityID': 10,
+  'disSort': null
+}, {
+  'id': 204,
+  'name': '迁安市',
+  'cityID': 10,
+  'disSort': null
+}, {
+  'id': 205,
+  'name': '安次区',
+  'cityID': 11,
+  'disSort': null
+}, {
+  'id': 206,
+  'name': '广阳区',
+  'cityID': 11,
+  'disSort': null
+}, {
+  'id': 207,
+  'name': '固安县',
+  'cityID': 11,
+  'disSort': null
+}, {
+  'id': 208,
+  'name': '永清县',
+  'cityID': 11,
+  'disSort': null
+}, {
+  'id': 209,
+  'name': '香河县',
+  'cityID': 11,
+  'disSort': null
+}, {
+  'id': 210,
+  'name': '大城县',
+  'cityID': 11,
+  'disSort': null
+}, {
+  'id': 211,
+  'name': '文安县',
+  'cityID': 11,
+  'disSort': null
+}, {
+  'id': 212,
+  'name': '大厂回族自治县',
+  'cityID': 11,
+  'disSort': null
+}, {
+  'id': 213,
+  'name': '霸州市',
+  'cityID': 11,
+  'disSort': null
+}, {
+  'id': 214,
+  'name': '三河市',
+  'cityID': 11,
+  'disSort': null
+}, {
+  'id': 215,
+  'name': '新华区',
+  'cityID': 12,
+  'disSort': null
+}, {
+  'id': 216,
+  'name': '运河区',
+  'cityID': 12,
+  'disSort': null
+}, {
+  'id': 217,
+  'name': '沧县',
+  'cityID': 12,
+  'disSort': null
+}, {
+  'id': 218,
+  'name': '青县',
+  'cityID': 12,
+  'disSort': null
+}, {
+  'id': 219,
+  'name': '东光县',
+  'cityID': 12,
+  'disSort': null
+}, {
+  'id': 220,
+  'name': '海兴县',
+  'cityID': 12,
+  'disSort': null
+}, {
+  'id': 221,
+  'name': '盐山县',
+  'cityID': 12,
+  'disSort': null
+}, {
+  'id': 222,
+  'name': '肃宁县',
+  'cityID': 12,
+  'disSort': null
+}, {
+  'id': 223,
+  'name': '南皮县',
+  'cityID': 12,
+  'disSort': null
+}, {
+  'id': 224,
+  'name': '吴桥县',
+  'cityID': 12,
+  'disSort': null
+}, {
+  'id': 225,
+  'name': '献县',
+  'cityID': 12,
+  'disSort': null
+}, {
+  'id': 226,
+  'name': '孟村回族自治县',
+  'cityID': 12,
+  'disSort': null
+}, {
+  'id': 227,
+  'name': '泊头市',
+  'cityID': 12,
+  'disSort': null
+}, {
+  'id': 228,
+  'name': '任丘市',
+  'cityID': 12,
+  'disSort': null
+}, {
+  'id': 229,
+  'name': '黄骅市',
+  'cityID': 12,
+  'disSort': null
+}, {
+  'id': 230,
+  'name': '河间市',
+  'cityID': 12,
+  'disSort': null
+}, {
+  'id': 231,
+  'name': '桃城区',
+  'cityID': 13,
+  'disSort': null
+}, {
+  'id': 232,
+  'name': '枣强县',
+  'cityID': 13,
+  'disSort': null
+}, {
+  'id': 233,
+  'name': '武邑县',
+  'cityID': 13,
+  'disSort': null
+}, {
+  'id': 234,
+  'name': '武强县',
+  'cityID': 13,
+  'disSort': null
+}, {
+  'id': 235,
+  'name': '饶阳县',
+  'cityID': 13,
+  'disSort': null
+}, {
+  'id': 236,
+  'name': '安平县',
+  'cityID': 13,
+  'disSort': null
+}, {
+  'id': 237,
+  'name': '故城县',
+  'cityID': 13,
+  'disSort': null
+}, {
+  'id': 238,
+  'name': '景县',
+  'cityID': 13,
+  'disSort': null
+}, {
+  'id': 239,
+  'name': '阜城县',
+  'cityID': 13,
+  'disSort': null
+}, {
+  'id': 240,
+  'name': '冀州市',
+  'cityID': 13,
+  'disSort': null
+}, {
+  'id': 241,
+  'name': '深州市',
+  'cityID': 13,
+  'disSort': null
+}, {
+  'id': 242,
+  'name': '桥东区',
+  'cityID': 14,
+  'disSort': null
+}, {
+  'id': 243,
+  'name': '桥西区',
+  'cityID': 14,
+  'disSort': null
+}, {
+  'id': 244,
+  'name': '邢台县',
+  'cityID': 14,
+  'disSort': null
+}, {
+  'id': 245,
+  'name': '临城县',
+  'cityID': 14,
+  'disSort': null
+}, {
+  'id': 246,
+  'name': '内丘县',
+  'cityID': 14,
+  'disSort': null
+}, {
+  'id': 247,
+  'name': '柏乡县',
+  'cityID': 14,
+  'disSort': null
+}, {
+  'id': 248,
+  'name': '隆尧县',
+  'cityID': 14,
+  'disSort': null
+}, {
+  'id': 249,
+  'name': '任县',
+  'cityID': 14,
+  'disSort': null
+}, {
+  'id': 250,
+  'name': '南和县',
+  'cityID': 14,
+  'disSort': null
+}, {
+  'id': 251,
+  'name': '宁晋县',
+  'cityID': 14,
+  'disSort': null
+}, {
+  'id': 252,
+  'name': '巨鹿县',
+  'cityID': 14,
+  'disSort': null
+}, {
+  'id': 253,
+  'name': '新河县',
+  'cityID': 14,
+  'disSort': null
+}, {
+  'id': 254,
+  'name': '广宗县',
+  'cityID': 14,
+  'disSort': null
+}, {
+  'id': 255,
+  'name': '平乡县',
+  'cityID': 14,
+  'disSort': null
+}, {
+  'id': 256,
+  'name': '威县',
+  'cityID': 14,
+  'disSort': null
+}, {
+  'id': 257,
+  'name': '清河县',
+  'cityID': 14,
+  'disSort': null
+}, {
+  'id': 258,
+  'name': '临西县',
+  'cityID': 14,
+  'disSort': null
+}, {
+  'id': 259,
+  'name': '南宫市',
+  'cityID': 14,
+  'disSort': null
+}, {
+  'id': 260,
+  'name': '沙河市',
+  'cityID': 14,
+  'disSort': null
+}, {
+  'id': 261,
+  'name': '海港区',
+  'cityID': 15,
+  'disSort': null
+}, {
+  'id': 262,
+  'name': '山海关区',
+  'cityID': 15,
+  'disSort': null
+}, {
+  'id': 263,
+  'name': '北戴河区',
+  'cityID': 15,
+  'disSort': null
+}, {
+  'id': 264,
+  'name': '青龙满族自治县',
+  'cityID': 15,
+  'disSort': null
+}, {
+  'id': 265,
+  'name': '昌黎县',
+  'cityID': 15,
+  'disSort': null
+}, {
+  'id': 266,
+  'name': '抚宁县',
+  'cityID': 15,
+  'disSort': null
+}, {
+  'id': 267,
+  'name': '卢龙县',
+  'cityID': 15,
+  'disSort': null
+}, {
+  'id': 268,
+  'name': '朔城区',
+  'cityID': 16,
+  'disSort': null
+}, {
+  'id': 269,
+  'name': '平鲁区',
+  'cityID': 16,
+  'disSort': null
+}, {
+  'id': 270,
+  'name': '山阴县',
+  'cityID': 16,
+  'disSort': null
+}, {
+  'id': 271,
+  'name': '应县',
+  'cityID': 16,
+  'disSort': null
+}, {
+  'id': 272,
+  'name': '右玉县',
+  'cityID': 16,
+  'disSort': null
+}, {
+  'id': 273,
+  'name': '怀仁县',
+  'cityID': 16,
+  'disSort': null
+}, {
+  'id': 274,
+  'name': '忻府区',
+  'cityID': 17,
+  'disSort': null
+}, {
+  'id': 275,
+  'name': '定襄县',
+  'cityID': 17,
+  'disSort': null
+}, {
+  'id': 276,
+  'name': '五台县',
+  'cityID': 17,
+  'disSort': null
+}, {
+  'id': 277,
+  'name': '代县',
+  'cityID': 17,
+  'disSort': null
+}, {
+  'id': 278,
+  'name': '繁峙县',
+  'cityID': 17,
+  'disSort': null
+}, {
+  'id': 279,
+  'name': '宁武县',
+  'cityID': 17,
+  'disSort': null
+}, {
+  'id': 280,
+  'name': '静乐县',
+  'cityID': 17,
+  'disSort': null
+}, {
+  'id': 281,
+  'name': '神池县',
+  'cityID': 17,
+  'disSort': null
+}, {
+  'id': 282,
+  'name': '五寨县',
+  'cityID': 17,
+  'disSort': null
+}, {
+  'id': 283,
+  'name': '岢岚县',
+  'cityID': 17,
+  'disSort': null
+}, {
+  'id': 284,
+  'name': '河曲县',
+  'cityID': 17,
+  'disSort': null
+}, {
+  'id': 285,
+  'name': '保德县',
+  'cityID': 17,
+  'disSort': null
+}, {
+  'id': 286,
+  'name': '偏关县',
+  'cityID': 17,
+  'disSort': null
+}, {
+  'id': 287,
+  'name': '原平市',
+  'cityID': 17,
+  'disSort': null
+}, {
+  'id': 288,
+  'name': '小店区',
+  'cityID': 18,
+  'disSort': null
+}, {
+  'id': 289,
+  'name': '迎泽区',
+  'cityID': 18,
+  'disSort': null
+}, {
+  'id': 290,
+  'name': '杏花岭区',
+  'cityID': 18,
+  'disSort': null
+}, {
+  'id': 291,
+  'name': '尖草坪区',
+  'cityID': 18,
+  'disSort': null
+}, {
+  'id': 292,
+  'name': '万柏林区',
+  'cityID': 18,
+  'disSort': null
+}, {
+  'id': 293,
+  'name': '晋源区',
+  'cityID': 18,
+  'disSort': null
+}, {
+  'id': 294,
+  'name': '清徐县',
+  'cityID': 18,
+  'disSort': null
+}, {
+  'id': 295,
+  'name': '阳曲县',
+  'cityID': 18,
+  'disSort': null
+}, {
+  'id': 296,
+  'name': '娄烦县',
+  'cityID': 18,
+  'disSort': null
+}, {
+  'id': 297,
+  'name': '古交市',
+  'cityID': 18,
+  'disSort': null
+}, {
+  'id': 298,
+  'name': '矿区',
+  'cityID': 19,
+  'disSort': null
+}, {
+  'id': 299,
+  'name': '南郊区',
+  'cityID': 19,
+  'disSort': null
+}, {
+  'id': 300,
+  'name': '新荣区',
+  'cityID': 19,
+  'disSort': null
+}, {
+  'id': 301,
+  'name': '阳高县',
+  'cityID': 19,
+  'disSort': null
+}, {
+  'id': 302,
+  'name': '天镇县',
+  'cityID': 19,
+  'disSort': null
+}, {
+  'id': 303,
+  'name': '广灵县',
+  'cityID': 19,
+  'disSort': null
+}, {
+  'id': 304,
+  'name': '灵丘县',
+  'cityID': 19,
+  'disSort': null
+}, {
+  'id': 305,
+  'name': '浑源县',
+  'cityID': 19,
+  'disSort': null
+}, {
+  'id': 306,
+  'name': '左云县',
+  'cityID': 19,
+  'disSort': null
+}, {
+  'id': 307,
+  'name': '大同县',
+  'cityID': 19,
+  'disSort': null
+}, {
+  'id': 308,
+  'name': '矿区',
+  'cityID': 20,
+  'disSort': null
+}, {
+  'id': 309,
+  'name': '平定县',
+  'cityID': 20,
+  'disSort': null
+}, {
+  'id': 310,
+  'name': '盂县',
+  'cityID': 20,
+  'disSort': null
+}, {
+  'id': 311,
+  'name': '榆次区',
+  'cityID': 21,
+  'disSort': null
+}, {
+  'id': 312,
+  'name': '榆社县',
+  'cityID': 21,
+  'disSort': null
+}, {
+  'id': 313,
+  'name': '左权县',
+  'cityID': 21,
+  'disSort': null
+}, {
+  'id': 314,
+  'name': '和顺县',
+  'cityID': 21,
+  'disSort': null
+}, {
+  'id': 315,
+  'name': '昔阳县',
+  'cityID': 21,
+  'disSort': null
+}, {
+  'id': 316,
+  'name': '寿阳县',
+  'cityID': 21,
+  'disSort': null
+}, {
+  'id': 317,
+  'name': '太谷县',
+  'cityID': 21,
+  'disSort': null
+}, {
+  'id': 318,
+  'name': '祁县',
+  'cityID': 21,
+  'disSort': null
+}, {
+  'id': 319,
+  'name': '平遥县',
+  'cityID': 21,
+  'disSort': null
+}, {
+  'id': 320,
+  'name': '灵石县',
+  'cityID': 21,
+  'disSort': null
+}, {
+  'id': 321,
+  'name': '介休市',
+  'cityID': 21,
+  'disSort': null
+}, {
+  'id': 322,
+  'name': '长治县',
+  'cityID': 22,
+  'disSort': null
+}, {
+  'id': 323,
+  'name': '襄垣县',
+  'cityID': 22,
+  'disSort': null
+}, {
+  'id': 324,
+  'name': '屯留县',
+  'cityID': 22,
+  'disSort': null
+}, {
+  'id': 325,
+  'name': '平顺县',
+  'cityID': 22,
+  'disSort': null
+}, {
+  'id': 326,
+  'name': '黎城县',
+  'cityID': 22,
+  'disSort': null
+}, {
+  'id': 327,
+  'name': '壶关县',
+  'cityID': 22,
+  'disSort': null
+}, {
+  'id': 328,
+  'name': '长子县',
+  'cityID': 22,
+  'disSort': null
+}, {
+  'id': 329,
+  'name': '武乡县',
+  'cityID': 22,
+  'disSort': null
+}, {
+  'id': 330,
+  'name': '沁县',
+  'cityID': 22,
+  'disSort': null
+}, {
+  'id': 331,
+  'name': '沁源县',
+  'cityID': 22,
+  'disSort': null
+}, {
+  'id': 332,
+  'name': '潞城市',
+  'cityID': 22,
+  'disSort': null
+}, {
+  'id': 333,
+  'name': '沁水县',
+  'cityID': 23,
+  'disSort': null
+}, {
+  'id': 334,
+  'name': '阳城县',
+  'cityID': 23,
+  'disSort': null
+}, {
+  'id': 335,
+  'name': '陵川县',
+  'cityID': 23,
+  'disSort': null
+}, {
+  'id': 336,
+  'name': '泽州县',
+  'cityID': 23,
+  'disSort': null
+}, {
+  'id': 337,
+  'name': '高平市',
+  'cityID': 23,
+  'disSort': null
+}, {
+  'id': 338,
+  'name': '尧都区',
+  'cityID': 24,
+  'disSort': null
+}, {
+  'id': 339,
+  'name': '曲沃县',
+  'cityID': 24,
+  'disSort': null
+}, {
+  'id': 340,
+  'name': '翼城县',
+  'cityID': 24,
+  'disSort': null
+}, {
+  'id': 341,
+  'name': '襄汾县',
+  'cityID': 24,
+  'disSort': null
+}, {
+  'id': 342,
+  'name': '洪洞县',
+  'cityID': 24,
+  'disSort': null
+}, {
+  'id': 343,
+  'name': '古县',
+  'cityID': 24,
+  'disSort': null
+}, {
+  'id': 344,
+  'name': '安泽县',
+  'cityID': 24,
+  'disSort': null
+}, {
+  'id': 345,
+  'name': '浮山县',
+  'cityID': 24,
+  'disSort': null
+}, {
+  'id': 346,
+  'name': '吉县',
+  'cityID': 24,
+  'disSort': null
+}, {
+  'id': 347,
+  'name': '乡宁县',
+  'cityID': 24,
+  'disSort': null
+}, {
+  'id': 348,
+  'name': '大宁县',
+  'cityID': 24,
+  'disSort': null
+}, {
+  'id': 349,
+  'name': '隰县',
+  'cityID': 24,
+  'disSort': null
+}, {
+  'id': 350,
+  'name': '永和县',
+  'cityID': 24,
+  'disSort': null
+}, {
+  'id': 351,
+  'name': '蒲县',
+  'cityID': 24,
+  'disSort': null
+}, {
+  'id': 352,
+  'name': '汾西县',
+  'cityID': 24,
+  'disSort': null
+}, {
+  'id': 353,
+  'name': '侯马市',
+  'cityID': 24,
+  'disSort': null
+}, {
+  'id': 354,
+  'name': '霍州市',
+  'cityID': 24,
+  'disSort': null
+}, {
+  'id': 355,
+  'name': '离石区',
+  'cityID': 25,
+  'disSort': null
+}, {
+  'id': 356,
+  'name': '文水县',
+  'cityID': 25,
+  'disSort': null
+}, {
+  'id': 357,
+  'name': '交城县',
+  'cityID': 25,
+  'disSort': null
+}, {
+  'id': 358,
+  'name': '兴县',
+  'cityID': 25,
+  'disSort': null
+}, {
+  'id': 359,
+  'name': '临县',
+  'cityID': 25,
+  'disSort': null
+}, {
+  'id': 360,
+  'name': '柳林县',
+  'cityID': 25,
+  'disSort': null
+}, {
+  'id': 361,
+  'name': '石楼县',
+  'cityID': 25,
+  'disSort': null
+}, {
+  'id': 362,
+  'name': '岚县',
+  'cityID': 25,
+  'disSort': null
+}, {
+  'id': 363,
+  'name': '方山县',
+  'cityID': 25,
+  'disSort': null
+}, {
+  'id': 364,
+  'name': '中阳县',
+  'cityID': 25,
+  'disSort': null
+}, {
+  'id': 365,
+  'name': '交口县',
+  'cityID': 25,
+  'disSort': null
+}, {
+  'id': 366,
+  'name': '孝义市',
+  'cityID': 25,
+  'disSort': null
+}, {
+  'id': 367,
+  'name': '汾阳市',
+  'cityID': 25,
+  'disSort': null
+}, {
+  'id': 368,
+  'name': '盐湖区',
+  'cityID': 26,
+  'disSort': null
+}, {
+  'id': 369,
+  'name': '临猗县',
+  'cityID': 26,
+  'disSort': null
+}, {
+  'id': 370,
+  'name': '万荣县',
+  'cityID': 26,
+  'disSort': null
+}, {
+  'id': 371,
+  'name': '闻喜县',
+  'cityID': 26,
+  'disSort': null
+}, {
+  'id': 372,
+  'name': '稷山县',
+  'cityID': 26,
+  'disSort': null
+}, {
+  'id': 373,
+  'name': '新绛县',
+  'cityID': 26,
+  'disSort': null
+}, {
+  'id': 374,
+  'name': '绛县',
+  'cityID': 26,
+  'disSort': null
+}, {
+  'id': 375,
+  'name': '垣曲县',
+  'cityID': 26,
+  'disSort': null
+}, {
+  'id': 376,
+  'name': '夏县',
+  'cityID': 26,
+  'disSort': null
+}, {
+  'id': 377,
+  'name': '平陆县',
+  'cityID': 26,
+  'disSort': null
+}, {
+  'id': 378,
+  'name': '芮城县',
+  'cityID': 26,
+  'disSort': null
+}, {
+  'id': 379,
+  'name': '永济市',
+  'cityID': 26,
+  'disSort': null
+}, {
+  'id': 380,
+  'name': '河津市',
+  'cityID': 26,
+  'disSort': null
+}, {
+  'id': 381,
+  'name': '和平区',
+  'cityID': 27,
+  'disSort': null
+}, {
+  'id': 382,
+  'name': '沈河区',
+  'cityID': 27,
+  'disSort': null
+}, {
+  'id': 383,
+  'name': '大东区',
+  'cityID': 27,
+  'disSort': null
+}, {
+  'id': 384,
+  'name': '皇姑区',
+  'cityID': 27,
+  'disSort': null
+}, {
+  'id': 385,
+  'name': '铁西区',
+  'cityID': 27,
+  'disSort': null
+}, {
+  'id': 386,
+  'name': '苏家屯区',
+  'cityID': 27,
+  'disSort': null
+}, {
+  'id': 387,
+  'name': '东陵区',
+  'cityID': 27,
+  'disSort': null
+}, {
+  'id': 388,
+  'name': '沈北新区',
+  'cityID': 27,
+  'disSort': null
+}, {
+  'id': 389,
+  'name': '于洪区',
+  'cityID': 27,
+  'disSort': null
+}, {
+  'id': 390,
+  'name': '辽中县',
+  'cityID': 27,
+  'disSort': null
+}, {
+  'id': 391,
+  'name': '康平县',
+  'cityID': 27,
+  'disSort': null
+}, {
+  'id': 392,
+  'name': '法库县',
+  'cityID': 27,
+  'disSort': null
+}, {
+  'id': 393,
+  'name': '新民市',
+  'cityID': 27,
+  'disSort': null
+}, {
+  'id': 394,
+  'name': '银州区',
+  'cityID': 28,
+  'disSort': null
+}, {
+  'id': 395,
+  'name': '清河区',
+  'cityID': 28,
+  'disSort': null
+}, {
+  'id': 396,
+  'name': '铁岭县',
+  'cityID': 28,
+  'disSort': null
+}, {
+  'id': 397,
+  'name': '西丰县',
+  'cityID': 28,
+  'disSort': null
+}, {
+  'id': 398,
+  'name': '昌图县',
+  'cityID': 28,
+  'disSort': null
+}, {
+  'id': 399,
+  'name': '调兵山市',
+  'cityID': 28,
+  'disSort': null
+}, {
+  'id': 400,
+  'name': '开原市',
+  'cityID': 28,
+  'disSort': null
+}, {
+  'id': 401,
+  'name': '长海县',
+  'cityID': 29,
+  'disSort': null
+}, {
+  'id': 402,
+  'name': '旅顺口区',
+  'cityID': 29,
+  'disSort': null
+}, {
+  'id': 403,
+  'name': '中山区',
+  'cityID': 29,
+  'disSort': null
+}, {
+  'id': 404,
+  'name': '西岗区',
+  'cityID': 29,
+  'disSort': null
+}, {
+  'id': 405,
+  'name': '沙河口区',
+  'cityID': 29,
+  'disSort': null
+}, {
+  'id': 406,
+  'name': '甘井子区',
+  'cityID': 29,
+  'disSort': null
+}, {
+  'id': 407,
+  'name': '金州区',
+  'cityID': 29,
+  'disSort': null
+}, {
+  'id': 408,
+  'name': '普兰店市',
+  'cityID': 29,
+  'disSort': null
+}, {
+  'id': 409,
+  'name': '瓦房店市',
+  'cityID': 29,
+  'disSort': null
+}, {
+  'id': 410,
+  'name': '庄河市',
+  'cityID': 29,
+  'disSort': null
+}, {
+  'id': 411,
+  'name': '铁东区',
+  'cityID': 30,
+  'disSort': null
+}, {
+  'id': 412,
+  'name': '铁西区',
+  'cityID': 30,
+  'disSort': null
+}, {
+  'id': 413,
+  'name': '立山区',
+  'cityID': 30,
+  'disSort': null
+}, {
+  'id': 414,
+  'name': '千山区',
+  'cityID': 30,
+  'disSort': null
+}, {
+  'id': 415,
+  'name': '台安县',
+  'cityID': 30,
+  'disSort': null
+}, {
+  'id': 416,
+  'name': '岫岩满族自治县',
+  'cityID': 30,
+  'disSort': null
+}, {
+  'id': 417,
+  'name': '海城市',
+  'cityID': 30,
+  'disSort': null
+}, {
+  'id': 418,
+  'name': '新抚区',
+  'cityID': 31,
+  'disSort': null
+}, {
+  'id': 419,
+  'name': '东洲区',
+  'cityID': 31,
+  'disSort': null
+}, {
+  'id': 420,
+  'name': '望花区',
+  'cityID': 31,
+  'disSort': null
+}, {
+  'id': 421,
+  'name': '顺城区',
+  'cityID': 31,
+  'disSort': null
+}, {
+  'id': 422,
+  'name': '抚顺县',
+  'cityID': 31,
+  'disSort': null
+}, {
+  'id': 423,
+  'name': '新宾满族自治县',
+  'cityID': 31,
+  'disSort': null
+}, {
+  'id': 424,
+  'name': '清原满族自治县',
+  'cityID': 31,
+  'disSort': null
+}, {
+  'id': 425,
+  'name': '平山区',
+  'cityID': 32,
+  'disSort': null
+}, {
+  'id': 426,
+  'name': '溪湖区',
+  'cityID': 32,
+  'disSort': null
+}, {
+  'id': 427,
+  'name': '明山区',
+  'cityID': 32,
+  'disSort': null
+}, {
+  'id': 428,
+  'name': '南芬区',
+  'cityID': 32,
+  'disSort': null
+}, {
+  'id': 429,
+  'name': '本溪满族自治县',
+  'cityID': 32,
+  'disSort': null
+}, {
+  'id': 430,
+  'name': '桓仁满族自治县',
+  'cityID': 32,
+  'disSort': null
+}, {
+  'id': 431,
+  'name': '元宝区',
+  'cityID': 33,
+  'disSort': null
+}, {
+  'id': 432,
+  'name': '振兴区',
+  'cityID': 33,
+  'disSort': null
+}, {
+  'id': 433,
+  'name': '振安区',
+  'cityID': 33,
+  'disSort': null
+}, {
+  'id': 434,
+  'name': '宽甸满族自治县',
+  'cityID': 33,
+  'disSort': null
+}, {
+  'id': 435,
+  'name': '东港市',
+  'cityID': 33,
+  'disSort': null
+}, {
+  'id': 436,
+  'name': '凤城市',
+  'cityID': 33,
+  'disSort': null
+}, {
+  'id': 437,
+  'name': '古塔区',
+  'cityID': 34,
+  'disSort': null
+}, {
+  'id': 438,
+  'name': '凌河区',
+  'cityID': 34,
+  'disSort': null
+}, {
+  'id': 439,
+  'name': '太和区',
+  'cityID': 34,
+  'disSort': null
+}, {
+  'id': 440,
+  'name': '黑山县',
+  'cityID': 34,
+  'disSort': null
+}, {
+  'id': 441,
+  'name': '义县',
+  'cityID': 34,
+  'disSort': null
+}, {
+  'id': 442,
+  'name': '凌海市',
+  'cityID': 34,
+  'disSort': null
+}, {
+  'id': 443,
+  'name': '北镇市',
+  'cityID': 34,
+  'disSort': null
+}, {
+  'id': 444,
+  'name': '站前区',
+  'cityID': 35,
+  'disSort': null
+}, {
+  'id': 445,
+  'name': '西市区',
+  'cityID': 35,
+  'disSort': null
+}, {
+  'id': 446,
+  'name': '鮁鱼圈区',
+  'cityID': 35,
+  'disSort': null
+}, {
+  'id': 447,
+  'name': '老边区',
+  'cityID': 35,
+  'disSort': null
+}, {
+  'id': 448,
+  'name': '盖州市',
+  'cityID': 35,
+  'disSort': null
+}, {
+  'id': 449,
+  'name': '大石桥市',
+  'cityID': 35,
+  'disSort': null
+}, {
+  'id': 450,
+  'name': '海州区',
+  'cityID': 36,
+  'disSort': null
+}, {
+  'id': 451,
+  'name': '新邱区',
+  'cityID': 36,
+  'disSort': null
+}, {
+  'id': 452,
+  'name': '太平区',
+  'cityID': 36,
+  'disSort': null
+}, {
+  'id': 453,
+  'name': '清河门区',
+  'cityID': 36,
+  'disSort': null
+}, {
+  'id': 454,
+  'name': '细河区',
+  'cityID': 36,
+  'disSort': null
+}, {
+  'id': 455,
+  'name': '阜新蒙古族自治县',
+  'cityID': 36,
+  'disSort': null
+}, {
+  'id': 456,
+  'name': '彰武县',
+  'cityID': 36,
+  'disSort': null
+}, {
+  'id': 457,
+  'name': '白塔区',
+  'cityID': 37,
+  'disSort': null
+}, {
+  'id': 458,
+  'name': '文圣区',
+  'cityID': 37,
+  'disSort': null
+}, {
+  'id': 459,
+  'name': '宏伟区',
+  'cityID': 37,
+  'disSort': null
+}, {
+  'id': 460,
+  'name': '弓长岭区',
+  'cityID': 37,
+  'disSort': null
+}, {
+  'id': 461,
+  'name': '太子河区',
+  'cityID': 37,
+  'disSort': null
+}, {
+  'id': 462,
+  'name': '辽阳县',
+  'cityID': 37,
+  'disSort': null
+}, {
+  'id': 463,
+  'name': '灯塔市',
+  'cityID': 37,
+  'disSort': null
+}, {
+  'id': 464,
+  'name': '双塔区',
+  'cityID': 38,
+  'disSort': null
+}, {
+  'id': 465,
+  'name': '龙城区',
+  'cityID': 38,
+  'disSort': null
+}, {
+  'id': 466,
+  'name': '朝阳县',
+  'cityID': 38,
+  'disSort': null
+}, {
+  'id': 467,
+  'name': '建平县',
+  'cityID': 38,
+  'disSort': null
+}, {
+  'id': 468,
+  'name': '喀喇沁左翼蒙古族自治县',
+  'cityID': 38,
+  'disSort': null
+}, {
+  'id': 469,
+  'name': '北票市',
+  'cityID': 38,
+  'disSort': null
+}, {
+  'id': 470,
+  'name': '凌源市',
+  'cityID': 38,
+  'disSort': null
+}, {
+  'id': 471,
+  'name': '双台子区',
+  'cityID': 39,
+  'disSort': null
+}, {
+  'id': 472,
+  'name': '兴隆台区',
+  'cityID': 39,
+  'disSort': null
+}, {
+  'id': 473,
+  'name': '大洼县',
+  'cityID': 39,
+  'disSort': null
+}, {
+  'id': 474,
+  'name': '盘山县',
+  'cityID': 39,
+  'disSort': null
+}, {
+  'id': 475,
+  'name': '连山区',
+  'cityID': 40,
+  'disSort': null
+}, {
+  'id': 476,
+  'name': '龙港区',
+  'cityID': 40,
+  'disSort': null
+}, {
+  'id': 477,
+  'name': '南票区',
+  'cityID': 40,
+  'disSort': null
+}, {
+  'id': 478,
+  'name': '绥中县',
+  'cityID': 40,
+  'disSort': null
+}, {
+  'id': 479,
+  'name': '建昌县',
+  'cityID': 40,
+  'disSort': null
+}, {
+  'id': 480,
+  'name': '兴城市',
+  'cityID': 40,
+  'disSort': null
+}, {
+  'id': 481,
+  'name': '南关区',
+  'cityID': 41,
+  'disSort': null
+}, {
+  'id': 482,
+  'name': '宽城区',
+  'cityID': 41,
+  'disSort': null
+}, {
+  'id': 483,
+  'name': '朝阳区',
+  'cityID': 41,
+  'disSort': null
+}, {
+  'id': 484,
+  'name': '二道区',
+  'cityID': 41,
+  'disSort': null
+}, {
+  'id': 485,
+  'name': '绿园区',
+  'cityID': 41,
+  'disSort': null
+}, {
+  'id': 486,
+  'name': '双阳区',
+  'cityID': 41,
+  'disSort': null
+}, {
+  'id': 487,
+  'name': '农安县',
+  'cityID': 41,
+  'disSort': null
+}, {
+  'id': 488,
+  'name': '九台市',
+  'cityID': 41,
+  'disSort': null
+}, {
+  'id': 489,
+  'name': '榆树市',
+  'cityID': 41,
+  'disSort': null
+}, {
+  'id': 490,
+  'name': '德惠市',
+  'cityID': 41,
+  'disSort': null
+}, {
+  'id': 491,
+  'name': '昌邑区',
+  'cityID': 42,
+  'disSort': null
+}, {
+  'id': 492,
+  'name': '龙潭区',
+  'cityID': 42,
+  'disSort': null
+}, {
+  'id': 493,
+  'name': '船营区',
+  'cityID': 42,
+  'disSort': null
+}, {
+  'id': 494,
+  'name': '丰满区',
+  'cityID': 42,
+  'disSort': null
+}, {
+  'id': 495,
+  'name': '永吉县',
+  'cityID': 42,
+  'disSort': null
+}, {
+  'id': 496,
+  'name': '蛟河市',
+  'cityID': 42,
+  'disSort': null
+}, {
+  'id': 497,
+  'name': '桦甸市',
+  'cityID': 42,
+  'disSort': null
+}, {
+  'id': 498,
+  'name': '舒兰市',
+  'cityID': 42,
+  'disSort': null
+}, {
+  'id': 499,
+  'name': '磐石市',
+  'cityID': 42,
+  'disSort': null
+}, {
+  'id': 500,
+  'name': '延吉市',
+  'cityID': 43,
+  'disSort': null
+}, {
+  'id': 501,
+  'name': '图们市',
+  'cityID': 43,
+  'disSort': null
+}, {
+  'id': 502,
+  'name': '敦化市',
+  'cityID': 43,
+  'disSort': null
+}, {
+  'id': 503,
+  'name': '珲春市',
+  'cityID': 43,
+  'disSort': null
+}, {
+  'id': 504,
+  'name': '龙井市',
+  'cityID': 43,
+  'disSort': null
+}, {
+  'id': 505,
+  'name': '和龙市',
+  'cityID': 43,
+  'disSort': null
+}, {
+  'id': 506,
+  'name': '汪清县',
+  'cityID': 43,
+  'disSort': null
+}, {
+  'id': 507,
+  'name': '安图县',
+  'cityID': 43,
+  'disSort': null
+}, {
+  'id': 508,
+  'name': '铁西区',
+  'cityID': 44,
+  'disSort': null
+}, {
+  'id': 509,
+  'name': '铁东区',
+  'cityID': 44,
+  'disSort': null
+}, {
+  'id': 510,
+  'name': '梨树县',
+  'cityID': 44,
+  'disSort': null
+}, {
+  'id': 511,
+  'name': '伊通满族自治县',
+  'cityID': 44,
+  'disSort': null
+}, {
+  'id': 512,
+  'name': '公主岭市',
+  'cityID': 44,
+  'disSort': null
+}, {
+  'id': 513,
+  'name': '双辽市',
+  'cityID': 44,
+  'disSort': null
+}, {
+  'id': 514,
+  'name': '东昌区',
+  'cityID': 45,
+  'disSort': null
+}, {
+  'id': 515,
+  'name': '二道江区',
+  'cityID': 45,
+  'disSort': null
+}, {
+  'id': 516,
+  'name': '通化县',
+  'cityID': 45,
+  'disSort': null
+}, {
+  'id': 517,
+  'name': '辉南县',
+  'cityID': 45,
+  'disSort': null
+}, {
+  'id': 518,
+  'name': '柳河县',
+  'cityID': 45,
+  'disSort': null
+}, {
+  'id': 519,
+  'name': '梅河口市',
+  'cityID': 45,
+  'disSort': null
+}, {
+  'id': 520,
+  'name': '集安市',
+  'cityID': 45,
+  'disSort': null
+}, {
+  'id': 521,
+  'name': '洮北区',
+  'cityID': 46,
+  'disSort': null
+}, {
+  'id': 522,
+  'name': '镇赉县',
+  'cityID': 46,
+  'disSort': null
+}, {
+  'id': 523,
+  'name': '通榆县',
+  'cityID': 46,
+  'disSort': null
+}, {
+  'id': 524,
+  'name': '洮南市',
+  'cityID': 46,
+  'disSort': null
+}, {
+  'id': 525,
+  'name': '大安市',
+  'cityID': 46,
+  'disSort': null
+}, {
+  'id': 526,
+  'name': '龙山区',
+  'cityID': 47,
+  'disSort': null
+}, {
+  'id': 527,
+  'name': '西安区',
+  'cityID': 47,
+  'disSort': null
+}, {
+  'id': 528,
+  'name': '东丰县',
+  'cityID': 47,
+  'disSort': null
+}, {
+  'id': 529,
+  'name': '东辽县',
+  'cityID': 47,
+  'disSort': null
+}, {
+  'id': 530,
+  'name': '宁江区',
+  'cityID': 48,
+  'disSort': null
+}, {
+  'id': 531,
+  'name': '前郭尔罗斯蒙古族自治县',
+  'cityID': 48,
+  'disSort': null
+}, {
+  'id': 532,
+  'name': '长岭县',
+  'cityID': 48,
+  'disSort': null
+}, {
+  'id': 533,
+  'name': '乾安县',
+  'cityID': 48,
+  'disSort': null
+}, {
+  'id': 534,
+  'name': '扶余县',
+  'cityID': 48,
+  'disSort': null
+}, {
+  'id': 535,
+  'name': '八道江区',
+  'cityID': 49,
+  'disSort': null
+}, {
+  'id': 536,
+  'name': '江源区',
+  'cityID': 49,
+  'disSort': null
+}, {
+  'id': 537,
+  'name': '抚松县',
+  'cityID': 49,
+  'disSort': null
+}, {
+  'id': 538,
+  'name': '靖宇县',
+  'cityID': 49,
+  'disSort': null
+}, {
+  'id': 539,
+  'name': '长白朝鲜族自治县',
+  'cityID': 49,
+  'disSort': null
+}, {
+  'id': 540,
+  'name': '临江市',
+  'cityID': 49,
+  'disSort': null
+}, {
+  'id': 541,
+  'name': '道里区',
+  'cityID': 50,
+  'disSort': null
+}, {
+  'id': 542,
+  'name': '南岗区',
+  'cityID': 50,
+  'disSort': null
+}, {
+  'id': 543,
+  'name': '道外区',
+  'cityID': 50,
+  'disSort': null
+}, {
+  'id': 544,
+  'name': '平房区',
+  'cityID': 50,
+  'disSort': null
+}, {
+  'id': 545,
+  'name': '松北区',
+  'cityID': 50,
+  'disSort': null
+}, {
+  'id': 546,
+  'name': '香坊区',
+  'cityID': 50,
+  'disSort': null
+}, {
+  'id': 547,
+  'name': '呼兰区',
+  'cityID': 50,
+  'disSort': null
+}, {
+  'id': 548,
+  'name': '阿城区',
+  'cityID': 50,
+  'disSort': null
+}, {
+  'id': 549,
+  'name': '依兰县',
+  'cityID': 50,
+  'disSort': null
+}, {
+  'id': 550,
+  'name': '方正县',
+  'cityID': 50,
+  'disSort': null
+}, {
+  'id': 551,
+  'name': '宾县',
+  'cityID': 50,
+  'disSort': null
+}, {
+  'id': 552,
+  'name': '巴彦县',
+  'cityID': 50,
+  'disSort': null
+}, {
+  'id': 553,
+  'name': '木兰县',
+  'cityID': 50,
+  'disSort': null
+}, {
+  'id': 554,
+  'name': '通河县',
+  'cityID': 50,
+  'disSort': null
+}, {
+  'id': 555,
+  'name': '延寿县',
+  'cityID': 50,
+  'disSort': null
+}, {
+  'id': 556,
+  'name': '双城市',
+  'cityID': 50,
+  'disSort': null
+}, {
+  'id': 557,
+  'name': '尚志市',
+  'cityID': 50,
+  'disSort': null
+}, {
+  'id': 558,
+  'name': '五常市',
+  'cityID': 50,
+  'disSort': null
+}, {
+  'id': 559,
+  'name': '龙沙区',
+  'cityID': 51,
+  'disSort': null
+}, {
+  'id': 560,
+  'name': '建华区',
+  'cityID': 51,
+  'disSort': null
+}, {
+  'id': 561,
+  'name': '铁锋区',
+  'cityID': 51,
+  'disSort': null
+}, {
+  'id': 562,
+  'name': '昂昂溪区',
+  'cityID': 51,
+  'disSort': null
+}, {
+  'id': 563,
+  'name': '富拉尔基区',
+  'cityID': 51,
+  'disSort': null
+}, {
+  'id': 564,
+  'name': '碾子山区',
+  'cityID': 51,
+  'disSort': null
+}, {
+  'id': 565,
+  'name': '梅里斯达翰尔族区',
+  'cityID': 51,
+  'disSort': null
+}, {
+  'id': 566,
+  'name': '龙江县',
+  'cityID': 51,
+  'disSort': null
+}, {
+  'id': 567,
+  'name': '依安县',
+  'cityID': 51,
+  'disSort': null
+}, {
+  'id': 568,
+  'name': '泰来县',
+  'cityID': 51,
+  'disSort': null
+}, {
+  'id': 569,
+  'name': '甘南县',
+  'cityID': 51,
+  'disSort': null
+}, {
+  'id': 570,
+  'name': '富裕县',
+  'cityID': 51,
+  'disSort': null
+}, {
+  'id': 571,
+  'name': '克山县',
+  'cityID': 51,
+  'disSort': null
+}, {
+  'id': 572,
+  'name': '克东县',
+  'cityID': 51,
+  'disSort': null
+}, {
+  'id': 573,
+  'name': '拜泉县',
+  'cityID': 51,
+  'disSort': null
+}, {
+  'id': 574,
+  'name': '讷河市',
+  'cityID': 51,
+  'disSort': null
+}, {
+  'id': 575,
+  'name': '鸡冠区',
+  'cityID': 52,
+  'disSort': null
+}, {
+  'id': 576,
+  'name': '恒山区',
+  'cityID': 52,
+  'disSort': null
+}, {
+  'id': 577,
+  'name': '滴道区',
+  'cityID': 52,
+  'disSort': null
+}, {
+  'id': 578,
+  'name': '梨树区',
+  'cityID': 52,
+  'disSort': null
+}, {
+  'id': 579,
+  'name': '城子河区',
+  'cityID': 52,
+  'disSort': null
+}, {
+  'id': 580,
+  'name': '麻山区',
+  'cityID': 52,
+  'disSort': null
+}, {
+  'id': 581,
+  'name': '鸡东县',
+  'cityID': 52,
+  'disSort': null
+}, {
+  'id': 582,
+  'name': '虎林市',
+  'cityID': 52,
+  'disSort': null
+}, {
+  'id': 583,
+  'name': '密山市',
+  'cityID': 52,
+  'disSort': null
+}, {
+  'id': 584,
+  'name': '东安区',
+  'cityID': 53,
+  'disSort': null
+}, {
+  'id': 585,
+  'name': '阳明区',
+  'cityID': 53,
+  'disSort': null
+}, {
+  'id': 586,
+  'name': '爱民区',
+  'cityID': 53,
+  'disSort': null
+}, {
+  'id': 587,
+  'name': '西安区',
+  'cityID': 53,
+  'disSort': null
+}, {
+  'id': 588,
+  'name': '东宁县',
+  'cityID': 53,
+  'disSort': null
+}, {
+  'id': 589,
+  'name': '林口县',
+  'cityID': 53,
+  'disSort': null
+}, {
+  'id': 590,
+  'name': '绥芬河市',
+  'cityID': 53,
+  'disSort': null
+}, {
+  'id': 591,
+  'name': '海林市',
+  'cityID': 53,
+  'disSort': null
+}, {
+  'id': 592,
+  'name': '宁安市',
+  'cityID': 53,
+  'disSort': null
+}, {
+  'id': 593,
+  'name': '穆棱市',
+  'cityID': 53,
+  'disSort': null
+}, {
+  'id': 594,
+  'name': '新兴区',
+  'cityID': 54,
+  'disSort': null
+}, {
+  'id': 595,
+  'name': '桃山区',
+  'cityID': 54,
+  'disSort': null
+}, {
+  'id': 596,
+  'name': '茄子河区',
+  'cityID': 54,
+  'disSort': null
+}, {
+  'id': 597,
+  'name': '勃利县',
+  'cityID': 54,
+  'disSort': null
+}, {
+  'id': 598,
+  'name': '向阳区',
+  'cityID': 55,
+  'disSort': null
+}, {
+  'id': 599,
+  'name': '前进区',
+  'cityID': 55,
+  'disSort': null
+}, {
+  'id': 600,
+  'name': '东风区',
+  'cityID': 55,
+  'disSort': null
+}, {
+  'id': 601,
+  'name': '桦南县',
+  'cityID': 55,
+  'disSort': null
+}, {
+  'id': 602,
+  'name': '桦川县',
+  'cityID': 55,
+  'disSort': null
+}, {
+  'id': 603,
+  'name': '汤原县',
+  'cityID': 55,
+  'disSort': null
+}, {
+  'id': 604,
+  'name': '抚远县',
+  'cityID': 55,
+  'disSort': null
+}, {
+  'id': 605,
+  'name': '同江市',
+  'cityID': 55,
+  'disSort': null
+}, {
+  'id': 606,
+  'name': '富锦市',
+  'cityID': 55,
+  'disSort': null
+}, {
+  'id': 607,
+  'name': '向阳区',
+  'cityID': 56,
+  'disSort': null
+}, {
+  'id': 608,
+  'name': '工农区',
+  'cityID': 56,
+  'disSort': null
+}, {
+  'id': 609,
+  'name': '南山区',
+  'cityID': 56,
+  'disSort': null
+}, {
+  'id': 610,
+  'name': '兴安区',
+  'cityID': 56,
+  'disSort': null
+}, {
+  'id': 611,
+  'name': '东山区',
+  'cityID': 56,
+  'disSort': null
+}, {
+  'id': 612,
+  'name': '兴山区',
+  'cityID': 56,
+  'disSort': null
+}, {
+  'id': 613,
+  'name': '萝北县',
+  'cityID': 56,
+  'disSort': null
+}, {
+  'id': 614,
+  'name': '绥滨县',
+  'cityID': 56,
+  'disSort': null
+}, {
+  'id': 615,
+  'name': '尖山区',
+  'cityID': 57,
+  'disSort': null
+}, {
+  'id': 616,
+  'name': '岭东区',
+  'cityID': 57,
+  'disSort': null
+}, {
+  'id': 617,
+  'name': '四方台区',
+  'cityID': 57,
+  'disSort': null
+}, {
+  'id': 618,
+  'name': '宝山区',
+  'cityID': 57,
+  'disSort': null
+}, {
+  'id': 619,
+  'name': '集贤县',
+  'cityID': 57,
+  'disSort': null
+}, {
+  'id': 620,
+  'name': '友谊县',
+  'cityID': 57,
+  'disSort': null
+}, {
+  'id': 621,
+  'name': '宝清县',
+  'cityID': 57,
+  'disSort': null
+}, {
+  'id': 622,
+  'name': '饶河县',
+  'cityID': 57,
+  'disSort': null
+}, {
+  'id': 623,
+  'name': '北林区',
+  'cityID': 58,
+  'disSort': null
+}, {
+  'id': 624,
+  'name': '望奎县',
+  'cityID': 58,
+  'disSort': null
+}, {
+  'id': 625,
+  'name': '兰西县',
+  'cityID': 58,
+  'disSort': null
+}, {
+  'id': 626,
+  'name': '青冈县',
+  'cityID': 58,
+  'disSort': null
+}, {
+  'id': 627,
+  'name': '庆安县',
+  'cityID': 58,
+  'disSort': null
+}, {
+  'id': 628,
+  'name': '明水县',
+  'cityID': 58,
+  'disSort': null
+}, {
+  'id': 629,
+  'name': '绥棱县',
+  'cityID': 58,
+  'disSort': null
+}, {
+  'id': 630,
+  'name': '安达市',
+  'cityID': 58,
+  'disSort': null
+}, {
+  'id': 631,
+  'name': '肇东市',
+  'cityID': 58,
+  'disSort': null
+}, {
+  'id': 632,
+  'name': '海伦市',
+  'cityID': 58,
+  'disSort': null
+}, {
+  'id': 633,
+  'name': '爱辉区',
+  'cityID': 59,
+  'disSort': null
+}, {
+  'id': 634,
+  'name': '嫩江县',
+  'cityID': 59,
+  'disSort': null
+}, {
+  'id': 635,
+  'name': '逊克县',
+  'cityID': 59,
+  'disSort': null
+}, {
+  'id': 636,
+  'name': '孙吴县',
+  'cityID': 59,
+  'disSort': null
+}, {
+  'id': 637,
+  'name': '北安市',
+  'cityID': 59,
+  'disSort': null
+}, {
+  'id': 638,
+  'name': '五大连池市',
+  'cityID': 59,
+  'disSort': null
+}, {
+  'id': 639,
+  'name': '呼玛县',
+  'cityID': 60,
+  'disSort': null
+}, {
+  'id': 640,
+  'name': '塔河县',
+  'cityID': 60,
+  'disSort': null
+}, {
+  'id': 641,
+  'name': '漠河县',
+  'cityID': 60,
+  'disSort': null
+}, {
+  'id': 642,
+  'name': '伊春区',
+  'cityID': 61,
+  'disSort': null
+}, {
+  'id': 643,
+  'name': '南岔区',
+  'cityID': 61,
+  'disSort': null
+}, {
+  'id': 644,
+  'name': '友好区',
+  'cityID': 61,
+  'disSort': null
+}, {
+  'id': 645,
+  'name': '西林区',
+  'cityID': 61,
+  'disSort': null
+}, {
+  'id': 646,
+  'name': '翠峦区',
+  'cityID': 61,
+  'disSort': null
+}, {
+  'id': 647,
+  'name': '新青区',
+  'cityID': 61,
+  'disSort': null
+}, {
+  'id': 648,
+  'name': '美溪区',
+  'cityID': 61,
+  'disSort': null
+}, {
+  'id': 649,
+  'name': '金山屯区',
+  'cityID': 61,
+  'disSort': null
+}, {
+  'id': 650,
+  'name': '五营区',
+  'cityID': 61,
+  'disSort': null
+}, {
+  'id': 651,
+  'name': '乌马河区',
+  'cityID': 61,
+  'disSort': null
+}, {
+  'id': 652,
+  'name': '汤旺河区',
+  'cityID': 61,
+  'disSort': null
+}, {
+  'id': 653,
+  'name': '带岭区',
+  'cityID': 61,
+  'disSort': null
+}, {
+  'id': 654,
+  'name': '乌伊岭区',
+  'cityID': 61,
+  'disSort': null
+}, {
+  'id': 655,
+  'name': '红星区',
+  'cityID': 61,
+  'disSort': null
+}, {
+  'id': 656,
+  'name': '上甘岭区',
+  'cityID': 61,
+  'disSort': null
+}, {
+  'id': 657,
+  'name': '嘉荫县',
+  'cityID': 61,
+  'disSort': null
+}, {
+  'id': 658,
+  'name': '铁力市',
+  'cityID': 61,
+  'disSort': null
+}, {
+  'id': 659,
+  'name': '萨尔图区',
+  'cityID': 62,
+  'disSort': null
+}, {
+  'id': 660,
+  'name': '龙凤区',
+  'cityID': 62,
+  'disSort': null
+}, {
+  'id': 661,
+  'name': '让胡路区',
+  'cityID': 62,
+  'disSort': null
+}, {
+  'id': 662,
+  'name': '红岗区',
+  'cityID': 62,
+  'disSort': null
+}, {
+  'id': 663,
+  'name': '大同区',
+  'cityID': 62,
+  'disSort': null
+}, {
+  'id': 664,
+  'name': '肇州县',
+  'cityID': 62,
+  'disSort': null
+}, {
+  'id': 665,
+  'name': '肇源县',
+  'cityID': 62,
+  'disSort': null
+}, {
+  'id': 666,
+  'name': '林甸县',
+  'cityID': 62,
+  'disSort': null
+}, {
+  'id': 667,
+  'name': '杜尔伯特蒙古族自治县',
+  'cityID': 62,
+  'disSort': null
+}, {
+  'id': 668,
+  'name': '江宁区',
+  'cityID': 63,
+  'disSort': null
+}, {
+  'id': 669,
+  'name': '浦口区',
+  'cityID': 63,
+  'disSort': null
+}, {
+  'id': 670,
+  'name': '玄武区',
+  'cityID': 63,
+  'disSort': null
+}, {
+  'id': 671,
+  'name': '白下区',
+  'cityID': 63,
+  'disSort': null
+}, {
+  'id': 672,
+  'name': '秦淮区',
+  'cityID': 63,
+  'disSort': null
+}, {
+  'id': 673,
+  'name': '建邺区',
+  'cityID': 63,
+  'disSort': null
+}, {
+  'id': 674,
+  'name': '鼓楼区',
+  'cityID': 63,
+  'disSort': null
+}, {
+  'id': 675,
+  'name': '下关区',
+  'cityID': 63,
+  'disSort': null
+}, {
+  'id': 676,
+  'name': '栖霞区',
+  'cityID': 63,
+  'disSort': null
+}, {
+  'id': 677,
+  'name': '雨花台区',
+  'cityID': 63,
+  'disSort': null
+}, {
+  'id': 678,
+  'name': '六合区',
+  'cityID': 63,
+  'disSort': null
+}, {
+  'id': 679,
+  'name': '溧水县',
+  'cityID': 63,
+  'disSort': null
+}, {
+  'id': 680,
+  'name': '高淳县',
+  'cityID': 63,
+  'disSort': null
+}, {
+  'id': 681,
+  'name': '崇安区',
+  'cityID': 64,
+  'disSort': null
+}, {
+  'id': 682,
+  'name': '南长区',
+  'cityID': 64,
+  'disSort': null
+}, {
+  'id': 683,
+  'name': '北塘区',
+  'cityID': 64,
+  'disSort': null
+}, {
+  'id': 684,
+  'name': '锡山区',
+  'cityID': 64,
+  'disSort': null
+}, {
+  'id': 685,
+  'name': '惠山区',
+  'cityID': 64,
+  'disSort': null
+}, {
+  'id': 686,
+  'name': '滨湖区',
+  'cityID': 64,
+  'disSort': null
+}, {
+  'id': 687,
+  'name': '江阴市',
+  'cityID': 64,
+  'disSort': null
+}, {
+  'id': 688,
+  'name': '宜兴市',
+  'cityID': 64,
+  'disSort': null
+}, {
+  'id': 689,
+  'name': '京口区',
+  'cityID': 65,
+  'disSort': null
+}, {
+  'id': 690,
+  'name': '润州区',
+  'cityID': 65,
+  'disSort': null
+}, {
+  'id': 691,
+  'name': '丹徒区',
+  'cityID': 65,
+  'disSort': null
+}, {
+  'id': 692,
+  'name': '丹阳市',
+  'cityID': 65,
+  'disSort': null
+}, {
+  'id': 693,
+  'name': '扬中市',
+  'cityID': 65,
+  'disSort': null
+}, {
+  'id': 694,
+  'name': '句容市',
+  'cityID': 65,
+  'disSort': null
+}, {
+  'id': 695,
+  'name': '沧浪区',
+  'cityID': 66,
+  'disSort': null
+}, {
+  'id': 696,
+  'name': '常熟市',
+  'cityID': 66,
+  'disSort': null
+}, {
+  'id': 697,
+  'name': '平江区',
+  'cityID': 66,
+  'disSort': null
+}, {
+  'id': 698,
+  'name': '金阊区',
+  'cityID': 66,
+  'disSort': null
+}, {
+  'id': 699,
+  'name': '虎丘区',
+  'cityID': 66,
+  'disSort': null
+}, {
+  'id': 700,
+  'name': '昆山市',
+  'cityID': 66,
+  'disSort': null
+}, {
+  'id': 701,
+  'name': '太仓市',
+  'cityID': 66,
+  'disSort': null
+}, {
+  'id': 702,
+  'name': '吴江市',
+  'cityID': 66,
+  'disSort': null
+}, {
+  'id': 703,
+  'name': '吴中区',
+  'cityID': 66,
+  'disSort': null
+}, {
+  'id': 704,
+  'name': '相城区',
+  'cityID': 66,
+  'disSort': null
+}, {
+  'id': 705,
+  'name': '张家港市',
+  'cityID': 66,
+  'disSort': null
+}, {
+  'id': 706,
+  'name': '崇川区',
+  'cityID': 67,
+  'disSort': null
+}, {
+  'id': 707,
+  'name': '港闸区',
+  'cityID': 67,
+  'disSort': null
+}, {
+  'id': 708,
+  'name': '海安县',
+  'cityID': 67,
+  'disSort': null
+}, {
+  'id': 709,
+  'name': '如东县',
+  'cityID': 67,
+  'disSort': null
+}, {
+  'id': 710,
+  'name': '启东市',
+  'cityID': 67,
+  'disSort': null
+}, {
+  'id': 711,
+  'name': '如皋市',
+  'cityID': 67,
+  'disSort': null
+}, {
+  'id': 712,
+  'name': '通州市',
+  'cityID': 67,
+  'disSort': null
+}, {
+  'id': 713,
+  'name': '海门市',
+  'cityID': 67,
+  'disSort': null
+}, {
+  'id': 714,
+  'name': '高邮市',
+  'cityID': 68,
+  'disSort': null
+}, {
+  'id': 715,
+  'name': '广陵区',
+  'cityID': 68,
+  'disSort': null
+}, {
+  'id': 716,
+  'name': '邗江区',
+  'cityID': 68,
+  'disSort': null
+}, {
+  'id': 717,
+  'name': '维扬区',
+  'cityID': 68,
+  'disSort': null
+}, {
+  'id': 718,
+  'name': '宝应县',
+  'cityID': 68,
+  'disSort': null
+}, {
+  'id': 719,
+  'name': '江都市',
+  'cityID': 68,
+  'disSort': null
+}, {
+  'id': 720,
+  'name': '仪征市',
+  'cityID': 68,
+  'disSort': null
+}, {
+  'id': 721,
+  'name': '亭湖区',
+  'cityID': 69,
+  'disSort': null
+}, {
+  'id': 722,
+  'name': '盐都区',
+  'cityID': 69,
+  'disSort': null
+}, {
+  'id': 723,
+  'name': '响水县',
+  'cityID': 69,
+  'disSort': null
+}, {
+  'id': 724,
+  'name': '滨海县',
+  'cityID': 69,
+  'disSort': null
+}, {
+  'id': 725,
+  'name': '阜宁县',
+  'cityID': 69,
+  'disSort': null
+}, {
+  'id': 726,
+  'name': '射阳县',
+  'cityID': 69,
+  'disSort': null
+}, {
+  'id': 727,
+  'name': '建湖县',
+  'cityID': 69,
+  'disSort': null
+}, {
+  'id': 728,
+  'name': '东台市',
+  'cityID': 69,
+  'disSort': null
+}, {
+  'id': 729,
+  'name': '大丰市',
+  'cityID': 69,
+  'disSort': null
+}, {
+  'id': 730,
+  'name': '鼓楼区',
+  'cityID': 70,
+  'disSort': null
+}, {
+  'id': 731,
+  'name': '云龙区',
+  'cityID': 70,
+  'disSort': null
+}, {
+  'id': 732,
+  'name': '九里区',
+  'cityID': 70,
+  'disSort': null
+}, {
+  'id': 733,
+  'name': '贾汪区',
+  'cityID': 70,
+  'disSort': null
+}, {
+  'id': 734,
+  'name': '泉山区',
+  'cityID': 70,
+  'disSort': null
+}, {
+  'id': 735,
+  'name': '丰县',
+  'cityID': 70,
+  'disSort': null
+}, {
+  'id': 736,
+  'name': '沛县',
+  'cityID': 70,
+  'disSort': null
+}, {
+  'id': 737,
+  'name': '铜山县',
+  'cityID': 70,
+  'disSort': null
+}, {
+  'id': 738,
+  'name': '睢宁县',
+  'cityID': 70,
+  'disSort': null
+}, {
+  'id': 739,
+  'name': '新沂市',
+  'cityID': 70,
+  'disSort': null
+}, {
+  'id': 740,
+  'name': '邳州市',
+  'cityID': 70,
+  'disSort': null
+}, {
+  'id': 741,
+  'name': '清河区',
+  'cityID': 71,
+  'disSort': null
+}, {
+  'id': 742,
+  'name': '楚州区',
+  'cityID': 71,
+  'disSort': null
+}, {
+  'id': 743,
+  'name': '淮阴区',
+  'cityID': 71,
+  'disSort': null
+}, {
+  'id': 744,
+  'name': '清浦区',
+  'cityID': 71,
+  'disSort': null
+}, {
+  'id': 745,
+  'name': '涟水县',
+  'cityID': 71,
+  'disSort': null
+}, {
+  'id': 746,
+  'name': '洪泽县',
+  'cityID': 71,
+  'disSort': null
+}, {
+  'id': 747,
+  'name': '盱眙县',
+  'cityID': 71,
+  'disSort': null
+}, {
+  'id': 748,
+  'name': '金湖县',
+  'cityID': 71,
+  'disSort': null
+}, {
+  'id': 749,
+  'name': '连云区',
+  'cityID': 72,
+  'disSort': null
+}, {
+  'id': 750,
+  'name': '新浦区',
+  'cityID': 72,
+  'disSort': null
+}, {
+  'id': 751,
+  'name': '海州区',
+  'cityID': 72,
+  'disSort': null
+}, {
+  'id': 752,
+  'name': '赣榆县',
+  'cityID': 72,
+  'disSort': null
+}, {
+  'id': 753,
+  'name': '东海县',
+  'cityID': 72,
+  'disSort': null
+}, {
+  'id': 754,
+  'name': '灌云县',
+  'cityID': 72,
+  'disSort': null
+}, {
+  'id': 755,
+  'name': '灌南县',
+  'cityID': 72,
+  'disSort': null
+}, {
+  'id': 756,
+  'name': '天宁区',
+  'cityID': 73,
+  'disSort': null
+}, {
+  'id': 757,
+  'name': '钟楼区',
+  'cityID': 73,
+  'disSort': null
+}, {
+  'id': 758,
+  'name': '戚墅堰区',
+  'cityID': 73,
+  'disSort': null
+}, {
+  'id': 759,
+  'name': '新北区',
+  'cityID': 73,
+  'disSort': null
+}, {
+  'id': 760,
+  'name': '武进区',
+  'cityID': 73,
+  'disSort': null
+}, {
+  'id': 761,
+  'name': '溧阳市',
+  'cityID': 73,
+  'disSort': null
+}, {
+  'id': 762,
+  'name': '金坛市',
+  'cityID': 73,
+  'disSort': null
+}, {
+  'id': 763,
+  'name': '海陵区',
+  'cityID': 74,
+  'disSort': null
+}, {
+  'id': 764,
+  'name': '高港区',
+  'cityID': 74,
+  'disSort': null
+}, {
+  'id': 765,
+  'name': '兴化市',
+  'cityID': 74,
+  'disSort': null
+}, {
+  'id': 766,
+  'name': '靖江市',
+  'cityID': 74,
+  'disSort': null
+}, {
+  'id': 767,
+  'name': '泰兴市',
+  'cityID': 74,
+  'disSort': null
+}, {
+  'id': 768,
+  'name': '姜堰市',
+  'cityID': 74,
+  'disSort': null
+}, {
+  'id': 769,
+  'name': '宿城区',
+  'cityID': 75,
+  'disSort': null
+}, {
+  'id': 770,
+  'name': '宿豫区',
+  'cityID': 75,
+  'disSort': null
+}, {
+  'id': 771,
+  'name': '沭阳县',
+  'cityID': 75,
+  'disSort': null
+}, {
+  'id': 772,
+  'name': '泗阳县',
+  'cityID': 75,
+  'disSort': null
+}, {
+  'id': 773,
+  'name': '泗洪县',
+  'cityID': 75,
+  'disSort': null
+}, {
+  'id': 774,
+  'name': '定海区',
+  'cityID': 76,
+  'disSort': null
+}, {
+  'id': 775,
+  'name': '普陀区',
+  'cityID': 76,
+  'disSort': null
+}, {
+  'id': 776,
+  'name': '岱山县',
+  'cityID': 76,
+  'disSort': null
+}, {
+  'id': 777,
+  'name': '嵊泗县',
+  'cityID': 76,
+  'disSort': null
+}, {
+  'id': 778,
+  'name': '柯城区',
+  'cityID': 77,
+  'disSort': null
+}, {
+  'id': 779,
+  'name': '衢江区',
+  'cityID': 77,
+  'disSort': null
+}, {
+  'id': 780,
+  'name': '常山县',
+  'cityID': 77,
+  'disSort': null
+}, {
+  'id': 781,
+  'name': '开化县',
+  'cityID': 77,
+  'disSort': null
+}, {
+  'id': 782,
+  'name': '龙游县',
+  'cityID': 77,
+  'disSort': null
+}, {
+  'id': 783,
+  'name': '江山市',
+  'cityID': 77,
+  'disSort': null
+}, {
+  'id': 784,
+  'name': '上城区',
+  'cityID': 78,
+  'disSort': null
+}, {
+  'id': 785,
+  'name': '下城区',
+  'cityID': 78,
+  'disSort': null
+}, {
+  'id': 786,
+  'name': '江干区',
+  'cityID': 78,
+  'disSort': null
+}, {
+  'id': 787,
+  'name': '拱墅区',
+  'cityID': 78,
+  'disSort': null
+}, {
+  'id': 788,
+  'name': '西湖区',
+  'cityID': 78,
+  'disSort': null
+}, {
+  'id': 789,
+  'name': '滨江区',
+  'cityID': 78,
+  'disSort': null
+}, {
+  'id': 790,
+  'name': '余杭区',
+  'cityID': 78,
+  'disSort': null
+}, {
+  'id': 791,
+  'name': '桐庐县',
+  'cityID': 78,
+  'disSort': null
+}, {
+  'id': 792,
+  'name': '淳安县',
+  'cityID': 78,
+  'disSort': null
+}, {
+  'id': 793,
+  'name': '建德市',
+  'cityID': 78,
+  'disSort': null
+}, {
+  'id': 794,
+  'name': '富阳市',
+  'cityID': 78,
+  'disSort': null
+}, {
+  'id': 795,
+  'name': '临安市',
+  'cityID': 78,
+  'disSort': null
+}, {
+  'id': 796,
+  'name': '萧山区',
+  'cityID': 78,
+  'disSort': null
+}, {
+  'id': 797,
+  'name': '吴兴区',
+  'cityID': 79,
+  'disSort': null
+}, {
+  'id': 798,
+  'name': '南浔区',
+  'cityID': 79,
+  'disSort': null
+}, {
+  'id': 799,
+  'name': '德清县',
+  'cityID': 79,
+  'disSort': null
+}, {
+  'id': 800,
+  'name': '长兴县',
+  'cityID': 79,
+  'disSort': null
+}, {
+  'id': 801,
+  'name': '安吉县',
+  'cityID': 79,
+  'disSort': null
+}, {
+  'id': 802,
+  'name': ' 南湖区',
+  'cityID': 80,
+  'disSort': null
+}, {
+  'id': 803,
+  'name': ' 秀洲区',
+  'cityID': 80,
+  'disSort': null
+}, {
+  'id': 804,
+  'name': ' 嘉善县',
+  'cityID': 80,
+  'disSort': null
+}, {
+  'id': 805,
+  'name': ' 海盐县',
+  'cityID': 80,
+  'disSort': null
+}, {
+  'id': 806,
+  'name': ' 海宁市',
+  'cityID': 80,
+  'disSort': null
+}, {
+  'id': 807,
+  'name': ' 平湖市',
+  'cityID': 80,
+  'disSort': null
+}, {
+  'id': 808,
+  'name': ' 桐乡市',
+  'cityID': 80,
+  'disSort': null
+}, {
+  'id': 809,
+  'name': '海曙区',
+  'cityID': 81,
+  'disSort': null
+}, {
+  'id': 810,
+  'name': '江东区',
+  'cityID': 81,
+  'disSort': null
+}, {
+  'id': 811,
+  'name': '江北区',
+  'cityID': 81,
+  'disSort': null
+}, {
+  'id': 812,
+  'name': '北仑区',
+  'cityID': 81,
+  'disSort': null
+}, {
+  'id': 813,
+  'name': '镇海区',
+  'cityID': 81,
+  'disSort': null
+}, {
+  'id': 814,
+  'name': '鄞州区',
+  'cityID': 81,
+  'disSort': null
+}, {
+  'id': 815,
+  'name': '象山县',
+  'cityID': 81,
+  'disSort': null
+}, {
+  'id': 816,
+  'name': '宁海县',
+  'cityID': 81,
+  'disSort': null
+}, {
+  'id': 817,
+  'name': '余姚市',
+  'cityID': 81,
+  'disSort': null
+}, {
+  'id': 818,
+  'name': '慈溪市',
+  'cityID': 81,
+  'disSort': null
+}, {
+  'id': 819,
+  'name': '奉化市',
+  'cityID': 81,
+  'disSort': null
+}, {
+  'id': 820,
+  'name': '越城区',
+  'cityID': 82,
+  'disSort': null
+}, {
+  'id': 821,
+  'name': '绍兴县',
+  'cityID': 82,
+  'disSort': null
+}, {
+  'id': 822,
+  'name': '新昌县',
+  'cityID': 82,
+  'disSort': null
+}, {
+  'id': 823,
+  'name': '诸暨市',
+  'cityID': 82,
+  'disSort': null
+}, {
+  'id': 824,
+  'name': '上虞市',
+  'cityID': 82,
+  'disSort': null
+}, {
+  'id': 825,
+  'name': '嵊州市',
+  'cityID': 82,
+  'disSort': null
+}, {
+  'id': 826,
+  'name': '鹿城区',
+  'cityID': 83,
+  'disSort': null
+}, {
+  'id': 827,
+  'name': '龙湾区',
+  'cityID': 83,
+  'disSort': null
+}, {
+  'id': 828,
+  'name': '瓯海区',
+  'cityID': 83,
+  'disSort': null
+}, {
+  'id': 829,
+  'name': '洞头县',
+  'cityID': 83,
+  'disSort': null
+}, {
+  'id': 830,
+  'name': '永嘉县',
+  'cityID': 83,
+  'disSort': null
+}, {
+  'id': 831,
+  'name': '平阳县',
+  'cityID': 83,
+  'disSort': null
+}, {
+  'id': 832,
+  'name': '苍南县',
+  'cityID': 83,
+  'disSort': null
+}, {
+  'id': 833,
+  'name': '文成县',
+  'cityID': 83,
+  'disSort': null
+}, {
+  'id': 834,
+  'name': '泰顺县',
+  'cityID': 83,
+  'disSort': null
+}, {
+  'id': 835,
+  'name': '瑞安市',
+  'cityID': 83,
+  'disSort': null
+}, {
+  'id': 836,
+  'name': '乐清市',
+  'cityID': 83,
+  'disSort': null
+}, {
+  'id': 837,
+  'name': '莲都区',
+  'cityID': 84,
+  'disSort': null
+}, {
+  'id': 838,
+  'name': '青田县',
+  'cityID': 84,
+  'disSort': null
+}, {
+  'id': 839,
+  'name': '缙云县',
+  'cityID': 84,
+  'disSort': null
+}, {
+  'id': 840,
+  'name': '遂昌县',
+  'cityID': 84,
+  'disSort': null
+}, {
+  'id': 841,
+  'name': '松阳县',
+  'cityID': 84,
+  'disSort': null
+}, {
+  'id': 842,
+  'name': '云和县',
+  'cityID': 84,
+  'disSort': null
+}, {
+  'id': 843,
+  'name': '庆元县',
+  'cityID': 84,
+  'disSort': null
+}, {
+  'id': 844,
+  'name': '景宁畲族自治县',
+  'cityID': 84,
+  'disSort': null
+}, {
+  'id': 845,
+  'name': '龙泉市',
+  'cityID': 84,
+  'disSort': null
+}, {
+  'id': 846,
+  'name': '婺城区',
+  'cityID': 85,
+  'disSort': null
+}, {
+  'id': 847,
+  'name': '金东区',
+  'cityID': 85,
+  'disSort': null
+}, {
+  'id': 848,
+  'name': '武义县',
+  'cityID': 85,
+  'disSort': null
+}, {
+  'id': 849,
+  'name': '浦江县',
+  'cityID': 85,
+  'disSort': null
+}, {
+  'id': 850,
+  'name': '磐安县',
+  'cityID': 85,
+  'disSort': null
+}, {
+  'id': 851,
+  'name': '兰溪市',
+  'cityID': 85,
+  'disSort': null
+}, {
+  'id': 852,
+  'name': '义乌市',
+  'cityID': 85,
+  'disSort': null
+}, {
+  'id': 853,
+  'name': '东阳市',
+  'cityID': 85,
+  'disSort': null
+}, {
+  'id': 854,
+  'name': '永康市',
+  'cityID': 85,
+  'disSort': null
+}, {
+  'id': 855,
+  'name': '椒江区',
+  'cityID': 86,
+  'disSort': null
+}, {
+  'id': 856,
+  'name': '黄岩区',
+  'cityID': 86,
+  'disSort': null
+}, {
+  'id': 857,
+  'name': '路桥区',
+  'cityID': 86,
+  'disSort': null
+}, {
+  'id': 858,
+  'name': '玉环县',
+  'cityID': 86,
+  'disSort': null
+}, {
+  'id': 859,
+  'name': '三门县',
+  'cityID': 86,
+  'disSort': null
+}, {
+  'id': 860,
+  'name': '天台县',
+  'cityID': 86,
+  'disSort': null
+}, {
+  'id': 861,
+  'name': '仙居县',
+  'cityID': 86,
+  'disSort': null
+}, {
+  'id': 862,
+  'name': '温岭市',
+  'cityID': 86,
+  'disSort': null
+}, {
+  'id': 863,
+  'name': '临海市',
+  'cityID': 86,
+  'disSort': null
+}, {
+  'id': 864,
+  'name': '瑶海区',
+  'cityID': 87,
+  'disSort': null
+}, {
+  'id': 865,
+  'name': '庐阳区',
+  'cityID': 87,
+  'disSort': null
+}, {
+  'id': 866,
+  'name': '蜀山区',
+  'cityID': 87,
+  'disSort': null
+}, {
+  'id': 867,
+  'name': '包河区',
+  'cityID': 87,
+  'disSort': null
+}, {
+  'id': 868,
+  'name': '长丰县',
+  'cityID': 87,
+  'disSort': null
+}, {
+  'id': 869,
+  'name': '肥东县',
+  'cityID': 87,
+  'disSort': null
+}, {
+  'id': 870,
+  'name': '肥西县',
+  'cityID': 87,
+  'disSort': null
+}, {
+  'id': 871,
+  'name': '镜湖区',
+  'cityID': 88,
+  'disSort': null
+}, {
+  'id': 872,
+  'name': '弋江区',
+  'cityID': 88,
+  'disSort': null
+}, {
+  'id': 873,
+  'name': '鸠江区',
+  'cityID': 88,
+  'disSort': null
+}, {
+  'id': 874,
+  'name': '三山区',
+  'cityID': 88,
+  'disSort': null
+}, {
+  'id': 875,
+  'name': '芜湖县',
+  'cityID': 88,
+  'disSort': null
+}, {
+  'id': 876,
+  'name': '繁昌县',
+  'cityID': 88,
+  'disSort': null
+}, {
+  'id': 877,
+  'name': '南陵县',
+  'cityID': 88,
+  'disSort': null
+}, {
+  'id': 878,
+  'name': '龙子湖区',
+  'cityID': 89,
+  'disSort': null
+}, {
+  'id': 879,
+  'name': '蚌山区',
+  'cityID': 89,
+  'disSort': null
+}, {
+  'id': 880,
+  'name': '禹会区',
+  'cityID': 89,
+  'disSort': null
+}, {
+  'id': 881,
+  'name': '淮上区',
+  'cityID': 89,
+  'disSort': null
+}, {
+  'id': 882,
+  'name': '怀远县',
+  'cityID': 89,
+  'disSort': null
+}, {
+  'id': 883,
+  'name': '五河县',
+  'cityID': 89,
+  'disSort': null
+}, {
+  'id': 884,
+  'name': '固镇县',
+  'cityID': 89,
+  'disSort': null
+}, {
+  'id': 885,
+  'name': '大通区',
+  'cityID': 90,
+  'disSort': null
+}, {
+  'id': 886,
+  'name': '田家庵区',
+  'cityID': 90,
+  'disSort': null
+}, {
+  'id': 887,
+  'name': '谢家集区',
+  'cityID': 90,
+  'disSort': null
+}, {
+  'id': 888,
+  'name': '八公山区',
+  'cityID': 90,
+  'disSort': null
+}, {
+  'id': 889,
+  'name': '潘集区',
+  'cityID': 90,
+  'disSort': null
+}, {
+  'id': 890,
+  'name': '凤台县',
+  'cityID': 90,
+  'disSort': null
+}, {
+  'id': 891,
+  'name': '金家庄区',
+  'cityID': 91,
+  'disSort': null
+}, {
+  'id': 892,
+  'name': '花山区',
+  'cityID': 91,
+  'disSort': null
+}, {
+  'id': 893,
+  'name': '雨山区',
+  'cityID': 91,
+  'disSort': null
+}, {
+  'id': 894,
+  'name': '当涂县',
+  'cityID': 91,
+  'disSort': null
+}, {
+  'id': 895,
+  'name': '杜集区',
+  'cityID': 92,
+  'disSort': null
+}, {
+  'id': 896,
+  'name': '相山区',
+  'cityID': 92,
+  'disSort': null
+}, {
+  'id': 897,
+  'name': '烈山区',
+  'cityID': 92,
+  'disSort': null
+}, {
+  'id': 898,
+  'name': '濉溪县',
+  'cityID': 92,
+  'disSort': null
+}, {
+  'id': 899,
+  'name': '铜官山区',
+  'cityID': 93,
+  'disSort': null
+}, {
+  'id': 900,
+  'name': '狮子山区',
+  'cityID': 93,
+  'disSort': null
+}, {
+  'id': 901,
+  'name': '铜陵县',
+  'cityID': 93,
+  'disSort': null
+}, {
+  'id': 902,
+  'name': '迎江区',
+  'cityID': 94,
+  'disSort': null
+}, {
+  'id': 903,
+  'name': '大观区',
+  'cityID': 94,
+  'disSort': null
+}, {
+  'id': 904,
+  'name': '宜秀区',
+  'cityID': 94,
+  'disSort': null
+}, {
+  'id': 905,
+  'name': '怀宁县',
+  'cityID': 94,
+  'disSort': null
+}, {
+  'id': 906,
+  'name': '枞阳县',
+  'cityID': 94,
+  'disSort': null
+}, {
+  'id': 907,
+  'name': '潜山县',
+  'cityID': 94,
+  'disSort': null
+}, {
+  'id': 908,
+  'name': '太湖县',
+  'cityID': 94,
+  'disSort': null
+}, {
+  'id': 909,
+  'name': '宿松县',
+  'cityID': 94,
+  'disSort': null
+}, {
+  'id': 910,
+  'name': '望江县',
+  'cityID': 94,
+  'disSort': null
+}, {
+  'id': 911,
+  'name': '岳西县',
+  'cityID': 94,
+  'disSort': null
+}, {
+  'id': 912,
+  'name': '桐城市',
+  'cityID': 94,
+  'disSort': null
+}, {
+  'id': 913,
+  'name': '屯溪区',
+  'cityID': 95,
+  'disSort': null
+}, {
+  'id': 914,
+  'name': '黄山区',
+  'cityID': 95,
+  'disSort': null
+}, {
+  'id': 915,
+  'name': '徽州区',
+  'cityID': 95,
+  'disSort': null
+}, {
+  'id': 916,
+  'name': '歙县',
+  'cityID': 95,
+  'disSort': null
+}, {
+  'id': 917,
+  'name': '休宁县',
+  'cityID': 95,
+  'disSort': null
+}, {
+  'id': 918,
+  'name': '黟县',
+  'cityID': 95,
+  'disSort': null
+}, {
+  'id': 919,
+  'name': '祁门县',
+  'cityID': 95,
+  'disSort': null
+}, {
+  'id': 920,
+  'name': '琅琊区',
+  'cityID': 96,
+  'disSort': null
+}, {
+  'id': 921,
+  'name': '南谯区',
+  'cityID': 96,
+  'disSort': null
+}, {
+  'id': 922,
+  'name': '来安县',
+  'cityID': 96,
+  'disSort': null
+}, {
+  'id': 923,
+  'name': '全椒县',
+  'cityID': 96,
+  'disSort': null
+}, {
+  'id': 924,
+  'name': '定远县',
+  'cityID': 96,
+  'disSort': null
+}, {
+  'id': 925,
+  'name': '凤阳县',
+  'cityID': 96,
+  'disSort': null
+}, {
+  'id': 926,
+  'name': '天长市',
+  'cityID': 96,
+  'disSort': null
+}, {
+  'id': 927,
+  'name': '明光市',
+  'cityID': 96,
+  'disSort': null
+}, {
+  'id': 928,
+  'name': '颍州区',
+  'cityID': 97,
+  'disSort': null
+}, {
+  'id': 929,
+  'name': '颍东区',
+  'cityID': 97,
+  'disSort': null
+}, {
+  'id': 930,
+  'name': '颍泉区',
+  'cityID': 97,
+  'disSort': null
+}, {
+  'id': 931,
+  'name': '临泉县',
+  'cityID': 97,
+  'disSort': null
+}, {
+  'id': 932,
+  'name': '太和县',
+  'cityID': 97,
+  'disSort': null
+}, {
+  'id': 933,
+  'name': '阜南县',
+  'cityID': 97,
+  'disSort': null
+}, {
+  'id': 934,
+  'name': '颍上县',
+  'cityID': 97,
+  'disSort': null
+}, {
+  'id': 935,
+  'name': '界首市',
+  'cityID': 97,
+  'disSort': null
+}, {
+  'id': 936,
+  'name': '埇桥区',
+  'cityID': 98,
+  'disSort': null
+}, {
+  'id': 937,
+  'name': '砀山县',
+  'cityID': 98,
+  'disSort': null
+}, {
+  'id': 938,
+  'name': '萧县',
+  'cityID': 98,
+  'disSort': null
+}, {
+  'id': 939,
+  'name': '灵璧县',
+  'cityID': 98,
+  'disSort': null
+}, {
+  'id': 940,
+  'name': '泗县',
+  'cityID': 98,
+  'disSort': null
+}, {
+  'id': 941,
+  'name': '居巢区',
+  'cityID': 99,
+  'disSort': null
+}, {
+  'id': 942,
+  'name': '庐江县',
+  'cityID': 99,
+  'disSort': null
+}, {
+  'id': 943,
+  'name': '无为县',
+  'cityID': 99,
+  'disSort': null
+}, {
+  'id': 944,
+  'name': '含山县',
+  'cityID': 99,
+  'disSort': null
+}, {
+  'id': 945,
+  'name': '和县',
+  'cityID': 99,
+  'disSort': null
+}, {
+  'id': 946,
+  'name': '金安区',
+  'cityID': 100,
+  'disSort': null
+}, {
+  'id': 947,
+  'name': '裕安区',
+  'cityID': 100,
+  'disSort': null
+}, {
+  'id': 948,
+  'name': '寿县',
+  'cityID': 100,
+  'disSort': null
+}, {
+  'id': 949,
+  'name': '霍邱县',
+  'cityID': 100,
+  'disSort': null
+}, {
+  'id': 950,
+  'name': '舒城县',
+  'cityID': 100,
+  'disSort': null
+}, {
+  'id': 951,
+  'name': '金寨县',
+  'cityID': 100,
+  'disSort': null
+}, {
+  'id': 952,
+  'name': '霍山县',
+  'cityID': 100,
+  'disSort': null
+}, {
+  'id': 953,
+  'name': '谯城区',
+  'cityID': 101,
+  'disSort': null
+}, {
+  'id': 954,
+  'name': '涡阳县',
+  'cityID': 101,
+  'disSort': null
+}, {
+  'id': 955,
+  'name': '蒙城县',
+  'cityID': 101,
+  'disSort': null
+}, {
+  'id': 956,
+  'name': '利辛县',
+  'cityID': 101,
+  'disSort': null
+}, {
+  'id': 957,
+  'name': '贵池区',
+  'cityID': 102,
+  'disSort': null
+}, {
+  'id': 958,
+  'name': '东至县',
+  'cityID': 102,
+  'disSort': null
+}, {
+  'id': 959,
+  'name': '石台县',
+  'cityID': 102,
+  'disSort': null
+}, {
+  'id': 960,
+  'name': '青阳县',
+  'cityID': 102,
+  'disSort': null
+}, {
+  'id': 961,
+  'name': '宣州区',
+  'cityID': 103,
+  'disSort': null
+}, {
+  'id': 962,
+  'name': '郎溪县',
+  'cityID': 103,
+  'disSort': null
+}, {
+  'id': 963,
+  'name': '广德县',
+  'cityID': 103,
+  'disSort': null
+}, {
+  'id': 964,
+  'name': '泾县',
+  'cityID': 103,
+  'disSort': null
+}, {
+  'id': 965,
+  'name': '绩溪县',
+  'cityID': 103,
+  'disSort': null
+}, {
+  'id': 966,
+  'name': '旌德县',
+  'cityID': 103,
+  'disSort': null
+}, {
+  'id': 967,
+  'name': '宁国市',
+  'cityID': 103,
+  'disSort': null
+}, {
+  'id': 968,
+  'name': '鼓楼区',
+  'cityID': 104,
+  'disSort': null
+}, {
+  'id': 969,
+  'name': '台江区',
+  'cityID': 104,
+  'disSort': null
+}, {
+  'id': 970,
+  'name': '仓山区',
+  'cityID': 104,
+  'disSort': null
+}, {
+  'id': 971,
+  'name': '马尾区',
+  'cityID': 104,
+  'disSort': null
+}, {
+  'id': 972,
+  'name': '晋安区',
+  'cityID': 104,
+  'disSort': null
+}, {
+  'id': 973,
+  'name': '闽侯县',
+  'cityID': 104,
+  'disSort': null
+}, {
+  'id': 974,
+  'name': '连江县',
+  'cityID': 104,
+  'disSort': null
+}, {
+  'id': 975,
+  'name': '罗源县',
+  'cityID': 104,
+  'disSort': null
+}, {
+  'id': 976,
+  'name': '闽清县',
+  'cityID': 104,
+  'disSort': null
+}, {
+  'id': 977,
+  'name': '永泰县',
+  'cityID': 104,
+  'disSort': null
+}, {
+  'id': 978,
+  'name': '平潭县',
+  'cityID': 104,
+  'disSort': null
+}, {
+  'id': 979,
+  'name': '福清市',
+  'cityID': 104,
+  'disSort': null
+}, {
+  'id': 980,
+  'name': '长乐市',
+  'cityID': 104,
+  'disSort': null
+}, {
+  'id': 981,
+  'name': '思明区',
+  'cityID': 105,
+  'disSort': null
+}, {
+  'id': 982,
+  'name': '海沧区',
+  'cityID': 105,
+  'disSort': null
+}, {
+  'id': 983,
+  'name': '湖里区',
+  'cityID': 105,
+  'disSort': null
+}, {
+  'id': 984,
+  'name': '集美区',
+  'cityID': 105,
+  'disSort': null
+}, {
+  'id': 985,
+  'name': '同安区',
+  'cityID': 105,
+  'disSort': null
+}, {
+  'id': 986,
+  'name': '翔安区',
+  'cityID': 105,
+  'disSort': null
+}, {
+  'id': 987,
+  'name': '蕉城区',
+  'cityID': 106,
+  'disSort': null
+}, {
+  'id': 988,
+  'name': '霞浦县',
+  'cityID': 106,
+  'disSort': null
+}, {
+  'id': 989,
+  'name': '古田县',
+  'cityID': 106,
+  'disSort': null
+}, {
+  'id': 990,
+  'name': '屏南县',
+  'cityID': 106,
+  'disSort': null
+}, {
+  'id': 991,
+  'name': '寿宁县',
+  'cityID': 106,
+  'disSort': null
+}, {
+  'id': 992,
+  'name': '周宁县',
+  'cityID': 106,
+  'disSort': null
+}, {
+  'id': 993,
+  'name': '柘荣县',
+  'cityID': 106,
+  'disSort': null
+}, {
+  'id': 994,
+  'name': '福安市',
+  'cityID': 106,
+  'disSort': null
+}, {
+  'id': 995,
+  'name': '福鼎市',
+  'cityID': 106,
+  'disSort': null
+}, {
+  'id': 996,
+  'name': '城厢区',
+  'cityID': 107,
+  'disSort': null
+}, {
+  'id': 997,
+  'name': '涵江区',
+  'cityID': 107,
+  'disSort': null
+}, {
+  'id': 998,
+  'name': '荔城区',
+  'cityID': 107,
+  'disSort': null
+}, {
+  'id': 999,
+  'name': '秀屿区',
+  'cityID': 107,
+  'disSort': null
+}, {
+  'id': 1000,
+  'name': '仙游县',
+  'cityID': 107,
+  'disSort': null
+}, {
+  'id': 1001,
+  'name': '鲤城区',
+  'cityID': 108,
+  'disSort': null
+}, {
+  'id': 1002,
+  'name': '丰泽区',
+  'cityID': 108,
+  'disSort': null
+}, {
+  'id': 1003,
+  'name': '洛江区',
+  'cityID': 108,
+  'disSort': null
+}, {
+  'id': 1004,
+  'name': '泉港区',
+  'cityID': 108,
+  'disSort': null
+}, {
+  'id': 1005,
+  'name': '惠安县',
+  'cityID': 108,
+  'disSort': null
+}, {
+  'id': 1006,
+  'name': '安溪县',
+  'cityID': 108,
+  'disSort': null
+}, {
+  'id': 1007,
+  'name': '永春县',
+  'cityID': 108,
+  'disSort': null
+}, {
+  'id': 1008,
+  'name': '德化县',
+  'cityID': 108,
+  'disSort': null
+}, {
+  'id': 1009,
+  'name': '石狮市',
+  'cityID': 108,
+  'disSort': null
+}, {
+  'id': 1010,
+  'name': '晋江市',
+  'cityID': 108,
+  'disSort': null
+}, {
+  'id': 1011,
+  'name': '南安市',
+  'cityID': 108,
+  'disSort': null
+}, {
+  'id': 1012,
+  'name': '芗城区',
+  'cityID': 109,
+  'disSort': null
+}, {
+  'id': 1013,
+  'name': '龙文区',
+  'cityID': 109,
+  'disSort': null
+}, {
+  'id': 1014,
+  'name': '云霄县',
+  'cityID': 109,
+  'disSort': null
+}, {
+  'id': 1015,
+  'name': '漳浦县',
+  'cityID': 109,
+  'disSort': null
+}, {
+  'id': 1016,
+  'name': '诏安县',
+  'cityID': 109,
+  'disSort': null
+}, {
+  'id': 1017,
+  'name': '长泰县',
+  'cityID': 109,
+  'disSort': null
+}, {
+  'id': 1018,
+  'name': '东山县',
+  'cityID': 109,
+  'disSort': null
+}, {
+  'id': 1019,
+  'name': '南靖县',
+  'cityID': 109,
+  'disSort': null
+}, {
+  'id': 1020,
+  'name': '平和县',
+  'cityID': 109,
+  'disSort': null
+}, {
+  'id': 1021,
+  'name': '华安县',
+  'cityID': 109,
+  'disSort': null
+}, {
+  'id': 1022,
+  'name': '龙海市',
+  'cityID': 109,
+  'disSort': null
+}, {
+  'id': 1023,
+  'name': '新罗区',
+  'cityID': 110,
+  'disSort': null
+}, {
+  'id': 1024,
+  'name': '长汀县',
+  'cityID': 110,
+  'disSort': null
+}, {
+  'id': 1025,
+  'name': '永定县',
+  'cityID': 110,
+  'disSort': null
+}, {
+  'id': 1026,
+  'name': '上杭县',
+  'cityID': 110,
+  'disSort': null
+}, {
+  'id': 1027,
+  'name': '武平县',
+  'cityID': 110,
+  'disSort': null
+}, {
+  'id': 1028,
+  'name': '连城县',
+  'cityID': 110,
+  'disSort': null
+}, {
+  'id': 1029,
+  'name': '漳平市',
+  'cityID': 110,
+  'disSort': null
+}, {
+  'id': 1030,
+  'name': '梅列区',
+  'cityID': 111,
+  'disSort': null
+}, {
+  'id': 1031,
+  'name': '三元区',
+  'cityID': 111,
+  'disSort': null
+}, {
+  'id': 1032,
+  'name': '明溪县',
+  'cityID': 111,
+  'disSort': null
+}, {
+  'id': 1033,
+  'name': '清流县',
+  'cityID': 111,
+  'disSort': null
+}, {
+  'id': 1034,
+  'name': '宁化县',
+  'cityID': 111,
+  'disSort': null
+}, {
+  'id': 1035,
+  'name': '大田县',
+  'cityID': 111,
+  'disSort': null
+}, {
+  'id': 1036,
+  'name': '尤溪县',
+  'cityID': 111,
+  'disSort': null
+}, {
+  'id': 1037,
+  'name': '沙县',
+  'cityID': 111,
+  'disSort': null
+}, {
+  'id': 1038,
+  'name': '将乐县',
+  'cityID': 111,
+  'disSort': null
+}, {
+  'id': 1039,
+  'name': '泰宁县',
+  'cityID': 111,
+  'disSort': null
+}, {
+  'id': 1040,
+  'name': '建宁县',
+  'cityID': 111,
+  'disSort': null
+}, {
+  'id': 1041,
+  'name': '永安市',
+  'cityID': 111,
+  'disSort': null
+}, {
+  'id': 1042,
+  'name': '延平区',
+  'cityID': 112,
+  'disSort': null
+}, {
+  'id': 1043,
+  'name': '顺昌县',
+  'cityID': 112,
+  'disSort': null
+}, {
+  'id': 1044,
+  'name': '浦城县',
+  'cityID': 112,
+  'disSort': null
+}, {
+  'id': 1045,
+  'name': '光泽县',
+  'cityID': 112,
+  'disSort': null
+}, {
+  'id': 1046,
+  'name': '松溪县',
+  'cityID': 112,
+  'disSort': null
+}, {
+  'id': 1047,
+  'name': '政和县',
+  'cityID': 112,
+  'disSort': null
+}, {
+  'id': 1048,
+  'name': '邵武市',
+  'cityID': 112,
+  'disSort': null
+}, {
+  'id': 1049,
+  'name': '武夷山市',
+  'cityID': 112,
+  'disSort': null
+}, {
+  'id': 1050,
+  'name': '建瓯市',
+  'cityID': 112,
+  'disSort': null
+}, {
+  'id': 1051,
+  'name': '建阳市',
+  'cityID': 112,
+  'disSort': null
+}, {
+  'id': 1052,
+  'name': '月湖区',
+  'cityID': 113,
+  'disSort': null
+}, {
+  'id': 1053,
+  'name': '余江县',
+  'cityID': 113,
+  'disSort': null
+}, {
+  'id': 1054,
+  'name': '贵溪市',
+  'cityID': 113,
+  'disSort': null
+}, {
+  'id': 1055,
+  'name': '渝水区',
+  'cityID': 114,
+  'disSort': null
+}, {
+  'id': 1056,
+  'name': '分宜县',
+  'cityID': 114,
+  'disSort': null
+}, {
+  'id': 1057,
+  'name': '东湖区',
+  'cityID': 115,
+  'disSort': null
+}, {
+  'id': 1058,
+  'name': '西湖区',
+  'cityID': 115,
+  'disSort': null
+}, {
+  'id': 1059,
+  'name': '青云谱区',
+  'cityID': 115,
+  'disSort': null
+}, {
+  'id': 1060,
+  'name': '湾里区',
+  'cityID': 115,
+  'disSort': null
+}, {
+  'id': 1061,
+  'name': '青山湖区',
+  'cityID': 115,
+  'disSort': null
+}, {
+  'id': 1062,
+  'name': '南昌县',
+  'cityID': 115,
+  'disSort': null
+}, {
+  'id': 1063,
+  'name': '新建县',
+  'cityID': 115,
+  'disSort': null
+}, {
+  'id': 1064,
+  'name': '安义县',
+  'cityID': 115,
+  'disSort': null
+}, {
+  'id': 1065,
+  'name': '进贤县',
+  'cityID': 115,
+  'disSort': null
+}, {
+  'id': 1066,
+  'name': '庐山区',
+  'cityID': 116,
+  'disSort': null
+}, {
+  'id': 1067,
+  'name': '浔阳区',
+  'cityID': 116,
+  'disSort': null
+}, {
+  'id': 1068,
+  'name': '九江县',
+  'cityID': 116,
+  'disSort': null
+}, {
+  'id': 1069,
+  'name': '武宁县',
+  'cityID': 116,
+  'disSort': null
+}, {
+  'id': 1070,
+  'name': '修水县',
+  'cityID': 116,
+  'disSort': null
+}, {
+  'id': 1071,
+  'name': '永修县',
+  'cityID': 116,
+  'disSort': null
+}, {
+  'id': 1072,
+  'name': '德安县',
+  'cityID': 116,
+  'disSort': null
+}, {
+  'id': 1073,
+  'name': '星子县',
+  'cityID': 116,
+  'disSort': null
+}, {
+  'id': 1074,
+  'name': '都昌县',
+  'cityID': 116,
+  'disSort': null
+}, {
+  'id': 1075,
+  'name': '湖口县',
+  'cityID': 116,
+  'disSort': null
+}, {
+  'id': 1076,
+  'name': '彭泽县',
+  'cityID': 116,
+  'disSort': null
+}, {
+  'id': 1077,
+  'name': '瑞昌市',
+  'cityID': 116,
+  'disSort': null
+}, {
+  'id': 1078,
+  'name': '信州区',
+  'cityID': 117,
+  'disSort': null
+}, {
+  'id': 1079,
+  'name': '上饶县',
+  'cityID': 117,
+  'disSort': null
+}, {
+  'id': 1080,
+  'name': '广丰县',
+  'cityID': 117,
+  'disSort': null
+}, {
+  'id': 1081,
+  'name': '玉山县',
+  'cityID': 117,
+  'disSort': null
+}, {
+  'id': 1082,
+  'name': '铅山县',
+  'cityID': 117,
+  'disSort': null
+}, {
+  'id': 1083,
+  'name': '横峰县',
+  'cityID': 117,
+  'disSort': null
+}, {
+  'id': 1084,
+  'name': '弋阳县',
+  'cityID': 117,
+  'disSort': null
+}, {
+  'id': 1085,
+  'name': '余干县',
+  'cityID': 117,
+  'disSort': null
+}, {
+  'id': 1086,
+  'name': '鄱阳县',
+  'cityID': 117,
+  'disSort': null
+}, {
+  'id': 1087,
+  'name': '万年县',
+  'cityID': 117,
+  'disSort': null
+}, {
+  'id': 1088,
+  'name': '婺源县',
+  'cityID': 117,
+  'disSort': null
+}, {
+  'id': 1089,
+  'name': '德兴市',
+  'cityID': 117,
+  'disSort': null
+}, {
+  'id': 1090,
+  'name': '临川区',
+  'cityID': 118,
+  'disSort': null
+}, {
+  'id': 1091,
+  'name': '南城县',
+  'cityID': 118,
+  'disSort': null
+}, {
+  'id': 1092,
+  'name': '黎川县',
+  'cityID': 118,
+  'disSort': null
+}, {
+  'id': 1093,
+  'name': '南丰县',
+  'cityID': 118,
+  'disSort': null
+}, {
+  'id': 1094,
+  'name': '崇仁县',
+  'cityID': 118,
+  'disSort': null
+}, {
+  'id': 1095,
+  'name': '乐安县',
+  'cityID': 118,
+  'disSort': null
+}, {
+  'id': 1096,
+  'name': '宜黄县',
+  'cityID': 118,
+  'disSort': null
+}, {
+  'id': 1097,
+  'name': '金溪县',
+  'cityID': 118,
+  'disSort': null
+}, {
+  'id': 1098,
+  'name': '资溪县',
+  'cityID': 118,
+  'disSort': null
+}, {
+  'id': 1099,
+  'name': '东乡县',
+  'cityID': 118,
+  'disSort': null
+}, {
+  'id': 1100,
+  'name': '广昌县',
+  'cityID': 118,
+  'disSort': null
+}, {
+  'id': 1101,
+  'name': '袁州区',
+  'cityID': 119,
+  'disSort': null
+}, {
+  'id': 1102,
+  'name': '奉新县',
+  'cityID': 119,
+  'disSort': null
+}, {
+  'id': 1103,
+  'name': '万载县',
+  'cityID': 119,
+  'disSort': null
+}, {
+  'id': 1104,
+  'name': '上高县',
+  'cityID': 119,
+  'disSort': null
+}, {
+  'id': 1105,
+  'name': '宜丰县',
+  'cityID': 119,
+  'disSort': null
+}, {
+  'id': 1106,
+  'name': '靖安县',
+  'cityID': 119,
+  'disSort': null
+}, {
+  'id': 1107,
+  'name': '铜鼓县',
+  'cityID': 119,
+  'disSort': null
+}, {
+  'id': 1108,
+  'name': '丰城市',
+  'cityID': 119,
+  'disSort': null
+}, {
+  'id': 1109,
+  'name': '樟树市',
+  'cityID': 119,
+  'disSort': null
+}, {
+  'id': 1110,
+  'name': '高安市',
+  'cityID': 119,
+  'disSort': null
+}, {
+  'id': 1111,
+  'name': '吉州区',
+  'cityID': 120,
+  'disSort': null
+}, {
+  'id': 1112,
+  'name': '青原区',
+  'cityID': 120,
+  'disSort': null
+}, {
+  'id': 1113,
+  'name': '吉安县',
+  'cityID': 120,
+  'disSort': null
+}, {
+  'id': 1114,
+  'name': '吉水县',
+  'cityID': 120,
+  'disSort': null
+}, {
+  'id': 1115,
+  'name': '峡江县',
+  'cityID': 120,
+  'disSort': null
+}, {
+  'id': 1116,
+  'name': '新干县',
+  'cityID': 120,
+  'disSort': null
+}, {
+  'id': 1117,
+  'name': '永丰县',
+  'cityID': 120,
+  'disSort': null
+}, {
+  'id': 1118,
+  'name': '泰和县',
+  'cityID': 120,
+  'disSort': null
+}, {
+  'id': 1119,
+  'name': '遂川县',
+  'cityID': 120,
+  'disSort': null
+}, {
+  'id': 1120,
+  'name': '万安县',
+  'cityID': 120,
+  'disSort': null
+}, {
+  'id': 1121,
+  'name': '安福县',
+  'cityID': 120,
+  'disSort': null
+}, {
+  'id': 1122,
+  'name': '永新县',
+  'cityID': 120,
+  'disSort': null
+}, {
+  'id': 1123,
+  'name': '井冈山市',
+  'cityID': 120,
+  'disSort': null
+}, {
+  'id': 1124,
+  'name': '章贡区',
+  'cityID': 121,
+  'disSort': null
+}, {
+  'id': 1125,
+  'name': '赣县',
+  'cityID': 121,
+  'disSort': null
+}, {
+  'id': 1126,
+  'name': '信丰县',
+  'cityID': 121,
+  'disSort': null
+}, {
+  'id': 1127,
+  'name': '大余县',
+  'cityID': 121,
+  'disSort': null
+}, {
+  'id': 1128,
+  'name': '上犹县',
+  'cityID': 121,
+  'disSort': null
+}, {
+  'id': 1129,
+  'name': '崇义县',
+  'cityID': 121,
+  'disSort': null
+}, {
+  'id': 1130,
+  'name': '安远县',
+  'cityID': 121,
+  'disSort': null
+}, {
+  'id': 1131,
+  'name': '龙南县',
+  'cityID': 121,
+  'disSort': null
+}, {
+  'id': 1132,
+  'name': '定南县',
+  'cityID': 121,
+  'disSort': null
+}, {
+  'id': 1133,
+  'name': '全南县',
+  'cityID': 121,
+  'disSort': null
+}, {
+  'id': 1134,
+  'name': '宁都县',
+  'cityID': 121,
+  'disSort': null
+}, {
+  'id': 1135,
+  'name': '于都县',
+  'cityID': 121,
+  'disSort': null
+}, {
+  'id': 1136,
+  'name': '兴国县',
+  'cityID': 121,
+  'disSort': null
+}, {
+  'id': 1137,
+  'name': '会昌县',
+  'cityID': 121,
+  'disSort': null
+}, {
+  'id': 1138,
+  'name': '寻乌县',
+  'cityID': 121,
+  'disSort': null
+}, {
+  'id': 1139,
+  'name': '石城县',
+  'cityID': 121,
+  'disSort': null
+}, {
+  'id': 1140,
+  'name': '瑞金市',
+  'cityID': 121,
+  'disSort': null
+}, {
+  'id': 1141,
+  'name': '南康市',
+  'cityID': 121,
+  'disSort': null
+}, {
+  'id': 1142,
+  'name': '昌江区',
+  'cityID': 122,
+  'disSort': null
+}, {
+  'id': 1143,
+  'name': '珠山区',
+  'cityID': 122,
+  'disSort': null
+}, {
+  'id': 1144,
+  'name': '浮梁县',
+  'cityID': 122,
+  'disSort': null
+}, {
+  'id': 1145,
+  'name': '乐平市',
+  'cityID': 122,
+  'disSort': null
+}, {
+  'id': 1146,
+  'name': '安源区',
+  'cityID': 123,
+  'disSort': null
+}, {
+  'id': 1147,
+  'name': '湘东区',
+  'cityID': 123,
+  'disSort': null
+}, {
+  'id': 1148,
+  'name': '莲花县',
+  'cityID': 123,
+  'disSort': null
+}, {
+  'id': 1149,
+  'name': '上栗县',
+  'cityID': 123,
+  'disSort': null
+}, {
+  'id': 1150,
+  'name': '芦溪县',
+  'cityID': 123,
+  'disSort': null
+}, {
+  'id': 1151,
+  'name': '牡丹区',
+  'cityID': 124,
+  'disSort': null
+}, {
+  'id': 1152,
+  'name': '曹县',
+  'cityID': 124,
+  'disSort': null
+}, {
+  'id': 1153,
+  'name': '单县',
+  'cityID': 124,
+  'disSort': null
+}, {
+  'id': 1154,
+  'name': '成武县',
+  'cityID': 124,
+  'disSort': null
+}, {
+  'id': 1155,
+  'name': '巨野县',
+  'cityID': 124,
+  'disSort': null
+}, {
+  'id': 1156,
+  'name': '郓城县',
+  'cityID': 124,
+  'disSort': null
+}, {
+  'id': 1157,
+  'name': '鄄城县',
+  'cityID': 124,
+  'disSort': null
+}, {
+  'id': 1158,
+  'name': '定陶县',
+  'cityID': 124,
+  'disSort': null
+}, {
+  'id': 1159,
+  'name': '东明县',
+  'cityID': 124,
+  'disSort': null
+}, {
+  'id': 1160,
+  'name': '历下区',
+  'cityID': 125,
+  'disSort': null
+}, {
+  'id': 1161,
+  'name': '市中区',
+  'cityID': 125,
+  'disSort': null
+}, {
+  'id': 1162,
+  'name': '槐荫区',
+  'cityID': 125,
+  'disSort': null
+}, {
+  'id': 1163,
+  'name': '天桥区',
+  'cityID': 125,
+  'disSort': null
+}, {
+  'id': 1164,
+  'name': '历城区',
+  'cityID': 125,
+  'disSort': null
+}, {
+  'id': 1165,
+  'name': '长清区',
+  'cityID': 125,
+  'disSort': null
+}, {
+  'id': 1166,
+  'name': '平阴县',
+  'cityID': 125,
+  'disSort': null
+}, {
+  'id': 1167,
+  'name': '济阳县',
+  'cityID': 125,
+  'disSort': null
+}, {
+  'id': 1168,
+  'name': '商河县',
+  'cityID': 125,
+  'disSort': null
+}, {
+  'id': 1169,
+  'name': '章丘市',
+  'cityID': 125,
+  'disSort': null
+}, {
+  'id': 1170,
+  'name': '市南区',
+  'cityID': 126,
+  'disSort': null
+}, {
+  'id': 1171,
+  'name': '市北区',
+  'cityID': 126,
+  'disSort': null
+}, {
+  'id': 1172,
+  'name': '四方区',
+  'cityID': 126,
+  'disSort': null
+}, {
+  'id': 1173,
+  'name': '黄岛区',
+  'cityID': 126,
+  'disSort': null
+}, {
+  'id': 1174,
+  'name': '崂山区',
+  'cityID': 126,
+  'disSort': null
+}, {
+  'id': 1175,
+  'name': '李沧区',
+  'cityID': 126,
+  'disSort': null
+}, {
+  'id': 1176,
+  'name': '城阳区',
+  'cityID': 126,
+  'disSort': null
+}, {
+  'id': 1177,
+  'name': '胶州市',
+  'cityID': 126,
+  'disSort': null
+}, {
+  'id': 1178,
+  'name': '即墨市',
+  'cityID': 126,
+  'disSort': null
+}, {
+  'id': 1179,
+  'name': '平度市',
+  'cityID': 126,
+  'disSort': null
+}, {
+  'id': 1180,
+  'name': '胶南市',
+  'cityID': 126,
+  'disSort': null
+}, {
+  'id': 1181,
+  'name': '莱西市',
+  'cityID': 126,
+  'disSort': null
+}, {
+  'id': 1182,
+  'name': '淄川区',
+  'cityID': 127,
+  'disSort': null
+}, {
+  'id': 1183,
+  'name': '张店区',
+  'cityID': 127,
+  'disSort': null
+}, {
+  'id': 1184,
+  'name': '博山区',
+  'cityID': 127,
+  'disSort': null
+}, {
+  'id': 1185,
+  'name': '临淄区',
+  'cityID': 127,
+  'disSort': null
+}, {
+  'id': 1186,
+  'name': '周村区',
+  'cityID': 127,
+  'disSort': null
+}, {
+  'id': 1187,
+  'name': '桓台县',
+  'cityID': 127,
+  'disSort': null
+}, {
+  'id': 1188,
+  'name': '高青县',
+  'cityID': 127,
+  'disSort': null
+}, {
+  'id': 1189,
+  'name': '沂源县',
+  'cityID': 127,
+  'disSort': null
+}, {
+  'id': 1190,
+  'name': '德城区',
+  'cityID': 128,
+  'disSort': null
+}, {
+  'id': 1191,
+  'name': '陵县',
+  'cityID': 128,
+  'disSort': null
+}, {
+  'id': 1192,
+  'name': '宁津县',
+  'cityID': 128,
+  'disSort': null
+}, {
+  'id': 1193,
+  'name': '庆云县',
+  'cityID': 128,
+  'disSort': null
+}, {
+  'id': 1194,
+  'name': '临邑县',
+  'cityID': 128,
+  'disSort': null
+}, {
+  'id': 1195,
+  'name': '齐河县',
+  'cityID': 128,
+  'disSort': null
+}, {
+  'id': 1196,
+  'name': '平原县',
+  'cityID': 128,
+  'disSort': null
+}, {
+  'id': 1197,
+  'name': '夏津县',
+  'cityID': 128,
+  'disSort': null
+}, {
+  'id': 1198,
+  'name': '武城县',
+  'cityID': 128,
+  'disSort': null
+}, {
+  'id': 1199,
+  'name': '乐陵市',
+  'cityID': 128,
+  'disSort': null
+}, {
+  'id': 1200,
+  'name': '禹城市',
+  'cityID': 128,
+  'disSort': null
+}, {
+  'id': 1201,
+  'name': '芝罘区',
+  'cityID': 129,
+  'disSort': null
+}, {
+  'id': 1202,
+  'name': '福山区',
+  'cityID': 129,
+  'disSort': null
+}, {
+  'id': 1203,
+  'name': '牟平区',
+  'cityID': 129,
+  'disSort': null
+}, {
+  'id': 1204,
+  'name': '莱山区',
+  'cityID': 129,
+  'disSort': null
+}, {
+  'id': 1205,
+  'name': '长岛县',
+  'cityID': 129,
+  'disSort': null
+}, {
+  'id': 1206,
+  'name': '龙口市',
+  'cityID': 129,
+  'disSort': null
+}, {
+  'id': 1207,
+  'name': '莱阳市',
+  'cityID': 129,
+  'disSort': null
+}, {
+  'id': 1208,
+  'name': '莱州市',
+  'cityID': 129,
+  'disSort': null
+}, {
+  'id': 1209,
+  'name': '蓬莱市',
+  'cityID': 129,
+  'disSort': null
+}, {
+  'id': 1210,
+  'name': '招远市',
+  'cityID': 129,
+  'disSort': null
+}, {
+  'id': 1211,
+  'name': '栖霞市',
+  'cityID': 129,
+  'disSort': null
+}, {
+  'id': 1212,
+  'name': '海阳市',
+  'cityID': 129,
+  'disSort': null
+}, {
+  'id': 1213,
+  'name': '潍城区',
+  'cityID': 130,
+  'disSort': null
+}, {
+  'id': 1214,
+  'name': '寒亭区',
+  'cityID': 130,
+  'disSort': null
+}, {
+  'id': 1215,
+  'name': '坊子区',
+  'cityID': 130,
+  'disSort': null
+}, {
+  'id': 1216,
+  'name': '奎文区',
+  'cityID': 130,
+  'disSort': null
+}, {
+  'id': 1217,
+  'name': '临朐县',
+  'cityID': 130,
+  'disSort': null
+}, {
+  'id': 1218,
+  'name': '昌乐县',
+  'cityID': 130,
+  'disSort': null
+}, {
+  'id': 1219,
+  'name': '青州市',
+  'cityID': 130,
+  'disSort': null
+}, {
+  'id': 1220,
+  'name': '诸城市',
+  'cityID': 130,
+  'disSort': null
+}, {
+  'id': 1221,
+  'name': '寿光市',
+  'cityID': 130,
+  'disSort': null
+}, {
+  'id': 1222,
+  'name': '安丘市',
+  'cityID': 130,
+  'disSort': null
+}, {
+  'id': 1223,
+  'name': '高密市',
+  'cityID': 130,
+  'disSort': null
+}, {
+  'id': 1224,
+  'name': '昌邑市',
+  'cityID': 130,
+  'disSort': null
+}, {
+  'id': 1225,
+  'name': '市中区',
+  'cityID': 131,
+  'disSort': null
+}, {
+  'id': 1226,
+  'name': '任城区',
+  'cityID': 131,
+  'disSort': null
+}, {
+  'id': 1227,
+  'name': '微山县',
+  'cityID': 131,
+  'disSort': null
+}, {
+  'id': 1228,
+  'name': '鱼台县',
+  'cityID': 131,
+  'disSort': null
+}, {
+  'id': 1229,
+  'name': '金乡县',
+  'cityID': 131,
+  'disSort': null
+}, {
+  'id': 1230,
+  'name': '嘉祥县',
+  'cityID': 131,
+  'disSort': null
+}, {
+  'id': 1231,
+  'name': '汶上县',
+  'cityID': 131,
+  'disSort': null
+}, {
+  'id': 1232,
+  'name': '泗水县',
+  'cityID': 131,
+  'disSort': null
+}, {
+  'id': 1233,
+  'name': '梁山县',
+  'cityID': 131,
+  'disSort': null
+}, {
+  'id': 1234,
+  'name': '曲阜市',
+  'cityID': 131,
+  'disSort': null
+}, {
+  'id': 1235,
+  'name': '兖州市',
+  'cityID': 131,
+  'disSort': null
+}, {
+  'id': 1236,
+  'name': '邹城市',
+  'cityID': 131,
+  'disSort': null
+}, {
+  'id': 1237,
+  'name': '泰山区',
+  'cityID': 132,
+  'disSort': null
+}, {
+  'id': 1238,
+  'name': '岱岳区',
+  'cityID': 132,
+  'disSort': null
+}, {
+  'id': 1239,
+  'name': '宁阳县',
+  'cityID': 132,
+  'disSort': null
+}, {
+  'id': 1240,
+  'name': '东平县',
+  'cityID': 132,
+  'disSort': null
+}, {
+  'id': 1241,
+  'name': '新泰市',
+  'cityID': 132,
+  'disSort': null
+}, {
+  'id': 1242,
+  'name': '肥城市',
+  'cityID': 132,
+  'disSort': null
+}, {
+  'id': 1243,
+  'name': '兰山区',
+  'cityID': 133,
+  'disSort': null
+}, {
+  'id': 1244,
+  'name': '罗庄区',
+  'cityID': 133,
+  'disSort': null
+}, {
+  'id': 1245,
+  'name': '河东区',
+  'cityID': 133,
+  'disSort': null
+}, {
+  'id': 1246,
+  'name': '沂南县',
+  'cityID': 133,
+  'disSort': null
+}, {
+  'id': 1247,
+  'name': '郯城县',
+  'cityID': 133,
+  'disSort': null
+}, {
+  'id': 1248,
+  'name': '沂水县',
+  'cityID': 133,
+  'disSort': null
+}, {
+  'id': 1249,
+  'name': '苍山县',
+  'cityID': 133,
+  'disSort': null
+}, {
+  'id': 1250,
+  'name': '费县',
+  'cityID': 133,
+  'disSort': null
+}, {
+  'id': 1251,
+  'name': '平邑县',
+  'cityID': 133,
+  'disSort': null
+}, {
+  'id': 1252,
+  'name': '莒南县',
+  'cityID': 133,
+  'disSort': null
+}, {
+  'id': 1253,
+  'name': '蒙阴县',
+  'cityID': 133,
+  'disSort': null
+}, {
+  'id': 1254,
+  'name': '临沭县',
+  'cityID': 133,
+  'disSort': null
+}, {
+  'id': 1255,
+  'name': '滨城区',
+  'cityID': 134,
+  'disSort': null
+}, {
+  'id': 1256,
+  'name': '惠民县',
+  'cityID': 134,
+  'disSort': null
+}, {
+  'id': 1257,
+  'name': '阳信县',
+  'cityID': 134,
+  'disSort': null
+}, {
+  'id': 1258,
+  'name': '无棣县',
+  'cityID': 134,
+  'disSort': null
+}, {
+  'id': 1259,
+  'name': '沾化县',
+  'cityID': 134,
+  'disSort': null
+}, {
+  'id': 1260,
+  'name': '博兴县',
+  'cityID': 134,
+  'disSort': null
+}, {
+  'id': 1261,
+  'name': '邹平县',
+  'cityID': 134,
+  'disSort': null
+}, {
+  'id': 1262,
+  'name': '东营区',
+  'cityID': 135,
+  'disSort': null
+}, {
+  'id': 1263,
+  'name': '河口区',
+  'cityID': 135,
+  'disSort': null
+}, {
+  'id': 1264,
+  'name': '垦利县',
+  'cityID': 135,
+  'disSort': null
+}, {
+  'id': 1265,
+  'name': '利津县',
+  'cityID': 135,
+  'disSort': null
+}, {
+  'id': 1266,
+  'name': '广饶县',
+  'cityID': 135,
+  'disSort': null
+}, {
+  'id': 1267,
+  'name': '环翠区',
+  'cityID': 136,
+  'disSort': null
+}, {
+  'id': 1268,
+  'name': '文登市',
+  'cityID': 136,
+  'disSort': null
+}, {
+  'id': 1269,
+  'name': '荣成市',
+  'cityID': 136,
+  'disSort': null
+}, {
+  'id': 1270,
+  'name': '乳山市',
+  'cityID': 136,
+  'disSort': null
+}, {
+  'id': 1271,
+  'name': '市中区',
+  'cityID': 137,
+  'disSort': null
+}, {
+  'id': 1272,
+  'name': '薛城区',
+  'cityID': 137,
+  'disSort': null
+}, {
+  'id': 1273,
+  'name': '峄城区',
+  'cityID': 137,
+  'disSort': null
+}, {
+  'id': 1274,
+  'name': '台儿庄区',
+  'cityID': 137,
+  'disSort': null
+}, {
+  'id': 1275,
+  'name': '山亭区',
+  'cityID': 137,
+  'disSort': null
+}, {
+  'id': 1276,
+  'name': '滕州市',
+  'cityID': 137,
+  'disSort': null
+}, {
+  'id': 1277,
+  'name': '东港区',
+  'cityID': 138,
+  'disSort': null
+}, {
+  'id': 1278,
+  'name': '岚山区',
+  'cityID': 138,
+  'disSort': null
+}, {
+  'id': 1279,
+  'name': '五莲县',
+  'cityID': 138,
+  'disSort': null
+}, {
+  'id': 1280,
+  'name': '莒县',
+  'cityID': 138,
+  'disSort': null
+}, {
+  'id': 1281,
+  'name': '莱城区',
+  'cityID': 139,
+  'disSort': null
+}, {
+  'id': 1282,
+  'name': '钢城区',
+  'cityID': 139,
+  'disSort': null
+}, {
+  'id': 1283,
+  'name': '东昌府区',
+  'cityID': 140,
+  'disSort': null
+}, {
+  'id': 1284,
+  'name': '阳谷县',
+  'cityID': 140,
+  'disSort': null
+}, {
+  'id': 1285,
+  'name': '莘县',
+  'cityID': 140,
+  'disSort': null
+}, {
+  'id': 1286,
+  'name': '茌平县',
+  'cityID': 140,
+  'disSort': null
+}, {
+  'id': 1287,
+  'name': '东阿县',
+  'cityID': 140,
+  'disSort': null
+}, {
+  'id': 1288,
+  'name': '冠县',
+  'cityID': 140,
+  'disSort': null
+}, {
+  'id': 1289,
+  'name': '高唐县',
+  'cityID': 140,
+  'disSort': null
+}, {
+  'id': 1290,
+  'name': '临清市',
+  'cityID': 140,
+  'disSort': null
+}, {
+  'id': 1291,
+  'name': '梁园区',
+  'cityID': 141,
+  'disSort': null
+}, {
+  'id': 1292,
+  'name': '睢阳区',
+  'cityID': 141,
+  'disSort': null
+}, {
+  'id': 1293,
+  'name': '民权县',
+  'cityID': 141,
+  'disSort': null
+}, {
+  'id': 1294,
+  'name': '睢县',
+  'cityID': 141,
+  'disSort': null
+}, {
+  'id': 1295,
+  'name': '宁陵县',
+  'cityID': 141,
+  'disSort': null
+}, {
+  'id': 1296,
+  'name': '柘城县',
+  'cityID': 141,
+  'disSort': null
+}, {
+  'id': 1297,
+  'name': '虞城县',
+  'cityID': 141,
+  'disSort': null
+}, {
+  'id': 1298,
+  'name': '夏邑县',
+  'cityID': 141,
+  'disSort': null
+}, {
+  'id': 1299,
+  'name': '永城市',
+  'cityID': 141,
+  'disSort': null
+}, {
+  'id': 1300,
+  'name': '中原区',
+  'cityID': 142,
+  'disSort': null
+}, {
+  'id': 1301,
+  'name': '二七区',
+  'cityID': 142,
+  'disSort': null
+}, {
+  'id': 1302,
+  'name': '管城回族区',
+  'cityID': 142,
+  'disSort': null
+}, {
+  'id': 1303,
+  'name': '金水区',
+  'cityID': 142,
+  'disSort': null
+}, {
+  'id': 1304,
+  'name': '上街区',
+  'cityID': 142,
+  'disSort': null
+}, {
+  'id': 1305,
+  'name': '惠济区',
+  'cityID': 142,
+  'disSort': null
+}, {
+  'id': 1306,
+  'name': '中牟县',
+  'cityID': 142,
+  'disSort': null
+}, {
+  'id': 1307,
+  'name': '巩义市',
+  'cityID': 142,
+  'disSort': null
+}, {
+  'id': 1308,
+  'name': '荥阳市',
+  'cityID': 142,
+  'disSort': null
+}, {
+  'id': 1309,
+  'name': '新密市',
+  'cityID': 142,
+  'disSort': null
+}, {
+  'id': 1310,
+  'name': '新郑市',
+  'cityID': 142,
+  'disSort': null
+}, {
+  'id': 1311,
+  'name': '登封市',
+  'cityID': 142,
+  'disSort': null
+}, {
+  'id': 1312,
+  'name': '文峰区',
+  'cityID': 143,
+  'disSort': null
+}, {
+  'id': 1313,
+  'name': '北关区',
+  'cityID': 143,
+  'disSort': null
+}, {
+  'id': 1314,
+  'name': '殷都区',
+  'cityID': 143,
+  'disSort': null
+}, {
+  'id': 1315,
+  'name': '龙安区',
+  'cityID': 143,
+  'disSort': null
+}, {
+  'id': 1316,
+  'name': '安阳县',
+  'cityID': 143,
+  'disSort': null
+}, {
+  'id': 1317,
+  'name': '汤阴县',
+  'cityID': 143,
+  'disSort': null
+}, {
+  'id': 1318,
+  'name': '滑县',
+  'cityID': 143,
+  'disSort': null
+}, {
+  'id': 1319,
+  'name': '内黄县',
+  'cityID': 143,
+  'disSort': null
+}, {
+  'id': 1320,
+  'name': '林州市',
+  'cityID': 143,
+  'disSort': null
+}, {
+  'id': 1321,
+  'name': '红旗区',
+  'cityID': 144,
+  'disSort': null
+}, {
+  'id': 1322,
+  'name': '卫滨区',
+  'cityID': 144,
+  'disSort': null
+}, {
+  'id': 1323,
+  'name': '凤泉区',
+  'cityID': 144,
+  'disSort': null
+}, {
+  'id': 1324,
+  'name': '牧野区',
+  'cityID': 144,
+  'disSort': null
+}, {
+  'id': 1325,
+  'name': '新乡县',
+  'cityID': 144,
+  'disSort': null
+}, {
+  'id': 1326,
+  'name': '获嘉县',
+  'cityID': 144,
+  'disSort': null
+}, {
+  'id': 1327,
+  'name': '原阳县',
+  'cityID': 144,
+  'disSort': null
+}, {
+  'id': 1328,
+  'name': '延津县',
+  'cityID': 144,
+  'disSort': null
+}, {
+  'id': 1329,
+  'name': '封丘县',
+  'cityID': 144,
+  'disSort': null
+}, {
+  'id': 1330,
+  'name': '长垣县',
+  'cityID': 144,
+  'disSort': null
+}, {
+  'id': 1331,
+  'name': '卫辉市',
+  'cityID': 144,
+  'disSort': null
+}, {
+  'id': 1332,
+  'name': '辉县市',
+  'cityID': 144,
+  'disSort': null
+}, {
+  'id': 1333,
+  'name': '魏都区',
+  'cityID': 145,
+  'disSort': null
+}, {
+  'id': 1334,
+  'name': '许昌县',
+  'cityID': 145,
+  'disSort': null
+}, {
+  'id': 1335,
+  'name': '鄢陵县',
+  'cityID': 145,
+  'disSort': null
+}, {
+  'id': 1336,
+  'name': '襄城县',
+  'cityID': 145,
+  'disSort': null
+}, {
+  'id': 1337,
+  'name': '禹州市',
+  'cityID': 145,
+  'disSort': null
+}, {
+  'id': 1338,
+  'name': '长葛市',
+  'cityID': 145,
+  'disSort': null
+}, {
+  'id': 1339,
+  'name': '新华区',
+  'cityID': 146,
+  'disSort': null
+}, {
+  'id': 1340,
+  'name': '卫东区',
+  'cityID': 146,
+  'disSort': null
+}, {
+  'id': 1341,
+  'name': '石龙区',
+  'cityID': 146,
+  'disSort': null
+}, {
+  'id': 1342,
+  'name': '湛河区',
+  'cityID': 146,
+  'disSort': null
+}, {
+  'id': 1343,
+  'name': '宝丰县',
+  'cityID': 146,
+  'disSort': null
+}, {
+  'id': 1344,
+  'name': '叶县',
+  'cityID': 146,
+  'disSort': null
+}, {
+  'id': 1345,
+  'name': '鲁山县',
+  'cityID': 146,
+  'disSort': null
+}, {
+  'id': 1346,
+  'name': '郏县',
+  'cityID': 146,
+  'disSort': null
+}, {
+  'id': 1347,
+  'name': '舞钢市',
+  'cityID': 146,
+  'disSort': null
+}, {
+  'id': 1348,
+  'name': '汝州市',
+  'cityID': 146,
+  'disSort': null
+}, {
+  'id': 1349,
+  'name': '浉河区',
+  'cityID': 147,
+  'disSort': null
+}, {
+  'id': 1350,
+  'name': '平桥区',
+  'cityID': 147,
+  'disSort': null
+}, {
+  'id': 1351,
+  'name': '罗山县',
+  'cityID': 147,
+  'disSort': null
+}, {
+  'id': 1352,
+  'name': '光山县',
+  'cityID': 147,
+  'disSort': null
+}, {
+  'id': 1353,
+  'name': '新县',
+  'cityID': 147,
+  'disSort': null
+}, {
+  'id': 1354,
+  'name': '商城县',
+  'cityID': 147,
+  'disSort': null
+}, {
+  'id': 1355,
+  'name': '固始县',
+  'cityID': 147,
+  'disSort': null
+}, {
+  'id': 1356,
+  'name': '潢川县',
+  'cityID': 147,
+  'disSort': null
+}, {
+  'id': 1357,
+  'name': '淮滨县',
+  'cityID': 147,
+  'disSort': null
+}, {
+  'id': 1358,
+  'name': '息县',
+  'cityID': 147,
+  'disSort': null
+}, {
+  'id': 1359,
+  'name': '宛城区',
+  'cityID': 148,
+  'disSort': null
+}, {
+  'id': 1360,
+  'name': '卧龙区',
+  'cityID': 148,
+  'disSort': null
+}, {
+  'id': 1361,
+  'name': '南召县',
+  'cityID': 148,
+  'disSort': null
+}, {
+  'id': 1362,
+  'name': '方城县',
+  'cityID': 148,
+  'disSort': null
+}, {
+  'id': 1363,
+  'name': '西峡县',
+  'cityID': 148,
+  'disSort': null
+}, {
+  'id': 1364,
+  'name': '镇平县',
+  'cityID': 148,
+  'disSort': null
+}, {
+  'id': 1365,
+  'name': '内乡县',
+  'cityID': 148,
+  'disSort': null
+}, {
+  'id': 1366,
+  'name': '淅川县',
+  'cityID': 148,
+  'disSort': null
+}, {
+  'id': 1367,
+  'name': '社旗县',
+  'cityID': 148,
+  'disSort': null
+}, {
+  'id': 1368,
+  'name': '唐河县',
+  'cityID': 148,
+  'disSort': null
+}, {
+  'id': 1369,
+  'name': '新野县',
+  'cityID': 148,
+  'disSort': null
+}, {
+  'id': 1370,
+  'name': '桐柏县',
+  'cityID': 148,
+  'disSort': null
+}, {
+  'id': 1371,
+  'name': '邓州市',
+  'cityID': 148,
+  'disSort': null
+}, {
+  'id': 1372,
+  'name': '龙亭区',
+  'cityID': 149,
+  'disSort': null
+}, {
+  'id': 1373,
+  'name': '顺河回族区',
+  'cityID': 149,
+  'disSort': null
+}, {
+  'id': 1374,
+  'name': '鼓楼区',
+  'cityID': 149,
+  'disSort': null
+}, {
+  'id': 1375,
+  'name': '禹王台区',
+  'cityID': 149,
+  'disSort': null
+}, {
+  'id': 1376,
+  'name': '金明区',
+  'cityID': 149,
+  'disSort': null
+}, {
+  'id': 1377,
+  'name': '杞县',
+  'cityID': 149,
+  'disSort': null
+}, {
+  'id': 1378,
+  'name': '通许县',
+  'cityID': 149,
+  'disSort': null
+}, {
+  'id': 1379,
+  'name': '尉氏县',
+  'cityID': 149,
+  'disSort': null
+}, {
+  'id': 1380,
+  'name': '开封县',
+  'cityID': 149,
+  'disSort': null
+}, {
+  'id': 1381,
+  'name': '兰考县',
+  'cityID': 149,
+  'disSort': null
+}, {
+  'id': 1382,
+  'name': '老城区',
+  'cityID': 150,
+  'disSort': null
+}, {
+  'id': 1383,
+  'name': '西工区',
+  'cityID': 150,
+  'disSort': null
+}, {
+  'id': 1384,
+  'name': '瀍河回族区',
+  'cityID': 150,
+  'disSort': null
+}, {
+  'id': 1385,
+  'name': '涧西区',
+  'cityID': 150,
+  'disSort': null
+}, {
+  'id': 1386,
+  'name': '吉利区',
+  'cityID': 150,
+  'disSort': null
+}, {
+  'id': 1387,
+  'name': '洛龙区',
+  'cityID': 150,
+  'disSort': null
+}, {
+  'id': 1388,
+  'name': '孟津县',
+  'cityID': 150,
+  'disSort': null
+}, {
+  'id': 1389,
+  'name': '新安县',
+  'cityID': 150,
+  'disSort': null
+}, {
+  'id': 1390,
+  'name': '栾川县',
+  'cityID': 150,
+  'disSort': null
+}, {
+  'id': 1391,
+  'name': '嵩县',
+  'cityID': 150,
+  'disSort': null
+}, {
+  'id': 1392,
+  'name': '汝阳县',
+  'cityID': 150,
+  'disSort': null
+}, {
+  'id': 1393,
+  'name': '宜阳县',
+  'cityID': 150,
+  'disSort': null
+}, {
+  'id': 1394,
+  'name': '洛宁县',
+  'cityID': 150,
+  'disSort': null
+}, {
+  'id': 1395,
+  'name': '伊川县',
+  'cityID': 150,
+  'disSort': null
+}, {
+  'id': 1396,
+  'name': '偃师市',
+  'cityID': 150,
+  'disSort': null
+}, {
+  'id': 1397,
+  'name': '解放区',
+  'cityID': 152,
+  'disSort': null
+}, {
+  'id': 1398,
+  'name': '中站区',
+  'cityID': 152,
+  'disSort': null
+}, {
+  'id': 1399,
+  'name': '马村区',
+  'cityID': 152,
+  'disSort': null
+}, {
+  'id': 1400,
+  'name': '山阳区',
+  'cityID': 152,
+  'disSort': null
+}, {
+  'id': 1401,
+  'name': '修武县',
+  'cityID': 152,
+  'disSort': null
+}, {
+  'id': 1402,
+  'name': '博爱县',
+  'cityID': 152,
+  'disSort': null
+}, {
+  'id': 1403,
+  'name': '武陟县',
+  'cityID': 152,
+  'disSort': null
+}, {
+  'id': 1404,
+  'name': '温县',
+  'cityID': 152,
+  'disSort': null
+}, {
+  'id': 1405,
+  'name': '沁阳市',
+  'cityID': 152,
+  'disSort': null
+}, {
+  'id': 1406,
+  'name': '孟州市',
+  'cityID': 152,
+  'disSort': null
+}, {
+  'id': 1407,
+  'name': '鹤山区',
+  'cityID': 153,
+  'disSort': null
+}, {
+  'id': 1408,
+  'name': '山城区',
+  'cityID': 153,
+  'disSort': null
+}, {
+  'id': 1409,
+  'name': '淇滨区',
+  'cityID': 153,
+  'disSort': null
+}, {
+  'id': 1410,
+  'name': '浚县',
+  'cityID': 153,
+  'disSort': null
+}, {
+  'id': 1411,
+  'name': '淇县',
+  'cityID': 153,
+  'disSort': null
+}, {
+  'id': 1412,
+  'name': '华龙区',
+  'cityID': 154,
+  'disSort': null
+}, {
+  'id': 1413,
+  'name': '清丰县',
+  'cityID': 154,
+  'disSort': null
+}, {
+  'id': 1414,
+  'name': '南乐县',
+  'cityID': 154,
+  'disSort': null
+}, {
+  'id': 1415,
+  'name': '范县',
+  'cityID': 154,
+  'disSort': null
+}, {
+  'id': 1416,
+  'name': '台前县',
+  'cityID': 154,
+  'disSort': null
+}, {
+  'id': 1417,
+  'name': '濮阳县',
+  'cityID': 154,
+  'disSort': null
+}, {
+  'id': 1418,
+  'name': '川汇区',
+  'cityID': 155,
+  'disSort': null
+}, {
+  'id': 1419,
+  'name': '扶沟县',
+  'cityID': 155,
+  'disSort': null
+}, {
+  'id': 1420,
+  'name': '西华县',
+  'cityID': 155,
+  'disSort': null
+}, {
+  'id': 1421,
+  'name': '商水县',
+  'cityID': 155,
+  'disSort': null
+}, {
+  'id': 1422,
+  'name': '沈丘县',
+  'cityID': 155,
+  'disSort': null
+}, {
+  'id': 1423,
+  'name': '郸城县',
+  'cityID': 155,
+  'disSort': null
+}, {
+  'id': 1424,
+  'name': '淮阳县',
+  'cityID': 155,
+  'disSort': null
+}, {
+  'id': 1425,
+  'name': '太康县',
+  'cityID': 155,
+  'disSort': null
+}, {
+  'id': 1426,
+  'name': '鹿邑县',
+  'cityID': 155,
+  'disSort': null
+}, {
+  'id': 1427,
+  'name': '项城市',
+  'cityID': 155,
+  'disSort': null
+}, {
+  'id': 1428,
+  'name': '源汇区',
+  'cityID': 156,
+  'disSort': null
+}, {
+  'id': 1429,
+  'name': '郾城区',
+  'cityID': 156,
+  'disSort': null
+}, {
+  'id': 1430,
+  'name': '召陵区',
+  'cityID': 156,
+  'disSort': null
+}, {
+  'id': 1431,
+  'name': '舞阳县',
+  'cityID': 156,
+  'disSort': null
+}, {
+  'id': 1432,
+  'name': '临颍县',
+  'cityID': 156,
+  'disSort': null
+}, {
+  'id': 1433,
+  'name': '驿城区',
+  'cityID': 157,
+  'disSort': null
+}, {
+  'id': 1434,
+  'name': '西平县',
+  'cityID': 157,
+  'disSort': null
+}, {
+  'id': 1435,
+  'name': '上蔡县',
+  'cityID': 157,
+  'disSort': null
+}, {
+  'id': 1436,
+  'name': '平舆县',
+  'cityID': 157,
+  'disSort': null
+}, {
+  'id': 1437,
+  'name': '正阳县',
+  'cityID': 157,
+  'disSort': null
+}, {
+  'id': 1438,
+  'name': '确山县',
+  'cityID': 157,
+  'disSort': null
+}, {
+  'id': 1439,
+  'name': '泌阳县',
+  'cityID': 157,
+  'disSort': null
+}, {
+  'id': 1440,
+  'name': '汝南县',
+  'cityID': 157,
+  'disSort': null
+}, {
+  'id': 1441,
+  'name': '遂平县',
+  'cityID': 157,
+  'disSort': null
+}, {
+  'id': 1442,
+  'name': '新蔡县',
+  'cityID': 157,
+  'disSort': null
+}, {
+  'id': 1443,
+  'name': '湖滨区',
+  'cityID': 158,
+  'disSort': null
+}, {
+  'id': 1444,
+  'name': '渑池县',
+  'cityID': 158,
+  'disSort': null
+}, {
+  'id': 1445,
+  'name': '陕县',
+  'cityID': 158,
+  'disSort': null
+}, {
+  'id': 1446,
+  'name': '卢氏县',
+  'cityID': 158,
+  'disSort': null
+}, {
+  'id': 1447,
+  'name': '义马市',
+  'cityID': 158,
+  'disSort': null
+}, {
+  'id': 1448,
+  'name': '灵宝市',
+  'cityID': 158,
+  'disSort': null
+}, {
+  'id': 1449,
+  'name': '江岸区',
+  'cityID': 159,
+  'disSort': null
+}, {
+  'id': 1450,
+  'name': '江汉区',
+  'cityID': 159,
+  'disSort': null
+}, {
+  'id': 1451,
+  'name': '硚口区',
+  'cityID': 159,
+  'disSort': null
+}, {
+  'id': 1452,
+  'name': '汉阳区',
+  'cityID': 159,
+  'disSort': null
+}, {
+  'id': 1453,
+  'name': '武昌区',
+  'cityID': 159,
+  'disSort': null
+}, {
+  'id': 1454,
+  'name': '青山区',
+  'cityID': 159,
+  'disSort': null
+}, {
+  'id': 1455,
+  'name': '洪山区',
+  'cityID': 159,
+  'disSort': null
+}, {
+  'id': 1456,
+  'name': '东西湖区',
+  'cityID': 159,
+  'disSort': null
+}, {
+  'id': 1457,
+  'name': '汉南区',
+  'cityID': 159,
+  'disSort': null
+}, {
+  'id': 1458,
+  'name': '蔡甸区',
+  'cityID': 159,
+  'disSort': null
+}, {
+  'id': 1459,
+  'name': '江夏区',
+  'cityID': 159,
+  'disSort': null
+}, {
+  'id': 1460,
+  'name': '黄陂区',
+  'cityID': 159,
+  'disSort': null
+}, {
+  'id': 1461,
+  'name': '新洲区',
+  'cityID': 159,
+  'disSort': null
+}, {
+  'id': 1462,
+  'name': '襄城区',
+  'cityID': 160,
+  'disSort': null
+}, {
+  'id': 1463,
+  'name': '樊城区',
+  'cityID': 160,
+  'disSort': null
+}, {
+  'id': 1464,
+  'name': '襄阳区',
+  'cityID': 160,
+  'disSort': null
+}, {
+  'id': 1465,
+  'name': '南漳县',
+  'cityID': 160,
+  'disSort': null
+}, {
+  'id': 1466,
+  'name': '谷城县',
+  'cityID': 160,
+  'disSort': null
+}, {
+  'id': 1467,
+  'name': '保康县',
+  'cityID': 160,
+  'disSort': null
+}, {
+  'id': 1468,
+  'name': '老河口市',
+  'cityID': 160,
+  'disSort': null
+}, {
+  'id': 1469,
+  'name': '枣阳市',
+  'cityID': 160,
+  'disSort': null
+}, {
+  'id': 1470,
+  'name': '宜城市',
+  'cityID': 160,
+  'disSort': null
+}, {
+  'id': 1471,
+  'name': '梁子湖区',
+  'cityID': 161,
+  'disSort': null
+}, {
+  'id': 1472,
+  'name': '华容区',
+  'cityID': 161,
+  'disSort': null
+}, {
+  'id': 1473,
+  'name': '鄂城区',
+  'cityID': 161,
+  'disSort': null
+}, {
+  'id': 1474,
+  'name': '孝南区',
+  'cityID': 162,
+  'disSort': null
+}, {
+  'id': 1475,
+  'name': '孝昌县',
+  'cityID': 162,
+  'disSort': null
+}, {
+  'id': 1476,
+  'name': '大悟县',
+  'cityID': 162,
+  'disSort': null
+}, {
+  'id': 1477,
+  'name': '云梦县',
+  'cityID': 162,
+  'disSort': null
+}, {
+  'id': 1478,
+  'name': '应城市',
+  'cityID': 162,
+  'disSort': null
+}, {
+  'id': 1479,
+  'name': '安陆市',
+  'cityID': 162,
+  'disSort': null
+}, {
+  'id': 1480,
+  'name': '汉川市',
+  'cityID': 162,
+  'disSort': null
+}, {
+  'id': 1481,
+  'name': '黄州区',
+  'cityID': 163,
+  'disSort': null
+}, {
+  'id': 1482,
+  'name': '团风县',
+  'cityID': 163,
+  'disSort': null
+}, {
+  'id': 1483,
+  'name': '红安县',
+  'cityID': 163,
+  'disSort': null
+}, {
+  'id': 1484,
+  'name': '罗田县',
+  'cityID': 163,
+  'disSort': null
+}, {
+  'id': 1485,
+  'name': '英山县',
+  'cityID': 163,
+  'disSort': null
+}, {
+  'id': 1486,
+  'name': '浠水县',
+  'cityID': 163,
+  'disSort': null
+}, {
+  'id': 1487,
+  'name': '蕲春县',
+  'cityID': 163,
+  'disSort': null
+}, {
+  'id': 1488,
+  'name': '黄梅县',
+  'cityID': 163,
+  'disSort': null
+}, {
+  'id': 1489,
+  'name': '麻城市',
+  'cityID': 163,
+  'disSort': null
+}, {
+  'id': 1490,
+  'name': '武穴市',
+  'cityID': 163,
+  'disSort': null
+}, {
+  'id': 1491,
+  'name': '黄石港区',
+  'cityID': 164,
+  'disSort': null
+}, {
+  'id': 1492,
+  'name': '西塞山区',
+  'cityID': 164,
+  'disSort': null
+}, {
+  'id': 1493,
+  'name': '下陆区',
+  'cityID': 164,
+  'disSort': null
+}, {
+  'id': 1494,
+  'name': '铁山区',
+  'cityID': 164,
+  'disSort': null
+}, {
+  'id': 1495,
+  'name': '阳新县',
+  'cityID': 164,
+  'disSort': null
+}, {
+  'id': 1496,
+  'name': '大冶市',
+  'cityID': 164,
+  'disSort': null
+}, {
+  'id': 1497,
+  'name': '咸安区',
+  'cityID': 165,
+  'disSort': null
+}, {
+  'id': 1498,
+  'name': '嘉鱼县',
+  'cityID': 165,
+  'disSort': null
+}, {
+  'id': 1499,
+  'name': '通城县',
+  'cityID': 165,
+  'disSort': null
+}, {
+  'id': 1500,
+  'name': '崇阳县',
+  'cityID': 165,
+  'disSort': null
+}, {
+  'id': 1501,
+  'name': '通山县',
+  'cityID': 165,
+  'disSort': null
+}, {
+  'id': 1502,
+  'name': '赤壁市',
+  'cityID': 165,
+  'disSort': null
+}, {
+  'id': 1503,
+  'name': '沙市区',
+  'cityID': 166,
+  'disSort': null
+}, {
+  'id': 1504,
+  'name': '荆州区',
+  'cityID': 166,
+  'disSort': null
+}, {
+  'id': 1505,
+  'name': '公安县',
+  'cityID': 166,
+  'disSort': null
+}, {
+  'id': 1506,
+  'name': '监利县',
+  'cityID': 166,
+  'disSort': null
+}, {
+  'id': 1507,
+  'name': '江陵县',
+  'cityID': 166,
+  'disSort': null
+}, {
+  'id': 1508,
+  'name': '石首市',
+  'cityID': 166,
+  'disSort': null
+}, {
+  'id': 1509,
+  'name': '洪湖市',
+  'cityID': 166,
+  'disSort': null
+}, {
+  'id': 1510,
+  'name': '松滋市',
+  'cityID': 166,
+  'disSort': null
+}, {
+  'id': 1511,
+  'name': '西陵区',
+  'cityID': 167,
+  'disSort': null
+}, {
+  'id': 1512,
+  'name': '伍家岗区',
+  'cityID': 167,
+  'disSort': null
+}, {
+  'id': 1513,
+  'name': '点军区',
+  'cityID': 167,
+  'disSort': null
+}, {
+  'id': 1514,
+  'name': '猇亭区',
+  'cityID': 167,
+  'disSort': null
+}, {
+  'id': 1515,
+  'name': '夷陵区',
+  'cityID': 167,
+  'disSort': null
+}, {
+  'id': 1516,
+  'name': '远安县',
+  'cityID': 167,
+  'disSort': null
+}, {
+  'id': 1517,
+  'name': '兴山县',
+  'cityID': 167,
+  'disSort': null
+}, {
+  'id': 1518,
+  'name': '秭归县',
+  'cityID': 167,
+  'disSort': null
+}, {
+  'id': 1519,
+  'name': '长阳土家族自治县',
+  'cityID': 167,
+  'disSort': null
+}, {
+  'id': 1520,
+  'name': '五峰土家族自治县',
+  'cityID': 167,
+  'disSort': null
+}, {
+  'id': 1521,
+  'name': '宜都市',
+  'cityID': 167,
+  'disSort': null
+}, {
+  'id': 1522,
+  'name': '当阳市',
+  'cityID': 167,
+  'disSort': null
+}, {
+  'id': 1523,
+  'name': '枝江市',
+  'cityID': 167,
+  'disSort': null
+}, {
+  'id': 1524,
+  'name': '恩施市',
+  'cityID': 168,
+  'disSort': null
+}, {
+  'id': 1525,
+  'name': '利川市',
+  'cityID': 168,
+  'disSort': null
+}, {
+  'id': 1526,
+  'name': '建始县',
+  'cityID': 168,
+  'disSort': null
+}, {
+  'id': 1527,
+  'name': '巴东县',
+  'cityID': 168,
+  'disSort': null
+}, {
+  'id': 1528,
+  'name': '宣恩县',
+  'cityID': 168,
+  'disSort': null
+}, {
+  'id': 1529,
+  'name': '咸丰县',
+  'cityID': 168,
+  'disSort': null
+}, {
+  'id': 1530,
+  'name': '来凤县',
+  'cityID': 168,
+  'disSort': null
+}, {
+  'id': 1531,
+  'name': '鹤峰县',
+  'cityID': 168,
+  'disSort': null
+}, {
+  'id': 1532,
+  'name': '茅箭区',
+  'cityID': 170,
+  'disSort': null
+}, {
+  'id': 1533,
+  'name': '张湾区',
+  'cityID': 170,
+  'disSort': null
+}, {
+  'id': 1534,
+  'name': '郧县',
+  'cityID': 170,
+  'disSort': null
+}, {
+  'id': 1535,
+  'name': '郧西县',
+  'cityID': 170,
+  'disSort': null
+}, {
+  'id': 1536,
+  'name': '竹山县',
+  'cityID': 170,
+  'disSort': null
+}, {
+  'id': 1537,
+  'name': '竹溪县',
+  'cityID': 170,
+  'disSort': null
+}, {
+  'id': 1538,
+  'name': '房县',
+  'cityID': 170,
+  'disSort': null
+}, {
+  'id': 1539,
+  'name': '丹江口市',
+  'cityID': 170,
+  'disSort': null
+}, {
+  'id': 1540,
+  'name': '曾都区',
+  'cityID': 171,
+  'disSort': null
+}, {
+  'id': 1541,
+  'name': '广水市',
+  'cityID': 171,
+  'disSort': null
+}, {
+  'id': 1542,
+  'name': '东宝区',
+  'cityID': 172,
+  'disSort': null
+}, {
+  'id': 1543,
+  'name': '掇刀区',
+  'cityID': 172,
+  'disSort': null
+}, {
+  'id': 1544,
+  'name': '京山县',
+  'cityID': 172,
+  'disSort': null
+}, {
+  'id': 1545,
+  'name': '沙洋县',
+  'cityID': 172,
+  'disSort': null
+}, {
+  'id': 1546,
+  'name': '钟祥市',
+  'cityID': 172,
+  'disSort': null
+}, {
+  'id': 1547,
+  'name': '岳阳楼区',
+  'cityID': 176,
+  'disSort': null
+}, {
+  'id': 1548,
+  'name': '云溪区',
+  'cityID': 176,
+  'disSort': null
+}, {
+  'id': 1549,
+  'name': '君山区',
+  'cityID': 176,
+  'disSort': null
+}, {
+  'id': 1550,
+  'name': '岳阳县',
+  'cityID': 176,
+  'disSort': null
+}, {
+  'id': 1551,
+  'name': '华容县',
+  'cityID': 176,
+  'disSort': null
+}, {
+  'id': 1552,
+  'name': '湘阴县',
+  'cityID': 176,
+  'disSort': null
+}, {
+  'id': 1553,
+  'name': '平江县',
+  'cityID': 176,
+  'disSort': null
+}, {
+  'id': 1554,
+  'name': '汨罗市',
+  'cityID': 176,
+  'disSort': null
+}, {
+  'id': 1555,
+  'name': '临湘市',
+  'cityID': 176,
+  'disSort': null
+}, {
+  'id': 1556,
+  'name': '芙蓉区',
+  'cityID': 177,
+  'disSort': null
+}, {
+  'id': 1557,
+  'name': '天心区',
+  'cityID': 177,
+  'disSort': null
+}, {
+  'id': 1558,
+  'name': '岳麓区',
+  'cityID': 177,
+  'disSort': null
+}, {
+  'id': 1559,
+  'name': '开福区',
+  'cityID': 177,
+  'disSort': null
+}, {
+  'id': 1560,
+  'name': '雨花区',
+  'cityID': 177,
+  'disSort': null
+}, {
+  'id': 1561,
+  'name': '长沙县',
+  'cityID': 177,
+  'disSort': null
+}, {
+  'id': 1562,
+  'name': '望城县',
+  'cityID': 177,
+  'disSort': null
+}, {
+  'id': 1563,
+  'name': '宁乡县',
+  'cityID': 177,
+  'disSort': null
+}, {
+  'id': 1564,
+  'name': '浏阳市',
+  'cityID': 177,
+  'disSort': null
+}, {
+  'id': 1565,
+  'name': '雨湖区',
+  'cityID': 178,
+  'disSort': null
+}, {
+  'id': 1566,
+  'name': '岳塘区',
+  'cityID': 178,
+  'disSort': null
+}, {
+  'id': 1567,
+  'name': '湘潭县',
+  'cityID': 178,
+  'disSort': null
+}, {
+  'id': 1568,
+  'name': '湘乡市',
+  'cityID': 178,
+  'disSort': null
+}, {
+  'id': 1569,
+  'name': '韶山市',
+  'cityID': 178,
+  'disSort': null
+}, {
+  'id': 1570,
+  'name': '荷塘区',
+  'cityID': 179,
+  'disSort': null
+}, {
+  'id': 1571,
+  'name': '芦淞区',
+  'cityID': 179,
+  'disSort': null
+}, {
+  'id': 1572,
+  'name': '石峰区',
+  'cityID': 179,
+  'disSort': null
+}, {
+  'id': 1573,
+  'name': '天元区',
+  'cityID': 179,
+  'disSort': null
+}, {
+  'id': 1574,
+  'name': '株洲县',
+  'cityID': 179,
+  'disSort': null
+}, {
+  'id': 1575,
+  'name': '攸县',
+  'cityID': 179,
+  'disSort': null
+}, {
+  'id': 1576,
+  'name': '茶陵县',
+  'cityID': 179,
+  'disSort': null
+}, {
+  'id': 1577,
+  'name': '炎陵县',
+  'cityID': 179,
+  'disSort': null
+}, {
+  'id': 1578,
+  'name': '醴陵市',
+  'cityID': 179,
+  'disSort': null
+}, {
+  'id': 1579,
+  'name': '珠晖区',
+  'cityID': 180,
+  'disSort': null
+}, {
+  'id': 1580,
+  'name': '雁峰区',
+  'cityID': 180,
+  'disSort': null
+}, {
+  'id': 1581,
+  'name': '石鼓区',
+  'cityID': 180,
+  'disSort': null
+}, {
+  'id': 1582,
+  'name': '蒸湘区',
+  'cityID': 180,
+  'disSort': null
+}, {
+  'id': 1583,
+  'name': '南岳区',
+  'cityID': 180,
+  'disSort': null
+}, {
+  'id': 1584,
+  'name': '衡阳县',
+  'cityID': 180,
+  'disSort': null
+}, {
+  'id': 1585,
+  'name': '衡南县',
+  'cityID': 180,
+  'disSort': null
+}, {
+  'id': 1586,
+  'name': '衡山县',
+  'cityID': 180,
+  'disSort': null
+}, {
+  'id': 1587,
+  'name': '衡东县',
+  'cityID': 180,
+  'disSort': null
+}, {
+  'id': 1588,
+  'name': '祁东县',
+  'cityID': 180,
+  'disSort': null
+}, {
+  'id': 1589,
+  'name': '耒阳市',
+  'cityID': 180,
+  'disSort': null
+}, {
+  'id': 1590,
+  'name': '常宁市',
+  'cityID': 180,
+  'disSort': null
+}, {
+  'id': 1591,
+  'name': '北湖区',
+  'cityID': 181,
+  'disSort': null
+}, {
+  'id': 1592,
+  'name': '苏仙区',
+  'cityID': 181,
+  'disSort': null
+}, {
+  'id': 1593,
+  'name': '桂阳县',
+  'cityID': 181,
+  'disSort': null
+}, {
+  'id': 1594,
+  'name': '宜章县',
+  'cityID': 181,
+  'disSort': null
+}, {
+  'id': 1595,
+  'name': '永兴县',
+  'cityID': 181,
+  'disSort': null
+}, {
+  'id': 1596,
+  'name': '嘉禾县',
+  'cityID': 181,
+  'disSort': null
+}, {
+  'id': 1597,
+  'name': '临武县',
+  'cityID': 181,
+  'disSort': null
+}, {
+  'id': 1598,
+  'name': '汝城县',
+  'cityID': 181,
+  'disSort': null
+}, {
+  'id': 1599,
+  'name': '桂东县',
+  'cityID': 181,
+  'disSort': null
+}, {
+  'id': 1600,
+  'name': '安仁县',
+  'cityID': 181,
+  'disSort': null
+}, {
+  'id': 1601,
+  'name': '资兴市',
+  'cityID': 181,
+  'disSort': null
+}, {
+  'id': 1602,
+  'name': '武陵区',
+  'cityID': 182,
+  'disSort': null
+}, {
+  'id': 1603,
+  'name': '鼎城区',
+  'cityID': 182,
+  'disSort': null
+}, {
+  'id': 1604,
+  'name': '安乡县',
+  'cityID': 182,
+  'disSort': null
+}, {
+  'id': 1605,
+  'name': '汉寿县',
+  'cityID': 182,
+  'disSort': null
+}, {
+  'id': 1606,
+  'name': '澧县',
+  'cityID': 182,
+  'disSort': null
+}, {
+  'id': 1607,
+  'name': '临澧县',
+  'cityID': 182,
+  'disSort': null
+}, {
+  'id': 1608,
+  'name': '桃源县',
+  'cityID': 182,
+  'disSort': null
+}, {
+  'id': 1609,
+  'name': '石门县',
+  'cityID': 182,
+  'disSort': null
+}, {
+  'id': 1610,
+  'name': '津市市',
+  'cityID': 182,
+  'disSort': null
+}, {
+  'id': 1611,
+  'name': '资阳区',
+  'cityID': 183,
+  'disSort': null
+}, {
+  'id': 1612,
+  'name': '赫山区',
+  'cityID': 183,
+  'disSort': null
+}, {
+  'id': 1613,
+  'name': '南县',
+  'cityID': 183,
+  'disSort': null
+}, {
+  'id': 1614,
+  'name': '桃江县',
+  'cityID': 183,
+  'disSort': null
+}, {
+  'id': 1615,
+  'name': '安化县',
+  'cityID': 183,
+  'disSort': null
+}, {
+  'id': 1616,
+  'name': '沅江市',
+  'cityID': 183,
+  'disSort': null
+}, {
+  'id': 1617,
+  'name': '娄星区',
+  'cityID': 184,
+  'disSort': null
+}, {
+  'id': 1618,
+  'name': '双峰县',
+  'cityID': 184,
+  'disSort': null
+}, {
+  'id': 1619,
+  'name': '新化县',
+  'cityID': 184,
+  'disSort': null
+}, {
+  'id': 1620,
+  'name': '冷水江市',
+  'cityID': 184,
+  'disSort': null
+}, {
+  'id': 1621,
+  'name': '涟源市',
+  'cityID': 184,
+  'disSort': null
+}, {
+  'id': 1622,
+  'name': '双清区',
+  'cityID': 185,
+  'disSort': null
+}, {
+  'id': 1623,
+  'name': '大祥区',
+  'cityID': 185,
+  'disSort': null
+}, {
+  'id': 1624,
+  'name': '北塔区',
+  'cityID': 185,
+  'disSort': null
+}, {
+  'id': 1625,
+  'name': '邵东县',
+  'cityID': 185,
+  'disSort': null
+}, {
+  'id': 1626,
+  'name': '新邵县',
+  'cityID': 185,
+  'disSort': null
+}, {
+  'id': 1627,
+  'name': '邵阳县',
+  'cityID': 185,
+  'disSort': null
+}, {
+  'id': 1628,
+  'name': '隆回县',
+  'cityID': 185,
+  'disSort': null
+}, {
+  'id': 1629,
+  'name': '洞口县',
+  'cityID': 185,
+  'disSort': null
+}, {
+  'id': 1630,
+  'name': '绥宁县',
+  'cityID': 185,
+  'disSort': null
+}, {
+  'id': 1631,
+  'name': '新宁县',
+  'cityID': 185,
+  'disSort': null
+}, {
+  'id': 1632,
+  'name': '城步苗族自治县',
+  'cityID': 185,
+  'disSort': null
+}, {
+  'id': 1633,
+  'name': '武冈市',
+  'cityID': 185,
+  'disSort': null
+}, {
+  'id': 1634,
+  'name': '吉首市',
+  'cityID': 186,
+  'disSort': null
+}, {
+  'id': 1635,
+  'name': '泸溪县',
+  'cityID': 186,
+  'disSort': null
+}, {
+  'id': 1636,
+  'name': '凤凰县',
+  'cityID': 186,
+  'disSort': null
+}, {
+  'id': 1637,
+  'name': '花垣县',
+  'cityID': 186,
+  'disSort': null
+}, {
+  'id': 1638,
+  'name': '保靖县',
+  'cityID': 186,
+  'disSort': null
+}, {
+  'id': 1639,
+  'name': '古丈县',
+  'cityID': 186,
+  'disSort': null
+}, {
+  'id': 1640,
+  'name': '永顺县',
+  'cityID': 186,
+  'disSort': null
+}, {
+  'id': 1641,
+  'name': '龙山县',
+  'cityID': 186,
+  'disSort': null
+}, {
+  'id': 1642,
+  'name': '永定区',
+  'cityID': 187,
+  'disSort': null
+}, {
+  'id': 1643,
+  'name': '武陵源区',
+  'cityID': 187,
+  'disSort': null
+}, {
+  'id': 1644,
+  'name': '慈利县',
+  'cityID': 187,
+  'disSort': null
+}, {
+  'id': 1645,
+  'name': '桑植县',
+  'cityID': 187,
+  'disSort': null
+}, {
+  'id': 1646,
+  'name': '鹤城区',
+  'cityID': 188,
+  'disSort': null
+}, {
+  'id': 1647,
+  'name': '中方县',
+  'cityID': 188,
+  'disSort': null
+}, {
+  'id': 1648,
+  'name': '沅陵县',
+  'cityID': 188,
+  'disSort': null
+}, {
+  'id': 1649,
+  'name': '辰溪县',
+  'cityID': 188,
+  'disSort': null
+}, {
+  'id': 1650,
+  'name': '溆浦县',
+  'cityID': 188,
+  'disSort': null
+}, {
+  'id': 1651,
+  'name': '会同县',
+  'cityID': 188,
+  'disSort': null
+}, {
+  'id': 1652,
+  'name': '麻阳苗族自治县',
+  'cityID': 188,
+  'disSort': null
+}, {
+  'id': 1653,
+  'name': '新晃侗族自治县',
+  'cityID': 188,
+  'disSort': null
+}, {
+  'id': 1654,
+  'name': '芷江侗族自治县',
+  'cityID': 188,
+  'disSort': null
+}, {
+  'id': 1655,
+  'name': '靖州苗族侗族自治县',
+  'cityID': 188,
+  'disSort': null
+}, {
+  'id': 1656,
+  'name': '通道侗族自治县',
+  'cityID': 188,
+  'disSort': null
+}, {
+  'id': 1657,
+  'name': '洪江市',
+  'cityID': 188,
+  'disSort': null
+}, {
+  'id': 1658,
+  'name': '零陵区',
+  'cityID': 189,
+  'disSort': null
+}, {
+  'id': 1659,
+  'name': '冷水滩区',
+  'cityID': 189,
+  'disSort': null
+}, {
+  'id': 1660,
+  'name': '祁阳县',
+  'cityID': 189,
+  'disSort': null
+}, {
+  'id': 1661,
+  'name': '东安县',
+  'cityID': 189,
+  'disSort': null
+}, {
+  'id': 1662,
+  'name': '双牌县',
+  'cityID': 189,
+  'disSort': null
+}, {
+  'id': 1663,
+  'name': '道县',
+  'cityID': 189,
+  'disSort': null
+}, {
+  'id': 1664,
+  'name': '江永县',
+  'cityID': 189,
+  'disSort': null
+}, {
+  'id': 1665,
+  'name': '宁远县',
+  'cityID': 189,
+  'disSort': null
+}, {
+  'id': 1666,
+  'name': '蓝山县',
+  'cityID': 189,
+  'disSort': null
+}, {
+  'id': 1667,
+  'name': '新田县',
+  'cityID': 189,
+  'disSort': null
+}, {
+  'id': 1668,
+  'name': '江华瑶族自治县',
+  'cityID': 189,
+  'disSort': null
+}, {
+  'id': 1669,
+  'name': '从化市',
+  'cityID': 190,
+  'disSort': null
+}, {
+  'id': 1670,
+  'name': '荔湾区',
+  'cityID': 190,
+  'disSort': null
+}, {
+  'id': 1671,
+  'name': '越秀区',
+  'cityID': 190,
+  'disSort': null
+}, {
+  'id': 1672,
+  'name': '海珠区',
+  'cityID': 190,
+  'disSort': null
+}, {
+  'id': 1673,
+  'name': '天河区',
+  'cityID': 190,
+  'disSort': null
+}, {
+  'id': 1674,
+  'name': '白云区',
+  'cityID': 190,
+  'disSort': null
+}, {
+  'id': 1675,
+  'name': '花都区',
+  'cityID': 190,
+  'disSort': null
+}, {
+  'id': 1676,
+  'name': '黄埔区',
+  'cityID': 190,
+  'disSort': null
+}, {
+  'id': 1677,
+  'name': '萝岗区',
+  'cityID': 190,
+  'disSort': null
+}, {
+  'id': 1678,
+  'name': '南沙区',
+  'cityID': 190,
+  'disSort': null
+}, {
+  'id': 1679,
+  'name': '番禺区',
+  'cityID': 190,
+  'disSort': null
+}, {
+  'id': 1680,
+  'name': '增城市',
+  'cityID': 190,
+  'disSort': null
+}, {
+  'id': 1681,
+  'name': '海丰县',
+  'cityID': 191,
+  'disSort': null
+}, {
+  'id': 1682,
+  'name': '陆河县',
+  'cityID': 191,
+  'disSort': null
+}, {
+  'id': 1683,
+  'name': '陆丰市',
+  'cityID': 191,
+  'disSort': null
+}, {
+  'id': 1684,
+  'name': '江城区',
+  'cityID': 192,
+  'disSort': null
+}, {
+  'id': 1685,
+  'name': '阳西县',
+  'cityID': 192,
+  'disSort': null
+}, {
+  'id': 1686,
+  'name': '阳东县',
+  'cityID': 192,
+  'disSort': null
+}, {
+  'id': 1687,
+  'name': '阳春市',
+  'cityID': 192,
+  'disSort': null
+}, {
+  'id': 1688,
+  'name': '榕城区',
+  'cityID': 193,
+  'disSort': null
+}, {
+  'id': 1689,
+  'name': '揭东县',
+  'cityID': 193,
+  'disSort': null
+}, {
+  'id': 1690,
+  'name': '揭西县',
+  'cityID': 193,
+  'disSort': null
+}, {
+  'id': 1691,
+  'name': '惠来县',
+  'cityID': 193,
+  'disSort': null
+}, {
+  'id': 1692,
+  'name': '普宁市',
+  'cityID': 193,
+  'disSort': null
+}, {
+  'id': 1693,
+  'name': '茂南区',
+  'cityID': 194,
+  'disSort': null
+}, {
+  'id': 1694,
+  'name': '茂港区',
+  'cityID': 194,
+  'disSort': null
+}, {
+  'id': 1695,
+  'name': '电白县',
+  'cityID': 194,
+  'disSort': null
+}, {
+  'id': 1696,
+  'name': '高州市',
+  'cityID': 194,
+  'disSort': null
+}, {
+  'id': 1697,
+  'name': '化州市',
+  'cityID': 194,
+  'disSort': null
+}, {
+  'id': 1698,
+  'name': '信宜市',
+  'cityID': 194,
+  'disSort': null
+}, {
+  'id': 1699,
+  'name': '惠城区',
+  'cityID': 195,
+  'disSort': null
+}, {
+  'id': 1700,
+  'name': '惠阳区',
+  'cityID': 195,
+  'disSort': null
+}, {
+  'id': 1701,
+  'name': '博罗县',
+  'cityID': 195,
+  'disSort': null
+}, {
+  'id': 1702,
+  'name': '惠东县',
+  'cityID': 195,
+  'disSort': null
+}, {
+  'id': 1703,
+  'name': '龙门县',
+  'cityID': 195,
+  'disSort': null
+}, {
+  'id': 1704,
+  'name': '蓬江区',
+  'cityID': 196,
+  'disSort': null
+}, {
+  'id': 1705,
+  'name': '江海区',
+  'cityID': 196,
+  'disSort': null
+}, {
+  'id': 1706,
+  'name': '新会区',
+  'cityID': 196,
+  'disSort': null
+}, {
+  'id': 1707,
+  'name': '台山市',
+  'cityID': 196,
+  'disSort': null
+}, {
+  'id': 1708,
+  'name': '开平市',
+  'cityID': 196,
+  'disSort': null
+}, {
+  'id': 1709,
+  'name': '鹤山市',
+  'cityID': 196,
+  'disSort': null
+}, {
+  'id': 1710,
+  'name': '恩平市',
+  'cityID': 196,
+  'disSort': null
+}, {
+  'id': 1711,
+  'name': '武江区',
+  'cityID': 197,
+  'disSort': null
+}, {
+  'id': 1712,
+  'name': '浈江区',
+  'cityID': 197,
+  'disSort': null
+}, {
+  'id': 1713,
+  'name': '曲江区',
+  'cityID': 197,
+  'disSort': null
+}, {
+  'id': 1714,
+  'name': '始兴县',
+  'cityID': 197,
+  'disSort': null
+}, {
+  'id': 1715,
+  'name': '仁化县',
+  'cityID': 197,
+  'disSort': null
+}, {
+  'id': 1716,
+  'name': '翁源县',
+  'cityID': 197,
+  'disSort': null
+}, {
+  'id': 1717,
+  'name': '乳源瑶族自治县',
+  'cityID': 197,
+  'disSort': null
+}, {
+  'id': 1718,
+  'name': '新丰县',
+  'cityID': 197,
+  'disSort': null
+}, {
+  'id': 1719,
+  'name': '乐昌市',
+  'cityID': 197,
+  'disSort': null
+}, {
+  'id': 1720,
+  'name': '南雄市',
+  'cityID': 197,
+  'disSort': null
+}, {
+  'id': 1721,
+  'name': '梅江区',
+  'cityID': 198,
+  'disSort': null
+}, {
+  'id': 1722,
+  'name': '梅县',
+  'cityID': 198,
+  'disSort': null
+}, {
+  'id': 1723,
+  'name': '大埔县',
+  'cityID': 198,
+  'disSort': null
+}, {
+  'id': 1724,
+  'name': '丰顺县',
+  'cityID': 198,
+  'disSort': null
+}, {
+  'id': 1725,
+  'name': '五华县',
+  'cityID': 198,
+  'disSort': null
+}, {
+  'id': 1726,
+  'name': '平远县',
+  'cityID': 198,
+  'disSort': null
+}, {
+  'id': 1727,
+  'name': '蕉岭县',
+  'cityID': 198,
+  'disSort': null
+}, {
+  'id': 1728,
+  'name': '兴宁市',
+  'cityID': 198,
+  'disSort': null
+}, {
+  'id': 1729,
+  'name': '龙湖区',
+  'cityID': 199,
+  'disSort': null
+}, {
+  'id': 1730,
+  'name': '金平区',
+  'cityID': 199,
+  'disSort': null
+}, {
+  'id': 1731,
+  'name': '濠江区',
+  'cityID': 199,
+  'disSort': null
+}, {
+  'id': 1732,
+  'name': '潮阳区',
+  'cityID': 199,
+  'disSort': null
+}, {
+  'id': 1733,
+  'name': '潮南区',
+  'cityID': 199,
+  'disSort': null
+}, {
+  'id': 1734,
+  'name': '澄海区',
+  'cityID': 199,
+  'disSort': null
+}, {
+  'id': 1735,
+  'name': '南澳县',
+  'cityID': 199,
+  'disSort': null
+}, {
+  'id': 1736,
+  'name': '罗湖区',
+  'cityID': 200,
+  'disSort': null
+}, {
+  'id': 1737,
+  'name': '福田区',
+  'cityID': 200,
+  'disSort': null
+}, {
+  'id': 1738,
+  'name': '南山区',
+  'cityID': 200,
+  'disSort': null
+}, {
+  'id': 1739,
+  'name': '宝安区',
+  'cityID': 200,
+  'disSort': null
+}, {
+  'id': 1740,
+  'name': '龙岗区',
+  'cityID': 200,
+  'disSort': null
+}, {
+  'id': 1741,
+  'name': '盐田区',
+  'cityID': 200,
+  'disSort': null
+}, {
+  'id': 1742,
+  'name': '香洲区',
+  'cityID': 201,
+  'disSort': null
+}, {
+  'id': 1743,
+  'name': '斗门区',
+  'cityID': 201,
+  'disSort': null
+}, {
+  'id': 1744,
+  'name': '金湾区',
+  'cityID': 201,
+  'disSort': null
+}, {
+  'id': 1745,
+  'name': '禅城区',
+  'cityID': 202,
+  'disSort': null
+}, {
+  'id': 1746,
+  'name': '南海区',
+  'cityID': 202,
+  'disSort': null
+}, {
+  'id': 1747,
+  'name': '顺德区',
+  'cityID': 202,
+  'disSort': null
+}, {
+  'id': 1748,
+  'name': '三水区',
+  'cityID': 202,
+  'disSort': null
+}, {
+  'id': 1749,
+  'name': '高明区',
+  'cityID': 202,
+  'disSort': null
+}, {
+  'id': 1750,
+  'name': '端州区',
+  'cityID': 203,
+  'disSort': null
+}, {
+  'id': 1751,
+  'name': '鼎湖区',
+  'cityID': 203,
+  'disSort': null
+}, {
+  'id': 1752,
+  'name': '广宁县',
+  'cityID': 203,
+  'disSort': null
+}, {
+  'id': 1753,
+  'name': '怀集县',
+  'cityID': 203,
+  'disSort': null
+}, {
+  'id': 1754,
+  'name': '封开县',
+  'cityID': 203,
+  'disSort': null
+}, {
+  'id': 1755,
+  'name': '德庆县',
+  'cityID': 203,
+  'disSort': null
+}, {
+  'id': 1756,
+  'name': '高要市',
+  'cityID': 203,
+  'disSort': null
+}, {
+  'id': 1757,
+  'name': '四会市',
+  'cityID': 203,
+  'disSort': null
+}, {
+  'id': 1758,
+  'name': '赤坎区',
+  'cityID': 204,
+  'disSort': null
+}, {
+  'id': 1759,
+  'name': '霞山区',
+  'cityID': 204,
+  'disSort': null
+}, {
+  'id': 1760,
+  'name': '坡头区',
+  'cityID': 204,
+  'disSort': null
+}, {
+  'id': 1761,
+  'name': '麻章区',
+  'cityID': 204,
+  'disSort': null
+}, {
+  'id': 1762,
+  'name': '遂溪县',
+  'cityID': 204,
+  'disSort': null
+}, {
+  'id': 1763,
+  'name': '徐闻县',
+  'cityID': 204,
+  'disSort': null
+}, {
+  'id': 1764,
+  'name': '廉江市',
+  'cityID': 204,
+  'disSort': null
+}, {
+  'id': 1765,
+  'name': '雷州市',
+  'cityID': 204,
+  'disSort': null
+}, {
+  'id': 1766,
+  'name': '吴川市',
+  'cityID': 204,
+  'disSort': null
+}, {
+  'id': 1767,
+  'name': '源城区',
+  'cityID': 206,
+  'disSort': null
+}, {
+  'id': 1768,
+  'name': '紫金县',
+  'cityID': 206,
+  'disSort': null
+}, {
+  'id': 1769,
+  'name': '龙川县',
+  'cityID': 206,
+  'disSort': null
+}, {
+  'id': 1770,
+  'name': '连平县',
+  'cityID': 206,
+  'disSort': null
+}, {
+  'id': 1771,
+  'name': '和平县',
+  'cityID': 206,
+  'disSort': null
+}, {
+  'id': 1772,
+  'name': '东源县',
+  'cityID': 206,
+  'disSort': null
+}, {
+  'id': 1773,
+  'name': '清城区',
+  'cityID': 207,
+  'disSort': null
+}, {
+  'id': 1774,
+  'name': '佛冈县',
+  'cityID': 207,
+  'disSort': null
+}, {
+  'id': 1775,
+  'name': '阳山县',
+  'cityID': 207,
+  'disSort': null
+}, {
+  'id': 1776,
+  'name': '连山壮族瑶族自治县',
+  'cityID': 207,
+  'disSort': null
+}, {
+  'id': 1777,
+  'name': '连南瑶族自治县',
+  'cityID': 207,
+  'disSort': null
+}, {
+  'id': 1778,
+  'name': '清新县',
+  'cityID': 207,
+  'disSort': null
+}, {
+  'id': 1779,
+  'name': '英德市',
+  'cityID': 207,
+  'disSort': null
+}, {
+  'id': 1780,
+  'name': '连州市',
+  'cityID': 207,
+  'disSort': null
+}, {
+  'id': 1781,
+  'name': '云城区',
+  'cityID': 208,
+  'disSort': null
+}, {
+  'id': 1782,
+  'name': '新兴县',
+  'cityID': 208,
+  'disSort': null
+}, {
+  'id': 1783,
+  'name': '郁南县',
+  'cityID': 208,
+  'disSort': null
+}, {
+  'id': 1784,
+  'name': '云安县',
+  'cityID': 208,
+  'disSort': null
+}, {
+  'id': 1785,
+  'name': '罗定市',
+  'cityID': 208,
+  'disSort': null
+}, {
+  'id': 1786,
+  'name': '湘桥区',
+  'cityID': 209,
+  'disSort': null
+}, {
+  'id': 1787,
+  'name': '潮安县',
+  'cityID': 209,
+  'disSort': null
+}, {
+  'id': 1788,
+  'name': '饶平县',
+  'cityID': 209,
+  'disSort': null
+}, {
+  'id': 1789,
+  'name': '城关区',
+  'cityID': 211,
+  'disSort': null
+}, {
+  'id': 1790,
+  'name': '七里河区',
+  'cityID': 211,
+  'disSort': null
+}, {
+  'id': 1791,
+  'name': '西固区',
+  'cityID': 211,
+  'disSort': null
+}, {
+  'id': 1792,
+  'name': '安宁区',
+  'cityID': 211,
+  'disSort': null
+}, {
+  'id': 1793,
+  'name': '红古区',
+  'cityID': 211,
+  'disSort': null
+}, {
+  'id': 1794,
+  'name': '永登县',
+  'cityID': 211,
+  'disSort': null
+}, {
+  'id': 1795,
+  'name': '皋兰县',
+  'cityID': 211,
+  'disSort': null
+}, {
+  'id': 1796,
+  'name': '榆中县',
+  'cityID': 211,
+  'disSort': null
+}, {
+  'id': 1797,
+  'name': '金川区',
+  'cityID': 212,
+  'disSort': null
+}, {
+  'id': 1798,
+  'name': '永昌县',
+  'cityID': 212,
+  'disSort': null
+}, {
+  'id': 1799,
+  'name': '白银区',
+  'cityID': 213,
+  'disSort': null
+}, {
+  'id': 1800,
+  'name': '平川区',
+  'cityID': 213,
+  'disSort': null
+}, {
+  'id': 1801,
+  'name': '靖远县',
+  'cityID': 213,
+  'disSort': null
+}, {
+  'id': 1802,
+  'name': '会宁县',
+  'cityID': 213,
+  'disSort': null
+}, {
+  'id': 1803,
+  'name': '景泰县',
+  'cityID': 213,
+  'disSort': null
+}, {
+  'id': 1804,
+  'name': '秦州区',
+  'cityID': 214,
+  'disSort': null
+}, {
+  'id': 1805,
+  'name': '麦积区',
+  'cityID': 214,
+  'disSort': null
+}, {
+  'id': 1806,
+  'name': '清水县',
+  'cityID': 214,
+  'disSort': null
+}, {
+  'id': 1807,
+  'name': '秦安县',
+  'cityID': 214,
+  'disSort': null
+}, {
+  'id': 1808,
+  'name': '甘谷县',
+  'cityID': 214,
+  'disSort': null
+}, {
+  'id': 1809,
+  'name': '武山县',
+  'cityID': 214,
+  'disSort': null
+}, {
+  'id': 1810,
+  'name': '张家川回族自治县',
+  'cityID': 214,
+  'disSort': null
+}, {
+  'id': 1811,
+  'name': '凉州区',
+  'cityID': 216,
+  'disSort': null
+}, {
+  'id': 1812,
+  'name': '民勤县',
+  'cityID': 216,
+  'disSort': null
+}, {
+  'id': 1813,
+  'name': '古浪县',
+  'cityID': 216,
+  'disSort': null
+}, {
+  'id': 1814,
+  'name': '天祝藏族自治县',
+  'cityID': 216,
+  'disSort': null
+}, {
+  'id': 1815,
+  'name': '甘州区',
+  'cityID': 217,
+  'disSort': null
+}, {
+  'id': 1816,
+  'name': '肃南裕固族自治县',
+  'cityID': 217,
+  'disSort': null
+}, {
+  'id': 1817,
+  'name': '民乐县',
+  'cityID': 217,
+  'disSort': null
+}, {
+  'id': 1818,
+  'name': '临泽县',
+  'cityID': 217,
+  'disSort': null
+}, {
+  'id': 1819,
+  'name': '高台县',
+  'cityID': 217,
+  'disSort': null
+}, {
+  'id': 1820,
+  'name': '山丹县',
+  'cityID': 217,
+  'disSort': null
+}, {
+  'id': 1821,
+  'name': '崆峒区',
+  'cityID': 218,
+  'disSort': null
+}, {
+  'id': 1822,
+  'name': '泾川县',
+  'cityID': 218,
+  'disSort': null
+}, {
+  'id': 1823,
+  'name': '灵台县',
+  'cityID': 218,
+  'disSort': null
+}, {
+  'id': 1824,
+  'name': '崇信县',
+  'cityID': 218,
+  'disSort': null
+}, {
+  'id': 1825,
+  'name': '华亭县',
+  'cityID': 218,
+  'disSort': null
+}, {
+  'id': 1826,
+  'name': '庄浪县',
+  'cityID': 218,
+  'disSort': null
+}, {
+  'id': 1827,
+  'name': '静宁县',
+  'cityID': 218,
+  'disSort': null
+}, {
+  'id': 1828,
+  'name': '肃州区',
+  'cityID': 219,
+  'disSort': null
+}, {
+  'id': 1829,
+  'name': '金塔县',
+  'cityID': 219,
+  'disSort': null
+}, {
+  'id': 1830,
+  'name': '瓜州县',
+  'cityID': 219,
+  'disSort': null
+}, {
+  'id': 1831,
+  'name': '肃北蒙古族自治县',
+  'cityID': 219,
+  'disSort': null
+}, {
+  'id': 1832,
+  'name': '阿克塞哈萨克族自治县',
+  'cityID': 219,
+  'disSort': null
+}, {
+  'id': 1833,
+  'name': '玉门市',
+  'cityID': 219,
+  'disSort': null
+}, {
+  'id': 1834,
+  'name': '敦煌市',
+  'cityID': 219,
+  'disSort': null
+}, {
+  'id': 1835,
+  'name': '西峰区',
+  'cityID': 220,
+  'disSort': null
+}, {
+  'id': 1836,
+  'name': '庆城县',
+  'cityID': 220,
+  'disSort': null
+}, {
+  'id': 1837,
+  'name': '环县',
+  'cityID': 220,
+  'disSort': null
+}, {
+  'id': 1838,
+  'name': '华池县',
+  'cityID': 220,
+  'disSort': null
+}, {
+  'id': 1839,
+  'name': '合水县',
+  'cityID': 220,
+  'disSort': null
+}, {
+  'id': 1840,
+  'name': '正宁县',
+  'cityID': 220,
+  'disSort': null
+}, {
+  'id': 1841,
+  'name': '宁县',
+  'cityID': 220,
+  'disSort': null
+}, {
+  'id': 1842,
+  'name': '镇原县',
+  'cityID': 220,
+  'disSort': null
+}, {
+  'id': 1843,
+  'name': '安定区',
+  'cityID': 221,
+  'disSort': null
+}, {
+  'id': 1844,
+  'name': '通渭县',
+  'cityID': 221,
+  'disSort': null
+}, {
+  'id': 1845,
+  'name': '陇西县',
+  'cityID': 221,
+  'disSort': null
+}, {
+  'id': 1846,
+  'name': '渭源县',
+  'cityID': 221,
+  'disSort': null
+}, {
+  'id': 1847,
+  'name': '临洮县',
+  'cityID': 221,
+  'disSort': null
+}, {
+  'id': 1848,
+  'name': '漳县',
+  'cityID': 221,
+  'disSort': null
+}, {
+  'id': 1849,
+  'name': '岷县',
+  'cityID': 221,
+  'disSort': null
+}, {
+  'id': 1850,
+  'name': '武都区',
+  'cityID': 222,
+  'disSort': null
+}, {
+  'id': 1851,
+  'name': '成县',
+  'cityID': 222,
+  'disSort': null
+}, {
+  'id': 1852,
+  'name': '文县',
+  'cityID': 222,
+  'disSort': null
+}, {
+  'id': 1853,
+  'name': '宕昌县',
+  'cityID': 222,
+  'disSort': null
+}, {
+  'id': 1854,
+  'name': '康县',
+  'cityID': 222,
+  'disSort': null
+}, {
+  'id': 1855,
+  'name': '西和县',
+  'cityID': 222,
+  'disSort': null
+}, {
+  'id': 1856,
+  'name': '礼县',
+  'cityID': 222,
+  'disSort': null
+}, {
+  'id': 1857,
+  'name': '徽县',
+  'cityID': 222,
+  'disSort': null
+}, {
+  'id': 1858,
+  'name': '两当县',
+  'cityID': 222,
+  'disSort': null
+}, {
+  'id': 1859,
+  'name': '临夏市',
+  'cityID': 223,
+  'disSort': null
+}, {
+  'id': 1860,
+  'name': '临夏县',
+  'cityID': 223,
+  'disSort': null
+}, {
+  'id': 1861,
+  'name': '康乐县',
+  'cityID': 223,
+  'disSort': null
+}, {
+  'id': 1862,
+  'name': '永靖县',
+  'cityID': 223,
+  'disSort': null
+}, {
+  'id': 1863,
+  'name': '广河县',
+  'cityID': 223,
+  'disSort': null
+}, {
+  'id': 1864,
+  'name': '和政县',
+  'cityID': 223,
+  'disSort': null
+}, {
+  'id': 1865,
+  'name': '东乡族自治县',
+  'cityID': 223,
+  'disSort': null
+}, {
+  'id': 1866,
+  'name': '积石山保安族东乡族撒拉族自治县',
+  'cityID': 223,
+  'disSort': null
+}, {
+  'id': 1867,
+  'name': '合作市',
+  'cityID': 224,
+  'disSort': null
+}, {
+  'id': 1868,
+  'name': '临潭县',
+  'cityID': 224,
+  'disSort': null
+}, {
+  'id': 1869,
+  'name': '卓尼县',
+  'cityID': 224,
+  'disSort': null
+}, {
+  'id': 1870,
+  'name': '舟曲县',
+  'cityID': 224,
+  'disSort': null
+}, {
+  'id': 1871,
+  'name': '迭部县',
+  'cityID': 224,
+  'disSort': null
+}, {
+  'id': 1872,
+  'name': '玛曲县',
+  'cityID': 224,
+  'disSort': null
+}, {
+  'id': 1873,
+  'name': '碌曲县',
+  'cityID': 224,
+  'disSort': null
+}, {
+  'id': 1874,
+  'name': '夏河县',
+  'cityID': 224,
+  'disSort': null
+}, {
+  'id': 1875,
+  'name': '锦江区',
+  'cityID': 225,
+  'disSort': null
+}, {
+  'id': 1876,
+  'name': '青羊区',
+  'cityID': 225,
+  'disSort': null
+}, {
+  'id': 1877,
+  'name': '金牛区',
+  'cityID': 225,
+  'disSort': null
+}, {
+  'id': 1878,
+  'name': '武侯区',
+  'cityID': 225,
+  'disSort': null
+}, {
+  'id': 1879,
+  'name': '成华区',
+  'cityID': 225,
+  'disSort': null
+}, {
+  'id': 1880,
+  'name': '龙泉驿区',
+  'cityID': 225,
+  'disSort': null
+}, {
+  'id': 1881,
+  'name': '青白江区',
+  'cityID': 225,
+  'disSort': null
+}, {
+  'id': 1882,
+  'name': '新都区',
+  'cityID': 225,
+  'disSort': null
+}, {
+  'id': 1883,
+  'name': '温江区',
+  'cityID': 225,
+  'disSort': null
+}, {
+  'id': 1884,
+  'name': '金堂县',
+  'cityID': 225,
+  'disSort': null
+}, {
+  'id': 1885,
+  'name': '双流县',
+  'cityID': 225,
+  'disSort': null
+}, {
+  'id': 1886,
+  'name': '郫县',
+  'cityID': 225,
+  'disSort': null
+}, {
+  'id': 1887,
+  'name': '大邑县',
+  'cityID': 225,
+  'disSort': null
+}, {
+  'id': 1888,
+  'name': '蒲江县',
+  'cityID': 225,
+  'disSort': null
+}, {
+  'id': 1889,
+  'name': '新津县',
+  'cityID': 225,
+  'disSort': null
+}, {
+  'id': 1890,
+  'name': '都江堰市',
+  'cityID': 225,
+  'disSort': null
+}, {
+  'id': 1891,
+  'name': '彭州市',
+  'cityID': 225,
+  'disSort': null
+}, {
+  'id': 1892,
+  'name': '邛崃市',
+  'cityID': 225,
+  'disSort': null
+}, {
+  'id': 1893,
+  'name': '崇州市',
+  'cityID': 225,
+  'disSort': null
+}, {
+  'id': 1894,
+  'name': '东区',
+  'cityID': 226,
+  'disSort': null
+}, {
+  'id': 1895,
+  'name': '西区',
+  'cityID': 226,
+  'disSort': null
+}, {
+  'id': 1896,
+  'name': '仁和区',
+  'cityID': 226,
+  'disSort': null
+}, {
+  'id': 1897,
+  'name': '米易县',
+  'cityID': 226,
+  'disSort': null
+}, {
+  'id': 1898,
+  'name': '盐边县',
+  'cityID': 226,
+  'disSort': null
+}, {
+  'id': 1899,
+  'name': '自流井区',
+  'cityID': 227,
+  'disSort': null
+}, {
+  'id': 1900,
+  'name': '贡井区',
+  'cityID': 227,
+  'disSort': null
+}, {
+  'id': 1901,
+  'name': '大安区',
+  'cityID': 227,
+  'disSort': null
+}, {
+  'id': 1902,
+  'name': '沿滩区',
+  'cityID': 227,
+  'disSort': null
+}, {
+  'id': 1903,
+  'name': '荣县',
+  'cityID': 227,
+  'disSort': null
+}, {
+  'id': 1904,
+  'name': '富顺县',
+  'cityID': 227,
+  'disSort': null
+}, {
+  'id': 1905,
+  'name': '涪城区',
+  'cityID': 228,
+  'disSort': null
+}, {
+  'id': 1906,
+  'name': '游仙区',
+  'cityID': 228,
+  'disSort': null
+}, {
+  'id': 1907,
+  'name': '三台县',
+  'cityID': 228,
+  'disSort': null
+}, {
+  'id': 1908,
+  'name': '盐亭县',
+  'cityID': 228,
+  'disSort': null
+}, {
+  'id': 1909,
+  'name': '安县',
+  'cityID': 228,
+  'disSort': null
+}, {
+  'id': 1910,
+  'name': '梓潼县',
+  'cityID': 228,
+  'disSort': null
+}, {
+  'id': 1911,
+  'name': '北川羌族自治县',
+  'cityID': 228,
+  'disSort': null
+}, {
+  'id': 1912,
+  'name': '平武县',
+  'cityID': 228,
+  'disSort': null
+}, {
+  'id': 1913,
+  'name': '江油市',
+  'cityID': 228,
+  'disSort': null
+}, {
+  'id': 1914,
+  'name': '顺庆区',
+  'cityID': 229,
+  'disSort': null
+}, {
+  'id': 1915,
+  'name': '高坪区',
+  'cityID': 229,
+  'disSort': null
+}, {
+  'id': 1916,
+  'name': '嘉陵区',
+  'cityID': 229,
+  'disSort': null
+}, {
+  'id': 1917,
+  'name': '南部县',
+  'cityID': 229,
+  'disSort': null
+}, {
+  'id': 1918,
+  'name': '营山县',
+  'cityID': 229,
+  'disSort': null
+}, {
+  'id': 1919,
+  'name': '蓬安县',
+  'cityID': 229,
+  'disSort': null
+}, {
+  'id': 1920,
+  'name': '仪陇县',
+  'cityID': 229,
+  'disSort': null
+}, {
+  'id': 1921,
+  'name': '西充县',
+  'cityID': 229,
+  'disSort': null
+}, {
+  'id': 1922,
+  'name': '阆中市',
+  'cityID': 229,
+  'disSort': null
+}, {
+  'id': 1923,
+  'name': '通川区',
+  'cityID': 230,
+  'disSort': null
+}, {
+  'id': 1924,
+  'name': '达县',
+  'cityID': 230,
+  'disSort': null
+}, {
+  'id': 1925,
+  'name': '宣汉县',
+  'cityID': 230,
+  'disSort': null
+}, {
+  'id': 1926,
+  'name': '开江县',
+  'cityID': 230,
+  'disSort': null
+}, {
+  'id': 1927,
+  'name': '大竹县',
+  'cityID': 230,
+  'disSort': null
+}, {
+  'id': 1928,
+  'name': '渠县',
+  'cityID': 230,
+  'disSort': null
+}, {
+  'id': 1929,
+  'name': '万源市',
+  'cityID': 230,
+  'disSort': null
+}, {
+  'id': 1930,
+  'name': '船山区',
+  'cityID': 231,
+  'disSort': null
+}, {
+  'id': 1931,
+  'name': '安居区',
+  'cityID': 231,
+  'disSort': null
+}, {
+  'id': 1932,
+  'name': '蓬溪县',
+  'cityID': 231,
+  'disSort': null
+}, {
+  'id': 1933,
+  'name': '射洪县',
+  'cityID': 231,
+  'disSort': null
+}, {
+  'id': 1934,
+  'name': '大英县',
+  'cityID': 231,
+  'disSort': null
+}, {
+  'id': 1935,
+  'name': '广安区',
+  'cityID': 232,
+  'disSort': null
+}, {
+  'id': 1936,
+  'name': '岳池县',
+  'cityID': 232,
+  'disSort': null
+}, {
+  'id': 1937,
+  'name': '武胜县',
+  'cityID': 232,
+  'disSort': null
+}, {
+  'id': 1938,
+  'name': '邻水县',
+  'cityID': 232,
+  'disSort': null
+}, {
+  'id': 1939,
+  'name': '华蓥市',
+  'cityID': 232,
+  'disSort': null
+}, {
+  'id': 1940,
+  'name': '巴州区',
+  'cityID': 233,
+  'disSort': null
+}, {
+  'id': 1941,
+  'name': '通江县',
+  'cityID': 233,
+  'disSort': null
+}, {
+  'id': 1942,
+  'name': '南江县',
+  'cityID': 233,
+  'disSort': null
+}, {
+  'id': 1943,
+  'name': '平昌县',
+  'cityID': 233,
+  'disSort': null
+}, {
+  'id': 1944,
+  'name': '江阳区',
+  'cityID': 234,
+  'disSort': null
+}, {
+  'id': 1945,
+  'name': '纳溪区',
+  'cityID': 234,
+  'disSort': null
+}, {
+  'id': 1946,
+  'name': '龙马潭区',
+  'cityID': 234,
+  'disSort': null
+}, {
+  'id': 1947,
+  'name': '泸县',
+  'cityID': 234,
+  'disSort': null
+}, {
+  'id': 1948,
+  'name': '合江县',
+  'cityID': 234,
+  'disSort': null
+}, {
+  'id': 1949,
+  'name': '叙永县',
+  'cityID': 234,
+  'disSort': null
+}, {
+  'id': 1950,
+  'name': '古蔺县',
+  'cityID': 234,
+  'disSort': null
+}, {
+  'id': 1951,
+  'name': '翠屏区',
+  'cityID': 235,
+  'disSort': null
+}, {
+  'id': 1952,
+  'name': '宜宾县',
+  'cityID': 235,
+  'disSort': null
+}, {
+  'id': 1953,
+  'name': '南溪县',
+  'cityID': 235,
+  'disSort': null
+}, {
+  'id': 1954,
+  'name': '江安县',
+  'cityID': 235,
+  'disSort': null
+}, {
+  'id': 1955,
+  'name': '长宁县',
+  'cityID': 235,
+  'disSort': null
+}, {
+  'id': 1956,
+  'name': '高县',
+  'cityID': 235,
+  'disSort': null
+}, {
+  'id': 1957,
+  'name': '珙县',
+  'cityID': 235,
+  'disSort': null
+}, {
+  'id': 1958,
+  'name': '筠连县',
+  'cityID': 235,
+  'disSort': null
+}, {
+  'id': 1959,
+  'name': '兴文县',
+  'cityID': 235,
+  'disSort': null
+}, {
+  'id': 1960,
+  'name': '屏山县',
+  'cityID': 235,
+  'disSort': null
+}, {
+  'id': 1961,
+  'name': '雁江区',
+  'cityID': 236,
+  'disSort': null
+}, {
+  'id': 1962,
+  'name': '安岳县',
+  'cityID': 236,
+  'disSort': null
+}, {
+  'id': 1963,
+  'name': '乐至县',
+  'cityID': 236,
+  'disSort': null
+}, {
+  'id': 1964,
+  'name': '简阳市',
+  'cityID': 236,
+  'disSort': null
+}, {
+  'id': 1965,
+  'name': '市中区',
+  'cityID': 237,
+  'disSort': null
+}, {
+  'id': 1966,
+  'name': '东兴区',
+  'cityID': 237,
+  'disSort': null
+}, {
+  'id': 1967,
+  'name': '威远县',
+  'cityID': 237,
+  'disSort': null
+}, {
+  'id': 1968,
+  'name': '资中县',
+  'cityID': 237,
+  'disSort': null
+}, {
+  'id': 1969,
+  'name': '隆昌县',
+  'cityID': 237,
+  'disSort': null
+}, {
+  'id': 1970,
+  'name': '市中区',
+  'cityID': 238,
+  'disSort': null
+}, {
+  'id': 1971,
+  'name': '沙湾区',
+  'cityID': 238,
+  'disSort': null
+}, {
+  'id': 1972,
+  'name': '五通桥区',
+  'cityID': 238,
+  'disSort': null
+}, {
+  'id': 1973,
+  'name': '金口河区',
+  'cityID': 238,
+  'disSort': null
+}, {
+  'id': 1974,
+  'name': '犍为县',
+  'cityID': 238,
+  'disSort': null
+}, {
+  'id': 1975,
+  'name': '井研县',
+  'cityID': 238,
+  'disSort': null
+}, {
+  'id': 1976,
+  'name': '夹江县',
+  'cityID': 238,
+  'disSort': null
+}, {
+  'id': 1977,
+  'name': '沐川县',
+  'cityID': 238,
+  'disSort': null
+}, {
+  'id': 1978,
+  'name': '峨边彝族自治县',
+  'cityID': 238,
+  'disSort': null
+}, {
+  'id': 1979,
+  'name': '马边彝族自治县',
+  'cityID': 238,
+  'disSort': null
+}, {
+  'id': 1980,
+  'name': '峨眉山市',
+  'cityID': 238,
+  'disSort': null
+}, {
+  'id': 1981,
+  'name': '东坡区',
+  'cityID': 239,
+  'disSort': null
+}, {
+  'id': 1982,
+  'name': '仁寿县',
+  'cityID': 239,
+  'disSort': null
+}, {
+  'id': 1983,
+  'name': '彭山县',
+  'cityID': 239,
+  'disSort': null
+}, {
+  'id': 1984,
+  'name': '洪雅县',
+  'cityID': 239,
+  'disSort': null
+}, {
+  'id': 1985,
+  'name': '丹棱县',
+  'cityID': 239,
+  'disSort': null
+}, {
+  'id': 1986,
+  'name': '青神县',
+  'cityID': 239,
+  'disSort': null
+}, {
+  'id': 1987,
+  'name': '西昌市',
+  'cityID': 240,
+  'disSort': null
+}, {
+  'id': 1988,
+  'name': '木里藏族自治县',
+  'cityID': 240,
+  'disSort': null
+}, {
+  'id': 1989,
+  'name': '盐源县',
+  'cityID': 240,
+  'disSort': null
+}, {
+  'id': 1990,
+  'name': '德昌县',
+  'cityID': 240,
+  'disSort': null
+}, {
+  'id': 1991,
+  'name': '会理县',
+  'cityID': 240,
+  'disSort': null
+}, {
+  'id': 1992,
+  'name': '会东县',
+  'cityID': 240,
+  'disSort': null
+}, {
+  'id': 1993,
+  'name': '宁南县',
+  'cityID': 240,
+  'disSort': null
+}, {
+  'id': 1994,
+  'name': '普格县',
+  'cityID': 240,
+  'disSort': null
+}, {
+  'id': 1995,
+  'name': '布拖县',
+  'cityID': 240,
+  'disSort': null
+}, {
+  'id': 1996,
+  'name': '金阳县',
+  'cityID': 240,
+  'disSort': null
+}, {
+  'id': 1997,
+  'name': '昭觉县',
+  'cityID': 240,
+  'disSort': null
+}, {
+  'id': 1998,
+  'name': '喜德县',
+  'cityID': 240,
+  'disSort': null
+}, {
+  'id': 1999,
+  'name': '冕宁县',
+  'cityID': 240,
+  'disSort': null
+}, {
+  'id': 2000,
+  'name': '越西县',
+  'cityID': 240,
+  'disSort': null
+}, {
+  'id': 2001,
+  'name': '甘洛县',
+  'cityID': 240,
+  'disSort': null
+}, {
+  'id': 2002,
+  'name': '美姑县',
+  'cityID': 240,
+  'disSort': null
+}, {
+  'id': 2003,
+  'name': '雷波县',
+  'cityID': 240,
+  'disSort': null
+}, {
+  'id': 2004,
+  'name': '雨城区',
+  'cityID': 241,
+  'disSort': null
+}, {
+  'id': 2005,
+  'name': '名山县',
+  'cityID': 241,
+  'disSort': null
+}, {
+  'id': 2006,
+  'name': '荥经县',
+  'cityID': 241,
+  'disSort': null
+}, {
+  'id': 2007,
+  'name': '汉源县',
+  'cityID': 241,
+  'disSort': null
+}, {
+  'id': 2008,
+  'name': '石棉县',
+  'cityID': 241,
+  'disSort': null
+}, {
+  'id': 2009,
+  'name': '天全县',
+  'cityID': 241,
+  'disSort': null
+}, {
+  'id': 2010,
+  'name': '芦山县',
+  'cityID': 241,
+  'disSort': null
+}, {
+  'id': 2011,
+  'name': '宝兴县',
+  'cityID': 241,
+  'disSort': null
+}, {
+  'id': 2012,
+  'name': '康定县',
+  'cityID': 242,
+  'disSort': null
+}, {
+  'id': 2013,
+  'name': '泸定县',
+  'cityID': 242,
+  'disSort': null
+}, {
+  'id': 2014,
+  'name': '丹巴县',
+  'cityID': 242,
+  'disSort': null
+}, {
+  'id': 2015,
+  'name': '九龙县',
+  'cityID': 242,
+  'disSort': null
+}, {
+  'id': 2016,
+  'name': '雅江县',
+  'cityID': 242,
+  'disSort': null
+}, {
+  'id': 2017,
+  'name': '道孚县',
+  'cityID': 242,
+  'disSort': null
+}, {
+  'id': 2018,
+  'name': '炉霍县',
+  'cityID': 242,
+  'disSort': null
+}, {
+  'id': 2019,
+  'name': '甘孜县',
+  'cityID': 242,
+  'disSort': null
+}, {
+  'id': 2020,
+  'name': '新龙县',
+  'cityID': 242,
+  'disSort': null
+}, {
+  'id': 2021,
+  'name': '德格县',
+  'cityID': 242,
+  'disSort': null
+}, {
+  'id': 2022,
+  'name': '白玉县',
+  'cityID': 242,
+  'disSort': null
+}, {
+  'id': 2023,
+  'name': '石渠县',
+  'cityID': 242,
+  'disSort': null
+}, {
+  'id': 2024,
+  'name': '色达县',
+  'cityID': 242,
+  'disSort': null
+}, {
+  'id': 2025,
+  'name': '理塘县',
+  'cityID': 242,
+  'disSort': null
+}, {
+  'id': 2026,
+  'name': '巴塘县',
+  'cityID': 242,
+  'disSort': null
+}, {
+  'id': 2027,
+  'name': '乡城县',
+  'cityID': 242,
+  'disSort': null
+}, {
+  'id': 2028,
+  'name': '稻城县',
+  'cityID': 242,
+  'disSort': null
+}, {
+  'id': 2029,
+  'name': '得荣县',
+  'cityID': 242,
+  'disSort': null
+}, {
+  'id': 2030,
+  'name': '汶川县',
+  'cityID': 243,
+  'disSort': null
+}, {
+  'id': 2031,
+  'name': '理县',
+  'cityID': 243,
+  'disSort': null
+}, {
+  'id': 2032,
+  'name': '茂县',
+  'cityID': 243,
+  'disSort': null
+}, {
+  'id': 2033,
+  'name': '松潘县',
+  'cityID': 243,
+  'disSort': null
+}, {
+  'id': 2034,
+  'name': '九寨沟县',
+  'cityID': 243,
+  'disSort': null
+}, {
+  'id': 2035,
+  'name': '金川县',
+  'cityID': 243,
+  'disSort': null
+}, {
+  'id': 2036,
+  'name': '小金县',
+  'cityID': 243,
+  'disSort': null
+}, {
+  'id': 2037,
+  'name': '黑水县',
+  'cityID': 243,
+  'disSort': null
+}, {
+  'id': 2038,
+  'name': '马尔康县',
+  'cityID': 243,
+  'disSort': null
+}, {
+  'id': 2039,
+  'name': '壤塘县',
+  'cityID': 243,
+  'disSort': null
+}, {
+  'id': 2040,
+  'name': '阿坝县',
+  'cityID': 243,
+  'disSort': null
+}, {
+  'id': 2041,
+  'name': '若尔盖县',
+  'cityID': 243,
+  'disSort': null
+}, {
+  'id': 2042,
+  'name': '红原县',
+  'cityID': 243,
+  'disSort': null
+}, {
+  'id': 2043,
+  'name': '旌阳区',
+  'cityID': 244,
+  'disSort': null
+}, {
+  'id': 2044,
+  'name': '中江县',
+  'cityID': 244,
+  'disSort': null
+}, {
+  'id': 2045,
+  'name': '罗江县',
+  'cityID': 244,
+  'disSort': null
+}, {
+  'id': 2046,
+  'name': '广汉市',
+  'cityID': 244,
+  'disSort': null
+}, {
+  'id': 2047,
+  'name': '什邡市',
+  'cityID': 244,
+  'disSort': null
+}, {
+  'id': 2048,
+  'name': '绵竹市',
+  'cityID': 244,
+  'disSort': null
+}, {
+  'id': 2049,
+  'name': '市中区',
+  'cityID': 245,
+  'disSort': null
+}, {
+  'id': 2050,
+  'name': '元坝区',
+  'cityID': 245,
+  'disSort': null
+}, {
+  'id': 2051,
+  'name': '朝天区',
+  'cityID': 245,
+  'disSort': null
+}, {
+  'id': 2052,
+  'name': '旺苍县',
+  'cityID': 245,
+  'disSort': null
+}, {
+  'id': 2053,
+  'name': '青川县',
+  'cityID': 245,
+  'disSort': null
+}, {
+  'id': 2054,
+  'name': '剑阁县',
+  'cityID': 245,
+  'disSort': null
+}, {
+  'id': 2055,
+  'name': '苍溪县',
+  'cityID': 245,
+  'disSort': null
+}, {
+  'id': 2056,
+  'name': '南明区',
+  'cityID': 246,
+  'disSort': null
+}, {
+  'id': 2057,
+  'name': '云岩区',
+  'cityID': 246,
+  'disSort': null
+}, {
+  'id': 2058,
+  'name': '花溪区',
+  'cityID': 246,
+  'disSort': null
+}, {
+  'id': 2059,
+  'name': '乌当区',
+  'cityID': 246,
+  'disSort': null
+}, {
+  'id': 2060,
+  'name': '白云区',
+  'cityID': 246,
+  'disSort': null
+}, {
+  'id': 2061,
+  'name': '小河区',
+  'cityID': 246,
+  'disSort': null
+}, {
+  'id': 2062,
+  'name': '开阳县',
+  'cityID': 246,
+  'disSort': null
+}, {
+  'id': 2063,
+  'name': '息烽县',
+  'cityID': 246,
+  'disSort': null
+}, {
+  'id': 2064,
+  'name': '修文县',
+  'cityID': 246,
+  'disSort': null
+}, {
+  'id': 2065,
+  'name': '清镇市',
+  'cityID': 246,
+  'disSort': null
+}, {
+  'id': 2066,
+  'name': '红花岗区',
+  'cityID': 247,
+  'disSort': null
+}, {
+  'id': 2067,
+  'name': '汇川区',
+  'cityID': 247,
+  'disSort': null
+}, {
+  'id': 2068,
+  'name': '遵义县',
+  'cityID': 247,
+  'disSort': null
+}, {
+  'id': 2069,
+  'name': '桐梓县',
+  'cityID': 247,
+  'disSort': null
+}, {
+  'id': 2070,
+  'name': '绥阳县',
+  'cityID': 247,
+  'disSort': null
+}, {
+  'id': 2071,
+  'name': '正安县',
+  'cityID': 247,
+  'disSort': null
+}, {
+  'id': 2072,
+  'name': '道真仡佬族苗族自治县',
+  'cityID': 247,
+  'disSort': null
+}, {
+  'id': 2073,
+  'name': '务川仡佬族苗族自治县',
+  'cityID': 247,
+  'disSort': null
+}, {
+  'id': 2074,
+  'name': '凤冈县',
+  'cityID': 247,
+  'disSort': null
+}, {
+  'id': 2075,
+  'name': '湄潭县',
+  'cityID': 247,
+  'disSort': null
+}, {
+  'id': 2076,
+  'name': '余庆县',
+  'cityID': 247,
+  'disSort': null
+}, {
+  'id': 2077,
+  'name': '习水县',
+  'cityID': 247,
+  'disSort': null
+}, {
+  'id': 2078,
+  'name': '赤水市',
+  'cityID': 247,
+  'disSort': null
+}, {
+  'id': 2079,
+  'name': '仁怀市',
+  'cityID': 247,
+  'disSort': null
+}, {
+  'id': 2080,
+  'name': '西秀区',
+  'cityID': 248,
+  'disSort': null
+}, {
+  'id': 2081,
+  'name': '平坝县',
+  'cityID': 248,
+  'disSort': null
+}, {
+  'id': 2082,
+  'name': '普定县',
+  'cityID': 248,
+  'disSort': null
+}, {
+  'id': 2083,
+  'name': '镇宁布依族苗族自治县',
+  'cityID': 248,
+  'disSort': null
+}, {
+  'id': 2084,
+  'name': '关岭布依族苗族自治县',
+  'cityID': 248,
+  'disSort': null
+}, {
+  'id': 2085,
+  'name': '紫云苗族布依族自治县',
+  'cityID': 248,
+  'disSort': null
+}, {
+  'id': 2086,
+  'name': '都匀市',
+  'cityID': 249,
+  'disSort': null
+}, {
+  'id': 2087,
+  'name': '福泉市',
+  'cityID': 249,
+  'disSort': null
+}, {
+  'id': 2088,
+  'name': '荔波县',
+  'cityID': 249,
+  'disSort': null
+}, {
+  'id': 2089,
+  'name': '贵定县',
+  'cityID': 249,
+  'disSort': null
+}, {
+  'id': 2090,
+  'name': '瓮安县',
+  'cityID': 249,
+  'disSort': null
+}, {
+  'id': 2091,
+  'name': '独山县',
+  'cityID': 249,
+  'disSort': null
+}, {
+  'id': 2092,
+  'name': '平塘县',
+  'cityID': 249,
+  'disSort': null
+}, {
+  'id': 2093,
+  'name': '罗甸县',
+  'cityID': 249,
+  'disSort': null
+}, {
+  'id': 2094,
+  'name': '长顺县',
+  'cityID': 249,
+  'disSort': null
+}, {
+  'id': 2095,
+  'name': '龙里县',
+  'cityID': 249,
+  'disSort': null
+}, {
+  'id': 2096,
+  'name': '惠水县',
+  'cityID': 249,
+  'disSort': null
+}, {
+  'id': 2097,
+  'name': '三都水族自治县',
+  'cityID': 249,
+  'disSort': null
+}, {
+  'id': 2098,
+  'name': '凯里市',
+  'cityID': 250,
+  'disSort': null
+}, {
+  'id': 2099,
+  'name': '黄平县',
+  'cityID': 250,
+  'disSort': null
+}, {
+  'id': 2100,
+  'name': '施秉县',
+  'cityID': 250,
+  'disSort': null
+}, {
+  'id': 2101,
+  'name': '三穗县',
+  'cityID': 250,
+  'disSort': null
+}, {
+  'id': 2102,
+  'name': '镇远县',
+  'cityID': 250,
+  'disSort': null
+}, {
+  'id': 2103,
+  'name': '岑巩县',
+  'cityID': 250,
+  'disSort': null
+}, {
+  'id': 2104,
+  'name': '天柱县',
+  'cityID': 250,
+  'disSort': null
+}, {
+  'id': 2105,
+  'name': '锦屏县',
+  'cityID': 250,
+  'disSort': null
+}, {
+  'id': 2106,
+  'name': '剑河县',
+  'cityID': 250,
+  'disSort': null
+}, {
+  'id': 2107,
+  'name': '台江县',
+  'cityID': 250,
+  'disSort': null
+}, {
+  'id': 2108,
+  'name': '黎平县',
+  'cityID': 250,
+  'disSort': null
+}, {
+  'id': 2109,
+  'name': '榕江县',
+  'cityID': 250,
+  'disSort': null
+}, {
+  'id': 2110,
+  'name': '从江县',
+  'cityID': 250,
+  'disSort': null
+}, {
+  'id': 2111,
+  'name': '雷山县',
+  'cityID': 250,
+  'disSort': null
+}, {
+  'id': 2112,
+  'name': '麻江县',
+  'cityID': 250,
+  'disSort': null
+}, {
+  'id': 2113,
+  'name': '丹寨县',
+  'cityID': 250,
+  'disSort': null
+}, {
+  'id': 2114,
+  'name': '铜仁市',
+  'cityID': 251,
+  'disSort': null
+}, {
+  'id': 2115,
+  'name': '江口县',
+  'cityID': 251,
+  'disSort': null
+}, {
+  'id': 2116,
+  'name': '玉屏侗族自治县',
+  'cityID': 251,
+  'disSort': null
+}, {
+  'id': 2117,
+  'name': '石阡县',
+  'cityID': 251,
+  'disSort': null
+}, {
+  'id': 2118,
+  'name': '思南县',
+  'cityID': 251,
+  'disSort': null
+}, {
+  'id': 2119,
+  'name': '印江土家族苗族自治县',
+  'cityID': 251,
+  'disSort': null
+}, {
+  'id': 2120,
+  'name': '德江县',
+  'cityID': 251,
+  'disSort': null
+}, {
+  'id': 2121,
+  'name': '沿河土家族自治县',
+  'cityID': 251,
+  'disSort': null
+}, {
+  'id': 2122,
+  'name': '松桃苗族自治县',
+  'cityID': 251,
+  'disSort': null
+}, {
+  'id': 2123,
+  'name': '万山特区',
+  'cityID': 251,
+  'disSort': null
+}, {
+  'id': 2124,
+  'name': '毕节市',
+  'cityID': 252,
+  'disSort': null
+}, {
+  'id': 2125,
+  'name': '大方县',
+  'cityID': 252,
+  'disSort': null
+}, {
+  'id': 2126,
+  'name': '黔西县',
+  'cityID': 252,
+  'disSort': null
+}, {
+  'id': 2127,
+  'name': '金沙县',
+  'cityID': 252,
+  'disSort': null
+}, {
+  'id': 2128,
+  'name': '织金县',
+  'cityID': 252,
+  'disSort': null
+}, {
+  'id': 2129,
+  'name': '纳雍县',
+  'cityID': 252,
+  'disSort': null
+}, {
+  'id': 2130,
+  'name': '威宁彝族回族苗族自治县',
+  'cityID': 252,
+  'disSort': null
+}, {
+  'id': 2131,
+  'name': '赫章县',
+  'cityID': 252,
+  'disSort': null
+}, {
+  'id': 2132,
+  'name': '钟山区',
+  'cityID': 253,
+  'disSort': null
+}, {
+  'id': 2133,
+  'name': '六枝特区',
+  'cityID': 253,
+  'disSort': null
+}, {
+  'id': 2134,
+  'name': '水城县',
+  'cityID': 253,
+  'disSort': null
+}, {
+  'id': 2135,
+  'name': '盘县',
+  'cityID': 253,
+  'disSort': null
+}, {
+  'id': 2136,
+  'name': '兴义市',
+  'cityID': 254,
+  'disSort': null
+}, {
+  'id': 2137,
+  'name': '兴仁县',
+  'cityID': 254,
+  'disSort': null
+}, {
+  'id': 2138,
+  'name': '普安县',
+  'cityID': 254,
+  'disSort': null
+}, {
+  'id': 2139,
+  'name': '晴隆县',
+  'cityID': 254,
+  'disSort': null
+}, {
+  'id': 2140,
+  'name': '贞丰县',
+  'cityID': 254,
+  'disSort': null
+}, {
+  'id': 2141,
+  'name': '望谟县',
+  'cityID': 254,
+  'disSort': null
+}, {
+  'id': 2142,
+  'name': '册亨县',
+  'cityID': 254,
+  'disSort': null
+}, {
+  'id': 2143,
+  'name': '安龙县',
+  'cityID': 254,
+  'disSort': null
+}, {
+  'id': 2144,
+  'name': '秀英区',
+  'cityID': 255,
+  'disSort': null
+}, {
+  'id': 2145,
+  'name': '龙华区',
+  'cityID': 255,
+  'disSort': null
+}, {
+  'id': 2146,
+  'name': '琼山区',
+  'cityID': 255,
+  'disSort': null
+}, {
+  'id': 2147,
+  'name': '美兰区',
+  'cityID': 255,
+  'disSort': null
+}, {
+  'id': 2148,
+  'name': '景洪市',
+  'cityID': 273,
+  'disSort': null
+}, {
+  'id': 2149,
+  'name': '勐海县',
+  'cityID': 273,
+  'disSort': null
+}, {
+  'id': 2150,
+  'name': '勐腊县',
+  'cityID': 273,
+  'disSort': null
+}, {
+  'id': 2151,
+  'name': '瑞丽市',
+  'cityID': 274,
+  'disSort': null
+}, {
+  'id': 2152,
+  'name': '潞西市',
+  'cityID': 274,
+  'disSort': null
+}, {
+  'id': 2153,
+  'name': '梁河县',
+  'cityID': 274,
+  'disSort': null
+}, {
+  'id': 2154,
+  'name': '盈江县',
+  'cityID': 274,
+  'disSort': null
+}, {
+  'id': 2155,
+  'name': '陇川县',
+  'cityID': 274,
+  'disSort': null
+}, {
+  'id': 2156,
+  'name': '昭阳区',
+  'cityID': 275,
+  'disSort': null
+}, {
+  'id': 2157,
+  'name': '鲁甸县',
+  'cityID': 275,
+  'disSort': null
+}, {
+  'id': 2158,
+  'name': '巧家县',
+  'cityID': 275,
+  'disSort': null
+}, {
+  'id': 2159,
+  'name': '盐津县',
+  'cityID': 275,
+  'disSort': null
+}, {
+  'id': 2160,
+  'name': '大关县',
+  'cityID': 275,
+  'disSort': null
+}, {
+  'id': 2161,
+  'name': '永善县',
+  'cityID': 275,
+  'disSort': null
+}, {
+  'id': 2162,
+  'name': '绥江县',
+  'cityID': 275,
+  'disSort': null
+}, {
+  'id': 2163,
+  'name': '镇雄县',
+  'cityID': 275,
+  'disSort': null
+}, {
+  'id': 2164,
+  'name': '彝良县',
+  'cityID': 275,
+  'disSort': null
+}, {
+  'id': 2165,
+  'name': '威信县',
+  'cityID': 275,
+  'disSort': null
+}, {
+  'id': 2166,
+  'name': '水富县',
+  'cityID': 275,
+  'disSort': null
+}, {
+  'id': 2167,
+  'name': '五华区',
+  'cityID': 276,
+  'disSort': null
+}, {
+  'id': 2168,
+  'name': '盘龙区',
+  'cityID': 276,
+  'disSort': null
+}, {
+  'id': 2169,
+  'name': '官渡区',
+  'cityID': 276,
+  'disSort': null
+}, {
+  'id': 2170,
+  'name': '西山区',
+  'cityID': 276,
+  'disSort': null
+}, {
+  'id': 2171,
+  'name': '东川区',
+  'cityID': 276,
+  'disSort': null
+}, {
+  'id': 2172,
+  'name': '呈贡县',
+  'cityID': 276,
+  'disSort': null
+}, {
+  'id': 2173,
+  'name': '晋宁县',
+  'cityID': 276,
+  'disSort': null
+}, {
+  'id': 2174,
+  'name': '富民县',
+  'cityID': 276,
+  'disSort': null
+}, {
+  'id': 2175,
+  'name': '宜良县',
+  'cityID': 276,
+  'disSort': null
+}, {
+  'id': 2176,
+  'name': '石林彝族自治县',
+  'cityID': 276,
+  'disSort': null
+}, {
+  'id': 2177,
+  'name': '嵩明县',
+  'cityID': 276,
+  'disSort': null
+}, {
+  'id': 2178,
+  'name': '禄劝彝族苗族自治县',
+  'cityID': 276,
+  'disSort': null
+}, {
+  'id': 2179,
+  'name': '寻甸回族彝族自治县',
+  'cityID': 276,
+  'disSort': null
+}, {
+  'id': 2180,
+  'name': '安宁市',
+  'cityID': 276,
+  'disSort': null
+}, {
+  'id': 2181,
+  'name': '大理市',
+  'cityID': 277,
+  'disSort': null
+}, {
+  'id': 2182,
+  'name': '漾濞彝族自治县',
+  'cityID': 277,
+  'disSort': null
+}, {
+  'id': 2183,
+  'name': '祥云县',
+  'cityID': 277,
+  'disSort': null
+}, {
+  'id': 2184,
+  'name': '宾川县',
+  'cityID': 277,
+  'disSort': null
+}, {
+  'id': 2185,
+  'name': '弥渡县',
+  'cityID': 277,
+  'disSort': null
+}, {
+  'id': 2186,
+  'name': '南涧彝族自治县',
+  'cityID': 277,
+  'disSort': null
+}, {
+  'id': 2187,
+  'name': '巍山彝族回族自治县',
+  'cityID': 277,
+  'disSort': null
+}, {
+  'id': 2188,
+  'name': '永平县',
+  'cityID': 277,
+  'disSort': null
+}, {
+  'id': 2189,
+  'name': '云龙县',
+  'cityID': 277,
+  'disSort': null
+}, {
+  'id': 2190,
+  'name': '洱源县',
+  'cityID': 277,
+  'disSort': null
+}, {
+  'id': 2191,
+  'name': '剑川县',
+  'cityID': 277,
+  'disSort': null
+}, {
+  'id': 2192,
+  'name': '鹤庆县',
+  'cityID': 277,
+  'disSort': null
+}, {
+  'id': 2193,
+  'name': '个旧市',
+  'cityID': 278,
+  'disSort': null
+}, {
+  'id': 2194,
+  'name': '开远市',
+  'cityID': 278,
+  'disSort': null
+}, {
+  'id': 2195,
+  'name': '蒙自县',
+  'cityID': 278,
+  'disSort': null
+}, {
+  'id': 2196,
+  'name': '屏边苗族自治县',
+  'cityID': 278,
+  'disSort': null
+}, {
+  'id': 2197,
+  'name': '建水县',
+  'cityID': 278,
+  'disSort': null
+}, {
+  'id': 2198,
+  'name': '石屏县',
+  'cityID': 278,
+  'disSort': null
+}, {
+  'id': 2199,
+  'name': '弥勒县',
+  'cityID': 278,
+  'disSort': null
+}, {
+  'id': 2200,
+  'name': '泸西县',
+  'cityID': 278,
+  'disSort': null
+}, {
+  'id': 2201,
+  'name': '元阳县',
+  'cityID': 278,
+  'disSort': null
+}, {
+  'id': 2202,
+  'name': '红河县',
+  'cityID': 278,
+  'disSort': null
+}, {
+  'id': 2203,
+  'name': '金平苗族瑶族傣族自治县',
+  'cityID': 278,
+  'disSort': null
+}, {
+  'id': 2204,
+  'name': '绿春县',
+  'cityID': 278,
+  'disSort': null
+}, {
+  'id': 2205,
+  'name': '河口瑶族自治县',
+  'cityID': 278,
+  'disSort': null
+}, {
+  'id': 2206,
+  'name': '麒麟区',
+  'cityID': 279,
+  'disSort': null
+}, {
+  'id': 2207,
+  'name': '马龙县',
+  'cityID': 279,
+  'disSort': null
+}, {
+  'id': 2208,
+  'name': '陆良县',
+  'cityID': 279,
+  'disSort': null
+}, {
+  'id': 2209,
+  'name': '师宗县',
+  'cityID': 279,
+  'disSort': null
+}, {
+  'id': 2210,
+  'name': '罗平县',
+  'cityID': 279,
+  'disSort': null
+}, {
+  'id': 2211,
+  'name': '富源县',
+  'cityID': 279,
+  'disSort': null
+}, {
+  'id': 2212,
+  'name': '会泽县',
+  'cityID': 279,
+  'disSort': null
+}, {
+  'id': 2213,
+  'name': '沾益县',
+  'cityID': 279,
+  'disSort': null
+}, {
+  'id': 2214,
+  'name': '宣威市',
+  'cityID': 279,
+  'disSort': null
+}, {
+  'id': 2215,
+  'name': '隆阳区',
+  'cityID': 280,
+  'disSort': null
+}, {
+  'id': 2216,
+  'name': '施甸县',
+  'cityID': 280,
+  'disSort': null
+}, {
+  'id': 2217,
+  'name': '腾冲县',
+  'cityID': 280,
+  'disSort': null
+}, {
+  'id': 2218,
+  'name': '龙陵县',
+  'cityID': 280,
+  'disSort': null
+}, {
+  'id': 2219,
+  'name': '昌宁县',
+  'cityID': 280,
+  'disSort': null
+}, {
+  'id': 2220,
+  'name': '文山县',
+  'cityID': 281,
+  'disSort': null
+}, {
+  'id': 2221,
+  'name': '砚山县',
+  'cityID': 281,
+  'disSort': null
+}, {
+  'id': 2222,
+  'name': '西畴县',
+  'cityID': 281,
+  'disSort': null
+}, {
+  'id': 2223,
+  'name': '麻栗坡县',
+  'cityID': 281,
+  'disSort': null
+}, {
+  'id': 2224,
+  'name': '马关县',
+  'cityID': 281,
+  'disSort': null
+}, {
+  'id': 2225,
+  'name': '丘北县',
+  'cityID': 281,
+  'disSort': null
+}, {
+  'id': 2226,
+  'name': '广南县',
+  'cityID': 281,
+  'disSort': null
+}, {
+  'id': 2227,
+  'name': '富宁县',
+  'cityID': 281,
+  'disSort': null
+}, {
+  'id': 2228,
+  'name': '红塔区',
+  'cityID': 282,
+  'disSort': null
+}, {
+  'id': 2229,
+  'name': '江川县',
+  'cityID': 282,
+  'disSort': null
+}, {
+  'id': 2230,
+  'name': '澄江县',
+  'cityID': 282,
+  'disSort': null
+}, {
+  'id': 2231,
+  'name': '通海县',
+  'cityID': 282,
+  'disSort': null
+}, {
+  'id': 2232,
+  'name': '华宁县',
+  'cityID': 282,
+  'disSort': null
+}, {
+  'id': 2233,
+  'name': '易门县',
+  'cityID': 282,
+  'disSort': null
+}, {
+  'id': 2234,
+  'name': '峨山彝族自治县',
+  'cityID': 282,
+  'disSort': null
+}, {
+  'id': 2235,
+  'name': '新平彝族傣族自治县',
+  'cityID': 282,
+  'disSort': null
+}, {
+  'id': 2236,
+  'name': '元江哈尼族彝族傣族自治县',
+  'cityID': 282,
+  'disSort': null
+}, {
+  'id': 2237,
+  'name': '楚雄市',
+  'cityID': 283,
+  'disSort': null
+}, {
+  'id': 2238,
+  'name': '双柏县',
+  'cityID': 283,
+  'disSort': null
+}, {
+  'id': 2239,
+  'name': '牟定县',
+  'cityID': 283,
+  'disSort': null
+}, {
+  'id': 2240,
+  'name': '南华县',
+  'cityID': 283,
+  'disSort': null
+}, {
+  'id': 2241,
+  'name': '姚安县',
+  'cityID': 283,
+  'disSort': null
+}, {
+  'id': 2242,
+  'name': '大姚县',
+  'cityID': 283,
+  'disSort': null
+}, {
+  'id': 2243,
+  'name': '永仁县',
+  'cityID': 283,
+  'disSort': null
+}, {
+  'id': 2244,
+  'name': '元谋县',
+  'cityID': 283,
+  'disSort': null
+}, {
+  'id': 2245,
+  'name': '武定县',
+  'cityID': 283,
+  'disSort': null
+}, {
+  'id': 2246,
+  'name': '禄丰县',
+  'cityID': 283,
+  'disSort': null
+}, {
+  'id': 2247,
+  'name': '思茅区',
+  'cityID': 284,
+  'disSort': null
+}, {
+  'id': 2248,
+  'name': '宁洱哈尼族彝族自治县',
+  'cityID': 284,
+  'disSort': null
+}, {
+  'id': 2249,
+  'name': '墨江哈尼族自治县',
+  'cityID': 284,
+  'disSort': null
+}, {
+  'id': 2250,
+  'name': '景东彝族自治县',
+  'cityID': 284,
+  'disSort': null
+}, {
+  'id': 2251,
+  'name': '景谷傣族彝族自治县',
+  'cityID': 284,
+  'disSort': null
+}, {
+  'id': 2252,
+  'name': '镇沅彝族哈尼族拉祜族自治县',
+  'cityID': 284,
+  'disSort': null
+}, {
+  'id': 2253,
+  'name': '江城哈尼族彝族自治县',
+  'cityID': 284,
+  'disSort': null
+}, {
+  'id': 2254,
+  'name': '孟连傣族拉祜族佤族自治县',
+  'cityID': 284,
+  'disSort': null
+}, {
+  'id': 2255,
+  'name': '澜沧拉祜族自治县',
+  'cityID': 284,
+  'disSort': null
+}, {
+  'id': 2256,
+  'name': '西盟佤族自治县',
+  'cityID': 284,
+  'disSort': null
+}, {
+  'id': 2257,
+  'name': '临翔区',
+  'cityID': 285,
+  'disSort': null
+}, {
+  'id': 2258,
+  'name': '凤庆县',
+  'cityID': 285,
+  'disSort': null
+}, {
+  'id': 2259,
+  'name': '云县',
+  'cityID': 285,
+  'disSort': null
+}, {
+  'id': 2260,
+  'name': '永德县',
+  'cityID': 285,
+  'disSort': null
+}, {
+  'id': 2261,
+  'name': '镇康县',
+  'cityID': 285,
+  'disSort': null
+}, {
+  'id': 2262,
+  'name': '双江拉祜族佤族布朗族傣族自治县',
+  'cityID': 285,
+  'disSort': null
+}, {
+  'id': 2263,
+  'name': '耿马傣族佤族自治县',
+  'cityID': 285,
+  'disSort': null
+}, {
+  'id': 2264,
+  'name': '沧源佤族自治县',
+  'cityID': 285,
+  'disSort': null
+}, {
+  'id': 2265,
+  'name': '泸水县',
+  'cityID': 286,
+  'disSort': null
+}, {
+  'id': 2266,
+  'name': '福贡县',
+  'cityID': 286,
+  'disSort': null
+}, {
+  'id': 2267,
+  'name': '贡山独龙族怒族自治县',
+  'cityID': 286,
+  'disSort': null
+}, {
+  'id': 2268,
+  'name': '兰坪白族普米族自治县',
+  'cityID': 286,
+  'disSort': null
+}, {
+  'id': 2269,
+  'name': '香格里拉县',
+  'cityID': 287,
+  'disSort': null
+}, {
+  'id': 2270,
+  'name': '德钦县',
+  'cityID': 287,
+  'disSort': null
+}, {
+  'id': 2271,
+  'name': '维西傈僳族自治县',
+  'cityID': 287,
+  'disSort': null
+}, {
+  'id': 2272,
+  'name': '古城区',
+  'cityID': 288,
+  'disSort': null
+}, {
+  'id': 2273,
+  'name': '玉龙纳西族自治县',
+  'cityID': 288,
+  'disSort': null
+}, {
+  'id': 2274,
+  'name': '永胜县',
+  'cityID': 288,
+  'disSort': null
+}, {
+  'id': 2275,
+  'name': '华坪县',
+  'cityID': 288,
+  'disSort': null
+}, {
+  'id': 2276,
+  'name': '宁蒗彝族自治县',
+  'cityID': 288,
+  'disSort': null
+}, {
+  'id': 2277,
+  'name': '门源回族自治县',
+  'cityID': 289,
+  'disSort': null
+}, {
+  'id': 2278,
+  'name': '祁连县',
+  'cityID': 289,
+  'disSort': null
+}, {
+  'id': 2279,
+  'name': '海晏县',
+  'cityID': 289,
+  'disSort': null
+}, {
+  'id': 2280,
+  'name': '刚察县',
+  'cityID': 289,
+  'disSort': null
+}, {
+  'id': 2281,
+  'name': '城东区',
+  'cityID': 290,
+  'disSort': null
+}, {
+  'id': 2282,
+  'name': '城中区',
+  'cityID': 290,
+  'disSort': null
+}, {
+  'id': 2283,
+  'name': '城西区',
+  'cityID': 290,
+  'disSort': null
+}, {
+  'id': 2284,
+  'name': '城北区',
+  'cityID': 290,
+  'disSort': null
+}, {
+  'id': 2285,
+  'name': '大通回族土族自治县',
+  'cityID': 290,
+  'disSort': null
+}, {
+  'id': 2286,
+  'name': '湟中县',
+  'cityID': 290,
+  'disSort': null
+}, {
+  'id': 2287,
+  'name': '湟源县',
+  'cityID': 290,
+  'disSort': null
+}, {
+  'id': 2288,
+  'name': '平安县',
+  'cityID': 291,
+  'disSort': null
+}, {
+  'id': 2289,
+  'name': '民和回族土族自治县',
+  'cityID': 291,
+  'disSort': null
+}, {
+  'id': 2290,
+  'name': '乐都县',
+  'cityID': 291,
+  'disSort': null
+}, {
+  'id': 2291,
+  'name': '互助土族自治县',
+  'cityID': 291,
+  'disSort': null
+}, {
+  'id': 2292,
+  'name': '化隆回族自治县',
+  'cityID': 291,
+  'disSort': null
+}, {
+  'id': 2293,
+  'name': '循化撒拉族自治县',
+  'cityID': 291,
+  'disSort': null
+}, {
+  'id': 2294,
+  'name': '同仁县',
+  'cityID': 292,
+  'disSort': null
+}, {
+  'id': 2295,
+  'name': '尖扎县',
+  'cityID': 292,
+  'disSort': null
+}, {
+  'id': 2296,
+  'name': '泽库县',
+  'cityID': 292,
+  'disSort': null
+}, {
+  'id': 2297,
+  'name': '河南蒙古族自治县',
+  'cityID': 292,
+  'disSort': null
+}, {
+  'id': 2298,
+  'name': '共和县',
+  'cityID': 293,
+  'disSort': null
+}, {
+  'id': 2299,
+  'name': '同德县',
+  'cityID': 293,
+  'disSort': null
+}, {
+  'id': 2300,
+  'name': '贵德县',
+  'cityID': 293,
+  'disSort': null
+}, {
+  'id': 2301,
+  'name': '兴海县',
+  'cityID': 293,
+  'disSort': null
+}, {
+  'id': 2302,
+  'name': '贵南县',
+  'cityID': 293,
+  'disSort': null
+}, {
+  'id': 2303,
+  'name': '玛沁县',
+  'cityID': 294,
+  'disSort': null
+}, {
+  'id': 2304,
+  'name': '班玛县',
+  'cityID': 294,
+  'disSort': null
+}, {
+  'id': 2305,
+  'name': '甘德县',
+  'cityID': 294,
+  'disSort': null
+}, {
+  'id': 2306,
+  'name': '达日县',
+  'cityID': 294,
+  'disSort': null
+}, {
+  'id': 2307,
+  'name': '久治县',
+  'cityID': 294,
+  'disSort': null
+}, {
+  'id': 2308,
+  'name': '玛多县',
+  'cityID': 294,
+  'disSort': null
+}, {
+  'id': 2309,
+  'name': '玉树县',
+  'cityID': 295,
+  'disSort': null
+}, {
+  'id': 2310,
+  'name': '杂多县',
+  'cityID': 295,
+  'disSort': null
+}, {
+  'id': 2311,
+  'name': '称多县',
+  'cityID': 295,
+  'disSort': null
+}, {
+  'id': 2312,
+  'name': '治多县',
+  'cityID': 295,
+  'disSort': null
+}, {
+  'id': 2313,
+  'name': '囊谦县',
+  'cityID': 295,
+  'disSort': null
+}, {
+  'id': 2314,
+  'name': '曲麻莱县',
+  'cityID': 295,
+  'disSort': null
+}, {
+  'id': 2315,
+  'name': '格尔木市',
+  'cityID': 296,
+  'disSort': null
+}, {
+  'id': 2316,
+  'name': '德令哈市',
+  'cityID': 296,
+  'disSort': null
+}, {
+  'id': 2317,
+  'name': '乌兰县',
+  'cityID': 296,
+  'disSort': null
+}, {
+  'id': 2318,
+  'name': '都兰县',
+  'cityID': 296,
+  'disSort': null
+}, {
+  'id': 2319,
+  'name': '天峻县',
+  'cityID': 296,
+  'disSort': null
+}, {
+  'id': 2320,
+  'name': '新城区',
+  'cityID': 297,
+  'disSort': null
+}, {
+  'id': 2321,
+  'name': '碑林区',
+  'cityID': 297,
+  'disSort': null
+}, {
+  'id': 2322,
+  'name': '莲湖区',
+  'cityID': 297,
+  'disSort': null
+}, {
+  'id': 2323,
+  'name': '灞桥区',
+  'cityID': 297,
+  'disSort': null
+}, {
+  'id': 2324,
+  'name': '未央区',
+  'cityID': 297,
+  'disSort': null
+}, {
+  'id': 2325,
+  'name': '雁塔区',
+  'cityID': 297,
+  'disSort': null
+}, {
+  'id': 2326,
+  'name': '阎良区',
+  'cityID': 297,
+  'disSort': null
+}, {
+  'id': 2327,
+  'name': '临潼区',
+  'cityID': 297,
+  'disSort': null
+}, {
+  'id': 2328,
+  'name': '长安区',
+  'cityID': 297,
+  'disSort': null
+}, {
+  'id': 2329,
+  'name': '蓝田县',
+  'cityID': 297,
+  'disSort': null
+}, {
+  'id': 2330,
+  'name': '周至县',
+  'cityID': 297,
+  'disSort': null
+}, {
+  'id': 2331,
+  'name': '户县',
+  'cityID': 297,
+  'disSort': null
+}, {
+  'id': 2332,
+  'name': '高陵县',
+  'cityID': 297,
+  'disSort': null
+}, {
+  'id': 2333,
+  'name': '秦都区',
+  'cityID': 298,
+  'disSort': null
+}, {
+  'id': 2334,
+  'name': '杨陵区',
+  'cityID': 298,
+  'disSort': null
+}, {
+  'id': 2335,
+  'name': '渭城区',
+  'cityID': 298,
+  'disSort': null
+}, {
+  'id': 2336,
+  'name': '三原县',
+  'cityID': 298,
+  'disSort': null
+}, {
+  'id': 2337,
+  'name': '泾阳县',
+  'cityID': 298,
+  'disSort': null
+}, {
+  'id': 2338,
+  'name': '乾县',
+  'cityID': 298,
+  'disSort': null
+}, {
+  'id': 2339,
+  'name': '礼泉县',
+  'cityID': 298,
+  'disSort': null
+}, {
+  'id': 2340,
+  'name': '永寿县',
+  'cityID': 298,
+  'disSort': null
+}, {
+  'id': 2341,
+  'name': '彬县',
+  'cityID': 298,
+  'disSort': null
+}, {
+  'id': 2342,
+  'name': '长武县',
+  'cityID': 298,
+  'disSort': null
+}, {
+  'id': 2343,
+  'name': '旬邑县',
+  'cityID': 298,
+  'disSort': null
+}, {
+  'id': 2344,
+  'name': '淳化县',
+  'cityID': 298,
+  'disSort': null
+}, {
+  'id': 2345,
+  'name': '武功县',
+  'cityID': 298,
+  'disSort': null
+}, {
+  'id': 2346,
+  'name': '兴平市',
+  'cityID': 298,
+  'disSort': null
+}, {
+  'id': 2347,
+  'name': '宝塔区',
+  'cityID': 299,
+  'disSort': null
+}, {
+  'id': 2348,
+  'name': '延长县',
+  'cityID': 299,
+  'disSort': null
+}, {
+  'id': 2349,
+  'name': '延川县',
+  'cityID': 299,
+  'disSort': null
+}, {
+  'id': 2350,
+  'name': '子长县',
+  'cityID': 299,
+  'disSort': null
+}, {
+  'id': 2351,
+  'name': '安塞县',
+  'cityID': 299,
+  'disSort': null
+}, {
+  'id': 2352,
+  'name': '志丹县',
+  'cityID': 299,
+  'disSort': null
+}, {
+  'id': 2353,
+  'name': '吴起县',
+  'cityID': 299,
+  'disSort': null
+}, {
+  'id': 2354,
+  'name': '甘泉县',
+  'cityID': 299,
+  'disSort': null
+}, {
+  'id': 2355,
+  'name': '富县',
+  'cityID': 299,
+  'disSort': null
+}, {
+  'id': 2356,
+  'name': '洛川县',
+  'cityID': 299,
+  'disSort': null
+}, {
+  'id': 2357,
+  'name': '宜川县',
+  'cityID': 299,
+  'disSort': null
+}, {
+  'id': 2358,
+  'name': '黄龙县',
+  'cityID': 299,
+  'disSort': null
+}, {
+  'id': 2359,
+  'name': '黄陵县',
+  'cityID': 299,
+  'disSort': null
+}, {
+  'id': 2360,
+  'name': '榆阳区',
+  'cityID': 300,
+  'disSort': null
+}, {
+  'id': 2361,
+  'name': '神木县',
+  'cityID': 300,
+  'disSort': null
+}, {
+  'id': 2362,
+  'name': '府谷县',
+  'cityID': 300,
+  'disSort': null
+}, {
+  'id': 2363,
+  'name': '横山县',
+  'cityID': 300,
+  'disSort': null
+}, {
+  'id': 2364,
+  'name': '靖边县',
+  'cityID': 300,
+  'disSort': null
+}, {
+  'id': 2365,
+  'name': '定边县',
+  'cityID': 300,
+  'disSort': null
+}, {
+  'id': 2366,
+  'name': '绥德县',
+  'cityID': 300,
+  'disSort': null
+}, {
+  'id': 2367,
+  'name': '米脂县',
+  'cityID': 300,
+  'disSort': null
+}, {
+  'id': 2368,
+  'name': '佳县',
+  'cityID': 300,
+  'disSort': null
+}, {
+  'id': 2369,
+  'name': '吴堡县',
+  'cityID': 300,
+  'disSort': null
+}, {
+  'id': 2370,
+  'name': '清涧县',
+  'cityID': 300,
+  'disSort': null
+}, {
+  'id': 2371,
+  'name': '子洲县',
+  'cityID': 300,
+  'disSort': null
+}, {
+  'id': 2372,
+  'name': '临渭区',
+  'cityID': 301,
+  'disSort': null
+}, {
+  'id': 2373,
+  'name': '华县',
+  'cityID': 301,
+  'disSort': null
+}, {
+  'id': 2374,
+  'name': '潼关县',
+  'cityID': 301,
+  'disSort': null
+}, {
+  'id': 2375,
+  'name': '大荔县',
+  'cityID': 301,
+  'disSort': null
+}, {
+  'id': 2376,
+  'name': '合阳县',
+  'cityID': 301,
+  'disSort': null
+}, {
+  'id': 2377,
+  'name': '澄城县',
+  'cityID': 301,
+  'disSort': null
+}, {
+  'id': 2378,
+  'name': '蒲城县',
+  'cityID': 301,
+  'disSort': null
+}, {
+  'id': 2379,
+  'name': '白水县',
+  'cityID': 301,
+  'disSort': null
+}, {
+  'id': 2380,
+  'name': '富平县',
+  'cityID': 301,
+  'disSort': null
+}, {
+  'id': 2381,
+  'name': '韩城市',
+  'cityID': 301,
+  'disSort': null
+}, {
+  'id': 2382,
+  'name': '华阴市',
+  'cityID': 301,
+  'disSort': null
+}, {
+  'id': 2383,
+  'name': '商州区',
+  'cityID': 302,
+  'disSort': null
+}, {
+  'id': 2384,
+  'name': '洛南县',
+  'cityID': 302,
+  'disSort': null
+}, {
+  'id': 2385,
+  'name': '丹凤县',
+  'cityID': 302,
+  'disSort': null
+}, {
+  'id': 2386,
+  'name': '商南县',
+  'cityID': 302,
+  'disSort': null
+}, {
+  'id': 2387,
+  'name': '山阳县',
+  'cityID': 302,
+  'disSort': null
+}, {
+  'id': 2388,
+  'name': '镇安县',
+  'cityID': 302,
+  'disSort': null
+}, {
+  'id': 2389,
+  'name': '柞水县',
+  'cityID': 302,
+  'disSort': null
+}, {
+  'id': 2390,
+  'name': '汉滨区',
+  'cityID': 303,
+  'disSort': null
+}, {
+  'id': 2391,
+  'name': '汉阴县',
+  'cityID': 303,
+  'disSort': null
+}, {
+  'id': 2392,
+  'name': '石泉县',
+  'cityID': 303,
+  'disSort': null
+}, {
+  'id': 2393,
+  'name': '宁陕县',
+  'cityID': 303,
+  'disSort': null
+}, {
+  'id': 2394,
+  'name': '紫阳县',
+  'cityID': 303,
+  'disSort': null
+}, {
+  'id': 2395,
+  'name': '岚皋县',
+  'cityID': 303,
+  'disSort': null
+}, {
+  'id': 2396,
+  'name': '平利县',
+  'cityID': 303,
+  'disSort': null
+}, {
+  'id': 2397,
+  'name': '镇坪县',
+  'cityID': 303,
+  'disSort': null
+}, {
+  'id': 2398,
+  'name': '旬阳县',
+  'cityID': 303,
+  'disSort': null
+}, {
+  'id': 2399,
+  'name': '白河县',
+  'cityID': 303,
+  'disSort': null
+}, {
+  'id': 2400,
+  'name': '汉台区',
+  'cityID': 304,
+  'disSort': null
+}, {
+  'id': 2401,
+  'name': '南郑县',
+  'cityID': 304,
+  'disSort': null
+}, {
+  'id': 2402,
+  'name': '城固县',
+  'cityID': 304,
+  'disSort': null
+}, {
+  'id': 2403,
+  'name': '洋县',
+  'cityID': 304,
+  'disSort': null
+}, {
+  'id': 2404,
+  'name': '西乡县',
+  'cityID': 304,
+  'disSort': null
+}, {
+  'id': 2405,
+  'name': '勉县',
+  'cityID': 304,
+  'disSort': null
+}, {
+  'id': 2406,
+  'name': '宁强县',
+  'cityID': 304,
+  'disSort': null
+}, {
+  'id': 2407,
+  'name': '略阳县',
+  'cityID': 304,
+  'disSort': null
+}, {
+  'id': 2408,
+  'name': '镇巴县',
+  'cityID': 304,
+  'disSort': null
+}, {
+  'id': 2409,
+  'name': '留坝县',
+  'cityID': 304,
+  'disSort': null
+}, {
+  'id': 2410,
+  'name': '佛坪县',
+  'cityID': 304,
+  'disSort': null
+}, {
+  'id': 2411,
+  'name': '渭滨区',
+  'cityID': 305,
+  'disSort': null
+}, {
+  'id': 2412,
+  'name': '金台区',
+  'cityID': 305,
+  'disSort': null
+}, {
+  'id': 2413,
+  'name': '陈仓区',
+  'cityID': 305,
+  'disSort': null
+}, {
+  'id': 2414,
+  'name': '凤翔县',
+  'cityID': 305,
+  'disSort': null
+}, {
+  'id': 2415,
+  'name': '岐山县',
+  'cityID': 305,
+  'disSort': null
+}, {
+  'id': 2416,
+  'name': '扶风县',
+  'cityID': 305,
+  'disSort': null
+}, {
+  'id': 2417,
+  'name': '眉县',
+  'cityID': 305,
+  'disSort': null
+}, {
+  'id': 2418,
+  'name': '陇县',
+  'cityID': 305,
+  'disSort': null
+}, {
+  'id': 2419,
+  'name': '千阳县',
+  'cityID': 305,
+  'disSort': null
+}, {
+  'id': 2420,
+  'name': '麟游县',
+  'cityID': 305,
+  'disSort': null
+}, {
+  'id': 2421,
+  'name': '凤县',
+  'cityID': 305,
+  'disSort': null
+}, {
+  'id': 2422,
+  'name': '太白县',
+  'cityID': 305,
+  'disSort': null
+}, {
+  'id': 2423,
+  'name': '王益区',
+  'cityID': 306,
+  'disSort': null
+}, {
+  'id': 2424,
+  'name': '印台区',
+  'cityID': 306,
+  'disSort': null
+}, {
+  'id': 2425,
+  'name': '耀州区',
+  'cityID': 306,
+  'disSort': null
+}, {
+  'id': 2426,
+  'name': '宜君县',
+  'cityID': 306,
+  'disSort': null
+}, {
+  'id': 2427,
+  'name': '港口区',
+  'cityID': 307,
+  'disSort': null
+}, {
+  'id': 2428,
+  'name': '防城区',
+  'cityID': 307,
+  'disSort': null
+}, {
+  'id': 2429,
+  'name': '上思县',
+  'cityID': 307,
+  'disSort': null
+}, {
+  'id': 2430,
+  'name': '东兴市',
+  'cityID': 307,
+  'disSort': null
+}, {
+  'id': 2431,
+  'name': '兴宁区',
+  'cityID': 308,
+  'disSort': null
+}, {
+  'id': 2432,
+  'name': '青秀区',
+  'cityID': 308,
+  'disSort': null
+}, {
+  'id': 2433,
+  'name': '江南区',
+  'cityID': 308,
+  'disSort': null
+}, {
+  'id': 2434,
+  'name': '西乡塘区',
+  'cityID': 308,
+  'disSort': null
+}, {
+  'id': 2435,
+  'name': '良庆区',
+  'cityID': 308,
+  'disSort': null
+}, {
+  'id': 2436,
+  'name': '邕宁区',
+  'cityID': 308,
+  'disSort': null
+}, {
+  'id': 2437,
+  'name': '武鸣县',
+  'cityID': 308,
+  'disSort': null
+}, {
+  'id': 2438,
+  'name': '隆安县',
+  'cityID': 308,
+  'disSort': null
+}, {
+  'id': 2439,
+  'name': '马山县',
+  'cityID': 308,
+  'disSort': null
+}, {
+  'id': 2440,
+  'name': '上林县',
+  'cityID': 308,
+  'disSort': null
+}, {
+  'id': 2441,
+  'name': '宾阳县',
+  'cityID': 308,
+  'disSort': null
+}, {
+  'id': 2442,
+  'name': '横县',
+  'cityID': 308,
+  'disSort': null
+}, {
+  'id': 2443,
+  'name': '江洲区',
+  'cityID': 309,
+  'disSort': null
+}, {
+  'id': 2444,
+  'name': '扶绥县',
+  'cityID': 309,
+  'disSort': null
+}, {
+  'id': 2445,
+  'name': '宁明县',
+  'cityID': 309,
+  'disSort': null
+}, {
+  'id': 2446,
+  'name': '龙州县',
+  'cityID': 309,
+  'disSort': null
+}, {
+  'id': 2447,
+  'name': '大新县',
+  'cityID': 309,
+  'disSort': null
+}, {
+  'id': 2448,
+  'name': '天等县',
+  'cityID': 309,
+  'disSort': null
+}, {
+  'id': 2449,
+  'name': '凭祥市',
+  'cityID': 309,
+  'disSort': null
+}, {
+  'id': 2450,
+  'name': '兴宾区',
+  'cityID': 310,
+  'disSort': null
+}, {
+  'id': 2451,
+  'name': '忻城县',
+  'cityID': 310,
+  'disSort': null
+}, {
+  'id': 2452,
+  'name': '象州县',
+  'cityID': 310,
+  'disSort': null
+}, {
+  'id': 2453,
+  'name': '武宣县',
+  'cityID': 310,
+  'disSort': null
+}, {
+  'id': 2454,
+  'name': '金秀瑶族自治县',
+  'cityID': 310,
+  'disSort': null
+}, {
+  'id': 2455,
+  'name': '合山市',
+  'cityID': 310,
+  'disSort': null
+}, {
+  'id': 2456,
+  'name': '城中区',
+  'cityID': 311,
+  'disSort': null
+}, {
+  'id': 2457,
+  'name': '鱼峰区',
+  'cityID': 311,
+  'disSort': null
+}, {
+  'id': 2458,
+  'name': '柳南区',
+  'cityID': 311,
+  'disSort': null
+}, {
+  'id': 2459,
+  'name': '柳北区',
+  'cityID': 311,
+  'disSort': null
+}, {
+  'id': 2460,
+  'name': '柳江县',
+  'cityID': 311,
+  'disSort': null
+}, {
+  'id': 2461,
+  'name': '柳城县',
+  'cityID': 311,
+  'disSort': null
+}, {
+  'id': 2462,
+  'name': '鹿寨县',
+  'cityID': 311,
+  'disSort': null
+}, {
+  'id': 2463,
+  'name': '融安县',
+  'cityID': 311,
+  'disSort': null
+}, {
+  'id': 2464,
+  'name': '融水苗族自治县',
+  'cityID': 311,
+  'disSort': null
+}, {
+  'id': 2465,
+  'name': '三江侗族自治县',
+  'cityID': 311,
+  'disSort': null
+}, {
+  'id': 2466,
+  'name': '秀峰区',
+  'cityID': 312,
+  'disSort': null
+}, {
+  'id': 2467,
+  'name': '叠彩区',
+  'cityID': 312,
+  'disSort': null
+}, {
+  'id': 2468,
+  'name': '象山区',
+  'cityID': 312,
+  'disSort': null
+}, {
+  'id': 2469,
+  'name': '七星区',
+  'cityID': 312,
+  'disSort': null
+}, {
+  'id': 2470,
+  'name': '雁山区',
+  'cityID': 312,
+  'disSort': null
+}, {
+  'id': 2471,
+  'name': '阳朔县',
+  'cityID': 312,
+  'disSort': null
+}, {
+  'id': 2472,
+  'name': '临桂县',
+  'cityID': 312,
+  'disSort': null
+}, {
+  'id': 2473,
+  'name': '灵川县',
+  'cityID': 312,
+  'disSort': null
+}, {
+  'id': 2474,
+  'name': '全州县',
+  'cityID': 312,
+  'disSort': null
+}, {
+  'id': 2475,
+  'name': '兴安县',
+  'cityID': 312,
+  'disSort': null
+}, {
+  'id': 2476,
+  'name': '永福县',
+  'cityID': 312,
+  'disSort': null
+}, {
+  'id': 2477,
+  'name': '灌阳县',
+  'cityID': 312,
+  'disSort': null
+}, {
+  'id': 2478,
+  'name': '龙胜各族自治县',
+  'cityID': 312,
+  'disSort': null
+}, {
+  'id': 2479,
+  'name': '资源县',
+  'cityID': 312,
+  'disSort': null
+}, {
+  'id': 2480,
+  'name': '平乐县',
+  'cityID': 312,
+  'disSort': null
+}, {
+  'id': 2481,
+  'name': '荔浦县',
+  'cityID': 312,
+  'disSort': null
+}, {
+  'id': 2482,
+  'name': '恭城瑶族自治县',
+  'cityID': 312,
+  'disSort': null
+}, {
+  'id': 2483,
+  'name': '万秀区',
+  'cityID': 313,
+  'disSort': null
+}, {
+  'id': 2484,
+  'name': '碟山区',
+  'cityID': 313,
+  'disSort': null
+}, {
+  'id': 2485,
+  'name': '长洲区',
+  'cityID': 313,
+  'disSort': null
+}, {
+  'id': 2486,
+  'name': '苍梧县',
+  'cityID': 313,
+  'disSort': null
+}, {
+  'id': 2487,
+  'name': '藤县',
+  'cityID': 313,
+  'disSort': null
+}, {
+  'id': 2488,
+  'name': '蒙山县',
+  'cityID': 313,
+  'disSort': null
+}, {
+  'id': 2489,
+  'name': '岑溪市',
+  'cityID': 313,
+  'disSort': null
+}, {
+  'id': 2490,
+  'name': '八步区',
+  'cityID': 314,
+  'disSort': null
+}, {
+  'id': 2491,
+  'name': '昭平县',
+  'cityID': 314,
+  'disSort': null
+}, {
+  'id': 2492,
+  'name': '钟山县',
+  'cityID': 314,
+  'disSort': null
+}, {
+  'id': 2493,
+  'name': '富川瑶族自治县',
+  'cityID': 314,
+  'disSort': null
+}, {
+  'id': 2494,
+  'name': '港北区',
+  'cityID': 315,
+  'disSort': null
+}, {
+  'id': 2495,
+  'name': '港南区',
+  'cityID': 315,
+  'disSort': null
+}, {
+  'id': 2496,
+  'name': '覃塘区',
+  'cityID': 315,
+  'disSort': null
+}, {
+  'id': 2497,
+  'name': '平南县',
+  'cityID': 315,
+  'disSort': null
+}, {
+  'id': 2498,
+  'name': '桂平市',
+  'cityID': 315,
+  'disSort': null
+}, {
+  'id': 2499,
+  'name': '玉州区',
+  'cityID': 316,
+  'disSort': null
+}, {
+  'id': 2500,
+  'name': '容县',
+  'cityID': 316,
+  'disSort': null
+}, {
+  'id': 2501,
+  'name': '陆川县',
+  'cityID': 316,
+  'disSort': null
+}, {
+  'id': 2502,
+  'name': '博白县',
+  'cityID': 316,
+  'disSort': null
+}, {
+  'id': 2503,
+  'name': '兴业县',
+  'cityID': 316,
+  'disSort': null
+}, {
+  'id': 2504,
+  'name': '北流市',
+  'cityID': 316,
+  'disSort': null
+}, {
+  'id': 2505,
+  'name': '右江区',
+  'cityID': 317,
+  'disSort': null
+}, {
+  'id': 2506,
+  'name': '田阳县',
+  'cityID': 317,
+  'disSort': null
+}, {
+  'id': 2507,
+  'name': '田东县',
+  'cityID': 317,
+  'disSort': null
+}, {
+  'id': 2508,
+  'name': '平果县',
+  'cityID': 317,
+  'disSort': null
+}, {
+  'id': 2509,
+  'name': '德保县',
+  'cityID': 317,
+  'disSort': null
+}, {
+  'id': 2510,
+  'name': '靖西县',
+  'cityID': 317,
+  'disSort': null
+}, {
+  'id': 2511,
+  'name': '那坡县',
+  'cityID': 317,
+  'disSort': null
+}, {
+  'id': 2512,
+  'name': '凌云县',
+  'cityID': 317,
+  'disSort': null
+}, {
+  'id': 2513,
+  'name': '乐业县',
+  'cityID': 317,
+  'disSort': null
+}, {
+  'id': 2514,
+  'name': '田林县',
+  'cityID': 317,
+  'disSort': null
+}, {
+  'id': 2515,
+  'name': '西林县',
+  'cityID': 317,
+  'disSort': null
+}, {
+  'id': 2516,
+  'name': '隆林各族自治县',
+  'cityID': 317,
+  'disSort': null
+}, {
+  'id': 2517,
+  'name': '钦南区',
+  'cityID': 318,
+  'disSort': null
+}, {
+  'id': 2518,
+  'name': '钦北区',
+  'cityID': 318,
+  'disSort': null
+}, {
+  'id': 2519,
+  'name': '灵山县',
+  'cityID': 318,
+  'disSort': null
+}, {
+  'id': 2520,
+  'name': '浦北县',
+  'cityID': 318,
+  'disSort': null
+}, {
+  'id': 2521,
+  'name': '金城江区',
+  'cityID': 319,
+  'disSort': null
+}, {
+  'id': 2522,
+  'name': '南丹县',
+  'cityID': 319,
+  'disSort': null
+}, {
+  'id': 2523,
+  'name': '天峨县',
+  'cityID': 319,
+  'disSort': null
+}, {
+  'id': 2524,
+  'name': '凤山县',
+  'cityID': 319,
+  'disSort': null
+}, {
+  'id': 2525,
+  'name': '东兰县',
+  'cityID': 319,
+  'disSort': null
+}, {
+  'id': 2526,
+  'name': '罗城仫佬族自治县',
+  'cityID': 319,
+  'disSort': null
+}, {
+  'id': 2527,
+  'name': '环江毛南族自治县',
+  'cityID': 319,
+  'disSort': null
+}, {
+  'id': 2528,
+  'name': '巴马瑶族自治县',
+  'cityID': 319,
+  'disSort': null
+}, {
+  'id': 2529,
+  'name': '都安瑶族自治县',
+  'cityID': 319,
+  'disSort': null
+}, {
+  'id': 2530,
+  'name': '大化瑶族自治县',
+  'cityID': 319,
+  'disSort': null
+}, {
+  'id': 2531,
+  'name': '宜州市',
+  'cityID': 319,
+  'disSort': null
+}, {
+  'id': 2532,
+  'name': '海城区',
+  'cityID': 320,
+  'disSort': null
+}, {
+  'id': 2533,
+  'name': '银海区',
+  'cityID': 320,
+  'disSort': null
+}, {
+  'id': 2534,
+  'name': '铁山港区',
+  'cityID': 320,
+  'disSort': null
+}, {
+  'id': 2535,
+  'name': '合浦县',
+  'cityID': 320,
+  'disSort': null
+}, {
+  'id': 2536,
+  'name': '城关区',
+  'cityID': 321,
+  'disSort': null
+}, {
+  'id': 2537,
+  'name': '林周县',
+  'cityID': 321,
+  'disSort': null
+}, {
+  'id': 2538,
+  'name': '当雄县',
+  'cityID': 321,
+  'disSort': null
+}, {
+  'id': 2539,
+  'name': '尼木县',
+  'cityID': 321,
+  'disSort': null
+}, {
+  'id': 2540,
+  'name': '曲水县',
+  'cityID': 321,
+  'disSort': null
+}, {
+  'id': 2541,
+  'name': '堆龙德庆县',
+  'cityID': 321,
+  'disSort': null
+}, {
+  'id': 2542,
+  'name': '达孜县',
+  'cityID': 321,
+  'disSort': null
+}, {
+  'id': 2543,
+  'name': '墨竹工卡县',
+  'cityID': 321,
+  'disSort': null
+}, {
+  'id': 2544,
+  'name': '日喀则市',
+  'cityID': 322,
+  'disSort': null
+}, {
+  'id': 2545,
+  'name': '南木林县',
+  'cityID': 322,
+  'disSort': null
+}, {
+  'id': 2546,
+  'name': '江孜县',
+  'cityID': 322,
+  'disSort': null
+}, {
+  'id': 2547,
+  'name': '定日县',
+  'cityID': 322,
+  'disSort': null
+}, {
+  'id': 2548,
+  'name': '萨迦县',
+  'cityID': 322,
+  'disSort': null
+}, {
+  'id': 2549,
+  'name': '拉孜县',
+  'cityID': 322,
+  'disSort': null
+}, {
+  'id': 2550,
+  'name': '昂仁县',
+  'cityID': 322,
+  'disSort': null
+}, {
+  'id': 2551,
+  'name': '谢通门县',
+  'cityID': 322,
+  'disSort': null
+}, {
+  'id': 2552,
+  'name': '白朗县',
+  'cityID': 322,
+  'disSort': null
+}, {
+  'id': 2553,
+  'name': '仁布县',
+  'cityID': 322,
+  'disSort': null
+}, {
+  'id': 2554,
+  'name': '康马县',
+  'cityID': 322,
+  'disSort': null
+}, {
+  'id': 2555,
+  'name': '定结县',
+  'cityID': 322,
+  'disSort': null
+}, {
+  'id': 2556,
+  'name': '仲巴县',
+  'cityID': 322,
+  'disSort': null
+}, {
+  'id': 2557,
+  'name': '亚东县',
+  'cityID': 322,
+  'disSort': null
+}, {
+  'id': 2558,
+  'name': '吉隆县',
+  'cityID': 322,
+  'disSort': null
+}, {
+  'id': 2559,
+  'name': '聂拉木县',
+  'cityID': 322,
+  'disSort': null
+}, {
+  'id': 2560,
+  'name': '萨嘎县',
+  'cityID': 322,
+  'disSort': null
+}, {
+  'id': 2561,
+  'name': '岗巴县',
+  'cityID': 322,
+  'disSort': null
+}, {
+  'id': 2562,
+  'name': '乃东县',
+  'cityID': 323,
+  'disSort': null
+}, {
+  'id': 2563,
+  'name': '扎囊县',
+  'cityID': 323,
+  'disSort': null
+}, {
+  'id': 2564,
+  'name': '贡嘎县',
+  'cityID': 323,
+  'disSort': null
+}, {
+  'id': 2565,
+  'name': '桑日县',
+  'cityID': 323,
+  'disSort': null
+}, {
+  'id': 2566,
+  'name': '琼结县',
+  'cityID': 323,
+  'disSort': null
+}, {
+  'id': 2567,
+  'name': '曲松县',
+  'cityID': 323,
+  'disSort': null
+}, {
+  'id': 2568,
+  'name': '措美县',
+  'cityID': 323,
+  'disSort': null
+}, {
+  'id': 2569,
+  'name': '洛扎县',
+  'cityID': 323,
+  'disSort': null
+}, {
+  'id': 2570,
+  'name': '加查县',
+  'cityID': 323,
+  'disSort': null
+}, {
+  'id': 2571,
+  'name': '隆子县',
+  'cityID': 323,
+  'disSort': null
+}, {
+  'id': 2572,
+  'name': '错那县',
+  'cityID': 323,
+  'disSort': null
+}, {
+  'id': 2573,
+  'name': '浪卡子县',
+  'cityID': 323,
+  'disSort': null
+}, {
+  'id': 2574,
+  'name': '林芝县',
+  'cityID': 324,
+  'disSort': null
+}, {
+  'id': 2575,
+  'name': '工布江达县',
+  'cityID': 324,
+  'disSort': null
+}, {
+  'id': 2576,
+  'name': '米林县',
+  'cityID': 324,
+  'disSort': null
+}, {
+  'id': 2577,
+  'name': '墨脱县',
+  'cityID': 324,
+  'disSort': null
+}, {
+  'id': 2578,
+  'name': '波密县',
+  'cityID': 324,
+  'disSort': null
+}, {
+  'id': 2579,
+  'name': '察隅县',
+  'cityID': 324,
+  'disSort': null
+}, {
+  'id': 2580,
+  'name': '朗县',
+  'cityID': 324,
+  'disSort': null
+}, {
+  'id': 2581,
+  'name': '昌都县',
+  'cityID': 325,
+  'disSort': null
+}, {
+  'id': 2582,
+  'name': '江达县',
+  'cityID': 325,
+  'disSort': null
+}, {
+  'id': 2583,
+  'name': '贡觉县',
+  'cityID': 325,
+  'disSort': null
+}, {
+  'id': 2584,
+  'name': '类乌齐县',
+  'cityID': 325,
+  'disSort': null
+}, {
+  'id': 2585,
+  'name': '丁青县',
+  'cityID': 325,
+  'disSort': null
+}, {
+  'id': 2586,
+  'name': '察雅县',
+  'cityID': 325,
+  'disSort': null
+}, {
+  'id': 2587,
+  'name': '八宿县',
+  'cityID': 325,
+  'disSort': null
+}, {
+  'id': 2588,
+  'name': '左贡县',
+  'cityID': 325,
+  'disSort': null
+}, {
+  'id': 2589,
+  'name': '芒康县',
+  'cityID': 325,
+  'disSort': null
+}, {
+  'id': 2590,
+  'name': '洛隆县',
+  'cityID': 325,
+  'disSort': null
+}, {
+  'id': 2591,
+  'name': '边坝县',
+  'cityID': 325,
+  'disSort': null
+}, {
+  'id': 2592,
+  'name': '那曲县',
+  'cityID': 326,
+  'disSort': null
+}, {
+  'id': 2593,
+  'name': '嘉黎县',
+  'cityID': 326,
+  'disSort': null
+}, {
+  'id': 2594,
+  'name': '比如县',
+  'cityID': 326,
+  'disSort': null
+}, {
+  'id': 2595,
+  'name': '聂荣县',
+  'cityID': 326,
+  'disSort': null
+}, {
+  'id': 2596,
+  'name': '安多县',
+  'cityID': 326,
+  'disSort': null
+}, {
+  'id': 2597,
+  'name': '申扎县',
+  'cityID': 326,
+  'disSort': null
+}, {
+  'id': 2598,
+  'name': '索县',
+  'cityID': 326,
+  'disSort': null
+}, {
+  'id': 2599,
+  'name': '班戈县',
+  'cityID': 326,
+  'disSort': null
+}, {
+  'id': 2600,
+  'name': '巴青县',
+  'cityID': 326,
+  'disSort': null
+}, {
+  'id': 2601,
+  'name': '尼玛县',
+  'cityID': 326,
+  'disSort': null
+}, {
+  'id': 2602,
+  'name': '普兰县',
+  'cityID': 327,
+  'disSort': null
+}, {
+  'id': 2603,
+  'name': '札达县',
+  'cityID': 327,
+  'disSort': null
+}, {
+  'id': 2604,
+  'name': '噶尔县',
+  'cityID': 327,
+  'disSort': null
+}, {
+  'id': 2605,
+  'name': '日土县',
+  'cityID': 327,
+  'disSort': null
+}, {
+  'id': 2606,
+  'name': '革吉县',
+  'cityID': 327,
+  'disSort': null
+}, {
+  'id': 2607,
+  'name': '改则县',
+  'cityID': 327,
+  'disSort': null
+}, {
+  'id': 2608,
+  'name': '措勤县',
+  'cityID': 327,
+  'disSort': null
+}, {
+  'id': 2609,
+  'name': '兴庆区',
+  'cityID': 328,
+  'disSort': null
+}, {
+  'id': 2610,
+  'name': '西夏区',
+  'cityID': 328,
+  'disSort': null
+}, {
+  'id': 2611,
+  'name': '金凤区',
+  'cityID': 328,
+  'disSort': null
+}, {
+  'id': 2612,
+  'name': '永宁县',
+  'cityID': 328,
+  'disSort': null
+}, {
+  'id': 2613,
+  'name': '贺兰县',
+  'cityID': 328,
+  'disSort': null
+}, {
+  'id': 2614,
+  'name': '灵武市',
+  'cityID': 328,
+  'disSort': null
+}, {
+  'id': 2615,
+  'name': '大武口区',
+  'cityID': 329,
+  'disSort': null
+}, {
+  'id': 2616,
+  'name': '惠农区',
+  'cityID': 329,
+  'disSort': null
+}, {
+  'id': 2617,
+  'name': '平罗县',
+  'cityID': 329,
+  'disSort': null
+}, {
+  'id': 2618,
+  'name': '利通区',
+  'cityID': 330,
+  'disSort': null
+}, {
+  'id': 2619,
+  'name': '盐池县',
+  'cityID': 330,
+  'disSort': null
+}, {
+  'id': 2620,
+  'name': '同心县',
+  'cityID': 330,
+  'disSort': null
+}, {
+  'id': 2621,
+  'name': '青铜峡市',
+  'cityID': 330,
+  'disSort': null
+}, {
+  'id': 2622,
+  'name': '原州区',
+  'cityID': 331,
+  'disSort': null
+}, {
+  'id': 2623,
+  'name': '西吉县',
+  'cityID': 331,
+  'disSort': null
+}, {
+  'id': 2624,
+  'name': '隆德县',
+  'cityID': 331,
+  'disSort': null
+}, {
+  'id': 2625,
+  'name': '泾源县',
+  'cityID': 331,
+  'disSort': null
+}, {
+  'id': 2626,
+  'name': '彭阳县',
+  'cityID': 331,
+  'disSort': null
+}, {
+  'id': 2627,
+  'name': '沙坡头区',
+  'cityID': 332,
+  'disSort': null
+}, {
+  'id': 2628,
+  'name': '中宁县',
+  'cityID': 332,
+  'disSort': null
+}, {
+  'id': 2629,
+  'name': '海原县',
+  'cityID': 332,
+  'disSort': null
+}, {
+  'id': 2630,
+  'name': '塔城市',
+  'cityID': 333,
+  'disSort': null
+}, {
+  'id': 2631,
+  'name': '乌苏市',
+  'cityID': 333,
+  'disSort': null
+}, {
+  'id': 2632,
+  'name': '额敏县',
+  'cityID': 333,
+  'disSort': null
+}, {
+  'id': 2633,
+  'name': '沙湾县',
+  'cityID': 333,
+  'disSort': null
+}, {
+  'id': 2634,
+  'name': '托里县',
+  'cityID': 333,
+  'disSort': null
+}, {
+  'id': 2635,
+  'name': '裕民县',
+  'cityID': 333,
+  'disSort': null
+}, {
+  'id': 2636,
+  'name': '和布克赛尔蒙古自治县',
+  'cityID': 333,
+  'disSort': null
+}, {
+  'id': 2637,
+  'name': '哈密市',
+  'cityID': 334,
+  'disSort': null
+}, {
+  'id': 2638,
+  'name': '巴里坤哈萨克自治县',
+  'cityID': 334,
+  'disSort': null
+}, {
+  'id': 2639,
+  'name': '伊吾县',
+  'cityID': 334,
+  'disSort': null
+}, {
+  'id': 2640,
+  'name': '和田市',
+  'cityID': 335,
+  'disSort': null
+}, {
+  'id': 2641,
+  'name': '和田县',
+  'cityID': 335,
+  'disSort': null
+}, {
+  'id': 2642,
+  'name': '墨玉县',
+  'cityID': 335,
+  'disSort': null
+}, {
+  'id': 2643,
+  'name': '皮山县',
+  'cityID': 335,
+  'disSort': null
+}, {
+  'id': 2644,
+  'name': '洛浦县',
+  'cityID': 335,
+  'disSort': null
+}, {
+  'id': 2645,
+  'name': '策勒县',
+  'cityID': 335,
+  'disSort': null
+}, {
+  'id': 2646,
+  'name': '于田县',
+  'cityID': 335,
+  'disSort': null
+}, {
+  'id': 2647,
+  'name': '民丰县',
+  'cityID': 335,
+  'disSort': null
+}, {
+  'id': 2648,
+  'name': '阿勒泰市',
+  'cityID': 336,
+  'disSort': null
+}, {
+  'id': 2649,
+  'name': '布尔津县',
+  'cityID': 336,
+  'disSort': null
+}, {
+  'id': 2650,
+  'name': '富蕴县',
+  'cityID': 336,
+  'disSort': null
+}, {
+  'id': 2651,
+  'name': '福海县',
+  'cityID': 336,
+  'disSort': null
+}, {
+  'id': 2652,
+  'name': '哈巴河县',
+  'cityID': 336,
+  'disSort': null
+}, {
+  'id': 2653,
+  'name': '青河县',
+  'cityID': 336,
+  'disSort': null
+}, {
+  'id': 2654,
+  'name': '吉木乃县',
+  'cityID': 336,
+  'disSort': null
+}, {
+  'id': 2655,
+  'name': '阿图什市',
+  'cityID': 337,
+  'disSort': null
+}, {
+  'id': 2656,
+  'name': '阿克陶县',
+  'cityID': 337,
+  'disSort': null
+}, {
+  'id': 2657,
+  'name': '阿合奇县',
+  'cityID': 337,
+  'disSort': null
+}, {
+  'id': 2658,
+  'name': '乌恰县',
+  'cityID': 337,
+  'disSort': null
+}, {
+  'id': 2659,
+  'name': '博乐市',
+  'cityID': 338,
+  'disSort': null
+}, {
+  'id': 2660,
+  'name': '精河县',
+  'cityID': 338,
+  'disSort': null
+}, {
+  'id': 2661,
+  'name': '温泉县',
+  'cityID': 338,
+  'disSort': null
+}, {
+  'id': 2662,
+  'name': '独山子区',
+  'cityID': 339,
+  'disSort': null
+}, {
+  'id': 2663,
+  'name': '克拉玛依区',
+  'cityID': 339,
+  'disSort': null
+}, {
+  'id': 2664,
+  'name': '白碱滩区',
+  'cityID': 339,
+  'disSort': null
+}, {
+  'id': 2665,
+  'name': '乌尔禾区',
+  'cityID': 339,
+  'disSort': null
+}, {
+  'id': 2666,
+  'name': '天山区',
+  'cityID': 340,
+  'disSort': null
+}, {
+  'id': 2667,
+  'name': '沙依巴克区',
+  'cityID': 340,
+  'disSort': null
+}, {
+  'id': 2668,
+  'name': '新市区',
+  'cityID': 340,
+  'disSort': null
+}, {
+  'id': 2669,
+  'name': '水磨沟区',
+  'cityID': 340,
+  'disSort': null
+}, {
+  'id': 2670,
+  'name': '头屯河区',
+  'cityID': 340,
+  'disSort': null
+}, {
+  'id': 2671,
+  'name': '达坂城区',
+  'cityID': 340,
+  'disSort': null
+}, {
+  'id': 2672,
+  'name': '米东区',
+  'cityID': 340,
+  'disSort': null
+}, {
+  'id': 2673,
+  'name': '乌鲁木齐县',
+  'cityID': 340,
+  'disSort': null
+}, {
+  'id': 2674,
+  'name': '昌吉市',
+  'cityID': 342,
+  'disSort': null
+}, {
+  'id': 2675,
+  'name': '阜康市',
+  'cityID': 342,
+  'disSort': null
+}, {
+  'id': 2676,
+  'name': '呼图壁县',
+  'cityID': 342,
+  'disSort': null
+}, {
+  'id': 2677,
+  'name': '玛纳斯县',
+  'cityID': 342,
+  'disSort': null
+}, {
+  'id': 2678,
+  'name': '奇台县',
+  'cityID': 342,
+  'disSort': null
+}, {
+  'id': 2679,
+  'name': '吉木萨尔县',
+  'cityID': 342,
+  'disSort': null
+}, {
+  'id': 2680,
+  'name': '木垒哈萨克自治县',
+  'cityID': 342,
+  'disSort': null
+}, {
+  'id': 2681,
+  'name': '吐鲁番市',
+  'cityID': 344,
+  'disSort': null
+}, {
+  'id': 2682,
+  'name': '鄯善县',
+  'cityID': 344,
+  'disSort': null
+}, {
+  'id': 2683,
+  'name': '托克逊县',
+  'cityID': 344,
+  'disSort': null
+}, {
+  'id': 2684,
+  'name': '库尔勒市',
+  'cityID': 345,
+  'disSort': null
+}, {
+  'id': 2685,
+  'name': '轮台县',
+  'cityID': 345,
+  'disSort': null
+}, {
+  'id': 2686,
+  'name': '尉犁县',
+  'cityID': 345,
+  'disSort': null
+}, {
+  'id': 2687,
+  'name': '若羌县',
+  'cityID': 345,
+  'disSort': null
+}, {
+  'id': 2688,
+  'name': '且末县',
+  'cityID': 345,
+  'disSort': null
+}, {
+  'id': 2689,
+  'name': '焉耆回族自治县',
+  'cityID': 345,
+  'disSort': null
+}, {
+  'id': 2690,
+  'name': '和静县',
+  'cityID': 345,
+  'disSort': null
+}, {
+  'id': 2691,
+  'name': '和硕县',
+  'cityID': 345,
+  'disSort': null
+}, {
+  'id': 2692,
+  'name': '博湖县',
+  'cityID': 345,
+  'disSort': null
+}, {
+  'id': 2693,
+  'name': '阿克苏市',
+  'cityID': 346,
+  'disSort': null
+}, {
+  'id': 2694,
+  'name': '温宿县',
+  'cityID': 346,
+  'disSort': null
+}, {
+  'id': 2695,
+  'name': '库车县',
+  'cityID': 346,
+  'disSort': null
+}, {
+  'id': 2696,
+  'name': '沙雅县',
+  'cityID': 346,
+  'disSort': null
+}, {
+  'id': 2697,
+  'name': '新和县',
+  'cityID': 346,
+  'disSort': null
+}, {
+  'id': 2698,
+  'name': '拜城县',
+  'cityID': 346,
+  'disSort': null
+}, {
+  'id': 2699,
+  'name': '乌什县',
+  'cityID': 346,
+  'disSort': null
+}, {
+  'id': 2700,
+  'name': '阿瓦提县',
+  'cityID': 346,
+  'disSort': null
+}, {
+  'id': 2701,
+  'name': '柯坪县',
+  'cityID': 346,
+  'disSort': null
+}, {
+  'id': 2702,
+  'name': '喀什市',
+  'cityID': 348,
+  'disSort': null
+}, {
+  'id': 2703,
+  'name': '疏附县',
+  'cityID': 348,
+  'disSort': null
+}, {
+  'id': 2704,
+  'name': '疏勒县',
+  'cityID': 348,
+  'disSort': null
+}, {
+  'id': 2705,
+  'name': '英吉沙县',
+  'cityID': 348,
+  'disSort': null
+}, {
+  'id': 2706,
+  'name': '泽普县',
+  'cityID': 348,
+  'disSort': null
+}, {
+  'id': 2707,
+  'name': '莎车县',
+  'cityID': 348,
+  'disSort': null
+}, {
+  'id': 2708,
+  'name': '叶城县',
+  'cityID': 348,
+  'disSort': null
+}, {
+  'id': 2709,
+  'name': '麦盖提县',
+  'cityID': 348,
+  'disSort': null
+}, {
+  'id': 2710,
+  'name': '岳普湖县',
+  'cityID': 348,
+  'disSort': null
+}, {
+  'id': 2711,
+  'name': '伽师县',
+  'cityID': 348,
+  'disSort': null
+}, {
+  'id': 2712,
+  'name': '巴楚县',
+  'cityID': 348,
+  'disSort': null
+}, {
+  'id': 2713,
+  'name': '塔什库尔干塔吉克自治县',
+  'cityID': 348,
+  'disSort': null
+}, {
+  'id': 2714,
+  'name': '伊宁市',
+  'cityID': 350,
+  'disSort': null
+}, {
+  'id': 2715,
+  'name': '奎屯市',
+  'cityID': 350,
+  'disSort': null
+}, {
+  'id': 2716,
+  'name': '伊宁县',
+  'cityID': 350,
+  'disSort': null
+}, {
+  'id': 2717,
+  'name': '察布查尔锡伯自治县',
+  'cityID': 350,
+  'disSort': null
+}, {
+  'id': 2718,
+  'name': '霍城县',
+  'cityID': 350,
+  'disSort': null
+}, {
+  'id': 2719,
+  'name': '巩留县',
+  'cityID': 350,
+  'disSort': null
+}, {
+  'id': 2720,
+  'name': '新源县',
+  'cityID': 350,
+  'disSort': null
+}, {
+  'id': 2721,
+  'name': '昭苏县',
+  'cityID': 350,
+  'disSort': null
+}, {
+  'id': 2722,
+  'name': '特克斯县',
+  'cityID': 350,
+  'disSort': null
+}, {
+  'id': 2723,
+  'name': '尼勒克县',
+  'cityID': 350,
+  'disSort': null
+}, {
+  'id': 2724,
+  'name': '海拉尔区',
+  'cityID': 351,
+  'disSort': null
+}, {
+  'id': 2725,
+  'name': '阿荣旗',
+  'cityID': 351,
+  'disSort': null
+}, {
+  'id': 2726,
+  'name': '莫力达瓦达斡尔族自治旗',
+  'cityID': 351,
+  'disSort': null
+}, {
+  'id': 2727,
+  'name': '鄂伦春自治旗',
+  'cityID': 351,
+  'disSort': null
+}, {
+  'id': 2728,
+  'name': '鄂温克族自治旗',
+  'cityID': 351,
+  'disSort': null
+}, {
+  'id': 2729,
+  'name': '陈巴尔虎旗',
+  'cityID': 351,
+  'disSort': null
+}, {
+  'id': 2730,
+  'name': '新巴尔虎左旗',
+  'cityID': 351,
+  'disSort': null
+}, {
+  'id': 2731,
+  'name': '新巴尔虎右旗',
+  'cityID': 351,
+  'disSort': null
+}, {
+  'id': 2732,
+  'name': '满洲里市',
+  'cityID': 351,
+  'disSort': null
+}, {
+  'id': 2733,
+  'name': '牙克石市',
+  'cityID': 351,
+  'disSort': null
+}, {
+  'id': 2734,
+  'name': '扎兰屯市',
+  'cityID': 351,
+  'disSort': null
+}, {
+  'id': 2735,
+  'name': '额尔古纳市',
+  'cityID': 351,
+  'disSort': null
+}, {
+  'id': 2736,
+  'name': '根河市',
+  'cityID': 351,
+  'disSort': null
+}, {
+  'id': 2737,
+  'name': '新城区',
+  'cityID': 352,
+  'disSort': null
+}, {
+  'id': 2738,
+  'name': '回民区',
+  'cityID': 352,
+  'disSort': null
+}, {
+  'id': 2739,
+  'name': '玉泉区',
+  'cityID': 352,
+  'disSort': null
+}, {
+  'id': 2740,
+  'name': '赛罕区',
+  'cityID': 352,
+  'disSort': null
+}, {
+  'id': 2741,
+  'name': '土默特左旗',
+  'cityID': 352,
+  'disSort': null
+}, {
+  'id': 2742,
+  'name': '托克托县',
+  'cityID': 352,
+  'disSort': null
+}, {
+  'id': 2743,
+  'name': '和林格尔县',
+  'cityID': 352,
+  'disSort': null
+}, {
+  'id': 2744,
+  'name': '清水河县',
+  'cityID': 352,
+  'disSort': null
+}, {
+  'id': 2745,
+  'name': '武川县',
+  'cityID': 352,
+  'disSort': null
+}, {
+  'id': 2746,
+  'name': '东河区',
+  'cityID': 353,
+  'disSort': null
+}, {
+  'id': 2747,
+  'name': '昆都仑区',
+  'cityID': 353,
+  'disSort': null
+}, {
+  'id': 2748,
+  'name': '青山区',
+  'cityID': 353,
+  'disSort': null
+}, {
+  'id': 2749,
+  'name': '石拐区',
+  'cityID': 353,
+  'disSort': null
+}, {
+  'id': 2750,
+  'name': '白云鄂博矿区',
+  'cityID': 353,
+  'disSort': null
+}, {
+  'id': 2751,
+  'name': '九原区',
+  'cityID': 353,
+  'disSort': null
+}, {
+  'id': 2752,
+  'name': '土默特右旗',
+  'cityID': 353,
+  'disSort': null
+}, {
+  'id': 2753,
+  'name': '固阳县',
+  'cityID': 353,
+  'disSort': null
+}, {
+  'id': 2754,
+  'name': '达尔罕茂明安联合旗',
+  'cityID': 353,
+  'disSort': null
+}, {
+  'id': 2755,
+  'name': '海勃湾区',
+  'cityID': 354,
+  'disSort': null
+}, {
+  'id': 2756,
+  'name': '海南区',
+  'cityID': 354,
+  'disSort': null
+}, {
+  'id': 2757,
+  'name': '乌达区',
+  'cityID': 354,
+  'disSort': null
+}, {
+  'id': 2758,
+  'name': '集宁区',
+  'cityID': 355,
+  'disSort': null
+}, {
+  'id': 2759,
+  'name': '卓资县',
+  'cityID': 355,
+  'disSort': null
+}, {
+  'id': 2760,
+  'name': '化德县',
+  'cityID': 355,
+  'disSort': null
+}, {
+  'id': 2761,
+  'name': '商都县',
+  'cityID': 355,
+  'disSort': null
+}, {
+  'id': 2762,
+  'name': '兴和县',
+  'cityID': 355,
+  'disSort': null
+}, {
+  'id': 2763,
+  'name': '凉城县',
+  'cityID': 355,
+  'disSort': null
+}, {
+  'id': 2764,
+  'name': '察哈尔右翼前旗',
+  'cityID': 355,
+  'disSort': null
+}, {
+  'id': 2765,
+  'name': '察哈尔右翼中旗',
+  'cityID': 355,
+  'disSort': null
+}, {
+  'id': 2766,
+  'name': '察哈尔右翼后旗',
+  'cityID': 355,
+  'disSort': null
+}, {
+  'id': 2767,
+  'name': '四子王旗',
+  'cityID': 355,
+  'disSort': null
+}, {
+  'id': 2768,
+  'name': '丰镇市',
+  'cityID': 355,
+  'disSort': null
+}, {
+  'id': 2769,
+  'name': '科尔沁区',
+  'cityID': 356,
+  'disSort': null
+}, {
+  'id': 2770,
+  'name': '科尔沁左翼中旗',
+  'cityID': 356,
+  'disSort': null
+}, {
+  'id': 2771,
+  'name': '科尔沁左翼后旗',
+  'cityID': 356,
+  'disSort': null
+}, {
+  'id': 2772,
+  'name': '开鲁县',
+  'cityID': 356,
+  'disSort': null
+}, {
+  'id': 2773,
+  'name': '库伦旗',
+  'cityID': 356,
+  'disSort': null
+}, {
+  'id': 2774,
+  'name': '奈曼旗',
+  'cityID': 356,
+  'disSort': null
+}, {
+  'id': 2775,
+  'name': '扎鲁特旗',
+  'cityID': 356,
+  'disSort': null
+}, {
+  'id': 2776,
+  'name': '霍林郭勒市',
+  'cityID': 356,
+  'disSort': null
+}, {
+  'id': 2777,
+  'name': '红山区',
+  'cityID': 357,
+  'disSort': null
+}, {
+  'id': 2778,
+  'name': '元宝山区',
+  'cityID': 357,
+  'disSort': null
+}, {
+  'id': 2779,
+  'name': '松山区',
+  'cityID': 357,
+  'disSort': null
+}, {
+  'id': 2780,
+  'name': '阿鲁科尔沁旗',
+  'cityID': 357,
+  'disSort': null
+}, {
+  'id': 2781,
+  'name': '巴林左旗',
+  'cityID': 357,
+  'disSort': null
+}, {
+  'id': 2782,
+  'name': '巴林右旗',
+  'cityID': 357,
+  'disSort': null
+}, {
+  'id': 2783,
+  'name': '林西县',
+  'cityID': 357,
+  'disSort': null
+}, {
+  'id': 2784,
+  'name': '克什克腾旗',
+  'cityID': 357,
+  'disSort': null
+}, {
+  'id': 2785,
+  'name': '翁牛特旗',
+  'cityID': 357,
+  'disSort': null
+}, {
+  'id': 2786,
+  'name': '喀喇沁旗',
+  'cityID': 357,
+  'disSort': null
+}, {
+  'id': 2787,
+  'name': '宁城县',
+  'cityID': 357,
+  'disSort': null
+}, {
+  'id': 2788,
+  'name': '敖汉旗',
+  'cityID': 357,
+  'disSort': null
+}, {
+  'id': 2789,
+  'name': '东胜区',
+  'cityID': 358,
+  'disSort': null
+}, {
+  'id': 2790,
+  'name': '达拉特旗',
+  'cityID': 358,
+  'disSort': null
+}, {
+  'id': 2791,
+  'name': '准格尔旗',
+  'cityID': 358,
+  'disSort': null
+}, {
+  'id': 2792,
+  'name': '鄂托克前旗',
+  'cityID': 358,
+  'disSort': null
+}, {
+  'id': 2793,
+  'name': '鄂托克旗',
+  'cityID': 358,
+  'disSort': null
+}, {
+  'id': 2794,
+  'name': '杭锦旗',
+  'cityID': 358,
+  'disSort': null
+}, {
+  'id': 2795,
+  'name': '乌审旗',
+  'cityID': 358,
+  'disSort': null
+}, {
+  'id': 2796,
+  'name': '伊金霍洛旗',
+  'cityID': 358,
+  'disSort': null
+}, {
+  'id': 2797,
+  'name': '临河区',
+  'cityID': 359,
+  'disSort': null
+}, {
+  'id': 2798,
+  'name': '五原县',
+  'cityID': 359,
+  'disSort': null
+}, {
+  'id': 2799,
+  'name': '磴口县',
+  'cityID': 359,
+  'disSort': null
+}, {
+  'id': 2800,
+  'name': '乌拉特前旗',
+  'cityID': 359,
+  'disSort': null
+}, {
+  'id': 2801,
+  'name': '乌拉特中旗',
+  'cityID': 359,
+  'disSort': null
+}, {
+  'id': 2802,
+  'name': '乌拉特后旗',
+  'cityID': 359,
+  'disSort': null
+}, {
+  'id': 2803,
+  'name': '杭锦后旗',
+  'cityID': 359,
+  'disSort': null
+}, {
+  'id': 2804,
+  'name': '二连浩特市',
+  'cityID': 360,
+  'disSort': null
+}, {
+  'id': 2805,
+  'name': '锡林浩特市',
+  'cityID': 360,
+  'disSort': null
+}, {
+  'id': 2806,
+  'name': '阿巴嘎旗',
+  'cityID': 360,
+  'disSort': null
+}, {
+  'id': 2807,
+  'name': '苏尼特左旗',
+  'cityID': 360,
+  'disSort': null
+}, {
+  'id': 2808,
+  'name': '苏尼特右旗',
+  'cityID': 360,
+  'disSort': null
+}, {
+  'id': 2809,
+  'name': '东乌珠穆沁旗',
+  'cityID': 360,
+  'disSort': null
+}, {
+  'id': 2810,
+  'name': '西乌珠穆沁旗',
+  'cityID': 360,
+  'disSort': null
+}, {
+  'id': 2811,
+  'name': '太仆寺旗',
+  'cityID': 360,
+  'disSort': null
+}, {
+  'id': 2812,
+  'name': '镶黄旗',
+  'cityID': 360,
+  'disSort': null
+}, {
+  'id': 2813,
+  'name': '正镶白旗',
+  'cityID': 360,
+  'disSort': null
+}, {
+  'id': 2814,
+  'name': '正蓝旗',
+  'cityID': 360,
+  'disSort': null
+}, {
+  'id': 2815,
+  'name': '多伦县',
+  'cityID': 360,
+  'disSort': null
+}, {
+  'id': 2816,
+  'name': '乌兰浩特市',
+  'cityID': 361,
+  'disSort': null
+}, {
+  'id': 2817,
+  'name': '阿尔山市',
+  'cityID': 361,
+  'disSort': null
+}, {
+  'id': 2818,
+  'name': '科尔沁右翼前旗',
+  'cityID': 361,
+  'disSort': null
+}, {
+  'id': 2819,
+  'name': '科尔沁右翼中旗',
+  'cityID': 361,
+  'disSort': null
+}, {
+  'id': 2820,
+  'name': '扎赉特旗',
+  'cityID': 361,
+  'disSort': null
+}, {
+  'id': 2821,
+  'name': '突泉县',
+  'cityID': 361,
+  'disSort': null
+}, {
+  'id': 2822,
+  'name': '阿拉善左旗',
+  'cityID': 362,
+  'disSort': null
+}, {
+  'id': 2823,
+  'name': '阿拉善右旗',
+  'cityID': 362,
+  'disSort': null
+}, {
+  'id': 2824,
+  'name': '额济纳旗',
+  'cityID': 362,
+  'disSort': null
+}]
