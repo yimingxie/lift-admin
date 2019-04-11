@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>账户列表</h1>
+    <h1>权限管理页面</h1>
 
   </div>
 </template>
