@@ -3,6 +3,10 @@ import Router from 'vue-router'
 
 import Login from "./views/common/Login.vue"
 import Admin from "./views/common/Admin.vue"
+// import Account from "./views/settings/Account.vue"
+import settings from "./views/settings/Index.vue"
+import Account from './views/settings/Account'
+import Permission from './views/settings/Permission'
 
 
 
@@ -20,16 +24,23 @@ const router = new Router({
       },
       component: Login
     },
+    
     {
-      path: "/admin",
-      name: "Admin",
+      path: '/admin/',
+      name:'Settings',
       meta: {
         title: "管理员",
         auth: true // 是否需要权限
       },
-      component: Admin
+      // 重定向
+      redirect: '/admin/account',
+      children: [
+        { path: 'account', component: Account },
+        { path: 'permission', component: Permission }
+      ],
+      component: settings,
     },
-  
+
   ]
 })
 

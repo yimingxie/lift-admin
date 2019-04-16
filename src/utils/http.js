@@ -95,10 +95,11 @@ let protocol = process.env.NODE_ENV !== 'production' ? 'http:' : window.location
 
 //设置默认请求头
 axios.defaults.headers = {
-  "Content-Type": "application/json; charset=utf-8"
+  "Content-Type": "application/json; charset=utf-8",
   // 'Content-Type':'text/html; charset=utf-8',
   // 'X-Requested-With': 'XMLHttpRequest',
   // 'Access-Token': window.localStorage.getItem('accessToken')
+  'X-Access-Token': window.localStorage.getItem('accessToken')
 }
 // post请求头
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';

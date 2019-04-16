@@ -1,6 +1,6 @@
 import Vue from 'vue'
 // import { setLayout, showError, showNotice } from './store/actions/system'
-import locales from './consts/locales/index'
+// import locales from './consts/locales/index'
 import { mapActions } from 'vuex'
 
 export var globalMixins = {
@@ -10,22 +10,14 @@ export var globalMixins = {
     }
   },
 
-  // vuex: {
-  //   actions: {
-  //     setLayout,
-  //     showError,
-  //     showNotice
+  // created () {
+  //   // 切换布局
+  //   var layout = this.$options.layout
+  //   if (layout) {
+  //     this.setLayout(layout)
   //   }
+  //   // console.log('layout===' + layout)
   // },
-
-  created () {
-    // 切换布局
-    var layout = this.$options.layout
-    if (layout) {
-      this.setLayout(layout)
-    }
-    // console.log('layout===' + layout)
-  },
 
   methods: {
     // setLayout (products) {
@@ -72,7 +64,7 @@ export var globalMixins = {
           case 4031003:
             this.showNotice({
               type: 'error',
-              content: locales[Vue.config.lang].errors[err.data.error.code]
+              // content: locales[Vue.config.lang].errors[err.data.error.code]
             })
             this.$router.push('/')
             break

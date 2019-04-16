@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>权限管理页面</h1>
+  <div class="panel panel_radius">
+    <div>权限管理页面</div>
 
   </div>
 </template>
@@ -24,6 +24,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="stylus">
 
 </style>
