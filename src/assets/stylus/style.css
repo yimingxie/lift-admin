@@ -221,7 +221,7 @@ body {
 
 h1 {
     font-size: 3.5em;
-    color: #fff;
+    color: #000;
     letter-spacing: 3px;
     text-align: center;
     font-style: italic;
@@ -235,7 +235,7 @@ h2 i {
 }
 
 h2 {
-    color: #fff;
+    color: #000;
     font-size: 22px;
     font-weight: 500;
     letter-spacing: 1px;
@@ -265,14 +265,14 @@ h2 {
 .sub-main-w3 form {
     max-width: 600px;
     margin: 0 5vw;
-    background: rgba(10, 10, 10, 0.17);
+    /* background: rgba(10, 10, 10, 0.17); */
     padding: 3.5vw;
     box-sizing: border-box;
     display: -webkit-flex;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    border-bottom: 8px solid #f7296f;
+    /* border-bottom: 8px solid #f7296f; */
     border-radius: 30px 30px 50px 50px;
 }
 
@@ -284,7 +284,7 @@ h2 {
 
 .sub-main-w3 label {
     font-size: 14px;
-    color: #fff;
+    color: #000;
     display: inline-block;
     font-weight: 500;
     margin-bottom: 12px;
@@ -295,7 +295,7 @@ h2 {
 .sub-main-w3 label i {
     font-size: 15px;
     margin-left: 5px;
-    color: #f7296f;
+    color: #22becf;
     border-radius: 50%;
     line-height: 1.9;
     text-align: center;
@@ -317,12 +317,12 @@ h2 {
 
 .sub-main-w3 input[type="submit"] {
     color: #fff;
-    background: #f7296f;
+    background: #536ede;
     border: none;
     padding: 13px 0;
     margin-top: 30px;
     outline: none;
-    width: 36%;
+    width: 100%;
     font-size: 16px;
     cursor: pointer;
     letter-spacing: 2px;
@@ -335,7 +335,7 @@ h2 {
 }
 
 .sub-main-w3 input[type="submit"]:hover {
-    background: #000;
+    background: #364dac;
     -webkit-transition: 0.5s all;
     -o-transition: 0.5s all;
     -moz-transition: 0.5s all;

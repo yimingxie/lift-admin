@@ -6,5 +6,6 @@ export default {
   'url2': `${protocol}//iot.gidomino.com`,
   // 'url2': `${protocol}//192.168.100.7:8080`,
   // 'url3': `${protocol}//192.168.100.89:8080`,
+  'url3': `${protocol}//192.168.100.7:8080/gi`
   
 }

@@ -19,6 +19,8 @@
 import corp from './api/corp'
 import detail from './api/detail'
 import liftDevices from './api/liftDevices'
+import log from './api/log'
+import permission from './api/permission'
 // import dataStorage from './api/data-storage'
 // import device from './api/device'
 // import email from './api/email'
@@ -44,7 +46,9 @@ export default {
   // sms,
   corp,
   detail,
-  liftDevices
+  liftDevices,
+  log,
+  permission
   // dataStorage,
   // device,
   // email,

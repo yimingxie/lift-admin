@@ -10,6 +10,9 @@ import VueForm from 'vue-form'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import echarts from 'echarts'
+import {globalMixins} from './utils/mixins'
+// Vue.use(globalMixins)
+Vue.prototype.$mixins = globalMixins
 
 import Mixins from './utils/mixins'
 
