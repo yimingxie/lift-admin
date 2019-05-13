@@ -1,11 +1,19 @@
 // ==================================================
 // 工具
 // ==================================================
-
+$clearfix
+  &:before
+  &:after
+    display table
+    content ""
+    line-height 0
+  &:after
+    clear both
 // 清除浮动
 // ------------------------------
-// clearfix()
-//   @extend $clearfix
+clearfix()
+  @extend $clearfix
+
 
 // 文本溢出
 // @param 容器宽度

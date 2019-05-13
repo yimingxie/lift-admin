@@ -60,12 +60,10 @@
 <script>
   import api from '../../api'
 
-  import { globalMixins } from '../../utils/mixins'
 
   export default {
     name: 'LoginForm',
 
-    mixins: [globalMixins],
 
     // layout: 'auth',
 

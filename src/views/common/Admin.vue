@@ -6,10 +6,8 @@
 </template>
 
 <script>
-import { globalMixins } from '../../utils/mixins'
 
 export default {
-  mixins: [globalMixins],
 
   layout: 'admin',
 

@@ -1,0 +1,523 @@
+{
+	"version": 1,
+	"contents": [{
+		"id": 0,
+		"name": "machine_room",
+		"cn_name": "机房",
+		"subs": [{
+				"id": 0,
+				"name": "space",
+				"cn_name": "空间",
+				"subs": [{
+						"id": 0,
+						"name": "env",
+						"cn_name": "环境",
+						"subs": [{
+								"id": 0,
+								"name": "temperature",
+								"cn_name": "温度",
+								"content": "机房温度",
+								"unit":"℃"
+							},
+							{
+								"id": 1,
+								"name": "humiture",
+								"cn_name": "湿度",
+								"content": "机房湿度",
+								"unit":"%"
+							},
+							{
+								"id": 2,
+								"name": "wind_speed",
+								"cn_name": "风速",
+								"content": "机房风数",
+								"unit": "rpm"
+							}
+						]
+					},
+					{
+						"id": 1,
+						"name": "human",
+						"cn_name": "人",
+						"subs": []
+					}
+				]
+			},
+			{
+				"id": 1,
+				"name": "power_board",
+				"cn_name": "电源柜",
+				"subs": [{
+					"id": 0,
+					"name": "power_in_machine_room",
+					"cn_name": "机房电源",
+					"subs": [{
+							"id": 0,
+							"name": "current",
+							"cn_name": "电流",
+							"content": "机房电源电流值",
+							"unit": "A"
+						},
+						{
+							"data_type": 1,
+							"name": "voltage",
+							"cn_name": "电压",
+							"content": "机房电源电压值",
+							"unit": "V"
+						}
+					]
+				}]
+			},
+			{
+				"id": 2,
+				"name": "control_board",
+				"cn_name": "控制柜",
+				"subs": [{
+						"id": 0,
+						"name": "",
+						"cn_name": "微机板LED屏",
+						"subs": [{
+							"id": 0,
+							"name": "fault_code",
+							"cn_name": "故障代码",
+							"content": "",
+							"unit": ""
+						}]
+					},
+					{
+						"id": 1,
+						"name": "safety_circuit_of_gate_lock",
+						"cn_name": "门锁安全回路",
+						"subs": [{
+								"id": 0,
+								"name": "current",
+								"cn_name": "电流",
+								"content": "",
+								"unit": "A"
+							},
+							{
+								"id": 1,
+								"name": "voltage",
+								"cn_name": "电压",
+								"content": "",
+								"unit": "V"
+							}
+						]
+					}, {
+						"id": 2,
+						"name": "safety_circuit_of_switch",
+						"cn_name": "安全开关回路",
+						"subs": [{
+							"id": 0,
+							"name": "voltage",
+							"cn_name": "电压",
+							"content": "",
+							"unit": "V"
+						}]
+					}, {
+						"id": 3,
+						"name": "control_circuit",
+						"cn_name": "控制回路(检修开关)",
+						"subs": [{
+							"id": 0,
+							"name": "voltage",
+							"cn_name": "电压",
+							"content": "",
+							"unit": "V"
+						}]
+					}, {
+						"id": 4,
+						"name": "decelerate_up",
+						"cn_name": "减速开关(上)",
+						"subs": [{
+							"id": 0,
+							"name": "voltage",
+							"cn_name": "电压",
+							"content": "",
+							"unit": "V"
+						}]
+					}, {
+						"id": 5,
+						"name": "decelerate_down",
+						"cn_name": "减速开关(下)",
+						"subs": [{
+							"id": 0,
+							"name": "voltage",
+							"cn_name": "电压",
+							"content": "",
+							"unit": "V"
+						}]
+					}, {
+						"id": 6,
+						"name": "force_decelerate",
+						"cn_name": "强迫减速开关",
+						"subs": [{
+							"id": 0,
+							"name": "current",
+							"cn_name": "电流",
+							"content": "",
+							"unit": "A"
+						}, {
+							"id": 1,
+							"name": "voltage",
+							"cn_name": "电压",
+							"content": "",
+							"unit": "V"
+						}]
+					}, {
+						"id": 7,
+						"name": "",
+						"cn_name": "offside_switch",
+						"subs": [{
+								"id": 0,
+								"name": "current",
+								"cn_name": "电流",
+								"content": "",
+								"unit": "A"
+							},
+							{
+								"id": 1,
+								"name": "voltage",
+								"cn_name": "电压",
+								"content": "",
+								"unit": "V"
+							}
+						]
+					}, {
+						"id": 8,
+						"name": "flat_sensor",
+						"cn_name": "平层感应器",
+						"subs": [{
+							"id": 0,
+							"name": "current",
+							"cn_name": "电流",
+							"content": "",
+							"unit": "A"
+						}]
+					}
+				]
+			},
+			{
+				"id": 3,
+				"name": "elec-motor",
+				"cn_name": "电动机",
+				"subs": [{
+						"id": 0,
+						"name": "power",
+						"cn_name": "电源",
+						"subs": [{
+							"id": 0,
+							"name": "current",
+							"cn_name": "电流",
+							"content": "",
+							"unit": "A"
+						}, {
+							"id": 1,
+							"name": "voltae",
+							"cn_name": "电压",
+							"content": "",
+							"unit": "V"
+						}]
+					},
+					{
+						"id": 1,
+						"name": "shell",
+						"cn_name": "外壳",
+						"subs": [{
+								"id": 0,
+								"name": "temperature",
+								"cn_name": "温度",
+								"content": "",
+								"unit": "℃"
+							},
+							{
+								"id": 1,
+								"name": "vibration_displacement",
+								"cn_name": "振动位移",
+								"content": "",
+								"unit": ""
+							}
+						]
+					},
+					{
+						"id": 2,
+						"name": "bearing",
+						"cn_name": "轴承",
+						"subs": [{
+								"id": 0,
+								"name": "temperature",
+								"cn_name": "温度",
+								"content": "",
+								"unit": "℃"
+							},
+							{
+								"id": 1,
+								"name": "vibration_displacement",
+								"cn_name": "振动位移",
+								"content": "",
+								"unit": ""
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 4,
+				"name": "brake",
+				"cn_name": "制动器",
+				"subs": [{
+						"id": 0,
+						"name": "power",
+						"cn_name": "电源",
+						"subs": [{
+								"id": 0,
+								"name": "current",
+								"cn_name": "电流",
+								"content": "",
+								"unit": "A"
+							},
+							{
+								"id": 1,
+								"name": "voltage",
+								"cn_name": "电压",
+								"content": "",
+								"unit": "V"
+							}
+						]
+					},
+					{
+						"id": 1,
+						"name": "coil",
+						"cn_name": "线圈",
+						"subs": [{
+							"id": 0,
+							"name": "temperature",
+							"cn_name": "温度",
+							"content": "",
+							"unit": "℃"
+						}]
+					},
+					{
+						"id": 2,
+						"name": "brake_shoe",
+						"cn_name": "闸瓦",
+						"subs": [{
+							"id": 0,
+							"name": "temperature",
+							"cn_name": "温度",
+							"content": "",
+							"unit": "℃"
+						}]
+					}
+				]
+			},
+			{
+				"id": 5,
+				"name": "speed_limiter",
+				"cn_name": "限速器",
+				"subs": [{
+					"id": 0,
+					"name": "speed_limit_wheel",
+					"cn_name": "限速轮",
+					"subs": [{
+						"id": 0,
+						"name": "vibration_displacement",
+						"cn_name": "振动位移",
+						"content": "",
+						"unit": ""
+					}, {
+						"id": 1,
+						"name": "number_of_turns",
+						"cn_name": "圈数",
+						"content": "",
+						"unit": "count"
+					}, {
+						"id": 2,
+						"name": "rotational_speed",
+						"cn_name": "转速",
+						"content": "",
+						"unit": "rpm"
+					}]
+				}]
+			}
+		]
+	},
+	{
+		"id": 1,
+		"name": "car",
+		"cn_name": "轿厢",
+		"subs": [{
+				"id": 0,
+				"name": "roof",
+				"cn_name": "轿顶",
+				"subs": [{
+					"id": 0,
+					"name": "human",
+					"cn_name": "人",
+					"subs": []
+				}, {
+					"id": 1,
+					"name": "inspection_switch",
+					"cn_name": "检修开关",
+					"subs": [{
+						"id": 0,
+						"name": "current",
+						"cn_name": "电流",
+						"content": "",
+						"unit": "A"
+					}]
+				}, {
+					"id": 2,
+					"name": "motor_of_door",
+					"cn_name": "门机马达",
+					"subs": [{
+						"id": 0,
+						"name": "current",
+						"cn_name": "电流",
+						"content": "",
+						"unit": "A"
+					}]
+				}, {
+					"id": 3,
+					"name": "payload",
+					"cn_name": "电梯重量载荷控制器",
+					"subs": [{
+						"id": 0,
+						"name": "voltage",
+						"cn_name": "电压",
+						"content": "",
+						"unit": "V"
+					}]
+				}]
+			},
+			{
+				"id": 1,
+				"name": "inside",
+				"cn_name": "轿内",
+				"subs": [{
+					"id": 0,
+					"name": "human",
+					"cn_name": "人",
+					"data_type": []
+				}]
+			},
+			{
+				"id": 2,
+				"name": "case",
+				"cn_name": "箱体",
+				"subs": [{
+					"id": 0,
+					"name": "whole",
+					"cn_name": "整体",
+					"subs": [{
+							"id": 0,
+							"name": "position",
+							"cn_name": "位置",
+							"content": "",
+							"unit": "m"
+						},
+						{
+							"id": 1,
+							"name": "vibration_displacement",
+							"cn_name": "振动位移",
+							"content": "",
+							"unit": ""
+						}
+					]
+				}]
+			}
+		]
+	},
+	{
+		"id": 2,
+		"name": "hoistway",
+		"cn_name": "井道",
+		"subs": [{
+				"id": 0,
+				"name": "space",
+				"cn_name": "空间",
+				"subs": [{
+					"id": 0,
+					"name": "env",
+					"cn_name": "环境",
+					"subs": [{
+							"id": 0,
+							"name": "temperature",
+							"cn_name": "温度",
+							"content": "",
+							"unit": "℃"
+						},
+						{
+							"id": 1,
+							"name": "humiture",
+							"cn_name": "湿度",
+							"content": "",
+							"unit": "%"
+						}
+					]
+				}]
+			},
+			{
+				"id": 1,
+				"name": "component",
+				"cn_name": "部件",
+				"subs": [{
+						"id": 0,
+						"name": "door",
+						"cn_name": "层门",
+						"subs": [{
+							"id": 0,
+							"name": "open_or_close",
+							"cn_name": "开合",
+							"content": "",
+							"unit": ""
+						}]
+					},
+					{
+						"id": 1,
+						"name": "rails",
+						"cn_name": "导轨",
+						"subs": [{
+							"id": 0,
+							"name": "vibration_displacement",
+							"cn_name": "振动位移",
+							"content": "",
+							"unit": ""
+						}]
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": 3,
+		"name": "pit",
+		"cn_name": "底坑",
+		"subs": [{
+			"id": 0,
+			"name": "space",
+			"cn_name": "空间",
+			"subs": [{
+					"id": 0,
+					"name": "env",
+					"cn_name": "环境",
+					"subs": [{
+						"id": 0,
+						"name": "water_log",
+						"cn_name": "水浸",
+						"content": "",
+						"unit": ""
+					}]
+				},
+				{
+					"id": 1,
+					"name": "human",
+					"cn_name": "人",
+					"subs": []
+				}
+			]
+		}]
+	}
+
+]
+}

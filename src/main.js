@@ -10,13 +10,13 @@ import VueForm from 'vue-form'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import echarts from 'echarts'
-import {globalMixins} from './utils/mixins'
+import globalMixins from './utils/mixins'
 // Vue.use(globalMixins)
 Vue.prototype.$mixins = globalMixins
 
-import Mixins from './utils/mixins'
 
-console.log(Mixins)
+
+
 
 Vue.use(ElementUI)
 // 多语言配置文件
