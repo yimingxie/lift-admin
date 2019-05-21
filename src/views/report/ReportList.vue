@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>设备列表页</h1>
+    <h1>经营报表</h1>
 
   </div>
 </template>

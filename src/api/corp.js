@@ -2,7 +2,10 @@
  * api接口统一管理
  */
 import http from '../utils/http'
-import baseURL from '../consts/baseURL'
+
+let protocol = process.env.NODE_ENV !== 'production' ? 'http:' : window.location.protocol
+let url2 = `${protocol}//iot2.gidomino.com`
+
 export default  {
   /**
      * 修改告警规则
@@ -13,55 +16,55 @@ export default  {
   // 创建建筑
   createBuilding(params) {
     return http.post(
-      `${baseURL.url2}/elevator/building/`, params
+      `${url2}/elevator/building/`, params
     )
   },
  
   getBuilding(buildingId) {
     return http.get(
-      `${baseURL.url2}/elevator/building/${buildingId}`
+      `${url2}/elevator/building/${buildingId}`
     )
   },
   // 查询建筑列表
   getBuildings(pageIndex,pageSize) {
     return http.get(
-      `${baseURL.url2}/elevator/building?pageIndex=${pageIndex}&pageSize=${pageSize}`
+      `${url2}/elevator/building?pageIndex=${pageIndex}&pageSize=${pageSize}`
     )
   },
   // 创建公司
   createCorp(params) {
     return http.post(
-      `${baseURL.url2}/elevator/corp/`, params
+      `${url2}/elevator/corp/`, params
     )
   },
   // 查询公司列表
   getCorps(pageIndex,pageSize) {
     return http.get(
-      `${baseURL.url2}/elevator/corp?pageIndex=${pageIndex}&pageSize=${pageSize}`
+      `${url2}/elevator/corp?pageIndex=${pageIndex}&pageSize=${pageSize}`
     )
   },
   // 创建电梯
   createLift(params) {
     return http.post(
-      `${baseURL.url2}/elevator/lift`, params
+      `${url2}/elevator/lift`, params
     )
   },
   // 查询电梯列表
   getLifts(pageIndex,pageSize) {
     return http.get(
-      `${baseURL.url2}/elevator/lift?pageIndex=${pageIndex}&pageSize=${pageSize}`
+      `${url2}/elevator/lift?pageIndex=${pageIndex}&pageSize=${pageSize}`
     )
   },
   // 创建报警
   createAlarm(params) {
     return http.post(
-      `${baseURL.url2}/elevator/alarm`, params
+      `${url2}/elevator/alarm`, params
     )
   },
   // 查询报警列表
   getAlarms(pageIndex,pageSize) {
     return http.get(
-      `${baseURL.url2}/elevator/alarm?pageIndex=${pageIndex}&pageSize=${pageSize}`
+      `${url2}/elevator/alarm?pageIndex=${pageIndex}&pageSize=${pageSize}`
     )
   },
   searchBuilding (params){

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="padding-bottom: 600px;">
     <h1>电梯列表页</h1>
     <div class="lift-list">
       <el-form :model="ruleForm" :rules="rules">
@@ -66,7 +66,8 @@
 </template>
 
 <script>
-import pcas from './pcas-code.json'
+import pcas from '../../utils/citySelector/pcas-code.json'
+import api from '../../api'
 
 export default {
   data() {
@@ -149,7 +150,9 @@ export default {
   mounted() {
     this.$store.commit('SWITCH_LAYOUT', 'admin')
 
-    console.log(pcas)
+    api.detail.getD9().then(res => {
+      console.log(res)
+    })
 
 
     // 一级循环
@@ -199,7 +202,6 @@ export default {
         })
       }
       this.options.push(obj)
-      console.log(this.options)
       
        
 

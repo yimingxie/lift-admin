@@ -1,20 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Login from "./views/common/Login.vue"
-import Admin from "./views/common/Admin.vue"
-// import Account from "./views/settings/Account.vue"
-import settings from "./views/settings/Index.vue"
-import Account from './views/settings/Account'
-import Permission from './views/settings/Permission'
-
-import LiftList from './views/lift/LiftList.vue'
-import TestDevice from './views/device/TestDevice.vue'
-import TestDeviceDetail from './views/device/TestDeviceDetail.vue'
-import TestDeviceEdit from './views/device/TestDeviceEdit.vue'
-import TestDeviceAdd from './views/device/TestDeviceAdd.vue'
-
-
 
 
 Vue.use(Router)
@@ -28,23 +14,7 @@ const router = new Router({
         title: "登录",
         auto: false // 是否需要权限
       },
-      component: Login
-    },
-    
-    {
-      path: '/admin/',
-      name:'Settings',
-      meta: {
-        title: "管理员",
-        auth: true // 是否需要权限
-      },
-      // 重定向
-      redirect: '/admin/account',
-      children: [
-        { path: 'account', component: Account },
-        { path: 'permission', component: Permission }
-      ],
-      component: settings,
+      component: (resolve) => require(['./views/common/Login.vue'], resolve)
     },
     {
       path: "/lift-list",
@@ -53,44 +23,8 @@ const router = new Router({
         title: "电梯列表页",
         auto: false // 是否需要权限
       },
-      component: LiftList
+      component: (resolve) => require(['./views/lift/LiftList.vue'], resolve)
     },
-    {
-      path: "/test-device",
-      name: "test-device",
-      meta: {
-        title: "设备测试列表页",
-        auto: false // 是否需要权限
-      },
-      component: TestDevice
-    },
-    {
-      path: "/test-device-detail",
-      name: "test-device-detail",
-      meta: {
-        title: "设备测试详情页",
-        auto: false // 是否需要权限
-      },
-      component: TestDeviceDetail
-    },
-    {
-      path: "/test-device-edit",
-      name: "test-device-edit",
-      meta: {
-        title: "设备测试详情页",
-        auto: false // 是否需要权限
-      },
-      component: TestDeviceEdit
-    },
-    {
-      path: "/test-device-add",
-      name: "test-device-add",
-      meta: {
-        title: "设备测试详情页",
-        auto: false // 是否需要权限
-      },
-      component: TestDeviceAdd
-    }
 
   ]
 })
