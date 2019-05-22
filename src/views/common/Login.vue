@@ -10,14 +10,16 @@
 					<i class="fas fa-user"></i>
 					Username
 				</label>
-				<input placeholder="请输入用户名" v-model="model.username" name="Name" type="text" required="">
+				<!-- <input placeholder="请输入用户名" v-model="model.username" name="Name" type="text" required=""> -->
+				<input placeholder="请输入用户名" v-model="model.username" name="Name" type="text">
 			</div>
 			<div class="form-style-agile">
 				<label>
 					<i class="fas fa-unlock-alt"></i>
 					Password
 				</label>
-				<input placeholder="请输入密码" v-model="model.password" name="Password" type="password" required="">
+				<!-- <input placeholder="请输入密码" v-model="model.password" name="Password" type="password" required=""> -->
+				<input placeholder="请输入密码" v-model="model.password" name="Password" type="password">
 			</div>
       <div class="form-style-agile">
 				<label>
@@ -37,7 +39,7 @@
     <!-- ////////////////////////////////////////////////////////////////////////// -->
     
 	</div>
-  <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
+  <!-- <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
     <el-form-item label="密码" prop="pass">
       <el-input type="password" v-model="ruleForm2.pass" auto-complete="off"></el-input>
     </el-form-item>
@@ -51,7 +53,7 @@
       <el-button type="primary" @click="submitForm('ruleForm2')">提交</el-button>
       <el-button @click="resetForm('ruleForm2')">重置</el-button>
     </el-form-item>
-  </el-form>
+  </el-form> -->
 	<!-- //content -->
 </div>
 
@@ -179,35 +181,36 @@
         this.dialogFormVisible = false
       },
       onSubmit () {
-        api.log.auth(this.model).then((res) => {
-          if(res.data.success){
-            // 存储token
-            window.localStorage.setItem('accessToken', res.data.result.token)
-            // 根据用户名获取用户权限,并跳转页面
-            this.getUserPerm(this.model.username)
-          }
+        this.$router.push('/map')
+        // api.log.auth(this.model).then((res) => {
+        //   if(res.data.success){
+        //     // 存储token
+        //     window.localStorage.setItem('accessToken', res.data.result.token)
+        //     // 根据用户名获取用户权限,并跳转页面
+        //     this.getUserPerm(this.model.username)
+        //   }
           
-          // this.$route.router.go({path: '/statistic/users'})
-        }).catch((res) => {
-          // this.setLoadingStatus(false)
-          console.log('logining:::' + this.logining)
-          // this.handleError(res)
-          // console.log('aaa:::' + JSON.stringify(res.data))
-          // if (typeof res.data !== 'undefined' && typeof res.data.error !== 'undefined') {
-          //   switch (res.data.error.code) {
-          //     case 4031003:
-          //       // this.showNotice({
-          //       //   type: 'error',
-          //       //   content: locales[Vue.config.lang].errors[res.data.error.code]
-          //       // })
-          //       this.$router.push('/')
-          //       break
-          //     default:
-          //       this.showWrong = true
-          //       // this.showError(res.data.error)
-          //   }
-          // }
-        })
+        //   // this.$route.router.go({path: '/statistic/users'})
+        // }).catch((res) => {
+        //   // this.setLoadingStatus(false)
+        //   console.log('logining:::' + this.logining)
+        //   // this.handleError(res)
+        //   // console.log('aaa:::' + JSON.stringify(res.data))
+        //   // if (typeof res.data !== 'undefined' && typeof res.data.error !== 'undefined') {
+        //   //   switch (res.data.error.code) {
+        //   //     case 4031003:
+        //   //       // this.showNotice({
+        //   //       //   type: 'error',
+        //   //       //   content: locales[Vue.config.lang].errors[res.data.error.code]
+        //   //       // })
+        //   //       this.$router.push('/')
+        //   //       break
+        //   //     default:
+        //   //       this.showWrong = true
+        //   //       // this.showError(res.data.error)
+        //   //   }
+        //   // }
+        // })
         
       },
       // 根据用户名获取用户权限,并跳转页面

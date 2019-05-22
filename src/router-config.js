@@ -25,7 +25,15 @@ const router = new Router({
       },
       component: (resolve) => require(['./views/lift/LiftList.vue'], resolve)
     },
-
+    {
+      path: "/map",
+      name: "map",
+      meta: {
+        title: "异常处理地图",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/map/MapList.vue'], resolve)
+    },
   ]
 })
 
