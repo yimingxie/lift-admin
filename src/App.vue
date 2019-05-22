@@ -1,80 +1,128 @@
 <template>
   <div id="page-container">
-    <!-- Start: 头部 -->
-    <transition name="header" mode="out-in">
-      <header class="header the-header" v-if="layout==='admin'">
-        <a class="logo"></a>
-        <div @mouseover="isShowUserNav = true" @mouseout="isShowUserNav = false" class="user-navigation">
-          <span class="user-name">
-            <router-link to='/account'><i class="headPic"> </i><span style="margin:0 30px 0 74px"></span></router-link>
-            <span style="margin-right: 29px;height:30px;display:inline-block;margin-bottom:-8px;border-left: 2px solid #6E86EB;"></span>
-            <a href="#" @click.prevent="openComfirmModal" class="quit"></a>
-          </span>
-        </div>
-      </header>
-    </transition>
-    <!-- End: 头部 -->
+    
     
     <!-- Start: 菜单栏 -->
-    <transition name="sidebar1" mode="out-in">
-      <!-- <div class="sidebar"> -->
-        <el-menu
-          v-if="layout==='admin'"
-          default-active="/admin"
-          class="el-menu-vertical-demo"
-          @open="handleOpen"
-          @close="handleClose"
-          background-color="#3e5dbd"
-          text-color="#ddd"
-          active-text-color="yellow"
-          :router="true">
+    <!-- <transition name="sidebar1" mode="out-in">
+      <el-menu
+        v-if="layout==='admin'"
+        default-active="/admin"
+        class="el-menu-vertical-demo"
+        @open="handleOpen"
+        @close="handleClose"
+        background-color="#3e5dbd"
+        text-color="#ddd"
+        active-text-color="yellow"
+        :router="true">
 
-          <template v-for="navMenu in roleConfig">
+        <template v-for="navMenu in roleConfig">
 
-            <!-- 只有一级菜单 --> 
-            <el-menu-item 
-              v-if="!navMenu.children"
-              :index="navMenu.redirect" 
-              :key="navMenu.id" 
-              :data="navMenu" 
-            > 
+          只有一级菜单
+          <el-menu-item 
+            v-if="!navMenu.children"
+            :index="navMenu.redirect" 
+            :key="navMenu.id" 
+            :data="navMenu" 
+          > 
 
-              <!-- <i :class="navMenu.meta.icon"></i>  -->
+            <i class="el-icon-location"></i>
+            <span slot="title">{{navMenu.name}}</span> 
+          </el-menu-item> 
+
+          
+          此菜单下还有子菜单
+          <el-submenu 
+            v-if="navMenu.children" 
+            index="1" 
+            :key="navMenu.children.path">
+            <template slot="title">
               <i class="el-icon-location"></i>
-              <span slot="title">{{navMenu.meta.title}}</span> 
-            </el-menu-item> 
-
-            
-            <!-- 此菜单下还有子菜单 --> 
-            <el-submenu 
-              v-if="navMenu.children" 
-              index="1" 
-              :key="navMenu.children.redirect">
-              <template slot="title">
-                <i class="el-icon-location"></i>
-                <span>{{ navMenu.meta.title }}</span>
-              </template>
-              <el-menu-item-group>
-                <!-- <template slot="title">分组一</template> -->
-                <el-menu-item v-for="(subMenu,index) in navMenu.children" 
-              :key="index" :index="subMenu.path">{{ subMenu.meta.title }}</el-menu-item>
-              </el-menu-item-group>
-            </el-submenu>
+              <span>{{ navMenu.name }}</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item v-for="(subMenu,index) in navMenu.children" 
+            :key="index" :index="subMenu.path">{{ subMenu.name }}</el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
 
 
-          </template>
+        </template>
 
 
-        </el-menu>
-      <!-- </div> -->
-    </transition>
+      </el-menu>
+    </transition> -->
     <!-- End: 菜单栏 -->
 
-    <!-- Start: 路由视图 -->
-    <transition name="view" mode="out-in">
-      <router-view></router-view>
-    </transition>
-    <!-- End: 路由视图 -->
+
+    <div class="ant-layout ant-layout-has-sider">
+
+      <!-- Start: 菜单栏 -->
+      
+
+      <el-menu v-if="layout==='admin'" default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
+        <el-submenu index="1">
+          <template slot="title">
+            <i class="el-icon-location"></i>
+            <span slot="title">导航一</span>
+          </template>
+          <el-menu-item-group>
+            <span slot="title">分组一</span>
+            <el-menu-item index="1-1">选项1</el-menu-item>
+            <el-menu-item index="1-2">选项2</el-menu-item>
+          </el-menu-item-group>
+          <el-menu-item-group title="分组2">
+            <el-menu-item index="1-3">选项3</el-menu-item>
+          </el-menu-item-group>
+          <el-submenu index="1-4">
+            <span slot="title">选项4</span>
+            <el-menu-item index="1-4-1">选项1</el-menu-item>
+          </el-submenu>
+        </el-submenu>
+        <el-menu-item index="2">
+          <i class="el-icon-menu"></i>
+          <span slot="title">导航二</span>
+        </el-menu-item>
+        <el-menu-item index="3" disabled>
+          <i class="el-icon-document"></i>
+          <span slot="title">导航三</span>
+        </el-menu-item>
+        <el-menu-item index="4">
+          <i class="el-icon-setting"></i>
+          <span slot="title">导航四</span>
+        </el-menu-item>
+      </el-menu>
+
+      <!-- End: 菜单栏 -->
+
+      
+      
+      <div class="ant-layout">
+        <!-- Start: 头部 -->
+        <transition name="header" mode="out-in">
+          <header class="header the-header" v-if="layout==='admin'">
+            <el-radio-group v-model="isCollapse" style="position:absolute;z-index: 999;" v-if="layout==='admin'">
+              <el-radio-button :label="false">展开</el-radio-button>
+              <el-radio-button :label="true">收起</el-radio-button>
+            </el-radio-group>
+            <a class="logo"></a>
+            
+            <div @mouseover="isShowUserNav = true" @mouseout="isShowUserNav = false" class="user-navigation">
+              <span class="user-name">
+                <router-link to='/account'><i class="headPic"> </i><span style="margin:0 30px 0 74px"></span></router-link>
+                <a href="#" @click.prevent="openComfirmModal" class="quit"></a>
+              </span>
+            </div>
+          </header>
+        </transition>
+        <!-- End: 头部 -->
+
+        <!-- Start: 路由视图 -->
+        <router-view ></router-view>
+        <!-- End: 路由视图 -->
+      </div>
+      
+    </div>
+    
   </div>
 </template>
 
@@ -82,6 +130,7 @@
   // import { globalMixins } from './utils/mixins'
   import { mapState, mapGetters, mapActions  } from 'vuex'
   import _ from 'lodash'
+  // import fotter from "./views/common/fotter";
   export default {
     name: 'App',
 
@@ -93,7 +142,11 @@
         showMenu: true,
         roleConfig: [],
         defRoleConfig:[],
+        isCollapse: true
       }
+    },
+    components: {
+      // 'fotter1': fotter,
     },
     computed: {
       
@@ -135,7 +188,7 @@
             window.localStorage.setItem('_role_', JSON.stringify(this.defRoleConfig))
             this.roleConfig = _.cloneDeep(this.defRoleConfig)
           }
-          // console.log('123roleConfig=====' + JSON.stringify(this.roleConfig))
+          console.log('123roleConfig=====' + JSON.stringify(this.roleConfig))
         }
       }
   },
@@ -154,6 +207,7 @@
     },
 
     methods: {
+      
       handleOpen(key, keyPath) {
         console.log(key, keyPath);
       },
@@ -171,22 +225,40 @@
 <style lang="stylus">
 // 配置
 @import 'assets/stylus/base'
-
+// -------------------------------------------------------
+.el-menu
+  box-shadow: 2px 0 6px 0 rgba(43,108,239,0.10);
+  z-index 99
+.el-menu--collapse {
+  flex: 0 0 80px;
+  max-width: 80px;
+  min-width: 80px;
+  width: 80px;
+}
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  flex: 0 0 256px;
+  max-width: 256px;
+  min-width: 256px;
+  width: 256px;
+}
+// -------------------------------------------------------
 #page-container
   width: 100%;
   height: 100%;
-  .el-menu-vertical-demo
-    width: 200px;
-    absolute top 60px left 0 bottom 0;
-    box-sizing: border-box;
-    overflow-y auto
+  // .el-menu-vertical-demo
+  //   width: 200px;
+  //   absolute top 60px left 0 bottom 0;
+  //   box-sizing: border-box;
+  //   overflow-y auto
   // 头部
 
   .the-header
-    absolute left 0 top 0 right 0
     size 100% 60px
-    background blue
-    border-bottom 1px solid #E0E0E0
+    background white
+    -webkit-box-shadow: 0 1px 4px 0 rgba(81,108,100,0.25);
+    box-shadow: 0 1px 4px 0 rgba(81,108,100,0.25);
+    position relative
+    z-index: 99;
   // 头部淡入淡出
   .header-enter-active, .header-leave-active
     transition transform 0.2s, opacity 0.2s
@@ -211,5 +283,21 @@
   .view-leave-to
     opacity 0
     transform translate3d(10px, 0, 0)
+
+  .ant-layout {
+    box-sizing: border-box;
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+    min-height: 0;
+    background: #F1F5F7;
+    min-height: calc(100vh);
+    position: relative;
+  }
+  .ant-layout.ant-layout-has-sider {
+    flex-direction: row;
+  }
+
+
 </style>
 

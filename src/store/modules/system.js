@@ -36,9 +36,9 @@ const mutations = {
 // actions
 const actions = {
   // // 设置当前布局
-  // setLayout({ commit }, layout) {
-  //   commit(SWITCH_LAYOUT, layout)
-  // },
+  setLayout({ commit }, layout) {
+    commit(SWITCH_LAYOUT, layout)
+  },
 
   // 获取当前帐户成员
   getCurrentMember({ commit }, memberId, vm){
