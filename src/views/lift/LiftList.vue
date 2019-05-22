@@ -1,233 +1,200 @@
 <template>
-  <div style="padding-bottom: 600px;">
-    <h1>电梯列表页</h1>
-    <div class="lift-list">
-      <el-form :model="ruleForm" :rules="rules">
-        <div class="el-input-box">
-          <el-form-item label="" prop="name">
-            <el-input v-model="ruleForm.name" placeholder="用户名"></el-input>
-          </el-form-item>
+  <div id="LiftList">
+    <div class="container">
+      <div class="lift-error clearfix">
+        <div class="lift-error-sum">
+          <div class="les-box">
+            <div class="les-box-top">
+              <div class="les-box-top-data"><span>267</span>异常电梯数</div>
+              <div class="les-box-top-day">今日</div>
+            </div>
+            <div class="les-box-bottom clearfix">
+              <p>电梯总数：10000</p>
+              <p>未处理：<span>25</span></p>
+              <p>已处理：76</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lift-error-type clearfix">
+          <div class="let-box" @mouseenter="leType.show1=false" @mouseleave="leType.show1=true">
+            <div class="let-box-line"></div>
+            <div class="let-box-simple" v-show="leType.show1">
+              <h4>13</h4>
+              <p>事故告警电梯</p>
+            </div>
+            <div class="let-box-detail clearfix" v-show="!leType.show1">
+              <div class="lbd-left">
+                <h4>13</h4>
+                <p>事故</p>
+              </div>
+              <div class="lbd-right">
+                <p>待诊断：<span>6</span></p>
+                <p>已诊断：7</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="let-box" @mouseenter="leType.show2=false" @mouseleave="leType.show2=true">
+            <div class="let-box-line"></div>
+            <div class="let-box-simple" v-show="leType.show2">
+              <h4>24</h4>
+              <p>故障告警电梯</p>
+            </div>
+            <div class="let-box-detail clearfix" v-show="!leType.show2">
+              <div class="lbd-left">
+                <h4>24</h4>
+                <p>故障</p>
+              </div>
+              <div class="lbd-right">
+                <p>待诊断：<span>6</span></p>
+                <p>已诊断：7</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="let-box" @mouseenter="leType.show3=false" @mouseleave="leType.show3=true">
+            <div class="let-box-line"></div>
+            <div class="let-box-simple" v-show="leType.show3">
+              <h4>189</h4>
+              <p>违规告警电梯</p>
+            </div>
+            <div class="let-box-detail clearfix" v-show="!leType.show3">
+              <div class="lbd-left">
+                <h4>189</h4>
+                <p>违规</p>
+              </div>
+              <div class="lbd-right">
+                <p>待诊断：<span>6</span></p>
+                <p>已诊断：7</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="let-box" @mouseenter="leType.show4=false" @mouseleave="leType.show4=true">
+            <div class="let-box-simple" v-show="leType.show4">
+              <h4>40</h4>
+              <p>设备预警电梯</p>
+            </div>
+            <div class="let-box-detail clearfix" v-show="!leType.show4">
+              <div class="lbd-left">
+                <h4>40</h4>
+                <p>预警</p>
+              </div>
+              <div class="lbd-right">
+                <p>待诊断：<span>6</span></p>
+                <p>已诊断：7</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="lift-error-man">
+          
+          <div class="les-box">
+            <div class="les-box-top">
+              <div class="les-box-top-data"><span>267</span>异常外派人员</div>
+              <div class="les-box-top-day">今日</div>
+            </div>
+            <div class="les-box-bottom clearfix">
+              <p style="width: 100%;">异常作业及时率：92%</p>
+            </div>
+          </div>
+   
+
         </div>
         
-        <el-form-item label="" prop="password">
-          <el-input type="password" v-model="ruleForm.password" placeholder="密码" :disabled="true"></el-input>
-        </el-form-item>
-
-        <el-form-item label="" prop="age">
-          <el-input type="text" v-model="ruleForm.age" placeholder="年龄"></el-input>
-        </el-form-item>
-
-        <el-form-item label="" prop="phone">
-          <el-input type="text" v-model="ruleForm.phone" placeholder="手机"></el-input>
-        </el-form-item>
-
-        <el-switch v-model="value" :width="width" active-color="#13ce66" inactive-color="#ff4949"></el-switch>
-      </el-form>
-
-      <el-table :data="tableData" border @select="selectSingle" @select-all="selectAll" style="width: 100%">
-        <el-table-column type="selection"></el-table-column>
-        <el-table-column sortable prop="date" label="日期" width="180"></el-table-column>
-        <el-table-column prop="name" label="姓名" width="180"></el-table-column>
-        <el-table-column prop="address" label="地址"></el-table-column>
-        <el-table-column label="操作" width="180">
-          <template slot-scope="scope">
-            <el-button type="text" size="small">查看</el-button>
-            <el-button type="text" size="small">编辑</el-button>
-          </template>
-        </el-table-column>
-      </el-table>
 
 
-      <div style="margin-top: 20px;">
-        <el-cascader :options="options" change-on-select v-model="selectedOptions" @change="cascaderChange"></el-cascader>
       </div>
 
-      <div style="margin-top: 20px;">
-        <el-button type="button" @click="dialogVisible = true">点击打开 Dialog</el-button>
-      </div>
+      <div class="lift-list">
+        <div class="lift-list-title">数字电梯</div>
+        <div class="ll-choose">
+          <div class="ll-choose-top clearfix">
+            <!-- TODO 省市联动筛选 -->
+            <div class="llct-area"></div>
 
-      <el-dialog title="提示" :visible.sync="dialogVisible" width="60%" @close="tableClose">
-        <span>表格</span>
-        <div>
-          确定删除吗？
+            <div class="llct-line"></div>
+
+            
+            <div class="llct-type clearfix">
+              <em>异常分类：</em>
+              <span class="on">全部</span>
+              <span>预警</span>
+              <span>违规</span>
+              <span>故障</span>
+              <span>事故</span>
+            </div>
+            
+
+          </div>
+
+          <div class="ll-choose-bottom clearfix">
+            <div class="llcb-operate">
+              <div class="llcb-btn info">+ 添加电梯</div>
+              <div class="llcb-btn">批量录入</div>
+              <div class="llcb-btn">删除电梯</div>
+            </div>
+            <div class="llcb-search">
+              <div class="llcb-search-box">
+                <input class="lsearch-input" type="text" placeholder="搜索电梯注册码/内部编号/详细地址">
+                <input class="lsearch-submit" type="button" value="">
+              </div>
+
+              <!-- TODO 搜索提示下拉待做 -->
+              <div class="llcb-search-tips"></div>
+
+            </div>
+          </div>
+          
         </div>
-        <span slot="footer" class="dialog-footer">
-          <el-button @click="dialogVisible = false">取 消</el-button>
-          <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-        </span>
-      </el-dialog>
-    
+
+        <div class="ll-table">
+          <div class="llt-thead clearfix">
+            <div class="llt-th">
+              <input type="checkbox">
+            </div>
+            <div class="llt-th">电梯注册代码</div>
+            <div class="llt-th">内部编号</div>
+            <div class="llt-th">区域-片区</div>
+            <div class="llt-th">详细地址</div>
+            <div class="llt-th">在线/设备</div>
+            <div class="llt-th">检测数</div>
+            <div class="llt-th">异常告警</div>
+            <div class="llt-th">操作</div>
+          </div>
+          
+
+        </div>
+
+
+      </div>
+
 
     </div>
-
-    
 
   </div>
 </template>
 
 <script>
-import pcas from '../../utils/citySelector/pcas-code.json'
-import api from '../../api'
-
 export default {
   data() {
-    var checkAge = (rule, value, callback) => {
-      if (!value) {
-        return callback(new Error('请输入年龄'))
-      } else {
-        callback()
-      }
-    }
-    var checkPhone = (rule, value, callback) => {
-      let regFormat = /^1[34578]\d{9}$/
-      if (!value) {
-        return callback(new Error('请输入手机号'))
-      }
-      if (!(regFormat.test(value))) {
-        callback(new Error('请输入正确的手机号'))
-      } else {
-        callback()
-      }
-    }
     return {
-      
-      input: '',
-      value: true,
-      width: 100,
+      leType: {
+        show1: true,
+        show2: true,
+        show3: true,
+        show4: true,
+      }
 
-      // 弹框属性
-      dialogVisible: false,
-
-
-      // 表单检验属性
-      ruleForm: {
-        name: '',
-        password: '',
-        age: '',
-        phone: ''
-      },
-
-      // 表单校验规则
-      rules: {
-        name: [
-          {required: true, message: '提示：请输入用户名', trigger: 'blur'},
-          {min: 2, max: 6, message: '提示：长度在2-6个字符', trigger: 'blur'}
-        ],
-        password: [
-          {required: true, message: '提示：请输入密码', trigger: 'blur'},
-        ],
-        age: [
-          {validator: checkAge, trigger: 'blur'}
-        ],
-        phone: [
-          {validator: checkPhone, trigger: 'blur'}
-        ]
-      },
-
-      tableData: [{
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }],
-
-      // 级联数据
-      options: [],
-      selectedOptions: []
     }
   },
   mounted() {
-    this.$store.commit('SWITCH_LAYOUT', 'admin')
-
-    api.detail.getD9().then(res => {
-      console.log(res)
-    })
-
-
-    // 一级循环
-    pcas.forEach((item, i) => {
-      let obj = {
-        value: item.code,
-        label: item.name,
-        children: []
-      }
-      if (item.children) {
-        // 二级循环
-        item.children.forEach((secondItem, secondI) => {
-          let secondObj = {
-            value: secondItem.code,
-            label: secondItem.name,
-          }
-          if (secondItem.children) {
-            secondObj.children = []
-
-            // 三级循环
-            secondItem.children.forEach((thirdItem, thirdI) => {
-              let thirdObj = {
-                value: thirdItem.code,
-                label: thirdItem.name,
-              }
-
-              if (thirdItem.children) {
-                thirdObj.children = []
-
-                // 四级循环
-                thirdItem.children.forEach((fourthItem, fourthI) => {
-                  let fourthObj = {
-                    value: fourthItem.code,
-                    label: fourthItem.name,
-                  }
-                  thirdObj.children.push(fourthObj)
-                })
-              }
-              secondObj.children.push(thirdObj)
-
-            })
-            
-
-          }
-          obj.children.push(secondObj)
-
-        })
-      }
-      this.options.push(obj)
-      
-       
-
-    })
-
 
   },
   methods: {
-    selectSingle(arr, row) {
-      // console.log(arr, row)
-    },
-    selectAll(arr) {
-      console.log(arr)
-    },
-    cascaderChange(value) {
-      console.log(value)
-
-    },
-    open() {
-      this.$alert('<strong>这是 <i>HTML</i> 片段</strong>', 'HTML 片段', {
-        dangerouslyUseHTMLString: true
-      });
-    },
-    tableClose() {
-      alert(1)
-    }
 
   },
   components: {
@@ -236,14 +203,276 @@ export default {
 }
 </script>
 
-<style scoped>
-.lift-list{
-  padding-left: 250px;
-  padding-top: 100px;
-  padding-right: 60px;
-}
-.el-input-box{
-  width: 80%;
+<style lang="stylus" scoped>
+#LiftList{
+  .container{
+    padding 61px 0 0 200px;
+    line-height 1;
+  }
+  .lift-error-sum{
+    float left;
+    width 25%;
+    height 140px;
+    color #fff;
+    // background-image: linear-gradient(-90deg, #E95E5E 0%, #E9775E 100%);
+    background-image: linear-gradient(-90deg, #E9775E 0%, #E95E5E 100%);
+    box-shadow: 8px 0 20px -10px rgba(191,52,27,0.60);
+  }
+  .les-box{
+    padding 0 20px;
+  }
+  .les-box-top{
+    position relative;
+    padding-top 32px;
+    font-size 14px;
+    padding-bottom 20px;
+    border-bottom 1px dashed rgba(255,255,255,0.3);
+  }
+  .lift-error-man .les-box-top{
+    border-bottom 1px dashed #dee2e4;
+  }
+  .les-box-top-data span{
+    font-size 30px;
+    font-weight bold;
+    margin-right 6px;
+  }
+  .les-box-top-day{
+    position absolute;
+    top 38px;
+    right 0;
+    font-size 10px;
+    color red;
+    background #fff;
+    padding 3px 8px;
+    border-radius 5px;  
+  }
+  .lift-error-man .les-box-top-day{
+    color #fff;
+    background #7E8A95;
+  }
+  .les-box-bottom{
+    padding-top 14px;
+  }
+  .les-box-bottom p{
+    float left;
+    font-size 14px;
+    color: rgba(255,255,255,0.65);
+    // width 33%;
+    overflow hidden;
+    text-overflow ellipsis;
+    white-space nowrap;
+  }
+  .les-box-bottom p:first-child{
+    width 40%;
+  }
+  .les-box-bottom p:nth-child(2){
+    width 30%;
+  }
+  .les-box-bottom p:nth-child(3){
+    width 30%;
+  }
+  .lift-error-man .les-box-bottom p{
+    color #7E8A95;
+  }
+  .les-box-bottom p span{
+    font-weight bold;
+    color: rgba(255,255,255,1);
+  }
+  .lift-error-type{
+    float left;
+    width 56%;
+    background #fff;
+  }
+  .let-box{
+    position relative;
+    box-sizing border-box;
+    float left;
+    width 25%;
+    height 140px;
+    cursor pointer;
+  }
+  .let-box:hover{
+    box-shadow: 0 4px 16px -2px rgba(66,114,255,0.60);
+  }
+  .let-box-simple{
+    text-align center;
+  }
+  .let-box-simple h4{
+    font-size 30px;
+    color: #34414C;
+    padding-top 40px;
+  }
+  .let-box-simple p{
+    font-size: 14px;
+    color: #34414C;
+    margin-top 14px;  
+  }
+  .lbd-left{
+    float left;
+    width 40%;
+    text-align center;
+    color #FFA90C;
+  }
+  .lbd-left h4{
+    font-size 30px;
+    padding-top 40px;
+  }
+  .lbd-left p{
+    font-size 20px;
+    margin-top 12px;  
+  }
+  .lbd-right{
+    float left;
+    width 60%;
+    padding-top 56px;  
+  }
+  .lbd-right p{
+    font-size 14px;
+    line-height 1.5;
+    color: #7E8A95;
+  }
+  .lbd-right p span{
+    color: #34414C;
+  }
+  .let-box-line{
+    position absolute;
+    right 0;
+    top 36px;
+    width 1px;
+    height 70px;
+    background #DEE2E4;
+  }
+  .lift-error-man{
+    box-sizing border-box;
+    float left;
+    width 19%;
+    height 140px;
+    background #fff;
+    color #000;
+    border-left 1px solid #DEE2E4;
+  }
+  .lift-list{
+    background #fff;
+    margin 30px;
+    border-radius 6px;
+  }
+  .lift-list-title{
+    line-height 50px;
+    padding-left 20px;
+    font-size: 16px;
+    color: #34414C;
+    border-bottom 1px solid #D8DDDF;  
+  }
+  .ll-choose{
+    padding 20px 30px;
+  }
+
+  .llct-area{
+    float left;
+    width 160px;
+    height 30px;
+  }
+  .llct-line{
+    float left
+    width 1px;
+    height 14px;
+    margin-top 4px;
+    background #D8DDDF;
+  }
+  .llct-type{
+    float left;
+    margin-left 14px;
+  }
+  .llct-type em{
+    float left;
+    display inline-block;
+    font-style normal;
+    font-size 14px;
+    line-height 22px;
+    padding 0 10px;
+    cursor pointer;
+    border-radius 4px;
+  }
+  .llct-type span{
+    float left;
+    display inline-block;
+    font-size 14px;
+    line-height 22px;
+    padding 0 10px;
+    cursor pointer;
+    color: #7E8A95;
+    margin-right 5px;
+    border-radius 4px;
+    cursor pointer;
+  }
+  .llct-type span.on,.llct-type span:hover{
+    background: #4272FF;
+    color #fff;
+  }
+  .ll-choose-bottom{
+    padding 20px 0;
+    border-top 1px dashed  #D8DDDF;
+  }
+  .llcb-operate{
+    float left
+  }
+  .llcb-btn{
+    display inline-block;
+    font-size 14px;
+    color: #34414C;
+    border: 1px solid #D8DDDF;
+    border-radius: 4px;
+    padding 8px 16px;
+    cursor pointer;
+  }
+  .llcb-operate .llcb-btn{
+    margin-right 5px;
+  }
+  .llcb-btn.info{
+    background: #4272FF;
+    border: 1px solid #4272FF;
+    color #fff;
+  }
+  .llcb-search{
+    float right;
+    width 320px;
+    position relative;
+  }
+  .lsearch-input{
+    position relative;
+    box-sizing border-box;
+    height 32px;
+    width 100%;
+    padding-right 60px;
+    padding-left 10px;
+    border: 1px solid #D8DDDF;
+  }
+  .lsearch-submit{
+    position absolute;
+    top 1px;
+    right 1px;
+    border none;
+    height 30px;
+    width 40px;
+    cursor pointer;
+    background: #fff url('../../assets/images/xym/search.png') no-repeat center center;
+  }
+  .ll-table{
+    border-top 10px solid #F5F6F7;
+    padding 20px;
+  }
+  .llt-thead{
+    background: #F5F6F7;
+  }
+  .llt-th{
+    float left;
+    font-size: 14px;
+    color: #34414C;
+    line-height: 22px;
+    padding 16px 0;
+  }
+
+
 }
 
 </style>
