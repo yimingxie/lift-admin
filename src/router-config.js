@@ -34,6 +34,33 @@ const router = new Router({
       },
       component: (resolve) => require(['./views/map/MapList.vue'], resolve)
     },
+    {
+      path: "/device",
+      name: "device",
+      meta: {
+        title: "设备管理",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/settings/Device.vue'], resolve)
+    },
+    {
+      path: "/device-detail",
+      name: "device-detail",
+      meta: {
+        title: "设备管理详情",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/settings/DeviceDetail.vue'], resolve)
+    },
+    {
+      path: "/lift-device",
+      name: "lift-device",
+      meta: {
+        title: "单部电梯设备列表",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/lift/LiftDevice.vue'], resolve)
+    },
   ]
 })
 

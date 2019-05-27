@@ -21,7 +21,7 @@
 
     methods: {
       onSelect (value) {
-        this.value = value
+        // this.value = value
         this.$emit('update:value', value)
         
       }

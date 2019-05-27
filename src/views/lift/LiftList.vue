@@ -101,7 +101,6 @@
               <p style="width: 100%;">异常作业及时率：92%</p>
             </div>
           </div>
-   
 
         </div>
         
@@ -121,11 +120,13 @@
             
             <div class="llct-type clearfix">
               <em>异常分类：</em>
-              <span class="on">全部</span>
+              <!-- <span class="on">全部</span>
               <span>预警</span>
               <span>违规</span>
               <span>故障</span>
-              <span>事故</span>
+              <span>事故</span> -->
+              <radio-group :items="exceptItem" :value.sync="exceptValue" style="display: inline-block"></radio-group>
+
             </div>
             
 
@@ -152,36 +153,141 @@
         </div>
 
         <div class="ll-table">
-          <div class="llt-thead clearfix">
-            <div class="llt-th">
-              <input type="checkbox">
+          <div class="llt-thead">
+            <div class="llt-tr clearfix">
+              <div class="llt-th">
+                <input type="checkbox">
+              </div>
+              <div class="llt-th">电梯注册代码</div>
+              <div class="llt-th">内部编号</div>
+              <div class="llt-th">区域-片区</div>
+              <div class="llt-th">详细地址</div>
+              <div class="llt-th">在线/设备</div>
+              <div class="llt-th">检测数</div>
+              <div class="llt-th">异常告警</div>
+              <div class="llt-th">操作</div>
             </div>
-            <div class="llt-th">电梯注册代码</div>
-            <div class="llt-th">内部编号</div>
-            <div class="llt-th">区域-片区</div>
-            <div class="llt-th">详细地址</div>
-            <div class="llt-th">在线/设备</div>
-            <div class="llt-th">检测数</div>
-            <div class="llt-th">异常告警</div>
-            <div class="llt-th">操作</div>
+          </div>
+          <div class="llt-tbody">
+            <div class="llt-tr">
+              <div class="llt-tr-container clearfix">
+                <div class="llt-td">
+                  <input type="checkbox">
+                </div>
+                <div class="llt-td">31104403002014002777</div>
+                <div class="llt-td">DT01</div>
+                <div class="llt-td">深圳市-南山区-蛇口</div>
+                <div class="llt-td">平安大厦</div>
+                <div class="llt-td">
+                  <p class="llt-td-device"><span class="llt-td-a">4</span>/25</p>
+                </div>
+                <div class="llt-td">31</div>
+                <div class="llt-td">
+                  <p class="llt-td-type">预警<span class="warning">2</span></p>
+                  <p class="llt-td-type">违规<span class="illegal">4</span></p>
+                  <p class="llt-td-type">故障<span class="fault">2</span></p>
+                  <p class="llt-td-type">事故<span class="accident">1</span></p>
+                </div>
+                <div class="llt-td">
+                  <span class="llt-td-a">电梯档案</span>
+                  <em class="llt-td-line">|</em>
+                  <span class="llt-td-a">设置监控</span>
+                  <em class="llt-td-line">|</em>
+                  <span class="llt-td-a">诊断</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="llt-tr clearfix">
+              <div class="llt-tr-container clearfix">
+                <div class="llt-td">
+                  <input type="checkbox">
+                </div>
+                <div class="llt-td">31104403002014002777</div>
+                <div class="llt-td">DT01</div>
+                <div class="llt-td">深圳市-南山区-蛇口</div>
+                <div class="llt-td">平安大厦</div>
+                <div class="llt-td">
+                  <p class="llt-td-device"><span class="llt-td-a">4</span>/25</p>
+                </div>
+                <div class="llt-td">31</div>
+                <div class="llt-td">
+                  <p class="llt-td-type">预警<span class="warning">2</span></p>
+                  <p class="llt-td-type">违规<span class="illegal">4</span></p>
+                  <p class="llt-td-type">故障<span class="fault">2</span></p>
+                  <p class="llt-td-type">事故<span class="accident">1</span></p>
+                </div>
+                <div class="llt-td">
+                  <span class="llt-td-a">电梯档案</span>
+                  <em class="llt-td-line">|</em>
+                  <span class="llt-td-a">设置监控</span>
+                  <em class="llt-td-line">|</em>
+                  <span class="llt-td-a">诊断</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="llt-tr clearfix">
+              <div class="llt-tr-container clearfix">
+                <div class="llt-td">
+                  <input type="checkbox">
+                </div>
+                <div class="llt-td">31104403002014002777</div>
+                <div class="llt-td">DT01</div>
+                <div class="llt-td">深圳市-南山区-蛇口</div>
+                <div class="llt-td">平安大厦</div>
+                <div class="llt-td">
+                  <p class="llt-td-device"><span class="llt-td-a">4</span>/25</p>
+                </div>
+                <div class="llt-td">31</div>
+                <div class="llt-td">
+                  <p class="llt-td-type">预警<span class="warning">2</span></p>
+                  <p class="llt-td-type">违规<span class="illegal">4</span></p>
+                  <p class="llt-td-type">故障<span class="fault">2</span></p>
+                  <p class="llt-td-type">事故<span class="accident">1</span></p>
+                </div>
+                <div class="llt-td">
+                  <span class="llt-td-a">电梯档案</span>
+                  <em class="llt-td-line">|</em>
+                  <span class="llt-td-a">设置监控</span>
+                  <em class="llt-td-line">|</em>
+                  <span class="llt-td-a">诊断</span>
+                </div>
+              </div>
+            </div>
+
+            
           </div>
           
-
         </div>
-
 
       </div>
 
+      
 
     </div>
+
+    <!-- 底部 -->
+    <footer-temp></footer-temp>
 
   </div>
 </template>
 
 <script>
+import RadioGroup from '../../components/RadioGroup'
+import Footer from '../common/fotter'
+
 export default {
   data() {
     return {
+      exceptItem: [
+        {label: '全部', value: 0},
+        {label: '预警', value: 1},
+        {label: '违规', value: 2},
+        {label: '故障', value: 3},
+        {label: '事故', value: 4}
+      ],
+      exceptValue: 0,
       leType: {
         show1: true,
         show2: true,
@@ -197,24 +303,31 @@ export default {
   methods: {
 
   },
+  watch: {
+    exceptValue(val, oldVal) {
+      console.log(val + '=---=-=-' + oldVal)
+    }
+  },
   components: {
-
+    'radio-group': RadioGroup,
+    'footer-temp': Footer
+    
   }
 }
 </script>
 
 <style lang="stylus" scoped>
+@import '../../assets/stylus/xymStyle.styl'
 #LiftList{
   .container{
-    padding 61px 0 0 200px;
     line-height 1;
   }
+
   .lift-error-sum{
     float left;
     width 25%;
     height 140px;
     color #fff;
-    // background-image: linear-gradient(-90deg, #E95E5E 0%, #E9775E 100%);
     background-image: linear-gradient(-90deg, #E9775E 0%, #E95E5E 100%);
     box-shadow: 8px 0 20px -10px rgba(191,52,27,0.60);
   }
@@ -351,127 +464,39 @@ export default {
     color #000;
     border-left 1px solid #DEE2E4;
   }
-  .lift-list{
-    background #fff;
-    margin 30px;
-    border-radius 6px;
-  }
-  .lift-list-title{
-    line-height 50px;
-    padding-left 20px;
-    font-size: 16px;
-    color: #34414C;
-    border-bottom 1px solid #D8DDDF;  
-  }
-  .ll-choose{
-    padding 20px 30px;
-  }
 
-  .llct-area{
-    float left;
-    width 160px;
-    height 30px;
-  }
-  .llct-line{
-    float left
-    width 1px;
-    height 14px;
-    margin-top 4px;
-    background #D8DDDF;
-  }
-  .llct-type{
-    float left;
-    margin-left 14px;
-  }
-  .llct-type em{
-    float left;
-    display inline-block;
-    font-style normal;
-    font-size 14px;
-    line-height 22px;
-    padding 0 10px;
-    cursor pointer;
-    border-radius 4px;
-  }
-  .llct-type span{
-    float left;
-    display inline-block;
-    font-size 14px;
-    line-height 22px;
-    padding 0 10px;
-    cursor pointer;
-    color: #7E8A95;
-    margin-right 5px;
-    border-radius 4px;
-    cursor pointer;
-  }
-  .llct-type span.on,.llct-type span:hover{
-    background: #4272FF;
-    color #fff;
-  }
-  .ll-choose-bottom{
-    padding 20px 0;
-    border-top 1px dashed  #D8DDDF;
-  }
-  .llcb-operate{
-    float left
-  }
-  .llcb-btn{
-    display inline-block;
-    font-size 14px;
-    color: #34414C;
-    border: 1px solid #D8DDDF;
-    border-radius: 4px;
-    padding 8px 16px;
-    cursor pointer;
-  }
-  .llcb-operate .llcb-btn{
-    margin-right 5px;
-  }
-  .llcb-btn.info{
-    background: #4272FF;
-    border: 1px solid #4272FF;
-    color #fff;
-  }
-  .llcb-search{
-    float right;
-    width 320px;
-    position relative;
-  }
-  .lsearch-input{
-    position relative;
-    box-sizing border-box;
-    height 32px;
-    width 100%;
-    padding-right 60px;
-    padding-left 10px;
-    border: 1px solid #D8DDDF;
-  }
-  .lsearch-submit{
-    position absolute;
-    top 1px;
-    right 1px;
-    border none;
-    height 30px;
-    width 40px;
-    cursor pointer;
-    background: #fff url('../../assets/images/xym/search.png') no-repeat center center;
-  }
-  .ll-table{
-    border-top 10px solid #F5F6F7;
-    padding 20px;
-  }
-  .llt-thead{
-    background: #F5F6F7;
-  }
-  .llt-th{
-    float left;
-    font-size: 14px;
-    color: #34414C;
-    line-height: 22px;
-    padding 16px 0;
-  }
 
+
+  
+  .llt-thead .llt-th:nth-child(1),.llt-tbody .llt-td:nth-child(1){
+    width 3%;
+    text-align center;
+  }
+  .llt-thead .llt-th:nth-child(2),.llt-tbody .llt-td:nth-child(2){
+    width 14%;
+  }
+  .llt-thead .llt-th:nth-child(3),.llt-tbody .llt-td:nth-child(3){
+    width 6%;
+  }
+  .llt-thead .llt-th:nth-child(4),.llt-tbody .llt-td:nth-child(4){
+    width 12%;
+  }
+  .llt-thead .llt-th:nth-child(5),.llt-tbody .llt-td:nth-child(5){
+    width 15%;
+  }
+  .llt-thead .llt-th:nth-child(6),.llt-tbody .llt-td:nth-child(6){
+    width 9%;
+  }
+  .llt-thead .llt-th:nth-child(7),.llt-tbody .llt-td:nth-child(7){
+    width 7%;
+  }
+  .llt-thead .llt-th:nth-child(8),.llt-tbody .llt-td:nth-child(8){
+    width 18%;
+  }
+  .llt-thead .llt-th:nth-child(9),.llt-tbody .llt-td:nth-child(9){
+    width 16%;
+  }
+  
 
 }
 
