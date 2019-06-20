@@ -1,0 +1,32 @@
+@charset "UTF-8";
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin:0; padding:0; }
+/*body, button, input, select, textarea { font:12px/1.5 Tahoma,Helvetica,Arial,'宋体',sans-serif;}*/
+/*body, button, input, select, textarea{font:12px/1.5 Tahoma,Microsoft YaHei,'微软雅黑',Helvetica,Arial,'宋体',sans-serif;}*/
+body, button, input, select, textarea{font-size:12px;font-family: Microsoft YaHei,'微软雅黑',Tahoma,Helvetica,Neu,Arial,'宋体',sans-serif;line-height: 1;}
+h1, h2, h3, h4, h5, h6{  }
+/*address, cite, dfn, em, var { font-style:normal; }*/
+code, kbd, pre, samp { font-family:couriernew, courier, monospace; }
+small{ font-size:12px; }
+/*ul, ol { list-style:none; }*/
+a { text-decoration:none;color: black }
+a:hover { text-decoration:none; }
+sup { vertical-align:text-top; }
+sub{ vertical-align:text-bottom; }
+legend { color:#000; }
+fieldset, img { border:0;vertical-align:middle; }
+img{max-width: 100%;}
+/*button, input, select, textarea { font-size:100%; }*/
+input,textarea{outline: none;}
+table { border-collapse:collapse; border-spacing:0; }
+
+.fl{float: left;}
+.fr{float: right;}
+
+/*清除浮动*/
+.clearfix:after{ display: block;clear:both;font-size:0;line-height:0;height:0;visibility:hidden;content: '.';}
+
+/*超出*/
+.cut{overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;}
+
+
+/* 滚动条 */
