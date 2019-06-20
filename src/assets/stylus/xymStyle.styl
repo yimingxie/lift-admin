@@ -34,6 +34,7 @@
 .llct-type{
   float left;
   margin-left 14px;
+  margin-top 2px;
 }
 .llct-type em{
   float left;
@@ -85,30 +86,10 @@
   border: 1px solid #4272FF;
   color #fff;
 }
-.llcb-search{
-  float right;
-  width 320px;
-  position relative;
-}
-.lsearch-input{
-  position relative;
-  box-sizing border-box;
-  height 32px;
-  width 100%;
-  padding-right 60px;
-  padding-left 10px;
-  border: 1px solid #D8DDDF;
-}
-.lsearch-submit{
-  position absolute;
-  top 1px;
-  right 1px;
-  border none;
-  height 30px;
-  width 40px;
-  cursor pointer;
-  background: #fff url('../../assets/images/xym/search.png') no-repeat center center;
-}
+
+
+
+
 .ll-table{
   border-top 10px solid #F5F6F7;
   padding 20px;
@@ -117,6 +98,7 @@
   background: #F5F6F7;
 }
 .llt-th{
+  position relative;
   box-sizing border-box;
   float left;
   font-size: 14px;
@@ -127,6 +109,18 @@
   overflow hidden;
   text-overflow ellipsis;
   white-space nowrap;
+}
+.llt-th-sort{
+  display inline-block;
+  padding-right 16px;
+  background: url('../../assets/images/xym/sort.png') no-repeat right center;
+  cursor pointer;
+}
+.llt-th-sort.asc{
+  background: url('../../assets/images/xym/sort-asc.png') no-repeat right center;
+}
+.llt-th-sort.desc{
+  background: url('../../assets/images/xym/sort-desc.png') no-repeat right center;
 }
 .llt-tbody .llt-tr{
   position relative;
@@ -193,14 +187,23 @@
   height 20px;
   background: url('../../assets/images/xym/down-arrow.png') no-repeat center center;
   cursor pointer
+  transition: all 0.5s ease;
 }
 .llt-tr.on .llt-td-arrow{
-  background: url('../../assets/images/xym/up-arrow.png') no-repeat center center;
+  // background: url('../../assets/images/xym/up-arrow.png') no-repeat center center;
+  transform: rotate(180deg)
 }
 .llt-drop{
   background-image: linear-gradient(180deg, rgba(232,233,236,0.70) 0%, #FBFBFB 4%, #FFFFFF 8%, #FFFFFF 50%, #FFFFFF 93%, #FBFBFB 97%, #E8E9EC 100%);
-  max-height: 475px;
   overflow: auto;
+  height 0;
+  transition: all 0.5s ease
+}
+.llt-tr.on .llt-drop.heightAuto{
+  height auto;
+}
+.llt-tr.on .llt-drop.heightFix{
+  height 475px;
 }
 .llt-drop-wrap{
   box-sizing: border-box;
@@ -309,13 +312,17 @@
   padding: 20px 0;
 }
 .dia-citem{
-  padding: 8px 0;
+  // padding: 8px 0;
+}
+.dia-citem-ib{
+  float left;
+  width 80%;
 }
 .dia-citem-label{
   float left;
   width 20%;
   box-sizing: border-box;
-  line-height 32px;
+  line-height 40px;
   padding-right: 20px;
   font-size: 14px;
   color: #34414C;
@@ -373,9 +380,66 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
+.llcb-search{
+  float right;
+  width 320px;
+  position relative;
+}
 
 // 组件封装
 .city-box{
   height 26px;
+}
+
+.lift-add-result-heading{
+  background-image: linear-gradient(180deg, #4272FF 0%, #3C6AF1 71%, #335CD6 100%);
+  box-shadow: 0 8px 16px -8px rgba(66,114,255,0.30);
+  border-radius: 8px 8px 0 0;
+  line-height 56px;
+  padding: 0 20px;
+  margin: 0 10px;
+}
+.lift-add-result-heading h4{
+  float left;
+  font-size: 16px;
+  color: #FFFFFF;
+}
+.lift-add-result-heading span{
+  float right;
+  font-size: 14px;
+  color: rgba(255,255,255,0.85);
+}
+.la-result{
+  background: #FFFFFF;
+  box-shadow: 0 8px 20px -12px rgba(66,114,255,0.30);
+  border-radius: 8px;
+  min-height: 430px;
+}
+.la-result-nodata{
+  text-align: center;
+  padding-top: 130px;
+}
+.lar-nodata-p h4{
+  font-size: 24px;
+  color: #34414C;
+  line-height: 32px;
+  margin-top 20px;
+}
+.lar-nodata-p p{
+  font-size: 14px;
+  color: #7E8A95;
+  line-height: 22px;
+  margin-top 10px;
+}
+.lift-add-search{
+  background #fff;
+  padding 30px 0;
+}
+.la-search-box{
+  width 550px;
+  margin 0 auto;
+}
+.list-page{
+  margin-top 20px;
+  text-align: right;
 }

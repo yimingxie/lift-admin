@@ -2,16 +2,21 @@ import http from '../utils/http'
 
 let protocol = process.env.NODE_ENV !== 'production' ? 'http:' : window.location.protocol
 let url1 = `${protocol}//iot.gidomino.com`
-// let url2 = `${protocol}//192.168.100.8:8080`
+let url2 = `${protocol}//192.168.100.89:8080`
+
 
 export default {
-  // 电梯实时数据
-  getCurrent(id) {
-    return http.get(`${url1}/iotsqu/liftposition/${id}`)
+  // 获取异常告警列表
+  getWarnList(reg_code, params) {
+    let url = `${url2}/elevator/${reg_code}/diagninfo?params=` + params
+    console.log('获取异常告警列表url', url)
+    let uri = encodeURI(url)
+    return http.get(uri)
+
   },
 
-  // 测试
-  getTest(id) {
+  // 电梯实时数据
+  getCurrent(id) {
     return http.get(`${url1}/iotsqu/liftposition/${id}`)
   },
 
@@ -120,32 +125,46 @@ export default {
     return http.get(`${url1}/iotsqu/lift/${id}/historyData/21?time=${time}`)
   },
 
-  // 轿顶安全回路
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // 电梯id: test001
+  // 驱动辊转速
   getD22(id, time) {
     return http.get(`${url1}/iotsqu/lift/${id}/historyData/22?time=${time}`)
   },
 
-  // 轿门安全回路
+  // 从动辊转速
   getD23(id, time) {
     return http.get(`${url1}/iotsqu/lift/${id}/historyData/23?time=${time}`)
   },
 
-  // 层门安全回路
+  // 电动机电流
   getD24(id, time) {
     return http.get(`${url1}/iotsqu/lift/${id}/historyData/24?time=${time}`)
   },
 
-  // 底坑安全回路
+  // 开关信号电流
   getD25(id, time) {
     return http.get(`${url1}/iotsqu/lift/${id}/historyData/25?time=${time}`)
   },
 
-  // 层门门锁回路
+  // 下料口微型拖辊铁架振动
   getD26(id, time) {
     return http.get(`${url1}/iotsqu/lift/${id}/historyData/26?time=${time}`)
   },
 
-  // 轿门门锁回路
+  // 联轴器振动
   getD27(id, time) {
     return http.get(`${url1}/iotsqu/lift/${id}/historyData/27?time=${time}`)
   }

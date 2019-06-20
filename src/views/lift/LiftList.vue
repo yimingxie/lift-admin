@@ -21,12 +21,12 @@
             <div class="let-box-line"></div>
             <div class="let-box-simple" v-show="leType.show1">
               <h4>13</h4>
-              <p>事故告警电梯</p>
+              <p>事件告警电梯</p>
             </div>
             <div class="let-box-detail clearfix" v-show="!leType.show1">
               <div class="lbd-left">
                 <h4>13</h4>
-                <p>事故</p>
+                <p>事件</p>
               </div>
               <div class="lbd-right">
                 <p>待诊断：<span>6</span></p>
@@ -103,8 +103,6 @@
           </div>
 
         </div>
-        
-
 
       </div>
 
@@ -112,41 +110,25 @@
         <div class="lift-list-title">数字电梯</div>
         <div class="ll-choose">
           <div class="ll-choose-top clearfix">
-            <!-- TODO 省市联动筛选 -->
-            <div class="llct-area"></div>
-
+            <!-- 省市联动筛选 -->
+            <div class="llct-area">
+              <city-choose @childVal="selectCity"></city-choose>
+            </div>
             <div class="llct-line"></div>
-
-            
             <div class="llct-type clearfix">
               <em>异常分类：</em>
-              <!-- <span class="on">全部</span>
-              <span>预警</span>
-              <span>违规</span>
-              <span>故障</span>
-              <span>事故</span> -->
               <radio-group :items="exceptItem" :value.sync="exceptValue" style="display: inline-block"></radio-group>
-
             </div>
-            
-
           </div>
 
           <div class="ll-choose-bottom clearfix">
             <div class="llcb-operate">
-              <div class="llcb-btn info">+ 添加电梯</div>
+              <div class="llcb-btn info" @click="goLiftAdd">+ 添加电梯</div>
               <div class="llcb-btn">批量录入</div>
-              <div class="llcb-btn">删除电梯</div>
+              <div class="llcb-btn" @click="deleteLifts">删除电梯</div>
             </div>
             <div class="llcb-search">
-              <div class="llcb-search-box">
-                <input class="lsearch-input" type="text" placeholder="搜索电梯注册码/内部编号/详细地址">
-                <input class="lsearch-submit" type="button" value="">
-              </div>
-
-              <!-- TODO 搜索提示下拉待做 -->
-              <div class="llcb-search-tips"></div>
-
+              <search-code @childCode="searchLift"></search-code>
             </div>
           </div>
           
@@ -156,7 +138,8 @@
           <div class="llt-thead">
             <div class="llt-tr clearfix">
               <div class="llt-th">
-                <input type="checkbox">
+                <!-- <input type="checkbox"> -->
+                <el-checkbox v-model="checkedAll" @change="checkedAllChange"></el-checkbox>
               </div>
               <div class="llt-th">电梯注册代码</div>
               <div class="llt-th">内部编号</div>
@@ -164,106 +147,62 @@
               <div class="llt-th">详细地址</div>
               <div class="llt-th">在线/设备</div>
               <div class="llt-th">检测数</div>
-              <div class="llt-th">异常告警</div>
+              <div class="llt-th"><div class="llt-th-sort" :class="sortClass" @click="warnSort">异常告警</div></div>
               <div class="llt-th">操作</div>
             </div>
           </div>
           <div class="llt-tbody">
-            <div class="llt-tr">
+
+            <div class="llt-tr clearfix" v-for="(item, i) in liftList" :key="i">
               <div class="llt-tr-container clearfix">
                 <div class="llt-td">
-                  <input type="checkbox">
+                  <el-checkbox-group v-model="checkedLifts" @change="checkedLiftsChange">
+                    <el-checkbox :label="item.reg_code" :key="i">{{test}}</el-checkbox>
+                  </el-checkbox-group>
                 </div>
-                <div class="llt-td">31104403002014002777</div>
-                <div class="llt-td">DT01</div>
-                <div class="llt-td">深圳市-南山区-蛇口</div>
-                <div class="llt-td">平安大厦</div>
+                <div class="llt-td">{{item.reg_code}}</div>
+                <div class="llt-td">{{item.in_num}}</div>
+                <div class="llt-td">{{item.local_area}}</div>
+                <div class="llt-td">{{item.address}}</div>
                 <div class="llt-td">
-                  <p class="llt-td-device"><span class="llt-td-a">4</span>/25</p>
+                  <p class="llt-td-device" @click="goLiftDevice(item.reg_code)"><span class="llt-td-a">{{item.device_online}}</span>/{{item.device_count}}</p>
                 </div>
-                <div class="llt-td">31</div>
+                <div class="llt-td">{{item.monitor_count}}</div>
                 <div class="llt-td">
-                  <p class="llt-td-type">预警<span class="warning">2</span></p>
-                  <p class="llt-td-type">违规<span class="illegal">4</span></p>
-                  <p class="llt-td-type">故障<span class="fault">2</span></p>
-                  <p class="llt-td-type">事故<span class="accident">1</span></p>
+                  <p class="llt-td-type">预警<span class="warning">{{item.warning_count}}</span></p>
+                  <p class="llt-td-type">违规<span class="illegal">{{item.violation_count}}</span></p>
+                  <p class="llt-td-type">故障<span class="fault">{{item.fault_count}}</span></p>
+                  <p class="llt-td-type">事件<span class="accident">{{item.accident_count}}</span></p>
                 </div>
                 <div class="llt-td">
-                  <span class="llt-td-a">电梯档案</span>
+                  <span class="llt-td-a" @click="goLiftResult(item.reg_code)">电梯档案</span>
                   <em class="llt-td-line">|</em>
                   <span class="llt-td-a">设置监控</span>
                   <em class="llt-td-line">|</em>
-                  <span class="llt-td-a">诊断</span>
+                  <span class="llt-td-a" @click="goDetection(item.reg_code)">诊断</span>
                 </div>
               </div>
             </div>
-
-            <div class="llt-tr clearfix">
-              <div class="llt-tr-container clearfix">
-                <div class="llt-td">
-                  <input type="checkbox">
-                </div>
-                <div class="llt-td">31104403002014002777</div>
-                <div class="llt-td">DT01</div>
-                <div class="llt-td">深圳市-南山区-蛇口</div>
-                <div class="llt-td">平安大厦</div>
-                <div class="llt-td">
-                  <p class="llt-td-device"><span class="llt-td-a">4</span>/25</p>
-                </div>
-                <div class="llt-td">31</div>
-                <div class="llt-td">
-                  <p class="llt-td-type">预警<span class="warning">2</span></p>
-                  <p class="llt-td-type">违规<span class="illegal">4</span></p>
-                  <p class="llt-td-type">故障<span class="fault">2</span></p>
-                  <p class="llt-td-type">事故<span class="accident">1</span></p>
-                </div>
-                <div class="llt-td">
-                  <span class="llt-td-a">电梯档案</span>
-                  <em class="llt-td-line">|</em>
-                  <span class="llt-td-a">设置监控</span>
-                  <em class="llt-td-line">|</em>
-                  <span class="llt-td-a">诊断</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="llt-tr clearfix">
-              <div class="llt-tr-container clearfix">
-                <div class="llt-td">
-                  <input type="checkbox">
-                </div>
-                <div class="llt-td">31104403002014002777</div>
-                <div class="llt-td">DT01</div>
-                <div class="llt-td">深圳市-南山区-蛇口</div>
-                <div class="llt-td">平安大厦</div>
-                <div class="llt-td">
-                  <p class="llt-td-device"><span class="llt-td-a">4</span>/25</p>
-                </div>
-                <div class="llt-td">31</div>
-                <div class="llt-td">
-                  <p class="llt-td-type">预警<span class="warning">2</span></p>
-                  <p class="llt-td-type">违规<span class="illegal">4</span></p>
-                  <p class="llt-td-type">故障<span class="fault">2</span></p>
-                  <p class="llt-td-type">事故<span class="accident">1</span></p>
-                </div>
-                <div class="llt-td">
-                  <span class="llt-td-a">电梯档案</span>
-                  <em class="llt-td-line">|</em>
-                  <span class="llt-td-a">设置监控</span>
-                  <em class="llt-td-line">|</em>
-                  <span class="llt-td-a">诊断</span>
-                </div>
-              </div>
-            </div>
-
             
           </div>
-          
+
+          <!-- 分页 -->
+          <div class="list-page">
+            <el-pagination
+              @size-change="pageSizeChange"
+              @current-change="currentPageChange"
+              :current-page="currentPage"
+              :page-sizes="[10, 20, 30]"
+              :page-size="pageSize"
+              layout="prev, pager, next, sizes, jumper"
+              :total="totalPage">
+            </el-pagination>
+          </div>
+    
+    
         </div>
 
       </div>
-
-      
 
     </div>
 
@@ -274,43 +213,191 @@
 </template>
 
 <script>
+import api from '../../api'
 import RadioGroup from '../../components/RadioGroup'
 import Footer from '../common/fotter'
+import CityChoose from '../../components/CityChoose'
+import SearchCode from '../../components/SearchCode'
 
 export default {
   data() {
     return {
+      liftList: [],
+      liftsRegCodeOptions: [],
+      checkedLifts: [],
+      checkedAll: false,
       exceptItem: [
-        {label: '全部', value: 0},
-        {label: '预警', value: 1},
-        {label: '违规', value: 2},
-        {label: '故障', value: 3},
-        {label: '事故', value: 4}
+        {label: '全部', value: -1},
+        {label: '预警', value: 0},
+        {label: '违规', value: 1},
+        {label: '故障', value: 2},
+        {label: '事件', value: 3}
       ],
-      exceptValue: 0,
+      exceptValue: -1,
       leType: {
         show1: true,
         show2: true,
         show3: true,
         show4: true,
-      }
+      },
+      liftListParams: {
+        page: {offset: 1, limit: 10},
+        query: {
+          excp_type: -1,
+        },
+        order: 'desc'
+      },
+      sortClass: '',
+      test: '',
+      currentPage: 1,
+      totalPage: 1,
+      pageSize: 10,
 
     }
   },
   mounted() {
-
+    this.getLiftList()
   },
   methods: {
+    // 获取数字电梯列表
+    getLiftList() {
+      api.lift.getLiftList(this.liftListParams).then(res => {
+        console.log(res)
+        this.liftList = res.data.data.records
+
+        // 将所有电梯注册码填入选项，用于全选
+        this.liftsRegCodeOptions = []
+        this.liftList.forEach(item => {
+          this.liftsRegCodeOptions.push(item.reg_code)
+        })
+
+        // 分页
+        this.currentPage = res.data.data.current
+        this.totalPage = res.data.data.total
+      })
+    },
+
+    // 搜索
+    // 监听子组件获取注册码，发送请求搜索并重新渲染列表
+    searchLift(reg_code) {
+      this.liftListParams.query.reg_code = reg_code
+      this.getLiftList()
+    },
+
+    // 电梯多选
+    checkedLiftsChange(val) {
+      let count = this.liftList.length
+      // 总数达到就全选
+      this.checkedAll = val.length === count ? true : false
+    },
+
+    // 全选
+    checkedAllChange(checkedBoolean) {
+      this.checkedLifts = checkedBoolean ? this.liftsRegCodeOptions : []
+    },
+
+    // 区域筛选
+    selectCity(cityArr) {
+      this.liftListParams.query.area_code = cityArr[cityArr.length-1]
+      console.log(cnName)
+      this.getLiftList()
+    },
+
+    // 异常告警排序
+    warnSort() {
+      if (this.sortClass == '') {
+        this.sortClass = 'asc'
+        this.liftListParams.order = 'asc'
+      } else if (this.sortClass == 'asc') {
+        this.sortClass = 'desc'
+        this.liftListParams.order = 'desc'
+      } else {
+        this.sortClass = 'asc'
+        this.liftListParams.order = 'asc'
+      }
+      this.getLiftList()
+    },
+
+    // 当前分页改变
+    currentPageChange(current) {
+      this.liftListParams.page.offset = current
+      this.getLiftList()
+    },
+
+    // 分页大小改变
+    pageSizeChange(size) {
+      this.liftListParams.page.limit = size
+      this.getLiftList()
+    },
+
+    // 跳转添加电梯
+    goLiftAdd() {
+      this.$router.push({
+        path: '/lift-add'
+      })
+    },
+
+    // 跳转到电梯详情
+    goLiftResult(reg_code) {
+      this.$router.push({
+        path: '/lift-add-result',
+        query: {
+          reg_code: reg_code
+        }
+      })
+    },
+
+    // 删除电梯
+    deleteLifts() {
+      let that = this
+      if (this.checkedLifts.length === 0) return
+      let params = {
+        reg_codes: this.checkedLifts.join(',')
+      }
+      api.lift.deleteLift(params).then(res => {
+        if (res.data.code == '200') {
+          that.$message.success(`${res.data.message}`)
+          that.$router.go(0)
+        } else {
+          that.$message.error(`${res.data.message}`)
+        }
+      })
+
+    },
+
+    // 跳转到单部电梯设备列表页
+    goLiftDevice(reg_code) {
+      this.$router.push({
+        path: '/lift-device',
+        query: {
+          reg_code: reg_code
+        }
+      })
+    },
+
+    // 跳转到诊断
+    goDetection(reg_code) {
+      this.$router.push({
+        path: '/detection',
+        query: {
+          reg_code: reg_code
+        }
+      })
+    },
 
   },
   watch: {
+    // 异常分类筛选
     exceptValue(val, oldVal) {
-      console.log(val + '=---=-=-' + oldVal)
+      this.liftListParams.query.excp_type = val
+      this.getLiftList()
     }
   },
   components: {
     'radio-group': RadioGroup,
-    'footer-temp': Footer
+    'footer-temp': Footer,
+    'city-choose': CityChoose,
+    'search-code': SearchCode,
     
   }
 }

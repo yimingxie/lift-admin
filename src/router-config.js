@@ -26,6 +26,24 @@ const router = new Router({
       component: (resolve) => require(['./views/lift/LiftList.vue'], resolve)
     },
     {
+      path: "/lift-add",
+      name: "lift-add",
+      meta: {
+        title: "添加电梯",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/lift/LiftAdd.vue'], resolve)
+    },
+    {
+      path: "/lift-add-result",
+      name: "lift-add-result",
+      meta: {
+        title: "添加电梯",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/lift/LiftAddResult.vue'], resolve)
+    },
+    {
       path: "/map",
       name: "map",
       meta: {
@@ -53,6 +71,15 @@ const router = new Router({
       component: (resolve) => require(['./views/settings/DeviceDetail.vue'], resolve)
     },
     {
+      path: "/device-add-gi",
+      name: "device-add-gi",
+      meta: {
+        title: "设备管理详情",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/settings/DeviceAddGi.vue'], resolve)
+    },
+    {
       path: "/lift-device",
       name: "lift-device",
       meta: {
@@ -60,6 +87,24 @@ const router = new Router({
         auto: false // 是否需要权限
       },
       component: (resolve) => require(['./views/lift/LiftDevice.vue'], resolve)
+    },
+    {
+      path: "/detection-query",
+      name: "detection-query",
+      meta: {
+        title: "检测诊断查询",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/detection/DetectionQuery.vue'], resolve)
+    },
+    {
+      path: "/detection",
+      name: "detection",
+      meta: {
+        title: "检测诊断查询",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/detection/Detection.vue'], resolve)
     },
   ]
 })

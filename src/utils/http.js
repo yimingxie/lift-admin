@@ -156,5 +156,21 @@ export default {
         reject(err.data)
       })
     })
+  },
+  delete(url, param) {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'delete',
+        url,
+        data: param,
+        cancelToken: new CancelToken(c => {
+          cancel = c
+        })
+      }).then(res => {
+        resolve(res)
+      }).catch(err => {
+        reject(err.data)
+      })
+    })
   }
 }

@@ -17,12 +17,16 @@
 
 
 import corp from './api/corp'
-import detail from './api/detail'
+import detection from './api/detection'
+import lift from './api/lift'
+import device from './api/device'
 
 
 
 export default {
   corp,
-  detail,
+  detection,
+  lift,
+  device,
 
 }
