@@ -17,15 +17,6 @@ const router = new Router({
       component: (resolve) => require(['./views/common/Login.vue'], resolve)
     },
     {
-      path: "/lift-list",
-      name: "lift-list",
-      meta: {
-        title: "电梯列表页",
-        auto: false // 是否需要权限
-      },
-      component: (resolve) => require(['./views/lift/LiftList.vue'], resolve)
-    },
-    {
       path: "/map",
       name: "map",
       meta: {
@@ -33,24 +24,6 @@ const router = new Router({
         auto: false // 是否需要权限
       },
       component: (resolve) => require(['./views/map/MapList.vue'], resolve)
-    },
-    {
-      path: "/map2",
-      name: "map2",
-      meta: {
-        title: "异常处理地图",
-        auto: false // 是否需要权限
-      },
-      component: (resolve) => require(['./views/map/exceptionMap2.vue'], resolve)
-    },
-    {
-      path: "/map3",
-      name: "map3",
-      meta: {
-        title: "异常处理地图",
-        auto: false // 是否需要权限
-      },
-      component: (resolve) => require(['./views/map/exceptionMap3.1.vue'], resolve)
     },
     {
       path: "/Account",
@@ -124,16 +97,88 @@ const router = new Router({
       },
       component: (resolve) => require(['./views/aaa/corp_api.vue'], resolve)
     },
+    
     {
-      path: "/tab",
-      name: "tab",
+      path: "/lift-list",
+      name: "lift-list",
       meta: {
-        title: "tab",
+        title: "电梯列表页",
         auto: false // 是否需要权限
       },
-      component: (resolve) => require(['./views/aaa/tab.vue'], resolve)
+      component: (resolve) => require(['./views/lift/LiftList.vue'], resolve)
     },
-   
+    {
+      path: "/lift-add",
+      name: "lift-add",
+      meta: {
+        title: "电梯查询",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/lift/LiftAdd.vue'], resolve)
+    },
+    {
+      path: "/lift-add-result",
+      name: "lift-add-result",
+      meta: {
+        title: "电梯详情",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/lift/LiftAddResult.vue'], resolve)
+    },
+    {
+      path: "/device",
+      name: "device",
+      meta: {
+        title: "设备管理",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/settings/Device.vue'], resolve)
+    },
+    {
+      path: "/device-detail",
+      name: "device-detail",
+      meta: {
+        title: "设备管理详情",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/settings/DeviceDetail.vue'], resolve)
+    },
+    {
+      path: "/device-add-gi",
+      name: "device-add-gi",
+      meta: {
+        title: "设备管理详情（通用）",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/settings/DeviceAddGi.vue'], resolve)
+    },
+    {
+      path: "/lift-device",
+      name: "lift-device",
+      meta: {
+        title: "单部电梯设备列表",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/lift/LiftDevice.vue'], resolve)
+    },
+    {
+      path: "/detection-query",
+      name: "detection-query",
+      meta: {
+        title: "检测诊断查询",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/detection/DetectionQuery.vue'], resolve)
+    },
+    {
+      path: "/detection",
+      name: "detection",
+      meta: {
+        title: "检测诊断",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/detection/Detection.vue'], resolve)
+    },
   ]
 })
 
@@ -164,83 +209,3 @@ router.beforeEach((to, from, next) => {
 
 export default router
 
-
-
-// 、、、、、、、、、、、、、、、、
-// window.onload = function() {
-//   var oBtn = document.getElementById('go');
-//   var oBtn2 = document.getElementById('go2');
-//   var t = null;
-//   var alpha = 0;
-//   var bShow = true;
-//   var ray = '';
-//   ray = setInterval(function() {
-//       if (bShow) {
-//           rayMove(100);
-//       } else {
-//           rayMove(0);
-//       }
-
-//       bShow = !bShow;
-
-//       function rayMove(iTarget) {
-//           if (t) clearInterval(t);
-//           t = setInterval(function() {
-//               doMove(iTarget);
-//           }, 30);
-//       }
-
-//       function doMove(iTarget) {
-//           var iSpeed = 0;
-//           if (alpha < iTarget) {
-//           iSpeed = 2;
-//           } else {
-//           iSpeed = -2;
-//           }
-//           alpha += iSpeed;
-
-//           oBtn2.style.filter = "alpha(opacity:" + alpha + ")";
-//           oBtn2.style.opacity = alpha / 100;
-//       }
-//   }, 2000);
-
-
-//   oBtn2.onmouseover = function() {
-//       clearInterval(ray);
-//   }
-//   oBtn2.onmouseout = function() {
-//       ray = setInterval(function() {
-//       if (bShow) {
-//           rayMove(100);
-//       } else {
-//           rayMove(0);
-//       }
-
-//       bShow = !bShow;
-
-//       function rayMove(iTarget) {
-//           if (t) clearInterval(t);
-//           t = setInterval(function() {
-//           doMove(iTarget);
-//           }, 30);
-//       }
-
-//       function doMove(iTarget) {
-//           var iSpeed = 0;
-//           if (alpha < iTarget) {
-//           iSpeed = 2;
-//           } else {
-//           iSpeed = -2;
-//           }
-//           alpha += iSpeed;
-
-//           oBtn2.style.filter = "alpha(opacity:" + alpha + ")";
-//           oBtn2.style.opacity = alpha / 100;
-//       }
-//       }, 2000);
-//   }
-// }
-
-
-
-// // 、、、、、

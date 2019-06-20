@@ -24,6 +24,9 @@ import managerApi from './api/managerApi'
 import moduleApi from './api/moduleApi'
 import log from './api/login'
 import corpApi from './api/corpApi'
+import detection from './api/detection'
+import lift from './api/lift'
+import device from './api/device'
 
 export default {
   corp,
@@ -33,5 +36,8 @@ export default {
   managerApi,
   moduleApi,
   log,
-  corpApi
+  corpApi,
+  detection,
+  lift,
+  device,
 }

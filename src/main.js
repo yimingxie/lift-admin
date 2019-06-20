@@ -15,11 +15,11 @@ import tab from "./components/tab";
 // Vue.use(globalMixins)
 
 // 引入自定义组件。index.js是组件的默认入口
-import Loading from './components/loading/loading'
+// import Loading from './components/loading/loading'
 // 引入自定义组件。index.js是组件的默认入口
 // import message from './components/message/message'
 // Vue.prototype.$message = message;
-Vue.use(Loading);
+// Vue.use(Loading);/
 
 Vue.component('tab', tab)
 

@@ -117,7 +117,7 @@
           this.adding = false
           if (res.data.code === 200) {
             this.$message.success('创建成功！');
-            this.getApis()
+            this.getCorps()
           } else {
             this.$message.error(res.data.message);
             

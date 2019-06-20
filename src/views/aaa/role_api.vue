@@ -378,8 +378,11 @@
       },
       getRoles(){
         api.roleApi.getRoles(this.queryParam).then((res) => {
-          
-          this.getAllAccountJson = res.data.data.records[0]
+          if(res.data.code === 200 && res.data.message === 'ok'){
+            this.getAllAccountJson = res.data.data.records[0]
+          } else {
+            this.getAllAccountJson = []
+          }
           // JSON.parse(this.getAllAccountJson.menuMod)
 
 

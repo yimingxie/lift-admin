@@ -76,11 +76,11 @@
           <i class="icon-map"></i>
           <span slot="title">作业地图</span>
         </el-menu-item>
-        <el-menu-item index="" route="" :disabled="ifDisabled('数字电梯')" :class="{'disabled' :ifDisabled('数字电梯')}">
+        <el-menu-item index="/lift-list" route="/lift-list" :disabled="ifDisabled('数字电梯')" :class="{'disabled' :ifDisabled('数字电梯')}">
           <i class="icon-lift"></i>
           <span slot="title">数字电梯</span>
         </el-menu-item>
-        <el-menu-item index="" route="" :disabled="ifDisabled('检测诊断')" :class="{'disabled' :ifDisabled('检测诊断')}">
+        <el-menu-item index="/detection-query" route="/detection-query" :disabled="ifDisabled('检测诊断')" :class="{'disabled' :ifDisabled('检测诊断')}">
           <i class="icon-diagnosis"></i>
           <span slot="title">检测诊断</span>
         </el-menu-item>
@@ -106,7 +106,7 @@
 
           <el-menu-item index="" route="" >员工管理</el-menu-item>
 
-          <el-menu-item index="" route="">设备管理</el-menu-item>
+          <el-menu-item index="/device" route="/device">设备管理</el-menu-item>
           <!-- </el-menu-item-group> -->
         
           
@@ -122,6 +122,8 @@
           <el-menu-item index="/roleApi" route="/roleApi">角色管理</el-menu-item>
           <el-menu-item index="/actApi" route="/actApi">账户管理</el-menu-item>
           <el-menu-item index="/corpApi" route="/corpApi">企业管理</el-menu-item>
+          <el-menu-item index="/device-add-gi" route="/device-add-gi">通用后台添加设备</el-menu-item>
+          
           <!-- </el-menu-item-group> -->
         
           
@@ -160,7 +162,7 @@
             </div> -->
             <div class="user_navigation">
               <el-badge :value="9" :max="99" class="item">
-                <a class="info"></a>
+                <a class="infoAram"></a>
               </el-badge>
               <span style="margin: 0 15px;border-left:1px solid #919EA5;width:1px;height:10px "></span>
               <el-dropdown>
@@ -312,7 +314,6 @@
 <style lang="stylus">
 // 配置
 @import 'assets/stylus/base'
-
 // -------------------------------------------------------
 #page-container
   width: 100%;
@@ -383,7 +384,7 @@
     justify-content: center;
 
   }
-  .info {
+  .infoAram {
     background url('assets/images/hs/info.png') no-repeat  center
     size 20px
     display inline-block
