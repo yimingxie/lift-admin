@@ -554,8 +554,9 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '../../assets/stylus/xymStyle.styl'
 #Device{
+  @import '../../assets/stylus/xymStyle.styl'
+
   .container{
     line-height 1;
   }
@@ -679,6 +680,29 @@ export default {
     margin-bottom 14px !important;
   }
   
+}
+
+/* 适配 */
+@media screen and (max-width: 1550px) {
+  #Device{
+    .llt-td{
+      font-size 12px;
+    }
+    .ldd-status,.ldd-line,.ldd-id,.idd-project,.idd-project {
+      font-size 12px;
+    }
+    .llt-drop-wrap{
+      width: 50.8%;
+    }
+
+  }
+
+}
+
+@media screen and (max-width: 1360px) {
+  #Device{
+    min-width: 1360px;
+  }
 }
 
 </style>

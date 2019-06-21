@@ -81,9 +81,9 @@
     <footer-temp></footer-temp>
 
     <!-- 弹窗 -->
-    <el-dialog :visible.sync="dialogAddDevice" :show-close="false" width="690px" @closed="dialogClosed">
+    <el-dialog :visible.sync="dialogAddDevice" title="添加设备" :show-close="false" width="690px" @closed="dialogClosed">
       <div>
-        <div class="dia-title">添加设备</div>
+        <!-- <div class="dia-title">添加设备</div> -->
         <div class="dia-content">
           <el-form :model="ruleForm" :rules="rules" ref="diaForm">
             <div class="dia-con-head">基础信息</div>
@@ -420,9 +420,10 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '../../assets/stylus/xymStyle.styl'
 
 #LiftDevice{
+  @import '../../assets/stylus/xymStyle.styl'
+
   .lift-device-head{
     position relative;
     padding: 20px;
@@ -502,6 +503,38 @@ export default {
     color #C2C7CC;
   }
 
+}
+
+/* 适配 */
+@media screen and (max-width: 1550px) {
+  #LiftDevice{
+    .llt-td{
+      font-size 12px;
+    }
+    .llt-thead .llt-th:nth-child(2),.llt-tbody .llt-td:nth-child(2){
+      width 16%;
+    }
+    .llt-thead .llt-th:nth-child(4),.llt-tbody .llt-td:nth-child(4){
+      width 13%;
+    }
+    .llt-thead .llt-th:nth-child(5),.llt-tbody .llt-td:nth-child(5){
+      width 10%;
+    }
+    .llt-thead .llt-th:nth-child(6),.llt-tbody .llt-td:nth-child(6){
+      width 11%;
+    }
+    .llt-thead .llt-th:nth-child(9),.llt-tbody .llt-td:nth-child(9){
+      width 10%;
+    }
+  }
+
+}
+
+
+@media screen and (max-width: 1360px) {
+  #LiftDevice{
+    min-width: 1360px;
+  }
 }
 
 

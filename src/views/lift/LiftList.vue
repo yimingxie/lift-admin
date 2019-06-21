@@ -297,7 +297,7 @@ export default {
     },
 
     // 区域筛选
-    selectCity(cityArr) {
+    selectCity(cityArr, cnName) {
       this.liftListParams.query.area_code = cityArr[cityArr.length-1]
       console.log(cnName)
       this.getLiftList()
@@ -570,7 +570,7 @@ export default {
     width 12%;
   }
   .llt-thead .llt-th:nth-child(5),.llt-tbody .llt-td:nth-child(5){
-    width 15%;
+    width 14%;
   }
   .llt-thead .llt-th:nth-child(6),.llt-tbody .llt-td:nth-child(6){
     width 9%;
@@ -586,6 +586,32 @@ export default {
   }
   
 
+}
+
+
+/* 适配 */
+@media screen and (max-width: 1550px) {
+  #LiftList{
+    .llt-td{
+      font-size 12px;
+    }
+    .llt-thead .llt-th:nth-child(5),.llt-tbody .llt-td:nth-child(5){
+      width 10%;
+    }
+    .llt-thead .llt-th:nth-child(8),.llt-tbody .llt-td:nth-child(8){
+      width 20%;
+    }
+    .llt-thead .llt-th:nth-child(9),.llt-tbody .llt-td:nth-child(9){
+      width 18%;
+    }
+  }
+
+}
+
+@media screen and (max-width: 1360px) {
+  #LiftList{
+    min-width: 1360px;
+  }
 }
 
 </style>

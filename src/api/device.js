@@ -23,8 +23,12 @@ export default {
   },
 
   // 查询通用设备列表
-  getDeviceListGi() {
-    return http.get(`${url1}/devices`)
+  getDeviceListGi(params) {
+    // return http.get(`${url1}/devices`)
+    let url = `${url1}/devices?params=` + params
+    console.log('查询通用设备列表url', url)
+    let uri = encodeURI(url)
+    return http.get(uri)
   },
 
   // 获取（通用）设备详情

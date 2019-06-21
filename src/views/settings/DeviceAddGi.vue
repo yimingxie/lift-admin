@@ -206,7 +206,10 @@ export default {
 
       // 重组监测类型和内容对应表
       modelContentList: {},
-      deviceListGi: []
+      deviceListGi: [],
+      giParams: {
+        'page' : {offset : "1",limit  : "100"},
+      },
 
 
     }
@@ -234,7 +237,7 @@ export default {
 
     // 查询通用设备列表
     getDeviceListGi() {
-      api.device.getDeviceListGi().then(res => {
+      api.device.getDeviceListGi(JSON.stringify(this.giParams)).then(res => {
         console.log(res)
         this.deviceListGi = res.data.data.records
       })
@@ -284,14 +287,18 @@ export default {
             // console.log(res)
             if (res.data.code == '200') {
               that.$message.success(`${res.data.message}`)
-              that.$router.go(0)
+              // 清空表单
+              that.$refs.diaForm.resetFields()
+              that.ruleForm = that.ruleFormBlank
+              that.dialogAddDevice = true
+              setTimeout(function() {
+                that.$router.go(0)
+              }, 500)
+
             } else {
               that.$message.error(`${res.data.message}`)
             }
-            // 清空表单
-            that.$refs.diaForm.resetFields()
-            that.ruleForm = that.ruleFormBlank
-            that.dialogAddDevice = true
+            
           })
         }
       })
@@ -305,8 +312,9 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '../../assets/stylus/xymStyle.styl'
 #DeviceAddGi{
+  @import '../../assets/stylus/xymStyle.styl'
+
   .temp-table{
     width 100%;
     margin-top 20px;
@@ -320,6 +328,12 @@ export default {
     border: 1px solid black;
   }
 
+}
+
+@media screen and (max-width: 1360px) {
+  #DeviceAddGi{
+    min-width: 1360px;
+  }
 }
 
 

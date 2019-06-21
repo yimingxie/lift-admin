@@ -86,9 +86,10 @@ export default {
 </style>
 
 <style lang="stylus" scoped>
-@import '../../assets/stylus/xymStyle.styl'
 
 #LiftAdd{
+  @import '../../assets/stylus/xymStyle.styl'
+
   .container{
     line-height 1;
   }
@@ -98,5 +99,12 @@ export default {
   
   
 }
+
+@media screen and (max-width: 1360px) {
+  #LiftAdd{
+    min-width: 1360px;
+  }
+}
+
 
 </style>

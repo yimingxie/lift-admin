@@ -85,9 +85,9 @@
     <footer-temp></footer-temp>
 
     <!-- 弹窗 -->
-    <el-dialog :visible.sync="dialogEditDevice" :show-close="false" width="690px">
+    <el-dialog :visible.sync="dialogEditDevice" title="编辑设备" :show-close="false" width="690px">
       <div>
-        <div class="dia-title">编辑设备</div>
+        <!-- <div class="dia-title">编辑设备</div> -->
         <div class="dia-content">
           <el-form :model="ruleForm" :rules="rules" ref="diaForm">
             <div class="dia-con-head">基础信息</div>
@@ -317,7 +317,7 @@ export default {
     currentPageChange(currentPage) {
       console.log(currentPage)
       // 1 [0, 2]   2 [2, 4]    3 [4, 6]   4 [6, 8]
-      this.lineListPart = this.lineList.slice((currentPage-1)*this.pageSize, (currentPage-1)*this.pageSize+2)
+      this.lineListPart = this.lineList.slice((currentPage-1)*this.pageSize, currentPage*this.pageSize)
     },
 
     // 分页大小切换
@@ -453,6 +453,9 @@ export default {
         if (res.data.code == '200') {
           that.$message.success(`${res.data.message}`)
           // that.$router.push({path: '/lift-list'})
+          setTimeout(function() {
+            that.$router.push({path: '/device'})
+          }, 500)
         } else {
           that.$message.error(`${res.data.message}`)
         }
@@ -473,9 +476,10 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '../../assets/stylus/xymStyle.styl'
 
 #DeviceDetail{
+  @import '../../assets/stylus/xymStyle.styl'
+
   .container{
     line-height 1;
   }
@@ -582,6 +586,12 @@ export default {
     float left;
     background url('../../assets/images/xym/device-edit.png') no-repeat center center;
     cursor pointer;
+  }
+}
+
+@media screen and (max-width: 1360px) {
+  #DeviceDetail{
+    min-width: 1360px;
   }
 }
 

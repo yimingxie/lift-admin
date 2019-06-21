@@ -322,7 +322,7 @@
             <!-- <el-button type="primary" @click="submit">立即创建</el-button> -->
 
             <div class="form-btn">
-              <input class="la-btn la-btn-cancel" type="button" value="取消">
+              <input class="la-btn la-btn-cancel" type="button" value="取消" @click="cancel">
               <input class="la-btn la-btn-submit" type="button" value="确认录入" @click="submit">
             </div>
 
@@ -675,7 +675,7 @@ export default {
           this.special.car_form = this.transformCarForm(this.ruleForm.car_form)
         }
 
-        this.searchMap()
+        this.searchMap(detail.lat_lon)
       })
 
     },
@@ -856,7 +856,7 @@ export default {
     },
 
     // 搜索地图
-    searchMap() {
+    searchMap(lat_lon) {
       let that = this
 
       // 地图基础配置
@@ -866,6 +866,43 @@ export default {
         zoom: 20,
         mapStyle: 'amap://styles/db9065b28cc027a6a3240fc2ae093125',
       });
+
+      function addMarker(lng, lat) {
+        // 创建覆盖物
+        marker = new AMap.Marker({
+          map: map,
+          // icon: "https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
+          content: 
+          `
+          <div class="point">
+            <div class="point-light"></div>
+            <div class="point-circle"></div>
+          </div>
+          `
+          ,
+          position: [lng, lat],
+          draggable: true
+        });
+
+        marker.setMap(map)
+
+        // 拖拽
+        marker.on('dragging', function (e) {
+          that.special.lng = e.lnglat.lng
+          that.special.lat = e.lnglat.lat
+        });
+
+      }
+
+      if (lat_lon) {
+        let lng = lat_lon.split(',')[0]
+        let lat = lat_lon.split(',')[1]
+        addMarker(lng, lat)
+        map.setCenter([lng, lat]); //设置地图中心点
+        console.log('gggggg', lng, lat)
+        return
+
+      }
 
       // 搜索
       let keywords = this.special.chooseCity + this.ruleForm.address
@@ -968,6 +1005,13 @@ export default {
       this.searchMap()
     },
 
+    // 取消提交
+    cancel() {
+      this.$router.push({
+        path: '/lift-list'
+      })
+    },
+
     // 提交
     submit() {
       let that = this
@@ -994,6 +1038,9 @@ export default {
           if (this.ruleForm.tract_mode == '其他') {
             this.ruleForm.tract_mode = this.special.tract_mode
           }
+          this.ruleForm.lat_lon = `${this.special.lng}, ${this.special.lat}`
+
+          console.log(this.ruleForm)
 
 
           if (this.submitState == 'put') {
@@ -1081,9 +1128,10 @@ export default {
 </style>
 
 <style lang="stylus" scoped>
-@import '../../assets/stylus/xymStyle.styl'
 
 #LiftAddResult{
+  @import '../../assets/stylus/xymStyle.styl'
+
   .container{
     line-height 1;
   }
@@ -1229,5 +1277,12 @@ export default {
   
 
 }
+
+@media screen and (max-width: 1360px) {
+  #LiftAddResult{
+    min-width: 1360px;
+  }
+}
+
 
 </style>

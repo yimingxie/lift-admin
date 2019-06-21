@@ -315,7 +315,7 @@ export default {
       processed: '',
       warnList: [],
       warnParams: {
-        // "page": {offset : "1",limit : "10"},
+        "page": {offset : "1",limit : "100"},
         "query": {}
       },
 
@@ -666,102 +666,102 @@ export default {
     // 获取电梯详情
     this.getLiftDetail()
 
-    setTimeout(() => {
-      // let room_temp_chart = this.$echarts.getInstanceByDom(document.getElementById("room-temp-chart"));
-      // let west_chart = this.$echarts.getInstanceByDom(document.getElementById("west-chart"));
-      // let room_wind_chart = this.$echarts.getInstanceByDom(document.getElementById("room-wind-chart"));
-      // let room_water_chart = this.$echarts.getInstanceByDom(document.getElementById("room-water-chart"));
-      // let air_chart = this.$echarts.getInstanceByDom(document.getElementById("air-chart"));
+    // setTimeout(() => {
+    //   // let room_temp_chart = this.$echarts.getInstanceByDom(document.getElementById("room-temp-chart"));
+    //   // let west_chart = this.$echarts.getInstanceByDom(document.getElementById("west-chart"));
+    //   // let room_wind_chart = this.$echarts.getInstanceByDom(document.getElementById("room-wind-chart"));
+    //   // let room_water_chart = this.$echarts.getInstanceByDom(document.getElementById("room-water-chart"));
+    //   // let air_chart = this.$echarts.getInstanceByDom(document.getElementById("air-chart"));
 
-      // let motor_v_chart = this.$echarts.getInstanceByDom(document.getElementById("motor-v-chart"));
-      // let motor_i_chart = this.$echarts.getInstanceByDom(document.getElementById("motor-i-chart"));
-      // let motor_temp_chart = this.$echarts.getInstanceByDom(document.getElementById("motor-temp-chart"));
-      // let motor_vibrate_chart = this.$echarts.getInstanceByDom(document.getElementById("motor-vibrate-chart"));
-      // let brake_temp_chart = this.$echarts.getInstanceByDom(document.getElementById("brake-temp-chart"));
-      // let brake_skr_chart = this.$echarts.getInstanceByDom(document.getElementById("brake-skr-chart"));
-      // let v_brake_chart = this.$echarts.getInstanceByDom(document.getElementById("v-brake-chart"));
-      // let i_brake_chart = this.$echarts.getInstanceByDom(document.getElementById("i-brake-chart"));
-      // let drive_chart = this.$echarts.getInstanceByDom(document.getElementById("drive-chart"));
+    //   // let motor_v_chart = this.$echarts.getInstanceByDom(document.getElementById("motor-v-chart"));
+    //   // let motor_i_chart = this.$echarts.getInstanceByDom(document.getElementById("motor-i-chart"));
+    //   // let motor_temp_chart = this.$echarts.getInstanceByDom(document.getElementById("motor-temp-chart"));
+    //   // let motor_vibrate_chart = this.$echarts.getInstanceByDom(document.getElementById("motor-vibrate-chart"));
+    //   // let brake_temp_chart = this.$echarts.getInstanceByDom(document.getElementById("brake-temp-chart"));
+    //   // let brake_skr_chart = this.$echarts.getInstanceByDom(document.getElementById("brake-skr-chart"));
+    //   // let v_brake_chart = this.$echarts.getInstanceByDom(document.getElementById("v-brake-chart"));
+    //   // let i_brake_chart = this.$echarts.getInstanceByDom(document.getElementById("i-brake-chart"));
+    //   // let drive_chart = this.$echarts.getInstanceByDom(document.getElementById("drive-chart"));
 
-      // let rpm_chart = this.$echarts.getInstanceByDom(document.getElementById("rpm-chart"));
+    //   // let rpm_chart = this.$echarts.getInstanceByDom(document.getElementById("rpm-chart"));
 
-      // let floor_door_chart = this.$echarts.getInstanceByDom(document.getElementById("floor-door-chart"));
-      // let ele_door_chart = this.$echarts.getInstanceByDom(document.getElementById("ele-door-chart"));
+    //   // let floor_door_chart = this.$echarts.getInstanceByDom(document.getElementById("floor-door-chart"));
+    //   // let ele_door_chart = this.$echarts.getInstanceByDom(document.getElementById("ele-door-chart"));
 
-      // let box_vibrate_chart = this.$echarts.getInstanceByDom(document.getElementById("box-vibrate-chart"));
-      // let box_position_chart = this.$echarts.getInstanceByDom(document.getElementById("box-position-chart"));
-      // let box_weight_chart = this.$echarts.getInstanceByDom(document.getElementById("box-weight-chart"));
+    //   // let box_vibrate_chart = this.$echarts.getInstanceByDom(document.getElementById("box-vibrate-chart"));
+    //   // let box_position_chart = this.$echarts.getInstanceByDom(document.getElementById("box-position-chart"));
+    //   // let box_weight_chart = this.$echarts.getInstanceByDom(document.getElementById("box-weight-chart"));
 
-      // let room_safe_chart = this.$echarts.getInstanceByDom(document.getElementById("room-safe-chart"));
+    //   // let room_safe_chart = this.$echarts.getInstanceByDom(document.getElementById("room-safe-chart"));
 
 
-      let box_top_safe_chart = this.$echarts.getInstanceByDom(document.getElementById("box-top-safe-chart"));
-      let box_door_safe_chart = this.$echarts.getInstanceByDom(document.getElementById("box-door-safe-chart"));
-      let floor_door_safe_chart = this.$echarts.getInstanceByDom(document.getElementById("floor-door-safe-chart"));
-      let box_bottom_safe_chart = this.$echarts.getInstanceByDom(document.getElementById("box-bottom-safe-chart"));
+    //   let box_top_safe_chart = this.$echarts.getInstanceByDom(document.getElementById("box-top-safe-chart"));
+    //   let box_door_safe_chart = this.$echarts.getInstanceByDom(document.getElementById("box-door-safe-chart"));
+    //   let floor_door_safe_chart = this.$echarts.getInstanceByDom(document.getElementById("floor-door-safe-chart"));
+    //   let box_bottom_safe_chart = this.$echarts.getInstanceByDom(document.getElementById("box-bottom-safe-chart"));
 
-      let floor_lock_chart = this.$echarts.getInstanceByDom(document.getElementById("floor-lock-chart"));
-      let box_lock_chart = this.$echarts.getInstanceByDom(document.getElementById("box-lock-chart"));
+    //   let floor_lock_chart = this.$echarts.getInstanceByDom(document.getElementById("floor-lock-chart"));
+    //   let box_lock_chart = this.$echarts.getInstanceByDom(document.getElementById("box-lock-chart"));
 
       
-      window.addEventListener("resize", function() {
-        // room_temp_chart.resize();
-        // west_chart.resize();
-        // room_wind_chart.resize();
-        // room_water_chart.resize();
-        // air_chart.resize();
+    //   window.addEventListener("resize", function() {
+    //     // room_temp_chart.resize();
+    //     // west_chart.resize();
+    //     // room_wind_chart.resize();
+    //     // room_water_chart.resize();
+    //     // air_chart.resize();
 
-        // motor_v_chart.resize();
-        // motor_i_chart.resize();
-        // motor_temp_chart.resize();
-        // motor_vibrate_chart.resize();
-        // brake_temp_chart.resize();
-        // brake_skr_chart.resize();
-        // v_brake_chart.resize();
-        // i_brake_chart.resize();
-        // drive_chart.resize();
+    //     // motor_v_chart.resize();
+    //     // motor_i_chart.resize();
+    //     // motor_temp_chart.resize();
+    //     // motor_vibrate_chart.resize();
+    //     // brake_temp_chart.resize();
+    //     // brake_skr_chart.resize();
+    //     // v_brake_chart.resize();
+    //     // i_brake_chart.resize();
+    //     // drive_chart.resize();
 
-        // rpm_chart.resize();
+    //     // rpm_chart.resize();
 
-        // floor_door_chart.resize();
-        // ele_door_chart.resize();
+    //     // floor_door_chart.resize();
+    //     // ele_door_chart.resize();
 
-        // box_vibrate_chart.resize();
-        // box_position_chart.resize();
-        // box_weight_chart.resize();
+    //     // box_vibrate_chart.resize();
+    //     // box_position_chart.resize();
+    //     // box_weight_chart.resize();
 
-        // room_safe_chart.resize();
+    //     // room_safe_chart.resize();
 
 
-        box_top_safe_chart.resize();
-        box_door_safe_chart.resize();
-        floor_door_safe_chart.resize();
-        box_bottom_safe_chart.resize();
+    //     box_top_safe_chart.resize();
+    //     box_door_safe_chart.resize();
+    //     floor_door_safe_chart.resize();
+    //     box_bottom_safe_chart.resize();
 
-        floor_lock_chart.resize();
-        box_lock_chart.resize();
+    //     floor_lock_chart.resize();
+    //     box_lock_chart.resize();
       
-      });
+    //   });
 
-    }, 300)
+    // }, 300)
 
-    // 更新时间和实时数据
-    if (this.$route.params.id) {
-      this.dtID = this.$route.params.id
-    }
-    console.log(this.dtID)
-    this.getCurrentData()
-    this.dateNow = this.formatDate()
-    this.getRealTime()
-    const intervalTimer = setInterval(() => {
-      this.getRealTime()
-      this.getCurrentData()
-      this.dateNow = this.formatDate()
-    }, 2000)
-    // 通过$once来监听定时器，在beforeDestroy钩子可以被清除。
-    this.$once('hook:beforeDestroy', () => {            
-      clearInterval(intervalTimer);                                    
-    })
+    // // 更新时间和实时数据
+    // if (this.$route.params.id) {
+    //   this.dtID = this.$route.params.id
+    // }
+    // console.log(this.dtID)
+    // this.getCurrentData()
+    // this.dateNow = this.formatDate()
+    // this.getRealTime()
+    // const intervalTimer = setInterval(() => {
+    //   this.getRealTime()
+    //   this.getCurrentData()
+    //   this.dateNow = this.formatDate()
+    // }, 2000)
+    // // 通过$once来监听定时器，在beforeDestroy钩子可以被清除。
+    // this.$once('hook:beforeDestroy', () => {            
+    //   clearInterval(intervalTimer);                                    
+    // })
 
     // 滚动高亮
     // this.scrollNav()
