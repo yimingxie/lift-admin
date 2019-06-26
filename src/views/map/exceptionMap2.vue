@@ -1018,11 +1018,13 @@
 }
 @keyframes myfirst03{
     0% {
-        opacity: .4;
-    }
-
-    100% {
         opacity: 1;
+        transform scale(1)
+    }
+  
+    100% {
+        opacity: .4;
+        transform scale(0.5)
     }
         
 }
@@ -1030,6 +1032,11 @@
 .huanPic{
   display inline-block
   size 40px 35px
+  -webkit-animation-timing-function: ease-in-out;
+  -webkit-animation-name: myfirst03;
+  -webkit-animation-duration: 500ms;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
   &:hover {
     transform scale(1.2)
   }
@@ -1167,7 +1174,7 @@
   border-radius: 50%;
   background:red
   position absolute
-  bottom: -2px;
+  bottom: -5px;
   right: 8px;
   text-align center
 .ant-calendar-date
