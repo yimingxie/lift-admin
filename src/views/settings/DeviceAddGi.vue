@@ -35,7 +35,7 @@
     </div>
 
     <!-- 弹窗 -->
-    <el-dialog title="添加设备" :visible.sync="dialogAddDevice" :show-close="false" width="690px">
+    <el-dialog title="添加设备" :visible.sync="dialogAddDevice" :show-close="false" width="690px"  @closed="dialogClosed">
       <div>
         <!-- <div class="dia-title">添加设备</div> -->
         <div class="dia-content">
@@ -133,7 +133,7 @@
 
         </div>
         <div class="dia-btn-con">
-          <input class="dia-btn dia-btn-cancel" type="button" value="取消">
+          <input class="dia-btn dia-btn-cancel" type="button" value="取消" @click="dialogClosed">
           <input class="dia-btn dia-btn-submit" @click="submit" type="button" value="确认">
         </div>
 
@@ -312,7 +312,25 @@ export default {
           })
         }
       })
-    }
+    },
+
+    // 关闭弹窗，重置表单
+    dialogClosed() {
+      this.$refs.diaForm.resetFields()
+      this.ruleForm = {
+        devSn: '',
+        devEui: '',
+        modType: '',
+        devModel: '',
+        monitorVal: '',
+        devName: '',
+        devType: '',
+        devBrand: '',
+        manId: '',
+        extend: '',
+      },
+      this.dialogAddDevice = false
+    },
 
   },
   components: {

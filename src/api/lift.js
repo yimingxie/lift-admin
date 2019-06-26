@@ -4,7 +4,8 @@ import http from '../utils/http'
 let protocol = process.env.NODE_ENV !== 'production' ? 'http:' : window.location.protocol
 // let url1 = `${protocol}//iot.gidomino.com`
 // let url1 = `${protocol}//192.168.100.89:8080`
-let url1 = `${protocol}//192.168.100.7:8080`
+// let url1 = `${protocol}//192.168.100.7:8080`
+let url1 = '/test02'
 
 
 export default {

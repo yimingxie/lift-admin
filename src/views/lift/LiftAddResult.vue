@@ -363,6 +363,8 @@ import Footer from '../common/fotter'
 
 export default {
   data() {
+    // 自定义校验
+    // var exemptEtimeCheck = ()
     return {
       parentCode: '',
       submitState: 'post', // 判断录入电梯(post)还是编辑电梯(put)
@@ -587,7 +589,10 @@ export default {
         elevName: [{ required: true, message: '必填', trigger: 'blur' }],
         elevType: [{ required: true, message: '必填', trigger: 'blur' }],
         elevVar: [{ required: true, message: '必填', trigger: 'blur' }],
-        exemptEtime: [{ required: true, message: '必填', trigger: 'blur' }],
+        exemptEtime: [
+          { required: true, message: '必填', trigger: 'blur' },
+          // { validator: exemptEtimeCheck, trigger: "blur" }
+        ],
         exemptStime: [{ required: true, message: '必填', trigger: 'blur' }],
         exemptYear: [{ required: true, message: '必填', trigger: 'blur' }],
         // extend: [{ required: true, message: '必填', trigger: 'blur' }],
