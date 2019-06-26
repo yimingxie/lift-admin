@@ -3,8 +3,8 @@
     <div class="dia-citem clearfix">
       <div class="dia-citem-label">检测项：</div>
       <div class="dia-citem-ib">
-        <el-form-item prop="reg_code">
-          <!-- <el-input v-model="ruleForm.reg_code" size="small" placeholder="电梯注册码"></el-input> -->
+        <el-form-item prop="regCode">
+          <!-- <el-input v-model="ruleForm.regCode" size="small" placeholder="电梯注册码"></el-input> -->
           <el-cascader ref="moniCascader" placeholder="请选择" :options="options" v-model="selectedOptions" size="small" @change="handleChange" style="width: 100%;"></el-cascader>
         </el-form-item>
       </div>
@@ -37,8 +37,8 @@ export default {
       ],
       checkedMoniObj: [],
       ruleForm: {
-        monitor_obj: '',
-        monitor_val: '',
+        monitorObj: '',
+        monitorVal: '',
       },
       rules: {
       },

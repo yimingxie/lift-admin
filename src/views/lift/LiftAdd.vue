@@ -58,7 +58,7 @@ export default {
       this.$router.push({
         path: '/lift-add-result',
         query: {
-          reg_code: val
+          regCode: val
         }
       })
     }

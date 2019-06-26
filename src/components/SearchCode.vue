@@ -8,9 +8,9 @@
     <!-- 搜索提示下拉 -->
     <div class="llcb-search-tips" v-show="show">
       <div style="text-align: center;" v-show="resultList.length == 0">无搜索结果</div>
-      <div class="search-tip-box" v-for="(item, i) in resultList" :key="i" @mousedown="search(item.reg_code)">
-        <h4>{{item.reg_code}}</h4>
-        <p>{{item.in_num}}  {{item.address}}</p>
+      <div class="search-tip-box" v-for="(item, i) in resultList" :key="i" @mousedown="search(item.regCode)">
+        <h4>{{item.regCode}}</h4>
+        <p>{{item.inNum}}  {{item.address}}</p>
       </div>
     </div>
 
@@ -47,7 +47,11 @@ export default {
       //   }
       // })
 
-      api.lift.showSearchList(cCode).then(res => {
+      let param = {
+        "title": cCode
+      }
+
+      api.lift.showSearchList(param).then(res => {
         if (res.data.data) {
           this.resultList = res.data.data
         } else {
@@ -56,11 +60,11 @@ export default {
       })
     },
     // 将电梯注册码返回给父组件
-    search(reg_code) {
-      console.log(reg_code)
-      // this.cCode = reg_code
+    search(regCode) {
+      console.log(regCode)
+      // this.cCode = regCode
       // this.$emit('childCode', this.cCode)
-      this.$emit('childCode', reg_code)
+      this.$emit('childCode', regCode)
     }
 
   },

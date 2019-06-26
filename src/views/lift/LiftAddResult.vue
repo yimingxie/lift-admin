@@ -26,38 +26,39 @@
                   <i>1</i><span>基本信息</span>
                 </div>
                 <div class="lar-con clearfix">
-                  <el-form-item prop="reg_code" class="lar-box">
+                  <el-form-item prop="regCode" class="lar-box">
                     <h4>电梯注册代码</h4>
-                    <!-- <p v-if="list.reg_code && list.reg_code !== ''">{{list.reg_code}}</p> -->
-                    <p v-if="submitState == 'put'">{{ruleForm.reg_code}}</p>
-                    <el-input v-model="ruleForm.reg_code" size="small" v-else></el-input>
+                    <p v-if="submitState == 'put'">{{ruleForm.regCode}}</p>
+                    <el-input v-model="ruleForm.regCode" size="small" v-else></el-input>
                   </el-form-item>
-                  <el-form-item prop="in_num" class="lar-box">
+                  <el-form-item prop="inNum" class="lar-box">
                     <h4>内部编号</h4>
-                    <el-input v-model="ruleForm.in_num" size="small"></el-input>
+                    <el-input v-model="ruleForm.inNum" size="small"></el-input>
                   </el-form-item>
-                  <el-form-item prop="property_name" class="lar-box">
+                  <el-form-item prop="propertyName" class="lar-box">
                     <h4>物业公司</h4>
-                    <el-input v-model="ruleForm.property_name" size="small"></el-input>
+                    <el-input v-model="ruleForm.propertyName" size="small"></el-input>
                   </el-form-item>
-                  <el-form-item prop="property_phone" class="lar-box">
+                  <el-form-item prop="propertyPhone" class="lar-box">
                     <h4>物业电话</h4>
-                    <el-input v-model="ruleForm.property_phone" size="small"></el-input>
+                    <el-input v-model="ruleForm.propertyPhone" size="small"></el-input>
                   </el-form-item>
-                  <el-form-item prop="user_department" class="lar-box">
+                  <el-form-item prop="userDepartment" class="lar-box">
                     <h4>使用单位</h4>
-                    <el-input v-model="ruleForm.user_department" size="small"></el-input>
+                    <el-input v-model="ruleForm.userDepartment" size="small"></el-input>
                   </el-form-item>
 
                   <!-- 省市区街道级联 -->
-                  <el-form-item prop="area_code" class="lar-box">
+                  <el-form-item prop="areaCode" class="lar-box">
                     <h4>城市/区域</h4>
-                    <city-choose @childVal="getCity" :selectCity="special.area_code"></city-choose>
+                    <p v-if="submitState == 'put'">{{ruleForm.localArea}}</p>
+                    <city-choose @childVal="getCity" :selectCity="special.areaCode" v-else></city-choose>
                   </el-form-item>
 
                   <el-form-item prop="address" class="lar-box">
                     <h4>详细地址</h4>
-                    <el-input v-model="ruleForm.address" size="small" id="address" @input="searchMap"></el-input>
+                    <p v-if="submitState == 'put'">{{ruleForm.address}}</p>
+                    <el-input v-model="ruleForm.address" size="small" id="address" @input="searchMap()" v-else></el-input>
                   </el-form-item>
                   
                 </div>
@@ -72,29 +73,36 @@
                   <i>2</i><span>出厂信息</span>
                 </div>
                 <div class="lar-con clearfix">
-                  <el-form-item prop="elev_name" class="lar-box">
+                  <el-form-item prop="elevName" class="lar-box">
                     <h4>电梯名称</h4>
-                    <el-input v-model="ruleForm.elev_name" size="small"></el-input>
+                    <p v-if="submitState == 'put'">{{ruleForm.elevName}}</p>
+                    <el-input v-model="ruleForm.elevName" size="small" v-else></el-input>
                   </el-form-item>
-                  <el-form-item prop="elev_type" class="lar-box">
+                  <el-form-item prop="elevType" class="lar-box">
                     <h4>型号</h4>
-                    <el-input v-model="ruleForm.elev_type" size="small"></el-input>
+                    <p v-if="submitState == 'put'">{{ruleForm.elevType}}</p>
+                    <el-input v-model="ruleForm.elevType" size="small" v-else></el-input>
                   </el-form-item>
-                  <el-form-item prop="elev_var" class="lar-box">
+                  <el-form-item prop="elevVar" class="lar-box">
                     <h4>电梯品种</h4>
-                    <el-input v-model="ruleForm.elev_var" size="small"></el-input>
+                    <p v-if="submitState == 'put'">{{ruleForm.elevVar}}</p>
+                    <el-input v-model="ruleForm.elevVar" size="small" v-else></el-input>
                   </el-form-item>
-                  <el-form-item prop="elev_facnum" class="lar-box">
+                  <el-form-item prop="elevFacnum" class="lar-box">
                     <h4>出厂编号</h4>
-                    <el-input v-model="ruleForm.elev_facnum" size="small"></el-input>
+                    <p v-if="submitState == 'put'">{{ruleForm.elevFacnum}}</p>
+                    <el-input v-model="ruleForm.elevFacnum" size="small" v-else></el-input>
                   </el-form-item>
-                  <el-form-item prop="manufact_name" class="lar-box">
+                  <el-form-item prop="manufactName" class="lar-box">
                     <h4>制造单位</h4>
-                    <el-input v-model="ruleForm.manufact_name" size="small"></el-input>
+                    <p v-if="submitState == 'put'">{{ruleForm.manufactName}}</p>
+                    <el-input v-model="ruleForm.manufactName" size="small" v-else></el-input>
                   </el-form-item>
-                  <el-form-item prop="elev_date" class="lar-box">
+                  <el-form-item prop="elevDate" class="lar-box">
                     <h4>制造日期</h4>
-                    <el-date-picker v-model="ruleForm.elev_date" type="date" placeholder="选择日期" value-format="yyyy-MM-dd" size="small" style="width: 100%"></el-date-picker>
+                    <div v-if="submitState == 'post'" class="dwc-date-icon"></div>
+                    <p v-if="submitState == 'put'">{{ruleForm.elevDate}}</p>
+                    <el-date-picker v-model="ruleForm.elevDate" type="date" placeholder="选择日期" prefix-icon="test-icon" value-format="yyyy-MM-dd" size="small" style="width: 100%" v-else></el-date-picker>
                   </el-form-item>
 
                 </div>
@@ -106,92 +114,92 @@
                   <i>3</i><span>技术参数</span>
                 </div>
                 <div class="lar-con clearfix">
-                  <el-form-item prop="rated_load" class="lar-box">
+                  <el-form-item prop="ratedLoad" class="lar-box">
                     <h4>额定载重（kg）</h4>
-                    <el-input v-model="ruleForm.rated_load" size="small"></el-input>
+                    <el-input v-model="ruleForm.ratedLoad" size="small"></el-input>
                   </el-form-item>
-                  <el-form-item prop="stop_fnum" class="lar-box">
+                  <el-form-item prop="stopFnum" class="lar-box">
                     <h4>停层站数</h4>
-                    <el-input v-model="ruleForm.stop_fnum" size="small"></el-input>
+                    <el-input v-model="ruleForm.stopFnum" size="small"></el-input>
                   </el-form-item>
 
-                  <el-form-item prop="control_mode" class="lar-box">
+                  <el-form-item prop="controlMode" class="lar-box">
                     <h4>控制方式</h4>
-                    <div v-if="ruleForm.control_mode && ruleForm.control_mode == '其他'">
-                      <el-input v-model="special.control_mode" size="small" placeholder="请输入控制方式"></el-input>
+                    <div v-if="ruleForm.controlMode && ruleForm.controlMode == '其他'">
+                      <el-input v-model="special.controlMode" size="small" placeholder="请输入控制方式"></el-input>
                     </div>
-                    <el-select v-model="ruleForm.control_mode" placeholder="请选择" size="small" style="width: 100%;" v-else>
+                    <el-select v-model="ruleForm.controlMode" placeholder="请选择" size="small" style="width: 100%;" v-else>
                       <el-option v-for="item in controlModeOptions" :key="item.value" :label="item.label" :value="item.value"></el-option>
                     </el-select>
                   </el-form-item>
 
-                  <el-form-item prop="drag_mode" class="lar-box">
+                  <el-form-item prop="dragMode" class="lar-box">
                     <h4>拖动方式</h4>
-                    <div v-if="ruleForm.drag_mode && ruleForm.drag_mode == '其他'">
-                      <el-input v-model="special.drag_mode" size="small" placeholder="请输入拖动方式"></el-input>
+                    <div v-if="ruleForm.dragMode && ruleForm.dragMode == '其他'">
+                      <el-input v-model="special.dragMode" size="small" placeholder="请输入拖动方式"></el-input>
                     </div>
-                    <el-select v-model="ruleForm.drag_mode" placeholder="请选择" size="small" style="width: 100%;" v-else>
+                    <el-select v-model="ruleForm.dragMode" placeholder="请选择" size="small" style="width: 100%;" v-else>
                       <el-option v-for="item in dragModeOptions" :key="item.value" :label="item.label" :value="item.value"></el-option>
                     </el-select>
                   </el-form-item>
                   
                   
                   <!-- 数据要特殊处理 -->
-                  <el-form-item prop="car_size" class="lar-box">
+                  <el-form-item prop="carSize" class="lar-box">
                     <h4>轿厢尺寸（m）</h4>
                     <div class="clearfix">
                       <div style="float: left; width: 30%; margin-right: 5%;">
-                        <el-input v-model="special.car_size.kuan" size="small" placeholder="宽度"></el-input>
+                        <el-input v-model="special.carSize.kuan" size="small" placeholder="宽度"></el-input>
                       </div>
                       <div style="float: left; width: 30%; margin-right: 5%;">
-                        <el-input v-model="special.car_size.shen" size="small" placeholder="深度"></el-input>
+                        <el-input v-model="special.carSize.shen" size="small" placeholder="深度"></el-input>
                       </div>
                       <div style="float: left; width: 30%">
-                        <el-input v-model="special.car_size.gao" size="small" placeholder="高度"></el-input>
+                        <el-input v-model="special.carSize.gao" size="small" placeholder="高度"></el-input>
                       </div>
 
                     </div>
                   </el-form-item>
 
-                  <el-form-item prop="door_form" class="lar-box">
+                  <el-form-item prop="doorForm" class="lar-box">
                     <h4>轿门形式</h4>
-                    <div v-if="ruleForm.door_form && ruleForm.door_form == '其他'">
-                      <el-input v-model="special.door_form" size="small" placeholder="请输入轿门形式"></el-input>
+                    <div v-if="ruleForm.doorForm && ruleForm.doorForm == '其他'">
+                      <el-input v-model="special.doorForm" size="small" placeholder="请输入轿门形式"></el-input>
                     </div>
-                    <el-select v-model="ruleForm.door_form" placeholder="请选择" size="small" style="width: 100%;" v-else>
+                    <el-select v-model="ruleForm.doorForm" placeholder="请选择" size="small" style="width: 100%;" v-else>
                       <el-option v-for="item in doorFormOptions" :key="item.value" :label="item.label" :value="item.value"></el-option>
                     </el-select>
                   </el-form-item>
-                  <el-form-item prop="door_osize" class="lar-box">
+                  <el-form-item prop="doorOsize" class="lar-box">
                     <h4>开门尺寸（m）</h4>
-                    <el-input v-model="ruleForm.door_osize" size="small"></el-input>
+                    <el-input v-model="ruleForm.doorOsize" size="small"></el-input>
                   </el-form-item>
-                  <el-form-item prop="door_odir" class="lar-box">
+                  <el-form-item prop="doorOdir" class="lar-box">
                     <h4>开门方向</h4>
-                    <el-select v-model="ruleForm.door_odir" placeholder="请选择" size="small" style="width: 100%;">
+                    <el-select v-model="ruleForm.doorOdir" placeholder="请选择" size="small" style="width: 100%;">
                       <el-option v-for="item in doorOdirOptions" :key="item.value" :label="item.label" :value="item.value"></el-option>
                     </el-select>
                   </el-form-item>
-                  <el-form-item prop="tract_mode" class="lar-box">
+                  <el-form-item prop="tractMode" class="lar-box">
                     <h4>曳引方式</h4>
-                    <div v-if="ruleForm.tract_mode && ruleForm.tract_mode == '其他'">
-                      <el-input v-model="special.tract_mode" size="small" placeholder="请输入曳引方式"></el-input>
+                    <div v-if="ruleForm.tractMode && ruleForm.tractMode == '其他'">
+                      <el-input v-model="special.tractMode" size="small" placeholder="请输入曳引方式"></el-input>
                     </div>
-                    <el-select v-model="ruleForm.tract_mode" placeholder="请选择" size="small" style="width: 100%;" v-else>
+                    <el-select v-model="ruleForm.tractMode" placeholder="请选择" size="small" style="width: 100%;" v-else>
                       <el-option v-for="item in tractModeOptions" :key="item.value" :label="item.label" :value="item.value"></el-option>
                     </el-select>
                   </el-form-item>
-                  <el-form-item prop="rated_speed" class="lar-box">
+                  <el-form-item prop="ratedSpeed" class="lar-box">
                     <h4>额定运行速度（m/s）</h4>
-                    <el-input v-model="ruleForm.rated_speed" size="small"></el-input>
+                    <el-input v-model="ruleForm.ratedSpeed" size="small"></el-input>
                   </el-form-item>
 
                   
 
                   <div style="width: 100%;overflow: hidden;">
-                    <el-form-item prop="car_form" class="lar-box" style="width: 100%;">
+                    <el-form-item prop="carForm" class="lar-box" style="width: 100%;">
                       <h4>轿厢形式</h4>
-                      <div class="clearfix" v-for="(item, i) in special.car_form" :key="i">
+                      <div class="clearfix" v-for="(item, i) in special.carForm" :key="i">
                         <div style="float: left; width: 22%">
                           <el-input v-model="item.value" size="small" placeholder="请输入"></el-input>
                         </div>
@@ -215,29 +223,34 @@
                   <i>4</i><span>维保信息</span>
                 </div>
                 <div class="lar-con clearfix">
-                  <el-form-item prop="stat_utime" class="lar-box">
+                  <el-form-item prop="statUtime" class="lar-box">
                     <h4>投入使用时间</h4>
-                    <el-date-picker v-model="ruleForm.stat_utime" type="date" placeholder="选择日期" value-format="yyyy-MM-dd" size="small" style="width: 100%"></el-date-picker>
+                    <div class="dwc-date-icon"></div>
+                    <el-date-picker v-model="ruleForm.statUtime" type="date" placeholder="选择日期" prefix-icon="test-icon" value-format="yyyy-MM-dd" size="small" style="width: 100%"></el-date-picker>
                   </el-form-item>
-                  <el-form-item prop="exempt_year" class="lar-box">
+                  <el-form-item prop="exemptYear" class="lar-box">
                     <h4>免包期限（年）</h4>
-                    <el-input v-model="ruleForm.exempt_year" size="small"></el-input>
+                    <el-input v-model="ruleForm.exemptYear" size="small"></el-input>
                   </el-form-item>
-                  <el-form-item prop="exempt_stime" class="lar-box">
+                  <el-form-item prop="exemptStime" class="lar-box">
                     <h4>免保开始时间</h4>
-                    <el-date-picker v-model="ruleForm.exempt_stime" type="date" placeholder="选择日期" value-format="yyyy-MM-dd" size="small" style="width: 100%"></el-date-picker>
+                    <div class="dwc-date-icon"></div>
+                    <el-date-picker v-model="ruleForm.exemptStime" type="date" placeholder="选择日期" prefix-icon="test-icon" value-format="yyyy-MM-dd" size="small" style="width: 100%"></el-date-picker>
                   </el-form-item>
-                  <el-form-item prop="exempt_etime" class="lar-box">
+                  <el-form-item prop="exemptEtime" class="lar-box">
                     <h4>免保终止时间</h4>
-                    <el-date-picker v-model="ruleForm.exempt_etime" type="date" placeholder="选择日期" value-format="yyyy-MM-dd" size="small" style="width: 100%"></el-date-picker>
+                    <div class="dwc-date-icon"></div>
+                    <el-date-picker v-model="ruleForm.exemptEtime" type="date" placeholder="选择日期" prefix-icon="test-icon" value-format="yyyy-MM-dd" size="small" style="width: 100%"></el-date-picker>
                   </el-form-item>
-                  <el-form-item prop="mainten_stime" class="lar-box">
+                  <el-form-item prop="maintenStime" class="lar-box">
                     <h4>维保合同开始日期</h4>
-                    <el-date-picker v-model="ruleForm.mainten_stime" type="date" placeholder="选择日期" value-format="yyyy-MM-dd" size="small" style="width: 100%"></el-date-picker>
+                    <div class="dwc-date-icon"></div>
+                    <el-date-picker v-model="ruleForm.maintenStime" type="date" placeholder="选择日期" prefix-icon="test-icon" value-format="yyyy-MM-dd" size="small" style="width: 100%"></el-date-picker>
                   </el-form-item>
-                  <el-form-item prop="mainten_etime" class="lar-box">
+                  <el-form-item prop="maintenEtime" class="lar-box">
                     <h4>维保合同终止日期</h4>
-                    <el-date-picker v-model="ruleForm.mainten_etime" type="date" placeholder="选择日期" value-format="yyyy-MM-dd" size="small" style="width: 100%"></el-date-picker>
+                    <div class="dwc-date-icon"></div>
+                    <el-date-picker v-model="ruleForm.maintenEtime" type="date" placeholder="选择日期" prefix-icon="test-icon" value-format="yyyy-MM-dd" size="small" style="width: 100%"></el-date-picker>
                   </el-form-item>
 
                 </div>
@@ -251,47 +264,47 @@
                 <div class="lar-con clearfix">
                   <div class="clearfix">
                   </div>
-                  <el-form-item prop="top_height" class="lar-box">
+                  <el-form-item prop="topHeight" class="lar-box">
                     <h4>顶层高度（m）</h4>
-                    <el-input v-model="ruleForm.top_height" size="small"></el-input>
+                    <el-input v-model="ruleForm.topHeight" size="small"></el-input>
                   </el-form-item>
-                  <el-form-item prop="bottom_height" class="lar-box">
+                  <el-form-item prop="bottomHeight" class="lar-box">
                     <h4>底坑深度（m）</h4>
-                    <el-input v-model="ruleForm.bottom_height" size="small"></el-input>
+                    <el-input v-model="ruleForm.bottomHeight" size="small"></el-input>
                   </el-form-item>
-                  <el-form-item prop="well_height" class="lar-box">
+                  <el-form-item prop="wellHeight" class="lar-box">
                     <h4>井道高度（m）</h4>
-                    <el-input v-model="ruleForm.well_height" size="small"></el-input>
+                    <el-input v-model="ruleForm.wellHeight" size="small"></el-input>
                   </el-form-item>
-                  <el-form-item prop="car_height" class="lar-box">
+                  <el-form-item prop="carHeight" class="lar-box">
                     <h4>轿厢高度（m）</h4>
-                    <el-input v-model="ruleForm.car_height" size="small"></el-input>
+                    <el-input v-model="ruleForm.carHeight" size="small"></el-input>
                   </el-form-item>
-                  <el-form-item prop="low_level" class="lar-box">
+                  <el-form-item prop="lowLevel" class="lar-box">
                     <h4>底层（F）</h4>
-                    <el-input v-model="ruleForm.low_level" size="small"></el-input>
+                    <el-input v-model="ruleForm.lowLevel" size="small"></el-input>
                   </el-form-item>
-                  <el-form-item prop="high_level" class="lar-box">
+                  <el-form-item prop="highLevel" class="lar-box">
                     <h4>顶层（F）</h4>
-                    <el-input v-model="ruleForm.high_level" size="small"></el-input>
+                    <el-input v-model="ruleForm.highLevel" size="small"></el-input>
                   </el-form-item>
-                  <el-form-item prop="tract_circf" class="lar-box">
+                  <el-form-item prop="tractCircf" class="lar-box">
                     <h4>曳引轮周长（m）</h4>
-                    <el-input v-model="ruleForm.tract_circf" size="small"></el-input>
+                    <el-input v-model="ruleForm.tractCircf" size="small"></el-input>
                   </el-form-item>
-                  <el-form-item prop="load_control" class="lar-box">
+                  <el-form-item prop="loadControl" class="lar-box">
                     <h4>载荷控制器</h4>
-                    <el-input v-model="ruleForm.load_control" size="small"></el-input>
+                    <el-input v-model="ruleForm.loadControl" size="small"></el-input>
                   </el-form-item>
-                  <el-form-item prop="count_weight" class="lar-box">
+                  <el-form-item prop="countWeight" class="lar-box">
                     <h4>对重装置重量（kg）</h4>
-                    <el-input v-model="ruleForm.count_weight" size="small"></el-input>
+                    <el-input v-model="ruleForm.countWeight" size="small"></el-input>
                   </el-form-item>
 
                   <div style="width: 100%;overflow: hidden;">
-                    <el-form-item prop="floors_height" class="lar-box" style="width: 100%;">
+                    <el-form-item prop="floorsHeight" class="lar-box" style="width: 100%;">
                       <h4>层高（m）</h4>
-                      <div class="clearfix" v-for="(item, i) in special.floors_height" :key="i">
+                      <div class="clearfix" v-for="(item, i) in special.floorsHeight" :key="i">
                         <div style="float: left; width: 8%;">
                           <el-input v-model="item.floor1" size="small" placeholder="楼层"></el-input>
                         </div>
@@ -355,153 +368,153 @@ export default {
       submitState: 'post', // 判断录入电梯(post)还是编辑电梯(put)
       
       ruleForm2: {
-        'reg_code': '007',
-        'in_num': 'DT001',
-        'property_name': '维保公司',
-        'property_phone': '110',
-        'user_department': '通用互联',
-        'local_area': '深圳市',
-        'area_code': ["44", "4403"],
+        'regCode': '007',
+        'inNum': 'DT001',
+        'propertyName': '维保公司',
+        'propertyPhone': '110',
+        'userDepartment': '通用互联',
+        'localArea': '深圳市',
+        'areaCode': ["44", "4403"],
         'address': '花园城数码大厦',
-        'lat_lon': '109.412695,24.310411',
-        'elev_name': '三菱ABC',
-        'elev_type': '型号',
-        'elev_var': '电梯品种',
-        'elev_facnum': '出厂编号',
-        'manufact_name': '制造单位',
-        'elev_date': '2018-06-1',
-        'rated_load': 99,
-        'stop_fnum': '停层站数',
-        'control_mode': 0,
-        'drag_mode': '1',
+        'latLon': '109.412695,24.310411',
+        'elevName': '三菱ABC',
+        'elevType': '型号',
+        'elevVar': '电梯品种',
+        'elevFacnum': '出厂编号',
+        'manufactName': '制造单位',
+        'elevDate': '2018-06-1',
+        'ratedLoad': 99,
+        'stopFnum': '停层站数',
+        'controlMode': 0,
+        'dragMode': '1',
         // 轿厢尺寸特殊处理
-        'car_size': '30:60:50',
-        'door_form': '1',
-        'door_osize': 66,
-        'door_odir': '1',
-        'tract_mode': '0',
-        'rated_speed': 888,
-        'car_form': '轿厢形式1:轿厢形式2',
-        'stat_utime': '2018-06-18',
-        'exempt_year': 0,
-        'exempt_stime': '2018-06-18',
-        'exempt_etime': '2018-08-18',
-        'mainten_stime': '2018-06-18',
-        'mainten_etime': '2018-08-18',
+        'carSize': '30:60:50',
+        'doorForm': '1',
+        'doorOsize': 66,
+        'doorOdir': '1',
+        'tractMode': '0',
+        'ratedSpeed': 888,
+        'carForm': '轿厢形式1:轿厢形式2',
+        'statUtime': '2018-06-18',
+        'exemptYear': 0,
+        'exemptStime': '2018-06-18',
+        'exemptEtime': '2018-08-18',
+        'maintenStime': '2018-06-18',
+        'maintenEtime': '2018-08-18',
 
-        'top_height': 99,
-        'bottom_height': 321,
-        'well_height': 564564,
-        'car_height': 777,
-        'low_level': 2,
-        'high_level': 100,
-        'tract_circf': 999,
-        'load_control': '荷载控制器',
+        'topHeight': 99,
+        'bottomHeight': 321,
+        'wellHeight': 564564,
+        'carHeight': 777,
+        'lowLevel': 2,
+        'highLevel': 100,
+        'tractCircf': 999,
+        'loadControl': '荷载控制器',
 
-        'count_weight': 99,
-        'floors_height': '[{"floor": "-1, 1", "height": "5"}, {"floor": "1, 5", "height" : "4"}, {"floor": "5, 35", "height": "3.5"}]',
+        'countWeight': 99,
+        'floorsHeight': '[{"floor": "-1, 1", "height": "5"}, {"floor": "1, 5", "height" : "4"}, {"floor": "5, 35", "height": "3.5"}]',
         'extend': '',
         
       },
 
       // 用于重置的空参数
       ruleFormBlank: {
-        'reg_code': '',
-        'in_num': '',
-        'property_name': '',
-        'property_phone': '',
-        'user_department': '',
-        'local_area': '',
-        'area_code': '',
+        'regCode': '',
+        'inNum': '',
+        'propertyName': '',
+        'propertyPhone': '',
+        'userDepartment': '',
+        'localArea': '',
+        'areaCode': '',
         'address': '',
-        'lat_lon': '',
-        'elev_name': '',
-        'elev_type': '',
-        'elev_var': '',
-        'elev_facnum': '',
-        'manufact_name': '',
-        'elev_date': '',
-        'rated_load': '',
-        'stop_fnum': '',
-        'control_mode': '',
-        'drag_mode': '',
+        'latLon': '',
+        'elevName': '',
+        'elevType': '',
+        'elevVar': '',
+        'elevFacnum': '',
+        'manufactName': '',
+        'elevDate': '',
+        'ratedLoad': '',
+        'stopFnum': '',
+        'controlMode': '',
+        'dragMode': '',
         // 轿厢尺寸特殊处理
-        'car_size': '',
-        'door_form': '',
-        'door_osize': '',
-        'door_odir': '',
-        'tract_mode': '',
-        'rated_speed': '',
-        'car_form': '',
-        'stat_utime': '',
-        'exempt_year': '',
-        'exempt_stime': '',
-        'exempt_etime': '',
-        'mainten_stime': '',
-        'mainten_etime': '',
+        'carSize': '',
+        'doorForm': '',
+        'doorOsize': '',
+        'doorOdir': '',
+        'tractMode': '',
+        'ratedSpeed': '',
+        'carForm': '',
+        'statUtime': '',
+        'exemptYear': '',
+        'exemptStime': '',
+        'exemptEtime': '',
+        'maintenStime': '',
+        'maintenEtime': '',
 
-        'top_height': '',
-        'bottom_height': '',
-        'well_height': '',
-        'car_height': '',
-        'low_level': '',
-        'high_level': '',
-        'tract_circf': '',
-        'load_control': '',
+        'topHeight': '',
+        'bottomHeight': '',
+        'wellHeight': '',
+        'carHeight': '',
+        'lowLevel': '',
+        'highLevel': '',
+        'tractCircf': '',
+        'loadControl': '',
 
-        'count_weight': '',
-        'floors_height': '',
+        'countWeight': '',
+        'floorsHeight': '',
         'extend': '',
         
       },
 
       // 正式提交的json参数
       ruleForm: {
-        'reg_code': '',
-        'in_num': '',
-        'property_name': '',
-        'property_phone': '',
-        'user_department': '',
-        'local_area': '',
-        'area_code': '',
+        'regCode': '',
+        'inNum': '',
+        'propertyName': '',
+        'propertyPhone': '',
+        'userDepartment': '',
+        'localArea': '',
+        'areaCode': '',
         'address': '',
-        'lat_lon': '',
-        'elev_name': '',
-        'elev_type': '',
-        'elev_var': '',
-        'elev_facnum': '',
-        'manufact_name': '',
-        'elev_date': '',
-        'rated_load': '',
-        'stop_fnum': '',
-        'control_mode': '',
-        'drag_mode': '',
+        'latLon': '',
+        'elevName': '',
+        'elevType': '',
+        'elevVar': '',
+        'elevFacnum': '',
+        'manufactName': '',
+        'elevDate': '',
+        'ratedLoad': '0',
+        'stopFnum': '0',
+        'controlMode': '轿内按钮控制',
+        'dragMode': '交流双速电动机变极调速拖动',
         // 轿厢尺寸特殊处理
-        'car_size': '',
-        'door_form': '',
-        'door_osize': '',
-        'door_odir': '',
-        'tract_mode': '',
-        'rated_speed': '',
-        'car_form': '',
-        'stat_utime': '',
-        'exempt_year': '',
-        'exempt_stime': '',
-        'exempt_etime': '',
-        'mainten_stime': '',
-        'mainten_etime': '',
+        'carSize': '0:0:0',
+        'doorForm': '封闭式中分开门',
+        'doorOsize': '0',
+        'doorOdir': '左开门',
+        'tractMode': '半绕1:1吊索法',
+        'ratedSpeed': '0',
+        'carForm': '0',
+        'statUtime': '',
+        'exemptYear': '',
+        'exemptStime': '',
+        'exemptEtime': '',
+        'maintenStime': '',
+        'maintenEtime': '',
 
-        'top_height': '',
-        'bottom_height': '',
-        'well_height': '',
-        'car_height': '',
-        'low_level': '',
-        'high_level': '',
-        'tract_circf': '',
-        'load_control': '',
+        'topHeight': '',
+        'bottomHeight': '',
+        'wellHeight': '',
+        'carHeight': '',
+        'lowLevel': '',
+        'highLevel': '',
+        'tractCircf': '',
+        'loadControl': '',
 
-        'count_weight': '',
-        'floors_height': '',
+        'countWeight': '',
+        'floorsHeight': '',
         'extend': '',
         
       },
@@ -510,21 +523,21 @@ export default {
       specialBlank: {
         lng: '',
         lat: '',
-        car_size: {
+        carSize: {
           gao: '',
           kuan: '',
           shen: ''
         },
-        door_form: '',
-        control_mode: '',
-        drag_mode: '',
-        floors_height: [
+        doorForm: '',
+        controlMode: '',
+        dragMode: '',
+        floorsHeight: [
           {floor1: '', floor2: '', height: ''}
         ],
-        car_form: [
+        carForm: [
           {value: ''}
         ],
-        area_code: [],
+        areaCode: [],
         chooseCity: '',
 
       },
@@ -534,64 +547,72 @@ export default {
       special: {
         lng: '',
         lat: '',
-        car_size: {
-          gao: '',
-          kuan: '',
-          shen: ''
+        carSize: {
+          gao: '0',
+          kuan: '0',
+          shen: '0'
         },
-        door_form: '',
-        control_mode: '',
-        drag_mode: '',
-        floors_height: [
+        doorForm: '',
+        controlMode: '',
+        dragMode: '',
+        floorsHeight: [
           {floor1: '', floor2: '', height: ''}
         ],
-        car_form: [
+        carForm: [
           {value: ''}
         ],
-        area_code: [],
+        areaCode: [],
         chooseCity: '',
 
       },
       // 用于存放单个电梯原始数据
       list: {},
       rules: {
-        reg_code: [
-          { required: true, message: '必填', trigger: 'blur' },
-        ],
-        in_num: [
-          { required: true, message: '必填', trigger: 'blur' },
-        ],
-        area_code: [
-          { required: true, message: '必填', trigger: 'blur' },
-        ],
-        top_height: [
-          { required: true, message: '必填', trigger: 'blur' },
-        ],
-        elev_date: [
-          { required: true, message: '必填', trigger: 'blur' },
-        ],
-        stat_utime: [
-          { required: true, message: '必填', trigger: 'blur' },
-        ],
-        well_height: [
-          { required: true, message: '必填', trigger: 'blur' },
-        ],
-        bottom_height: [
-          { required: true, message: '必填', trigger: 'blur' },
-        ],
-        car_height: [
-          { required: true, message: '必填', trigger: 'blur' },
-        ],
-        tract_circf: [
-          { required: true, message: '必填', trigger: 'blur' },
-        ],
-        low_level: [
-          { required: true, message: '必填', trigger: 'blur' },
-        ],
-        high_level: [
-          { required: true, message: '必填', trigger: 'blur' },
-        ],
-   
+
+        regCode: [{ required: true, message: '必填', trigger: 'blur' }],
+        areaCode: [{ required: true, message: '必填', trigger: 'blur' }],
+        address: [{ required: true, message: '必填', trigger: 'blur' }],
+        bottomHeight: [{ required: true, message: '必填', trigger: 'blur' }],
+        // carForm: [{ required: true, message: '必填', trigger: 'blur' }],
+        carHeight: [{ required: true, message: '必填', trigger: 'blur' }],
+        // carSize: [{ required: true, message: '必填', trigger: 'blur' }],
+        // controlMode: [{ required: true, message: '必填', trigger: 'blur' }],
+        countWeight: [{ required: true, message: '必填', trigger: 'blur' }],
+        // doorForm: [{ required: true, message: '必填', trigger: 'blur' }],
+        // doorOdir: [{ required: true, message: '必填', trigger: 'blur' }],
+        // doorOsize: [{ required: true, message: '必填', trigger: 'blur' }],
+        // dragMode: [{ required: true, message: '必填', trigger: 'blur' }],
+        elevDate: [{ required: true, message: '必填', trigger: 'blur' }],
+        elevFacnum: [{ required: true, message: '必填', trigger: 'blur' }],
+        elevName: [{ required: true, message: '必填', trigger: 'blur' }],
+        elevType: [{ required: true, message: '必填', trigger: 'blur' }],
+        elevVar: [{ required: true, message: '必填', trigger: 'blur' }],
+        exemptEtime: [{ required: true, message: '必填', trigger: 'blur' }],
+        exemptStime: [{ required: true, message: '必填', trigger: 'blur' }],
+        exemptYear: [{ required: true, message: '必填', trigger: 'blur' }],
+        // extend: [{ required: true, message: '必填', trigger: 'blur' }],
+        // floorsHeight: [{ required: true, message: '必填', trigger: 'blur' }],
+        highLevel: [{ required: true, message: '必填', trigger: 'blur' }],
+        inNum: [{ required: true, message: '必填', trigger: 'blur' }],
+        latLon: [{ required: true, message: '必填', trigger: 'blur' }],
+        loadControl: [{ required: true, message: '必填', trigger: 'blur' }],
+        localArea: [{ required: true, message: '必填', trigger: 'blur' }],
+        lowLevel: [{ required: true, message: '必填', trigger: 'blur' }],
+        maintenEtime: [{ required: true, message: '必填', trigger: 'blur' }],
+        maintenStime: [{ required: true, message: '必填', trigger: 'blur' }],
+        manufactName: [{ required: true, message: '必填', trigger: 'blur' }],
+        propertyName: [{ required: true, message: '必填', trigger: 'blur' }],
+        propertyPhone: [{ required: true, message: '必填', trigger: 'blur' }],
+        // ratedLoad: [{ required: true, message: '必填', trigger: 'blur' }],
+        // ratedSpeed: [{ required: true, message: '必填', trigger: 'blur' }],
+        statUtime: [{ required: true, message: '必填', trigger: 'blur' }],
+        // stopFnum: [{ required: true, message: '必填', trigger: 'blur' }],
+        topHeight: [{ required: true, message: '必填', trigger: 'blur' }],
+        tractCircf: [{ required: true, message: '必填', trigger: 'blur' }],
+        // tractMode: [{ required: true, message: '必填', trigger: 'blur' }],
+        userDepartment: [{ required: true, message: '必填', trigger: 'blur' }],
+        wellHeight: [{ required: true, message: '必填', trigger: 'blur' }],
+
       },
       doorFormOptions: [
         {value: '封闭式中分开门', label: '封闭式中分开门'},
@@ -631,7 +652,7 @@ export default {
   },
 
   created() {
-    this.parentCode = this.$route.query.reg_code
+    this.parentCode = this.$route.query.regCode
   },
   mounted() {
 
@@ -650,9 +671,9 @@ export default {
       api.lift.getLiftResult(this.parentCode).then(res => {
         if (!res.data.data) {
           this.submitState = 'post'
-          this.ruleForm = this.ruleFormBlank
-          this.special = this.specialBlank
-          this.ruleForm.reg_code = this.parentCode
+          // this.ruleForm = this.ruleFormBlank
+          // this.special = this.specialBlank
+          this.ruleForm.regCode = this.parentCode
           return
         }
         this.submitState = 'put'
@@ -662,39 +683,39 @@ export default {
         }
    
         // 特殊处理字段
-        if (this.ruleForm.area_code !== '') {
-          this.special.area_code = this.transformAreaCode(this.ruleForm.area_code)
+        if (this.ruleForm.areaCode !== '') {
+          this.special.areaCode = this.transformAreaCode(this.ruleForm.areaCode)
         }
-        if (this.ruleForm.car_size !== '') {
-          this.special.car_size = this.transformCarSize(this.ruleForm.car_size)
+        if (this.ruleForm.carSize !== '') {
+          this.special.carSize = this.transformCarSize(this.ruleForm.carSize)
         }
-        if (this.ruleForm.floors_height !== '') {
-          this.special.floors_height = this.transformFloorsHeight(this.ruleForm.floors_height)
+        if (this.ruleForm.floorsHeight !== '') {
+          this.special.floorsHeight = this.transformFloorsHeight(this.ruleForm.floorsHeight)
         }
-        if (this.ruleForm.car_form !== '') {
-          this.special.car_form = this.transformCarForm(this.ruleForm.car_form)
+        if (this.ruleForm.carForm !== '') {
+          this.special.carForm = this.transformCarForm(this.ruleForm.carForm)
         }
 
-        this.searchMap(detail.lat_lon)
+        this.searchMap(detail.latLon)
       })
 
     },
 
-    // 特殊处理获得的area_code区域码
-    transformAreaCode(area_code) {
+    // 特殊处理获得的areaCode区域码
+    transformAreaCode(areaCode) {
       // 字符串转数组
       // "440305005000" => ["44", "4403", "440305", "440305005"]
-      if (typeof area_code == 'string') {
-        let province = area_code.substr(0, 2)
-        let city = area_code.substr(0, 4)
-        let region = area_code.substr(0, 6)
-        let street = area_code.substr(0, 9)
+      if (typeof areaCode == 'string') {
+        let province = areaCode.substr(0, 2)
+        let city = areaCode.substr(0, 4)
+        let region = areaCode.substr(0, 6)
+        let street = areaCode.substr(0, 9)
         let cityShow = []
-        if (area_code.length <= 2) {
+        if (areaCode.length <= 2) {
           cityShow.push(province)
-        } else if (area_code.length > 2 && area_code.length <= 4 ) {
+        } else if (areaCode.length > 2 && areaCode.length <= 4 ) {
           cityShow.push(province, city)
-        } else if (area_code.length > 4 && area_code.length <= 6 ) {
+        } else if (areaCode.length > 4 && areaCode.length <= 6 ) {
           cityShow.push(province, city, region)
         } else {
           cityShow.push(province, city, region, street)
@@ -704,44 +725,44 @@ export default {
 
       // 数组转字符串
       // ["44", "4403", "440305", "440305005"] => "440305005000"
-      if (area_code instanceof Array) {
-        return area_code[area_code.length - 1]
+      if (areaCode instanceof Array) {
+        return areaCode[areaCode.length - 1]
       }
 
-      console.log('area_code传入类型错误')
+      console.log('areaCode传入类型错误')
     },
 
     // 特殊处理轿厢尺寸
-    transformCarSize(car_size) {
+    transformCarSize(carSize) {
       // 字符串转对象
-      // '10:20:30' => car_size: {gao: '', shen: '', kuan: ''}
-      if (typeof car_size == 'string') {
+      // '10:20:30' => carSize: {gao: '', shen: '', kuan: ''}
+      if (typeof carSize == 'string') {
         let carSizeObj = {}
-        carSizeObj.gao = car_size.split(':')[0]
-        carSizeObj.kuan = car_size.split(':')[1]
-        carSizeObj.shen = car_size.split(':')[2]
+        carSizeObj.gao = carSize.split(':')[0]
+        carSizeObj.kuan = carSize.split(':')[1]
+        carSizeObj.shen = carSize.split(':')[2]
         return carSizeObj
       }
 
       // 对象转字符串
-      // car_size: {gao: '', shen: '', kuan: ''} => '10:20:30'
-      if (car_size instanceof Object) {
-        if (car_size.gao === '' || car_size.kuan === '' || car_size.shen === '') {
+      // carSize: {gao: '', shen: '', kuan: ''} => '10:20:30'
+      if (carSize instanceof Object) {
+        if (carSize.gao === '' || carSize.kuan === '' || carSize.shen === '') {
           return ''
         } else {
-          return car_size.gao + ':' + car_size.kuan + ':' + car_size.shen
+          return carSize.gao + ':' + carSize.kuan + ':' + carSize.shen
         }
       }
 
-      console.log('car_size传入类型错误')
+      console.log('carSize传入类型错误')
     },
 
     // 特殊处理层高
-    transformFloorsHeight(floors_height) {
+    transformFloorsHeight(floorsHeight) {
       // 字符串数组重组成新形式数组
       // "[{'floor': '-1, 1', 'height': '5'}, {'floor': '1, 5', 'height' : '4'}]" => [{floor1: '-1', floor2: '1', height: '5'}, {floor1: '1', floor2: '5', height: '4'}]
-      if (typeof floors_height == 'string') {
-        let evalFloorsHeight = eval(floors_height)
+      if (typeof floorsHeight == 'string') {
+        let evalFloorsHeight = eval(floorsHeight)
         let floorsHeightArr = []
         evalFloorsHeight.forEach(item => {
           floorsHeightArr.push({
@@ -755,10 +776,10 @@ export default {
 
       // 新形式数组重组为字符串数组
       // [{floor1: '-1', floor2: '1', height: '5'}, {floor1: '1', floor2: '5', height: '4'}] => "[{'floor': '-1, 1', 'height': '5'}, {'floor': '1, 5', 'height' : '4'}]"
-      if (floors_height instanceof Array) {
-        if (floors_height.length === 1 && floors_height[0].floor1 === '' && floors_height[0].floor2 === '' && floors_height[0].height === '') return ''
+      if (floorsHeight instanceof Array) {
+        if (floorsHeight.length === 1 && floorsHeight[0].floor1 === '' && floorsHeight[0].floor2 === '' && floorsHeight[0].height === '') return ''
         let carSizeArrStr = []
-        floors_height.forEach((item, i) => {
+        floorsHeight.forEach((item, i) => {
           if (item.floor1 === '' || item.floor2 === '') {
             return true
           } else {
@@ -772,16 +793,16 @@ export default {
         return JSON.stringify(carSizeArrStr)
       }
       
-      console.log('floors_height传入类型错误')
+      console.log('floorsHeight传入类型错误')
     },
 
     // 特殊处理轿厢形式
-    transformCarForm(car_form) {
-      console.log('car_form传', car_form)
+    transformCarForm(carForm) {
+      console.log('carForm传', carForm)
       // 字符串转数组
       // "轿厢形式1:轿厢形式2" => [{value: '轿厢形式1'}, {value: '轿厢形式2'}]
-      if (typeof car_form == 'string') {
-        let carFormArr = car_form.split(':')
+      if (typeof carForm == 'string') {
+        let carFormArr = carForm.split(':')
         let carFormArrTrans = []
         carFormArr.forEach(item => {
           carFormArrTrans.push({
@@ -793,10 +814,10 @@ export default {
 
       // 数组转字符串
       // [{value: '轿厢形式1'}, {value: '轿厢形式2'}] => "轿厢形式1:轿厢形式2" 
-      if (car_form instanceof Array) {
+      if (carForm instanceof Array) {
         let carFormArr = []
         
-        car_form.forEach(item => {
+        carForm.forEach(item => {
           carFormArr.push(item.value)
         })
         if (carFormArr.length === 0) {
@@ -806,7 +827,7 @@ export default {
         }
       }
       
-      console.log('car_form传入类型错误')
+      console.log('carForm传入类型错误')
     },
 
     // 搜索
@@ -816,7 +837,7 @@ export default {
       this.$router.push({
         path: '/lift-add-result',
         query: {
-          reg_code: val
+          regCode: val
         }
       })
       this.getLiftResult()
@@ -856,8 +877,9 @@ export default {
     },
 
     // 搜索地图
-    searchMap(lat_lon) {
+    searchMap(latLon) {
       let that = this
+      console.log('latLon', latLon)
 
       // 地图基础配置
       var marker;
@@ -894,9 +916,9 @@ export default {
 
       }
 
-      if (lat_lon) {
-        let lng = lat_lon.split(',')[0]
-        let lat = lat_lon.split(',')[1]
+      if (latLon) {
+        let lng = latLon.split(',')[0]
+        let lat = latLon.split(',')[1]
         addMarker(lng, lat)
         map.setCenter([lng, lat]); //设置地图中心点
         console.log('gggggg', lng, lat)
@@ -905,7 +927,7 @@ export default {
       }
 
       // 搜索
-      let keywords = this.special.chooseCity + this.ruleForm.address
+      let keywords = this.ruleForm.localArea + this.ruleForm.address
       console.log('搜索关键字', keywords)
       AMap.plugin('AMap.Autocomplete', function() {
         // 实例化Autocomplete
@@ -942,8 +964,6 @@ export default {
         }
 
 
-        
-
         autoComplete.search(keywords, function(status, result) {
           // 搜索成功时，result即是对应的匹配数据
           console.log(status, result)
@@ -972,7 +992,7 @@ export default {
 
     // 添加层高
     addFloor() {
-      this.special.floors_height.push({
+      this.special.floorsHeight.push({
         floor1: '',
         floor2: '',
         height: '',
@@ -981,27 +1001,27 @@ export default {
 
     // 删除层高
     deleteFloor(i) {
-      this.special.floors_height.splice(i, 1)
+      this.special.floorsHeight.splice(i, 1)
     },
 
     // 添加轿厢形式
     addCarForm() {
-      this.special.car_form.push({
+      this.special.carForm.push({
         value: ''
       })
     },
 
     // 删除轿厢形式
     deleteCarForm(i) {
-      this.special.car_form.splice(i, 1)
+      this.special.carForm.splice(i, 1)
     },
 
     // 获取省市区联动值
     getCity(arr, cityName) {
-      this.ruleForm.area_code = arr[arr.length - 1]
-      this.special.area_code = arr
+      this.ruleForm.areaCode = arr[arr.length - 1]
+      this.special.areaCode = arr
       this.special.chooseCity = cityName
-      this.ruleForm.local_area = cityName.join(' ')
+      this.ruleForm.localArea = cityName.join(' ')
       this.searchMap()
     },
 
@@ -1018,27 +1038,32 @@ export default {
       this.$refs.laForm.validate(valid => {
 
         if (valid) {
-          alert('submit')
+          // alert('submit')
 
           // 特殊处理字段
-          this.ruleForm.area_code = this.transformAreaCode(this.special.area_code)
-          this.ruleForm.car_size = this.transformCarSize(this.special.car_size)
-          this.ruleForm.floors_height = this.transformFloorsHeight(this.special.floors_height)
-          console.log('qu', this.special.floors_height)
-          this.ruleForm.car_form = this.transformCarForm(this.special.car_form)
-          if (this.ruleForm.door_form == '其他') {
-            this.ruleForm.door_form = this.special.door_form
+          this.ruleForm.areaCode = this.transformAreaCode(this.special.areaCode)
+          this.ruleForm.carSize = this.transformCarSize(this.special.carSize)
+          this.ruleForm.floorsHeight = this.transformFloorsHeight(this.special.floorsHeight)
+          this.ruleForm.carForm = this.transformCarForm(this.special.carForm)
+          if (this.ruleForm.doorForm == '其他') {
+            this.ruleForm.doorForm = this.special.doorForm
           }
-          if (this.ruleForm.control_mode == '其他') {
-            this.ruleForm.control_mode = this.special.control_mode
+          if (this.ruleForm.controlMode == '其他') {
+            this.ruleForm.controlMode = this.special.controlMode
           }
-          if (this.ruleForm.drag_mode == '其他') {
-            this.ruleForm.drag_mode = this.special.drag_mode
+          if (this.ruleForm.dragMode == '其他') {
+            this.ruleForm.dragMode = this.special.dragMode
           }
-          if (this.ruleForm.tract_mode == '其他') {
-            this.ruleForm.tract_mode = this.special.tract_mode
+          if (this.ruleForm.tractMode == '其他') {
+            this.ruleForm.tractMode = this.special.tractMode
           }
-          this.ruleForm.lat_lon = `${this.special.lng}, ${this.special.lat}`
+          let lng = this.special.lng || ''
+          let lat = this.special.lat || ''
+          if (lng && lat) {
+            this.ruleForm.latLon = `${lng},${lat}`
+          } else {
+            this.ruleForm.latLon = ''
+          }
 
           console.log(this.ruleForm)
 
@@ -1057,7 +1082,8 @@ export default {
             api.lift.addLift(this.ruleForm).then(res => {
               console.log('post', res)
               if (res.data.code == '200') {
-                that.$message.success(`${res.data.message}`)
+                that.$message.success('添加电梯成功')
+                that.$router.push({path: '/lift-list'})
               } else {
                 that.$message.error(`${res.data.message}`)
               }
@@ -1065,10 +1091,10 @@ export default {
           }
 
         } else {
-          console.log('error', this.ruleForm)
+          console.log('error',this.ruleForm)
         }
       })
-    }
+    },
 
   },
   components: {
@@ -1273,6 +1299,10 @@ export default {
   }
   .delete-floor-icon:hover{
     background: url('../../assets/images/xym/delete-on.png') no-repeat center center;
+  }
+  .dwc-date-icon{
+    top: 33px;
+    z-index: 99;
   }
   
 

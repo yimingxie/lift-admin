@@ -125,7 +125,7 @@
             <div class="llcb-operate">
               <div class="llcb-btn info" @click="goLiftAdd">+ 添加电梯</div>
               <div class="llcb-btn">批量录入</div>
-              <div class="llcb-btn" @click="deleteLifts">删除电梯</div>
+              <div class="llcb-btn" @click="deleteLiftsDialog">删除电梯</div>
             </div>
             <div class="llcb-search">
               <search-code @childCode="searchLift"></search-code>
@@ -157,29 +157,29 @@
               <div class="llt-tr-container clearfix">
                 <div class="llt-td">
                   <el-checkbox-group v-model="checkedLifts" @change="checkedLiftsChange">
-                    <el-checkbox :label="item.reg_code" :key="i">{{test}}</el-checkbox>
+                    <el-checkbox :label="item.regCode" :key="i">{{test}}</el-checkbox>
                   </el-checkbox-group>
                 </div>
-                <div class="llt-td">{{item.reg_code}}</div>
-                <div class="llt-td">{{item.in_num}}</div>
-                <div class="llt-td">{{item.local_area}}</div>
+                <div class="llt-td">{{item.regCode}}</div>
+                <div class="llt-td">{{item.inNum}}</div>
+                <div class="llt-td">{{item.localArea}}</div>
                 <div class="llt-td">{{item.address}}</div>
                 <div class="llt-td">
-                  <p class="llt-td-device" @click="goLiftDevice(item.reg_code)"><span class="llt-td-a">{{item.device_online}}</span>/{{item.device_count}}</p>
+                  <p class="llt-td-device" @click="goLiftDevice(item.regCode)"><span class="llt-td-a">{{item.deviceOnline}}</span>/{{item.deviceCount}}</p>
                 </div>
-                <div class="llt-td">{{item.monitor_count}}</div>
+                <div class="llt-td">{{item.monitorCount}}</div>
                 <div class="llt-td">
-                  <p class="llt-td-type">预警<span class="warning">{{item.warning_count}}</span></p>
-                  <p class="llt-td-type">违规<span class="illegal">{{item.violation_count}}</span></p>
-                  <p class="llt-td-type">故障<span class="fault">{{item.fault_count}}</span></p>
-                  <p class="llt-td-type">事件<span class="accident">{{item.accident_count}}</span></p>
+                  <p class="llt-td-type">预警<span class="warning">{{item.warningCount}}</span></p>
+                  <p class="llt-td-type">违规<span class="illegal">{{item.violationCount}}</span></p>
+                  <p class="llt-td-type">故障<span class="fault">{{item.faultCount}}</span></p>
+                  <p class="llt-td-type">事件<span class="accident">{{item.accidentCount}}</span></p>
                 </div>
                 <div class="llt-td">
-                  <span class="llt-td-a" @click="goLiftResult(item.reg_code)">电梯档案</span>
+                  <span class="llt-td-a" @click="goLiftResult(item.regCode)">电梯档案</span>
                   <em class="llt-td-line">|</em>
                   <span class="llt-td-a">设置监控</span>
                   <em class="llt-td-line">|</em>
-                  <span class="llt-td-a" @click="goDetection(item.reg_code)">诊断</span>
+                  <span class="llt-td-a" @click="goDetection(item.regCode)">诊断</span>
                 </div>
               </div>
             </div>
@@ -209,6 +209,28 @@
     <!-- 底部 -->
     <footer-temp></footer-temp>
 
+    <!-- 删除电梯对话框 -->
+    <el-dialog custom-class="noneTitle" :show-close="false" :visible.sync="dialogDelete">
+      <div class="dialog-delete">
+        <div class="dia-heading">
+          <div class="dia-con-pic">
+            <img src="../../assets/images/xym/dia-warn.png" alt="">
+          </div>
+          <div class="dia-con-p">
+            <h4>是否确认删除以下电梯</h4>
+            <p>删除后不可复原，请谨慎操作</p>
+          </div>
+        </div>
+        <ul class="dia-ul clearfix">
+          <li :class="checkedLifts.length <= 1 ? 'single' : ''" v-for="(item, i) in checkedLifts" :key="i">{{item}}</li>
+        </ul>
+        <div class="diaN-btn-con clearfix">
+          <div class="diaN-btn diaN-btn-cancel" @click="dialogDelete=false">取消</div>
+          <div class="diaN-btn diaN-btn-red" @click="deleteLifts">确认</div>
+        </div>
+      </div>
+    </el-dialog>
+
   </div>
 </template>
 
@@ -222,6 +244,7 @@ import SearchCode from '../../components/SearchCode'
 export default {
   data() {
     return {
+      dialogDelete: false,
       liftList: [],
       liftsRegCodeOptions: [],
       checkedLifts: [],
@@ -241,10 +264,9 @@ export default {
         show4: true,
       },
       liftListParams: {
-        page: {offset: 1, limit: 10},
-        query: {
-          excp_type: -1,
-        },
+        offset: 1, 
+        limit: 10,
+        excpType: -1,
         order: 'desc'
       },
       sortClass: '',
@@ -262,13 +284,13 @@ export default {
     // 获取数字电梯列表
     getLiftList() {
       api.lift.getLiftList(this.liftListParams).then(res => {
-        console.log(res)
+        console.log('电梯',res)
         this.liftList = res.data.data.records
 
         // 将所有电梯注册码填入选项，用于全选
         this.liftsRegCodeOptions = []
         this.liftList.forEach(item => {
-          this.liftsRegCodeOptions.push(item.reg_code)
+          this.liftsRegCodeOptions.push(item.regCode)
         })
 
         // 分页
@@ -279,8 +301,8 @@ export default {
 
     // 搜索
     // 监听子组件获取注册码，发送请求搜索并重新渲染列表
-    searchLift(reg_code) {
-      this.liftListParams.query.reg_code = reg_code
+    searchLift(regCode) {
+      this.liftListParams.regCode = regCode
       this.getLiftList()
     },
 
@@ -298,7 +320,7 @@ export default {
 
     // 区域筛选
     selectCity(cityArr, cnName) {
-      this.liftListParams.query.area_code = cityArr[cityArr.length-1]
+      this.liftListParams.areaCode = cityArr[cityArr.length-1]
       console.log(cnName)
       this.getLiftList()
     },
@@ -320,13 +342,13 @@ export default {
 
     // 当前分页改变
     currentPageChange(current) {
-      this.liftListParams.page.offset = current
+      this.liftListParams.offset = current
       this.getLiftList()
     },
 
     // 分页大小改变
     pageSizeChange(size) {
-      this.liftListParams.page.limit = size
+      this.liftListParams.limit = size
       this.getLiftList()
     },
 
@@ -338,23 +360,33 @@ export default {
     },
 
     // 跳转到电梯详情
-    goLiftResult(reg_code) {
+    goLiftResult(regCode) {
       this.$router.push({
         path: '/lift-add-result',
         query: {
-          reg_code: reg_code
+          regCode: regCode
         }
       })
+    },
+
+    // 删除电梯对话框
+    deleteLiftsDialog() {
+      let that = this
+      console.log('删除选中电梯', this.checkedLifts)
+      if (this.checkedLifts.length === 0) {
+        return this.$message.error('请勾选需要删除的电梯。电梯删除后无法复原，请谨慎操作');
+      }
+      this.dialogDelete = true
     },
 
     // 删除电梯
     deleteLifts() {
       let that = this
-      if (this.checkedLifts.length === 0) return
       let params = {
-        reg_codes: this.checkedLifts.join(',')
+        regCodes: this.checkedLifts.join(',')
       }
       api.lift.deleteLift(params).then(res => {
+        console.log(res)
         if (res.data.code == '200') {
           that.$message.success(`${res.data.message}`)
           that.$router.go(0)
@@ -362,25 +394,24 @@ export default {
           that.$message.error(`${res.data.message}`)
         }
       })
-
     },
 
     // 跳转到单部电梯设备列表页
-    goLiftDevice(reg_code) {
+    goLiftDevice(regCode) {
       this.$router.push({
         path: '/lift-device',
         query: {
-          reg_code: reg_code
+          regCode: regCode
         }
       })
     },
 
     // 跳转到诊断
-    goDetection(reg_code) {
+    goDetection(regCode) {
       this.$router.push({
         path: '/detection',
         query: {
-          reg_code: reg_code
+          regCode: regCode
         }
       })
     },
@@ -389,7 +420,7 @@ export default {
   watch: {
     // 异常分类筛选
     exceptValue(val, oldVal) {
-      this.liftListParams.query.excp_type = val
+      this.liftListParams.excpType = val
       this.getLiftList()
     }
   },
