@@ -3,8 +3,8 @@
  */
 import http from '../utils/http'
 
-let protocol = process.env.NODE_ENV !== 'production' ? 'http:' : window.location.protocol
-let url2 = `${protocol}//192.168.100.7:8080`
+// let protocol = process.env.NODE_ENV !== 'production' ? 'http:' : window.location.protocol
+// let url2 = `${protocol}//192.168.100.7:8080`
 
 export default  {
   
@@ -17,17 +17,17 @@ export default  {
   // }
   getAllMapLifts(params) {
     return http.post(
-      `${url2}/map/abnormal/statistics`, params
+      `/test02/map/abnormal/statistics`, params
     )
   },
   getLiftDetails(params) {
     return http.post(
-      `${url2}/map/abnormal/elevator/details`, params
+      `/test02/map/abnormal/elevator/details`, params
     )
   },
   getAbnormalDates(date){
     return http.post(
-      `${url2}/map/abnormal/undone/`, date
+      `/test02/map/abnormal/undone/`, date
     )
   },
   // 企业列表查询 仅限code

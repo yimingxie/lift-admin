@@ -3,6 +3,7 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
+let protocol = process.env.NODE_ENV !== 'production' ? 'http:' : window.location.protocol
 
 module.exports = {
   dev: {
@@ -16,10 +17,10 @@ module.exports = {
       //   changeOrigin:true,                            // 允许跨域
       //   pathRewrite:{'^/searchBuilding':''}            // 接口名重写
       // },
-      '/domino':{                        // 要代理的接口名
-        target:'http://192.168.100.7:8080/domino',   // 要代理的接口地址
+      '/test02':{                        // 要代理的接口名
+        target:`${protocol}//192.168.100.2:8080`,   // 要代理的接口地址
         changeOrigin:true,                            // 允许跨域
-        pathRewrite:{'^/domino':''}            // 接口名重写
+        pathRewrite:{'^/test02':''}            // 接口名重写
       },
       // '/':{                        // 要代理的接口名
       //   target:'http://192.168.100.7:8080/domino',   // 要代理的接口地址

@@ -3,8 +3,8 @@
  */
 import http from '../utils/http'
 
-let protocol = process.env.NODE_ENV !== 'production' ? 'http:' : window.location.protocol
-let url2 = `${protocol}//192.168.100.7:8080`
+// let protocol = process.env.NODE_ENV !== 'production' ? 'http:' : window.location.protocol
+// let url2 = `${protocol}//192.168.100.7:8080`
 
 export default  {
   
@@ -17,7 +17,7 @@ export default  {
   // }
   createApi(params) {
     return http.post(
-      `/domino/api`, params
+      `/test02/domino/api`, params
     )
   },
 
@@ -32,14 +32,14 @@ export default  {
 
   getApis(params){
     return http.post(
-      `/domino/api/list`, params
+      `/test02/domino/api/list`, params
     )
   },
   
   // 删除接口 根据接口id
   deleteApi(apiId){
     return http.delete(
-      `/domino/api/${apiId}`
+      `/test02/domino/api/${apiId}`
     )
   },
 

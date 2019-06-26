@@ -17,7 +17,7 @@ export default  {
   // }
   createCorp(params) {
     return http.post(
-      `/domino/corp`, params
+      `/test02/domino/corp`, params
     )
   },
 
@@ -32,14 +32,14 @@ export default  {
 
   getCorps(params){
     return http.post(
-      `/domino/corp/list`, params
+      `/test02/domino/corp/list`, params
     )
   },
   
   // 删除接口 根据接口id
   deleteCorp(corpId){
     return http.delete(
-      `/domino/corp/${corpId}`
+      `/test02/domino/corp/${corpId}`
     )
   },
 

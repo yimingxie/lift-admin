@@ -3,15 +3,15 @@
  */
 import http from '../utils/http'
 
-let protocol = process.env.NODE_ENV !== 'production' ? 'http:' : window.location.protocol
-let url2 = `${protocol}//192.168.100.7:8080`
+// let protocol = process.env.NODE_ENV !== 'production' ? 'http:' : window.location.protocol
+// let url2 = `${protocol}//192.168.100.7:8080`
 
 export default  {
   
   // 创建维保管理员的账户
   createModule(params) {
     return http.post(
-      `/domino/module`, params
+      `/test02/domino/funcs`, params
     )
   },
   // 查找所属公司模块集合
@@ -21,30 +21,30 @@ export default  {
   //   )
   // },
   getModules(params){
-      return http.post(
-        `domino/module/list`,params
-      )
-    },
+    return http.post(
+      `/test02/domino/funcs/list`,params
+    )
+  },
   // 修改模块
   editModule(params){
     return http.put(
-      `/domino/module`, params
+      `/test02/domino/funcs`, params
     )
   },
   deleteModule(id){
     return http.delete(
-      `/domino/module/${id}`
+      `/test02/domino/funcs/${id}`
     )
   },
   bindApi(params){
     return http.post(
-      `/domino/module/bind`, params
+      `/test02/domino/funcs/bind`, params
     )
   },
   // 查询模块下已绑定的接口
   moduleGetApis(id){
     return http.get(
-      `/domino/${id}/api`
+      `/test02/domino/${id}/api`
     )
   },
   // getCorpModule(params){
@@ -57,78 +57,19 @@ export default  {
   // 修改账号的enable 状态 禁用
   banAccount(params){
     return http.put(
-      `/domino/account/ban`, params
+      `/test02/domino/account/ban`, params
     )
   },
   // 修改账号的enable 状态 启用
   pickAccount(params){
     return http.put(
-      `/domino/account/pick`, params
-    )
-  },
-  
-
-  searchBuilding (params){
-    return http.post(
-      `/searchBuilding`, params
-    )
-  },
-  
-  getData() {
-    return http.get('/api/emojis')
-  },
-  getBuilding(buildingId) {
-    return http.get(
-      `${url2}/elevator/building/${buildingId}`
-    )
-  },
-  // 查询建筑列表
-  getBuildings(pageIndex,pageSize) {
-    return http.get(
-      `${url2}/elevator/building?pageIndex=${pageIndex}&pageSize=${pageSize}`
-    )
-  },
-  // 创建公司
-  createCorp(params) {
-    return http.post(
-      `${url2}/elevator/corp/`, params
-    )
-  },
-  // 查询公司列表
-  getCorps(pageIndex,pageSize) {
-    return http.get(
-      `${url2}/elevator/corp?pageIndex=${pageIndex}&pageSize=${pageSize}`
-    )
-  },
-  // 创建电梯
-  createLift(params) {
-    return http.post(
-      `${url2}/elevator/lift`, params
-    )
-  },
-  // 查询电梯列表
-  getLifts(pageIndex,pageSize) {
-    return http.get(
-      `${url2}/elevator/lift?pageIndex=${pageIndex}&pageSize=${pageSize}`
-    )
-  },
-  // 创建报警
-  createAlarm(params) {
-    return http.post(
-      `${url2}/elevator/alarm`, params
-    )
-  },
-  // 查询报警列表
-  getAlarms(pageIndex,pageSize) {
-    return http.get(
-      `${url2}/elevator/alarm?pageIndex=${pageIndex}&pageSize=${pageSize}`
-    )
-  },
-  searchBuilding (params){
-    return http.post(
-      `/searchBuilding`, params
+      `/test02/domino/account/pick`, params
     )
   }
+  
+
+  
+  
 }
 
 // import api from '../api';// 导入我们的api接口

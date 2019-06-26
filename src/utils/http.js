@@ -98,7 +98,8 @@ axios.interceptors.request.use(config => {
 //响应拦截器即异常处理
 axios.interceptors.response.use(response => {
   console.log('response===', response); 
-  if(response.data.code !== '200' && response.data.code !== 200) { 
+  if(response.data.code === '401000' || response.data.code === 401000) {
+    
     alert('token失效，请重新登录');
     window.location.href = '/';
     // this.$router.push('/')
