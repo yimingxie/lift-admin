@@ -63,8 +63,9 @@
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer tac">
-      <el-button type="primary" @click="confirmEdit" class="dialogSure">确 认</el-button>
       <el-button @click="edit_dialogFormVisible = false" class="dialogCancel">取 消</el-button>
+      <el-button type="primary" @click="confirmEdit" class="dialogSure">确 认</el-button>
+
     </div>
   </el-dialog>
   <!-- 编辑名称 弹窗 End -->
@@ -73,7 +74,7 @@
   <el-dialog width="662px" :title="'查看权限-' + lookRoleName" :visible.sync="look_dialogFormVisible">
     <el-collapse v-model="activeNames" @change="handleChange">
       <div style="padding:0 58px">
-      <el-collapse-item v-for="(item, index) in bindModules" :key="index"  :name="item.id">
+      <el-collapse-item v-if="bindModules.length > 0" v-for="(item, index) in bindModules" :key="index"  :name="item.id">
         <template slot="title">
           <i v-if="item.name.indexOf('地图') !== -1" class='icon-info icon-map'></i>
           <i v-else-if="item.name.indexOf('数字电梯') !== -1" class='icon-info icon-lift'></i>
@@ -88,6 +89,7 @@
         <span v-for="api in item.bindApi" :key="api" class="apiSpan">{{api}}</span>
         </div>
       </el-collapse-item>
+      <div v-if="bindModules === undefined" class="tac">暂无权限</div>
       </div>
     </el-collapse>
 
@@ -111,13 +113,13 @@ export default {
       formLabelWidth: '86px',
       aaa:'',
       EditRoleForm:{
-        id:"",
+        roleId:"",
         corpId: window.localStorage.getItem('corpId'),
         rename:"",
       },
       roleQueryParam:{
-        limit:1,
-        offset:100,
+        limit:100,
+        offset:1,
         column: "create_time",
         order: true,
         corpId: window.localStorage.getItem('corpId'),
@@ -144,7 +146,7 @@ export default {
     getAllRoleData(){
       api.roleApi.getRoles(this.roleQueryParam).then((res) => {
         
-        this.rolesJson = res.data.data.records[0]
+        this.rolesJson = res.data.data.records
 
         console.log("aaaaaaaaaaaaa===" + JSON.stringify(this.rolesJson))
         // JSON.parse(this.getAllAccountJson.menuMod)
@@ -163,7 +165,7 @@ export default {
     editRole(role){
       console.log("row====" + JSON.stringify(role))
       this.EditRoleForm.rename = role.name
-      this.EditRoleForm.id = role.id
+      this.EditRoleForm.roleId = role.id
       this.edit_dialogFormVisible = true
     },
     // 确认修改

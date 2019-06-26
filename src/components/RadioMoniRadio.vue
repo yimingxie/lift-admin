@@ -85,8 +85,8 @@ export default {
     border-radius: 50%;
     background-color: white;
     position: relative;
-    top: 3px
-    left 3px
+    top: 2px
+    left 2px
     transform: scale(1)
 
 
@@ -117,7 +117,7 @@ export default {
     border-radius: 2px;
     transition all 0.15s
   i:after
-    box-sizing: content-box;
+    // box-sizing: content-box;
     content: ""
     border 1px solid #fff
     border-top 0

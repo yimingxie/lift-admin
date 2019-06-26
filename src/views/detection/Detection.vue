@@ -3274,7 +3274,7 @@ export default {
     box-shadow: 0 8px 20px -12px rgba(66,114,255,0.30);
     border-radius: 8px;
     height: 783px;
-    width: 22%;
+    width: 28%;
   }
   .det-warn-title{
     font-size: 16px;

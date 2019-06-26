@@ -10,8 +10,17 @@ import VueForm from 'vue-form'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import echarts from 'echarts'
-import globalMixins from './utils/mixins'
+// import globalMixins from './utils/mixins'
 import tab from "./components/tab";
+
+import moment from 'moment';
+import 'moment/locale/zh-cn';
+moment.locale('zh-cn');
+
+import { DatePicker } from 'ant-design-vue'
+// import 'ant-design-vue/lib/button/style/css'
+import 'ant-design-vue/dist/antd.css'
+// import 'ant-design-vue/lib/datepicker/style/css'
 // Vue.use(globalMixins)
 
 // 引入自定义组件。index.js是组件的默认入口
@@ -20,10 +29,16 @@ import tab from "./components/tab";
 // import message from './components/message/message'
 // Vue.prototype.$message = message;
 // Vue.use(Loading);/
+Vue.use(DatePicker)
 
 Vue.component('tab', tab)
 
-Vue.prototype.$mixins = globalMixins
+// Vue.prototype.$moment = moment;//赋值使用
+Vue.filter('dateformat', function(dataStr, pattern = 'YYYY-MM-DD HH:mm:ss') {
+  return moment(dataStr).format(pattern)
+})
+
+// Vue.prototype.$mixins = globalMixins
 
 Vue.use(ElementUI)
 // 多语言配置文件

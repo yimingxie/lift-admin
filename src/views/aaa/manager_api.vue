@@ -92,10 +92,10 @@
         },
         adding:true,
         queryParam:{
-          pageNo: 1,
-          pageSize: 100,
-          column: "id",
-          order: true,
+          offset: 1,
+          limit: 100,
+          column: "create_time",
+          order: false,
           queryStr: ""
         },
         EditAccountForm:{
@@ -131,7 +131,7 @@
       getApis(){
         api.managerApi.getApis(this.queryParam).then((res) => {
           if(res.data.code === 200 && res.data.message === 'ok'){
-            this.getAllApiJson = res.data.data.records[0]
+            this.getAllApiJson = res.data.data.records
           } else {
             this.getAllApiJson = []
           }
@@ -142,7 +142,7 @@
       },
       // 删除账号
       deleteAccount(index, row) {
-        this.$confirm('此操作将永久删除该账户, 是否继续?', '提示', {
+        this.$confirm('此操作将永久删除该权限, 是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'error'

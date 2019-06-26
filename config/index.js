@@ -11,17 +11,22 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/searchBuilding':{                        // 要代理的接口名
-        target:'https://app03.szmqs.gov.cn/seout/command/ajax/com.inspur.gcloud.giapbase.se.equipment.cmd.DcSeEquInformQueryCmd/queryEquipments',   // 要代理的接口地址
-        changeOrigin:true,                            // 允许跨域
-        pathRewrite:{'^/searchBuilding':''}            // 接口名重写
-      },
+      // '/searchBuilding':{                        // 要代理的接口名
+      //   target:'https://app03.szmqs.gov.cn/seout/command/ajax/com.inspur.gcloud.giapbase.se.equipment.cmd.DcSeEquInformQueryCmd/queryEquipments',   // 要代理的接口地址
+      //   changeOrigin:true,                            // 允许跨域
+      //   pathRewrite:{'^/searchBuilding':''}            // 接口名重写
+      // },
       '/domino':{                        // 要代理的接口名
         target:'http://192.168.100.7:8080/domino',   // 要代理的接口地址
         changeOrigin:true,                            // 允许跨域
         pathRewrite:{'^/domino':''}            // 接口名重写
       },
-      '/api': { target: 'https://www.github.com', changeOrigin: true, pathRewrite: { '^/api': '' } },
+      // '/':{                        // 要代理的接口名
+      //   target:'http://192.168.100.7:8080/domino',   // 要代理的接口地址
+      //   changeOrigin:true,                            // 允许跨域
+      //   pathRewrite:{'^/domino':''}            // 接口名重写
+      // },
+      // '/api': { target: 'https://www.github.com', changeOrigin: true, pathRewrite: { '^/api': '' } },
     },
 
     // Various Dev Server settings

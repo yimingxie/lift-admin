@@ -9,7 +9,7 @@
             <h2>电梯维保管理后台
             </h2>
           </div> 
-          <div style="overflow: hidden;">
+          <div>
             <div v-if="warningTip!==''" class="loginInput warningTip tal">{{warningTip}}</div>
             <div class="inputWrap">
               <input v-if="loginForm.type === 0" placeholder="请输入登录账号" v-model="loginForm.account" name="Name" type="text" class="loginInput">
@@ -115,10 +115,14 @@
         api.log.login(this.loginForm).then((res) => {
           if(res.data.code === 200){
             
-            // 存储token
+            // 存储token,modules,corpId
             window.localStorage.setItem('accessToken', res.data.data.token)
-            window.localStorage.setItem('modules', JSON.stringify(res.data.data.modules))
-            window.localStorage.setItem('corpId', res.data.data.corpId)
+            if(res.data.data.modules){
+              window.localStorage.setItem('modules', JSON.stringify(res.data.data.modules))
+            }
+            if(res.data.data.corpId){
+              window.localStorage.setItem('corpId', res.data.data.corpId)
+            }
             // 设置记住密码
             console.log('this.rememberPwd===' + this.rememberPwd)
             if (this.rememberPwd) {
@@ -132,9 +136,17 @@
             }
             // 根据用户名获取用户权限,并跳转页面
             // this.getUserPerm(this.model.username)
-            this.$message.success('登录成功！');
-            this.$router.push('/map')
+            console.log(res.data.data.modules)
+            if(res.data.data.modules !== undefined){
+              this.$message.success('登录成功！');
+              this.$router.push('/map')
+            } else {
+              this.$message.error('暂无权限，请联系管理员');
+            }
+            
           } else {
+            alert(2)
+
             // this.$message.error(res.data.message);
             this.warningTip = res.data.message
           }
@@ -261,7 +273,7 @@
       background-image: linear-gradient(90deg, #547FFF 0%, #4272FF 98%);
   .loginForm
     padding 116px 0 0 88px
-    size 372px 447px
+    size 460px 563px
     position relative
     text-align center
     z-index: 99;

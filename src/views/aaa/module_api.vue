@@ -165,8 +165,8 @@
         },
         adding:true,
         queryParam:{ // api
-          pageNo: 1,
-          pageSize: 100,
+          offset: 1,
+          limit: 100,
           column: "id",
           order: true,
           queryStr: ""
@@ -185,8 +185,8 @@
         transferData: [],
         value: [],
         mParam:{ //module
-          limit:1,
-          offset:100,
+          limit:100,
+          offset:1,
           order:false,
           column:"create_time",
           corpId:window.localStorage.getItem('corpId'),
@@ -201,8 +201,8 @@
         bind_dialogFormVisible:false,
         getCorpsJson:[],
         corpQueryParam:{
-          limit:1,
-          offset:100,
+          limit:100,
+          offset:1,
           column: "id",
           order: true,
           queryStr: ""
@@ -228,12 +228,12 @@
       getCorps(){
         api.corpApi.getCorps(this.corpQueryParam).then((res) => {
           if(res.data.code === 200 && res.data.message === 'ok'){
-            this.getCorpsJson = res.data.data.records[0]
+            this.getCorpsJson = res.data.data.records
 
           } else {
             this.getCorpsJson = []
           }
-          console.log("res.data.code" + res.data.data.records[0])
+          // console.log("res.data.code" + res.data.data.records)
         }).catch((res) => {
           
         })
@@ -320,7 +320,7 @@
           // console.log("res.data.code" + res.data.code)
           // if (res..code === 200) {
           if(res.data.code === 200 && res.data.message === 'ok'){
-            this.getAllModulesJson = res.data.data.records[0]
+            this.getAllModulesJson = res.data.data.records
             // this.getAllModulesJson
             var _this = this
             // this.getAllModulesJson.forEach((item) => {
@@ -363,7 +363,7 @@
         
         api.managerApi.getApis(this.queryParam).then((res) => {
           if(res.data.code === 200 && res.data.message === 'ok'){
-            this.getAllApiJson = res.data.data.records[0]
+            this.getAllApiJson = res.data.data.records
           } else {
             this.getAllApiJson = []
           }

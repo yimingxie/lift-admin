@@ -92,10 +92,10 @@
         },
         adding:true,
         queryParam:{
-          limit:1,
-          offset:100,
+          limit: 100,
+          offset: 1,
           column: "id",
-          order: true,
+          order: false,
           queryStr: ""
         },
         EditAccountForm:{
@@ -131,11 +131,11 @@
       getCorps(){
         api.corpApi.getCorps(this.queryParam).then((res) => {
           if(res.data.code === 200 && res.data.message === 'ok'){
-            this.getAllApiJson = res.data.data.records[0]
+            this.getAllApiJson = res.data.data.records
           } else {
             this.getAllApiJson = []
           }
-          console.log("res.data.code" + res.data.data.records[0])
+          console.log("res.data.code" + res.data.data.records)
         }).catch((res) => {
           
         })
@@ -153,7 +153,7 @@
             if(res.data.code === 200){
               console.log(JSON.stringify("aaaa===" + res))
               this.$message.success('删除成功！');
-              this.getApis()
+              this.getCorps()
             }
           }).catch(() => {
             this.$message.error(res.data.message);       
