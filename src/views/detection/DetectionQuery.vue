@@ -56,7 +56,7 @@ export default {
       this.$router.push({
         path: '/detection',
         query: {
-          reg_code: val
+          regCode: val
         }
       })
     }

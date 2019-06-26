@@ -11,7 +11,7 @@
           <img v-if="bonline == 1" src="../../assets/images/xym/device.png" alt="">
           <img v-else src="../../assets/images/xym/device-offline.png" alt="">
           <h3 :class="bonline == 0 ? 'offline' : ''">{{bonline == 1 ? '在线' : '离线'}}</h3>
-          <p>{{dev_name}}</p>
+          <p>{{devName}}</p>
         </div>
         <div class="ddi-data">
           <div class="ddi-data-wrap">
@@ -20,21 +20,21 @@
               <div class="ddid-icon-line">|</div>
               <div class="ddid-icon-edit" @click="editDevice"></div>
             </div>
-            <div class="ddi-data-id">设备ID：{{dev_eui}}</div>
+            <div class="ddi-data-id">设备ID：{{devEui}}</div>
             <div class="ddi-table clearfix" style="margin-top: 10px;">
-              <div class="ddi-td"><span>设备型号：</span>{{dev_model}}</div>
-              <div class="ddi-td"><span>监测内容：</span>{{monitor_val}}</div>
-              <div class="ddi-td"><span>设备品牌：</span>{{dev_brand}}</div>
-              <div class="ddi-td"><span>安装人员：</span>{{assemb_id}}</div>
-              <div class="ddi-td"><span>安装时间：</span>{{assemb_time}}</div>
+              <div class="ddi-td"><span>设备型号：</span>{{devModel}}</div>
+              <div class="ddi-td"><span>监测内容：</span>{{monitorVal}}</div>
+              <div class="ddi-td"><span>设备品牌：</span>{{devBrand}}</div>
+              <div class="ddi-td"><span>安装人员：</span>{{assembId}}</div>
+              <div class="ddi-td"><span>安装时间：</span>{{assembTime}}</div>
             </div>
             <div class="ddi-table clearfix" style="margin-top: 10px;border-top: 1px dashed #D8DDDF;padding-top: 10px;">
-              <div class="ddi-td"><span>关联电梯：</span><em style="color: #4272FF;font-style: normal;">{{reg_code}}</em></div>
-              <div class="ddi-td"><span>城市区域：</span>{{local_area}}</div>
+              <div class="ddi-td"><span>关联电梯：</span><em style="color: #4272FF;font-style: normal;">{{regCode}}</em></div>
+              <div class="ddi-td"><span>城市区域：</span>{{localArea}}</div>
               <div class="ddi-td"><span>使用地址：</span>{{address}}</div>
             </div>
             <div class="ddi-table clearfix">
-              <div class="ddi-td"><span>监测项：</span>{{monitor_obj}}</div>
+              <div class="ddi-td"><span>监测项：</span>{{monitorObj}}</div>
             </div>
           </div>
           
@@ -95,16 +95,17 @@
               <div class="dia-citem clearfix">
                 <div class="dia-citem-label">设备ID：</div>
                 <div class="dia-citem-ib">
-                  <el-form-item prop="dev_eui">
-                    <el-input v-model="ruleForm.dev_eui" size="small" placeholder="请输入设备ID"></el-input>
+                  <el-form-item prop="devEui">
+                    <el-input v-model="ruleForm.devEui" size="small" placeholder="请输入设备ID"></el-input>
                   </el-form-item>
                 </div>
               </div>
               <div class="dia-citem clearfix">
                 <div class="dia-citem-label">安装日期：</div>
-                <div class="dia-citem-ib">
-                  <el-form-item prop="assemb_time">
-                    <el-date-picker v-model="ruleForm.assemb_time" type="date" placeholder="选择日期" size="small" value-format="yyyy-MM-dd"></el-date-picker>
+                <div class="dia-citem-ib" style="position: relative;width: 220px;">
+                  <div class="dwc-date-icon"></div>
+                  <el-form-item prop="assembTime">
+                    <el-date-picker v-model="ruleForm.assembTime" type="date" placeholder="选择日期" prefix-icon="test-icon" size="small" value-format="yyyy-MM-dd"></el-date-picker>
                   </el-form-item>
                 </div>
               </div>
@@ -112,8 +113,8 @@
               <div class="dia-citem clearfix">
                 <div class="dia-citem-label">安装人员：</div>
                 <div class="dia-citem-ib">
-                  <el-form-item prop="assemb_id">
-                    <el-input v-model="ruleForm.assemb_id" size="small" placeholder="安装人员"></el-input>
+                  <el-form-item prop="assembId">
+                    <el-input v-model="ruleForm.assembId" size="small" placeholder="安装人员"></el-input>
                   </el-form-item>
                 </div>
               </div>
@@ -124,8 +125,8 @@
               <div class="dia-citem clearfix">
                 <div class="dia-citem-label">电梯注册代码：</div>
                 <div class="dia-citem-ib">
-                  <el-form-item prop="reg_code">
-                    <el-input v-model="ruleForm.reg_code" size="small" placeholder="电梯注册码"></el-input>
+                  <el-form-item prop="regCode">
+                    <el-input v-model="ruleForm.regCode" size="small" placeholder="电梯注册码"></el-input>
                   </el-form-item>
                 </div>
               </div>
@@ -134,7 +135,7 @@
               <div class="dia-citem clearfix">
                 <div class="dia-citem-label">检测项：</div>
                 <div class="dia-citem-ib">
-                  <el-form-item prop="monitor_obj">
+                  <el-form-item prop="monitorObj">
                     <el-cascader ref="moniCascader" placeholder="请选择" :options="moniObjOptions" v-model="selectedMoniObjOptions" size="small" @change="moniObjChange" style="width: 100%;"></el-cascader>
                   </el-form-item>
                 </div>
@@ -143,7 +144,7 @@
               <!-- <div class="dia-citem clearfix">
                 <div class="dia-citem-label">检测内容：</div>
                 <div class="dia-citem-ib">
-                  <el-form-item prop="monitor_val">
+                  <el-form-item prop="monitorVal">
                     <el-select v-model="selectedMoniValOptions" placeholder="请选择" size="small">
                       <el-option v-for="item in moniValOptions" :key="item.value" :label="item.label" :value="item.value"></el-option>
                     </el-select>
@@ -182,30 +183,30 @@ export default {
     return {
       modelContentList: {},
       bonline: "",
-      dev_eui: "",
-      dev_model: "",
-      monitor_val: "",
-      dev_brand: "",
-      assemb_id: "",
-      assemb_time: "",
-      reg_code: "",
-      local_area: "",
+      devEui: "",
+      devModel: "",
+      monitorVal: "",
+      devBrand: "",
+      assembId: "",
+      assembTime: "",
+      regCode: "",
+      localArea: "",
       address: "",
-      monitor_obj: "",
-      dev_type: "",
-      dev_name: "",
-      nativeMonitor_obj: '',
-      nativeMonitor_val: '',
+      monitorObj: "",
+      devType: "",
+      devName: "",
+      nativemonitorObj: '',
+      nativemonitorVal: '',
       dialogEditDevice: false,
       ruleForm: {
-        dev_eui: "设备ID",
-        monitor_obj: "监测项(区域:零部件:检测对象)",
-        assemb_id: "安装人员，user_id",
-        assemb_time: "安装时间",
-        reg_code: "电梯注册代码"
+        devEui: "设备ID",
+        monitorObj: "监测项(区域:零部件:检测对象)",
+        assembId: "安装人员，user_id",
+        assembTime: "安装时间",
+        regCode: "电梯注册代码"
       },
       rules: {
-        // dev_eui: [
+        // devEui: [
         //   { required: true, message: '请输入电梯注册代码', trigger: 'blur' },
         // ],
       },
@@ -226,7 +227,7 @@ export default {
     this.transformMonitorVal()
 
     // 获取详细信息
-    this.getDetail()
+    // this.getDetail()
 
     // 加载检测项下拉
     this.getMoniObjOptions()
@@ -241,8 +242,10 @@ export default {
         this.modelContentList = {}
         this.moniValOptions = []
         res.data.data.forEach((item, i) => {
-          this.modelContentList[item.id] = item.monitor_val
+          this.modelContentList[item.id] = item.monitorVal
         })
+        // 获取详细信息
+        this.getDetail()
       })
     },
 
@@ -250,28 +253,28 @@ export default {
     getDetail() {
       let that = this
       let query = {
-        monitor_obj: this.$route.query.monitor_obj,
-        monitor_val: this.$route.query.monitor_val,
-        reg_code: this.$route.query.reg_code
+        monitorObj: this.$route.query.monitorObj,
+        monitorVal: this.$route.query.monitorVal,
+        regCode: this.$route.query.regCode
       }
 
-      api.device.getDetailMainten(JSON.stringify(query)).then(res => {
+      api.device.getDetailMainten(query).then(res => {
         let detail = res.data.data
-        this.dev_name = detail.dev_name
+        this.devName = detail.devName
         this.bonline = detail.bonline
-        this.dev_eui = detail.dev_eui
-        this.dev_model = detail.dev_model
-        this.monitor_val = that.modelContentList[detail.monitor_val]
-        this.dev_brand = detail.dev_brand
-        this.assemb_id = detail.assemb_id
-        this.assemb_time = detail.assemb_time
-        this.reg_code = detail.reg_code
-        this.local_area = detail.local_area
+        this.devEui = detail.devEui
+        this.devModel = detail.devModel
+        this.monitorVal = that.modelContentList[detail.monitorVal]
+        this.devBrand = detail.devBrand
+        this.assembId = detail.assembId
+        this.assembTime = detail.assembTime
+        this.regCode = detail.regCode
+        this.localArea = detail.localArea
         this.address = detail.address
-        this.monitor_obj = xymFun.changeMonitorObj(detail.monitor_obj).join('-')
+        this.monitorObj = xymFun.changeMonitorObj(detail.monitorObj).join('-')
 
-        this.nativeMonitor_obj = detail.monitor_obj
-        this.nativeMonitor_val = detail.monitor_val
+        this.nativemonitorObj = detail.monitorObj
+        this.nativemonitorVal = detail.monitorVal
 
         // 查询设备上下线记录
         this.getDeviceBonline()
@@ -281,26 +284,26 @@ export default {
 
     // 查询设备上下线记录
     getDeviceBonline() {
-      api.device.getDeviceBonline(this.dev_eui).then(res => {
+      api.device.getDeviceBonline(this.devEui).then(res => {
         console.log('上下线记录', res.data)
         let tempArr = res.data.data
         // 数组开头加离线时间--
-        tempArr.unshift({rec_time: "--", bonline: 0, dev_id: ""})
+        tempArr.unshift({recTime: "--", bonline: 0, devId: ""})
 
         // 如果数组末尾为离线时间，则恢复时间待定为--
         if (tempArr[tempArr.length-1].bonline == 0) {
-          tempArr.push({rec_time: "--", bonline: 1, dev_id: ""})
+          tempArr.push({recTime: "--", bonline: 1, devId: ""})
         }
         this.lineList = []
         for (var i = 0; i < tempArr.length - 1; i += 2) {
           let itemArr = []
           let itemObj = {}
           if (tempArr[i].bonline == 1) {
-            itemObj.onlineTime = tempArr[i].rec_time
-            itemObj.offlineTime = tempArr[i+1].rec_time
+            itemObj.onlineTime = tempArr[i].recTime
+            itemObj.offlineTime = tempArr[i+1].recTime
           } else {
-            itemObj.offlineTime = tempArr[i].rec_time
-            itemObj.onlineTime = tempArr[i+1].rec_time
+            itemObj.offlineTime = tempArr[i].recTime
+            itemObj.onlineTime = tempArr[i+1].recTime
           }
 
           this.lineList.unshift(itemObj)
@@ -383,8 +386,8 @@ export default {
     },
 
     // 检测项选中值
-    moniObjChange(monitor_obj) {
-      this.ruleForm.monitor_obj = monitor_obj.join(':')
+    moniObjChange(monitorObj) {
+      this.ruleForm.monitorObj = monitorObj.join(':')
     },
 
     // 编辑设备
@@ -393,16 +396,16 @@ export default {
       this.dialogEditDevice = true
 
       // 赋旧值
-      this.ruleForm.dev_eui = this.dev_eui
-      this.ruleForm.assemb_time = this.assemb_time
-      this.ruleForm.assemb_id = this.assemb_id
-      this.ruleForm.reg_code = this.reg_code
-      this.ruleForm.monitor_obj = this.nativeMonitor_obj
+      this.ruleForm.devEui = this.devEui
+      this.ruleForm.assembTime = this.assembTime
+      this.ruleForm.assembId = this.assembId
+      this.ruleForm.regCode = this.regCode
+      this.ruleForm.monitorObj = this.nativemonitorObj
       this.selectedMoniObjOptions = []
       // 字符串元素转为数字
-      this.selectedMoniObjOptions.push(parseInt(this.nativeMonitor_obj.split(':')[0]), parseInt(this.nativeMonitor_obj.split(':')[1]), parseInt(this.nativeMonitor_obj.split(':')[2]))
+      this.selectedMoniObjOptions.push(parseInt(this.nativemonitorObj.split(':')[0]), parseInt(this.nativemonitorObj.split(':')[1]), parseInt(this.nativemonitorObj.split(':')[2]))
 
-      this.ruleForm.monitor_val = this.nativeMonitor_val
+      this.ruleForm.monitorVal = this.nativemonitorVal
 
     },
 
@@ -410,14 +413,19 @@ export default {
     deleteDevice() {
       let that = this
       let params = {
-        monitor_obj: this.nativeMonitor_obj,
-        monitor_val: this.nativeMonitor_val,
-        reg_code: this.reg_code
+        monitorObj: this.nativemonitorObj,
+        monitorVal: this.nativemonitorVal,
+        regCode: this.regCode
       }
       api.device.deleteDeviceMainten(params).then(res => {
         if (res.data.code == '200') {
           that.$message.success(`${res.data.message}`)
-          that.$router.push({path: '/device'})
+          this.$router.push({
+            path: '/lift-device',
+            query: {
+              regCode: that.regCode
+            }
+          })
         } else {
           that.$message.error(`${res.data.message}`)
         }
@@ -429,26 +437,25 @@ export default {
     submit() {
       let that = this
       let submitJson = {
-        old: {
-          dev_eui: this.dev_eui,
-          monitor_obj: this.nativeMonitor_obj,
-          monitor_val: this.nativeMonitor_val,
-          assemb_id: this.assemb_id,
-          assemb_time: this.assemb_time,
-          reg_code: this.reg_code
-        },
-        new: {
-          dev_eui: this.ruleForm.dev_eui,
-          monitor_obj: this.ruleForm.monitor_obj,
-          monitor_val: this.ruleForm.monitor_val,
-          assemb_id: this.ruleForm.assemb_id,
-          assemb_time: this.ruleForm.assemb_time,
-          reg_code: this.ruleForm.reg_code
-        }
+    
+        oldDevEui: this.devEui,
+        oldMonitorObj: this.nativemonitorObj,
+        oldMonitorVal: this.nativemonitorVal,
+        oldAssembId: this.assembId,
+        oldAssembTime: this.assembTime,
+        oldRegCode: this.regCode,
+  
+        newDevEui: this.ruleForm.devEui,
+        newMonitorObj: this.ruleForm.monitorObj,
+        newMonitorVal: this.ruleForm.monitorVal,
+        newAssembId: this.ruleForm.assembId,
+        newAssembTime: this.ruleForm.assembTime,
+        newRegCode: this.ruleForm.regCode
+  
       }
       console.log(submitJson)
 
-      api.device.editDeviceMainten(this.dev_eui, submitJson).then(res => {
+      api.device.editDeviceMainten(submitJson).then(res => {
         console.log('成功', res)
         if (res.data.code == '200') {
           that.$message.success(`${res.data.message}`)
@@ -459,7 +466,6 @@ export default {
         } else {
           that.$message.error(`${res.data.message}`)
         }
-        // this.$router.go(0)
       })
 
     }

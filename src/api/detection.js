@@ -2,16 +2,19 @@ import http from '../utils/http'
 
 let protocol = process.env.NODE_ENV !== 'production' ? 'http:' : window.location.protocol
 let url1 = `${protocol}//iot.gidomino.com`
-let url2 = `${protocol}//192.168.100.89:8080`
+// let url2 = `${protocol}//192.168.100.89:8080`
+let url2 = `${protocol}//192.168.100.7:8080`
 
 
 export default {
   // 获取异常告警列表
-  getWarnList(reg_code, params) {
-    let url = `${url2}/elevator/${reg_code}/diagninfo?params=` + params
-    console.log('获取异常告警列表url', url)
-    let uri = encodeURI(url)
-    return http.get(uri)
+  getWarnList(params) {
+    // let url = `${url2}/elevator/${reg_code}/diagninfo?params=` + params
+    // console.log('获取异常告警列表url', url)
+    // let uri = encodeURI(url)
+    // return http.get(uri)
+    // return http.post(`${url2}/elevator/${reg_code}/diagninfo`, params)
+    return http.post(`${url2}/elevator/diagninfo/list`, params)
 
   },
 

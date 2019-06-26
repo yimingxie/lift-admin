@@ -6,8 +6,9 @@
     <div>
       <table class="temp-table">
         <tr>
+          <th>devEui</th>
+          <th>是否绑定</th>
           <th>SN</th>
-          <th>ID</th>
           <th>模组类型</th>
           <th>设备型号</th>
           <th>监测内容</th>
@@ -18,24 +19,25 @@
           <th>创建时间</th>
         </tr>
         <tr v-for="(item, i) in deviceListGi" :key="i">
-          <td>{{item.dev_sn}}</td>
-          <td>{{item.dev_eui}}</td>
-          <td>{{item.mod_type}}</td>
-          <td>{{item.dev_model}}</td>
-          <td>{{item.monitor_val}}</td>
-          <td>{{item.dev_name}}</td>
-          <td>{{item.dev_type}}</td>
-          <td>{{item.dev_brand}}</td>
-          <td>{{item.man_id}}</td>
-          <td>{{item.create_time}}</td>
+          <td>{{item.devEui}}</td>
+          <td>{{item.isBind ? '是' : '否'}}</td>
+          <td>{{item.devSn}}</td>
+          <td>{{item.modType}}</td>
+          <td>{{item.devModel}}</td>
+          <td>{{item.monitorVal}}</td>
+          <td>{{item.devName}}</td>
+          <td>{{item.devType}}</td>
+          <td>{{item.devBrand}}</td>
+          <td>{{item.manId}}</td>
+          <td>{{item.createTime}}</td>
         </tr>
       </table>
     </div>
 
     <!-- 弹窗 -->
-    <el-dialog :visible.sync="dialogAddDevice" :show-close="false" width="690px">
+    <el-dialog title="添加设备" :visible.sync="dialogAddDevice" :show-close="false" width="690px">
       <div>
-        <div class="dia-title">添加设备</div>
+        <!-- <div class="dia-title">添加设备</div> -->
         <div class="dia-content">
           <el-form :model="ruleForm" :rules="rules" ref="diaForm">
             <div class="dia-con-head"> </div>
@@ -43,31 +45,31 @@
               <div class="dia-citem clearfix">
                 <div class="dia-citem-label">设备sn：</div>
                 <div class="dia-citem-ib">
-                  <el-form-item prop="dev_sn">
-                    <el-input v-model="ruleForm.dev_sn" size="small"></el-input>
+                  <el-form-item prop="devSn">
+                    <el-input v-model="ruleForm.devSn" size="small"></el-input>
                   </el-form-item>
                 </div>
               </div>
               <div class="dia-citem clearfix">
                 <div class="dia-citem-label">设备模组id：</div>
                 <div class="dia-citem-ib">
-                  <el-form-item prop="dev_eui">
-                    <el-input v-model="ruleForm.dev_eui" size="small"></el-input>
+                  <el-form-item prop="devEui">
+                    <el-input v-model="ruleForm.devEui" size="small"></el-input>
                   </el-form-item>
                 </div>
               </div>
               <div class="dia-citem clearfix">
                 <div class="dia-citem-label">模组类型：</div>
                 <div class="dia-citem-ib">
-                  <el-form-item prop="mod_type">
-                    <el-input v-model="ruleForm.mod_type" size="small"></el-input>
+                  <el-form-item prop="modType">
+                    <el-input v-model="ruleForm.modType" size="small"></el-input>
                   </el-form-item>
                 </div>
               </div>
               <div class="dia-citem clearfix">
                 <div class="dia-citem-label">设备型号：</div>
                 <div class="dia-citem-ib">
-                  <el-form-item>
+                  <el-form-item prop="modelValue">
                     <el-select v-model="modelValue" placeholder="请选择" @change="modelChange">
                       <el-option v-for="(item, i) in modelOptions" :key="i" :label="item.label" :value="item.label"></el-option>
                     </el-select>
@@ -78,15 +80,15 @@
                 <div class="dia-citem-label" style="line-height: 22px;">监测内容：</div>
                 <div class="dia-citem-ib">
                   <el-checkbox-group v-model="checkedMoniObj" @change="checkboxChange">
-                    <el-checkbox v-for="(item, i) in moniObjList" :label="item.id" :key="i">{{item.monitor_val}}</el-checkbox>
+                    <el-checkbox v-for="(item, i) in moniObjList" :label="item.id" :key="i">{{item.monitorVal}}</el-checkbox>
                   </el-checkbox-group>
                 </div>
               </div>
               <div class="dia-citem clearfix">
                 <div class="dia-citem-label">设备名称：</div>
                 <div class="dia-citem-ib">
-                  <el-form-item prop="dev_name">
-                    <el-input v-model="ruleForm.dev_name" size="small"></el-input>
+                  <el-form-item prop="devName">
+                    <el-input v-model="ruleForm.devName" size="small"></el-input>
                   </el-form-item>
                 </div>
               </div>
@@ -103,27 +105,27 @@
               <div class="dia-citem clearfix">
                 <div class="dia-citem-label">设备品牌：</div>
                 <div class="dia-citem-ib">
-                  <el-form-item prop="dev_brand">
-                    <el-input v-model="ruleForm.dev_brand" size="small"></el-input>
+                  <el-form-item prop="devBrand">
+                    <el-input v-model="ruleForm.devBrand" size="small"></el-input>
                   </el-form-item>
                 </div>
               </div>
               <div class="dia-citem clearfix">
                 <div class="dia-citem-label">制造商id：</div>
                 <div class="dia-citem-ib">
-                  <el-form-item prop="man_id">
-                    <el-input v-model="ruleForm.man_id" size="small"></el-input>
+                  <el-form-item prop="manId">
+                    <el-input v-model="ruleForm.manId" size="small"></el-input>
                   </el-form-item>
                 </div>
               </div>
-              <div class="dia-citem clearfix">
+              <!-- <div class="dia-citem clearfix">
                 <div class="dia-citem-label">扩展属性：</div>
                 <div class="dia-citem-ib">
                   <el-form-item prop="extend">
                     <el-input v-model="ruleForm.extend" size="small"></el-input>
                   </el-form-item>
                 </div>
-              </div>
+              </div> -->
        
             </div>
 
@@ -150,36 +152,42 @@ export default {
     return {
       dialogAddDevice: false,
       ruleFormBlank: {
-        dev_sn: '',
-        dev_eui: '',
-        mod_type: '',
-        dev_model: '',
-        monitor_val: '',
-        dev_name: '',
-        dev_type: '',
-        dev_brand: '',
-        man_id: '',
+        devSn: '',
+        devEui: '',
+        modType: '',
+        devModel: '',
+        monitorVal: '',
+        devName: '',
+        devType: '',
+        devBrand: '',
+        manId: '',
         extend: '',
       },
       ruleForm: {
-        dev_sn: '',
-        dev_eui: '',
-        mod_type: '',
-        dev_model: '',
-        monitor_val: '',
-        dev_name: '',
-        dev_type: '',
-        dev_brand: '',
-        man_id: '',
+        devSn: '',
+        devEui: '',
+        modType: '',
+        devModel: '',
+        monitorVal: '',
+        devName: '',
+        devType: '',
+        devBrand: '',
+        manId: '',
         extend: '',
       },
       rules: {
-        // reg_code: [
-        //   { required: true, message: '请输入电梯注册代码', trigger: 'blur' },
-        // ],
-        // dev_eui: [
-        //   { required: true, message: '请输入电梯注册代码', trigger: 'blur' },
-        // ],
+        devSn: [{ required: true, message: '必填', trigger: 'blur' }],
+        devEui: [{ required: true, message: '必填', trigger: 'blur' }],
+        modType: [{ required: true, message: '必填', trigger: 'blur' }],
+        // devModel: [{ required: true, message: '必填', trigger: 'change' }],
+        monitorVal: [{ required: true, message: '必填', trigger: 'blur' }],
+        devName: [{ required: true, message: '必填', trigger: 'blur' }],
+        devType: [{ required: true, message: '必填', trigger: 'blur' }],
+        devBrand: [{ required: true, message: '必填', trigger: 'blur' }],
+        manId: [{ required: true, message: '必填', trigger: 'blur' }],
+
+        // modelValue: [{ required: true, message: '必填', trigger: 'change' }],
+ 
       },
       modelOptions: [
         {label: 'WS'},
@@ -195,7 +203,7 @@ export default {
       ],
       modelValue: '',
       moniObjList: [
-        // {"monitor_val": "温度", "id": 1},
+        // {"monitorVal": "温度", "id": 1},
       ],
       checkedMoniObj: [],
       typeOptions: [
@@ -208,7 +216,8 @@ export default {
       modelContentList: {},
       deviceListGi: [],
       giParams: {
-        'page' : {offset : "1",limit  : "100"},
+        "offset": "1",
+        "limit": "100",
       },
 
 
@@ -229,7 +238,7 @@ export default {
       api.device.getMonitorVal().then(res => {
         this.modelContentList = {}
         res.data.data.forEach((item, i) => {
-          this.modelContentList[item.id] = item.monitor_val
+          this.modelContentList[item.id] = item.monitorVal
         })
         console.log('监测内容重组表', this.modelContentList)
       })
@@ -237,7 +246,7 @@ export default {
 
     // 查询通用设备列表
     getDeviceListGi() {
-      api.device.getDeviceListGi(JSON.stringify(this.giParams)).then(res => {
+      api.device.getDeviceListGi(this.giParams).then(res => {
         console.log(res)
         this.deviceListGi = res.data.data.records
       })
@@ -245,20 +254,21 @@ export default {
     },
 
     // 获取设备型号下拉选中值，渲染监测内容多选框
-    modelChange(dev_model) {
+    modelChange(devModel) {
       let that = this
-      console.log(dev_model)
-      this.ruleForm.dev_model = dev_model
+      console.log(devModel)
+      this.ruleForm.devModel = devModel
+      this.ruleForm.modelValue = devModel
       this.checkedMoniObj = [] // 重置已选择的选项
       // 设备型号与监测内容相绑定
       // 1.发起请求，获取监测内容id（多条）    2. 匹配监测内容表，将id对应的中文内容展示
-      api.device.getMonitorValByModel(dev_model).then(res => {
+      api.device.getMonitorValByModel(devModel).then(res => {
         this.moniObjList = []
         let list = res.data.data
         list.forEach((item, i) => {
           this.moniObjList.push({
-            "id": item.monitor_val,
-            "monitor_val": that.modelContentList[item.monitor_val]
+            "id": item.monitorVal,
+            "monitorVal": that.modelContentList[item.monitorVal]
           })
 
         })
@@ -268,13 +278,13 @@ export default {
     },
 
     // 获取监测内容多选框的选中值
-    checkboxChange(monitor_val) {
-      this.ruleForm.monitor_val = monitor_val.join(',')
+    checkboxChange(monitorVal) {
+      this.ruleForm.monitorVal = monitorVal.join(',')
     },
 
     // 获取设备类型下拉框的选中值
-    typeChange(dev_type) {
-      this.ruleForm.dev_type = dev_type
+    typeChange(devType) {
+      this.ruleForm.devType = devType
     },
 
     // 提交

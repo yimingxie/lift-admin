@@ -9,11 +9,11 @@
 
       <div class="det-heading clearfix">
         <div class="det-heading-info">
-          <div class="dhi-title">内部编号：{{in_num}}</div>
+          <div class="dhi-title">内部编号：{{inNum}}</div>
           <ul class="dhi-ul clearfix">
-            <li><span>注册代码：</span>{{reg_code}}</li>
+            <li><span>注册代码：</span>{{regCode}}</li>
             <li><span>电梯负责人：</span>{{lift_man}}</li>
-            <li><span>电梯地址：</span>{{local_area}} {{address}}</li>
+            <li><span>电梯地址：</span>{{localArea}} {{address}}</li>
           </ul>
         </div>
         <div class="det-heading-search">
@@ -22,17 +22,22 @@
       </div>
 
       <div class="det-content clearfix">
+
+        <!-- 左侧 -->
+        <!-- 异常告警列表 -->
         <div class="det-warn">
-          <div class="det-warn-title">异常告警</div>
+          <div class="det-warn-title">
+            <div class="det-warn-title-h">异常告警</div>
+          </div>
           <div class="det-warn-choose clearfix">
             <div class="dwc-box" style="width: 40%;">
               <div class="dwc-date-icon"></div>
               <div class="dwc-box-line"></div>
-              <el-date-picker v-model="triggle_time" type="date" placeholder="选择日期" value-format="yyyy-MM-dd" prefix-icon="test-icon" style="width: 100%;" @change="changeTriggleTime"></el-date-picker>
+              <el-date-picker v-model="triggleTime" type="date" placeholder="选择日期" value-format="yyyy-MM-dd" prefix-icon="test-icon" style="width: 100%;" @change="changeTriggleTime"></el-date-picker>
             </div>
             <div class="dwc-box" style="width: 30%">
               <div class="dwc-box-line"></div>
-              <el-select v-model="diagn_type" placeholder="类型" @change="changeDiagnType">
+              <el-select v-model="diagnType" placeholder="类型" @change="changeDiagnType">
                 <el-option v-for="item in diagnTypeOptions" :key="item.value" :label="item.label" :value="item.value"></el-option>
               </el-select>
             </div>
@@ -45,13 +50,11 @@
 
           <div class="det-warn-list">
             <div class="dw-list">
-             
-
               <div class="dw-list-box" v-for="(item, i) in warnList" :key="i">
                 <div class="dwlb-p">
                   <h4>{{item.reason}}</h4>
                   <!-- 管道符 过滤器 -->
-                  <p>{{item.diagn_type | changeDiagnType}} {{item.triggle_time}}</p>
+                  <p>{{item.diagnType | changeDiagnType}} {{item.triggleTime}}</p>
                 </div>
                 <div class="dwlb-rate" :class="item.processed == 0 ? 'no-deal' : ''">{{item.processed | changeProcessed}}</div>
               </div>
@@ -59,6 +62,134 @@
           </div>
           
         </div>
+
+        <!-- 中间 -->
+        <div class="det-mid">
+          <!-- 实时运行状态 -->
+          <div class="det-mid-status">
+            <div class="dms-title">
+              <h4>实时运行状态</h4>
+              <div class="dms-title-balance">平衡系数 ></div>
+            </div>
+            <div class="dms-lift clearfix">
+              <div class="dms-lift-pic">
+                <img src="../../assets/images/xym/lift.png" alt="">
+              </div>
+              <div class="dms-lift-derection">
+                <div class="dmsl-dt dmsl-dt-up">
+                  <div class="dmsl-dt-up-on"></div>
+                </div>
+                <div class="dmsl-dt-floor">
+                  <h4><span>21</span>F</h4>
+                  <p>当前楼层</p>
+                </div>
+                <div class="dmsl-dt dmsl-dt-down">
+                  <div class="dmsl-dt-down-on"></div>
+                </div>
+              </div>
+              <div class="dms-lift-data">
+                <div class="dmsl-data">
+                  <h4><span>2.9</span>m/s</h4>
+                  <p>运行速度</p>
+                </div>
+                <div class="dmsl-data">
+                  <h4><span>关</span></h4>
+                  <p>轿门状态</p>
+                </div>
+                <div class="dmsl-data">
+                  <h4><span>1600</span>kg</h4>
+                  <p>轿门状态</p>
+                </div>
+              </div>
+            </div>
+            <div class="dms-lift-info clearfix">
+              <div class="dmsl-data">
+                <h4><span>7821</span>km</h4>
+                <p>420天累计运行里程</p>
+              </div>
+              <div class="dmsl-data">
+                <h4><span>12</span>年<span>1</span>个月</h4>
+                <p>420天累计运行里程</p>
+              </div>
+              <div class="dmsl-data">
+                <h4><span>234345</span>次</h4>
+                <p>月启停次数</p>
+              </div>
+              <div class="dmsl-data">
+                <h4><span>1582</span>小时</h4>
+                <p>月运行时长</p>
+              </div>
+              <div class="dmsl-data">
+                <h4><span>121</span>次</h4>
+                <p>钢丝绳月折弯次数</p>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- 作业记录 -->
+          <div class="det-mid-log">
+            <div class="det-warn-title">
+              <div class="det-warn-title-h">作业记录</div>
+              <span class="dm-go-detail">全部作业 ></span></div>
+            <div class="dm-log-content">
+              <div class="dm-log-list clearfix">
+                <div class="dmll-td">例行维保</div>
+                <div class="dmll-td">周莘羽</div>
+                <div class="dmll-td">04-24  14:47:12</div>
+              </div>
+              <div class="dm-log-list clearfix">
+                <div class="dmll-td">例行维保</div>
+                <div class="dmll-td">周莘羽</div>
+                <div class="dmll-td">04-24  14:47:12</div>
+              </div>
+              <div class="dm-log-list clearfix">
+                <div class="dmll-td">例行维保</div>
+                <div class="dmll-td">周莘羽</div>
+                <div class="dmll-td">04-24  14:47:12</div>
+              </div>
+              <div class="dm-log-list clearfix">
+                <div class="dmll-td">例行维保</div>
+                <div class="dmll-td">周莘羽</div>
+                <div class="dmll-td">04-24  14:47:12</div>
+              </div>
+              <div class="dm-log-list clearfix">
+                <div class="dmll-td">例行维保</div>
+                <div class="dmll-td">周莘羽</div>
+                <div class="dmll-td">04-24  14:47:12</div>
+              </div>
+              <div class="dm-log-list clearfix">
+                <div class="dmll-td">例行维保</div>
+                <div class="dmll-td">周莘羽</div>
+                <div class="dmll-td">04-24  14:47:12</div>
+              </div>
+
+
+            </div>
+
+
+          </div>
+
+
+        </div>
+
+        <!-- 右侧 -->
+        <div class="det-right">
+          <!-- TODO切换时间待做 -->
+          <div class="det-warn-title">
+            <div class="det-warn-title-h">实时监测数据</div> 
+            <div class="det-cTime-con clearfix">
+              <div class="dcc-btn dcc-btn-left"></div>
+              <div class="dcc-btn-current">实时</div> 
+              <div class="dcc-btn dcc-btn-right"></div>
+            </div>
+          </div>
+
+
+        </div>
+
+
 
 
 
@@ -289,14 +420,14 @@ export default {
       dataValue: [],
 
       // 电梯详情
-      reg_code: '',
-      in_num: '',
+      regCode: '',
+      inNum: '',
       address: '',
       lift_man: '',
-      local_area: '',
+      localArea: '',
 
       // 告警列表筛选
-      triggle_time: '',
+      triggleTime: '',
       diagnTypeOptions: [
         {value: '-1', label: '全部'},
         {value: '0', label: '事件'},
@@ -304,7 +435,7 @@ export default {
         {value: '2', label: '违规'},
         {value: '3', label: '预警'},
       ],
-      diagn_type: '',
+      diagnType: '',
       processedOptions: [
         {value: '0', label: '未处理'},
         {value: '1', label: '处理中'},
@@ -315,8 +446,12 @@ export default {
       processed: '',
       warnList: [],
       warnParams: {
-        "page": {offset : "1",limit : "100"},
-        "query": {}
+        offset : "1",
+        limit : "100",
+        regCode: "",
+        triggleTime: "",
+        diagnType: -1,
+        processed: -1,
       },
 
       
@@ -659,7 +794,7 @@ export default {
     };
   },
   created() {
-    this.parentCode = this.$route.query.reg_code
+    this.parentCode = this.$route.query.regCode
   },
   mounted() {
 
@@ -2448,7 +2583,7 @@ export default {
       this.$router.push({
         path: '/detection',
         query: {
-          reg_code: val
+          regCode: val
         }
       })
       console.log('pp', this.parentCode)
@@ -2459,9 +2594,9 @@ export default {
       api.lift.getLiftResult(this.parentCode).then(res => {
         console.log('res', res)
         let detail = res.data.data
-        this.reg_code = detail.reg_code
-        this.in_num = detail.in_num
-        this.local_area = detail.local_area
+        this.regCode = detail.regCode
+        this.inNum = detail.inNum
+        this.localArea = detail.localArea
         this.address = detail.address
 
         // 查询异常告警列表
@@ -2471,7 +2606,8 @@ export default {
 
     // 查询异常告警列表
     getWarnList() {
-      api.detection.getWarnList(this.reg_code, JSON.stringify(this.warnParams)).then(res => {
+      this.warnParams.regCode = this.parentCode
+      api.detection.getWarnList(this.warnParams).then(res => {
         console.log('异常告警', res)
         this.warnList = res.data.data.records
       })
@@ -2479,21 +2615,21 @@ export default {
     },
 
     // 异常告警日期筛选
-    changeTriggleTime(triggle_time) {
-      this.warnParams.query.triggle_time = triggle_time
+    changeTriggleTime(triggleTime) {
+      this.warnParams.triggleTime = triggleTime
       this.getWarnList()
     },
 
     // 异常告警类型筛选
-    changeDiagnType(diagn_type) {
-      this.warnParams.query.diagn_type = diagn_type
+    changeDiagnType(diagnType) {
+      this.warnParams.diagnType = diagnType
       this.getWarnList()
     },
 
     // 异常告警进度筛选
     changeProcessed(processed) {
       console.log('processed', processed)
-      this.warnParams.query.processed = processed
+      this.warnParams.processed = processed
       this.getWarnList()
     },
 
@@ -2516,7 +2652,7 @@ export default {
       } else if (value == 3) {
         return '预警'
       } else {
-        return '事故'
+        return '事件'
       }
     },
 
@@ -2647,7 +2783,6 @@ export default {
   .ed-elevator {
     position: relative;
     box-sizing: border-box;
-    // height: 600px;
     height: 495px;
     background: #12151c url('../../assets/images/xym/ele-bg.png') no-repeat center -5px;
     box-shadow: 0 21px 20px -14px rgba(10, 23, 63, 0.15);
@@ -2686,7 +2821,6 @@ export default {
     width: 242px;
     height: 370px;
     background: url("../../assets/images/xym/evn.png") no-repeat center center;
-    // background-size: 80% auto;
     margin-top: 26px;
     margin-left: 26px;
   }
@@ -2716,7 +2850,6 @@ export default {
     position: relative;
     width: 34px;
     height: 24px;
-    // margin: 0 auto;
     margin-top: 16px;
   }
   .ed-ebox-data-up {
@@ -2820,7 +2953,6 @@ export default {
     box-shadow: 0 21px 20px -14px rgba(10, 23, 63, 0.15);
     border-radius: 10px;
     margin-top: 20px;
-    /* padding: 0 25px; */
     padding: 0 0 0 25px;
   }
   .ed-elist-title {
@@ -2849,7 +2981,6 @@ export default {
     color: #ffffff;
     line-height: 20px;
     padding: 6px 0;
-    /* border-top: 1px solid #303240; */
   }
   .ed-elist-table .elist-fail{
     color: #FEC101;
@@ -2875,24 +3006,16 @@ export default {
     padding-top: 1px;
     float: left;
     width: 7%;
-    // margin-left: 30px;
     margin-top: 30px;
     position: relative;
     box-sizing: border-box;
     height: 542px;
     background: #24242f;
     box-shadow: 0 21px 20px -14px rgba(10, 23, 63, 0.15);
-    /* border-radius: 10px; */
-    background-image: linear-gradient(
-      90deg,
-      rgba(18, 21, 28, 0.22) 0%,
-      #12151c 42%
-    );
+    background-image: linear-gradient(90deg,rgba(18, 21, 28, 0.22) 0%,#12151c 42%);
     border-radius: 10px 0 0 10px;
   }
   .ed-nav {
-    // padding-top: 1px;
-    // margin-top: 20px;
     text-align: center;
     position: absolute;
     width: 100%;
@@ -2913,7 +3036,6 @@ export default {
   }
   .ed-nav-box.on {
     border-left: 4px solid #27DBB2;
-    /* background-image: linear-gradient(90deg, rgba(13,186,127,0.08) 0%, rgba(13,186,127,0.91) 100%); */
     background-image: linear-gradient(90deg, rgba(13,186,127,0.91) 0%, rgba(13,186,127,0.08) 100%);
   }
   .warning {
@@ -2930,8 +3052,7 @@ export default {
     margin: 0 auto;
   }
   .edn-icon1 {
-    // background: url("../../assets/images/xym/motor_room_normal.png") no-repeat
-    //   center center;
+    // background: url("../../assets/images/xym/motor_room_normal.png") no-repeat center center;
     background: url("../../assets/images/xym/ednn1.png") no-repeat
     center center;
   }
@@ -2940,8 +3061,7 @@ export default {
       center center;
   }
   .edn-icon2 {
-    // background: url("../../assets/images/xym/tractor_normal.png") no-repeat center
-    //   center;
+    // background: url("../../assets/images/xym/tractor_normal.png") no-repeat center center;
     background: url("../../assets/images/xym/ednn2.png") no-repeat center center;
   }
   .ed-nav-box.on .edn-icon2 {
@@ -2953,8 +3073,7 @@ export default {
       center center;
   }
   .edn-icon3 {
-    // background: url("../../assets/images/xym/governor_normal.png") no-repeat
-    //   center center;
+    // background: url("../../assets/images/xym/governor_normal.png") no-repeat center center;
     background: url("../../assets/images/xym/ednn3.png") no-repeat
     center center;
   }
@@ -2963,16 +3082,14 @@ export default {
       center center;
   }
   .edn-icon4 {
-    // background: url("../../assets/images/xym/door_normal.png") no-repeat center
-    //   center;
+    // background: url("../../assets/images/xym/door_normal.png") no-repeat center center;
     background: url("../../assets/images/xym/ednn4.png") no-repeat center center;
   }
   .ed-nav-box.on .edn-icon4 {
     background: url("../../assets/images/xym/door_highlight.png") no-repeat center center;
   }
   .edn-icon5 {
-    // background: url("../../assets/images/xym/landing_normal.png") no-repeat center
-    //   center;
+    // background: url("../../assets/images/xym/landing_normal.png") no-repeat center center;
     background: url("../../assets/images/xym/ednn5.png") no-repeat center center;
   }
   .ed-nav-box.on .edn-icon5 {
@@ -2980,8 +3097,7 @@ export default {
       center center;
   }
   .edn-icon6 {
-    // background: url("../../assets/images/xym/loop_normal.png") no-repeat center
-    //   center;
+    // background: url("../../assets/images/xym/loop_normal.png") no-repeat center center;
     background: url("../../assets/images/xym/ednn6.png") no-repeat center center;
   }
   .ed-nav-box.on .edn-icon6 {
@@ -3008,12 +3124,10 @@ export default {
   .ed-right1 {
     box-sizing: border-box;
     float: left;
-    // width: 900px;
     width: 93%;
     position: relative;
     box-sizing: border-box;
     height: 605px;
-    // height: 930px;
     background: #12151c;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
@@ -3030,9 +3144,6 @@ export default {
     font-size: 20px;
     color: #ffffff;
   }
-  // .ed-item-time-change-block{
-  //   height: 52px;
-  // }
   .ed-item-time-change{
     box-sizing: border-box;
     position: absolute;
@@ -3041,7 +3152,6 @@ export default {
     width: 100%;
     text-align: right;
     z-index: 60;
-    // height: 40px;
     padding: 15px 20px;
     background: #12151C;
   }
@@ -3062,8 +3172,6 @@ export default {
   }
   .ed-item-chart-box {
     position: relative;
-    /* padding: 20px 0 20px; */
-    /* border-bottom: 1px solid #303240; */
     margin-top: -8px;
   }
   .ed-item-chart-data {
@@ -3138,23 +3246,19 @@ export default {
     background: url("../../assets/images/xym/loop.png") no-repeat center center;
   }
   .edic-data-icon22 {
-    // background: url("../../assets/images/xym/loop.png") no-repeat center
-    //   center;
+    // background: url("../../assets/images/xym/loop.png") no-repeat center center;
     background: url("../../assets/images/xym/rpm.png") no-repeat center center;
   }
   .edic-data-icon23 {
-    // background: url("../../assets/images/xym/loop.png") no-repeat center
-    //   center;
+    // background: url("../../assets/images/xym/loop.png") no-repeat center center;
     background: url("../../assets/images/xym/rpm.png") no-repeat center center;
   }
   .edic-data-icon24 {
-    // background: url("../../assets/images/xym/loop.png") no-repeat center
-    //   center;
+    // background: url("../../assets/images/xym/loop.png") no-repeat center center;
     background: url("../../assets/images/xym/a_normal.png") no-repeat center center;
   }
   .edic-data-icon25 {
-    // background: url("../../assets/images/xym/loop.png") no-repeat center
-    //   center;
+    // background: url("../../assets/images/xym/loop.png") no-repeat center center;
     background: url("../../assets/images/xym/a_normal.png") no-repeat center center;
   }
   .edic-data-icon26 {
@@ -3238,9 +3342,6 @@ export default {
     float: left;
     width: 82%;
   }
-
-
-
   .ed-item-new-warn-p{
     box-sizing: border-box;
     position: absolute;
@@ -3277,7 +3378,11 @@ export default {
     width: 28%;
   }
   .det-warn-title{
+    position: relative;
+  }
+  .det-warn-title-h{
     font-size: 16px;
+    font-weight: bold;
     color: #34414C;
     line-height: 60px;
     padding: 0 20px;
@@ -3345,6 +3450,8 @@ export default {
   .dwlb-rate.no-deal{
     color: #FA4F43;
   }
+
+ 
 
 
 
