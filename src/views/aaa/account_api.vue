@@ -27,7 +27,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="账号类型:手机号,邮箱,其他等">
-          <el-input v-model="sizeForm.type"></el-input>
+          <el-input v-model="sizeForm.accountType"></el-input>
         </el-form-item>
         <el-form-item label="用户类型:管理员,员工">
           <el-input v-model="sizeForm.userType"></el-input>
@@ -109,8 +109,8 @@
   <!-- 绑定角色  弹窗  Start -->
   <el-dialog  width="662px" title="绑定角色" :visible.sync="bind_dialogFormVisible" custom-class="addAccount">
     <el-form :model="EditAccountForm" label-width="88px">
-      <el-form-item label="账号ID：" prop="userId">
-        <el-input v-model="bindRoleForm.userId" auto-complete="off" disabled=""></el-input>
+      <el-form-item label="账号ID：" prop="accountId">
+        <el-input v-model="bindRoleForm.accountId" auto-complete="off" disabled=""></el-input>
       </el-form-item>
       <el-form-item label="绑定角色：" prop="account">
         <!-- <el-input v-model="bindRoleForm.roleId" auto-complete="off" clearable></el-input> -->
@@ -153,15 +153,15 @@
           account: '',
           password: '',
           corpId: '',
-          type: 1,
+          accountType: 1,
           userType: 1,
         },
         adding:true,
         queryParam:{
           // pageNo: 1,
           // pageSize: 100,
-          limit:1,
-          offset:100,
+          limit:100,
+          offset:1,
           column: "create_time",
           order: false,
           queryStr: "",
@@ -170,8 +170,8 @@
           // corpId:"5d472e26790ea0fe6e3077aa4b1565b6",
         },
         roleQueryParam:{
-          limit:1,
-          offset:100,
+          limit:100,
+          offset:1,
           column: "create_time",
           order: false,
           corpId:"",
@@ -183,17 +183,17 @@
         },
         bind_dialogFormVisible:false,
         bindRoleForm:{
-          userId:"",
+          accountId:"",
           roleId:""
         },
         getAllRoleJson:[],
         getCorpsJson:[],
         corpQueryParam:{
-          limit:1,
-          offset:100,
+          limit:100,
+          offset:1,
           column: "id",
           order: true,
-          queryStr: ""
+          queryStr: "",
         },
       }
     },
@@ -219,12 +219,12 @@
       getCorps(){
         api.corpApi.getCorps(this.corpQueryParam).then((res) => {
           if(res.data.code === 200 && res.data.message === 'ok'){
-            this.getCorpsJson = res.data.data.records[0]
+            this.getCorpsJson = res.data.data.records
 
           } else {
             this.getCorpsJson = []
           }
-          console.log("res.data.code" + res.data.data.records[0])
+          // console.log("res.data.code" + res.data.data.records)
         }).catch((res) => {
           
         })
@@ -232,7 +232,7 @@
       getRoles(){
         api.roleApi.getRoles(this.roleQueryParam).then((res) => {
           
-          this.getAllRoleJson = res.data.data.records[0]
+          this.getAllRoleJson = res.data.data.records
           // JSON.parse(this.getAllAccountJson.menuMod)
 
 
@@ -252,13 +252,13 @@
           //   console.log("aaaaaaaaaaaaa===" + JSON.stringify(this.getAllAccountJson))
             
           // }
-          // console.log("res.data.code" + res.data.data.records[0])
+          // console.log("res.data.code" + res.data.data.records[0][0])
         }).catch((res) => {
           
         })
       },
       bindRole(index, row){
-        this.bindRoleForm.userId = row.id
+        this.bindRoleForm.accountId = row.id
         this.roleQueryParam.corpId = row.corpId
         this.bindRoleForm.roleId = ""
         if(row.roleId){
@@ -342,12 +342,12 @@
       getAccounts(){
         api.accountApi.getAccounts(this.queryParam).then((res) => {
           if(res.data.code === 200 && res.data.message === 'ok'){
-            this.getAllAccountJson = res.data.data.records[0]
+            this.getAllAccountJson = res.data.data.records
           } else {
             this.getAllAccountJson = []
           }
           
-          console.log("res.data.code" + res.data.data.records[0])
+          // console.log("res.data.code" + res.data.data.records[0])
         }).catch((res) => {
           
         })
@@ -361,7 +361,7 @@
         if(event === 0){ // 禁用
           api.accountApi.banAccount({"id":row.id}).then((res) => {
             
-            console.log("res.data.code" + res.data.data.records[0])
+            // console.log("res.data.code" + res.data.data.records[0])
 
           }).catch((res) => {
             
@@ -369,7 +369,7 @@
         } else {
           api.accountApi.pickAccount({"id":row.id}).then((res) => {
             
-            console.log("res.data.code" + res.data.data.records[0])
+            // console.log("res.data.code" + res.data.data.records[0])
 
           }).catch((res) => {
             

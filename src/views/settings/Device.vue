@@ -538,12 +538,17 @@ export default {
       let that = this
       this.$refs.diaForm.validate(valid => {
         if (valid) {
-          alert('submit')
+          // alert('submit')
           console.log(this.ruleForm)
           api.device.addDeviceMainten(this.ruleForm).then(res => {
             if (res.data.code == '200') {
               that.$message.success(`${res.data.message}`)
-              this.$router.go(0)
+              this.$router.push({
+                path: '/lift-device',
+                query: {
+                  regCode: that.ruleForm.regCode
+                }
+              })
             } else {
               that.$message.error(`${res.data.message}`)
             }

@@ -139,8 +139,8 @@
         },
         adding:true,
         queryParam:{
-          limit:1,
-          offset:100,
+          limit:100,
+          offset:1,
           column: "create_time",
           order: true,
           corpId:window.localStorage.getItem('corpId'),
@@ -149,15 +149,15 @@
           queryStr: ""
         },
         queryModulesParam:{
-          limit:1,
-          offset:100,
+          limit:100,
+          offset:1,
           column: "create_time",
           order: false,
           corpId:"",
           queryStr: ""
         },
         EditAccountForm:{
-          id:"",
+          roleId:"",
           corpId:"",
           rename:"",
         },
@@ -175,8 +175,8 @@
         value:[],
         getCorpsJson:[],
         corpQueryParam:{
-          limit:1,
-          offset:100,
+          limit:100,
+          offset:1,
           column: "id",
           order: true,
           queryStr: ""
@@ -199,12 +199,12 @@
       getCorps(){
         api.corpApi.getCorps(this.corpQueryParam).then((res) => {
           if(res.data.code === 200 && res.data.message === 'ok'){
-            this.getCorpsJson = res.data.data.records[0]
+            this.getCorpsJson = res.data.data.records
 
           } else {
             this.getCorpsJson = []
           }
-          console.log("res.data.code" + res.data.data.records[0])
+          // console.log("res.data.code" + res.data.data.records)
         }).catch((res) => {
           
         })
@@ -263,7 +263,7 @@
         api.moduleApi.getModules(this.queryModulesParam).then((res) => {
           this.adding = false
           // if (res..code === 200) {
-          this.getAllModulesJson = res.data.data.records[0]
+          this.getAllModulesJson = res.data.data.records
           console.log("111111111111" + JSON.stringify(this.getAllModulesJson))
            
         }).catch((res) => {
@@ -376,10 +376,10 @@
           // this.adding = false
         })
       },
-      getRoles(){
+      getRoles() {
         api.roleApi.getRoles(this.queryParam).then((res) => {
           if(res.data.code === 200 && res.data.message === 'ok'){
-            this.getAllAccountJson = res.data.data.records[0]
+            this.getAllAccountJson = res.data.data.records
           } else {
             this.getAllAccountJson = []
           }
@@ -415,7 +415,7 @@
       // 编辑账号
       editRole(index, row){
         console.log("row====" + JSON.stringify(row))
-        this.EditAccountForm.id = row.id
+        this.EditAccountForm.roleId = row.id
         this.EditAccountForm.corpId = row.corpId
         this.EditAccountForm.rename = row.name
         

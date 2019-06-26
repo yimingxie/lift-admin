@@ -24,8 +24,8 @@
           <input class="search_input" @focus="act_index='1'" @blur="act_index='0'" placeholder="电梯名称/注册代码" v-model.trim="searchKey" @input="searchEvent" ref="searchInput" autocomplete="off" autocapitalize="off" autocorrect="off"/>
           <span class="search_btn"></span>
         </div> -->
-        <search-input v-model="searchKey" placeholderValue="搜索真实姓名/手机号">
-          <span slot="btn" class="search_btn"></span>
+        <search-input v-model.trim="searchKey" placeholderValue="搜索真实姓名/手机号">
+          <span slot="btn" class="search_btn" @click="searchAccount()" @keyup.enter.native="searchAccount()"></span>
         </search-input>
         
 
@@ -88,7 +88,7 @@
               </el-switch>
             </template>
           </el-table-column>
-          <el-table-column label="操作">
+          <el-table-column label="操作" width="200">
             <template slot-scope="scope">
               <!-- 1.在封装好的组件上使用，所以要加上.native才能click
               2.prevent就相当于..event.preventDefault() -->
@@ -110,10 +110,10 @@
         <el-pagination
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
-          :current-page.sync="queryParam.limit"
+          :current-page.sync="queryParam.offset"
           :page-sizes="[10, 20, 30]"
-          :page-size="queryParam.offset"
-          layout="total, sizes, prev, pager, next, jumper"
+          :page-size="queryParam.limit"
+          layout="prev, pager, next, sizes, jumper"
           :total="totalPageSize">
         </el-pagination>
       </div>
@@ -124,7 +124,7 @@
   </div>
 
   <!-- 添加账号  弹窗  Start -->
-  <el-dialog width="662px" title="添加账号" :visible.sync="add_dialogFormVisible" custom-class="addAccount">
+  <el-dialog width="662px" title="添加账号" :visible.sync="add_dialogFormVisible">
     <el-form :model="addAccountForm" :label-width="formLabelWidth">
       <el-form-item label="登录账号：" prop="account">
         <el-input v-model="addAccountForm.account" auto-complete="off" clearable></el-input>
@@ -132,10 +132,10 @@
       <!-- <el-form-item label="真实姓名：" prop="name">
         <el-input v-model="addAccountForm.name" auto-complete="off" clearable></el-input>
       </el-form-item>
-      
+       -->
     
       <el-form-item label="角色：" prop="roleName" >
-        <el-select v-model="bindRoleForm.roleId" placeholder="请选择角色">
+        <el-select v-model="addAccountForm.roleId" placeholder="请选择角色">
           <el-option
             v-for="item in rolesJson"
             :key="item.id"
@@ -143,11 +143,12 @@
             :value="item.id">
           </el-option>
         </el-select>
-      </el-form-item> -->
+      </el-form-item>
     </el-form>
     <div slot="footer"  class="dialog-footer tac">
-      <el-button type="primary" @click="confirmAddAccount()" class="dialogSure">确 认</el-button>
       <el-button @click="add_dialogFormVisible = false" class="dialogCancel">取 消</el-button>
+      <el-button type="primary" @click="confirmAddAccount()" class="dialogSure">确 认</el-button>
+
     </div>
   </el-dialog>
   <!--添加账号  弹窗 End -->
@@ -187,8 +188,9 @@
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer tac">
-      <el-button type="primary" @click="confirmEdit" class="dialogSure">确 认</el-button>
       <el-button @click="edit_dialogFormVisible = false" class="dialogCancel">取 消</el-button>
+      <el-button type="primary" @click="confirmEdit" class="dialogSure">确 认</el-button>
+
     </div>
   </el-dialog>
   <!-- 编辑账号 弹窗 End -->
@@ -208,7 +210,7 @@ export default {
   data() {
     return {
       rolesJson:[],
-      roleNameArr:[],
+      // roleNameArr:[],
       edit_roleNameArr:[],
       formLabelWidth: '86px',
       add_dialogFormVisible:false,
@@ -216,8 +218,9 @@ export default {
         account: '',
         password: '111',
         corpId: window.localStorage.getItem('corpId'),
-        type: 1,
-        userType: 1,
+        accountType: "1",
+        userType: "staff",
+        roleId:''
       },
       edit_dialogFormVisible: false,
       EditAccountForm: {
@@ -246,8 +249,8 @@ export default {
       queryParam:{
         // pageNo: 1,
         // pageSize: 100,
-        limit:1,
-        offset:10,
+        offset:1,
+        limit:10,
         column: "create_time",
         order: false,
         queryStr: "",
@@ -255,19 +258,17 @@ export default {
       },
       getAllAccountJson: [],
       roleQueryParam:{
-        limit:1,
-        offset:100,
+        limit:10,
+        offset:1,
         column: "create_time",
-        order: false,
+        order: true,
         corpId:window.localStorage.getItem('corpId'),
         queryStr: ""
       },
       periods: [
-        { label: '全部', value: 1 },
-        { label: '管理员', value: 7 },
-        { label: '维保主管', value: 30 },
+        { label: '全部', value: "-1" },
       ],
-      period:1,
+      period:"-1",
       periods1: [
         { label: '全部', value: 1 },
         { label: '开启', value: 7 },
@@ -275,7 +276,7 @@ export default {
       ],
       period1:1,
       bindRoleForm:{
-        userId:"",
+        accountId:"",
         roleId:""
       },
     }
@@ -297,19 +298,19 @@ export default {
     getAllAccountData(){
       api.accountApi.getAccounts(this.queryParam).then((res) => {
         if(res.data.code === 200 && res.data.message === 'ok'){
-          this.getAllAccountJson = res.data.data.records[0]
+          this.getAllAccountJson = res.data.data.records
           this.totalPageSize = res.data.data.total
-          for(var i = 0; i < this.getAllAccountJson.length; i++){
+          // for(var i = 0; i < this.getAllAccountJson.length; i++){
             
-            console.log("aaaaaaaaaaaaa===" + this.rolesJson.length)
-            for(var j =0 ;j < this.rolesJson.length;j++){
-              // jsonArr[j] = this.rolesJson[j].name;
-              if(this.getAllAccountJson[i].roleId === this.rolesJson[j].id){
-                console.log("1111===" + JSON.stringify(this.getAllAccountJson))
-                this.$set(this.getAllAccountJson[i],'roleName',this.rolesJson[j].name)
-              }
-            }
-          }
+          //   // console.log("aaaaaaaaaaaaa===" + this.rolesJson.length)
+          //   for(var j =0 ;j < this.rolesJson.length;j++){
+          //     // jsonArr[j] = this.rolesJson[j].name;
+          //     if(this.getAllAccountJson[i].roleId === this.rolesJson[j].id){
+          //       // console.log("1111===" + JSON.stringify(this.getAllAccountJson))
+          //       this.$set(this.getAllAccountJson[i],'roleName',this.rolesJson[j].name)
+          //     }
+          //   }
+          // }
           
 
         } else {
@@ -353,8 +354,9 @@ export default {
         
       // })
     },
+    // 重置密码
     resetPassword(index, row){
-      this.$confirm('是否重置密码?（重置后的密码为88888888）', '提示', {
+      this.$confirm('是否重置密码?（重置后的密码为666666）', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'error'
@@ -379,7 +381,7 @@ export default {
       this.EditAccountForm.id = row.id
       this.EditAccountForm.account = row.account
 
-      this.bindRoleForm.userId = row.id
+      this.bindRoleForm.accountId = row.id
       this.bindRoleForm.roleId = ""
       if(row.roleId){
         this.bindRoleForm.roleId = row.roleId
@@ -388,6 +390,7 @@ export default {
       // this.edit_roleNameArr = row.roleName.split(',')
       this.edit_dialogFormVisible = true
     },
+
     // 确认修改
     confirmEdit(){
       // 修改账号名
@@ -413,6 +416,7 @@ export default {
       })
       
     },
+
     // 删除账号
     deleteAccount(index, row){
       this.$confirm('此操作将永久删除该账号, 是否继续?', '提示', {
@@ -435,7 +439,7 @@ export default {
       
     },
   
-    // 改变开关状态
+    // 改变账号状态
     changeStatus(event,index,row){
       console.log('event==' + event)
       console.log('index==' + index)
@@ -444,7 +448,7 @@ export default {
       if(event === 0){ // 禁用
         api.accountApi.banAccount({"id":row.id}).then((res) => {
           
-          console.log("res.data.code" + res.data.data.records[0])
+          // console.log("res.data.code" + res.data.data.records[0])
 
         }).catch((res) => {
           
@@ -452,7 +456,7 @@ export default {
       } else {
         api.accountApi.pickAccount({"id":row.id}).then((res) => {
           
-          console.log("res.data.code" + res.data.data.records[0])
+          // console.log("res.data.code" + res.data.data.records[0])
 
         }).catch((res) => {
           
@@ -460,40 +464,41 @@ export default {
       }
       
     },
-    // 请选择账户角色 触发事件
-    changeSelect(){},
-    // 每页多少条变化触发事件
+
+    // 每页条数变化
     handleSizeChange(val) {
-      this.queryParam.offset = val
-      console.log(`每页 ${val} 条`);
+      this.queryParam.limit = val
+      // console.log(`每页 ${val} 条`);
       this.getAllAccountData()
     },
-    // 当前页变化触发事件
+
+    // 当前页变化
     handleCurrentChange(val) {
-      this.queryParam.limit = val
-      console.log(`当前页: ${val}`);
+      this.queryParam.offset = val
+      // console.log(`当前页: ${val}`);
       this.getAllAccountData()
     },
     
     // 查询所有角色
     getAllRoleData(){
       api.roleApi.getRoles(this.roleQueryParam).then((res) => {
-        
-        this.rolesJson = res.data.data.records[0]
-
-        console.log("aaaaaaaaaaaaa===" + JSON.stringify(this.rolesJson))
-        // JSON.parse(this.getAllAccountJson.menuMod)
-
-
-        // var jsonArr = [];
-
-        // console.log("jsonArr==" + this.getAllAccountJson.length)
-        
-        // console.log("res.data.code" + res.data.data.records[0])
+        if (res.data.code === 200) {
+          this.rolesJson = res.data.data.records
+          this.periods = [{ label: '全部', value: "-1" }]
+          
+          
+          this.rolesJson.forEach((item) =>{
+            var roleType = { label: "", value: "" }
+            roleType.label = item.name
+            roleType.value = item.id
+            this.periods.push(roleType)
+          })
+        }
       }).catch((res) => {
         
       })
     },
+
     // 确认添加账号
     confirmAddAccount() {
       console.log('submit!');
@@ -506,9 +511,9 @@ export default {
           // this.bindRoleForm.userId = 
           // api.accountApi.accountBindRole(this.bindRoleForm).then((res) => {
           //   if (res.data.code === 200) {
-              this.$message.success('创建成功！');
-              this.getAllAccountData()
-              this.add_dialogFormVisible = false
+          this.$message.success('创建成功！');
+          this.getAllAccountData()
+          this.add_dialogFormVisible = false
              
           //   }
           // }).catch((res) => {
@@ -526,6 +531,12 @@ export default {
       })
     },
 
+    // 搜索真实姓名/手机号
+    searchAccount(){
+      this.queryParam.queryStr = this.searchKey
+      this.getAllAccountData()
+    }
+
   },
 }
 </script>
@@ -538,4 +549,7 @@ export default {
     text-align: center;
     line-height 42px
     padding 0 0 30px 0
+  .pagination_block
+    margin-top: 20px;
+    text-align: right;
 </style>

@@ -27,6 +27,7 @@ import corpApi from './api/corpApi'
 import detection from './api/detection'
 import lift from './api/lift'
 import device from './api/device'
+import mapApi from './api/mapApi'
 
 export default {
   corp,
@@ -40,4 +41,5 @@ export default {
   detection,
   lift,
   device,
+  mapApi
 }

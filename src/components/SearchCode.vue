@@ -86,6 +86,7 @@ export default {
     padding-right 60px;
     padding-left 10px;
     border: 1px solid #D8DDDF;
+    border-radius: 4px;
   }
   .lsearch-submit{
     position absolute;
@@ -96,6 +97,7 @@ export default {
     width 40px;
     cursor pointer;
     background: #fff url('../assets/images/xym/search.png') no-repeat center center;
+    border-radius: 4px;
   }
   .llcb-search-tips{
     position absolute;

@@ -6,8 +6,9 @@
     <div>
       <table class="temp-table">
         <tr>
+          <th>devEui</th>
+          <th>是否绑定</th>
           <th>SN</th>
-          <th>ID</th>
           <th>模组类型</th>
           <th>设备型号</th>
           <th>监测内容</th>
@@ -18,8 +19,9 @@
           <th>创建时间</th>
         </tr>
         <tr v-for="(item, i) in deviceListGi" :key="i">
-          <td>{{item.devSn}}</td>
           <td>{{item.devEui}}</td>
+          <td>{{item.isBind ? '是' : '否'}}</td>
+          <td>{{item.devSn}}</td>
           <td>{{item.modType}}</td>
           <td>{{item.devModel}}</td>
           <td>{{item.monitorVal}}</td>
@@ -33,9 +35,9 @@
     </div>
 
     <!-- 弹窗 -->
-    <el-dialog :visible.sync="dialogAddDevice" :show-close="false" width="690px">
+    <el-dialog title="添加设备" :visible.sync="dialogAddDevice" :show-close="false" width="690px">
       <div>
-        <div class="dia-title">添加设备</div>
+        <!-- <div class="dia-title">添加设备</div> -->
         <div class="dia-content">
           <el-form :model="ruleForm" :rules="rules" ref="diaForm">
             <div class="dia-con-head"> </div>
@@ -67,7 +69,7 @@
               <div class="dia-citem clearfix">
                 <div class="dia-citem-label">设备型号：</div>
                 <div class="dia-citem-ib">
-                  <el-form-item>
+                  <el-form-item prop="modelValue">
                     <el-select v-model="modelValue" placeholder="请选择" @change="modelChange">
                       <el-option v-for="(item, i) in modelOptions" :key="i" :label="item.label" :value="item.label"></el-option>
                     </el-select>
@@ -116,14 +118,14 @@
                   </el-form-item>
                 </div>
               </div>
-              <div class="dia-citem clearfix">
+              <!-- <div class="dia-citem clearfix">
                 <div class="dia-citem-label">扩展属性：</div>
                 <div class="dia-citem-ib">
                   <el-form-item prop="extend">
                     <el-input v-model="ruleForm.extend" size="small"></el-input>
                   </el-form-item>
                 </div>
-              </div>
+              </div> -->
        
             </div>
 
@@ -174,12 +176,18 @@ export default {
         extend: '',
       },
       rules: {
-        // regCode: [
-        //   { required: true, message: '请输入电梯注册代码', trigger: 'blur' },
-        // ],
-        // devEui: [
-        //   { required: true, message: '请输入电梯注册代码', trigger: 'blur' },
-        // ],
+        devSn: [{ required: true, message: '必填', trigger: 'blur' }],
+        devEui: [{ required: true, message: '必填', trigger: 'blur' }],
+        modType: [{ required: true, message: '必填', trigger: 'blur' }],
+        // devModel: [{ required: true, message: '必填', trigger: 'change' }],
+        monitorVal: [{ required: true, message: '必填', trigger: 'blur' }],
+        devName: [{ required: true, message: '必填', trigger: 'blur' }],
+        devType: [{ required: true, message: '必填', trigger: 'blur' }],
+        devBrand: [{ required: true, message: '必填', trigger: 'blur' }],
+        manId: [{ required: true, message: '必填', trigger: 'blur' }],
+
+        // modelValue: [{ required: true, message: '必填', trigger: 'change' }],
+ 
       },
       modelOptions: [
         {label: 'WS'},
@@ -250,6 +258,7 @@ export default {
       let that = this
       console.log(devModel)
       this.ruleForm.devModel = devModel
+      this.ruleForm.modelValue = devModel
       this.checkedMoniObj = [] // 重置已选择的选项
       // 设备型号与监测内容相绑定
       // 1.发起请求，获取监测内容id（多条）    2. 匹配监测内容表，将id对应的中文内容展示

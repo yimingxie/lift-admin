@@ -273,14 +273,16 @@
     methods: {
       ifDisabled(title){
         var flag = true
-        console.log('111=====' + this.modulesJson)
-        var modulesJson = JSON.parse(this.modulesJson)
-        for(var i = 0; i < modulesJson.length ; i++){
-          if(modulesJson[i].name.indexOf(title) !== -1 || modulesJson[i].name.indexOf('通用') !== -1 || modulesJson[i].name.indexOf('管理员专用') !== -1){
-            flag = false
-          } 
+        if(this.modulesJson){
+          var modulesJson = JSON.parse(this.modulesJson)
+          for(var i = 0; i < modulesJson.length ; i++){
+            if(modulesJson[i].name.indexOf(title) !== -1 || modulesJson[i].name.indexOf('通用') !== -1 || modulesJson[i].name.indexOf('管理员专用') !== -1){
+              flag = false
+            } 
+          }
+          return flag 
         }
-        return flag 
+        
       },
       handleOpen(key, keyPath) {
         console.log(key, keyPath);

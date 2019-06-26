@@ -197,9 +197,12 @@ export default {
         monitorVal: '',
       },
       rules: {
-        // regCode: [
-        //   { required: true, message: '请输入电梯注册代码', trigger: 'blur' },
-        // ],
+        regCode: [{ required: true, message: '必填', trigger: 'blur' }],
+        devEui: [{ required: true, message: '必填', trigger: 'blur' }],
+        assembTime: [{ required: true, message: '必填', trigger: 'blur' }],
+        assembId: [{ required: true, message: '必填', trigger: 'blur' }],
+        monitorObj: [{ required: true, message: '必填', trigger: 'blur' }],
+        monitorVal: [{ required: true, message: '必填', trigger: 'blur' }],
       },
       moniObjOptions: [],
       selectedMoniObjOptions: [],
@@ -409,7 +412,7 @@ export default {
       let that = this
       this.$refs.diaForm.validate(valid => {
         if (valid) {
-          alert('submit')
+          // alert('submit')
           console.log(this.ruleForm)
           api.device.addDeviceMainten(this.ruleForm).then(res => {
             if (res.data.code == '200') {

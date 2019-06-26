@@ -227,7 +227,7 @@ export default {
     this.transformMonitorVal()
 
     // 获取详细信息
-    this.getDetail()
+    // this.getDetail()
 
     // 加载检测项下拉
     this.getMoniObjOptions()
@@ -244,6 +244,8 @@ export default {
         res.data.data.forEach((item, i) => {
           this.modelContentList[item.id] = item.monitorVal
         })
+        // 获取详细信息
+        this.getDetail()
       })
     },
 
@@ -418,7 +420,12 @@ export default {
       api.device.deleteDeviceMainten(params).then(res => {
         if (res.data.code == '200') {
           that.$message.success(`${res.data.message}`)
-          that.$router.push({path: '/device'})
+          this.$router.push({
+            path: '/lift-device',
+            query: {
+              regCode: that.regCode
+            }
+          })
         } else {
           that.$message.error(`${res.data.message}`)
         }
