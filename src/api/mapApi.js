@@ -34,9 +34,4 @@ export default  {
       `${url2}/map/abnormal/undone`, date
     )
   },
-
-
- 
-
-  
 }

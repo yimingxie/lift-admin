@@ -13,7 +13,7 @@
             </el-option>
           </el-select> -->
           <span style="color: #D8DDDF;">|</span>
-          <span style="width: 121px;overflow: hidden;display: inline-block;vertical-align: top;margin-top: 13px;">
+          <span style="width: 127px;overflow: hidden;display: inline-block;vertical-align: top;margin-top: 13px;">
             <a-date-picker @change="aChangePickDate" :defaultValue="moment(timeDefault, dateFormat)" :format="dateFormat" :showToday="false" placeholder="请选择日期" >
               <template slot="dateRender" slot-scope="current, today" >
                 <div class="ant-calendar-date" :class="getCurrentStyle(current, today)">
@@ -155,10 +155,10 @@
             <div v-if="fault.count !==0">
               <div class="lift_row">
                 <el-row v-for="(item,index) in fault.diagninfo" :key="index" class="liftRow">
-                  <el-col :span="15">
+                  <el-col :span="14">
                     <div class="info_content">{{item.reason}} </div>
                   </el-col>
-                  <el-col :span="9">
+                  <el-col :span="10">
                     <div class="info_font12">{{processed[item.processed]}} 
                       <span class="lift_split">&nbsp;|&nbsp;</span> 
                       <span class="lift_time">{{ item.triggleTime | dateformat('HH:mm:ss')}} </span> 
@@ -175,8 +175,8 @@
             <div v-if="violation.count !==0">
               <div class="lift_row">
                 <el-row v-for="(item,index) in violation.diagninfo" :key="index" >
-                  <el-col :span="15"><div class="info_content">{{item.reason}} </div></el-col>
-                  <el-col :span="9">
+                  <el-col :span="14"><div class="info_content">{{item.reason}} </div></el-col>
+                  <el-col :span="10">
                     <div class="info_font12">{{processed[item.processed]}} 
                       <span class="lift_split">&nbsp;|&nbsp;</span> 
                       <span class="lift_time">{{ item.triggleTime | dateformat('HH:mm:ss')}} </span> 
@@ -192,8 +192,8 @@
             <div v-if="warning.count !==0">
               <div class="lift_row">
                 <el-row v-for="(item,index) in warning.diagninfo" :key="index" class="liftRow">
-                  <el-col :span="15"><div class="info_content">{{item.reason}} </div></el-col>
-                  <el-col :span="9">
+                  <el-col :span="14"><div class="info_content">{{item.reason}} </div></el-col>
+                  <el-col :span="10">
                     <div class="info_font12">{{processed[item.processed]}} 
                       <span class="lift_split">&nbsp;|&nbsp;</span> 
                       <span class="lift_time">{{ item.triggleTime | dateformat('HH:mm:ss')}} </span> 
