@@ -12,7 +12,9 @@
                   {{item}}
                   <slot :name="'num' + index"></slot>
                 </li>
+
             </ul>
+
             <div class="lineBorder" :style="{'width':windowWidth + 'px'}">
                 <div class="lineDiv"  :class="('active' + nowIndex)" ref="lineDiv"><!--移动的div--></div>
             </div>
@@ -77,17 +79,15 @@
         
       },
       activeIndex(val){
-        console.log("activeIndex=" + val)
+        // console.log("activeIndex=" + val)
         this.nowIndex = val
         this.initTab(val)
       },
       id(val){
         this.tabHeight = 152
         this.initTab(0)
-        alert(1)
       },
       date(val){
-        alert(1)
         this.tabHeight = 152
         this.initTab(0)
         
@@ -110,6 +110,13 @@
       this.initTab()
     },
     methods: {
+        goToDetail(){
+          alert(this.id)
+          // this.$router.push('/detection')
+          this.$router.push({
+            path: '/lift-list'
+          })
+        },
         initTab(nowIndex){
           var _this = this
           

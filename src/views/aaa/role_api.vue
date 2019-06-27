@@ -193,7 +193,6 @@
     },
     methods: {
       onRadioChange(aaa){
-        console.log("aa==" + this.queryParam.corpId)
         this.getRoles()
       },
       getCorps(){
@@ -236,7 +235,6 @@
         }).then(() => {
           api.roleApi.deleteRole(row.id).then((res) => {
             if(res.data.message === 'ok'){
-              console.log(JSON.stringify(res))
               // 消息提示
               this.$message({
                 type: 'success',
@@ -252,7 +250,6 @@
           });          
         });
         
-        console.log(index, row);
       },
       transferChange(value){
         // console.log("xxxxxxxx" + this.bindForm.func)
@@ -264,7 +261,6 @@
           this.adding = false
           // if (res..code === 200) {
           this.getAllModulesJson = res.data.data.records
-          console.log("111111111111" + JSON.stringify(this.getAllModulesJson))
            
         }).catch((res) => {
           
@@ -273,7 +269,6 @@
       // 绑定模块
       bindM(index, row){
         this.bind_dialog = true
-        console.log("row==" + JSON.stringify(row))
         this.bindForm.roleId = row.id
         this.bindFormCorpId = row.corpId
         this.queryModulesParam.corpId = row.corpId
@@ -329,7 +324,7 @@
         var _this = this
         var arrModule = []
         // this.getAllApiJson.forEach
-        console.log("aaa" + _this.value.length)
+        // console.log("aaa" + _this.value.length)
         this.getAllModulesJson.forEach((item) => {
         // 如果没有传递 prop，就直接比对，否则拿下级的 prop 属性比对
           for(var i = 0 ;i<_this.value.length ;i++){
@@ -343,7 +338,6 @@
 
         api.roleApi.bind(this.bindForm).then((res) => {
           this.adding = false
-          console.log("res.data.code" + res.data.code)
           if (res.data.code === 200) {
             this.$message.success('绑定成功！');
             this.getRoles()
@@ -362,7 +356,6 @@
         console.log('submit!');
         api.roleApi.createRole(this.sizeForm).then((res) => {
           this.adding = false
-          console.log("res.data.code" + res.data.code)
           if (res.data.code === 200) {
             this.$message.success('创建成功！');
             this.getRoles()
@@ -399,13 +392,9 @@
           //   }
           //   console.log("jsonArr==" + jsonArr)
           //   this.$set(this.getAllAccountJson[i],'jsonArr',jsonArr)
-          //   console.log("aaaaaaaaaaaaa===" + JSON.stringify(this.getAllAccountJson))
             
           // }
 
-
-
-          // console.log("res.data.code" + res.data.data.records[0])
         }).catch((res) => {
           
         })
@@ -414,7 +403,6 @@
 
       // 编辑账号
       editRole(index, row){
-        console.log("row====" + JSON.stringify(row))
         this.EditAccountForm.roleId = row.id
         this.EditAccountForm.corpId = row.corpId
         this.EditAccountForm.rename = row.name

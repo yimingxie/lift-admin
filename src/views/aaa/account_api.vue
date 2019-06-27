@@ -213,8 +213,9 @@
       // })
     },
     methods: {
+      // 切换不同企业
       onRadioChange(){
-        console.log("aa==" + this.queryParam.corpId)
+        // console.log("aa==" + this.queryParam.corpId)
         this.getAccounts()
       },
       getCorps(){
@@ -323,7 +324,7 @@
         console.log('submit!');
         api.accountApi.createAccount(this.sizeForm).then((res) => {
           this.adding = false
-          console.log("res.data.code" + res.data.code)
+          // console.log("res.data.code" + res.data.code)
           if (res.data.code === 200) {
             this.$message({
               message: '创建成功！',
@@ -355,9 +356,9 @@
       },
       // 改变开关状态
       changeStatus(event,index,row){
-        console.log('event==' + event)
-        console.log('index==' + index)
-        console.log('row==' + JSON.stringify(row))
+        // console.log('event==' + event)
+        // console.log('index==' + index)
+        // console.log('row==' + JSON.stringify(row))
         // this.getAllAccountJson[index].status = event
         if(event === 0){ // 禁用
           api.accountApi.banAccount({"id":row.id}).then((res) => {
@@ -381,7 +382,7 @@
 
       // 编辑账号
       editAccount(index, row){
-        console.log("row====" + JSON.stringify(row))
+        // console.log("row====" + JSON.stringify(row))
         this.EditAccountForm.id = row.id
         this.EditAccountForm.account = row.account
         // this.EditAccountForm.phoneNumber = row.phoneNumber

@@ -148,22 +148,14 @@ export default {
         
         this.rolesJson = res.data.data.records
 
-        console.log("aaaaaaaaaaaaa===" + JSON.stringify(this.rolesJson))
-        // JSON.parse(this.getAllAccountJson.menuMod)
-
-
-        // var jsonArr = [];
-
-        // console.log("jsonArr==" + this.getAllAccountJson.length)
-        
-        // console.log("res.data.code" + res.data.data.records[0])
+        // console.log("aaaaaaaaaaaaa===" + JSON.stringify(this.rolesJson))
+       
       }).catch((res) => {
         
       })
     },
     // 编辑角色名称
     editRole(role){
-      console.log("row====" + JSON.stringify(role))
       this.EditRoleForm.rename = role.name
       this.EditRoleForm.roleId = role.id
       this.edit_dialogFormVisible = true
@@ -188,7 +180,7 @@ export default {
       this.look_dialogFormVisible = true
       this.lookRoleId = role.id
       this.lookRoleName = role.name
-      console.log("this.lookRoleName=="+ this.lookRoleName)
+      // console.log("this.lookRoleName=="+ this.lookRoleName)
       this.getbindModules(role.id)
       this.activeNames=[]
     },
@@ -211,6 +203,7 @@ export default {
         
       })
     },
+    // 切换collapse
     handleChange(val) {
       console.log(val);
       val.forEach(element => {
@@ -237,7 +230,7 @@ export default {
           return obj.id === id
         })
         Vue.set(obj,'bindApi',bindApi)
-        console.log("this.bindModules==" + JSON.stringify(obj))
+        // console.log("this.bindModules==" + JSON.stringify(obj))
       }).catch((res) => {
         
       })

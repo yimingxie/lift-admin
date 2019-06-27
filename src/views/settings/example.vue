@@ -104,9 +104,9 @@
           this.dynamicTags.push(this.form.area)
         }else{
           for(var i = 0  ; i < len  ; i++){
-            console.log('----------------------=====')
-            console.log('ddddd=====' + (this.dynamicTags[i]))
-            console.log('ddddd=====' + (this.form.area))
+            // console.log('----------------------=====')
+            // console.log('ddddd=====' + (this.dynamicTags[i]))
+            // console.log('ddddd=====' + (this.form.area))
             if( this.dynamicTags[i] === this.form.area){
               flag = false
             }

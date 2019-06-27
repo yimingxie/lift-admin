@@ -222,17 +222,17 @@
     },
     watch:{
       $route(to,from){ //跳转组件页面后，监听路由参数中对应的当前页面以及上一个页面
-        console.log('to----' + to)
+        // console.log('to----' + to)
         if(to.name=='Login'){
           this.$store.commit('SWITCH_LAYOUT', 'auth')
-          console.log('layout====' + this.layout)
+          // console.log('layout====' + this.layout)
         }else{
           this.$store.commit('SWITCH_LAYOUT', 'admin')
-          console.log('layout====' + this.layout)
+          // console.log('layout====' + this.layout)
         }
       },
       layout () {
-        console.log('this.layout---' + this.layout)
+        // console.log('this.layout---' + this.layout)
         if (this.layout === 'admin') {
           // this.getCurrentMember(window.localStorage.getItem('memberId'), this)
           // // console.log('currentMember22222===' + JSON.stringify(this.currentMember))
@@ -265,7 +265,6 @@
     },
     mounted () {
       // this.modulesJson = JSON.parse(this.modulesJson)
-      console.log("this.modulesJson==" + this.modulesJson)
       // this.roleConfig = window.localStorage.getItem('_role_')
       
     },
@@ -285,10 +284,10 @@
         
       },
       handleOpen(key, keyPath) {
-        console.log(key, keyPath);
+        // console.log(key, keyPath);
       },
       handleClose(key, keyPath) {
-        console.log(key, keyPath);
+        // console.log(key, keyPath);
       },
       // quit(){
       //   this.$router.push('/')

@@ -99,7 +99,6 @@
   // 查询电梯注册码
   import SearchCode from '../../components/SearchCode'
   import moment from 'moment';
-
   // import tab from "../../components/tab";
   let pcas = require("../../utils/citySelector/pcas-code.json")
   // 生成html 和 时间
@@ -131,7 +130,7 @@
               <div style="margin-bottom:20px">
                 <span class="lift_status">电梯状态</span>
                 <span class="lift_time info_font12">{{ accident.diagninfo.triggleTime | dateformat('HH:mm:ss')}} </span> 
-                <span class="accident_detail" @click="goToDetail">详情></span>
+                <span class="accident_detail">详情></span>
               </div>
               <el-row>
                 <el-col :span="8" >
@@ -166,7 +165,7 @@
                   </el-col>
                 </el-row>
               </div>
-              <div class="lift_readMore" @click="goToDetail">查看更多</div>
+              <div class="lift_readMore" >查看更多</div>
             
             </div>
             <div v-else class="noneAlarm"> 暂无异常告警</div>
@@ -184,7 +183,7 @@
                   </el-col>
                 </el-row>
               </div>
-              <div class="lift_readMore" @click="goToDetail">查看更多</div>
+              <div class="lift_readMore" >查看更多</div>
             </div>
             <div v-else class="noneAlarm"> 暂无异常告警</div>
           </div>
@@ -201,8 +200,9 @@
                   </el-col>
                 </el-row>
               </div>
-              <div class="lift_readMore" @click="goToDetail">查看更多</div>
-            
+              <div class="lift_readMore" >查看更多</div>
+
+
             </div>
             <div v-else class="noneAlarm"> 暂无异常告警</div>
           </div>
@@ -215,6 +215,7 @@
        
        </div>
         `,
+      // router: router,
       data() {
         return {
           titleItems:['基本信息', '事件','故障','违规','预警'],
@@ -228,7 +229,8 @@
           warning :{diagninfo:{reason: "", processed: 0, elevId: "", triggleTime: "", diagnType: 1}},
           processed:['待诊断','已完成'],
           arrowImg:'arrowImg0',
-          date:''
+          date:'',
+          // authorURL:'/detection'
         }
       },
       watch:{
@@ -238,6 +240,7 @@
           // 		fault :故障
           //    violation: 违规
           // alert(val)
+
           this.activeIndex = 0 // 每次重新点开弹窗时 初始tab都为第一个
           this.elevInfo = {inNum:'0'}
           this.accident={diagninfo:{extentions:{box:{floor:"000"}},reason: "", processed: 0, elevId: "", triggleTime: "", diagnType: 1}}
@@ -255,8 +258,8 @@
                   this.accident = res.data.data.accident
                   
                   this.accident.diagninfo.extentions = JSON.parse(res.data.data.accident.diagninfo.extentions)
-                  console.log("this.accident.diagninfo.extentions==" + this.accident.diagninfo.extentions.box.floor)
-                  console.log("this.accident.diagninfo.extentions==" + JSON.stringify(this.accident.diagninfo.extentions))
+                  // console.log("this.accident.diagninfo.extentions==" + this.accident.diagninfo.extentions.box.floor)
+                  // console.log("this.accident.diagninfo.extentions==" + JSON.stringify(this.accident.diagninfo.extentions))
 
                 }
                 if(res.data.data.fault.count > 0){
@@ -292,18 +295,22 @@
       
 
       mounted:function(){
-        console.log("id==" + this.id)
+        // console.log("id==" + this.id)
         // this.code = this.id
-        console.log('type：：：' + this.type)
+        // console.log('type：：：' + this.type)
 
         // console.log('$this=' + JSON.stringify($this))
         // this.$emit("vvv", "1")
       },
       
       methods:{
-        goToDetail(){
-          this.$router.push({'path':'/detection','query':{'regCode':this.id}})
-        }
+        // goToDetail(){
+        //   alert(this.id)
+        //   // this.$router.push('/detection')
+        //   this.$router.push({
+        //     path: '/lift-list'
+        //   })
+        // },
         // handleClick(tab, event) {
         //   // console.log(tab, event);
         // },
@@ -484,7 +491,7 @@
       },
       // A日历选择框改变时触发
       aChangePickDate(date, dateString){
-        console.log(date, dateString);
+        // console.log(date, dateString);
         this.liftListParams.triggleTime = dateString
         this.getAllLiftPoint()
       },
@@ -495,7 +502,7 @@
       },
 
       datePickerFocus(val){
-        console.log("aaaa===" + val)
+        // console.log("aaaa===" + val)
       },
       // 选择特定异常状态 筛选
       selectExceptionType(type){
@@ -522,7 +529,7 @@
               for( var i = 0 ;i< this.lnglats.length ; i++ ){
                 this.lnglats[i].latLon = this.lnglats[i].latLon.split(',');
               }
-              console.log("this.lnglats===" + JSON.stringify(this.lnglats))
+              // console.log("this.lnglats===" + JSON.stringify(this.lnglats))
             }
            
             
@@ -709,7 +716,7 @@
               _this.markers[i].setContent(markerContent)
               
             }
-            console.log(e.target.id)
+            // console.log(e.target.id)
             
             infoWindow.close()
             infoWindowComponent.$data.id = e.target.id
@@ -774,7 +781,7 @@
         api.lift.getLiftResult(regCode).then(res => {
           if (res.data.data) {
 
-            console.log("123++" + regCode)
+            // console.log("123++" + regCode)
             this.lnglats.forEach(item =>{
               if(item.regCode === regCode){
                 this.searchMarker = new AMap.Marker({
@@ -806,7 +813,7 @@
         // this.form.city = this.form.selectedOptions[0];
         this.form.area = this.myAddressarea(this.form.selectedOptions[1])
         this.form.minarea = this.myAddressMinarea(this.form.selectedOptions[2])
-        console.log('ddddd=====' + JSON.stringify(this.form))
+        // console.log('ddddd=====' + JSON.stringify(this.form))
         if (!this.form.area) {
           this.form.area = "深圳市";
         }

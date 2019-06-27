@@ -206,7 +206,6 @@
 
       // 删除 Cookies
       delCookie (name) {
-        console.log('name===' + name)
         var exp = new Date()
         exp.setTime(exp.getTime() - 1)
         var cval = this.getCookie(name)

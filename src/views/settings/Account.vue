@@ -377,7 +377,6 @@ export default {
    
     // 编辑账号
     editAccount(index, row){
-      console.log("row====" + JSON.stringify(row))
       this.EditAccountForm.id = row.id
       this.EditAccountForm.account = row.account
 
@@ -441,9 +440,9 @@ export default {
   
     // 改变账号状态
     changeStatus(event,index,row){
-      console.log('event==' + event)
-      console.log('index==' + index)
-      console.log('row==' + JSON.stringify(row))
+      // console.log('event==' + event)
+      // console.log('index==' + index)
+      // console.log('row==' + JSON.stringify(row))
       // this.getAllAccountJson[index].status = event
       if(event === 0){ // 禁用
         api.accountApi.banAccount({"id":row.id}).then((res) => {
@@ -504,7 +503,6 @@ export default {
       console.log('submit!');
       api.accountApi.createAccount(this.addAccountForm).then((res) => {
         this.adding = false
-        console.log("res.data.code" + res.data.code)
         
         if (res.data.code === 200) {
           // 修改角色
