@@ -135,7 +135,6 @@
           } else {
             this.getAllApiJson = []
           }
-          console.log("res.data.code" + res.data.data.records)
         }).catch((res) => {
           
         })
@@ -151,7 +150,6 @@
           api.corpApi.deleteCorp(row.id).then((res) => {
             
             if(res.data.code === 200){
-              console.log(JSON.stringify("aaaa===" + res))
               this.$message.success('删除成功！');
               this.getCorps()
             }
@@ -163,7 +161,6 @@
           this.$message.info("取消删除");            
         });
         
-        console.log(index, row);
       },
 
 

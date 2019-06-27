@@ -230,7 +230,6 @@
     },
     methods: {
       onRadioChange(aaa){
-        console.log("aa==" + this.mParam.corpId)
         this.getModules()
       },
       getCorps(){
@@ -275,7 +274,7 @@
       },
       // 确认绑定
       confirmBind(){
-        console.log("value---" + this.value)
+        // console.log("value---" + this.value)
         var _this = this
         var arrApi = []
         // this.getAllApiJson.forEach
@@ -289,7 +288,7 @@
           }
         })
         this.bindApi.apiIds = arrApi.join(',')
-        console.log("11111===" + this.bindApi.apiIds)
+        // console.log("11111===" + this.bindApi.apiIds)
 
         api.moduleApi.bindApi(this.bindApi).then((res) => {
           if (res.data.code === 200) {
@@ -363,10 +362,10 @@
           
         })
       },
-      handleCheckedCitiesChange(value){
-        // this.selectedArray = value
-        console.log("1111111111---" + JSON.stringify(this.selectedArray))
-      },
+      // handleCheckedCitiesChange(value){
+      //   // this.selectedArray = value
+      //   console.log("1111111111---" + JSON.stringify(this.selectedArray))
+      // },
       getApis(){
         
         api.managerApi.getApis(this.queryParam).then((res) => {
@@ -403,7 +402,6 @@
         // console.log('submit!');
         api.moduleApi.createModule(this.sizeForm).then((res) => {
           this.adding = false
-          console.log("res.data.code" + res.data.code)
           if (res.data.code === 200) {
             this.$message.success('创建成功！');
             this.getModules()
@@ -422,7 +420,6 @@
 
       // 编辑模块
       editModule(index, row){
-        console.log("row====" + JSON.stringify(row))
         this.EditAccountForm.id = row.id
         // this.EditAccountForm.corpId = row.corpId
         this.EditAccountForm.rename = row.name
