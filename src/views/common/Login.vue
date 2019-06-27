@@ -145,8 +145,6 @@
             }
             
           } else {
-            alert(2)
-
             // this.$message.error(res.data.message);
             this.warningTip = res.data.message
           }

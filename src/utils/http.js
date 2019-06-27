@@ -95,7 +95,7 @@ axios.interceptors.request.use(config => {
 }, err => {
     return Promise.reject(err);
 });
-//响应拦截器即异常处理
+// 响应拦截器即异常处理
 axios.interceptors.response.use(response => {
   console.log('response===', response); 
   if(response.data.code === '401000' || response.data.code === 401000) {
