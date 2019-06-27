@@ -95,21 +95,21 @@ axios.interceptors.request.use(config => {
 }, err => {
     return Promise.reject(err);
 });
-//响应拦截器即异常处理
-// axios.interceptors.response.use(response => {
-//   console.log('response===', response); 
-//   if(response.data.code === '401000' || response.data.code === 401000) {
+// 响应拦截器即异常处理
+axios.interceptors.response.use(response => {
+  console.log('response===', response); 
+  if(response.data.code === '401000' || response.data.code === 401000) {
     
-//     alert('token失效，请重新登录');
-//     window.location.href = '/';
-//     // this.$router.push('/')
-//   }
-//   return response;
-// }, error => {
-//   //对响应数据错误做操作
-//   console.log('请求error', error.message);
-//   return Promise.reject(error);
-// })
+    alert('token失效，请重新登录');
+    window.location.href = '/';
+    // this.$router.push('/')
+  }
+  return response;
+}, error => {
+  //对响应数据错误做操作
+  console.log('请求error', error.message);
+  return Promise.reject(error);
+})
 
 let protocol = process.env.NODE_ENV !== 'production' ? 'http:' : window.location.protocol
 // axios.defaults.baseURL = '/api'

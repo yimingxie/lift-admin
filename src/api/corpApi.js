@@ -4,7 +4,7 @@
 import http from '../utils/http'
 
 let protocol = process.env.NODE_ENV !== 'production' ? 'http:' : window.location.protocol
-let url2 = `${protocol}//192.168.100.7:8080`
+let url2 = `${protocol}//192.168.100.2/domino`
 
 export default  {
   
@@ -17,7 +17,7 @@ export default  {
   // }
   createCorp(params) {
     return http.post(
-      `/test02/domino/corp`, params
+      `${url2}/corp`, params
     )
   },
 
@@ -32,14 +32,14 @@ export default  {
 
   getCorps(params){
     return http.post(
-      `/test02/domino/corp/list`, params
+      `${url2}/corp/list`, params
     )
   },
   
   // 删除接口 根据接口id
   deleteCorp(corpId){
     return http.delete(
-      `/test02/domino/corp/${corpId}`
+      `${url2}/corp/${corpId}`
     )
   },
 

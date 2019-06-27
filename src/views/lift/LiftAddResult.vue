@@ -1306,7 +1306,7 @@ export default {
     background: url('../../assets/images/xym/delete-on.png') no-repeat center center;
   }
   .dwc-date-icon{
-    top: 33px;
+    top: 36px;
     z-index: 99;
   }
   

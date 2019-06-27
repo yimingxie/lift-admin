@@ -3,58 +3,58 @@
  */
 import http from '../utils/http'
 
-// let protocol = process.env.NODE_ENV !== 'production' ? 'http:' : window.location.protocol
-// let url2 = `${protocol}//192.168.100.7:8080`
+let protocol = process.env.NODE_ENV !== 'production' ? 'http:' : window.location.protocol
+let url2 = `${protocol}//192.168.100.2/domino`
 
 export default  {
   
   // 创建维保管理员的账户
   createAccount(params) {
     return http.post(
-      `/test02/domino/account`, params
+      `${url2}/account`, params
     )
   },
   // 根据账户列表模糊查询 仅限account
   getAccounts(params){
     return http.post(
-      `/test02/domino/account/list`, params
+      `${url2}/account/list`, params
     )
   },
   // 修改账号的enable 状态 禁用
   banAccount(params){
     return http.put(
-      `/test02/domino/account/ban`, params
+      `${url2}/account/ban`, params
     )
   },
   // 修改账号的enable 状态 启用
   pickAccount(params){
     return http.put(
-      `/test02/domino/account/pick`, params
+      `${url2}/account/pick`, params
     )
   },
   // 修改用户账号
   editAccount(params){
     return http.put(
-      `/test02/domino/account`, params
+      `${url2}/account`, params
     )
   },
   // 删除用户账号
   deleteAccount(id){
     return http.delete(
-      `/test02/domino/${id}/del`
+      `${url2}/${id}/del`
     )
   },
   // 重置账户密码
   // params:{id:""}
   resetAccount(params){
     return http.put(
-      `/test02/domino/account/reset`,params
+      `${url2}/account/reset`,params
     )
   },
   // 账户绑定角色
   accountBindRole(params){
     return http.post(
-      `/test02/domino/account/bind`,params
+      `${url2}/account/bind`,params
     )
   },
 

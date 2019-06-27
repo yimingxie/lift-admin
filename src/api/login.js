@@ -3,15 +3,15 @@
  */
 import http from '../utils/http'
 
-// let protocol = process.env.NODE_ENV !== 'production' ? 'http:' : window.location.protocol
-// let url2 = `${protocol}//192.168.100.7:8080`
+let protocol = process.env.NODE_ENV !== 'production' ? 'http:' : window.location.protocol
+let url2 = `${protocol}//192.168.100.2/domino`
 
 export default  {
   
   // 登录
   login(params) {
     return http.post(
-      `/test02/domino/login`, params
+      `${url2}/login`, params
     )
   },
   

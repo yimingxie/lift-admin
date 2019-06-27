@@ -5,7 +5,7 @@ let protocol = process.env.NODE_ENV !== 'production' ? 'http:' : window.location
 // let url1 = `${protocol}//iot.gidomino.com`
 // let url1 = `${protocol}//192.168.100.89:8080`
 // let url1 = `${protocol}//192.168.100.7:8080`
-let url1 = `${protocol}//192.168.100.2/domino`
+let url1 = `${protocol}//192.168.100.2/arctic`
 
 
 
