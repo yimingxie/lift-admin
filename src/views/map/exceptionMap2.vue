@@ -131,7 +131,7 @@
               <div style="margin-bottom:20px">
                 <span class="lift_status">电梯状态</span>
                 <span class="lift_time info_font12">{{ accident.diagninfo.triggleTime | dateformat('HH:mm:ss')}} </span> 
-                <span class="accident_detail">详情></span>
+                <span class="accident_detail" @click="goToDetail">详情></span>
               </div>
               <el-row>
                 <el-col :span="8" >
@@ -166,7 +166,7 @@
                   </el-col>
                 </el-row>
               </div>
-              <div class="lift_readMore">查看更多</div>
+              <div class="lift_readMore" @click="goToDetail">查看更多</div>
             
             </div>
             <div v-else class="noneAlarm"> 暂无异常告警</div>
@@ -184,7 +184,7 @@
                   </el-col>
                 </el-row>
               </div>
-              <div class="lift_readMore">查看更多</div>
+              <div class="lift_readMore" @click="goToDetail">查看更多</div>
             </div>
             <div v-else class="noneAlarm"> 暂无异常告警</div>
           </div>
@@ -201,7 +201,7 @@
                   </el-col>
                 </el-row>
               </div>
-              <div class="lift_readMore">查看更多</div>
+              <div class="lift_readMore" @click="goToDetail">查看更多</div>
             
             </div>
             <div v-else class="noneAlarm"> 暂无异常告警</div>
@@ -219,8 +219,8 @@
         return {
           titleItems:['基本信息', '事件','故障','违规','预警'],
           activeIndex: 0,
-          id:0, // 等同reg_code码
-          type:"[0,-,-,-]", // 等同diagn_code
+          id:0, // 等同regCode码
+          type:"[0,-,-,-]", // 等同diagnCode
           elevInfo:{inNum:'0'},
           accident:{diagninfo:{extentions:{box:{floor:"000"}},reason: "", processed: 0, elevId: "", triggleTime: "", diagnType: 1}},
           fault :{diagninfo:{reason: "", processed: 0, elevId: "", triggleTime: "", diagnType: 1}},
@@ -301,6 +301,9 @@
       },
       
       methods:{
+        goToDetail(){
+          this.$router.push({'path':'/detection','query':{'regCode':this.id}})
+        }
         // handleClick(tab, event) {
         //   // console.log(tab, event);
         // },
@@ -364,7 +367,7 @@
           areaCode:"4403",
           diagnType:-1,
           processed:-1,
-          regCode:"007"
+          regCode:""
           // }
         },
         abnormalCount : 0,
