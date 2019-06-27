@@ -236,6 +236,7 @@
       display: table
       padding 0 12px 0 5px
       height 37px
+      margin 0!important
       .active{
           color: #C2C7CC;
           -webkit-transition: all 0.1s;

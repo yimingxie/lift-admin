@@ -10,7 +10,15 @@
       <h1 class="tac">模块功能集合</h1>
       <el-form ref="form" :model="sizeForm" label-width="140px" class="demo-ruleForm">
         <el-form-item label="模块名称">
-          <el-input v-model="sizeForm.name"></el-input>
+          <!-- <el-input v-model="sizeForm.name"></el-input> -->
+          <el-select v-model="sizeForm.name" placeholder="请选择">
+            <el-option label="作业地图" value="作业地图"></el-option>
+            <el-option label="数字电梯" value="数字电梯"></el-option>
+            <el-option label="检测诊断" value="检测诊断"></el-option>
+            <el-option label="任务管理" value="任务管理"></el-option>
+            <el-option label="经营报表" value="经营报表"></el-option>
+            <el-option label="系统设置" value="系统设置"></el-option>
+          </el-select>
         </el-form-item>
         <el-form-item label="所属公司id">
           <!-- <el-input v-model="sizeForm.corpId"></el-input> -->
@@ -159,8 +167,8 @@
         formLabelWidth: '80px',
         sizeForm: {
           corpId: '',
-          name: "测试",
-          description: "测试",
+          name: "作业地图",
+          description: "作业地图",
           // webView:[]
         },
         adding:true,
