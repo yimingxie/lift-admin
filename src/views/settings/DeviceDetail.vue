@@ -598,6 +598,9 @@ export default {
     background url('../../assets/images/xym/device-edit.png') no-repeat center center;
     cursor pointer;
   }
+  .dwc-date-icon{
+    top: -4px;
+  }
 }
 
 @media screen and (max-width: 1360px) {
