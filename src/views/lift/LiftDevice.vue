@@ -543,6 +543,9 @@ export default {
   .llt-tr.offline .lift-device-status span{
     color #C2C7CC;
   }
+  .dwc-date-icon{
+    top: -4px;
+  }
 
 }
 

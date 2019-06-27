@@ -1,7 +1,7 @@
 <template>
   <!-- 区域选择组件 -->
   <div class="city-box">
-    <el-cascader ref="cityCascader" placeholder="请选择区域" :options="options" v-model="selectedOptions" size="small" change-on-select @change="handleChange" style="width: 100%;"></el-cascader>
+    <el-cascader ref="cityCascader" placeholder="请选择区域" :options="options" clearable v-model="selectedOptions" size="small" change-on-select @change="handleChange" style="width: 100%;"></el-cascader>
   </div>
 </template>
 

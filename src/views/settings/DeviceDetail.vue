@@ -420,7 +420,7 @@ export default {
       api.device.deleteDeviceMainten(params).then(res => {
         if (res.data.code == '200') {
           that.$message.success(`${res.data.message}`)
-          this.$router.push({
+          that.$router.push({
             path: '/lift-device',
             query: {
               regCode: that.regCode
@@ -461,7 +461,12 @@ export default {
           that.$message.success(`${res.data.message}`)
           // that.$router.push({path: '/lift-list'})
           setTimeout(function() {
-            that.$router.push({path: '/device'})
+            that.$router.push({
+              path: '/lift-device',
+              query: {
+                regCode: that.regCode
+              }
+            })
           }, 500)
         } else {
           that.$message.error(`${res.data.message}`)
