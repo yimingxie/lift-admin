@@ -727,6 +727,9 @@ export default {
   .el-form-item{
     margin-bottom 14px !important;
   }
+  .dwc-date-icon{
+    top: -4px;
+  }
   
 }
 

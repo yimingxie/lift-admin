@@ -28,7 +28,7 @@
                 <div class="lar-con clearfix">
                   <el-form-item prop="regCode" class="lar-box">
                     <h4>电梯注册代码</h4>
-                    <p v-if="submitState == 'put'">{{ruleForm.regCode}}</p>
+                    <p class="show-pp" v-if="submitState == 'put'">{{ruleForm.regCode}}</p>
                     <el-input v-model="ruleForm.regCode" size="small" v-else></el-input>
                   </el-form-item>
                   <el-form-item prop="inNum" class="lar-box">
@@ -51,13 +51,13 @@
                   <!-- 省市区街道级联 -->
                   <el-form-item prop="areaCode" class="lar-box">
                     <h4>城市/区域</h4>
-                    <p v-if="submitState == 'put'">{{ruleForm.localArea}}</p>
+                    <p class="show-pp" v-if="submitState == 'put'">{{ruleForm.localArea}}</p>
                     <city-choose @childVal="getCity" :selectCity="special.areaCode" v-else></city-choose>
                   </el-form-item>
 
                   <el-form-item prop="address" class="lar-box">
                     <h4>详细地址</h4>
-                    <p v-if="submitState == 'put'">{{ruleForm.address}}</p>
+                    <p class="show-pp" v-if="submitState == 'put'">{{ruleForm.address}}</p>
                     <el-input v-model="ruleForm.address" size="small" id="address" @input="searchMap()" v-else></el-input>
                   </el-form-item>
                   
@@ -75,33 +75,33 @@
                 <div class="lar-con clearfix">
                   <el-form-item prop="elevName" class="lar-box">
                     <h4>电梯名称</h4>
-                    <p v-if="submitState == 'put'">{{ruleForm.elevName}}</p>
+                    <p class="show-pp" v-if="submitState == 'put'">{{ruleForm.elevName}}</p>
                     <el-input v-model="ruleForm.elevName" size="small" v-else></el-input>
                   </el-form-item>
                   <el-form-item prop="elevType" class="lar-box">
                     <h4>型号</h4>
-                    <p v-if="submitState == 'put'">{{ruleForm.elevType}}</p>
+                    <p class="show-pp" v-if="submitState == 'put'">{{ruleForm.elevType}}</p>
                     <el-input v-model="ruleForm.elevType" size="small" v-else></el-input>
                   </el-form-item>
                   <el-form-item prop="elevVar" class="lar-box">
                     <h4>电梯品种</h4>
-                    <p v-if="submitState == 'put'">{{ruleForm.elevVar}}</p>
+                    <p class="show-pp" v-if="submitState == 'put'">{{ruleForm.elevVar}}</p>
                     <el-input v-model="ruleForm.elevVar" size="small" v-else></el-input>
                   </el-form-item>
                   <el-form-item prop="elevFacnum" class="lar-box">
                     <h4>出厂编号</h4>
-                    <p v-if="submitState == 'put'">{{ruleForm.elevFacnum}}</p>
+                    <p class="show-pp" v-if="submitState == 'put'">{{ruleForm.elevFacnum}}</p>
                     <el-input v-model="ruleForm.elevFacnum" size="small" v-else></el-input>
                   </el-form-item>
                   <el-form-item prop="manufactName" class="lar-box">
                     <h4>制造单位</h4>
-                    <p v-if="submitState == 'put'">{{ruleForm.manufactName}}</p>
+                    <p class="show-pp" v-if="submitState == 'put'">{{ruleForm.manufactName}}</p>
                     <el-input v-model="ruleForm.manufactName" size="small" v-else></el-input>
                   </el-form-item>
                   <el-form-item prop="elevDate" class="lar-box">
                     <h4>制造日期</h4>
                     <div v-if="submitState == 'post'" class="dwc-date-icon"></div>
-                    <p v-if="submitState == 'put'">{{ruleForm.elevDate}}</p>
+                    <p class="show-pp" v-if="submitState == 'put'">{{ruleForm.elevDate}}</p>
                     <el-date-picker v-model="ruleForm.elevDate" type="date" placeholder="选择日期" prefix-icon="test-icon" value-format="yyyy-MM-dd" size="small" style="width: 100%" v-else></el-date-picker>
                   </el-form-item>
 
@@ -200,7 +200,7 @@
                     <el-form-item prop="carForm" class="lar-box" style="width: 100%;">
                       <h4>轿厢形式</h4>
                       <div class="clearfix" v-for="(item, i) in special.carForm" :key="i">
-                        <div style="float: left; width: 22%">
+                        <div style="float: left; width: 22%;margin-bottom: 3px;">
                           <el-input v-model="item.value" size="small" placeholder="请输入"></el-input>
                         </div>
                         <div class="delete-floor-icon" @click="deleteCarForm(i)" v-if="i > 0"></div>
@@ -1308,6 +1308,11 @@ export default {
   .dwc-date-icon{
     top: 36px;
     z-index: 99;
+  }
+  .show-pp{
+    line-height: 32px;
+    height: 32px;
+    margin-bottom: 0 !important;
   }
   
 

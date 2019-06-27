@@ -4,7 +4,7 @@ let protocol = process.env.NODE_ENV !== 'production' ? 'http:' : window.location
 let url1 = `${protocol}//iot.gidomino.com`
 // let url2 = `${protocol}//192.168.100.89:8080`
 // let url2 = `${protocol}//192.168.100.7:8080`
-let url2 = `${protocol}//192.168.100.2/domino`
+let url2 = `${protocol}//192.168.100.2/arctic`
 
 
 export default {
@@ -18,6 +18,21 @@ export default {
     return http.post(`${url2}/elevator/diagninfo/list`, params)
 
   },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   // 电梯实时数据
   getCurrent(id) {
