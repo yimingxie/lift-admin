@@ -729,12 +729,12 @@
   line-height 24px;
   height 24px;
   text-align: center;
-  background: rgba(66,114,255,0.3);
   color #fff;
   cursor pointer;
-}
-.dcc-btn-current.on{
   background: rgba(66,114,255,1);
+}
+.dcc-btn-current.useless{
+  background: rgba(66,114,255,0.3);
 }
 .dcc-btn{
   float left;
@@ -744,12 +744,16 @@
   border-radius: 4px;
   cursor pointer;
   margin: 0 4px;
-  box-shadow: 0 2px 4px 0 rgba(66,114,255,0.30);
 }
 .dcc-btn-left{
-  background: #4272FF url('../../assets/images/xym/dcc-left.png') no-repeat center center;
+  background: rgba(66,114,255,1) url('../../assets/images/xym/dcc-left.png') no-repeat center center;
+}
+.dcc-btn-left.useless{
+  background: rgba(66,114,255,0.3) url('../../assets/images/xym/dcc-left.png') no-repeat center center;
 }
 .dcc-btn-right{
   background: rgba(66,114,255,1) url('../../assets/images/xym/dcc-right.png') no-repeat center center;
 }
-
+.dcc-btn-right.useless{
+  background: rgba(66,114,255,0.3) url('../../assets/images/xym/dcc-right.png') no-repeat center center;
+}
