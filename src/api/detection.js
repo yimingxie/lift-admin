@@ -6,8 +6,9 @@ let url1 = `${protocol}//iot.gidomino.com`
 // let url2 = `${protocol}//192.168.100.7:8080`
 
 
-let url2 = `${protocol}//iot.gidomino.com/arctic`
+// let url2 = `${protocol}//iot.gidomino.com/arctic`
 // let url2 = `${protocol}//192.168.100.2/arctic`
+let url2 = `${http.localURL}/arctic`
 
 
 export default {

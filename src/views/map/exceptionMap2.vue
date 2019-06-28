@@ -943,8 +943,8 @@
     width 100%
     background white
     vertical-align middle
-    -webkit-box-shadow: 0 2px 6px 0 rgba(114,124,245,0.5);
-    box-shadow: 0 2px 6px 0 rgba(114,124,245,0.5);
+    -webkit-box-shadow: 0 1px 10px 0 rgba(66,114,255,0.15);
+    box-shadow: 0 1px 10px 0 rgba(66,114,255,0.15);
     .regionPicker
       width 100px
       margin 10px 5px 10px 10px

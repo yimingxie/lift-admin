@@ -16,8 +16,6 @@
  */
 
 
-import corp from './api/corp'
-import detail from './api/detail'
 import accountApi from './api/accountApi'
 import roleApi from './api/roleApi'
 import managerApi from './api/managerApi'
@@ -30,8 +28,6 @@ import device from './api/device'
 import mapApi from './api/mapApi'
 
 export default {
-  corp,
-  detail,
   accountApi,
   roleApi,
   managerApi,
