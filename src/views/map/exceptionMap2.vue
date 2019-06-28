@@ -277,9 +277,8 @@
               }
             })
           }
-          
+          // 每次请求数据完成后将id重置，重新点开弹窗时再次请求数据
           this.id = 0
-          // console.log("activeIndex==" + this.activeIndex)
         },
         type(){
           if( this.type === "[-,1,-,-]") {
@@ -296,7 +295,6 @@
         }
       },
       
-
       mounted:function(){
    
       },
@@ -487,13 +485,10 @@
       },
       
       // 日历选择框改变时触发
-      datePickerChange(val){
-        this.getAllLiftPoint()
-      },
+      // datePickerChange(val){
+      //   this.getAllLiftPoint()
+      // },
 
-      datePickerFocus(val){
-        // console.log("aaaa===" + val)
-      },
       // 选择特定异常状态 筛选
       selectExceptionType(type){
         this.liftListParams.diagnType = type
@@ -625,8 +620,7 @@
               var marker = new AMap.Marker({
                 content: markerContent,  // 自定义点标记覆盖物内容
                 position:  _this.lnglats[i].latLon, // 基点位置
-                // offset: new AMap.Pixel(-17, -42) // 相对于基点的偏移位置
-                offset: new AMap.Pixel(1,4), // 设置点标记偏移量
+                offset: new AMap.Pixel(1,4), // 相对于基点的偏移位置
                 anchor:'center', // 设置锚点方位
                 zIndex: 2,
                 topWhenClick: true
@@ -1132,7 +1126,8 @@
 .lift_readMore
   text-indent 100px
   margin-top 10px
-  background url("../../assets/images/hs/readMore.png") 165px no-repeat; 
+  background url("../../assets/images/hs/readMore.png") 165px no-repeat;
+  cursor pointer
 .noneAlarm
   height 100px
   line-height 100px
@@ -1142,6 +1137,7 @@
   float right
   font-size: 12px;
   letter-spacing: 0.02px;
+  cursor: pointer;
 .lift_status
   margin-right 15px
 .lift_font10
