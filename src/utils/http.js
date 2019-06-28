@@ -115,16 +115,24 @@ axios.interceptors.response.use(response => {
 let protocol = process.env.NODE_ENV !== 'production' ? 'http:' : window.location.protocol
 // axios.defaults.baseURL = '/api'
 
-// if (process.env.NODE_ENV == 'development') { 
-//   axios.defaults.baseURL = `${protocol}//iot.gidomino.com`
-//   // axios.defaults.baseURL = `${protocol}//192.168.100.11:8080`
-//   // axios.defaults.baseURL = `${protocol}//192.168.100.7:8080`
-//   // axios.defaults.baseURL = `${protocol}//127.0.0.1/`
-//  } else if (process.env.NODE_ENV == 'debug') { 
-//   axios.defaults.baseURL = '';
-//  } else if (process.env.NODE_ENV == 'production') { 
-//   axios.defaults.baseURL = `${protocol}//iot.gidomino.com`
-//  }
+
+let iot
+let devURL
+let xiaohuURL
+let shupingURL
+let localURL
+
+
+if (process.env.NODE_ENV == 'development') {
+  iot = `${protocol}//iot.gidomino.com`
+  devURL = `${protocol}//192.168.100.2`
+  xiaohuURL = `${protocol}//192.168.100.89:8080`
+  shupingURL = `${protocol}//192.168.100.7:8080`
+  localURL = `${protocol}//127.0.0.1`
+} else if (process.env.NODE_ENV == 'production') { 
+// axios.defaults.baseURL = `${protocol}//iot.gidomino.com`
+  localURL = iot = devURL = xiaohuURL = shupingURL = `${protocol}//192.168.100.2`
+}
 
 // let AUTH_TOKEN=(function(){
 //   return window.localStorage.getItem('accessToken')
@@ -144,6 +152,11 @@ axios.defaults.headers = {
 axios.defaults.timeout = 10000
 
 export default {
+  iot,
+  devURL,
+  xiaohuURL,
+  shupingURL,
+  localURL,
   //get请求
   get (url,param) {
     return new Promise((resolve,reject) => {
