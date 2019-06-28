@@ -1,6 +1,6 @@
-# avue2.0
+# liftV1 第一阶段
 
-> A Vue.js project
+> 本版本发布在http://iot.gidomino.com/elevator/#/  时间：2019年6月28日16:32:00
 
 ## Build Setup
 
