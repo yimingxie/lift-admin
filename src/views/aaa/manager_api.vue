@@ -33,33 +33,33 @@
       </el-form>
       <div style="position:relative;;display:flex;">
         &nbsp;
-      <!-- 表格 -->
-      <el-table :data="getAllApiJson" style="margin-top:30px">
-        <el-table-column prop="name" label="名称">
-        </el-table-column>
-        <el-table-column prop="code" label="code码">
-        </el-table-column>
+          <!-- 表格 -->
+          <el-table :data="getAllApiJson" style="margin-top:30px">
+            <el-table-column prop="name" label="名称">
+            </el-table-column>
+            <el-table-column prop="code" label="code码">
+            </el-table-column>
 
-        <el-table-column prop="url" label="访问url">
-        </el-table-column>
-        <el-table-column prop="description" label="描述">
-        </el-table-column>
-        <!-- <el-table-column prop="version" label="版本">
-        </el-table-column> -->
-        
-        <el-table-column label="操作">
-          <template slot-scope="scope">
-            <!-- 1.在封装好的组件上使用，所以要加上.native才能click
-            2.prevent就相当于..event.preventDefault() -->
-            <!-- <el-button @click.native.prevent="editAccount(scope.$index, scope.row)" type="text">编辑
-            </el-button> -->
-            <el-button  style="color: #E9645D;" @click.native.prevent="deleteAccount(scope.$index, scope.row)" type="text">删除
-            </el-button>
+            <el-table-column prop="url" label="访问url">
+            </el-table-column>
+            <el-table-column prop="description" label="描述">
+            </el-table-column>
+            <!-- <el-table-column prop="version" label="版本">
+            </el-table-column> -->
             
-          </template>
-        </el-table-column>
-      </el-table>
-       &nbsp;
+            <el-table-column label="操作">
+              <template slot-scope="scope">
+                <!-- 1.在封装好的组件上使用，所以要加上.native才能click
+                2.prevent就相当于..event.preventDefault() -->
+                <!-- <el-button @click.native.prevent="editAccount(scope.$index, scope.row)" type="text">编辑
+                </el-button> -->
+                <el-button  style="color: #E9645D;" @click.native.prevent="deleteAccount(scope.$index, scope.row)" type="text">删除
+                </el-button>
+                
+              </template>
+            </el-table-column>
+          </el-table>
+        &nbsp;
       </div>
     </div>
   </div>
@@ -101,7 +101,7 @@
         EditAccountForm:{
           id:"",
           account:"",
-        }
+        },
       }
     },
     created() {
@@ -111,6 +111,20 @@
       this.getApis()
     },
     methods: {
+      // 每页条数变化
+      handleSizeChange(val) {
+        this.queryParam.limit = val
+        // console.log(`每页 ${val} 条`);
+        this.getApis()
+      },
+
+      // 当前页变化
+      handleCurrentChange(val) {
+        this.queryParam.offset = val
+        // console.log(`当前页: ${val}`);
+        this.getApis()
+      },
+      // 创建api接口
       onSubmit() {
         console.log('submit!');
         api.managerApi.createApi(this.sizeForm).then((res) => {
@@ -120,7 +134,6 @@
             this.getApis()
           } else {
             this.$message.error(res.data.message);
-            
           }
           // this.resetAdd()
         }).catch((res) => {

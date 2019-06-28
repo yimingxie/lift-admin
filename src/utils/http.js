@@ -4,7 +4,7 @@
 
 //引入axios
 import axios from 'axios'
-
+import router from '../router-config'
 let cancel ,promiseArr = {}
 const CancelToken = axios.CancelToken;
 //请求拦截器
@@ -95,13 +95,14 @@ axios.interceptors.request.use(config => {
 }, err => {
     return Promise.reject(err);
 });
-// 响应拦截器即异常处理
+// 响应拦截器即异常处理响应拦截器即异常处理
 axios.interceptors.response.use(response => {
   // console.log('response===', response); 
   if(response.data.code === '401000' || response.data.code === 401000) {
     
     alert('token失效，请重新登录');
-    window.location.href = '/';
+    // window.location.href = '/';
+    // router.push('/')
     // this.$router.push('/')
   }
   return response;
