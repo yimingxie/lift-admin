@@ -5,13 +5,13 @@
         <div class="lift-error-sum">
           <div class="les-box">
             <div class="les-box-top">
-              <div class="les-box-top-data"><span>267</span>异常电梯数</div>
+              <div class="les-box-top-data"><span>{{eleStList.abnormalCount}}</span>异常电梯数</div>
               <div class="les-box-top-day">今日</div>
             </div>
             <div class="les-box-bottom clearfix">
-              <p>电梯总数：10000</p>
-              <p>未处理：<span>25</span></p>
-              <p>已处理：76</p>
+              <p>电梯总数：{{eleStList.elevatorCount}}</p>
+              <p>未处理：<span>{{eleStList.elevatorCount - eleStList.abnormalHandle}}</span></p>
+              <p>已处理：{{eleStList.abnormalHandle}}</p>
             </div>
           </div>
         </div>
@@ -20,17 +20,17 @@
           <div class="let-box" @mouseenter="leType.show1=false" @mouseleave="leType.show1=true">
             <div class="let-box-line"></div>
             <div class="let-box-simple" v-show="leType.show1">
-              <h4>13</h4>
+              <h4>{{eleStList.accidentCount}}</h4>
               <p>事件告警电梯</p>
             </div>
             <div class="let-box-detail clearfix" v-show="!leType.show1">
               <div class="lbd-left">
-                <h4>13</h4>
+                <h4>{{eleStList.accidentCount}}</h4>
                 <p>事件</p>
               </div>
               <div class="lbd-right">
-                <p>待诊断：<span>6</span></p>
-                <p>已诊断：7</p>
+                <p>待诊断：<span>{{eleStList.accidentCount - eleStList.accidentHandle}}</span></p>
+                <p>已诊断：{{eleStList.accidentHandle}}</p>
               </div>
             </div>
           </div>
@@ -38,17 +38,17 @@
           <div class="let-box" @mouseenter="leType.show2=false" @mouseleave="leType.show2=true">
             <div class="let-box-line"></div>
             <div class="let-box-simple" v-show="leType.show2">
-              <h4>24</h4>
+              <h4>{{eleStList.faultCount}}</h4>
               <p>故障告警电梯</p>
             </div>
             <div class="let-box-detail clearfix" v-show="!leType.show2">
               <div class="lbd-left">
-                <h4>24</h4>
+                <h4>{{eleStList.faultCount}}</h4>
                 <p>故障</p>
               </div>
               <div class="lbd-right">
-                <p>待诊断：<span>6</span></p>
-                <p>已诊断：7</p>
+                <p>待诊断：<span>{{eleStList.faultCount - eleStList.faultHandle}}</span></p>
+                <p>已诊断：{{eleStList.faultHandle}}</p>
               </div>
             </div>
           </div>
@@ -56,34 +56,34 @@
           <div class="let-box" @mouseenter="leType.show3=false" @mouseleave="leType.show3=true">
             <div class="let-box-line"></div>
             <div class="let-box-simple" v-show="leType.show3">
-              <h4>189</h4>
+              <h4>{{eleStList.violationCount}}</h4>
               <p>违规告警电梯</p>
             </div>
             <div class="let-box-detail clearfix" v-show="!leType.show3">
               <div class="lbd-left">
-                <h4>189</h4>
+                <h4>{{eleStList.violationCount}}</h4>
                 <p>违规</p>
               </div>
               <div class="lbd-right">
-                <p>待诊断：<span>6</span></p>
-                <p>已诊断：7</p>
+                <p>待诊断：<span>{{eleStList.violationCount - eleStList.violationHandle}}</span></p>
+                <p>已诊断：{{eleStList.violationHandle}}</p>
               </div>
             </div>
           </div>
 
           <div class="let-box" @mouseenter="leType.show4=false" @mouseleave="leType.show4=true">
             <div class="let-box-simple" v-show="leType.show4">
-              <h4>40</h4>
+              <h4>{{eleStList.warningCount}}</h4>
               <p>设备预警电梯</p>
             </div>
             <div class="let-box-detail clearfix" v-show="!leType.show4">
               <div class="lbd-left">
-                <h4>40</h4>
+                <h4>{{eleStList.warningCount}}</h4>
                 <p>预警</p>
               </div>
               <div class="lbd-right">
-                <p>待诊断：<span>6</span></p>
-                <p>已诊断：7</p>
+                <p>待诊断：<span>{{eleStList.warningCount - eleStList.warningHandle}}</span></p>
+                <p>已诊断：{{eleStList.warningHandle}}</p>
               </div>
             </div>
           </div>
@@ -94,11 +94,11 @@
           
           <div class="les-box">
             <div class="les-box-top">
-              <div class="les-box-top-data"><span>267</span>异常外派人员</div>
+              <div class="les-box-top-data"><span>{{eleStList.abnormalPeople}}</span>异常外派人员</div>
               <div class="les-box-top-day">今日</div>
             </div>
             <div class="les-box-bottom clearfix">
-              <p style="width: 100%;">异常作业及时率：92%</p>
+              <p style="width: 100%;">异常作业及时率：{{eleStList.promptness}}%</p>
             </div>
           </div>
 
@@ -119,6 +119,13 @@
               <em>异常分类：</em>
               <radio-group :items="exceptItem" :value.sync="exceptValue" style="display: inline-block"></radio-group>
             </div>
+            <div class="llct-line" style="margin-left: 14px;"></div>
+            <div class="llct-type clearfix">
+              <em>排序方式：</em>
+              <radio-group :items="sortItem" :value.sync="sortValue" style="display: inline-block"></radio-group>
+            </div>
+
+
           </div>
 
           <div class="ll-choose-bottom clearfix">
@@ -177,7 +184,7 @@
                 <div class="llt-td">
                   <span class="llt-td-a" @click="goLiftResult(item.regCode)">电梯档案</span>
                   <em class="llt-td-line">|</em>
-                  <span class="llt-td-a">设置监控</span>
+                  <span class="llt-td-a" @click="goDetectionSet(item.regCode)">设置监控</span>
                   <em class="llt-td-line">|</em>
                   <span class="llt-td-a" @click="goDetection(item.regCode)">诊断</span>
                 </div>
@@ -257,6 +264,13 @@ export default {
         {label: '事件', value: 3}
       ],
       exceptValue: -1,
+      sortItem: [
+        {label: '添加时间', value: -1},
+        {label: '异常最多', value: 0},
+        {label: '异常最少', value: 1}
+     
+      ],
+      sortValue: -1,
       leType: {
         show1: true,
         show2: true,
@@ -267,7 +281,8 @@ export default {
         offset: 1, 
         limit: 10,
         excpType: -1,
-        order: 'desc'
+        order: 'desc', // 异常排序
+        timeOrder: 'desc' // 添加时间
       },
       sortClass: '',
       test: '',
@@ -275,10 +290,28 @@ export default {
       totalPage: 1,
       pageSize: 10,
 
+      eleStList: {
+        elevatorCount: 0,
+        abnormalCount: 0,
+        abnormalHandle: 0,
+        warningCount: 0,
+        warningHandle: 0,
+        violationCount: 0,
+        violationHandle: 0,
+        faultCount: 0,
+        faultHandle: 0,
+        accidentCount: 0,
+        accidentHandle: 0,
+        abnormalPeople: 0,
+        promptness: 0,
+      },
+      
+
     }
   },
   mounted() {
     this.getLiftList()
+    this.getEleStatistics()
   },
   methods: {
     // 获取数字电梯列表
@@ -296,6 +329,14 @@ export default {
         // 分页
         this.currentPage = res.data.data.current
         this.totalPage = res.data.data.total
+      })
+    },
+
+    // 查询数字电梯统计
+    getEleStatistics() {
+      api.lift.getEleStatistics().then(res => {
+        if (!res.data.data) return
+        this.eleStList = res.data.data
       })
     },
 
@@ -340,6 +381,9 @@ export default {
       this.getLiftList()
     },
 
+    // 排序方式排序
+    sortSort() {},
+
     // 当前分页改变
     currentPageChange(current) {
       this.liftListParams.offset = current
@@ -364,7 +408,8 @@ export default {
       this.$router.push({
         path: '/lift-add-result',
         query: {
-          regCode: regCode
+          regCode: regCode,
+          submitState: 'put'
         }
       })
     },
@@ -406,6 +451,16 @@ export default {
       })
     },
 
+    // 跳转到设置监控
+    goDetectionSet(regCode) {
+      this.$router.push({
+        path: '/detection-set-model',
+        query: {
+          regCode: regCode
+        }
+      })
+    },
+
     // 跳转到诊断
     goDetection(regCode) {
       this.$router.push({
@@ -421,6 +476,22 @@ export default {
     // 异常分类筛选
     exceptValue(val, oldVal) {
       this.liftListParams.excpType = val
+      this.getLiftList()
+    },
+    // 排序方式筛选
+    sortValue(val, oldVal) {
+      if (val === -1) {
+        // 添加时间最新排第一个
+        this.liftListParams.timeOrder = 'desc'
+        this.liftListParams.order = 'desc'
+      } else if (val === 0) {
+        this.liftListParams.timeOrder = 'asc'
+        this.liftListParams.order = 'desc'
+      } else if (val === 1) {
+        this.liftListParams.timeOrder = 'asc'
+        this.liftListParams.order = 'asc'
+      }
+      
       this.getLiftList()
     }
   },
