@@ -1,0 +1,156 @@
+$clearfix
+  &:before
+  &:after
+    display table
+    content ""
+    line-height 0
+  &:after
+    clear both
+// 清除浮动
+// ------------------------------
+clearfix()
+  @extend $clearfix
+.splitLine{
+  color: #D8DDDF;
+  margin 0 10px 0 5px
+}
+.splitBar{
+  background: #F5F6F7;
+  height 10px
+  margin 0 -25px
+}
+.main-wrap{
+  letter-spacing: 0.03px;
+  box-sizing: border-box;
+  overflow: auto;
+  box-sizing: border-box;
+  padding: 0 10px;
+  color: #34414C;
+
+  // 此为一行
+  .row{
+    position: relative;
+    width: 100%;
+    clearfix()
+  }
+  // 面板公用类
+  .panel {
+    background: #fff;
+    box-shadow: 0 8px 20px -12px rgba(66,114,255,0.30);
+    border-radius: 8px;
+    padding: 0 25px 20px;
+    box-sizing: border-box;
+    margin: 20px 10px 0;
+    position: relative;
+    z-index 99
+    // overflow: hidden;
+  }
+
+  //页面标题
+  .title{
+    padding: 15px 0;
+    margin: 0 -25px;
+    vertical-align: middle;
+    box-sizing: border-box;
+    position relative
+    border-bottom: 1px solid #D8DDDF
+    
+    .label1{
+      font-size: 16px;
+      color: #34414C;
+      margin-left 25px
+    }
+      
+    .label2{
+      color: #959698;
+    }
+  }
+  //二級 筛选
+  .subSelect{
+    line-height: 40px;
+    height: 53px;
+    padding-top: 7px;
+    vertical-align: middle;
+    box-sizing: border-box;
+    position relative
+    border-bottom: 1px dashed #D8DDDF;
+  
+  }
+  // 一些按钮和搜索框
+  .subBtns{
+    padding: 20px 0;
+    vertical-align: middle;
+    box-sizing: border-box;
+    position relative
+    font-size: 0;
+    clearfix()
+  }
+  .btn{
+    cursor pointer
+  }
+  .blueBtn{
+    height 32px
+    padding 0 18px
+    background url('assets/images/hs/add.png') #4272FF no-repeat  10px center
+    // background: #4272FF url("assets/images/quit.png") no-repeat;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #FFFFFF;
+    text-indent: 12px;
+    margin-right: 10px
+    line-height: 21px
+  }
+  .whiteBtn{
+    // size 88px 32px  
+    height 32px
+    padding 0 15px
+    background: rgba(255,255,255,0.80);
+    border: 1px solid #D8DDDF;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #34414C;
+    letter-spacing: 0.03px;
+    line-height: 21px
+    margin-right: 10px
+  }
+  .whiteBtn+.search1{
+    margin-right: 10px  
+  }
+  .inputActive{
+    box-shadow: 0 0 10px -2px rgba(12,22,49,0.30);
+  }
+  .search1{
+    transition: .2s all
+    float right
+    font-size: 0;
+    white-space: nowrap;
+    border: 1px solid #D8DDDF;
+    border-radius: 4px
+    background: rgba(255,255,255,0.80);
+    .search_input{
+      width 282px
+      height 30px
+      line-height: 30px
+      background: transparent;
+      color: #000;
+      font-size 14px
+      display: inline-block
+      padding 0 16px
+      box-sizing: border-box;
+      vertical-align: top
+    }
+    .search_btn{
+      background: url('assets/images/hs/search.png') no-repeat center;
+      border-radius: 0 8px 8px 0;
+      size 36px 30px
+      cursor pointer
+      display: inline-block
+    }
+  }
+  .pagination_block{
+    margin-top: 20px;
+    text-align: right;
+  }
+    
+}
+
