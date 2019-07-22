@@ -157,6 +157,9 @@ export default {
 
     // 开启告警定时器
     // this.setWarnListTimer()
+    // setInterval(() => {
+    //   this.getNewestWarn()
+    // }, 1000)
 
   },
   beforeDestroy() {
@@ -178,7 +181,26 @@ export default {
 
     // 获取最新数据
     getNewestWarn() {
-      if (!this.warnList.length) return
+      const that = this
+      // if (!this.warnList.length) return
+      api.detection.getWarnList(that.warnParams).then(res => {
+        let totalList = res.data.data.records
+        totalList.forEach((item, i) => {
+          // 如果第一条数据的时间戳不相等，则push
+          let firstTS = that.warnList[0].ts
+          if (totalList[0].ts == firstTS) return false
+          let newestList = []
+
+          totalList.forEach((secondItem, secondI) => {
+            if (secondItem.ts !== firstTS) {
+              newestList.push(secondItem)
+            }
+          })
+          that.warnList = newestList.concat(that.warnList)
+        })
+
+      })
+
     },
 
     // 搜索
