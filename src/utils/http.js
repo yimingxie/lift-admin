@@ -98,12 +98,11 @@ axios.interceptors.request.use(config => {
 // 响应拦截器即异常处理
 axios.interceptors.response.use(response => {
   // console.log('response===', response); 
-  if(response.data.code === '401000' || response.data.code === 401000) {
+  if(response.data.code == 401000) {
     
     alert('token失效，请重新登录');
     // window.location.href = '/';
-    // router.push('/')
-    // this.$router.push('/')
+    router.push('/');
   }
   return response;
 }, error => {
@@ -128,7 +127,9 @@ if (process.env.NODE_ENV == 'development') {
   devURL = `${protocol}//192.168.100.2`
   xiaohuURL = `${protocol}//192.168.100.89:8080`
   shupingURL = `${protocol}//192.168.100.7:8080`
-  localURL = `${protocol}//127.0.0.1`
+  // localURL = `${protocol}//127.0.0.1`
+  localURL = `${protocol}//192.168.100.7:8080`
+  
   // localURL = `${protocol}//192.168.100.89:8080`
 } else if (process.env.NODE_ENV == 'production') { 
 // axios.defaults.baseURL = `${protocol}//iot.gidomino.com`

@@ -84,7 +84,7 @@
           <i class="icon-diagnosis"></i>
           <span slot="title">检测诊断</span>
         </el-menu-item>
-        <el-menu-item index="" route="" :disabled="ifDisabled('任务管理')" :class="{'disabled' :ifDisabled('任务管理')}">
+        <el-menu-item index="/mission" route="/mission" :disabled="ifDisabled('任务管理')" :class="{'disabled' :ifDisabled('任务管理')}">
           <i class="icon-task"></i>
           <span slot="title">任务管理</span>
         </el-menu-item>
@@ -104,7 +104,7 @@
           <!-- <el-menu-item-group title=""> -->
           <el-menu-item index="/account" route="/account">账号管理</el-menu-item>
 
-          <el-menu-item index="" route="" >员工管理</el-menu-item>
+          <el-menu-item index="/staff" route="/staff" >员工管理</el-menu-item>
 
           <el-menu-item index="/device" route="/device">设备管理</el-menu-item>
           <!-- </el-menu-item-group> -->
@@ -168,7 +168,7 @@
               <el-dropdown>
                 <a class="personalCenter"></a>
                 <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item>账户设置</el-dropdown-item>
+                  <el-dropdown-item ><span @click.prevent="gotoCenter">账户设置</span></el-dropdown-item>
                   <el-dropdown-item ><span @click.prevent="quit">退出登录</span></el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
@@ -270,6 +270,10 @@
     },
 
     methods: {
+      gotoCenter(){
+        this.$router.push('/center')
+      },
+      // 判断菜单是否可用
       ifDisabled(title){
         var flag = true
         if(this.modulesJson){
@@ -277,7 +281,7 @@
           for(var i = 0; i < modulesJson.length ; i++){
             if(modulesJson[i].name.indexOf(title) !== -1 || modulesJson[i].name.indexOf('通用') !== -1 || modulesJson[i].name.indexOf('管理员专用') !== -1){
               flag = false
-            } 
+            }
           }
           return flag 
         }
@@ -319,13 +323,8 @@
 #page-container
   width: 100%;
   height: 100%;
-  // .el-menu-vertical-demo
-  //   width: 200px;
-  //   absolute top 60px left 0 bottom 0;
-  //   box-sizing: border-box;
-  //   overflow-y auto
+ 
   // 头部
-
   .the-header
     size 100% 64px
     background white
@@ -523,13 +522,6 @@
       .icon-setting
         background url('assets/images/hs/submenuIcon/set1.png') no-repeat center;
       // 设置侧边栏图标 end
-
-  
-    
-
-  
-    
-    
 
 </style>
 

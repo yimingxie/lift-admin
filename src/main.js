@@ -12,6 +12,13 @@ import 'element-ui/lib/theme-chalk/index.css';
 import echarts from 'echarts'
 // import globalMixins from './utils/mixins'
 import tab from "./components/tab";
+// import EleMultiCascader from "ele-multi-cascader"
+// import "ele-multi-cascader/dist/cascader.css"
+import elCascaderMulti from "el-cascader-multi";
+Vue.use(elCascaderMulti);
+
+Vue.use(ElementUI);
+// Vue.use(EleMultiCascader)
 
 import moment from 'moment';
 import 'moment/locale/zh-cn';
@@ -32,16 +39,15 @@ import 'ant-design-vue/dist/antd.css'
 Vue.use(DatePicker)
 
 Vue.component('tab', tab)
-
 // Vue.prototype.$moment = moment;//赋值使用
 Vue.filter('dateformat', function(dataStr, pattern = 'YYYY-MM-DD HH:mm:ss') {
   return moment(dataStr).format(pattern)
 })
-
+// console.log("111111111111111::" + moment("20121031", "YYYYMMDD").fromNow())
+Vue.filter('fromNow', function(dataStr, pattern = 'YYYYMMDD') {
+  return moment(dataStr,pattern).fromNow()
+})
 // Vue.prototype.$mixins = globalMixins
-
-Vue.use(ElementUI)
-// 多语言配置文件
 import locales from './consts/locales/index'
 // 过滤器
 import * as filters from './filters/filters'

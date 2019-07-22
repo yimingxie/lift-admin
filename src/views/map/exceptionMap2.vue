@@ -1,5 +1,5 @@
 <template>
-  <div id="regMap" class="main-wrap">
+  <div id="regMap" class="main-wrap" style="height:101%">
     <div class="row" >
       <div class="panel" style="padding:0">
         <div class="regionArea">
@@ -45,8 +45,8 @@
         </div>
         <!-- 使用自定义组件 -->
         <!-- <Loading></Loading> -->
-        <div id="container" ></div>
         
+        <!-- <div id="container" ></div> -->
         <!-- <tab></tab> -->
         <div class="searchArea">
           <div class="circleType">
@@ -56,6 +56,8 @@
             <i class="circle" style="background:#F7B926;"></i><span @click="selectExceptionType(1)" :class="{'active': 1 === exceptionType}">故障&nbsp;&nbsp;({{faultCount}})&nbsp;</span>
             <i class="circle" style="background:#FD3D53;"></i><span @click="selectExceptionType(0)" :class="{'active': 0 === exceptionType}">事件&nbsp;&nbsp;({{accidentCount}})&nbsp;</span>
           </div>
+          
+
         </div>
         <!-- <div class="input-item" style="position:absolute;bottom:5px">
           <input id="addOverlayGroup" type="button" class="btn" value="添加覆盖物群组"/>
@@ -69,6 +71,9 @@
           </div>
         </div> -->
       </div>
+    </div>
+    <div style="padding:0 10px 24px;height: calc(100% - 87px);min-height: 408px">
+      <div id="container" ></div>
     </div>
     <!-- <el-button @click="show3 = !show3">Click Me</el-button>
     <div>
@@ -84,8 +89,8 @@
       </div>
     </div>
     <el-button @click="show3 = !show3">Click Me</el-button> -->
-
   </div>
+  
 </template>
 
 <script>
@@ -402,7 +407,7 @@
     },
     mounted() {
       // console.log(this)
-      $this = this
+      $this = this // 将this赋值给全局$this
       // this.$message("warning")
       this.getToday()     // 获取当前日期
       // 区域选择 省-市数据
@@ -765,7 +770,6 @@
         api.lift.getLiftResult(regCode).then(res => {
           if (res.data.data) {
 
-            // console.log("123++" + regCode)
             this.lnglats.forEach(item =>{
               if(item.regCode === regCode){
                 this.searchMarker = new AMap.Marker({
@@ -774,8 +778,8 @@
                     icon: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_b' + '.png',
                     
                 });
-                // markers.push(marker);
-                this.map.add(this.searchMarker)
+                // this.map.add(this.searchMarker)
+                this.map.setZoomAndCenter(18, res.data.data.latLon.split(',')); //同时设置地图层级与中心点
               }
             })
           }
@@ -802,8 +806,8 @@
           this.form.area = "深圳市";
         }
         this.liftListParams.areaCode = value[1]
-        this.getAllLiftPoint()
         this.map.setCity(this.form.area.trim());
+        this.getAllLiftPoint()
 
       },
       myAddressCity:function(value){
@@ -840,13 +844,14 @@
 <style lang="stylus">
 @import '../../assets/stylus/utilities'
 @import '../../assets/stylus/colors'
-#regMap 
+#regMap
+  .ant-input
+    border:none!important 
   #container 
     width: 100%;
     margin: 0px;
-    height: 620px;
+    height: 100%;
     border-radius: 0 0 10px 10px
-   
   
   p.my-desc 
     margin: 5px 0;
@@ -874,7 +879,7 @@
   .infoWindows 
     background: #000
   
-  /* ////////////////////////////////////////////////////// */
+   /* ////////////////////////////////////////////////////// */
   .callapce
     // padding:20px;
     // border:1px solid #ebeef5;
@@ -935,10 +940,8 @@
     max-height:200px;
     padding-bottom: 20px;
   .regionArea
-    // absolute top 10px left 20px
     position relative
     z-index 99
-    // size 100% 50px
     border-radius: 10px 10px 0 0
     width 100%
     background white
@@ -948,8 +951,6 @@
     .regionPicker
       width 100px
       margin 10px 5px 10px 10px
-      .el-input__inner
-        border:none!important
     .today
       color #000
       font-size 14px
@@ -962,6 +963,7 @@
     font-size 0
     .circleType
       absolute top 22px left 20px
+      z-index: 88;
       font-size 14px
       .circle
         width: 8px;
@@ -989,7 +991,7 @@
     padding 4.5px 16px
 
 
-// ==============================
+  // ==============================
 .custom-content-marker {
     
     .huanPic{

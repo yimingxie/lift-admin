@@ -18,38 +18,6 @@
           </div>
         </div>
       </el-col>
-      <!-- <el-col :span="8" class="">
-        <div class="role-grid-content bg-purple panel">
-          <div class="role_index" >角色一</div>
-          <div class="role_content">
-            <div class="role_name_left">
-              <div class="role_name">维保主管</div>
-              <div class="role_status">状态：锁定</div>
-            </div>
-            <div class="operate">
-              <a class="per_link">权限</a>
-              <span class="splitLine">|</span>
-              <a class="edit_link" >编辑</a>
-            </div>
-          </div>
-        </div>
-      </el-col>
-      <el-col :span="8" class="">
-        <div class="role-grid-content bg-purple panel">
-          <div class="role_index" >角色一</div>
-          <div class="role_content">
-            <div class="role_name_left">
-              <div class="role_name">维保主管</div>
-              <div class="role_status">状态：锁定</div>
-            </div>
-            <div class="operate">
-              <a class="per_link">权限</a>
-              <span class="splitLine">|</span>
-              <a class="edit_link">编辑</a>
-            </div>
-          </div>
-        </div>
-      </el-col> -->
 
     </el-row>
   </div>
@@ -59,7 +27,7 @@
     <el-form :model="EditRoleForm" :label-width="formLabelWidth" @submit.native.prevent>
       <el-form-item label="角色名称：" prop="account">
         <!-- <el-input v-model="EditAccountForm.account" auto-complete="off" clearable></el-input> -->
-        <el-input  auto-complete="off" v-model="EditRoleForm.rename" clearable></el-input>
+        <el-input auto-complete="off" v-model="EditRoleForm.rename" clearable></el-input>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer tac">
@@ -216,7 +184,7 @@ export default {
       var bindApi = ['暂无权限']
       var obj = []
       api.moduleApi.moduleGetApis(id).then((res) => {
-        if (res.data.code === 200 && res.data.message === 'ok') {
+        if (res.data.code === 200 && res.data.message === 'success') {
           var apis = res.data.data
           // alert("apis.length" + apis.length)
           if(apis.length > 0){

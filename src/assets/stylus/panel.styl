@@ -1,4 +1,15 @@
-
+$clearfix
+  &:before
+  &:after
+    display table
+    content ""
+    line-height 0
+  &:after
+    clear both
+// 清除浮动
+// ------------------------------
+clearfix()
+  @extend $clearfix
 .splitLine{
   color: #D8DDDF;
   margin 0 10px 0 5px
@@ -6,7 +17,7 @@
 .splitBar{
   background: #F5F6F7;
   height 10px
-  margin 0 -50px
+  margin 0 -25px
 }
 .main-wrap{
   letter-spacing: 0.03px;
@@ -14,19 +25,22 @@
   overflow: auto;
   box-sizing: border-box;
   padding: 0 10px;
+  color: #34414C;
+
   // 此为一行
   .row{
     position: relative;
     width: 100%;
+    clearfix()
   }
   // 面板公用类
   .panel {
     background: #fff;
     box-shadow: 0 8px 20px -12px rgba(66,114,255,0.30);
     border-radius: 8px;
-    padding: 0 30px 20px;
+    padding: 0 25px 20px;
     box-sizing: border-box;
-    margin: 20px 10px 20px;
+    margin: 20px 10px 0;
     position: relative;
     z-index 99
     // overflow: hidden;
@@ -35,7 +49,7 @@
   //页面标题
   .title{
     padding: 15px 0;
-    margin: 0 -30px;
+    margin: 0 -25px;
     vertical-align: middle;
     box-sizing: border-box;
     position relative
@@ -44,7 +58,7 @@
     .label1{
       font-size: 16px;
       color: #34414C;
-      margin-left 30px
+      margin-left 25px
     }
       
     .label2{
@@ -53,7 +67,9 @@
   }
   //二級 筛选
   .subSelect{
-    padding: 15px 0;
+    line-height: 40px;
+    height: 53px;
+    padding-top: 7px;
     vertical-align: middle;
     box-sizing: border-box;
     position relative
@@ -66,32 +82,40 @@
     vertical-align: middle;
     box-sizing: border-box;
     position relative
+    font-size: 0;
     clearfix()
   }
   .btn{
     cursor pointer
-    margin-right 10px
   }
   .blueBtn{
-    size 106px 32px
+    height 32px
+    padding 0 18px
     background url('assets/images/hs/add.png') #4272FF no-repeat  10px center
     // background: #4272FF url("assets/images/quit.png") no-repeat;
     border-radius: 4px;
     font-size: 14px;
     color: #FFFFFF;
-    line-height: 22px;
     text-indent: 12px;
+    margin-right: 10px
+    line-height: 21px
   }
   .whiteBtn{
-    size 88px 32px  
+    // size 88px 32px  
+    height 32px
+    padding 0 15px
     background: rgba(255,255,255,0.80);
     border: 1px solid #D8DDDF;
     border-radius: 4px;
     font-size: 14px;
     color: #34414C;
     letter-spacing: 0.03px;
+    line-height: 21px
+    margin-right: 10px
   }
-  
+  .whiteBtn+.search1{
+    margin-right: 10px  
+  }
   .inputActive{
     box-shadow: 0 0 10px -2px rgba(12,22,49,0.30);
   }
@@ -123,5 +147,10 @@
       display: inline-block
     }
   }
+  .pagination_block{
+    margin-top: 20px;
+    text-align: right;
+  }
+    
 }
 

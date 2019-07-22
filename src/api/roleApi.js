@@ -50,7 +50,7 @@ export default  {
   // 查询角色下已绑定的模块
   roleGetmodule(id){
     return http.get(
-      `${url2}/${id}/module`
+      `${url2}/${id}/funcs`
     )
   },
 }

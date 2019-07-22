@@ -234,7 +234,7 @@
       },
       getCorps(){
         api.corpApi.getCorps(this.corpQueryParam).then((res) => {
-          if(res.data.code === 200 && res.data.message === 'ok'){
+          if(res.data.code === 200 && res.data.message === 'success'){
             this.getCorpsJson = res.data.data.records
 
           } else {
@@ -259,7 +259,7 @@
         var _this = this
         _this.value = []
         api.moduleApi.moduleGetApis(id).then((res) => {
-          if (res.data.code === 200 && res.data.message === 'ok') {
+          if (res.data.code === 200 && res.data.message === 'success') {
             res.data.data.forEach((item) => {
               _this.value.push(item.name)
             })
@@ -326,7 +326,7 @@
 
           // console.log("res.data.code" + res.data.code)
           // if (res..code === 200) {
-          if(res.data.code === 200 && res.data.message === 'ok'){
+          if(res.data.code === 200 && res.data.message === 'success'){
             this.getAllModulesJson = res.data.data.records
             // this.getAllModulesJson
             var _this = this
@@ -369,7 +369,7 @@
       getApis(){
         
         api.managerApi.getApis(this.queryParam).then((res) => {
-          if(res.data.code === 200 && res.data.message === 'ok'){
+          if(res.data.code === 200 && res.data.message === 'success'){
             this.getAllApiJson = res.data.data.records
           } else {
             this.getAllApiJson = []

@@ -23,17 +23,21 @@ export default  {
     )
   },
   // 修改账号的enable 状态 禁用
-  banAccount(params){
+  // {
+  //   "accountId":"账号id",
+  //   "status":"状态: 0:禁用;1:启用;"
+  // }
+  enableAccount(params){
     return http.put(
-      `${url2}/account/ban`, params
+      `${url2}/account/status`, params
     )
   },
-  // 修改账号的enable 状态 启用
-  pickAccount(params){
-    return http.put(
-      `${url2}/account/pick`, params
-    )
-  },
+  // // 修改账号的enable 状态 启用
+  // pickAccount(params){
+  //   return http.put(
+  //     `${url2}/account/pick`, params
+  //   )
+  // },
   // 修改用户账号
   editAccount(params){
     return http.put(
@@ -59,95 +63,105 @@ export default  {
       `${url2}/account/bind`,params
     )
   },
-
-
-
-
-
-
-
-
-
-  searchBuilding (params){
+  // ------------------------部门管理--------------------------------
+  // 创建员工的账号
+  createDepartment(params) {
     return http.post(
-      `/searchBuilding`, params
+      `${url2}/department`, params
     )
   },
-  
-  getData() {
-    return http.get('/api/emojis')
-  },
-  getBuilding(buildingId) {
-    return http.get(
-      `${url2}/elevator/building/${buildingId}`
-    )
-  },
-  // 查询建筑列表
-  getBuildings(pageIndex,pageSize) {
-    return http.get(
-      `${url2}/elevator/building?pageIndex=${pageIndex}&pageSize=${pageSize}`
-    )
-  },
-  // 创建公司
-  createCorp(params) {
+  // 获取部门列表
+  getDepartments(params){
     return http.post(
-      `${url2}/elevator/corp/`, params
+      `${url2}/department/list`, params
     )
   },
-  // 查询公司列表
-  getCorps(pageIndex,pageSize) {
-    return http.get(
-      `${url2}/elevator/corp?pageIndex=${pageIndex}&pageSize=${pageSize}`
+  // 编辑部门
+  editDepartment(params){
+    return http.put(
+      `${url2}/department`, params
     )
   },
-  // 创建电梯
-  createLift(params) {
+  // 删除部门
+  deleteDepartment(id){
+    return http.delete(
+      `${url2}/department/${id}`
+    )
+  },
+  // ------------------------员工管理--------------------------------
+  // 添加员工
+  createStaff(params) {
     return http.post(
-      `${url2}/elevator/lift`, params
+      `${url2}/staff`, params
     )
   },
-  // 查询电梯列表
-  getLifts(pageIndex,pageSize) {
-    return http.get(
-      `${url2}/elevator/lift?pageIndex=${pageIndex}&pageSize=${pageSize}`
-    )
-  },
-  // 创建报警
-  createAlarm(params) {
+  // 获取员工列表
+  getStaffs(params){
     return http.post(
-      `${url2}/elevator/alarm`, params
+      `${url2}/staff/list`, params
     )
   },
-  // 查询报警列表
-  getAlarms(pageIndex,pageSize) {
+  // 查询员工信息详情
+  getStaffDetails(staffId){
     return http.get(
-      `${url2}/elevator/alarm?pageIndex=${pageIndex}&pageSize=${pageSize}`
+      `${url2}/staff/${staffId}`
     )
   },
-  searchBuilding (params){
+  // 编辑员工
+  editStaff(params){
+    return http.put(
+      `${url2}/staff`, params
+    )
+  },
+  // 员工账号停启
+  // {
+  //   "staffId":"员工id",
+  //   "enable":"0:禁用,1:启用"
+  // }
+  enableStaff(params){
+    return http.put(
+      `${url2}/staff/enable`, params
+    )
+  },
+  // 批量重置密码
+  resetPsd(params){
+    return http.put(
+      `${url2}/staff/reset-password-list`, params
+    )
+  },
+  // 删除员工
+  deleteStaff(id){
+    return http.delete(
+      `${url2}/staff/${id}`
+    )
+  },
+  /**
+   * 根据所选择的管辖区域电梯
+   */
+  getElevatorByArea(corpId,areaCode){
+    return http.get(
+      `${url2}/staff/${corpId}/${areaCode}/elevator`
+    )
+  },
+  uploadPic(params){
     return http.post(
-      `/searchBuilding`, params
+      `${url2}/upload/image`, params
+    )
+  },
+
+  viewPic(picName){
+    return http.get(
+      `${url2}/view/image?filename=${picName}`
     )
   }
 }
 
-// import api from '../api';// 导入我们的api接口
-// export default {  
-//  name: 'Address', 
-//  created () {
-//   this.onLoad();
-//  },
-//  methods: {   
-//   // 获取数据   
-//   onLoad() {
-//    // 调用api接口，并且提供了两个参数    
-//    api.corp.apiAddress({     
-//     type: 0,     
-//     sort: 1    
-//    }).then(res => {
-//     // 获取数据成功后的其他操作
-//     ………………    
-//    })
-//   }  
-//  }
-// }
+
+
+
+
+
+
+
+  
+

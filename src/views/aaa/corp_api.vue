@@ -130,7 +130,7 @@
       },
       getCorps(){
         api.corpApi.getCorps(this.queryParam).then((res) => {
-          if(res.data.code === 200 && res.data.message === 'ok'){
+          if(res.data.code === 200 && res.data.message === 'success'){
             this.getAllApiJson = res.data.data.records
           } else {
             this.getAllApiJson = []

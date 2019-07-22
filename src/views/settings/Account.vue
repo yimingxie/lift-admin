@@ -218,8 +218,8 @@ export default {
         account: '',
         password: '111',
         corpId: window.localStorage.getItem('corpId'),
-        accountType: "1",
-        userType: "staff",
+        // accountType: "1",
+        userType: 1, //维保创建自己的账号 类型为0；通用创建维保管理员 类型为1；通用创建通用为2
         roleId:''
       },
       edit_dialogFormVisible: false,
@@ -297,7 +297,7 @@ export default {
     // 查询所有账户
     getAllAccountData(){
       api.accountApi.getAccounts(this.queryParam).then((res) => {
-        if(res.data.code === 200 && res.data.message === 'ok'){
+        if(res.data.code === 200 && res.data.message === 'success'){
           this.getAllAccountJson = res.data.data.records
           this.totalPageSize = res.data.data.total
           // for(var i = 0; i < this.getAllAccountJson.length; i++){
@@ -443,24 +443,13 @@ export default {
       // console.log('event==' + event)
       // console.log('index==' + index)
       // console.log('row==' + JSON.stringify(row))
-      // this.getAllAccountJson[index].status = event
-      if(event === 0){ // 禁用
-        api.accountApi.banAccount({"id":row.id}).then((res) => {
-          
-          // console.log("res.data.code" + res.data.data.records[0])
+      api.accountApi.enableAccount({"accountId":row.id, "status":event}).then((res) => {
+        
+        // console.log("res.data.code" + res.data.data.records[0])
 
-        }).catch((res) => {
-          
-        })
-      } else {
-        api.accountApi.pickAccount({"id":row.id}).then((res) => {
-          
-          // console.log("res.data.code" + res.data.data.records[0])
-
-        }).catch((res) => {
-          
-        })
-      }
+      }).catch((res) => {
+        
+      })
       
     },
 
@@ -547,7 +536,4 @@ export default {
     text-align: center;
     line-height 42px
     padding 0 0 30px 0
-  .pagination_block
-    margin-top: 20px;
-    text-align: right;
 </style>

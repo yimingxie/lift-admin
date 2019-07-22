@@ -197,7 +197,7 @@
       },
       getCorps(){
         api.corpApi.getCorps(this.corpQueryParam).then((res) => {
-          if(res.data.code === 200 && res.data.message === 'ok'){
+          if(res.data.code === 200 && res.data.message === 'success'){
             this.getCorpsJson = res.data.data.records
 
           } else {
@@ -234,7 +234,7 @@
           type: 'error'
         }).then(() => {
           api.roleApi.deleteRole(row.id).then((res) => {
-            if(res.data.message === 'ok'){
+            if(res.data.message === 'success'){
               // 消息提示
               this.$message({
                 type: 'success',
@@ -371,7 +371,7 @@
       },
       getRoles() {
         api.roleApi.getRoles(this.queryParam).then((res) => {
-          if(res.data.code === 200 && res.data.message === 'ok'){
+          if(res.data.code === 200 && res.data.message === 'success'){
             this.getAllAccountJson = res.data.data.records
           } else {
             this.getAllAccountJson = []

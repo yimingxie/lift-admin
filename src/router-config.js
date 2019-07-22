@@ -26,7 +26,7 @@ const router = new Router({
       component: (resolve) => require(['./views/map/MapList.vue'], resolve)
     },
     {
-      path: "/Account",
+      path: "/account",
       name: "Account",
       meta: {
         title: "账号管理",
@@ -35,7 +35,7 @@ const router = new Router({
       component: (resolve) => require(['./views/settings/Account.vue'], resolve)
     },
     {
-      path: "/Account/role/:aaa",
+      path: "/account/role/:aaa",
       name: "role",
       meta: {
         title: "角色管理",
@@ -50,7 +50,7 @@ const router = new Router({
         title: "一些例子",
         auto: false // 是否需要权限
       },
-      component: (resolve) => require(['./views/settings/example.vue'], resolve)
+      component: (resolve) => require(['./views/example/example.vue'], resolve)
     },
     {
       path: "/actApi",
@@ -97,10 +97,6 @@ const router = new Router({
       },
       component: (resolve) => require(['./views/aaa/corp_api.vue'], resolve)
     },
-
-
-
-    // ----------
     
     {
       path: "/lift-list",
@@ -173,6 +169,114 @@ const router = new Router({
         auto: false // 是否需要权限
       },
       component: (resolve) => require(['./views/detection/DetectionQuery.vue'], resolve)
+    },
+    {
+      path: "/detection",
+      name: "detection",
+      meta: {
+        title: "检测诊断",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/detection/Detection.vue'], resolve)
+    },
+    {
+      path: "/staff",
+      name: "staff",
+      meta: {
+        title: "员工管理",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/settings/Staff.vue'], resolve)
+    },
+    {
+      path: "/addStaff",
+      name: "addStaff",
+      meta: {
+        title: "添加员工",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/settings/AddStaff.vue'], resolve)
+    },
+    {
+      path: "/register",
+      name: "register",
+      meta: {
+        title: "添加员工",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/example/register.vue'], resolve)
+    },
+    {
+      path: "/staffDetails/:staffId",
+      name: "staffDetails",
+      meta: {
+        title: "员工详情",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/settings/StaffDetails.vue'], resolve)
+    },
+    {
+      path: "/department",
+      name: "department",
+      meta: {
+        title: "部门管理",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/settings/Department.vue'], resolve)
+    },
+    {
+      path: "/center",
+      name: "center",
+      meta: {
+        title: "部门管理",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/common/Center.vue'], resolve)
+    },
+    {
+      path: "/mission",
+      name: "mission",
+      meta: {
+        title: "任务管理",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/mission/MissionList.vue'], resolve)
+    },
+    {
+      path: "/example",
+      name: "example",
+      meta: {
+        title: "任务管理",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/example/example.vue'], resolve)
+    },
+    {
+      path: "/upload",
+      name: "upload",
+      meta: {
+        title: "上传",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/example/upload.vue'], resolve)
+    },
+    {
+      path: "/Date",
+      name: "Date",
+      meta: {
+        title: "任务管理",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./components/DateContainer.vue'], resolve)
+    },
+    {
+      path: "/EditStaff/:staffId",
+      name: "editStaff",
+      meta: {
+        title: "任务管理",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/settings/EditStaff.vue'], resolve)
     },
     {
       path: "/detection",

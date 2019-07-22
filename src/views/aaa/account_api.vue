@@ -29,8 +29,25 @@
         <el-form-item label="账号类型:手机号,邮箱,其他等">
           <el-input v-model="sizeForm.accountType"></el-input>
         </el-form-item>
-        <el-form-item label="用户类型:管理员,员工">
-          <el-input v-model="sizeForm.userType"></el-input>
+        <el-form-item label="用户类型:通用管理员-2,维保管理员-1">
+          <!-- <el-input v-model="sizeForm.userType"></el-input> -->
+          <el-select v-model="sizeForm.userType" placeholder="请选择">
+            <el-option
+              :key="0"
+              :label="0"
+              :value="0">
+            </el-option>
+            <el-option
+              :key="1"
+              :label="1"
+              :value="1">
+            </el-option>
+            <el-option
+              :key="2"
+              :label="2"
+              :value="2">
+            </el-option>
+          </el-select>
         </el-form-item>
         <el-form-item size="large">
           <el-button type="primary" @click="onSubmit">立即创建</el-button>
@@ -148,7 +165,7 @@
       return {
         edit_dialogFormVisible:false,
         getAllAccountJson:[],
-        formLabelWidth: '200px',
+        formLabelWidth: '250px',
         sizeForm: {
           account: '',
           password: '',
@@ -220,7 +237,7 @@
       },
       getCorps(){
         api.corpApi.getCorps(this.corpQueryParam).then((res) => {
-          if(res.data.code === 200 && res.data.message === 'ok'){
+          if(res.data.code === 200 && res.data.message === 'success'){
             this.getCorpsJson = res.data.data.records
 
           } else {
@@ -343,7 +360,7 @@
       },
       getAccounts(){
         api.accountApi.getAccounts(this.queryParam).then((res) => {
-          if(res.data.code === 200 && res.data.message === 'ok'){
+          if(res.data.code === 200 && res.data.message === 'success'){
             this.getAllAccountJson = res.data.data.records
           } else {
             this.getAllAccountJson = []
@@ -361,7 +378,7 @@
         // console.log('row==' + JSON.stringify(row))
         // this.getAllAccountJson[index].status = event
         if(event === 0){ // 禁用
-          api.accountApi.banAccount({"id":row.id}).then((res) => {
+          api.accountApi.enableAccount({"accountId":row.id, "status":0}).then((res) => {
             
             // console.log("res.data.code" + res.data.data.records[0])
 
@@ -369,7 +386,7 @@
             
           })
         } else {
-          api.accountApi.pickAccount({"id":row.id}).then((res) => {
+          api.accountApi.enableAccount({"accountId":row.id, "status":1}).then((res) => {
             
             // console.log("res.data.code" + res.data.data.records[0])
 

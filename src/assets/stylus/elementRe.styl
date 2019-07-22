@@ -156,6 +156,8 @@
 // -----------------按钮---------------------------
 // .el-button
 //   padding 0
+.el-button--text
+  color: #4272ff;
 .dialogCancel
   background: #7E8A95!important;
   box-shadow: 0 8px 20px -10px rgba(66,114,255,0.60)!important;
@@ -197,12 +199,15 @@
 .el-menu-item.is-active:hover:not(.disabled)
   color: #4272FF!important;
 .el-menu-item:hover,
-.el-menu-item:focus
+.el-menu-item:focus,
+.el-submenu__title:hover 
   background 0 0!important
-.el-menu-item:hover:not(.disabled),
-.el-submenu:hover:not(.disabled)
-  color black!important
 
+.el-menu-item:hover:not(.disabled),
+.el-submenu:not(.disabled):not(.is-active) .el-submenu__title:hover 
+  color black!important
+// .el-submenu__title:hover 
+//   background: rgba(66,114,255,0.10)!important;
 .el-submenu.is-active
   .el-submenu__title
     color: #4272FF!important;
@@ -210,6 +215,10 @@
     border-left: 4px solid #4272FF!important;
     background: #F1F5F7!important;
     color: #34414C!important;
+.el-menu--popup //悬浮框
+  .el-menu-item.is-active
+    background: rgba(66,114,255,0.10)!important;
+
 .el-submenu .el-menu-item
   border-left: 4px solid rgba(0,0,0,0)!important;
   padding-left: 51px!important
@@ -266,8 +275,8 @@
 
 // --------------------------message-end-------------------------------
 
-.ant-input
-  border:none!important 
+// .ant-input
+  // border:none!important 
 .ant-calendar-selected-date .ant-calendar-date:hover, .ant-calendar-selected-start-date .ant-calendar-date:hover, .ant-calendar-selected-end-date .ant-calendar-date:hover
   background: none!important;
   background-image: linear-gradient(90deg, #6159FF 0%, #4272FF 100%)!important;
@@ -303,3 +312,43 @@
   color: #4272FF !important;
 .el-cascader-menu__item--extensible:after
   color: transparent !important;
+// --------------------------级联-end-------------------------------
+
+// --------------------------checkbox--------------------------------
+.checkbox16
+  .el-checkbox__inner
+    width 16px
+    height 16px
+  .el-checkbox__inner::after
+    top: 2px;
+    left: 5px;
+  .el-checkbox__input.is-indeterminate .el-checkbox__inner::before
+    top: 6px;
+// --------------------------checkbox-end-------------------------------
+
+// --------------------------区域选择-不要边框-------------------------------
+.regionPicker
+  width 110px!important
+ 
+  .el-input__inner
+    border:none!important
+// --------------------------区域选择-end-------------------------------
+
+// --------------------------tag--------------------------------
+.conTag.el-tag
+    border: 1px solid #D8DDDF!important;
+    border-radius: 4px!important;
+    background-color:#fff!important;
+    height: 22px;
+    line-height: 20px;
+    font-size: 14px;
+    color: #34414C;
+    padding: 0 8px 0 4px;
+  .el-tag__close
+    color: #7E8A95!important;
+    font-size: 7px!important;
+    &:hover
+      background: #ccc!important
+      color:#fff!important;
+
+// --------------------------tag-end-------------------------------
