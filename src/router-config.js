@@ -278,6 +278,87 @@ const router = new Router({
       },
       component: (resolve) => require(['./views/settings/EditStaff.vue'], resolve)
     },
+    {
+      path: "/detection",
+      name: "detection",
+      meta: {
+        title: "检测诊断",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/detection/Detection.vue'], resolve)
+    },
+    {
+      path: "/detection-new",
+      name: "detection-new",
+      meta: {
+        title: "检测诊断新",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/detection/DetectionNew.vue'], resolve)
+    },
+    {
+      path: "/detection-real",
+      name: "detection-real",
+      meta: {
+        title: "检测诊断实时组件",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/detection/DetectionRealtimeC.vue'], resolve)
+    },
+    {
+      path: "/detection-add",
+      name: "detection-add",
+      meta: {
+        title: "添加监测",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/detection/DetectionAdd.vue'], resolve)
+    },
+    {
+      path: "/detection-edit",
+      name: "detection-edit",
+      meta: {
+        title: "编辑监测",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/detection/DetectionEdit.vue'], resolve)
+    },
+    {
+      path: "/detection-set",
+      name: "detection-set",
+      meta: {
+        title: "设置监测",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/detection/DetectionSet.vue'], resolve)
+    },
+    {
+      path: "/detection-set-model",
+      name: "detection-set-model",
+      meta: {
+        title: "设置监测",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/detection/DetectionSetModel.vue'], resolve)
+    },
+    {
+      path: "/detection-set-log",
+      name: "detection-set-log",
+      meta: {
+        title: "更改日志",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/detection/DetectionSetLog.vue'], resolve)
+    },
+    {
+      path: "/det-test",
+      name: "det-test",
+      meta: {
+        title: "更改日志",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/detection/DetTest.vue'], resolve)
+    },
   ]
 })
 

@@ -67,4 +67,10 @@ export default {
   getStatistics() {
     return http.get(`${url1}/elevator/device/statistics`)
   },
+
+  // 查询数字电梯统计
+  getEleStatistics() {
+    return http.get(`${url1}/elevator/statistics`)
+
+  },
 }

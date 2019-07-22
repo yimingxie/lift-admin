@@ -98,11 +98,11 @@ axios.interceptors.request.use(config => {
 // 响应拦截器即异常处理
 axios.interceptors.response.use(response => {
   // console.log('response===', response); 
-  if(response.data.code === '401000' || response.data.code === 401000) {
+  if(response.data.code == 401000) {
     
-    // alert('token失效，请重新登录');
+    alert('token失效，请重新登录');
     // window.location.href = '/';
-    // router.push('/');
+    router.push('/');
   }
   return response;
 }, error => {
@@ -122,16 +122,19 @@ let shupingURL
 let localURL
 
 
-// if (process.env.NODE_ENV == 'development') {
-//   iot = `${protocol}//iot.gidomino.com`
-//   devURL = `${protocol}//192.168.100.2`
-//   xiaohuURL = `${protocol}//192.168.100.89:8080`
-//   shupingURL = `${protocol}//192.168.100.7:8080`
-//   localURL = `${protocol}//127.0.0.1`
-// } else if (process.env.NODE_ENV == 'production') {
+if (process.env.NODE_ENV == 'development') {
+  iot = `${protocol}//iot.gidomino.com`
+  devURL = `${protocol}//192.168.100.2`
+  xiaohuURL = `${protocol}//192.168.100.89:8080`
+  shupingURL = `${protocol}//192.168.100.7:8080`
+  // localURL = `${protocol}//127.0.0.1`
+  localURL = `${protocol}//192.168.100.7:8080`
+  
+  // localURL = `${protocol}//192.168.100.89:8080`
+} else if (process.env.NODE_ENV == 'production') { 
 // axios.defaults.baseURL = `${protocol}//iot.gidomino.com`
-  localURL = iot = devURL = xiaohuURL = shupingURL = `${protocol}//192.168.100.7:8080`
-// }
+  localURL = iot = devURL = xiaohuURL = shupingURL = `${protocol}//192.168.100.5`
+}
 
 // let AUTH_TOKEN=(function(){
 //   return window.localStorage.getItem('accessToken')
@@ -139,7 +142,6 @@ let localURL
 //设置默认请求头
 axios.defaults.headers = {
   "Content-Type": "application/json; charset=utf-8",
-  // "Content-Type": "application/x-www-form-urlencoded",
   // 'Content-Type':'text/html; charset=utf-8',
   // 'X-Requested-With': 'XMLHttpRequest',
   // 'Access-Token': window.localStorage.getItem('accessToken')

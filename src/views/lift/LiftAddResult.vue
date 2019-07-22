@@ -658,6 +658,7 @@ export default {
 
   created() {
     this.parentCode = this.$route.query.regCode
+    this.submitState = this.$route.query.submitState
   },
   mounted() {
 
@@ -675,13 +676,13 @@ export default {
       let that = this
       api.lift.getLiftResult(this.parentCode).then(res => {
         if (!res.data.data) {
-          this.submitState = 'post'
+          // this.submitState = 'post'
           // this.ruleForm = this.ruleFormBlank
           // this.special = this.specialBlank
           this.ruleForm.regCode = this.parentCode
           return
         }
-        this.submitState = 'put'
+        // this.submitState = 'put'
         let detail = res.data.data
         for (var key in detail) {
           this.ruleForm[key] = detail[key]
@@ -1111,50 +1112,41 @@ export default {
 </script>
 
 <style>
-  .la-search-box .lsearch-input{
-    height: 40px !important;
-    font-size: 16px !important;
-  }
-  .la-search-box .llcb-search-tips{
-    top: 52px !important;
-  }
-  .la-search-box .lsearch-submit{
-    height: 38px !important;
-  }
-  /* 地图marker样式 */
-  #LiftAddResult .point{
-    position: relative;
-    width: 48px;
-    height: 48px;
-    margin-left: -16px;
-    margin-top: -24px;
-  }
-  #LiftAddResult .point-light{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #4272FF;
-    opacity: 0.5;
-    border-radius: 100%;
-    animation: myScale 1.5s infinite forwards;
-  }
-  #LiftAddResult .point-circle{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 12px;
-    height: 12px;
-    background: #4272FF;
-    border-radius: 100%;
-  }
+  
+/* 地图marker样式 */
+#LiftAddResult .point{
+  position: relative;
+  width: 48px;
+  height: 48px;
+  margin-left: -16px;
+  margin-top: -24px;
+}
+#LiftAddResult .point-light{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #4272FF;
+  opacity: 0.5;
+  border-radius: 100%;
+  animation: myScale 1.5s infinite forwards;
+}
+#LiftAddResult .point-circle{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  background: #4272FF;
+  border-radius: 100%;
+}
 
-  @keyframes myScale{
-    0% {opacity: 0.8;transform: scale(0.1);}
-    100% {opacity: 0;transform: scale(1);}
-  }
+@keyframes myScale{
+  0% {opacity: 0.8;transform: scale(0.1);}
+  100% {opacity: 0;transform: scale(1);}
+}
   
 </style>
 
@@ -1272,27 +1264,6 @@ export default {
     font-size: 14px;
     color: #959698;
   }
-  .form-btn{
-    text-align: center;
-    border-top: 1px solid #D8DDDF;
-    padding 30px 0;
-  }
-  .la-btn{
-    width 208px;
-    height 36px;
-    color: #fff;
-    border-radius: 24px;
-    margin: 0 20px;
-    cursor: pointer;
-  }
-  .la-btn-cancel{
-    background: #7E8A95;
-    box-shadow: 0 8px 20px -10px rgba(66,114,255,0.60);
-  }
-  .la-btn-submit{
-    background-image: linear-gradient(90deg, #4272FF 0%, #6159FF 100%);
-    box-shadow: 0 8px 20px -10px rgba(66,114,255,0.60);
-  }
   .delete-floor-icon{
     float left;
     width 30px;
@@ -1300,7 +1271,6 @@ export default {
     background: url('../../assets/images/xym/delete.png') no-repeat center center;
     margin-left 8px;
     cursor pointer;
-
   }
   .delete-floor-icon:hover{
     background: url('../../assets/images/xym/delete-on.png') no-repeat center center;

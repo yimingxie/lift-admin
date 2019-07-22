@@ -17,6 +17,7 @@ import tab from "./components/tab";
 import elCascaderMulti from "el-cascader-multi";
 Vue.use(elCascaderMulti);
 
+Vue.use(ElementUI);
 // Vue.use(EleMultiCascader)
 
 import moment from 'moment';
@@ -47,9 +48,6 @@ Vue.filter('fromNow', function(dataStr, pattern = 'YYYYMMDD') {
   return moment(dataStr,pattern).fromNow()
 })
 // Vue.prototype.$mixins = globalMixins
-
-Vue.use(ElementUI)
-// 多语言配置文件
 import locales from './consts/locales/index'
 // 过滤器
 import * as filters from './filters/filters'

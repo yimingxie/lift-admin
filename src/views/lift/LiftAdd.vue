@@ -58,7 +58,8 @@ export default {
       this.$router.push({
         path: '/lift-add-result',
         query: {
-          regCode: val
+          regCode: val,
+          submitState: 'post'
         }
       })
     }

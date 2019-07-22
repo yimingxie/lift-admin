@@ -218,8 +218,8 @@ export default {
         account: '',
         password: '111',
         corpId: window.localStorage.getItem('corpId'),
-        accountType: "1",
-        userType: 0 ,//维保创建自己的账号 类型为0；通用创建维保管理员 类型为1；通用创建通用为2
+        // accountType: "1",
+        userType: 1, //维保创建自己的账号 类型为0；通用创建维保管理员 类型为1；通用创建通用为2
         roleId:''
       },
       edit_dialogFormVisible: false,
@@ -536,5 +536,4 @@ export default {
     text-align: center;
     line-height 42px
     padding 0 0 30px 0
-
 </style>
