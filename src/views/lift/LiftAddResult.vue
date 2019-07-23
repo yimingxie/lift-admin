@@ -1238,6 +1238,7 @@ export default {
     font-weight normal;
     line-height 34px;
     font-size: 14px;
+    margin-bottom: 0 !important;
     color: #7E8A95;
   }
   .map-box{
@@ -1251,7 +1252,6 @@ export default {
     float left;
     line-height 32px;
     padding 0 10px;
-    margin-top 4px;
   }
   .add-floor-btn{
     cursor: pointer;
@@ -1276,7 +1276,7 @@ export default {
     background: url('../../assets/images/xym/delete-on.png') no-repeat center center;
   }
   .dwc-date-icon{
-    top: 36px;
+    top: 30px;
     z-index: 99;
   }
   .show-pp{

@@ -394,6 +394,7 @@ export default {
     editDevice() {
       let that = this
       this.dialogEditDevice = true
+      
 
       // 赋旧值
       this.ruleForm.devEui = this.devEui
@@ -404,7 +405,6 @@ export default {
       this.selectedMoniObjOptions = []
       // 字符串元素转为数字
       this.selectedMoniObjOptions.push(parseInt(this.nativemonitorObj.split(':')[0]), parseInt(this.nativemonitorObj.split(':')[1]), parseInt(this.nativemonitorObj.split(':')[2]))
-
       this.ruleForm.monitorVal = this.nativemonitorVal
 
     },
