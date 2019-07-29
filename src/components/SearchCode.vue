@@ -1,7 +1,7 @@
 <template>
   <div class="search-container">
     <div class="llcb-search-box">
-      <input class="lsearch-input" type="text" v-model="cCode" placeholder="搜索电梯注册码/详细地址" @keyup="showList" @blur="show = false">
+      <input class="lsearch-input" type="text" v-model="cCode" placeholder="搜索电梯注册码/详细地址" @keyup="showList" @keyup.enter="search(cCode)" @blur="show = false">
       <input class="lsearch-submit" type="button" value="" @click="search(cCode)">
     </div>
 
@@ -61,6 +61,7 @@ export default {
     },
     // 将电梯注册码返回给父组件
     search(regCode) {
+      this.show = false
       console.log(regCode)
       // this.cCode = regCode
       // this.$emit('childCode', this.cCode)

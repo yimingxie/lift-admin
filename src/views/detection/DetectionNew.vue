@@ -142,7 +142,7 @@ export default {
         diagnType: -1,
         processed: -1,
         startDate: '2019-1-1',
-        endDate: '2019-7-18',
+        endDate: '2019-7-24',
       },
 
       
@@ -176,7 +176,7 @@ export default {
       this.warnListTimer = null
       this.getWarnList()
     } else {
-      this.setWarnListTimer()
+      // this.setWarnListTimer()
     }
 
   },
@@ -286,7 +286,7 @@ export default {
                 let warnListMore = res.data.data.records
                 that.warnList = that.warnList.concat(warnListMore)
                 if (this.currentComponent == 'DetectionDiagnoseC') return
-                that.setWarnListTimer() // 如果为诊断页面，则不开启定时器，否则要开启
+                // that.setWarnListTimer() // 如果为诊断页面，则不开启定时器，否则要开启
               }
             }, 1000)
           })
@@ -355,7 +355,7 @@ export default {
       this.boxOnIndex = ''
       localStorage.setItem('daginId', '')
       this.currentComponent = 'DetectionRealtimeC'
-      this.setWarnListTimer()
+      // this.setWarnListTimer()
     },
 
     
@@ -422,122 +422,7 @@ export default {
     line-height: 1;
   }
   
-  // dete待封装
-  .det-content{
-    margin: 20px;
-  }
-  .det-warn{
-    float: left;
-    background: #FFFFFF;
-    box-shadow: 0 8px 20px -12px rgba(66,114,255,0.30);
-    border-radius: 8px;
-    height: 783px;
-    width: 28%;
-  }
 
-  .dwc-box{
-    position: relative;
-    float: left;
-    width: 33.3%;
-  }
-  .det-warn-choose{
-    background: #F5F6F7;
-  }
-  .dwc-date-icon{
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 32px;
-    height: 40px;
-    background: url('../../assets/images/xym/date.png') no-repeat center center;
-  }
-  .dwc-box-line{
-    position: absolute;
-    top: 13px;
-    right: -3px;
-    height: 14px;
-    width: 1px;
-    background: #D8DDDF;
-  }
-  .dw-list{
-    height: 660px;
-    overflow: auto;
-  }
-  .dw-list-box{
-    position: relative;
-    cursor: pointer;
-  }
-  .dw-list-box.warningBg.on{
-    background-image: linear-gradient(90deg, #78D2A7 0%, #72EEB4 100%);
-    box-shadow: 0 8px 20px -10px rgba(191,113,27,0.60);
-  }
-  .dw-list-box.violationBg.on{
-    background-image: linear-gradient(90deg, #6809fc 0%, #A854FD 100%);
-    box-shadow: 0 8px 20px -10px rgba(191,113,27,0.60);
-  }
-  .dw-list-box.faultBg.on{
-    background-image: linear-gradient(90deg, #F3B02B 0%, #FFCC1E 100%);
-    box-shadow: 0 8px 20px -10px rgba(191,113,27,0.60);
-  }
-  .dw-list-box.accidentBg.on{
-    background-image: linear-gradient(90deg, #FC3132 0%, #F67356 100%);
-    box-shadow: 0 8px 20px -10px rgba(191,113,27,0.60);
-  }
-  .dw-list-box-wrap{
-    margin: 0 20px;
-    padding: 16px 0;
-    border-bottom: 1px dashed #D8DDDF;
-  }
-  .dwlb-p {
-    padding-right: 64px;
-  }
-  .dwlb-p h4{
-    font-size: 14px;
-    color: #34414C;
-    margin-bottom 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  .dw-list-box.on .dwlb-p h4{
-    color #fff
-    font-size 16px;
-  }
-  .dwlb-p p{
-    font-size: 14px;
-    color: #7E8A95;
-    margin-top: 10px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  .dw-list-box.on .dwlb-p p{
-    font-size: 14px;
-    color: rgba(255,255,255,0.65)
-  }
-  .dwlb-rate{
-    position: absolute;
-    top: 27px;
-    right: 20px;
-    font-size: 14px;
-    color: #34414C;
-  }
-  .dwlb-rate.no-deal{
-    color: #FA4F43;
-  }
-  .dw-list-box.on .dwlb-rate{
-    color: #fff !important;
-  }
-  .back-realtime{
-    position: absolute;
-    top: 22px;
-    right: 24px;
-    padding-left: 16px;
-    font-size: 14px;
-    color: #7E8A95;
-    cursor pointer;
-    background: url('../../assets/images/xym/back.png') no-repeat left center;
-  }
   
 }
 

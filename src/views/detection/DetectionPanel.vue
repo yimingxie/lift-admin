@@ -1,0 +1,264 @@
+<template>
+  <div id="DetectionPanel">
+    <div class="container">
+      <div class="bread-nav">
+        <span>数字电梯</span>
+        <em>/</em>
+        <span class="on">电梯检测</span>
+      </div>
+
+      <div class="det-heading clearfix">
+        <div class="det-heading-info">
+          <div class="dhi-title">内部编号：{{inNum}}</div>
+          <ul class="dhi-ul clearfix">
+            <li><span>注册代码：</span>{{regCode}}</li>
+            <li><span>电梯负责人：</span>{{lift_man}}</li>
+            <li><span>电梯地址：</span>{{localArea}} {{address}}</li>
+          </ul>
+        </div>
+        <div class="det-heading-search">
+          <search-code :code="parentCode" @childCode="goToResult"></search-code>
+        </div>
+      </div>
+
+      <div class="det-content clearfix">
+        <!-- 告警列表组件 -->
+        <div class="det-warn">
+          <det-warn-list-comp></det-warn-list-comp>
+        </div>
+
+        <!-- 中间电梯实时运行状态 -->
+        <div class="det-mid">
+          <!-- 实时运行状态 -->
+          <div class="det-mid-status">
+            <div class="dms-title">
+              <h4>实时运行状态</h4>
+              <div class="dms-title-balance">平衡系数 ></div>
+            </div>
+            <div class="dms-lift clearfix">
+              <div class="dms-lift-pic">
+                <img src="../../assets/images/xym/lift.png" alt="">
+              </div>
+              <div class="dms-lift-derection">
+                <div class="dmsl-dt dmsl-dt-up">
+                  <div class="dmsl-dt-up-on"></div>
+                </div>
+                <div class="dmsl-dt-floor">
+                  <h4><span>{{curRunData.floor}}</span>F</h4>
+                  <p>当前楼层</p>
+                </div>
+                <div class="dmsl-dt dmsl-dt-down">
+                  <div class="dmsl-dt-down-on"></div>
+                </div>
+              </div>
+              <div class="dms-lift-data">
+                <div class="dmsl-data">
+                  <h4><span>{{curRunData.speed}}</span>m/s</h4>
+                  <p>运行速度</p>
+                </div>
+                <div class="dmsl-data">
+                  <h4><span>{{curRunData.prox}}</span></h4>
+                  <p>轿门状态</p>
+                </div>
+                <div class="dmsl-data">
+                  <h4><span>1600</span>kg</h4>
+                  <p>当前荷载</p>
+                </div>
+              </div>
+            </div>
+            <div class="dms-lift-info clearfix">
+              <div class="dmsl-data">
+                <h4><span>7821</span>km</h4>
+                <p>月累计运行里程</p>
+              </div>
+              <div class="dmsl-data">
+                <h4><span>12</span>年<span>1</span>个月</h4>
+                <p>电梯年限</p>
+              </div>
+              <div class="dmsl-data">
+                <h4><span>234345</span>次</h4>
+                <p>月启停次数</p>
+              </div>
+              <div class="dmsl-data">
+                <h4><span>1582</span>小时</h4>
+                <p>月运行时长</p>
+              </div>
+              <div class="dmsl-data">
+                <h4><span>121</span>次</h4>
+                <p>钢丝绳月折弯次数</p>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- 作业记录 -->
+          <div class="det-mid-log">
+            <div class="det-warn-title">
+              <div class="det-warn-title-h">作业记录</div>
+              <span class="dm-go-detail">全部作业 ></span></div>
+            <div class="dm-log-content">
+              <div class="dm-log-list clearfix">
+                <div class="dmll-td">例行维保</div>
+                <div class="dmll-td">周莘羽</div>
+                <div class="dmll-td">04-24  14:47:12</div>
+              </div>
+              <div class="dm-log-list clearfix">
+                <div class="dmll-td">例行维保</div>
+                <div class="dmll-td">周莘羽</div>
+                <div class="dmll-td">04-24  14:47:12</div>
+              </div>
+              <div class="dm-log-list clearfix">
+                <div class="dmll-td">例行维保</div>
+                <div class="dmll-td">周莘羽</div>
+                <div class="dmll-td">04-24  14:47:12</div>
+              </div>
+              <div class="dm-log-list clearfix">
+                <div class="dmll-td">例行维保</div>
+                <div class="dmll-td">周莘羽</div>
+                <div class="dmll-td">04-24  14:47:12</div>
+              </div>
+              <div class="dm-log-list clearfix">
+                <div class="dmll-td">例行维保</div>
+                <div class="dmll-td">周莘羽</div>
+                <div class="dmll-td">04-24  14:47:12</div>
+              </div>
+              <div class="dm-log-list clearfix">
+                <div class="dmll-td">例行维保</div>
+                <div class="dmll-td">周莘羽</div>
+                <div class="dmll-td">04-24  14:47:12</div>
+              </div>
+
+
+            </div>
+
+
+          </div>
+
+
+        </div>
+
+        <!-- 右侧实时监测 -->
+        <div class="det-right">
+          <det-chart-comp></det-chart-comp>
+        </div>
+
+        
+      </div>
+
+
+    </div>
+
+
+
+  </div>
+</template>
+
+<script>
+import xymFun from '../../utils/xymFun'
+import api from '../../api.js'
+import Footer from '../common/fotter'
+import SearchCode from '../../components/SearchCode'
+import DetWarnListComp from './DetWarnListComp'
+import DetChartComp from './DetChartComp'
+
+export default {
+  data() {
+    return {
+      parentCode: '',
+      // 电梯详情
+      regCode: '',
+      inNum: '',
+      address: '',
+      lift_man: '',
+      localArea: '',
+
+      // 实时运行状态
+      curRunData: {
+        "move": "",
+        "floor": 0,
+        "speed": 0,
+        "height": 0,
+        "prox": "关"
+      },
+
+    }
+  },
+  created() {
+    this.parentCode = this.$route.query.regCode
+  },
+  
+  mounted() {
+    // 获取电梯详情
+    this.getLiftDetail()
+
+    // 获取电梯实时运行状态
+    this.getEleRunData()
+
+
+  },
+  methods: {
+    // 搜索
+    goToResult(val) {
+      console.log('传值并跳转页面', val)
+      this.parentCode = val
+      this.$router.push({
+        path: '/detection',
+        query: {
+          regCode: val
+        }
+      })
+      console.log('pp', this.parentCode)
+    },
+
+    // 查询电梯详情
+    getLiftDetail() {
+      api.lift.getLiftResult(this.parentCode).then(res => {
+        console.log('res', res)
+        let detail = res.data.data
+        this.regCode = detail.regCode
+        this.inNum = detail.inNum
+        this.localArea = detail.localArea
+        this.address = detail.address
+
+        // 查询异常告警列表
+        // this.getWarnList()
+      })
+    },
+
+    // 获取电梯实时运行状态
+    getEleRunData() {
+      api.detection.getElevatorData(this.parentCode).then(res => {
+        console.log('电梯实时运行状态数据', res.data.data[this.parentCode])
+        let detail = res.data.data[this.parentCode]
+        this.curRunData.move = detail.move
+        this.curRunData.floor = detail.floor
+        this.curRunData.height = detail.height
+        this.curRunData.speed = parseFloat(detail.speed).toFixed(2)
+        this.curRunData.prox = detail.prox == '"01"' ? '开' : '关'
+      })
+    },
+
+  },
+  components: {
+    'footer-temp': Footer,
+    'search-code': SearchCode,
+    'det-warn-list-comp': DetWarnListComp,
+    'det-chart-comp': DetChartComp
+
+
+  }
+}
+</script>
+
+<style lang="stylus" scoped>
+#DetectionPanel{
+  @import '../../assets/stylus/xymStyle.styl'
+
+  .container{
+    line-height: 1;
+  }
+  
+}
+
+</style>
