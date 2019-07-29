@@ -10,6 +10,7 @@
       <el-tag><router-link to='/corpApi'>创建企业公司</router-link></el-tag>
       <h1 class="tac">创建企业公司</h1>
       <el-form ref="form" :model="sizeForm" :label-width="formLabelWidth" class="demo-ruleForm">
+        
         <el-form-item label="公司名称">
           <el-input v-model="sizeForm.name"></el-input>
         </el-form-item>
@@ -26,6 +27,13 @@
           <el-input v-model="sizeForm.corpInfo"></el-input>
         </el-form-item>
         
+        <el-form-item label="账号">
+          <el-input v-model="sizeForm.account"></el-input>
+        </el-form-item>
+        <el-form-item label="密码">
+          <el-input v-model="sizeForm.password"></el-input>
+        </el-form-item>
+
         <el-form-item size="large">
           <el-button type="primary" @click="onSubmit">立即创建</el-button>
           <el-button>取消</el-button>
@@ -89,6 +97,8 @@
           address:"",
           scUrl:"",
           corpInfo:"",
+          account:'',
+          password:''
         },
         adding:true,
         queryParam:{

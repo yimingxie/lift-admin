@@ -584,10 +584,10 @@
             // console.log("detailOnAMAP----" + JSON.stringify(_this.map.getAllOverlays()))
 
             _this.markers = []
-            console.log("markers=================" + _this.markers)
+            // console.log("markers=================" + _this.markers)
             shadowMarkers = [];  
             // console.log("1111===" + _this.lnglats)
-            console.log("_this.lnglats.length=====================" + _this.lnglats.length)
+            // console.log("_this.lnglats.length=====================" + _this.lnglats.length)
             for (var i = 0, marker; i < _this.lnglats.length; i++) { // 故障检修
             var diagnCode = _this.lnglats[i].diagnCode
               if(diagnCode === "[0,-,-,-]") {

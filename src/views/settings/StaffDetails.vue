@@ -5,7 +5,7 @@
         <span>员工管理</span>
       </router-link>
       <em>/</em>
-      <span class="on">{{getStaffInfo.staffName}}-员工详情</span>
+      <span class="on">{{getStaffInfo.name}} - 员工详情</span>
     </div>
     <div class="main-wrap" >
       <div class="row" >
@@ -17,9 +17,7 @@
           <div class="s_contain">
             <router-link :to="{ name: 'editStaff', params: { staffId: this.$route.params.staffId }}"><span class="s_de_edit" ></span></router-link>
 
-            
-
-            <p class="s_de_name">{{getStaffInfo.staffName}}
+            <p class="s_de_name">{{getStaffInfo.name}}
               <img v-if="getStaffInfo.gender == '0'" src="../../assets/images/hs/female.png"  alt="" />
               <img v-else src="../../assets/images/hs/male.png"  alt="" />
             </p>
@@ -27,12 +25,24 @@
             <div class="s_de_details">
               <ul>
                 <li><span class="tie">手机号码：</span><span >{{getStaffInfo.account}}</span></li>
-                <li><span class="tie">出生日期：</span><span>{{ getStaffInfo.birthday | dateformat(dateFormat)}} &nbsp;{{ birthdayFrom}}</span></li>
+                <li><span class="tie">出生日期：</span>
+                  <span v-if="getStaffInfo.birthday">{{ getStaffInfo.birthday | dateformat(dateFormat)}} &nbsp;{{ birthdayFrom}}</span>
+                  <span v-else>--</span>
+                </li>
                 <li><span class="tie">从业资格证：</span><span>从业资格证.jpg</span></li>
-                <li><span class="tie">从业日期：</span><span>{{ getStaffInfo.empTime | dateformat(dateFormat)}} &nbsp;{{ empTimeFrom}}</span></li>
-                <li><span class="tie">入职日期：</span><span>{{ getStaffInfo.entryTime | dateformat(dateFormat)}} &nbsp;{{ entryTimeFrom}}</span></li>
+                <li><span class="tie">从业日期：</span>
+                  <span v-if="getStaffInfo.empTime">{{ getStaffInfo.empTime | dateformat(dateFormat)}} &nbsp;{{ empTimeFrom}}</span>
+                  <span v-else>--</span>
+                </li>
+                <li><span class="tie">入职日期：</span>
+                  <span v-if="getStaffInfo.entryTime">{{ getStaffInfo.entryTime | dateformat(dateFormat)}} &nbsp;{{ entryTimeFrom}}</span>
+                  <span v-else>--</span>
+                </li>
                 <li><span class="tie">管辖电梯数：</span><span>{{ elevatorTotal }}部</span></li>
-                <li><span class="tie">管辖区域：</span><span>{{ getStaffInfo.areaName }}</span></li>
+                <li><span class="tie">管辖区域：</span>
+                  <span v-if="getStaffInfo.areaName">{{ getStaffInfo.areaName }}</span>
+                  <span v-else>--</span>
+                </li>
               </ul>
             </div>
           </div>
@@ -64,11 +74,11 @@
               </el-table-column>
              
              
-              <el-table-column label="操作" width="75">
+              <el-table-column label="操作" width="100">
                 <template slot-scope="scope">
                   <!-- 1.在封装好的组件上使用，所以要加上.native才能click
                   2.prevent就相当于..event.preventDefault() -->
-                  <el-button @click.native.prevent="editAccount(scope.$index, scope.row)" type="text">查看详情
+                  <el-button @click.native.prevent="goDetection(scope.row.regCode)" type="text">查看详情
                   </el-button>
                  
                 </template>
@@ -206,6 +216,15 @@ export default {
   },
   methods: {
     moment,
+    // 跳转到诊断
+    goDetection(regCode) {
+      this.$router.push({
+        path: '/detection',
+        query: {
+          regCode: regCode
+        }
+      })
+    },
     // 查询账户详情
     getAllAccountData(){
       api.accountApi.getStaffDetails(this.$route.params.staffId).then((res) => {
@@ -222,11 +241,12 @@ export default {
           console.log("this.birthdayFrom---" + this.birthdayFrom)
 
           this.elevatorList = res.data.data.elevatorList
+          this.url = "http://192.168.100.7:8080/domino/view/image?filename=" + this.getStaffInfo.avatarUrl
           this.elevatorList.forEach(item =>{
             var areaName = newArea.getAreaName(item.areaCode).join('')
             Vue.set(item, 'areaName', areaName)
           })
-          this.url = "http://192.168.100.7:8080/domino/view/image?filename=" + this.getStaffInfo.avatarUrl
+          
           // 获取头像
           
           // this.jobRecord = res.data.data.jobRecord

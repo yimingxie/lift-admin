@@ -117,6 +117,7 @@
             
             // 存储token,modules,corpId
             window.localStorage.setItem('accessToken', res.data.data.token)
+            window.localStorage.setItem('type', res.data.data.type)
             if(res.data.data.modules){
               window.localStorage.setItem('modules', JSON.stringify(res.data.data.modules))
             }
@@ -124,7 +125,7 @@
               window.localStorage.setItem('corpId', res.data.data.corpId)
             }
             // 设置记住密码
-            console.log('this.rememberPwd===' + this.rememberPwd)
+            // console.log('this.rememberPwd===' + this.rememberPwd)
             if (this.rememberPwd) {
               this.setCookie('rememberPwd', true)
               this.setCookie('account', this.loginForm.account)
@@ -134,13 +135,16 @@
               this.delCookie('account')
               this.delCookie('password')
             }
-            // 根据用户名获取用户权限,并跳转页面
-            // this.getUserPerm(this.model.username)
-            console.log(res.data.data.modules)
+            // 获取用户权限,并跳转页面
+            // console.log("modules:::" + res.data.data.modules)
+            if(res.data.data.type == 'domino'){
+              this.$message.success('登录成功！');
+              this.$router.push('/corpApi')
+            }
             if(res.data.data.modules !== undefined){
               this.$message.success('登录成功！');
               this.$router.push('/map')
-            } else {
+            } else if(res.data.data.modules){
               this.$message.error('暂无权限，请联系管理员');
             }
             

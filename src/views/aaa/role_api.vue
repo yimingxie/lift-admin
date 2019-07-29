@@ -143,9 +143,7 @@
           offset:1,
           column: "create_time",
           order: true,
-          corpId:window.localStorage.getItem('corpId'),
-          // corpId:"ab191d31a80c8ae45850fedb1c2b03e6",
-          // corpId:"5d472e26790ea0fe6e3077aa4b1565b6",
+          corpId:'',
           queryStr: ""
         },
         queryModulesParam:{
@@ -193,13 +191,14 @@
     },
     methods: {
       onRadioChange(aaa){
+        console.log("aaa===" + aaa)
+        this.queryParam.corpId = aaa
         this.getRoles()
       },
       getCorps(){
         api.corpApi.getCorps(this.corpQueryParam).then((res) => {
           if(res.data.code === 200 && res.data.message === 'success'){
             this.getCorpsJson = res.data.data.records
-
           } else {
             this.getCorpsJson = []
           }

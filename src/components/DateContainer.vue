@@ -4,7 +4,18 @@
         <div class="nowTime">
 
             <span class="preMon" @click="preMon"></span>
-            <span class="thisMon">现在：{{ checkMonth +1 }}月</span>
+            <span class="thisMon tac" style="min-width:119px;padding: 0;">
+              <span v-if="checkDay == -999">
+                {{ checkMonth +1 }}月
+                <span v-if="NowMonth === checkMonth">，本月</span>
+              </span>
+              <span v-else>
+                <!-- this.checkMonth+1 < 10 ? '0' + (this.checkMonth+1) : (this.checkMonth+1)
+                {{ checkMonth +1 < 10 ? '0' + (this.checkMonth+1) : (this.checkMonth+1) }}-{{checkDay}} -->
+                <span v-text="(this.checkMonth+1 < 10 ? '0' + (this.checkMonth+1) : (this.checkMonth+1)) + '-' + (this.checkDay < 10 ? '0' + this.checkDay : this.checkDay)"></span>
+                <span v-if="NowDay === checkDay">，今天</span>
+              </span>
+            </span>
             <span class="nextMon" @click="nextMon"></span>
 
         </div>
@@ -79,7 +90,9 @@
       this.getDaysInfo();
 
       // 将日期传递到父组件
-      this.$emit('update:snycCheckedDate', this.ynow + '-' + (this.checkMonth+1))
+      var month = this.checkMonth+1 < 10 ? '0' + (this.checkMonth+1) : (this.checkMonth+1)
+      this.$emit('update:snycCheckedDate', this.ynow + '-' + month)
+      // this.$emit('update:snycCheckedDate', this.ynow + '-' + (this.checkMonth+1))
     },
     methods: {
       
@@ -95,9 +108,9 @@
       },
      
       getTitle (data1) {
-        if (data1 <= 0 || data1 > this.m_days[this.checkMonth] ) {
+        if ( data1 <= 0 || data1 > this.m_days[this.checkMonth] ) {
           return '';
-        } else if(data1 === this.NowDay && this.NowMonth === this.checkMonth){
+        } else if( data1 === this.NowDay && this.NowMonth === this.checkMonth ) {
           return '今';
         } else {
           return data1;
@@ -105,11 +118,32 @@
       },
       // 点击td事件
       change (index) {
-        if(index !='' && index > 0 && index <= this.m_days[this.checkMonth] ){
-          this.checkDay = index
+        
+        if(index !='' && index > 0 && index <= this.m_days[this.checkMonth]){
 
-          // 将日期传递到父组件
-          this.$emit('update:snycCheckedDate', this.ynow + '-' + (this.checkMonth+1) + '-' + this.checkDay)
+          console.log("当前点击===" + index)
+          console.log("已经选择===" + this.checkDay)
+          // 若点击已选择的td
+          if(index === this.checkDay) {
+            
+            // 日期置零
+            this.checkDay = -999
+
+            // 将日期传递到父组件
+            var month = this.checkMonth+1 < 10 ? '0' + (this.checkMonth+1) : (this.checkMonth+1)
+            this.$emit('update:snycCheckedDate', this.ynow + '-' + month)
+            
+          } else {
+
+            this.checkDay = index
+
+            // 将日期传递到父组件
+            var month = this.checkMonth+1 < 10 ? '0' + (this.checkMonth+1) : (this.checkMonth+1)
+            var day = this.checkDay < 10 ? '0' + this.checkDay : this.checkDay
+            this.$emit('update:snycCheckedDate', this.ynow + '-' + month + '-' + day)
+            // this.$emit('update:snycCheckedDate', this.ynow + '-' + (this.checkMonth+1) + '-' + this.checkDay)
+          }
+          
         }
       },
       getDaysInfo () {
@@ -159,8 +193,10 @@
         // 日期置零
         this.checkDay = -999 
 
+        
         // 将日期传递到父组件
-        this.$emit('update:snycCheckedDate', this.ynow + '-' + (this.checkMonth+1))
+        var month = this.checkMonth+1 < 10 ? '0' + (this.checkMonth+1) : (this.checkMonth+1)
+        this.$emit('update:snycCheckedDate', this.ynow + '-' + month)
       },
       nextMon() {
         var _this = this;
@@ -174,7 +210,8 @@
         this.checkDay = -999 
 
         // 将日期传递到父组件
-        this.$emit('update:snycCheckedDate', this.ynow + '-' + (this.checkMonth+1))
+        var month = this.checkMonth+1 < 10 ? '0' + (this.checkMonth+1) : (this.checkMonth+1)
+        this.$emit('update:snycCheckedDate', this.ynow + '-' + month)
       },
       
     },

@@ -13,11 +13,12 @@
         headers="application/x-www-form-urlencoded"-->
 
         <el-upload
-          :action="upLoadUrl"
           class="avatar-uploader"
+          :headers="{'Content-Type':'multipart/form-data'}"
+          :http-request="upLoadHeadPic"
+          :action="upLoadUrl"
           :show-file-list="false" 
-          :on-success="handleAvatarSuccess"
-          :before-upload="beforeAvatarUpload"
+          accept="image/png,image/jpg,image/jpeg"
         >
           <img v-if="imageUrl1" :src="imageUrl1" class="avatar">
           <i v-else class="uploader-icon"></i>
@@ -29,7 +30,7 @@
           <el-row>
             <el-col :span="12">
               <el-form-item label="姓名：">
-                <el-input v-model="editStaffForm.staffName" placeholder="请输入姓名"></el-input>
+                <el-input v-model="editStaffForm.name" placeholder="请输入姓名"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="11" :offset="1">
@@ -132,11 +133,12 @@
             <el-row >
               <el-col :span="5">
                 <el-upload
-                  :action="upLoadUrl"
                   class="avatar-uploader2"
-                  :show-file-list="false" 
-                  :on-success="handleAvatarSuccess2"
-                  :before-upload="beforeAvatarUpload2"
+                  :headers="{'Content-Type':'multipart/form-data'}"
+                  :http-request="upLoadQualificationPic"
+                  :action="upLoadUrl"
+                  :show-file-list="false"
+                  accept="image/png,image/jpg,image/jpeg"
                 >
                   <img v-if="imageUrl2" :src="imageUrl2" class="avatar2">
                   <i v-else class="avatar-uploader-icon2"></i>
@@ -152,7 +154,7 @@
           <div class="tac" style="margin-top:33px">
             <router-link to="/staff"><el-button class="dialogCancel">取 消</el-button></router-link>
 
-            <el-button type="primary" @click="confirmEditAccount()" class="dialogSure" style="margin-left:20px;">确 认</el-button>
+            <el-button type="primary" @click="confirmEditAccount()" class="dialogSure" style="margin-left:45px;">确 认</el-button>
           </div>
         </el-form>
       </div>
@@ -218,9 +220,8 @@ export default {
       searchKey:'',
       editStaffForm: {
         id:'',
-        staffName: '', //员工姓名
-        idCard: '111', // 身份证
-        account: "13567678899", //账号:限定手机号
+        name: '', //员工姓名
+        account: "", //账号:限定手机号
         corpId: window.localStorage.getItem('corpId'), //公司id
         depId: "" , //部门id
         manageArea:'', //管理区域
@@ -314,7 +315,13 @@ export default {
   },
   computed: { 
     birthday() {
-      var birthday = moment(this.getStaffInfo.birthday).format(this.dateFormat)//入职日期
+      //    console.log("this.getStaffInfo.birthday---" + this.getStaffInfo.birthday)
+
+      // if(this.getStaffInfo.birthday){
+        var birthday = moment(this.getStaffInfo.birthday).format(this.dateFormat)//入职日期
+      // } else {
+      //   var birthday = ''
+      // }
       return birthday; 
     },
     entryTime() {
@@ -327,33 +334,59 @@ export default {
     },
   },
   mounted() {
-    this.getAllAccountData()
     this.getAllDepartmentData()
+    
     this.editStaffForm.id = this.$route.params.staffId
     // console.log("params==" + this.$route.params.staffId)
     
   },
   methods: {
-    beforeAvatarUpload(file){},
-    // 上传文件之前的钩子
-    beforeAvatarUpload2(file){},
-    // 上传成功
-    handleAvatarSuccess2(res, file, fileList) {
-      // console.log(res)
-      // console.log("file" + JSON.stringify(file))
-      // console.log(fileList)  // 这里可以获得上传成功的相关信息
-      var picName = file.response.data.fileName
-      this.imageUrl2 = URL.createObjectURL(file.raw);
-      this.editStaffForm.empUrl = picName
-    },
-    
-    // 上传成功
-    handleAvatarSuccess(res, file, fileList) {
-      // console.log(file)
+    // 自定义头像上传方法
+    upLoadHeadPic(fileObj) {
+      const _file = fileObj.file;
+      const isLt2M = _file.size / 1024 / 1024 < 2;
 
-      var picName = file.response.data.fileName
-      this.imageUrl1 = URL.createObjectURL(file.raw);
-      this.editStaffForm.avatarUrl = picName
+      if (!isLt2M) {
+        this.$message.error("上传头像图片大小不能超过 2MB!");
+        return false;
+      }
+
+      const formData = new FormData()
+      formData.append('file', fileObj.file)
+      formData.append('type', fileObj.file.type)
+
+      api.accountApi.uploadPic(formData).then((res) => {
+        if(res.data.code === 200 && res.data.message === 'success'){
+          this.imageUrl1 = "http://192.168.100.7:8080/domino/view/image?filename=" + res.data.data.fileName
+          this.editStaffForm.avatarUrl = res.data.data.fileName
+        } else {
+
+        }
+        
+      })
+    },
+    // 自定义从业资格证上传方法
+    upLoadQualificationPic(fileObj) {
+      const _file = fileObj.file;
+      const isLt2M = _file.size / 1024 / 1024 < 2;
+
+      if (!isLt2M) {
+        this.$message.error("上传从业资格证图片大小不能超过 2MB!");
+        return false;
+      }
+
+      const formData = new FormData()
+      formData.append('file', fileObj.file)
+      formData.append('type', fileObj.file.type)
+
+      api.accountApi.uploadPic(formData).then((res) => {
+        if(res.data.code === 200 && res.data.message === 'success'){
+          this.imageUrl2 = "http://192.168.100.7:8080/domino/view/image?filename=" + res.data.data.fileName
+          this.editStaffForm.empUrl = res.data.data.fileName
+        } else {
+        }
+      })
+
     },
     moment,
     // 查询账户详情
@@ -361,21 +394,22 @@ export default {
       api.accountApi.getStaffDetails(this.$route.params.staffId).then((res) => {
         if(res.data.code === 200 && res.data.message === 'success'){
           this.getStaffInfo = res.data.data.staffInfo
-          this.editStaffForm.staffName = this.getStaffInfo.staffName//员工姓名
-          this.editStaffForm.idCard = this.getStaffInfo.idCard//员工姓名
+          this.editStaffForm.name = this.getStaffInfo.name//员工姓名
           this.editStaffForm.account = this.getStaffInfo.account//员工姓名
           this.editStaffForm.depId = this.getStaffInfo.depId//员工姓名
-          this.editStaffForm.empTime = this.getStaffInfo.empTime.substring(0,10)//员工姓名
+          
           this.editStaffForm.gender = this.getStaffInfo.gender// 从业资格证 图片地址
           this.checkList2 = this.getStaffInfo.manageArea.split(',')// 从业资格证 图片地址
 
           this.editStaffForm.empUrl = this.getStaffInfo.empUrl// 从业资格证 图片地址
           this.editStaffForm.avatarUrl = this.getStaffInfo.avatarUrl// 头像地址
-          this.editStaffForm.entryTime = this.getStaffInfo.entryTime.substring(0,10)//入职日期
-          this.editStaffForm.birthday = this.getStaffInfo.birthday.substring(0,10)//入职日期
+          this.editStaffForm.empTime = this.getStaffInfo.empTime.substring(0,10) || ''
+          this.editStaffForm.entryTime = this.getStaffInfo.entryTime.substring(0,10) || ''//入职日期
+          this.editStaffForm.birthday = this.getStaffInfo.birthday.substring(0,10) || ''//入职日期
           // console.log("this.editStaffForm.birthday" + this.editStaffForm.birthday)
           // this.birthday = moment(this.getStaffInfo.birthday).format(this.dateFormat)//入职日期
           // 设置员工管辖区域
+
           this.depSelectChange(this.editStaffForm.depId, 1)
 
           var majorArr = []
@@ -422,30 +456,29 @@ export default {
     // 根据部门值变化
     // val- 部门ID
     depSelectChange(val,type){
-      // console.log("val---" + val)
+      console.log("val---" + val)
       var selectDep = this.getAllDepJson.filter(item => {
-        return item.id === val
+        return item.id == val
       })
+
       // var processArr = arr.filter(function(value) {
       //     return value == val;
       // })
-      // console.log("val---" + JSON.stringify(JSON.stringify(selectDep)))
+      console.log("this.getAllDepJson" + JSON.stringify(this.getAllDepJson))
+
+      console.log("selectRange---" + selectDep)
       var selectRange = selectDep[0].areaCode
+      
+
+      // alert(1)
+
       // 重置联动数据 
       this.regionOptions2 = []
+
       //   console.log("checkList1=" + this.checkList)
-      // console.log("selectRange---" + this.regionOptions2)
       this.checkList1 = selectRange.split(",")
-      // console.log("checkList1=" + this.checkList1)
-      // alert(this.checkList.length)
-      // var checkArr = this.checkList.split(",")
-      this.createPickAreaRange()
-      if(type !== 1){
-        this.checkList2 = selectRange.split(",")
-      }
-      // console.log("this.checkList2--11111111111111-" + this.checkList2)
-    },
-    createPickAreaRange(){
+
+      // this.createPickAreaRange()
       if(this.checkList1.length > 0){
         // this.getStaffAreaRange(this.checkList1)
         var sheng = this.checkList1[0].substring(0,2)
@@ -467,7 +500,6 @@ export default {
           // console.log("所选区：" + qu)
         }
         // var aaa = this.regionOptions.filter(item => item.code === '11')
-
         // 构建员工管辖区域数据
         this.regionOptions = newArea.newAreaOption()
         this.regionOptions.forEach((item, i) => {
@@ -559,13 +591,18 @@ export default {
           // newFormat[item.code] = item.name
 
         })
-        // console.log("selectRange---" + this.regionOptions2)
+        console.log("selectRange---" + this.regionOptions2)
         // 构建员工管辖区域数据 end
           
-
-
         // this.regionChange2(this.checkList2)
       }
+      if(type !== 1){
+        this.checkList2 = selectRange.split(",")
+      }
+      // console.log("this.checkList2--11111111111111-" + this.checkList2)
+    },
+    createPickAreaRange(){
+      
     },
     regionChange2(val, totalLabel) {
 
@@ -744,8 +781,9 @@ export default {
       api.accountApi.getDepartments(this.queryParam).then((res) => {
         if(res.data.code === 200 && res.data.message === 'success'){
           this.getAllDepJson = res.data.data.records
-          // this.totalPageSize = res.data.data.total
-
+          // 加载部门数据后再加载员工详情
+          this.getAllAccountData()
+          console.log("this.getAllDepJson" + JSON.stringify(this.getAllDepJson))
         } else {
           this.getAllDepJson = []
         }
