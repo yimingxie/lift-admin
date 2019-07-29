@@ -13,23 +13,24 @@ export default  {
   // 创建维保管理员的账户
   createAccount(params) {
     return http.post(
-      `${url2}/account`, params
+      `${url2}/manage/staff`, params
     )
   },
   // 根据账户列表模糊查询 仅限account
   getAccounts(params){
     return http.post(
-      `${url2}/account/list`, params
+      `${url2}/manage/staff/list`, params
     )
   },
+  
   // 修改账号的enable 状态 禁用
   // {
-  //   "accountId":"账号id",
-  //   "status":"状态: 0:禁用;1:启用;"
+  //   "userId":"账号id",
+  //   "valid":"状态: false:禁用;true:启用;"
   // }
   enableAccount(params){
     return http.put(
-      `${url2}/account/status`, params
+      `${url2}/manage/staff/valid`, params
     )
   },
   // // 修改账号的enable 状态 启用
@@ -41,28 +42,40 @@ export default  {
   // 修改用户账号
   editAccount(params){
     return http.put(
-      `${url2}/account`, params
+      `${url2}/manage/staff/name`, params
     )
   },
   // 删除用户账号
   deleteAccount(id){
     return http.delete(
-      `${url2}/${id}/del`
+      `${url2}/manage/staff/${id}`
     )
   },
   // 重置账户密码
-  // params:{id:""}
+  // params:{userId:""}
   resetAccount(params){
     return http.put(
-      `${url2}/account/reset`,params
+      `${url2}/manage/staff/reset-p`,params
     )
   },
   // 账户绑定角色
   accountBindRole(params){
-    return http.post(
-      `${url2}/account/bind`,params
+    return http.put(
+      `${url2}/manage/staff/role`,params
     )
   },
+  getAccountDetail(){
+    return http.get(
+      `${url2}/user/center`
+    )
+  },
+  // 用戶中心修改密码
+  editPsd(params){
+    return http.put(
+      `${url2}/user/center/p`, params
+    )
+  },
+
   // ------------------------部门管理--------------------------------
   // 创建员工的账号
   createDepartment(params) {
@@ -89,6 +102,7 @@ export default  {
     )
   },
   // ------------------------员工管理--------------------------------
+
   // 添加员工
   createStaff(params) {
     return http.post(

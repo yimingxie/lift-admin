@@ -1,5 +1,5 @@
 <template>
-<div id="department">
+<div id="department" class="main-wrap">
   <div class="bread-nav">
     <router-link to="/staff">
       <span>员工管理</span>
@@ -7,7 +7,7 @@
     <em>/</em>
     <span class="on">部门管理</span>
   </div>
-  <div class="main-wrap">
+  <div>
     <div class="row" >
 
       <div class="panel">
@@ -141,7 +141,7 @@
             <el-option
               v-for="item in getAllStaffJson"
               :key="item.id"
-              :label="item.staffName"
+              :label="item.name"
               :value="item.id">
             </el-option>
           </el-select>
@@ -234,6 +234,16 @@ export default {
         phone:"",
         staffName:"",
       },
+      queryAccountParam:{
+        offset:1,
+        limit:10,
+        column: "create_time",
+        order: false,
+        queryStr: "",
+        corpId:window.localStorage.getItem('corpId'),
+        phone:'',
+        name:''
+      },
     }
   },
   components: {
@@ -245,7 +255,8 @@ export default {
   },
   mounted() {
     this.getAllDepartmentData()
-    this.getAllStaffData()
+    // this.getAllStaffData()
+    this.getAllAccountData()
     // 一级循环，加载省市下拉选项
     // ----------------------省市区数据-----------------
     pcas.forEach((item, i) => {
@@ -306,6 +317,7 @@ export default {
     // this.regionOptions = newArea.newAreaOption()
   },
   methods: {
+    
     // 打开添加部门弹窗
     add_dialogForm(){
       this.add_dialogFormVisible = true
@@ -319,7 +331,7 @@ export default {
       var util = require("util")
       // 重置联动数据 
       // this.regionOptions2 = []
-      console.log("所选区域码:" +  JSON.stringify(totalLabel));
+      // console.log("所选区域码:" +  JSON.stringify(totalLabel));
       // this.checkList2 = this.checkList
 
       // alert(this.checkList.length)
@@ -397,9 +409,9 @@ export default {
           }
           // console.log("所选区域码ai:" +  JSON.stringify(ai))
         }
-        console.log("所选区域码:" +  JSON.stringify(dest));
+        // console.log("所选区域码:" +  JSON.stringify(dest));
         dest.forEach(item =>{
-          console.log("item.data=========" + item.data[0])
+          // console.log("item.data=========" + item.data[0])
           // 如果区全选
           if(this.ifCheckAllQu(item.name, item.data.length)){
             this.selectedAreaLabels.push(item.name + "-全部")
@@ -472,6 +484,20 @@ export default {
           }
       }
       return temp;
+    },
+    getAllAccountData(){
+      api.accountApi.getAccounts(this.queryAccountParam).then((res) => {
+        if(res.data.code === 200 && res.data.message === 'success'){
+          this.getAllStaffJson = res.data.data.records
+          // this.totalPageSize = res.data.data.total
+
+        } else {
+          this.getAllStaffJson = []
+        }
+        
+      }).catch((res) => {
+        
+      })
     },
      // 查询所有账户
     getAllStaffData(){
@@ -611,6 +637,8 @@ export default {
           if (res.data.code === 200) {
             this.$message.success('删除成功！');
             this.getAllDepartmentData()
+          } else {
+            this.$message.error(res.data.message);
           }
         }).catch((res) => {
           this.$message.error(res.data.message);
@@ -634,6 +662,7 @@ export default {
 <style lang="stylus">
 #department
   .bread-nav
+    margin 0 -10px
     padding: 0 20px;
     height: 52px;
     line-height: 52px;

@@ -53,11 +53,11 @@
           <i v-else class='icon-info icon-setting'></i>
           <span class="moduleName">{{item.name}}</span>
         </template>
-        <div style="padding-left:33px">
+        <!-- <div style="padding-left:33px">
         <span v-for="api in item.bindApi" :key="api" class="apiSpan">{{api}}</span>
-        </div>
+        </div> -->
       </el-collapse-item>
-      <div v-if="bindModules === undefined" class="tac">暂无权限</div>
+      <!-- <div v-if="bindModules === undefined" class="tac">暂无权限</div> -->
       </div>
     </el-collapse>
 
@@ -192,9 +192,9 @@ export default {
             for(var i = 0; i < apis.length; i++){
               bindApi.push(apis[i].name)
             }
-          } 
+          }
         }
-        obj=this.bindModules.find(function (obj) {
+        obj = this.bindModules.find(function (obj) {
           return obj.id === id
         })
         Vue.set(obj,'bindApi',bindApi)

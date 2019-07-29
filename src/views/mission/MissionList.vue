@@ -3,6 +3,9 @@
   <div class="row" >
 
     <div class="panel" style="padding-bottom:0">
+      <router-link to="/missionDetail">
+        <span>任务详情</span>
+      </router-link>
       <div class="title"><div class="label1">作业计划</div></div>
       <div class="subSelect" :class="open ? 'openSel' :''">
   
@@ -51,7 +54,7 @@
         <span class="openBtn" @click="clearCondition">清空筛选</span>
       </div>
       <div class="subBtns">
-        <button class="btn blueBtn">创建计划</button>
+        <button class="btn blueBtn" @click="createAPlan" v-if="checkedDate.length > 8 && parseInt(checkedDate.substring(5,7)) >= parseInt(NowMonth)">创建计划</button>
         <button class="btn whiteBtn">立即派单</button>
         <button class="btn whiteBtn" >导出计划</button>
         <!-- <button class="btn whiteBtn" >全选</button> -->
@@ -67,9 +70,17 @@
     
   </div>
   <div class="row" >
-    <div style="float:left">
+    <div style="position: absolute;">
       <div class="panel" style="padding:0">
-        {{checkedDate}}
+        <div style="position: absolute;z-index:999;right:2px;top:15px">
+          <!-- {{NowMonth}}
+          {{checkedDate}} -->
+          <!-- {{ checkedDate.length === 7}}
+          {{(checkedDate.substring(5,7) != NowMonth && checkedDate.length === 7)}} -->
+          <!-- 月视图本月才会出现 -->
+          <button class="btn whiteBtn" :class="(parseInt(checkedDate.substring(5,7)) < parseInt(NowMonth) || checkedDate.length !== 7)? 'disableWhiteBtn' :''">生成任务工单</button>
+          <button class="btn whiteBtn" :class="(parseInt(checkedDate.substring(5,7)) < parseInt(NowMonth) || checkedDate.length !== 7)? 'disableWhiteBtn' :''">生成维保计划</button>
+        </div>
         <calendar :todos="todos" :snycCheckedDate.sync="checkedDate">
 
           <template slot-scope="slotProps" >
@@ -108,43 +119,30 @@
           <span class="taskTotal">8</span>
           <span class="taskTotalText">任务总数</span>
           <span class="splitLine">|</span>
-          <span>未创建维保计划：13</span>
-          <span class="splitLine">|</span>
+          <!-- <span>未创建维保计划：13</span>
+          <span class="splitLine">|</span> -->
           <span>未派单：4</span>
           <span class="splitLine">|</span>
-          <span>即将逾期：<i style="color: #FFC60B;">1</i></span>
+          <span>已完成：1</span>
           <span class="splitLine">|</span>
-          <span>已逾期：<i style="color: #FA4F43;">4</i></span>
+          <span>已超时：<i style="color: #FA4F43;">4</i></span>
         </div>
         <!-- 任务总数等一些统计数据 end-->
 
         <!-- //创建计划 -->
-        <div class="creatPlan">
-          <div>
+        <div class="creatPlan" v-if="showCreatePlan">
+          <div style="margin-bottom: 25px">
             <span class="titlePlan">创建计划</span>
             <span class="btns">
               <i class="btnBlue">保存</i>
-              <span class="splitLine">|</span>
-              <i class="btnGray" @click="cancel">取消</i>
+              <span class="splitLine" style="margin:0 3px">|</span>
+              <i class="btnGray" @click="cancelCreatePlan">取消</i>
             </span>
           </div>
-          <!-- <el-form :inline="true" :model="formInline" class="demo-form-inline">
-            <el-form-item label="审批人">
-              <el-input v-model="formInline.user" placeholder="审批人"></el-input>
-            </el-form-item>
-            <el-form-item label="活动区域">
-              <el-select v-model="formInline.region" placeholder="活动区域">
-                <el-option label="区域一" value="shanghai"></el-option>
-                <el-option label="区域二" value="beijing"></el-option>
-              </el-select>
-            </el-form-item>
-            <el-form-item>
-              <el-button type="primary" @click="onSubmit">查询</el-button>
-            </el-form-item>
-          </el-form> -->
-          <el-form ref="form" :model="formInline" label-width="84px" >
+          
+          <el-form ref="form" :model="createPlan" label-width="84px" >
             <el-form-item label="作业电梯：">
-              <el-select v-model="formInline.user" clearable placeholder="请选择">
+              <el-select v-model="createPlan.lift" clearable placeholder="请选择作业电梯">
                 <el-option
                   v-for="item in tpyeOptions"
                   :key="item.value"
@@ -154,7 +152,7 @@
               </el-select>
             </el-form-item>
             <el-form-item label="作业信息：">
-              <el-date-picker 
+              <!-- <el-date-picker 
                 class="regionPicker"
                 prefix-icon="test-icon" 
                 format="MM-dd HH:mm"
@@ -162,10 +160,31 @@
                 type="datetime"
                 placeholder="选择日期时间"
               >
+              </el-date-picker> -->
+
+              <el-date-picker
+                style="width:135px!important"
+                v-model="createPlan.time"
+                prefix-icon="test-icon" 
+                class="regionPicker"
+                format="MM-dd HH:mm:ss"
+                type="datetime"
+                placeholder="选择日期时间">
               </el-date-picker>
+
               <span class="splitLine">|</span>
 
-              <el-select v-model="formInline.region" clearable placeholder="请选择" class="regionPicker">
+              <el-select v-model="createPlan.type" clearable placeholder="作业类型" class="regionPicker">
+                <el-option
+                  v-for="item in tpyeOptions"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+              <span class="splitLine">|</span>
+
+              <el-select v-model="createPlan.person" clearable placeholder="作业人员" class="regionPicker">
                 <el-option
                   v-for="item in tpyeOptions"
                   :key="item.value"
@@ -185,11 +204,14 @@
               <i class="dispatch labelSize"></i>
               <i class="history labelSize"></i>
               <span class="lift">作业电梯：{{mission.lift}}</span>
-              <span v-if="nowTr === ''" class="addMission" @click="addMission(mission.lift)"></span>
+
+              <span v-if="parseInt(checkedDate.substring(5,7)) >= parseInt(NowMonth) && nowTr === ''" class="addMission" @click="addMission(mission.lift)"></span>
               <span class="address">南山区-南油  南光城市花园1栋B座</span>
             </p>
+
+            <!-- 新建某梯计划 -->
             <div style="line-height:40px;margin-top: -10px;" v-if="nowTr === mission.lift">
-              <el-date-picker 
+              <!-- <el-date-picker 
                 class="regionPicker"
                 prefix-icon="test-icon" 
                 format="MM-dd HH:mm"
@@ -197,10 +219,19 @@
                 type="datetime"
                 placeholder="选择日期时间"
               >
+              </el-date-picker> -->
+              <el-date-picker
+                style="width:135px!important"
+                v-model="createPlan.time"
+                prefix-icon="test-icon" 
+                class="regionPicker"
+                format="MM-dd HH:mm:ss"
+                type="datetime"
+                placeholder="选择日期时间">
               </el-date-picker>
               <span class="splitLine">|</span>
 
-              <el-select v-model="checkTpye" clearable placeholder="请选择" class="regionPicker">
+              <!-- <el-select v-model="checkTpye" clearable placeholder="请选择" class="regionPicker">
                 <el-option
                   v-for="item in tpyeOptions"
                   :key="item.value"
@@ -208,12 +239,35 @@
                   :value="item.value">
                 </el-option>
               </el-select>
+              <span class="splitLine">|</span> -->
+
+              <el-select v-model="createPlan.type" clearable placeholder="作业类型" class="regionPicker">
+                <el-option
+                  v-for="item in tpyeOptions"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+              <span class="splitLine">|</span>
+
+              <el-select v-model="createPlan.person" clearable placeholder="作业人员" class="regionPicker">
+                <el-option
+                  v-for="item in tpyeOptions"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+
               <span class="btns">
                 <i class="btnBlue">保存</i>
                 <span class="splitLine">|</span>
                 <i class="btnGray" @click="cancel">取消</i>
               </span>
             </div>
+            <!-- 新建某梯计划 end-->
+
             <p v-for="(order, index1) in mission.workOrder" :key="index1" class="order">
               <el-checkbox-group :disabled="nowTr !== ''" style="display:inline-block" v-model="checkedStaffs" @change="handleCheckedStaffsChange">
                 <el-checkbox :label="order.id" :key="index1">{{nonetext}}</el-checkbox>
@@ -263,10 +317,13 @@ import calendar from "../../components/DateContainer";
 export default {
   data() {
     return {
-      formInline: {
-          user: '',
-          region: ''
-        },
+      showCreatePlan:false,
+      createPlan: {
+        lift:'',
+        type: '',
+        time: '',
+        person:''
+      },
       checkedDate:'',
       todos: [
         {date: 1,msg: 4, total:6,overtime:2},
@@ -343,7 +400,8 @@ export default {
         { label: '故障处理', value: "4" },
         { label: '事故救援', value: "5" },
       ],
-      nowTr:''
+      nowTr:'',
+      NowMonth: 0
     }
   },
   components: {
@@ -379,35 +437,66 @@ export default {
         this.conditions3 = this.periods3.filter(item => item.value === val )
         this.openCondition3 = true
       }
+    },
+    checkedDate(date){
+      this.getMissionList(date)
     }
   },
   mounted() {
     // this.getAllAccountData()
-   
-    for(var i= 0; i<10 ; i++){
-      var mission = {
-        lift:i,
-        address:'南山区-南油 南光城市花园1栋B座',
-        workOrder:[{
-            id:'1',
-            order:'12345678901234',
-            time:'06-10 09:00',
-            type:'月度维保',
-            person:'覃一，林都晨'
-          },{
-            id:'2',
-            order:'12345678901234',
-            time:'06-10 09:00',
-            type:'月度维保',
-            person:'覃一，林都晨'
-        }]
-        
-      }
-      this.missionList.push(mission)
-    }
-    // console.log("asfg" + JSON.stringify(this.missionList))
+    // 获取现在月份
+    this.getDate()
+    // 获取任务列表
+    this.getMissionList()
   },
   methods: {
+
+    getMissionList(date){
+      this.nowTr = '' // 关闭新建某梯计划
+      this.showCreatePlan = false // 关闭新建计划
+      this.missionList = []
+      for(var i= 0; i < 5 ; i++){
+        var mission = {
+          lift:i,
+          address:'南山区-南油 南光城市花园1栋B座',
+          workOrder:[{
+              id:'1',
+              order:'12345678901234',
+              time:'06-10 09:00',
+              type:'月度维保',
+              person:'覃一，林都晨'
+            },{
+              id:'2',
+              order:'12345678901234',
+              time:'06-10 09:00',
+              type:'月度维保',
+              person:'覃一，林都晨'
+          }],
+          
+          
+        }
+        this.missionList.push(mission)
+      }
+      // console.log("asfg" + JSON.stringify(this.missionList))
+    },
+    // 获取现在月份
+    getDate() {
+      var newDate = new Date();
+      this.NowMonth = newDate.getMonth() + 1 < 10 ? '0' + (newDate.getMonth() + 1) : (newDate.getMonth() + 1); //常量 不变
+    },
+    // 创建计划
+    createAPlan(){
+      this.showCreatePlan = true
+    },
+    // 取消创建计划
+    cancelCreatePlan(){
+      this.showCreatePlan = false
+    },
+    // 创建某梯计划
+    addMission(index){
+      this.nowTr = index
+    },
+    // 取消创建某梯计划
     cancel(){
       this.nowTr = ''
     },
@@ -415,10 +504,7 @@ export default {
     randomNumber(lower,upper){
       return Math.floor(Math.random()*(upper-lower+1))+lower;
     },
-    // 添加任务
-    addMission(index){
-      this.nowTr = index
-    },
+    
     // 全选，非全选
     handleCheckAllChange(val) {
       this.checkedStaffs = val ? this.checkedAllStaff : [];
@@ -632,11 +718,17 @@ export default {
     padding: 0 !important;
   }
   .creatPlan
-    padding 25px 0
+    padding 20px 0 0 0
+    border-bottom: 1px solid #e8e8e8;
     .titlePlan
       font-size: 20px;
+      
     .splitLine
-      margin: 0 3px
+      margin: 0 5px 0 -6px
     .btns
       line-height: 31px;
+    .el-form-item 
+      margin-bottom: 10px!important
+
+
 </style>

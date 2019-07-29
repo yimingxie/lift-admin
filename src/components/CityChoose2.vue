@@ -20,7 +20,7 @@ export default {
     }
   },
   mounted() {
-
+    // console.log("selectedOptions==" + this.selectedOptions)
     // 一级循环，加载省市下拉选项
     pcas.forEach((item, i) => {
       let obj = {

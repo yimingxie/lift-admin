@@ -10,14 +10,19 @@
         multiple：是否支持多选文件
         action：必选参数，上传的地址
         （如果不自定义上传行为，可以直接在action配置地址就行，没有地址可以为空，但是不能不写action） 
-        headers="application/x-www-form-urlencoded"-->
-
-        <el-upload
-          :action="upLoadUrl"
-          class="avatar-uploader"
-          :show-file-list="false" 
+        headers="application/x-www-form-urlencoded"
+          :http-request="upLoadHeadPic"
           :on-success="handleAvatarSuccess"
           :before-upload="beforeAvatarUpload"
+        -->
+
+        <el-upload
+          class="avatar-uploader"
+          :headers="{'Content-Type':'multipart/form-data'}"
+          :http-request="upLoadHeadPic"
+          :action="upLoadUrl"
+          :show-file-list="false" 
+          accept="image/png,image/jpg,image/jpeg"
         >
           <img v-if="imageUrl1" :src="imageUrl1" class="avatar">
           <i v-else class="uploader-icon"></i>
@@ -36,21 +41,13 @@
           <div class="uploadBtn">点击上传员工照片</div>
           <div class="uploadTip">图片格式为.jpg/.png；建议图片尺寸为300像素*300像素，图片大小不可超过2M</div>
         </el-upload> -->
-        <!-- <el-upload
-          class="avatar-uploader"
-          :action="upLoadUrl"
-          :show-file-list="false"
-          :on-success="imgSuccess"
-          :before-upload="beforeAvatarUpload">
-          <img v-if="imageUrl" :src="imageUrl" class="avatar">
-          <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-        </el-upload> -->
+ 
         
         <el-form ref="form" :model="addStaffForm" label-width="105px">
           <el-row>
             <el-col :span="12">
               <el-form-item label="姓名：">
-                <el-input v-model="addStaffForm.staffName" placeholder="请输入姓名"></el-input>
+                <el-input v-model="addStaffForm.name" placeholder="请输入姓名"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="11" :offset="1">
@@ -68,6 +65,9 @@
           </el-row>
           <el-form-item label="手机号：">
             <el-input v-model="addStaffForm.account" placeholder="(将作为为app登录账号)请输入手机号"></el-input>
+          </el-form-item>
+          <el-form-item label="身份证号：">
+            <el-input v-model="addStaffForm.idCard" placeholder="请输入身份证号"></el-input>
           </el-form-item>
           <el-form-item label="出生日期：">
             <a-date-picker @change="aChangePickDate1" format="YYYY-MM-DD" :showToday="false" placeholder="请选择日期" style="width: 248px">
@@ -165,20 +165,25 @@
             <el-row >
               <el-col :span="5">
                 <!-- <el-upload
-                  class="avatar-uploader2"
-                  action="https://jsonplaceholder.typicode.com/posts/"
-                  :show-file-list="false"
-                  :on-success="handleAvatarSuccess2"
-                  :before-upload="beforeAvatarUpload2">
-                  <img v-if="imageUrl2" :src="imageUrl2" class="avatar2">
-                  <i v-else class="avatar-uploader-icon2"></i>
+                  class="avatar-uploader"
+                  :headers="{'Content-Type':'multipart/form-data'}"
+                  :http-request="upLoadHeadPic"
+                  :action="upLoadUrl"
+                  :show-file-list="false" 
+                  
+                >
+                  <img v-if="imageUrl1" :src="imageUrl1" class="avatar">
+                  <i v-else class="uploader-icon"></i>
+                  <div class="uploadBtn">点击上传员工照片</div>
+                  <div class="uploadTip">图片格式为.jpg/.png；建议图片尺寸为300像素*300像素，图片大小不可超过2M</div>
                 </el-upload> -->
                 <el-upload
-                  :action="upLoadUrl"
                   class="avatar-uploader2"
-                  :show-file-list="false" 
-                  :on-success="handleAvatarSuccess2"
-                  :before-upload="beforeAvatarUpload2"
+                  :headers="{'Content-Type':'multipart/form-data'}"
+                  :http-request="upLoadQualificationPic"
+                  :action="upLoadUrl"
+                  :show-file-list="false"
+                  accept="image/png,image/jpg,image/jpeg"
                 >
                   <img v-if="imageUrl2" :src="imageUrl2" class="avatar2">
                   <i v-else class="avatar-uploader-icon2"></i>
@@ -194,7 +199,7 @@
           <div class="tac" style="margin-top:33px">
             <router-link to="/staff"><el-button class="dialogCancel">取 消</el-button></router-link>
 
-            <el-button type="primary" @click="confirmAddAccount()" class="dialogSure">确 认</el-button>
+            <el-button type="primary" @click="confirmAddAccount()" class="dialogSure" style="margin-left:45px;">确 认</el-button>
           </div>
         </el-form>
       </div>
@@ -220,6 +225,7 @@ let pcas = require("../../utils/citySelector/pcas-code.json")
 export default {
   data() {
     return {
+      token: window.localStorage.getItem('accessToken'),
       upLoadUrl:'http://192.168.100.7:8080/domino/upload/image',
       imageUrl1:'',
       imageUrl2:'',
@@ -259,13 +265,13 @@ export default {
       nonetext:'',
       searchKey:'',
       addStaffForm: {
-        staffName: '', //员工姓名
-        idCard: '111', // 身份证
-        account: "13567678899", //账号:限定手机号
+        name: '', //员工姓名
+        idCard: '', // 身份证
+        account: "", //账号:限定手机号
         corpId: window.localStorage.getItem('corpId'), //公司id
         depId: "" , //部门id
         manageArea:'', //管理区域
-        gender:'0', //性别; 0:女;1:男
+        gender:'1', //性别; 0:女;1:男
         birthday:'', //生日 日期 须限定格式 2003-11-19 00:00:00
         empTime:'', //从业日期 须限定格式 2003-11-19 00:00:00
         empUrl:'', // 从业资格证 图片地址
@@ -380,15 +386,16 @@ export default {
     
   },
   methods: {
+   
     handleCheckedLiftAsChange(value){
-      console.log("checkA:" + value)
+      // console.log("checkA:" + value)
       // console.log("Allcheckop:==" + this.checkedAllStaff)
       // let checkedCount = value.length;
       // this.checkAll = checkedCount === this.getAllAccountJson.length;
       // this.isIndeterminate = checkedCount > 0 && checkedCount < this.getAllAccountJson.length;
     },
     handleCheckedLiftBsChange(value){
-      console.log("checkB:" + value)
+      // console.log("checkB:" + value)
       // console.log("Allcheckop:==" + this.checkedAllStaff)
       // let checkedCount = value.length;
       // this.checkAll = checkedCount === this.getAllAccountJson.length;
@@ -397,22 +404,22 @@ export default {
     // 根据部门值变化
     // val- 部门ID
     depSelectChange(val){
-      console.log("val---" + val)
+      // console.log("val---" + val)
       var selectDep = this.getAllDepJson.filter(item => {
-        console.log("val---" + item.id)
+        // console.log("val---" + item.id)
         return item.id === val
       })
       // var processArr = arr.filter(function(value) {
       //     return value == val;
       // })
-      console.log("val---" + JSON.stringify(selectDep))
+      // console.log("val---" + JSON.stringify(selectDep))
       var selectRange = selectDep[0].areaCode
       // 重置联动数据 
       this.regionOptions2 = []
       //   console.log("checkList1=" + this.checkList)
-      console.log("selectRange---" + this.regionOptions2)
+      // console.log("selectRange---" + this.regionOptions2)
       this.checkList1 = selectRange.split(",")
-      console.log("checkList1=" + this.checkList1)
+      // console.log("checkList1=" + this.checkList1)
       // alert(this.checkList.length)
       // var checkArr = this.checkList.split(",")
       if(this.checkList1.length > 0){
@@ -420,9 +427,9 @@ export default {
         var sheng = this.checkList1[0].substring(0,2)
         var shi = this.checkList1[0].substring(0,4)
         var qu = []
-        console.log("省：" + sheng)
-        console.log("市：" + shi)
-        console.log("区：" + qu)
+        // console.log("省：" + sheng)
+        // console.log("市：" + shi)
+        // console.log("区：" + qu)
         for(var i = 0 ; i< this.checkList1.length; i++){
           // 去重
           
@@ -433,7 +440,7 @@ export default {
             qu = this.uniq(qu)
           //   }
           // })
-          console.log("所选区：" + qu)
+          // console.log("所选区：" + qu)
         }
         // var aaa = this.regionOptions.filter(item => item.code === '11')
 
@@ -519,7 +526,7 @@ export default {
                 }
               })
             }
-            console.log("obj---==" + JSON.stringify(obj1))
+            // console.log("obj---==" + JSON.stringify(obj1))
             this.regionOptions2 = []
             this.regionOptions2.push(obj1)
             
@@ -528,7 +535,7 @@ export default {
           // newFormat[item.code] = item.name
 
         })
-        console.log("selectRange---" + this.regionOptions2)
+        // console.log("selectRange---" + this.regionOptions2)
         // 构建员工管辖区域数据 end
         this.checkList2 = selectRange.split(",")
 
@@ -542,7 +549,7 @@ export default {
       var util = require("util")
       // 重置联动数据 
       // this.regionOptions2 = []
-      console.log("所选区域码:" +  JSON.stringify(totalLabel));
+      // console.log("所选区域码:" +  JSON.stringify(totalLabel));
       // this.checkList2 = this.checkList
       this.checkAreaList = []
       
@@ -566,9 +573,9 @@ export default {
         }
         // var aaa = this.regionOptions.filter(item => item.code === '11')
 
-        console.log("省：" + sheng)
-        console.log("市：" + shi)
-        console.log("区：" + qu)
+        // console.log("省：" + sheng)
+        // console.log("市：" + shi)
+        // console.log("区：" + qu)
         var checkListNew = [] // 片区数组截取前6位
         this.checkAreaList = val
         var pianquLength = 0 //同区的片区个数
@@ -581,7 +588,7 @@ export default {
         qu.forEach(quitem =>{
           pianquLength = this.getSameNum(quitem,checkListNew)
           // 如果全选区 则只传此区的code
-          console.log("this.checkAreaList====" + this.checkAreaList.length) 
+          // console.log("this.checkAreaList====" + this.checkAreaList.length) 
 
           // 判断片区总数是否与选中片区个数相等 若相等 则为全选
           if(this.ifCheckAllQu(quitem, pianquLength)){
@@ -595,8 +602,8 @@ export default {
           this.checkAreaList = this.uniq(this.checkAreaList) // 去重
         })
 
-        console.log("checkListNew==" + checkListNew)
-        console.log("pianquLength==" + pianquLength)
+        // console.log("checkListNew==" + checkListNew)
+        // console.log("pianquLength==" + pianquLength)
         // console.log("checkAreaList=" + this.checkAreaList)
         // 区域标签展示格式转换---------
         var dest = [],
@@ -623,9 +630,9 @@ export default {
           }
           // console.log("所选区域码ai:" +  JSON.stringify(ai))
         }
-        console.log("所选区域码:" +  JSON.stringify(dest));
+        // console.log("所选区域码:" +  JSON.stringify(dest));
         dest.forEach(item =>{
-          console.log("item.data=========" + item.data[0])
+          // console.log("item.data=========" + item.data[0])
           // 如果区全选
           if(this.ifCheckAllQu(item.name, item.data.length)){
             this.selectedAreaLabels.push(item.name + "-全部")
@@ -643,7 +650,7 @@ export default {
         
         
       }
-      console.log("checkAreaList=" + this.checkAreaList)
+      // console.log("checkAreaList=" + this.checkAreaList)
 
     },
     // 判断是否全选区
@@ -663,7 +670,7 @@ export default {
 
               if((item3.label === qu && item3.children.length === pianQuLength)|| (item3.value === qu && item3.children.length === pianQuLength)){
                 flag = true
-                console.log("true!")
+                // console.log("true!")
                 // this.selectedArea.push(item3.label)
                 throw BreakException;
               }
@@ -676,7 +683,7 @@ export default {
       } catch(e) {
         if (e!==BreakException) throw e;
       }
-      console.log("flag===" + flag)
+      // console.log("flag===" + flag)
       if(flag){
         return true
       }
@@ -749,92 +756,108 @@ export default {
     handleCheckAllChange(val) {
       this.checkedStaffs = val ? this.checkedAllStaff : [];
       // this.isIndeterminate = false;
-      console.log("check:" + this.checkedStaffs)
+      // console.log("check:" + this.checkedStaffs)
     },
     // 点击多选框
     handleCheckedLiftsChange(value) {
-      console.log("check:" + value)
-      console.log("Allcheckop:==" + this.checkedAllStaff)
+      // console.log("check:" + value)
+      // console.log("Allcheckop:==" + this.checkedAllStaff)
       let checkedCount = value.length;
       this.checkAll = checkedCount === this.liftList[0].lifts.length;
       // this.isIndeterminate = checkedCount > 0 && checkedCount < this.getAllAccountJson.length;
     },
-    // 上传
-    Upload(file) {
-      console.log("file;;" + JSON.stringify(file.raw ))
-        // const formData = new FormData();
-        // formData.append("uid", this.resData.uid);
-        // formData.append("action", this.resData.action);
-        // formData.append("station_id", this.resData.station_id);
-        // formData.append('file', this.file);
+    // beforeAvatarUpload(file){
+    //   const isJPG = file.type === 'image/jpeg';
+    //   const isLt2M = file.size / 1024 / 1024 < 0.1;
+    //   if (!isJPG) {
+    //     this.$message.error('上传头像图片只能是 JPG 格式!')
+    //     return
+    //   }
+    //   if (!isLt2M) {
+    //     this.$message.error('上传头像图片大小不能超过 2MB!')
+    //     return
+    //   }   
+    // },
+    // 自定义头像上传方法
+    upLoadHeadPic(fileObj) {
+      const _file = fileObj.file;
+      const isLt2M = _file.size / 1024 / 1024 < 2;
 
-      const suffix = file.file.name.substr(file.file.name.indexOf("."));
-      var fileName = 'hs/' + 'banner' + file.file.uid + suffix //  路径+时间戳+后缀名
-      file.filename = file.file.name
-      api.accountApi.uploadPic({"file" : file}).then((res) => {
+      if (!isLt2M) {
+        this.$message.error("上传头像图片大小不能超过 2MB!");
+        return false;
+      }
+
+      const formData = new FormData()
+      formData.append('file', fileObj.file)
+      formData.append('type', fileObj.file.type)
+
+      api.accountApi.uploadPic(formData).then((res) => {
         if(res.data.code === 200 && res.data.message === 'success'){
-          // this.getAllDepJson = res.data.data.records
-          // this.totalPageSize = res.data.data.total
-
+          this.imageUrl1 = "http://192.168.100.7:8080/domino/view/image?filename=" + res.data.data.fileName
+          this.addStaffForm.avatarUrl = res.data.data.fileName
         } else {
-          // this.getAllDepJson = []
+
         }
         
-        // console.log("res.data.code" + res.data.data.records[0])s
-      }).catch((res) => {
-        
       })
-      //定义唯一的文件名，打印出来的uid其实就是时间戳
-        // client().put(fileName, file.file).then(
-        //   result => {
-        //     // this.imageUrl = URL.createObjectURL(file.raw);
-        //     // 大功搞成  
-        //     //下面是如果对返回结果再进行处理，根据项目需要，下面是我们自己项目所用的，仅供参考
-        //     // this.fileList[0] =
-        //     // {
-        //     //   'name': result.name, 
-        //     //   'url': result.url 
-        //     // }
-        //   // uploadBannerPic(this.fileList).then(res => {
-        //   //   //根据需要可能项目还需对自己的数据库进行保存
-        //   // })
-        // })
     },
-    // 上传文件之前的钩子
-    beforeAvatarUpload2(file){},
-    
-    // 上传成功
-    handleAvatarSuccess2(res, file, fileList) {
-      // console.log(res)
-      console.log("file" + JSON.stringify(file))
-      // console.log(fileList)  // 这里可以获得上传成功的相关信息
-      var picName = file.response.data.fileName
-      this.imageUrl2 = URL.createObjectURL(file.raw);
-      this.addStaffForm.empUrl = picName
+    // 自定义从业资格证上传方法
+    upLoadQualificationPic(fileObj) {
+      const _file = fileObj.file;
+      const isLt2M = _file.size / 1024 / 1024 < 2;
 
-      api.accountApi.viewPic(picName).then((res) => {
-        // if(res.data.code === 200 && res.data.message === 'success'){
-        // console.log("res===" + JSON.stringify(res))
-        // this.pic =URL.createObjectURL(res.data)
-        // }
-        // console.log("res.data.code" + res.data.data.records[0])s
-      }).catch((res) => {
-        
+      if (!isLt2M) {
+        this.$message.error("上传从业资格证图片大小不能超过 2MB!");
+        return false;
+      }
+
+      const formData = new FormData()
+      formData.append('file', fileObj.file)
+      formData.append('type', fileObj.file.type)
+
+      api.accountApi.uploadPic(formData).then((res) => {
+        if(res.data.code === 200 && res.data.message === 'success'){
+          this.imageUrl2 = "http://192.168.100.7:8080/domino/view/image?filename=" + res.data.data.fileName
+          this.addStaffForm.empUrl = res.data.data.fileName
+        } else {
+        }
       })
-      
+
     },
-    beforeAvatarUpload(file){},
-    // 上传成功
-    handleAvatarSuccess(res, file, fileList) {
-      // console.log(res)
-      console.log(file)
-      // console.log(fileList)  // 这里可以获得上传成功的相关信息
-      var picName = file.response.data.fileName
-      this.imageUrl1 = URL.createObjectURL(file.raw);
-      this.addStaffForm.avatarUrl = picName
+    
+    // // 上传成功
+    // handleAvatarSuccess2(res, file, fileList) {
+    //   // console.log(res)
+    //   console.log("file" + JSON.stringify(file))
+    //   // console.log(fileList)  // 这里可以获得上传成功的相关信息
+    //   var picName = file.response.data.fileName
+    //   this.imageUrl2 = URL.createObjectURL(file.raw);
+    //   this.addStaffForm.empUrl = picName
+
+    //   api.accountApi.viewPic(picName).then((res) => {
+    //     // if(res.data.code === 200 && res.data.message === 'success'){
+    //     // console.log("res===" + JSON.stringify(res))
+    //     // this.pic =URL.createObjectURL(res.data)
+    //     // }
+    //     // console.log("res.data.code" + res.data.data.records[0])s
+    //   }).catch((res) => {
+        
+    //   })
       
+    // },
+    
+    // // 上传成功
+    // handleAvatarSuccess(res, file, fileList) {
+    //   // console.log(res)
+    //   alert(111)
+    //   console.log("1111======" + file)
+    //   // console.log(fileList)  // 这里可以获得上传成功的相关信息
+    //   var picName = file.response.data.fileName
+    //   this.imageUrl1 = URL.createObjectURL(file.raw);
+    //   this.addStaffForm.avatarUrl = picName
       
-    },
+    // },
     // 切换性别
     onSelectSex (value) {
       // this.value = value
@@ -842,15 +865,15 @@ export default {
     },
     // A日历选择框改变时触发
     aChangePickDate1(date, dateString){
-      console.log(date, dateString);
+      // console.log(date, dateString);
       this.addStaffForm.birthday = dateString
     },
     aChangePickDate2(date, dateString){
-      console.log(date, dateString);
+      // console.log(date, dateString);
       this.addStaffForm.empTime = dateString
     },
     aChangePickDate3(date, dateString){
-      console.log(date, dateString);
+      // console.log(date, dateString);
       this.addStaffForm.entryTime = dateString
     },
     // 去重
@@ -863,8 +886,6 @@ export default {
       }
       return temp;
     },
-    
-    
     
   },
 }

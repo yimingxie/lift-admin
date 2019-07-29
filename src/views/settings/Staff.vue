@@ -16,7 +16,7 @@
         </el-cascader> -->
         <!-- 省市联动筛选 -->
         <div class="llct-area">
-          <city-choose @childVal="selectCity"></city-choose>
+          <city-choose @childVal="selectCity" :selectCity="selectArea"></city-choose>
         </div>
         <span class="splitLine">|</span>
         <!-- <el-select clearable v-model="selectedDpt" placeholder="请选择部门" class="regionPicker">
@@ -105,8 +105,8 @@
                   v-model="account.enable"
                   active-color="#E2E6E8"
                   inactive-color="#E3E7E9"
-                  :active-value="1"
-                  :inactive-value="0"
+                  :active-value="true"
+                  :inactive-value="false"
                   :width=28
                   @change='changeStatus($event,account)'
                 >
@@ -321,6 +321,7 @@ export default {
         depName:'',
         areaCode:''
       },
+      selectArea:[]
     }
   },
   components: {
@@ -331,13 +332,15 @@ export default {
   },
   watch:{
     period1(val) {
-      this.searchKey = this.queryParam.staffName = this.queryParam.phone = '' // 筛选时清空搜索
+      if(val != '-1'){
+        this.searchKey = this.queryParam.staffName = this.queryParam.phone = '' // 筛选时清空搜索
+      }
       this.queryParam.accountStatus = val
       this.getAllAccountData()
     }
   },
   mounted() {
-    console.log("111111111111111::" + moment("20121031", "YYYYMMDD").fromNow())
+    // console.log("111111111111111::" + moment("20121031", "YYYYMMDD").fromNow())
     // this.getAllRoleData()
     this.regionOptions = newArea.newAreaOption()
 
@@ -350,7 +353,9 @@ export default {
     moment,
     // 根据部门筛选
     depSelectChange() {
-      this.searchKey = this.queryParam.staffName = this.queryParam.phone = '' // 筛选时清空搜索
+      if(this.queryParam.depId !== '') {
+        this.searchKey = this.queryParam.staffName = this.queryParam.phone = '' // 筛选时清空搜索
+      }
       this.getAllAccountData()
     },
     // 查询所有部门
@@ -374,7 +379,7 @@ export default {
     selectCity(cityArr, cnName) {
       // this.queryParam.accountStatus = "1"
       // this.queryParam.worksStatus = "1"
-      this.searchKey = this.queryParam.staffName = this.queryParam.phone = '' // 筛选时清空搜索
+      // this.searchKey = this.queryParam.staffName = this.queryParam.phone = '' // 筛选时清空搜索
       this.queryParam.areaCode = cityArr[cityArr.length-1]
       console.log(cnName)
       this.getAllAccountData()
@@ -415,19 +420,16 @@ export default {
         if(res.data.code === 200 && res.data.message === 'success'){
           this.getAllAccountJson = res.data.data.records
           this.getAllAccountJson.forEach(item =>{
-            var areaName = newArea.getAreaName(item.manageArea).join('   ')
-            Vue.set(item, 'areaName', areaName)
-            var url = "http://192.168.100.7:8080/domino/view/image?filename=" + item.avatar
-            Vue.set(item, 'url', url)
-            // api.accountApi.viewPic(item.).then((res) => {
-            //   // if(res.data.code === 200 && res.data.message === 'success'){
-            //   // console.log("res===" + JSON.stringify(res))
-            //   // this.pic = URL.createObjectURL(res.data)
-            //   // }
-            //   // console.log("res.data.code" + res.data.data.records[0])s
-            // }).catch((res) => {
-              
-            // })
+            
+            if(item.avatar && item.avatar != '' && item.avatar != null){
+              var url = "http://192.168.100.7:8080/domino/view/image?filename=" + item.avatar
+              Vue.set(item, 'url', url)
+            }
+            if(item.manageArea && item.manageArea != '' && item.manageArea != null){
+              var areaName = newArea.getAreaName(item.manageArea).join('   ')
+              Vue.set(item, 'areaName', areaName)
+            }
+            
 
           })
           this.totalPageSize = res.data.data.total
@@ -437,7 +439,7 @@ export default {
           this.checkedStaffs = []
           this.checkAll = false
           this.isIndeterminate = false
-          console.log("this.getAllAccountJson==" + JSON.stringify(this.getAllAccountJson))
+          // console.log("this.getAllAccountJson==" + JSON.stringify(this.getAllAccountJson))
           this.getAllAccountJson.forEach(item => {
             this.checkedAllStaff.push(item.id)
           })
@@ -461,7 +463,7 @@ export default {
         type: 'error'
       }).then(() => {
         var checkIds = this.checkedStaffs.join(',')
-        console.log("checkIds===" + checkIds)
+        // console.log("checkIds===" + checkIds)
         api.accountApi.resetPsd({"ids":checkIds,"corpId":window.localStorage.getItem('corpId')}).then((res) => {
           if (res.data.code === 200) {
             this.$message.success('重置密码成功！');
@@ -533,6 +535,8 @@ export default {
               if (res.data.code === 200) {
                 this.$message.success('删除成功！');
                 this.getAllAccountData()
+              } else {
+                this.$message.error(res.data.message);
               }
             }).catch((res) => {
               this.$message.error(res.data.message);
@@ -547,10 +551,10 @@ export default {
   
     // 改变账号状态
     changeStatus(event,account){
-      console.log('event==' + event)
-      console.log('row==' + JSON.stringify(account))
+      // console.log('event==' + event)
+      // console.log('row==' + JSON.stringify(account))
      
-      api.accountApi.enableStaff({"staffId":account.id,"enable":event}).then((res) => {
+      api.accountApi.enableStaff({"userId":account.id,"enable":event}).then((res) => {
         
 
       }).catch((res) => {
@@ -626,8 +630,16 @@ export default {
 
     // 搜索真实姓名/手机号
     searchAccount(){
+      // 筛选置空
+      this.period = "-1"// 账号状态
+      this.period1 = "-1" // 作业状态
+      this.selectArea = []
+      this.queryParam.areaCode = "" // 区域
+      this.queryParam.depId = "" // 部门ID
+
       this.queryParam.staffName = this.searchKey
       this.queryParam.phone = this.searchKey
+    
       this.getAllAccountData()
     }
 

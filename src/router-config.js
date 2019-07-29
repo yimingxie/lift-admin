@@ -228,7 +228,7 @@ const router = new Router({
       path: "/center",
       name: "center",
       meta: {
-        title: "部门管理",
+        title: "个人中心",
         auto: false // 是否需要权限
       },
       component: (resolve) => require(['./views/common/Center.vue'], resolve)
@@ -359,6 +359,16 @@ const router = new Router({
       },
       component: (resolve) => require(['./views/detection/DetTest.vue'], resolve)
     },
+    {
+      path: "/missionDetail",
+      name: "missionDetail",
+      meta: {
+        title: "任务管理",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/mission/MissionDetail.vue'], resolve)
+    },
+    
   ]
 })
 

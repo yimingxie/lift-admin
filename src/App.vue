@@ -59,7 +59,7 @@
       <!-- Start: 菜单栏 -->
       
 
-      <el-menu v-if="layout==='admin'" router :default-active="$route.path" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
+      <el-menu v-if="layout==='admin' && showMenu" router :default-active="$route.path" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
         <div class="logoCollapse" v-if="isCollapse">
         </div>
         <!-- {{$route.path}} -->
@@ -194,8 +194,6 @@
   // import { globalMixins } from './utils/mixins'
   import { mapState, mapGetters, mapActions } from 'vuex'
   import _ from 'lodash'
-  global.aaa = '11111'
-  // import fotter from "./views/common/fotter";
   export default {
     name: 'App',
 
@@ -205,10 +203,10 @@
       return {
         title:'电梯行业监管战情室',
         showMenu: true,
-        // roleConfig: [],
-        // defRoleConfig:[],
         isCollapse: true,
-        modulesJson:window.localStorage.getItem("modules")
+        modulesJson: window.localStorage.getItem("modules"),
+        type: window.localStorage.getItem("type"),
+
       }
     },
     components: {
@@ -234,38 +232,20 @@
       layout () {
         // console.log('this.layout---' + this.layout)
         if (this.layout === 'admin') {
-          // this.getCurrentMember(window.localStorage.getItem('memberId'), this)
-          // // console.log('currentMember22222===' + JSON.stringify(this.currentMember))
-          // this.getProducts()
-          // // this.getPlugins()
-
           // 重新获取用户的权限信息
+          this.type = window.localStorage.getItem('type')
           this.modulesJson = window.localStorage.getItem('modules')
-          // console.log('this.roleConfig====' + this.roleConfig)
-          // if (configString && configString.length > 16) {
-          //   var jsonContent = configString
-          //   if (jsonContent) {
-          //     // alert(111)
-          //     this.modulesJson = _.cloneDeep(jsonContent)
-          //   } else {
-          //     this.modulesJson = _.cloneDeep(this.defRoleConfig)
-          //   }
-          // } else {
-          //   window.localStorage.setItem('modulesJson', JSON.stringify(this.defRoleConfig))
-          //   this.modulesJson = _.cloneDeep(this.defRoleConfig)
-          // }
-          console.log('123roleConfig=====' + this.modulesJson)
+          this.showMenu = true
+          // console.log('this.modulesJson====' + this.modulesJson)
+      
         }
       }
-  },
+    },
         
     created(){
-      // console.log('layout++++' + this.$store.getters.isShow)
-      // this.roleConfig = window.localStorage.getItem('_role_')
+      
     },
     mounted () {
-      // this.modulesJson = JSON.parse(this.modulesJson)
-      // this.roleConfig = window.localStorage.getItem('_role_')
       
     },
 
@@ -276,15 +256,20 @@
       // 判断菜单是否可用
       ifDisabled(title){
         var flag = true
-        if(this.modulesJson){
+        
+        if(this.type.indexOf("administrator") > -1 || this.type.indexOf("domino") > -1) {
+          flag = false
+        }
+        else{
           var modulesJson = JSON.parse(this.modulesJson)
-          for(var i = 0; i < modulesJson.length ; i++){
-            if(modulesJson[i].name.indexOf(title) !== -1 || modulesJson[i].name.indexOf('通用') !== -1 || modulesJson[i].name.indexOf('管理员专用') !== -1){
+          for(var i = 0; i < modulesJson.length ; i++) {
+            // if( modulesJson[i].name.indexOf(title) !== -1 || modulesJson[i].name.indexOf('通用') !== -1 || modulesJson[i].name.indexOf('管理员专用') !== -1){
+            if( modulesJson[i].name.indexOf(title) !== -1) {
               flag = false
             }
           }
-          return flag 
         }
+        return flag 
         
       },
       handleOpen(key, keyPath) {
@@ -304,6 +289,7 @@
         window.localStorage.removeItem('accessToken')
         window.localStorage.removeItem('modules')
         window.localStorage.removeItem('corpId')
+        window.localStorage.removeItem('type')
         // this.showNotice({
         //   type: 'info',
         //   content: '您已退出登录'

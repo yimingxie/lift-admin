@@ -301,6 +301,16 @@
 .el-form-item__content{
   line-height: 1 !important;
 }
+.el-form-item__label {
+  line-height: 32px !important;
+  color: #34414c;
+}
+.el-input__inner {
+  height: 32px !important;
+  line-height: 32px !important;
+}
+.el-input__icon
+  line-height: 32px !important;
 // --------------------------表单end--------------------------------
 
 
@@ -352,3 +362,42 @@
       color:#fff!important;
 
 // --------------------------tag-end-------------------------------
+
+// -------------------------- 进度条 --------------------------------
+.el-step__icon.is-text
+  border none!important;
+.el-step__icon
+  width: auto
+  // height: auto
+.el-step__head.is-process
+  font-size: 16px;
+  color: #34414C;
+.el-step__title
+  margin 9px 0
+.el-step__title.is-finish
+  color: #7E8A95;
+.el-step.is-horizontal .el-step__line
+  height: 1px;
+.el-step__line
+  background-color: rgba(66,114,255,0.30)
+// 控制线条颜色
+.el-step__head.is-finish
+  border-color: #4272FF;
+  border-radius: 6px;
+  .el-step__line-inner
+    transition-delay: 0ms!important;
+    border-width: 0.5px!important;
+    width: 100%!important;
+.el-step__main
+  margin: 0 5px;
+.el-step__description
+  font-size: 14px;
+  // margin: 0 0 0 -23px;
+  p
+    margin 7px 0
+.el-step__description.is-process,.el-step__description.is-finish
+  color: #7E8A95;
+.el-step__description.is-wait
+  color: #C2C7CC;
+// -------------------------- 进度条 -end ---------------------------
+

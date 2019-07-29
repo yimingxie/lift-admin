@@ -8,14 +8,17 @@
         <div class="content">
           <div class="left">
             <img src="../../assets/images/hs/header.png"  alt="header" />
-            <p class="perName">彭秀英</p>
-            <p class="perPosition">维保经理</p>
+            <p class="perName">{{getAccountJson.name}}</p>
+            <!-- <span  v-html="scope.row.roleName" ></span> -->
+            <!-- <span v-if="scope.row.type == 'administrator'" >超级管理员</span> -->
+            <p v-if="getAccountJson.roleName" class="perPosition">{{getAccountJson.roleName}}</p>
+            <p v-if="getAccountJson.type == 'administrator'" class="perPosition">超级管理员</p>
           </div>
           <div class="shadow"></div>
           <div class="right">
-            <p ><span class="pTitle pTitle1">登录账号</span><span class="pCon">13590876543</span></p>
-            <p ><span class="pTitle">注册时间</span><span class="pCon">2019-02-13</span></p>
-            <button class="btn blueBtn editPsd" @click="editPsd()" >修改登录密码</button>
+            <p ><span class="pTitle pTitle1">登录账号</span><span class="pCon">{{getAccountJson.account}}</span></p>
+            <p ><span class="pTitle">注册时间</span><span class="pCon">{{getAccountJson.createTime}}</span></p>
+            <button class="btn blueBtn editPsd" @click="editPsd('EditAccountForm')" >修改登录密码</button>
           </div>
         </div>
 
@@ -24,22 +27,23 @@
     </div>
     <!-- 编辑账号  弹窗  Start -->
     <el-dialog  width="662px" title="修改密码" :visible.sync="edit_dialogFormVisible" custom-class="addAccount">
-      <div class="showName">张卫健</div>
-      <div class="showPhone">13590876543</div>
-      <el-form :model="EditAccountForm" :label-width="formLabelWidth">
-        <el-form-item label="旧密码：" prop="oldPsd">
-          <el-input v-model="EditAccountForm.account" auto-complete="off" clearable></el-input>
+      <div class="showName">{{getAccountJson.name}}</div>
+      <div class="showPhone">{{getAccountJson.account}}</div>
+
+      <el-form :model="EditAccountForm" :label-width="formLabelWidth" :rules="rules" ref="EditAccountForm">
+        <el-form-item label="旧密码：" prop="old">
+          <el-input type="password" v-model="EditAccountForm.old" auto-complete="off" clearable></el-input>
         </el-form-item>
-        <el-form-item label="新密码：" prop="newPsd">
-          <el-input v-model="EditAccountForm.name" auto-complete="off" clearable></el-input>
+        <el-form-item label="新密码：" prop="salt">
+          <el-input type="password" v-model="EditAccountForm.salt" auto-complete="off" clearable></el-input>
         </el-form-item>
-        <el-form-item label="确认密码：" prop="comfirmPsd">
-          <el-input v-model="EditAccountForm.name" auto-complete="off" clearable></el-input>
+        <el-form-item label="确认密码：" prop="again">
+          <el-input type="password" v-model="EditAccountForm.again" auto-complete="off" clearable></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer tac">
         <el-button @click="edit_dialogFormVisible = false" class="dialogCancel">取 消</el-button>
-        <el-button type="primary" @click="confirmEdit" class="dialogSure">确 认</el-button>
+        <el-button type="primary" @click="confirmEdit('EditAccountForm')" class="dialogSure">确 认</el-button>
 
       </div>
     </el-dialog>
@@ -57,55 +61,113 @@ import fotter from "../../views/common/fotter";
 
 export default {
   data() {
+    var validateOld = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请输入旧密码'));
+      } else {
+        callback();
+      }
+    };
+    var validatePass = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请输入密码'));
+      } else {
+        if (this.EditAccountForm.again !== '') {
+          this.$refs.EditAccountForm.validateField('again');
+        }
+        callback();
+      }
+    };
+    var validatePass2 = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请再次输入密码'));
+      } else if (value !== this.EditAccountForm.salt) {
+        callback(new Error('两次输入密码不一致!'));
+      } else {
+        callback();
+      }
+    };
+
     return {
       formLabelWidth: '86px',
       edit_dialogFormVisible: false,
       EditAccountForm: {
-        id: "",
-        oldPsd: "",
-        newPsd: "",
-        comfirmPsd: ""
+        old: "",
+        salt: "",
+        again: ""
       },
+      getAccountJson:[],
+      rules: {
+        salt: [
+          { validator: validatePass, trigger: 'blur' }
+        ],
+        again: [
+          { validator: validatePass2, trigger: 'blur' }
+        ],
+        old: [
+          { validator: validateOld, trigger: 'blur' }
+        ]
+      }
     }
   },
   components: {
     'fotter': fotter,
   },
   mounted() {
+    this.getAllAccountData()
   },
   methods: {
-    // 查询所有账户
+    // 查询账户详情
     getAllAccountData(){
-      api.accountApi.getAccounts(this.queryParam).then((res) => {
-        if(res.data.code === 200 && res.data.message === 'success'){
-          this.getAllAccountJson = res.data.data.records
-          this.totalPageSize = res.data.data.total
+      api.accountApi.getAccountDetail().then((res) => {
 
-        } else {
-          this.getAllAccountJson = []
-        }
+        this.getAccountJson = res.data.data || []
         
-        // console.log("res.data.code" + res.data.data.records[0])s
       }).catch((res) => {
         
       })
       
     },
     // 修改密码
-    editPsd(index, row){
-      // this.EditAccountForm.id = row.id
-      // this.EditAccountForm.account = row.account
-
-      // this.bindRoleForm.accountId = row.id
-      // this.bindRoleForm.roleId = ""
-      // if(row.roleId){
-      //   this.bindRoleForm.roleId = row.roleId
-      // }
-      // this.EditAccountForm.phoneNumber = row.phoneNumber
-      // this.edit_roleNameArr = row.roleName.split(',')
+    editPsd(formName){
+      this.EditAccountForm.salt = ""
+      this.EditAccountForm.again = ""
+      this.EditAccountForm.old = ""
       this.edit_dialogFormVisible = true
+      console.log("this.EditAccountForm===" + formName)
+      this.$nextTick(()=>{
+        this.$refs[formName].resetFields();
+      })                
     },
-    
+    // 确认修改密码
+    confirmEdit(formName) {
+      console.log("this.EditAccountForm===" + formName)
+      var _this = this
+      this.$refs[formName].validate((valid) => {
+        
+        if (valid) {
+          api.accountApi.editPsd(_this.EditAccountForm).then((res) => {
+            if(res.data.code == 200){
+              _this.$message.success('修改密码成功！');
+              _this.edit_dialogFormVisible = false
+
+            } else {
+              _this.$message.error(res.data.message);
+            }
+            
+          }).catch((res) => {
+            
+          })
+        }
+        else {
+          console.log('error submit!!');
+          return false;
+        }
+        
+      });
+
+      
+    }
 
 
   },
@@ -155,7 +217,7 @@ export default {
   .pTitle1
     background url('../../assets/images/hs/time.png') no-repeat left center;
   .editPsd
-    background url('../../assets/images/hs/time.png') no-repeat left center #4272FF;
+    background url('../../assets/images/hs/editPsd.png') no-repeat 10px center #4272FF;
     margin-top 30px
   .showName
     font-size: 24px;

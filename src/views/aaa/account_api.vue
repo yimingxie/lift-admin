@@ -304,7 +304,7 @@
           cancelButtonText: '取消',
           type: 'error'
         }).then(() => {
-          api.accountApi.resetAccount({"id":row.id}).then((res) => {
+          api.accountApi.resetPsd({"ids":row.id,"corpId":window.localStorage.getItem('corpId')}).then((res) => {
             if (res.data.code === 200) {
               this.$message.success('重置密码成功！');
               this.getAccounts()
