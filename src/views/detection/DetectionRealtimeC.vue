@@ -250,6 +250,7 @@
                 </div>
               </div>
 
+              <div class="dcc-type-block"></div>
               <div class="dcc-type" id="dyg_type">
                 <div class="dcc-item">
                   <div class="dcc-item-title">电源柜</div>
@@ -286,6 +287,8 @@
                 </div>
 
               </div>
+
+              <div class="dcc-type-block"></div>
               <div class="dcc-type" id="kzg_type">
                 <div class="dcc-item">
                   <div class="dcc-item-title">控制柜</div>
@@ -405,6 +408,8 @@
                 </div>
 
               </div>
+
+              <div class="dcc-type-block"></div>
               <div class="dcc-type" id="ddj_type">
                 <div class="dcc-item">
                   <div class="dcc-item-title">电动机</div>
@@ -498,6 +503,8 @@
                 </div>
 
               </div>
+
+              <div class="dcc-type-block"></div>
               <div class="dcc-type" id="zdq_type">
                 <div class="dcc-item">
                   <div class="dcc-item-title">制动器</div>
@@ -561,6 +568,8 @@
 
                 </div>
               </div>
+
+              <div class="dcc-type-block"></div>
               <div class="dcc-type" id="xsq_type">
                 <div class="dcc-item">
                   <div class="dcc-item-title">限速器</div>
@@ -596,6 +605,8 @@
 
                 </div>
               </div>
+
+              <div class="dcc-type-block"></div>
               <div class="dcc-type" id="jd_type">
                 <div class="dcc-item">
                   <div class="dcc-item-title">限速器</div>
@@ -660,6 +671,8 @@
 
 
               </div>
+
+              <div class="dcc-type-block"></div>
               <div class="dcc-type" id="jx_type">
                 <div class="dcc-item">
                   <div class="dcc-item-title">轿厢</div>
@@ -694,6 +707,8 @@
 
                 </div>
               </div>
+
+              <div class="dcc-type-block"></div>
               <div class="dcc-type" id="jingdao_type">
                 <div class="dcc-item">
                   <div class="dcc-item-title">井道</div>
@@ -781,7 +796,7 @@ export default {
       // 实时监测
       menuActive: 'yxhj',
       changeTimeNum: 0,
-      timer: '',
+      timer: null,
       warnListTimer: '',
 
       
@@ -1054,8 +1069,13 @@ export default {
     // 开启实时监测数据定时器
     this.setTimer()
 
-    this.chartResponse() // TODO自适应
+    // this.chartResponse() // TODO自适应
 
+  },
+  beforeDestroy() {
+    // 页面关闭清除定时器
+    clearInterval(this.timer)
+    this.timer = null
   },
   methods: {
     // 获取电梯实时运行状态
@@ -1129,8 +1149,6 @@ export default {
       }
 
       var stime = stime || etime - step
-
-      
    
       let params = [
         {monitorObject: "0:0:0", monitorVal: "1", regCode: regCode, stime: stime, etime: etime},

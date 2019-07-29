@@ -248,7 +248,7 @@ export default {
     getDeviceListGi() {
       api.device.getDeviceListGi(this.giParams).then(res => {
         console.log(res)
-        this.deviceListGi = res.data.data.records
+        this.deviceListGi = res.data.data
       })
 
     },

@@ -232,10 +232,10 @@ export default {
     // 获取电梯详情
     this.getLiftDetail()
 
-    // 获取电梯设备列表
-    this.getLiftDevice()
+    
   },
   methods: {
+
     // 获取所有监测内容表，重组表，其中的id与设备类型中的监测内容对应
     transformMonitorVal() {
       api.device.getMonitorVal().then(res => {
@@ -243,6 +243,8 @@ export default {
         res.data.data.forEach((item, i) => {
           this.modelContentList[item.id] = item.monitorVal
         })
+        // 获取电梯设备列表
+        this.getLiftDevice()
       })
     },
 

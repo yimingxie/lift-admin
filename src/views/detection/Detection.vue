@@ -1176,7 +1176,7 @@ export default {
     this.getChartDataSum()
 
     // 开启告警定时器
-    this.setWarnListTimer()
+    // this.setWarnListTimer()
 
     // 开启实时监测数据定时器
     this.setTimer()
