@@ -11,7 +11,7 @@
           <div class="dhi-title">内部编号：{{inNum}}</div>
           <ul class="dhi-ul clearfix">
             <li><span>注册代码：</span>{{regCode}}</li>
-            <li><span>电梯负责人：</span>{{lift_man}}</li>
+            <li><span>电梯负责人：</span>{{liftPerson ? liftPerson : '无'}}</li>
             <li><span>电梯地址：</span>{{localArea}} {{address}}</li>
           </ul>
         </div>
@@ -142,6 +142,7 @@ export default {
     return {
       parentCode: '',
       modelNav: 'added',
+      liftPerson: '',
       detSetModelDialog: false,
       exceptItem: [
         {label: '全部', value: -1},
@@ -191,6 +192,9 @@ export default {
     }
   },
   mounted() {
+    // 获取电梯负责人
+    this.getLiftPerson()
+    
     // 获取电梯详情
     this.getLiftDetail()
 
@@ -208,6 +212,21 @@ export default {
         this.inNum = detail.inNum
         this.localArea = detail.localArea
         this.address = detail.address
+      })
+    },
+
+    // 获取电梯负责人
+    getLiftPerson() {
+      this.liftPerson = ''
+      let personArr = []
+      api.lift.getLiftPerson(this.parentCode).then(res => {
+        if (res.data.data.personOne) {
+          personArr.push(res.data.data.personOne)
+        }
+        if (res.data.data.personTwo) {
+          personArr.push(res.data.data.personTwo)
+        }
+        this.liftPerson = personArr.join('、')
       })
     },
 

@@ -112,20 +112,18 @@
           <div class="ll-choose-top clearfix">
             <!-- 省市联动筛选 -->
             <div class="llct-area">
-              <city-choose @childVal="selectCity"></city-choose>
+              <city-choose2 @childVal="selectCity"></city-choose2>
             </div>
             <div class="llct-line"></div>
             <div class="llct-type clearfix">
               <em>异常分类：</em>
-              <radio-group :items="exceptItem" :value.sync="exceptValue" style="display: inline-block"></radio-group>
+              <radio-group :items="exceptItem" :value.sync="exceptValue" style="display: inline-block;margin-top: 3px;"></radio-group>
             </div>
             <div class="llct-line" style="margin-left: 14px;"></div>
             <div class="llct-type clearfix">
               <em>排序方式：</em>
-              <radio-group :items="sortItem" :value.sync="sortValue" style="display: inline-block"></radio-group>
+              <radio-group :items="sortItem" :value.sync="sortValue" style="display: inline-block;margin-top: 3px;"></radio-group>
             </div>
-
-
           </div>
 
           <div class="ll-choose-bottom clearfix">
@@ -245,7 +243,7 @@
 import api from '../../api'
 import RadioGroup from '../../components/RadioGroup'
 import Footer from '../common/fotter'
-import CityChoose from '../../components/CityChoose'
+import CityChoose2 from '../../components/CityChoose2'
 import SearchCode from '../../components/SearchCode'
 
 export default {
@@ -406,10 +404,10 @@ export default {
     // 跳转到电梯详情
     goLiftResult(regCode) {
       this.$router.push({
-        path: '/lift-add-result',
+        path: '/lift-detail',
         query: {
           regCode: regCode,
-          submitState: 'put'
+          submitState: 'get'
         }
       })
     },
@@ -464,7 +462,7 @@ export default {
     // 跳转到诊断
     goDetection(regCode) {
       this.$router.push({
-        path: '/detection',
+        path: '/detection-panel',
         query: {
           regCode: regCode
         }
@@ -498,7 +496,7 @@ export default {
   components: {
     'radio-group': RadioGroup,
     'footer-temp': Footer,
-    'city-choose': CityChoose,
+    'city-choose2': CityChoose2,
     'search-code': SearchCode,
     
   }

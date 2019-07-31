@@ -1,5 +1,5 @@
 <template>
-  <div id="LiftAddResult">
+  <div id="LiftDetail">
     <div class="container">
       <div class="bread-nav">
         <span>数字电梯</span>
@@ -7,58 +7,85 @@
         <span class="on">添加电梯</span>
       </div>
 
-      <div class="lift-add-search">
-        <div class="la-search-box">
-          <search-code :code="parentCode" @childCode="goToResult"></search-code>
+      <div class="det-heading clearfix">
+        <div class="det-heading-info">
+          <div class="dhi-title">内部编号：{{ruleForm.inNum}}</div>
+          <ul class="dhi-ul clearfix">
+            <li><span>注册代码：</span>{{ruleForm.regCode}}</li>
+            <li><span>电梯负责人：</span>{{liftPerson ? liftPerson : '无'}}</li>
+            <li><span>电梯地址：</span>{{ruleForm.localArea}} {{ruleForm.address}}</li>
+          </ul>
+        </div>
+        <div v-if="submitState == 'put'" class="lift-detail-operate clearfix">
+          <div class="lift-detail-operate-btn lift-detail-operate-btn-gray" @click="cancelSave">取消</div>
+          <div class="lift-detail-operate-btn lift-detail-operate-btn-blue" @click="submit">保存</div>
+        </div>
+        <div v-else class="lift-detail-operate clearfix">
+          <div class="lift-detail-operate-btn" @click="goPrint">打印</div>
+          <div class="lift-detail-operate-btn lift-detail-operate-btn-blue" @click="goEdit">编辑档案</div>
         </div>
       </div>
 
-      <div class="lift-list">
-        <div class="lift-add-result-heading clearfix">
-          <h4>查询结果</h4>
-          <span>查询结果如未完善，请手动补充</span>
+ 
+
+      <div class="lift-list clearfix">
+        <!-- 左侧导航 -->
+        <div class="lift-detail-nav">
+          <div class="lift-detail-nav-p" :class="{on: menuActive == 'jbxx'}" @click="jump(0)">基本信息</div>
+          <div class="lift-detail-nav-p" :class="{on: menuActive == 'ccxx'}" @click="jump(1)">出厂信息</div>
+          <div class="lift-detail-nav-p" :class="{on: menuActive == 'jscs'}" @click="jump(2)">技术参数</div>
+          <div class="lift-detail-nav-p" :class="{on: menuActive == 'wbxx'}" @click="jump(3)">维保信息</div>
+          <div class="lift-detail-nav-p" :class="{on: menuActive == 'ywcs'}" @click="jump(4)">业务参数</div>
+
         </div>
-        <div class="la-result">
+
+
+ 
+        <!-- 右侧详情 -->
+        <div class="la-result" id="lift-detail-wrap">
           <el-form :model="ruleForm" :rules="rules" ref="laForm">
             <div class="lar-wrap">
-              <div class="lar-item">
-                <div class="lar-item-title blueInfo">
-                  <i>1</i><span>基本信息</span>
-                </div>
+              <div class="lar-item" id="jbxx_type">
+                <div class="lift-detail-form-title">基本信息</div>
                 <div class="lar-con clearfix">
                   <el-form-item prop="regCode" class="lar-box">
                     <h4>电梯注册代码</h4>
-                    <p class="show-pp" v-if="submitState == 'put'">{{ruleForm.regCode}}</p>
-                    <el-input v-model="ruleForm.regCode" size="small" v-else></el-input>
+                    <p class="show-pp">{{ruleForm.regCode}}</p>
+                    <!-- <el-input v-model="ruleForm.regCode" size="small" v-else></el-input> -->
                   </el-form-item>
                   <el-form-item prop="inNum" class="lar-box">
                     <h4>内部编号</h4>
-                    <el-input v-model="ruleForm.inNum" size="small"></el-input>
+                    <el-input v-if="submitState == 'put'" v-model="ruleForm.inNum" size="small"></el-input>
+                    <p class="show-pp" v-else>{{ruleForm.inNum !== '' ? ruleForm.inNum : '--'}}</p>
                   </el-form-item>
                   <el-form-item prop="propertyName" class="lar-box">
                     <h4>物业公司</h4>
-                    <el-input v-model="ruleForm.propertyName" size="small"></el-input>
+                    <el-input v-if="submitState == 'put'" v-model="ruleForm.propertyName" size="small"></el-input>
+                    <p class="show-pp" v-else>{{ruleForm.propertyName !== '' ? ruleForm.propertyName : '--'}}</p>
                   </el-form-item>
                   <el-form-item prop="propertyPhone" class="lar-box">
                     <h4>物业电话</h4>
-                    <el-input v-model="ruleForm.propertyPhone" size="small"></el-input>
+                    <el-input v-if="submitState == 'put'" v-model="ruleForm.propertyPhone" size="small"></el-input>
+                    <p class="show-pp" v-else>{{ruleForm.propertyPhone !== '' ? ruleForm.propertyPhone : '--'}}</p>
                   </el-form-item>
                   <el-form-item prop="userDepartment" class="lar-box">
                     <h4>使用单位</h4>
-                    <el-input v-model="ruleForm.userDepartment" size="small"></el-input>
+                    <el-input v-if="submitState == 'put'" v-model="ruleForm.userDepartment" size="small"></el-input>
+                    <p class="show-pp" v-else>{{ruleForm.userDepartment !== '' ? ruleForm.userDepartment : '--'}}</p>
                   </el-form-item>
 
                   <!-- 省市区街道级联 -->
                   <el-form-item prop="areaCode" class="lar-box">
                     <h4>城市/区域</h4>
-                    <p class="show-pp" v-if="submitState == 'put'">{{ruleForm.localArea}}</p>
-                    <city-choose2 @childVal="getCity" :selectCity="special.areaCode" v-else></city-choose2>
+                    <!-- 待确认 貌似不允许修改 -->
+                    <!-- <city-choose v-if="submitState == 'put'" @childVal="getCity" :selectCity="special.areaCode"></city-choose> -->
+                    <p class="show-pp">{{ruleForm.localArea !== '' ? ruleForm.localArea : '--'}}</p>
                   </el-form-item>
 
                   <el-form-item prop="address" class="lar-box">
                     <h4>详细地址</h4>
-                    <p class="show-pp" v-if="submitState == 'put'">{{ruleForm.address}}</p>
-                    <el-input v-model="ruleForm.address" size="small" id="address" @input="searchMap()" v-else></el-input>
+                    <el-input v-if="submitState == 'put'" v-model="ruleForm.address" size="small" id="address" @input="searchMap()"></el-input>
+                    <p class="show-pp" v-else>{{ruleForm.address !== '' ? ruleForm.address : '--'}}</p>
                   </el-form-item>
                   
                 </div>
@@ -68,94 +95,101 @@
                 </div>  
               </div>
 
-              <div class="lar-item">
-                <div class="lar-item-title yellowInfo">
-                  <i>2</i><span>出厂信息</span>
-                </div>
+              <div class="lar-item" id="ccxx_type">
+                <div class="lift-detail-form-title">出厂信息</div>
                 <div class="lar-con clearfix">
                   <el-form-item prop="elevName" class="lar-box">
                     <h4>电梯名称</h4>
-                    <p class="show-pp" v-if="submitState == 'put'">{{ruleForm.elevName}}</p>
-                    <el-input v-model="ruleForm.elevName" size="small" v-else></el-input>
+                    <el-input v-if="submitState == 'put'" v-model="ruleForm.elevName" size="small"></el-input>
+                    <p class="show-pp" v-else>{{ruleForm.elevName !== '' ? ruleForm.elevName : '--'}}</p>
                   </el-form-item>
                   <el-form-item prop="elevType" class="lar-box">
                     <h4>型号</h4>
-                    <p class="show-pp" v-if="submitState == 'put'">{{ruleForm.elevType}}</p>
-                    <el-input v-model="ruleForm.elevType" size="small" v-else></el-input>
+                    <el-input v-if="submitState == 'put'" v-model="ruleForm.elevType" size="small"></el-input>
+                    <p class="show-pp" v-else>{{ruleForm.elevType !== '' ? ruleForm.elevType : '--'}}</p>
                   </el-form-item>
                   <el-form-item prop="elevVar" class="lar-box">
                     <h4>电梯品种</h4>
-                    <p class="show-pp" v-if="submitState == 'put'">{{ruleForm.elevVar}}</p>
-                    <el-input v-model="ruleForm.elevVar" size="small" v-else></el-input>
+                    <el-input v-if="submitState == 'put'" v-model="ruleForm.elevVar" size="small"></el-input>
+                    <p class="show-pp" v-else>{{ruleForm.elevVar !== '' ? ruleForm.elevVar : '--'}}</p>
                   </el-form-item>
                   <el-form-item prop="elevFacnum" class="lar-box">
                     <h4>出厂编号</h4>
-                    <p class="show-pp" v-if="submitState == 'put'">{{ruleForm.elevFacnum}}</p>
-                    <el-input v-model="ruleForm.elevFacnum" size="small" v-else></el-input>
+                    <el-input v-if="submitState == 'put'" v-model="ruleForm.elevFacnum" size="small"></el-input>
+                    <p class="show-pp" v-else>{{ruleForm.elevFacnum !== '' ? ruleForm.elevFacnum : '--'}}</p>
                   </el-form-item>
                   <el-form-item prop="manufactName" class="lar-box">
                     <h4>制造单位</h4>
-                    <p class="show-pp" v-if="submitState == 'put'">{{ruleForm.manufactName}}</p>
-                    <el-input v-model="ruleForm.manufactName" size="small" v-else></el-input>
+                    <el-input v-if="submitState == 'put'" v-model="ruleForm.manufactName" size="small"></el-input>
+                    <p class="show-pp" v-else>{{ruleForm.manufactName !== '' ? ruleForm.manufactName : '--'}}</p>
                   </el-form-item>
                   <el-form-item prop="elevDate" class="lar-box">
                     <h4>制造日期</h4>
-                    <div v-if="submitState == 'post'" class="dwc-date-icon"></div>
-                    <p class="show-pp" v-if="submitState == 'put'">{{ruleForm.elevDate}}</p>
-                    <el-date-picker v-model="ruleForm.elevDate" type="date" placeholder="选择日期" prefix-icon="test-icon" value-format="yyyy-MM-dd" size="small" style="width: 100%" v-else></el-date-picker>
+                    <div v-if="submitState == 'put'" class="dwc-date-icon"></div>
+                    <el-date-picker v-if="submitState == 'put'" v-model="ruleForm.elevDate" type="date" placeholder="选择日期" prefix-icon="test-icon" value-format="yyyy-MM-dd" size="small" style="width: 100%"></el-date-picker>
+                    <p class="show-pp" v-else>{{ruleForm.elevDate !== '' ? ruleForm.elevDate : '--'}}</p>
                   </el-form-item>
 
                 </div>
 
               </div>
 
-              <div class="lar-item">
-                <div class="lar-item-title greenInfo">
-                  <i>3</i><span>技术参数</span>
-                </div>
+              <div class="lar-item" id="jscs_type">
+                <div class="lift-detail-form-title">技术参数</div>
                 <div class="lar-con clearfix">
                   <el-form-item prop="ratedLoad" class="lar-box">
                     <h4>额定载重（kg）</h4>
-                    <el-input v-model="ruleForm.ratedLoad" size="small"></el-input>
+                    <el-input v-if="submitState == 'put'" v-model="ruleForm.ratedLoad" size="small"></el-input>
+                    <p class="show-pp" v-else>{{ruleForm.ratedLoad !== '' ? ruleForm.ratedLoad : '--'}}</p>
                   </el-form-item>
                   <el-form-item prop="stopFnum" class="lar-box">
                     <h4>停层站数</h4>
-                    <el-input v-model="ruleForm.stopFnum" size="small"></el-input>
+                    <el-input v-if="submitState == 'put'" v-model="ruleForm.stopFnum" size="small"></el-input>
+                    <p class="show-pp" v-else>{{ruleForm.stopFnum !== '' ? ruleForm.stopFnum : '--'}}</p>
                   </el-form-item>
 
                   <el-form-item prop="controlMode" class="lar-box">
                     <h4>控制方式</h4>
-                    <div v-if="ruleForm.controlMode && ruleForm.controlMode == '其他'">
-                      <el-input v-model="special.controlMode" size="small" placeholder="请输入控制方式"></el-input>
+                    <div v-if="submitState == 'put'">
+                      <div v-if="ruleForm.controlMode && ruleForm.controlMode == '其他'">
+                        <el-input v-model="special.controlMode" size="small" placeholder="请输入控制方式"></el-input>
+                      </div>
+                      <el-select v-model="ruleForm.controlMode" placeholder="请选择" size="small" style="width: 100%;" v-else>
+                        <el-option v-for="item in controlModeOptions" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                      </el-select>
                     </div>
-                    <el-select v-model="ruleForm.controlMode" placeholder="请选择" size="small" style="width: 100%;" v-else>
-                      <el-option v-for="item in controlModeOptions" :key="item.value" :label="item.label" :value="item.value"></el-option>
-                    </el-select>
+                    <p class="show-pp" v-else>{{ruleForm.controlMode !== '' ? ruleForm.controlMode : '--'}}</p>
                   </el-form-item>
 
                   <el-form-item prop="dragMode" class="lar-box">
                     <h4>拖动方式</h4>
-                    <div v-if="ruleForm.dragMode && ruleForm.dragMode == '其他'">
-                      <el-input v-model="special.dragMode" size="small" placeholder="请输入拖动方式"></el-input>
+                    <div v-if="submitState == 'put'">
+                      <div v-if="ruleForm.dragMode && ruleForm.dragMode == '其他'">
+                        <el-input v-model="special.dragMode" size="small" placeholder="请输入拖动方式"></el-input>
+                      </div>
+                      <el-select v-model="ruleForm.dragMode" placeholder="请选择" size="small" style="width: 100%;" v-else>
+                        <el-option v-for="item in dragModeOptions" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                      </el-select>
                     </div>
-                    <el-select v-model="ruleForm.dragMode" placeholder="请选择" size="small" style="width: 100%;" v-else>
-                      <el-option v-for="item in dragModeOptions" :key="item.value" :label="item.label" :value="item.value"></el-option>
-                    </el-select>
+                    <p class="show-pp" v-else>{{ruleForm.dragMode !== '' ? ruleForm.dragMode : '--'}}</p>
                   </el-form-item>
                   
                   
                   <!-- 数据要特殊处理 -->
                   <el-form-item prop="carSize" class="lar-box">
-                    <h4>轿厢尺寸（m）</h4>
+                    <h4>轿厢尺寸（cm）</h4>
                     <div class="clearfix">
                       <div style="float: left; width: 30%; margin-right: 5%;">
-                        <el-input v-model="special.carSize.kuan" size="small" placeholder="宽度"></el-input>
+                        <el-input v-if="submitState == 'put'" v-model="special.carSize.kuan" size="small" placeholder="宽度"></el-input>
+                        <p class="show-pp" v-else>宽：{{special.carSize.kuan !== '' ? special.carSize.kuan : '--'}}</p>
                       </div>
                       <div style="float: left; width: 30%; margin-right: 5%;">
-                        <el-input v-model="special.carSize.shen" size="small" placeholder="深度"></el-input>
+                        <el-input v-if="submitState == 'put'" v-model="special.carSize.shen" size="small" placeholder="深度"></el-input>
+                        <p class="show-pp" v-else>深：{{special.carSize.shen !== '' ? special.carSize.shen : '--'}}</p>
                       </div>
                       <div style="float: left; width: 30%">
-                        <el-input v-model="special.carSize.gao" size="small" placeholder="高度"></el-input>
+                        <el-input v-if="submitState == 'put'" v-model="special.carSize.gao" size="small" placeholder="高度"></el-input>
+                        <p class="show-pp" v-else>高：{{special.carSize.gao !== '' ? special.carSize.gao : '--'}}</p>
                       </div>
 
                     </div>
@@ -163,52 +197,64 @@
 
                   <el-form-item prop="doorForm" class="lar-box">
                     <h4>轿门形式</h4>
-                    <div v-if="ruleForm.doorForm && ruleForm.doorForm == '其他'">
-                      <el-input v-model="special.doorForm" size="small" placeholder="请输入轿门形式"></el-input>
+                    <div v-if="submitState == 'put'">
+                      <div v-if="ruleForm.doorForm && ruleForm.doorForm == '其他'">
+                        <el-input v-model="special.doorForm" size="small" placeholder="请输入轿门形式"></el-input>
+                      </div>
+                      <el-select v-model="ruleForm.doorForm" placeholder="请选择" size="small" style="width: 100%;" v-else>
+                        <el-option v-for="item in doorFormOptions" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                      </el-select>
                     </div>
-                    <el-select v-model="ruleForm.doorForm" placeholder="请选择" size="small" style="width: 100%;" v-else>
-                      <el-option v-for="item in doorFormOptions" :key="item.value" :label="item.label" :value="item.value"></el-option>
-                    </el-select>
+                    <p class="show-pp" v-else>{{ruleForm.doorForm !== '' ? ruleForm.doorForm : '--'}}</p>
                   </el-form-item>
                   <el-form-item prop="doorOsize" class="lar-box">
-                    <h4>开门尺寸（m）</h4>
-                    <el-input v-model="ruleForm.doorOsize" size="small"></el-input>
+                    <h4>开门尺寸（cm）</h4>
+                    <el-input v-if="submitState == 'put'" v-model="ruleForm.doorOsize" size="small"></el-input>
+                    <p class="show-pp" v-else>{{ruleForm.doorOsize !== '' ? ruleForm.doorOsize : '--'}}</p>
                   </el-form-item>
                   <el-form-item prop="doorOdir" class="lar-box">
                     <h4>开门方向</h4>
-                    <el-select v-model="ruleForm.doorOdir" placeholder="请选择" size="small" style="width: 100%;">
+                    <el-select v-if="submitState == 'put'" v-model="ruleForm.doorOdir" placeholder="请选择" size="small" style="width: 100%;">
                       <el-option v-for="item in doorOdirOptions" :key="item.value" :label="item.label" :value="item.value"></el-option>
                     </el-select>
+                    <p class="show-pp" v-else>{{ruleForm.doorOdir !== '' ? ruleForm.doorOdir : '--'}}</p>
                   </el-form-item>
                   <el-form-item prop="tractMode" class="lar-box">
                     <h4>曳引方式</h4>
-                    <div v-if="ruleForm.tractMode && ruleForm.tractMode == '其他'">
-                      <el-input v-model="special.tractMode" size="small" placeholder="请输入曳引方式"></el-input>
+                    <div v-if="submitState == 'put'">
+                      <div v-if="ruleForm.tractMode && ruleForm.tractMode == '其他'">
+                        <el-input v-model="special.tractMode" size="small" placeholder="请输入曳引方式"></el-input>
+                      </div>
+                      <el-select v-model="ruleForm.tractMode" placeholder="请选择" size="small" style="width: 100%;" v-else>
+                        <el-option v-for="item in tractModeOptions" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                      </el-select>
                     </div>
-                    <el-select v-model="ruleForm.tractMode" placeholder="请选择" size="small" style="width: 100%;" v-else>
-                      <el-option v-for="item in tractModeOptions" :key="item.value" :label="item.label" :value="item.value"></el-option>
-                    </el-select>
+                    <p class="show-pp" v-else>{{ruleForm.tractMode !== '' ? ruleForm.tractMode : '--'}}</p>
                   </el-form-item>
                   <el-form-item prop="ratedSpeed" class="lar-box">
                     <h4>额定运行速度（m/s）</h4>
-                    <el-input v-model="ruleForm.ratedSpeed" size="small"></el-input>
+                    <el-input v-if="submitState == 'put'" v-model="ruleForm.ratedSpeed" size="small"></el-input>
+                    <p class="show-pp" v-else>{{ruleForm.ratedSpeed !== '' ? ruleForm.ratedSpeed : '--'}}</p>
                   </el-form-item>
-
                   
-
                   <div style="width: 100%;overflow: hidden;">
                     <el-form-item prop="carForm" class="lar-box" style="width: 100%;">
                       <h4>轿厢形式</h4>
-                      <div class="clearfix" v-for="(item, i) in special.carForm" :key="i">
-                        <div style="float: left; width: 22%;margin-bottom: 3px;">
-                          <el-input v-model="item.value" size="small" placeholder="请输入"></el-input>
+                      <div v-if="submitState == 'put'">
+                        <div class="clearfix" v-for="(item, i) in special.carForm" :key="i">
+                          <div style="float: left; width: 22%;margin-bottom: 3px;">
+                            <el-input v-model="item.value" size="small" placeholder="请输入"></el-input>
+                          </div>
+                          <div class="delete-floor-icon" @click="deleteCarForm(i)" v-if="i > 0"></div>
                         </div>
-                        <div class="delete-floor-icon" @click="deleteCarForm(i)" v-if="i > 0"></div>
                       </div>
+                      <p class="show-pp" v-else style="height: auto;">
+                        <span v-for="(item, i) in special.carForm" :key="i" style="display: block;">{{item.value}}</span>
+                      </p>
                     </el-form-item>
                   </div>
 
-                  <div class="add-floor clearfix">
+                  <div v-if="submitState == 'put'" class="add-floor clearfix">
                     <div class="lar-box" style="width: 100%;">
                       <span class="add-floor-btn" @click="addCarForm">添加轿厢形式</span>
                     </div>
@@ -218,110 +264,145 @@
 
               </div>
 
-              <div class="lar-item">
-                <div class="lar-item-title blackInfo">
-                  <i>4</i><span>维保信息</span>
-                </div>
+              <div class="lar-item" id="wbxx_type">
+                <div class="lift-detail-form-title">维保信息</div>
+
                 <div class="lar-con clearfix">
                   <el-form-item prop="statUtime" class="lar-box">
                     <h4>投入使用时间</h4>
-                    <div class="dwc-date-icon"></div>
-                    <el-date-picker v-model="ruleForm.statUtime" type="date" placeholder="选择日期" prefix-icon="test-icon" value-format="yyyy-MM-dd" size="small" style="width: 100%"></el-date-picker>
+                    <div v-if="submitState == 'put'" class="dwc-date-icon"></div>
+                    <el-date-picker v-if="submitState == 'put'" v-model="ruleForm.statUtime" type="date" placeholder="选择日期" prefix-icon="test-icon" value-format="yyyy-MM-dd" size="small" style="width: 100%"></el-date-picker>
+                    <p class="show-pp" v-else>{{ruleForm.statUtime !== '' ? ruleForm.statUtime.substring(0,10) : '--'}}</p>
+
                   </el-form-item>
                   <el-form-item prop="exemptYear" class="lar-box">
                     <h4>免包期限（年）</h4>
-                    <el-input v-model="ruleForm.exemptYear" size="small"></el-input>
+                    <el-input v-if="submitState == 'put'" v-model="ruleForm.exemptYear" size="small"></el-input>
+                    <p class="show-pp" v-else>{{ruleForm.exemptYear !== '' ? ruleForm.exemptYear : '--'}}</p>
                   </el-form-item>
                   <el-form-item prop="exemptStime" class="lar-box">
                     <h4>免保开始时间</h4>
-                    <div class="dwc-date-icon"></div>
-                    <el-date-picker v-model="ruleForm.exemptStime" type="date" placeholder="选择日期" prefix-icon="test-icon" value-format="yyyy-MM-dd" size="small" style="width: 100%"></el-date-picker>
+                    <div v-if="submitState == 'put'" class="dwc-date-icon"></div>
+                    <el-date-picker v-if="submitState == 'put'" v-model="ruleForm.exemptStime" type="date" placeholder="选择日期" prefix-icon="test-icon" value-format="yyyy-MM-dd" size="small" style="width: 100%"></el-date-picker>
+                    <p class="show-pp" v-else>{{ruleForm.exemptStime !== '' ? ruleForm.exemptStime.substring(0,10) : '--'}}</p>
                   </el-form-item>
                   <el-form-item prop="exemptEtime" class="lar-box">
                     <h4>免保终止时间</h4>
-                    <div class="dwc-date-icon"></div>
-                    <el-date-picker v-model="ruleForm.exemptEtime" type="date" placeholder="选择日期" prefix-icon="test-icon" value-format="yyyy-MM-dd" size="small" style="width: 100%"></el-date-picker>
+                    <div v-if="submitState == 'put'" class="dwc-date-icon"></div>
+                    <el-date-picker v-if="submitState == 'put'" v-model="ruleForm.exemptEtime" type="date" placeholder="选择日期" prefix-icon="test-icon" value-format="yyyy-MM-dd" size="small" style="width: 100%"></el-date-picker>
+                    <p class="show-pp" v-else>{{ruleForm.exemptEtime !== '' ? ruleForm.exemptEtime.substring(0,10) : '--'}}</p>
                   </el-form-item>
                   <el-form-item prop="maintenStime" class="lar-box">
                     <h4>维保合同开始日期</h4>
-                    <div class="dwc-date-icon"></div>
-                    <el-date-picker v-model="ruleForm.maintenStime" type="date" placeholder="选择日期" prefix-icon="test-icon" value-format="yyyy-MM-dd" size="small" style="width: 100%"></el-date-picker>
+                    <div v-if="submitState == 'put'" class="dwc-date-icon"></div>
+                    <el-date-picker v-if="submitState == 'put'" v-model="ruleForm.maintenStime" type="date" placeholder="选择日期" prefix-icon="test-icon" value-format="yyyy-MM-dd" size="small" style="width: 100%"></el-date-picker>
+                    <p class="show-pp" v-else>{{ruleForm.maintenStime !== '' ? ruleForm.maintenStime.substring(0,10) : '--'}}</p>
                   </el-form-item>
                   <el-form-item prop="maintenEtime" class="lar-box">
                     <h4>维保合同终止日期</h4>
-                    <div class="dwc-date-icon"></div>
-                    <el-date-picker v-model="ruleForm.maintenEtime" type="date" placeholder="选择日期" prefix-icon="test-icon" value-format="yyyy-MM-dd" size="small" style="width: 100%"></el-date-picker>
+                    <div v-if="submitState == 'put'" class="dwc-date-icon"></div>
+                    <el-date-picker v-if="submitState == 'put'" v-model="ruleForm.maintenEtime" type="date" placeholder="选择日期" prefix-icon="test-icon" value-format="yyyy-MM-dd" size="small" style="width: 100%"></el-date-picker>
+                    <p class="show-pp" v-else>{{ruleForm.maintenEtime !== '' ? ruleForm.maintenEtime.substring(0,10) : '--'}}</p>
                   </el-form-item>
 
                 </div>
 
               </div>
 
-              <div class="lar-item">
-                <div class="lar-item-title lightYellowInfo">
-                  <i>5</i><span>业务参数</span>
-                </div>
+              <div class="lar-item" id="ywcs_type">
+                <div class="lift-detail-form-title">业务参数</div>
                 <div class="lar-con clearfix">
                   <div class="clearfix">
                   </div>
                   <el-form-item prop="topHeight" class="lar-box">
-                    <h4>顶层高度（m）</h4>
-                    <el-input v-model="ruleForm.topHeight" size="small"></el-input>
+                    <h4>顶层高度（cm）</h4>
+                    <el-input v-if="submitState == 'put'" v-model="ruleForm.topHeight" size="small"></el-input>
+                    <p class="show-pp" v-else>{{ruleForm.topHeight !== '' ? ruleForm.topHeight : '--'}}</p>
                   </el-form-item>
                   <el-form-item prop="bottomHeight" class="lar-box">
-                    <h4>底坑深度（m）</h4>
-                    <el-input v-model="ruleForm.bottomHeight" size="small"></el-input>
+                    <h4>底坑深度（cm）</h4>
+                    <el-input v-if="submitState == 'put'" v-model="ruleForm.bottomHeight" size="small"></el-input>
+                    <p class="show-pp" v-else>{{ruleForm.bottomHeight !== '' ? ruleForm.bottomHeight : '--'}}</p>
                   </el-form-item>
                   <el-form-item prop="wellHeight" class="lar-box">
-                    <h4>井道高度（m）</h4>
-                    <el-input v-model="ruleForm.wellHeight" size="small"></el-input>
+                    <h4>井道高度（cm）</h4>
+                    <el-input v-if="submitState == 'put'" v-model="ruleForm.wellHeight" size="small"></el-input>
+                    <p class="show-pp" v-else>{{ruleForm.wellHeight !== '' ? ruleForm.wellHeight : '--'}}</p>
                   </el-form-item>
                   <el-form-item prop="carHeight" class="lar-box">
-                    <h4>轿厢高度（m）</h4>
-                    <el-input v-model="ruleForm.carHeight" size="small"></el-input>
+                    <h4>轿厢高度（cm）</h4>
+                    <el-input v-if="submitState == 'put'" v-model="ruleForm.carHeight" size="small"></el-input>
+                    <p class="show-pp" v-else>{{ruleForm.carHeight !== '' ? ruleForm.carHeight : '--'}}</p>
                   </el-form-item>
                   <el-form-item prop="lowLevel" class="lar-box">
                     <h4>底层（F）</h4>
-                    <el-input v-model="ruleForm.lowLevel" size="small"></el-input>
+                    <el-input v-if="submitState == 'put'" v-model="ruleForm.lowLevel" size="small"></el-input>
+                    <p class="show-pp" v-else>{{ruleForm.lowLevel !== '' ? ruleForm.lowLevel : '--'}}</p>
                   </el-form-item>
                   <el-form-item prop="highLevel" class="lar-box">
                     <h4>顶层（F）</h4>
-                    <el-input v-model="ruleForm.highLevel" size="small"></el-input>
+                    <el-input v-if="submitState == 'put'" v-model="ruleForm.highLevel" size="small"></el-input>
+                    <p class="show-pp" v-else>{{ruleForm.highLevel !== '' ? ruleForm.highLevel : '--'}}</p>
                   </el-form-item>
                   <el-form-item prop="tractCircf" class="lar-box">
-                    <h4>曳引轮周长（m）</h4>
-                    <el-input v-model="ruleForm.tractCircf" size="small"></el-input>
+                    <h4>曳引轮周长（cm）</h4>
+                    <el-input v-if="submitState == 'put'" v-model="ruleForm.tractCircf" size="small"></el-input>
+                    <p class="show-pp" v-else>{{ruleForm.tractCircf !== '' ? ruleForm.tractCircf : '--'}}</p>
                   </el-form-item>
                   <el-form-item prop="loadControl" class="lar-box">
-                    <h4>载荷控制器</h4>
-                    <el-input v-model="ruleForm.loadControl" size="small"></el-input>
+                    <h4>载荷控制器电压范围（V）</h4>
+                    <!-- <el-input v-model="ruleForm.loadControl" size="small"></el-input> -->
+                    <div v-if="submitState == 'put'" class="clearfix">
+                      <div style="float: left; width: 40%;">
+                        <el-input v-model="special.loadControl.value1" size="small" placeholder="范围"></el-input>
+                      </div>
+                      <div class="floors-split">-</div>
+                      <div style="float: left; width: 40%;">
+                        <el-input v-model="special.loadControl.value2" size="small" placeholder="范围"></el-input>
+                      </div>
+                    </div>
+                    <div v-else class="clearfix">
+                      <p class="show-pp" style="float: left;">{{special.loadControl.value1 !== '' ? special.loadControl.value1 : '--'}}</p>
+                      <div class="floors-split" style="padding: 0 7px;">-</div>
+                      <p class="show-pp" style="float: left;">{{special.loadControl.value2 !== '' ? special.loadControl.value2 : '--'}}V</p>
+                    </div>
                   </el-form-item>
                   <el-form-item prop="countWeight" class="lar-box">
                     <h4>对重装置重量（kg）</h4>
-                    <el-input v-model="ruleForm.countWeight" size="small"></el-input>
+                    <el-input v-if="submitState == 'put'" v-model="ruleForm.countWeight" size="small"></el-input>
+                    <p class="show-pp" v-else>{{ruleForm.countWeight !== '' ? ruleForm.countWeight : '--'}}</p>
                   </el-form-item>
 
                   <div style="width: 100%;overflow: hidden;">
                     <el-form-item prop="floorsHeight" class="lar-box" style="width: 100%;">
-                      <h4>层高（m）</h4>
+                      <h4>层高（cm）</h4>
                       <div class="clearfix" v-for="(item, i) in special.floorsHeight" :key="i">
-                        <div style="float: left; width: 8%;">
-                          <el-input v-model="item.floor1" size="small" placeholder="楼层"></el-input>
+                        <div v-if="submitState == 'put'" class="clearfix">
+                          <div style="float: left; width: 8%;">
+                            <el-input v-model="item.floor1" size="small" placeholder="楼层"></el-input>
+                          </div>
+                          <div class="floors-split">-</div>
+                          <div style="float: left; width: 8%;">
+                            <el-input v-model="item.floor2" size="small" placeholder="楼层"></el-input>
+                          </div>
+                          <div class="floors-split">高度为</div>
+                          <div style="float: left; width: 12%">
+                            <el-input v-model="item.height" size="small" placeholder="高度"></el-input>
+                          </div>
+                          <div class="delete-floor-icon" @click="deleteFloor(i)" v-if="i > 0"></div>
                         </div>
-                        <div class="floors-split">-</div>
-                        <div style="float: left; width: 8%;">
-                          <el-input v-model="item.floor2" size="small" placeholder="楼层"></el-input>
+                        <div v-else class="clearfix">
+                          <p class="show-pp" style="float: left;">{{item.floor1 !== '' ? item.floor1 : '--'}}</p>
+                          <div class="floors-split" style="padding: 0 7px;">-</div>
+                          <p class="show-pp" style="float: left;">{{item.floor2 !== '' ? item.floor2 : '--'}}层</p>
+                          <div class="floors-split" style="padding: 0 5px; margin-left: 16px;">高度为</div>
+                          <p class="show-pp" style="float: left;">{{item.height !== '' ? item.height : '--'}}</p>
                         </div>
-                        <div class="floors-split">高度为</div>
-                        <div style="float: left; width: 12%">
-                          <el-input v-model="item.height" size="small" placeholder="高度"></el-input>
-                        </div>
-                        <div class="delete-floor-icon" @click="deleteFloor(i)" v-if="i > 0"></div>
                       </div>
                     </el-form-item>
                   </div>
 
-                  <div class="add-floor clearfix">
+                  <div class="add-floor clearfix" v-if="submitState == 'put'">
                     <div class="lar-box" style="width: 100%;">
                       <span class="add-floor-btn" @click="addFloor">添加层高</span>
                       <em class="add-floor-tip">（负楼层默认为负号，如“-1”，不可为“B1”）</em>
@@ -332,12 +413,8 @@
               </div>
 
             </div>
-            <!-- <el-button type="primary" @click="submit">立即创建</el-button> -->
 
-            <div class="form-btn">
-              <input class="la-btn la-btn-cancel" type="button" value="取消" @click="cancel">
-              <input class="la-btn la-btn-submit" type="button" value="确认录入" @click="submit">
-            </div>
+            <div class="lift-detail-height-block"></div>
 
 
           </el-form>
@@ -358,7 +435,7 @@
 // import pcas from '../../utils/citySelector/pcas-code.json'
 import api from '../../api'
 import SearchCode from '../../components/SearchCode'
-import CityChoose2 from '../../components/CityChoose2'
+import CityChoose from '../../components/CityChoose'
 import Footer from '../common/fotter'
 
 export default {
@@ -367,7 +444,11 @@ export default {
     // var exemptEtimeCheck = ()
     return {
       parentCode: '',
-      submitState: 'post', // 判断录入电梯(post)还是编辑电梯(put)
+      submitState: 'post', // 判断录入电梯(post)还是编辑电梯(put)，查询电梯(get)
+      flag: true, // 滚动节流阀
+      menuActive: 'jbxx',
+      liftPerson: '',
+
       
       ruleForm2: {
         'regCode': '007',
@@ -550,9 +631,9 @@ export default {
         lng: '',
         lat: '',
         carSize: {
-          gao: '0',
-          kuan: '0',
-          shen: '0'
+          gao: 0,
+          kuan: 0,
+          shen: 0
         },
         doorForm: '',
         controlMode: '',
@@ -560,11 +641,16 @@ export default {
         floorsHeight: [
           {floor1: '', floor2: '', height: ''}
         ],
+        loadControl: {
+          value1: '',
+          value2: ''
+        },
         carForm: [
           {value: ''}
         ],
         areaCode: [],
         chooseCity: '',
+        test: [1]
 
       },
       // 用于存放单个电梯原始数据
@@ -661,6 +747,11 @@ export default {
     this.submitState = this.$route.query.submitState
   },
   mounted() {
+    // 获取电梯负责人
+    this.getLiftPerson()
+
+    // 滚动高亮
+    this.scrollMenu()
 
     // TODO 请求成功后再加载地图
     this.searchMap()
@@ -701,10 +792,37 @@ export default {
         if (this.ruleForm.carForm !== '') {
           this.special.carForm = this.transformCarForm(this.ruleForm.carForm)
         }
+        this.special.loadControl.value1 = this.ruleForm.loadControl.split(',')[0] ? this.ruleForm.loadControl.split(',')[0] : ''
+        this.special.loadControl.value2 = this.ruleForm.loadControl.split(',')[1] ? this.ruleForm.loadControl.split(',')[1] : ''
+
+        // m转换成cm
+        this.ruleForm.doorOsize = (this.ruleForm.doorOsize * 100).toFixed(1); 
+        this.ruleForm.topHeight = (this.ruleForm.topHeight * 100).toFixed(1); 
+        this.ruleForm.bottomHeight = (this.ruleForm.bottomHeight * 100).toFixed(1); 
+        this.ruleForm.wellHeight = (this.ruleForm.wellHeight * 100).toFixed(1); 
+        this.ruleForm.carHeight = (this.ruleForm.carHeight * 100).toFixed(1); 
+        this.ruleForm.tractCircf = (this.ruleForm.tractCircf * 100).toFixed(1); 
+
+
 
         this.searchMap(detail.latLon)
       })
 
+    },
+
+    // 获取电梯负责人
+    getLiftPerson() {
+      this.liftPerson = ''
+      let personArr = []
+      api.lift.getLiftPerson(this.parentCode).then(res => {
+        if (res.data.data.personOne) {
+          personArr.push(res.data.data.personOne)
+        }
+        if (res.data.data.personTwo) {
+          personArr.push(res.data.data.personTwo)
+        }
+        this.liftPerson = personArr.join('、')
+      })
     },
 
     // 特殊处理获得的areaCode区域码
@@ -744,9 +862,10 @@ export default {
       // '10:20:30' => carSize: {gao: '', shen: '', kuan: ''}
       if (typeof carSize == 'string') {
         let carSizeObj = {}
-        carSizeObj.gao = carSize.split(':')[0]
-        carSizeObj.kuan = carSize.split(':')[1]
-        carSizeObj.shen = carSize.split(':')[2]
+        // 将m转为cm
+        carSizeObj.gao = carSize.split(':')[0] * 100
+        carSizeObj.kuan = carSize.split(':')[1] * 100
+        carSizeObj.shen = carSize.split(':')[2] * 100
         return carSizeObj
       }
 
@@ -756,7 +875,8 @@ export default {
         if (carSize.gao === '' || carSize.kuan === '' || carSize.shen === '') {
           return ''
         } else {
-          return carSize.gao + ':' + carSize.kuan + ':' + carSize.shen
+          // 除以100，将cm转为m
+          return carSize.gao / 100 + ':' + carSize.kuan / 100 + ':' + carSize.shen / 100
         }
       }
 
@@ -768,13 +888,14 @@ export default {
       // 字符串数组重组成新形式数组
       // "[{'floor': '-1, 1', 'height': '5'}, {'floor': '1, 5', 'height' : '4'}]" => [{floor1: '-1', floor2: '1', height: '5'}, {floor1: '1', floor2: '5', height: '4'}]
       if (typeof floorsHeight == 'string') {
+        // 将m转换成cm
         let evalFloorsHeight = eval(floorsHeight)
         let floorsHeightArr = []
         evalFloorsHeight.forEach(item => {
           floorsHeightArr.push({
             floor1: item.floor.split(',')[0],
             floor2: item.floor.split(',')[1],
-            height: item.height
+            height: item.height * 100
           })
         })
         return floorsHeightArr
@@ -783,6 +904,7 @@ export default {
       // 新形式数组重组为字符串数组
       // [{floor1: '-1', floor2: '1', height: '5'}, {floor1: '1', floor2: '5', height: '4'}] => "[{'floor': '-1, 1', 'height': '5'}, {'floor': '1, 5', 'height' : '4'}]"
       if (floorsHeight instanceof Array) {
+        // 将cm转化为m
         if (floorsHeight.length === 1 && floorsHeight[0].floor1 === '' && floorsHeight[0].floor2 === '' && floorsHeight[0].height === '') return ''
         let carSizeArrStr = []
         floorsHeight.forEach((item, i) => {
@@ -791,7 +913,7 @@ export default {
           } else {
             carSizeArrStr.push({
               floor: item.floor1 + ',' + item.floor2,
-              height: item.height
+              height: item.height / 100
             })
           }
           
@@ -834,6 +956,99 @@ export default {
       }
       
       console.log('carForm传入类型错误')
+    },
+
+    // 锚点平滑跳转
+    jump(index) {
+      let that = this
+      let jumpArr = document.querySelectorAll('.lar-item')
+      let scrollWrap = document.getElementById('lift-detail-wrap')
+  
+
+      if (this.flag) {
+        that.flag = false
+        let scrollWrapTop = scrollWrap.offsetTop
+        let total = jumpArr[index].offsetTop - scrollWrapTop - 30 // 目标卷曲位置
+        let currentDistance = scrollWrap.scrollTop // 当前卷曲位置
+        let step = Math.floor(total / 20)
+
+        // 若需要平滑滚动
+        // if (total > currentDistance) {
+        //   smoothDown()
+        // } else {
+        //   let newTotal = currentDistance - total
+        //   step = Math.floor(newTotal / 20)
+        //   smoothUp()
+        // }
+
+        // 若不需要平滑滚动
+        scrollWrap.scrollTop = total
+        that.flag = true
+
+        // 向下
+        function smoothDown() {
+          if (currentDistance < total) {
+            clearTimeout(timer)
+            currentDistance += step
+            scrollWrap.scrollTop = currentDistance
+            let timer = setTimeout(smoothDown, 10)
+          } else {
+            scrollWrap.scrollTop = total
+            that.flag = true
+          }
+        }
+
+        // 向上
+        function smoothUp () {
+          if (currentDistance > total) {
+            clearTimeout(timer)
+            currentDistance -= step
+            scrollWrap.scrollTop = currentDistance
+            let timer = setTimeout(smoothUp, 10)
+          } else {
+            scrollWrap.scrollTop = total
+            that.flag = true
+          }
+        }
+      }
+
+    },
+
+
+    // 滚动高亮
+    scrollMenu() {
+      let that = this
+      let scrollWrap = document.getElementById('lift-detail-wrap')
+
+      let d = 80 // 提前多少距离高亮
+      let scrollWrapTop = scrollWrap.offsetTop + d 
+      let boxATop = document.getElementById('jbxx_type').offsetTop - scrollWrapTop
+      let boxBTop = document.getElementById('ccxx_type').offsetTop - scrollWrapTop
+      let boxCTop = document.getElementById('jscs_type').offsetTop - scrollWrapTop
+      let boxDTop = document.getElementById('wbxx_type').offsetTop - scrollWrapTop
+      let boxETop = document.getElementById('ywcs_type').offsetTop - scrollWrapTop
+    
+
+      var scrollFun = function () {
+        var current_offset_top = scrollWrap.scrollTop; // 卷曲的高度
+        // console.log(current_offset_top)
+
+        if (current_offset_top < boxBTop) {
+          that.menuActive = "jbxx";
+        } else if (current_offset_top >= boxBTop && current_offset_top < boxCTop) {
+          that.menuActive = "ccxx";
+        } else if (current_offset_top >= boxCTop && current_offset_top < boxDTop) {
+          that.menuActive = "jscs";
+        } else if (current_offset_top >= boxDTop && current_offset_top < boxETop) {
+          that.menuActive = "wbxx";
+        } else {
+          that.menuActive = "ywcs";
+        }
+
+      }
+
+      scrollWrap.addEventListener('scroll', scrollFun)
+
     },
 
     // 搜索
@@ -1031,11 +1246,37 @@ export default {
       this.searchMap()
     },
 
-    // 取消提交
+    // 取消提交？
     cancel() {
       this.$router.push({
         path: '/lift-list'
       })
+    },
+
+    // 取消编辑
+    cancelSave() {
+      // this.submitState = 'get'
+      this.$router.push({
+        path: '/lift-detail',
+        query: {
+          regCode: this.parentCode,
+          submitState: 'get'
+        }
+      })
+      // this.$router.go(0)
+    },
+
+    // 跳转编辑
+    goEdit() {
+      // this.submitState = 'put'
+      this.$router.push({
+        path: '/lift-detail',
+        query: {
+          regCode: this.parentCode,
+          submitState: 'put'
+        }
+      })
+      // this.$router.go(0)
     },
 
     // 提交
@@ -1051,6 +1292,8 @@ export default {
           this.ruleForm.carSize = this.transformCarSize(this.special.carSize)
           this.ruleForm.floorsHeight = this.transformFloorsHeight(this.special.floorsHeight)
           this.ruleForm.carForm = this.transformCarForm(this.special.carForm)
+          this.ruleForm.loadControl = this.special.loadControl.value1 + ',' + this.special.loadControl.value2
+
           if (this.ruleForm.doorForm == '其他') {
             this.ruleForm.doorForm = this.special.doorForm
           }
@@ -1071,33 +1314,75 @@ export default {
             this.ruleForm.latLon = ''
           }
 
-          console.log(this.ruleForm)
+
+          // this.special.loadControl.value1 = this.ruleForm.loadControl.split(':')[0] ? this.ruleForm.loadControl.split(':')[0] : ''
+          // this.special.loadControl.value2 = this.ruleForm.loadControl.split(':')[1] ? this.ruleForm.loadControl.split(':')[1] : ''
 
 
-          if (this.submitState == 'put') {
-            api.lift.editLift(this.ruleForm).then(res => {
-              console.log('put', res)
-              if (res.data.code == '200') {
-                that.$message.success(`${res.data.message}`)
-                that.$router.push({path: '/lift-list'})
-              } else {
-                that.$message.error(`${res.data.message}`)
-              }
-            })
-          } else {
-            api.lift.addLift(this.ruleForm).then(res => {
-              console.log('post', res)
-              if (res.data.code == '200') {
-                that.$message.success('添加电梯成功')
-                that.$router.push({path: '/lift-list'})
-              } else {
-                that.$message.error(`${res.data.message}`)
-              }
-            })
-          }
+          // cm转换成m
+          this.ruleForm.doorOsize = this.ruleForm.doorOsize / 100
+          this.ruleForm.topHeight = this.ruleForm.topHeight / 100
+          this.ruleForm.bottomHeight = this.ruleForm.bottomHeight / 100
+          this.ruleForm.wellHeight = this.ruleForm.wellHeight / 100
+          this.ruleForm.carHeight = this.ruleForm.carHeight / 100
+          this.ruleForm.tractCircf = this.ruleForm.tractCircf / 100
+          
+          console.log('this.ruleForm', this.ruleForm)
+
+          api.lift.editLift(this.ruleForm).then(res => {
+            console.log('put', res)
+            if (res.data.code == '200') {
+              that.$message.success(`${res.data.message}`)
+              // this.submitState = 'get'
+              that.$router.push({
+                path: '/lift-detail',
+                query: {
+                  regCode: that.parentCode,
+                  submitState: 'get'
+                }
+              })
+              // that.$router.go(0)
+            } else {
+              that.$message.error(`${res.data.message}`)
+            }
+          })
+
+
+
+          // if (this.submitState == 'put') {
+          //   api.lift.editLift(this.ruleForm).then(res => {
+          //     console.log('put', res)
+          //     if (res.data.code == '200') {
+          //       that.$message.success(`${res.data.message}`)
+          //       that.$router.push({path: '/lift-list'})
+          //     } else {
+          //       that.$message.error(`${res.data.message}`)
+          //     }
+          //   })
+          // } else {
+          //   api.lift.addLift(this.ruleForm).then(res => {
+          //     console.log('post', res)
+          //     if (res.data.code == '200') {
+          //       that.$message.success('添加电梯成功')
+          //       that.$router.push({path: '/lift-list'})
+          //     } else {
+          //       that.$message.error(`${res.data.message}`)
+          //     }
+          //   })
+          // }
 
         } else {
           console.log('error',this.ruleForm)
+        }
+      })
+    },
+
+    // 跳转到打印页面
+    goPrint() {
+      this.$router.push({
+        path: '/lift-print',
+        query: {
+          regCode: this.parentCode
         }
       })
     },
@@ -1106,7 +1391,7 @@ export default {
   components: {
     'footer-temp': Footer,
     'search-code': SearchCode,
-    'city-choose2': CityChoose2,
+    'city-choose': CityChoose,
   }
 }
 </script>
@@ -1114,14 +1399,14 @@ export default {
 <style>
   
 /* 地图marker样式 */
-#LiftAddResult .point{
+#LiftDetail .point{
   position: relative;
   width: 48px;
   height: 48px;
   margin-left: -16px;
   margin-top: -24px;
 }
-#LiftAddResult .point-light{
+#LiftDetail .point-light{
   position: absolute;
   top: 0;
   left: 0;
@@ -1132,7 +1417,7 @@ export default {
   border-radius: 100%;
   animation: myScale 1.5s infinite forwards;
 }
-#LiftAddResult .point-circle{
+#LiftDetail .point-circle{
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1152,7 +1437,7 @@ export default {
 
 <style lang="stylus" scoped>
 
-#LiftAddResult{
+#LiftDetail{
   @import '../../assets/stylus/xymStyle.styl'
 
   .container{
@@ -1162,11 +1447,17 @@ export default {
   .lift-list{
     background none;
   }
+  .la-result{
+    float: left;
+    width: 82%;
+    height: 716px;
+    overflow: auto;
+  }
   .lar-wrap{
-    padding 1px 40px 30px;
+    padding 1px 10px 30px;
   }
   .lar-item{
-    margin-top 10px;
+    margin-top 30px;
   }
   .lar-item-title{
     line-height 16px;
@@ -1284,12 +1575,15 @@ export default {
     height: 32px;
     margin-bottom: 0 !important;
   }
+  .lift-detail-height-block{
+    height: 360px;
+  }
   
 
 }
 
 @media screen and (max-width: 1360px) {
-  #LiftAddResult{
+  #LiftDetail{
     min-width: 1360px;
   }
 }

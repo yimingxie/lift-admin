@@ -12,7 +12,7 @@
           <div class="dhi-title">内部编号：{{inNum}}</div>
           <ul class="dhi-ul clearfix">
             <li><span>注册代码：</span>{{regCode}}</li>
-            <li><span>电梯负责人：</span>{{lift_man}}</li>
+            <li><span>电梯负责人：</span>{{liftPerson ? liftPerson : '无'}}</li>
             <li><span>电梯地址：</span>{{localArea}} {{address}}</li>
           </ul>
         </div>
@@ -102,6 +102,7 @@ export default {
   data() {
     return {
       parentCode: '',
+      liftPerson: '',
       dateNow: '',
       currentComponent: 'DetectionRealtimeC',
       
@@ -142,7 +143,7 @@ export default {
         diagnType: -1,
         processed: -1,
         startDate: '2019-1-1',
-        endDate: '2019-7-18',
+        endDate: '2019-7-24',
       },
 
       
@@ -154,15 +155,17 @@ export default {
     // this.currentComponent = 'DetectionRealtimeC'
 
 
-    // 通过localStorage的daginId控制页面切换和刷新持久化
-    if (localStorage.getItem('daginId')) {
-      this.boxOnIndex = localStorage.getItem('daginId')
+    // 通过localStorage的diagnId控制页面切换和刷新持久化
+    if (localStorage.getItem('diagnId')) {
+      this.boxOnIndex = localStorage.getItem('diagnId')
       this.currentComponent = 'DetectionDiagnoseC'
     } else {
       this.currentComponent = 'DetectionRealtimeC'
     }
   },
   mounted() {
+    // 获取电梯负责人
+    this.getLiftPerson()
 
     // 获取电梯详情
     this.getLiftDetail()
@@ -176,7 +179,7 @@ export default {
       this.warnListTimer = null
       this.getWarnList()
     } else {
-      this.setWarnListTimer()
+      // this.setWarnListTimer()
     }
 
   },
@@ -184,7 +187,7 @@ export default {
     // 页面关闭清除定时器
     clearInterval(this.warnListTimer)
     this.warnListTimer = null
-    localStorage.setItem('daginId', '')
+    localStorage.setItem('diagnId', '')
   },
   methods: {
     // 异常告警定时器
@@ -196,6 +199,21 @@ export default {
         that.getNewestWarn()
         console.log('that.warnList', that.warnList)
       }, 2000) 
+    },
+
+    // 获取电梯负责人
+    getLiftPerson() {
+      this.liftPerson = ''
+      let personArr = []
+      api.lift.getLiftPerson(this.parentCode).then(res => {
+        if (res.data.data.personOne) {
+          personArr.push(res.data.data.personOne)
+        }
+        if (res.data.data.personTwo) {
+          personArr.push(res.data.data.personTwo)
+        }
+        this.liftPerson = personArr.join('、')
+      })
     },
 
     // 获取最新异常告警
@@ -286,7 +304,7 @@ export default {
                 let warnListMore = res.data.data.records
                 that.warnList = that.warnList.concat(warnListMore)
                 if (this.currentComponent == 'DetectionDiagnoseC') return
-                that.setWarnListTimer() // 如果为诊断页面，则不开启定时器，否则要开启
+                // that.setWarnListTimer() // 如果为诊断页面，则不开启定时器，否则要开启
               }
             }, 1000)
           })
@@ -327,8 +345,8 @@ export default {
     },
 
     // 渲染不同类
-    addDiffClass(diagnType, daginId) {
-      let onClass = this.boxOnIndex == daginId ? 'on' : ''
+    addDiffClass(diagnType, diagnId) {
+      let onClass = this.boxOnIndex == diagnId ? 'on' : ''
       if (diagnType == 1) {
         return 'faultBg' + ' ' + onClass
       } else if (diagnType == 2) {
@@ -342,9 +360,9 @@ export default {
     },
 
     // 跳转到诊断
-    goDiagnose(daginId) {
-      this.boxOnIndex = daginId
-      localStorage.setItem('daginId', daginId)
+    goDiagnose(diagnId) {
+      this.boxOnIndex = diagnId
+      localStorage.setItem('diagnId', diagnId)
       clearInterval(this.warnListTimer)
       this.warnListTimer = null
       this.currentComponent = 'DetectionDiagnoseC'
@@ -353,9 +371,9 @@ export default {
     // 跳回实时监测
     backRealtime() {
       this.boxOnIndex = ''
-      localStorage.setItem('daginId', '')
+      localStorage.setItem('diagnId', '')
       this.currentComponent = 'DetectionRealtimeC'
-      this.setWarnListTimer()
+      // this.setWarnListTimer()
     },
 
     
@@ -422,122 +440,7 @@ export default {
     line-height: 1;
   }
   
-  // dete待封装
-  .det-content{
-    margin: 20px;
-  }
-  .det-warn{
-    float: left;
-    background: #FFFFFF;
-    box-shadow: 0 8px 20px -12px rgba(66,114,255,0.30);
-    border-radius: 8px;
-    height: 783px;
-    width: 28%;
-  }
 
-  .dwc-box{
-    position: relative;
-    float: left;
-    width: 33.3%;
-  }
-  .det-warn-choose{
-    background: #F5F6F7;
-  }
-  .dwc-date-icon{
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 32px;
-    height: 40px;
-    background: url('../../assets/images/xym/date.png') no-repeat center center;
-  }
-  .dwc-box-line{
-    position: absolute;
-    top: 13px;
-    right: -3px;
-    height: 14px;
-    width: 1px;
-    background: #D8DDDF;
-  }
-  .dw-list{
-    height: 660px;
-    overflow: auto;
-  }
-  .dw-list-box{
-    position: relative;
-    cursor: pointer;
-  }
-  .dw-list-box.warningBg.on{
-    background-image: linear-gradient(90deg, #78D2A7 0%, #72EEB4 100%);
-    box-shadow: 0 8px 20px -10px rgba(191,113,27,0.60);
-  }
-  .dw-list-box.violationBg.on{
-    background-image: linear-gradient(90deg, #6809fc 0%, #A854FD 100%);
-    box-shadow: 0 8px 20px -10px rgba(191,113,27,0.60);
-  }
-  .dw-list-box.faultBg.on{
-    background-image: linear-gradient(90deg, #F3B02B 0%, #FFCC1E 100%);
-    box-shadow: 0 8px 20px -10px rgba(191,113,27,0.60);
-  }
-  .dw-list-box.accidentBg.on{
-    background-image: linear-gradient(90deg, #FC3132 0%, #F67356 100%);
-    box-shadow: 0 8px 20px -10px rgba(191,113,27,0.60);
-  }
-  .dw-list-box-wrap{
-    margin: 0 20px;
-    padding: 16px 0;
-    border-bottom: 1px dashed #D8DDDF;
-  }
-  .dwlb-p {
-    padding-right: 64px;
-  }
-  .dwlb-p h4{
-    font-size: 14px;
-    color: #34414C;
-    margin-bottom 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  .dw-list-box.on .dwlb-p h4{
-    color #fff
-    font-size 16px;
-  }
-  .dwlb-p p{
-    font-size: 14px;
-    color: #7E8A95;
-    margin-top: 10px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  .dw-list-box.on .dwlb-p p{
-    font-size: 14px;
-    color: rgba(255,255,255,0.65)
-  }
-  .dwlb-rate{
-    position: absolute;
-    top: 27px;
-    right: 20px;
-    font-size: 14px;
-    color: #34414C;
-  }
-  .dwlb-rate.no-deal{
-    color: #FA4F43;
-  }
-  .dw-list-box.on .dwlb-rate{
-    color: #fff !important;
-  }
-  .back-realtime{
-    position: absolute;
-    top: 22px;
-    right: 24px;
-    padding-left: 16px;
-    font-size: 14px;
-    color: #7E8A95;
-    cursor pointer;
-    background: url('../../assets/images/xym/back.png') no-repeat left center;
-  }
   
 }
 

@@ -140,6 +140,8 @@
                   </el-form-item>
                 </div>
               </div>
+
+
               <!-- 检测内容联动 -->
               <!-- <div class="dia-citem clearfix">
                 <div class="dia-citem-label">检测内容：</div>

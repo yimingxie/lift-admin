@@ -71,6 +71,10 @@ export default {
   // 查询数字电梯统计
   getEleStatistics() {
     return http.get(`${url1}/elevator/statistics`)
+  },
 
+  // 查询电梯负责人
+  getLiftPerson(regCode) {
+    return http.get(`${url1}/elevator/${regCode}/person`)
   },
 }

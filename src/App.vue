@@ -1,5 +1,5 @@
 <template>
-  <div id="page-container">
+  <div id="page-container" :key="appKey">
     
     
     <!-- Start: 菜单栏 -->
@@ -203,6 +203,7 @@
 
     data () {
       return {
+        appKey: 1, // 监听地址栏参数
         title:'电梯行业监管战情室',
         showMenu: true,
         isCollapse: true,
@@ -223,7 +224,8 @@
     watch:{
       $route(to,from){ //跳转组件页面后，监听路由参数中对应的当前页面以及上一个页面
         // console.log('to----' + to)
-        if(to.name=='Login'){
+        this.appKey=new Date().getTime(); // 监听地址栏参数变化
+        if(to.name=='Login' || to.name=='lift-print'){
           this.$store.commit('SWITCH_LAYOUT', 'auth')
           // console.log('layout====' + this.layout)
         }else{

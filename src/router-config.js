@@ -112,10 +112,28 @@ const router = new Router({
       path: "/lift-add-result",
       name: "lift-add-result",
       meta: {
-        title: "电梯详情",
+        title: "电梯查询详情",
         auto: false // 是否需要权限
       },
       component: (resolve) => require(['./views/lift/LiftAddResult.vue'], resolve)
+    },
+    {
+      path: "/lift-detail",
+      name: "lift-detail",
+      meta: {
+        title: "电梯档案",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/lift/LiftDetail.vue'], resolve)
+    },
+    {
+      path: "/lift-print",
+      name: "lift-print",
+      meta: {
+        title: "电梯设备信息",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/lift/LiftPrint.vue'], resolve)
     },
     {
       path: "/device",
@@ -279,24 +297,52 @@ const router = new Router({
       },
       component: (resolve) => require(['./views/detection/Detection.vue'], resolve)
     },
+    // {
+    //   path: "/detection-new",
+    //   name: "detection-new",
+    //   meta: {
+    //     title: "检测诊断新",
+    //     auto: false // 是否需要权限
+    //   },
+    //   component: (resolve) => require(['./views/detection/DetectionNew.vue'], resolve)
+    // },
     {
-      path: "/detection-new",
-      name: "detection-new",
+      path: "/detection-panel",
+      name: "detection-panel",
       meta: {
-        title: "检测诊断新",
+        title: "检测诊断面板",
         auto: false // 是否需要权限
       },
-      component: (resolve) => require(['./views/detection/DetectionNew.vue'], resolve)
+      component: (resolve) => require(['./views/detection/DetectionPanel.vue'], resolve)
     },
     {
-      path: "/detection-real",
-      name: "detection-real",
+      path: "/detection-panel-detail",
+      name: "detection-panel-detail",
       meta: {
-        title: "检测诊断实时组件",
+        title: "检测诊断告警详情",
         auto: false // 是否需要权限
       },
-      component: (resolve) => require(['./views/detection/DetectionRealtimeC.vue'], resolve)
+      component: (resolve) => require(['./views/detection/DetectionPanelDetail.vue'], resolve)
     },
+    {
+      path: "/det-detail-chart-comp",
+      name: "det-detail-chart-comp",
+      meta: {
+        title: "测试中间组件",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/detection/DetDetailChartComp.vue'], resolve)
+    },
+
+    // {
+    //   path: "/detection-real",
+    //   name: "detection-real",
+    //   meta: {
+    //     title: "检测诊断实时组件",
+    //     auto: false // 是否需要权限
+    //   },
+    //   component: (resolve) => require(['./views/detection/DetectionRealtimeC.vue'], resolve)
+    // },
     {
       path: "/detection-add",
       name: "detection-add",
@@ -343,10 +389,19 @@ const router = new Router({
       component: (resolve) => require(['./views/detection/DetectionSetLog.vue'], resolve)
     },
     {
+      path: "/detection-work-log",
+      name: "detection-work-log",
+      meta: {
+        title: "作业记录",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/detection/DetectionWorkLog.vue'], resolve)
+    },
+    {
       path: "/det-test",
       name: "det-test",
       meta: {
-        title: "更改日志",
+        title: "测试",
         auto: false // 是否需要权限
       },
       component: (resolve) => require(['./views/detection/DetTest.vue'], resolve)

@@ -933,6 +933,34 @@ $accidentColor = #FA4F43; // 事件
 
 
 
+// 派单
+.dispatch-item{
+  // margin-top: 20px;
+}
+.dispatch-item-li{
+  box-sizing: border-box;
+  float: left;
+  position: relative;
+  width: 50%;
+  padding-left: 90px;
+}
+.dispatch-item-li-label{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90px;
+  box-sizing: border-box;
+  line-height: 32px;
+  padding-right: 12px;
+  font-size: 14px;
+  color: #34414c;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
 
 
 
@@ -1149,12 +1177,14 @@ $accidentColor = #FA4F43; // 事件
 }
 .dcc-btn-current{
   float left
-  width 56px;
+  min-width 26px;
+  padding: 0 15px;
   line-height 24px;
   height 24px;
   text-align: center;
   color #fff;
   cursor pointer;
+  border-radius: 4px;
   background: rgba(66,114,255,1);
 }
 .dcc-btn-current.useless{
@@ -1346,3 +1376,203 @@ $accidentColor = #FA4F43; // 事件
 // ---------------ggggggggggg
 
 
+
+// dete待封装
+.det-content{
+  margin: 20px;
+}
+.det-warn{
+  float: left;
+  background: #FFFFFF;
+  box-shadow: 0 8px 20px -12px rgba(66,114,255,0.30);
+  border-radius: 8px;
+  height: 783px;
+  width: 28%;
+}
+
+.dwc-box{
+  position: relative;
+  float: left;
+  width: 33.3%;
+}
+.det-warn-choose{
+  background: #F5F6F7;
+}
+.dwc-date-icon{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 32px;
+  height: 40px;
+  background: url('../../assets/images/xym/date.png') no-repeat center center;
+}
+.dwc-box-line{
+  position: absolute;
+  top: 9px;
+  right: -3px;
+  height: 14px;
+  width: 1px;
+  background: #D8DDDF;
+}
+.dw-list{
+  height: 660px;
+  overflow: auto;
+}
+.dw-list-box{
+  position: relative;
+  cursor: pointer;
+}
+.dw-list-box.warningBg.on{
+  background-image: linear-gradient(90deg, #78D2A7 0%, #72EEB4 100%);
+  box-shadow: 0 8px 20px -10px rgba(191,113,27,0.60);
+}
+.dw-list-box.violationBg.on{
+  background-image: linear-gradient(90deg, #6809fc 0%, #A854FD 100%);
+  box-shadow: 0 8px 20px -10px rgba(191,113,27,0.60);
+}
+.dw-list-box.faultBg.on{
+  background-image: linear-gradient(90deg, #F3B02B 0%, #FFCC1E 100%);
+  box-shadow: 0 8px 20px -10px rgba(191,113,27,0.60);
+}
+.dw-list-box.accidentBg.on{
+  background-image: linear-gradient(90deg, #FC3132 0%, #F67356 100%);
+  box-shadow: 0 8px 20px -10px rgba(191,113,27,0.60);
+}
+.dw-list-box-wrap{
+  margin: 0 20px;
+  padding: 16px 0;
+  border-bottom: 1px dashed #D8DDDF;
+}
+.dwlb-p {
+  padding-right: 64px;
+}
+.dwlb-p h4{
+  font-size: 14px;
+  color: #34414C;
+  margin-bottom 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.dw-list-box.on .dwlb-p h4{
+  color #fff
+  font-size 16px;
+}
+.dwlb-p p{
+  font-size: 14px;
+  color: #7E8A95;
+  margin-top: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.dw-list-box.on .dwlb-p p{
+  font-size: 14px;
+  color: rgba(255,255,255,0.65)
+}
+.dwlb-rate{
+  position: absolute;
+  top: 27px;
+  right: 20px;
+  font-size: 14px;
+  color: #34414C;
+}
+.dwlb-rate.no-deal{
+  color: #FA4F43;
+}
+.dw-list-box.on .dwlb-rate{
+  color: #fff !important;
+}
+.back-realtime{
+  position: absolute;
+  top: 22px;
+  right: 24px;
+  padding-left: 16px;
+  font-size: 14px;
+  color: #7E8A95;
+  cursor pointer;
+  background: url('../../assets/images/xym/back.png') no-repeat left center;
+}
+.dispatchIL-elevDetail-title{
+  font-size: 20px;
+  color: #34414C;
+}
+.dispatchIL-elevDetail-box{
+  box-sizing: border-box
+  float left
+  width 33%;
+  margin-top 8px
+  padding-right: 10px;
+}
+.dispatchIL-elevDetail-box-h{
+  font-size: 12px;
+  line-height 22px;
+  color: #7E8A95;
+  text-overflow: ellipsis;
+  white-space nowrap;
+  overflow hidden;
+}
+.dispatchIL-elevDetail-box-p{
+  font-size: 14px;
+  color: #34414C;
+  line-height 22px;
+}
+
+
+
+
+
+// 电梯档案
+.lift-detail-operate{
+  position: absolute;
+  top: 30px;
+  right 20px;
+}
+.lift-detail-operate-btn{
+  float left;
+  margin-left 10px;
+  border: 1px solid #C2C7CC;
+  border-radius: 4px;
+  line-height 30px;
+  font-size: 14px;
+  color: #34414C;
+  padding: 0 15px;
+  cursor pointer;
+}
+.lift-detail-operate-btn-blue{
+  background: #4272FF !important;
+  color #fff !important;
+}
+.lift-detail-operate-btn-gray{
+  background: #7E8A95 !important;
+  color #fff !important;
+}
+.lift-detail-form-title{
+  font-weight: bold;
+  font-size: 16px;
+  color: #34414C;
+  padding-left 28px;
+}
+.lift-detail-nav{
+  box-sizing: border-box;
+  float left
+  width 18%;
+  height 716px;
+  background-image: linear-gradient(90deg, #FFFFFF 0%, #FAFAFA 86%, #E7ECF0 100%);
+  border-radius: 8px 0 0 8px;
+}
+.lift-detail-nav{
+  padding: 15px 0
+}
+.lift-detail-nav-p{
+  line-height 50px
+  font-size: 14px;
+  color: #7E8A95;
+  padding: 0 20px;
+  cursor pointer
+}
+.lift-detail-nav-p.on{
+  color #fff;
+  background-image: linear-gradient(270deg, #6159FF 0%, #4272FF 100%);
+  box-shadow: 0 8px 20px -10px rgba(27,69,191,0.60);
+}

@@ -53,14 +53,14 @@
           <div class="ll-choose-top clearfix">
             <!-- 省市联动筛选 -->
             <div class="llct-area">
-              <city-choose @childVal="citySelect"></city-choose>
+              <city-choose2 @childVal="citySelect"></city-choose2>
             </div>
 
             <div class="llct-line"></div>
 
             <div class="llct-type clearfix">
               <em>在线状态：</em>
-              <radio-group :items="exceptItem" :value.sync="exceptValue" style="display: inline-block"></radio-group>
+              <radio-group :items="exceptItem" :value.sync="exceptValue" style="display: inline-block; margin-top: 3px;"></radio-group>
             </div>
             
           </div>
@@ -236,7 +236,7 @@ import codec from '../../utils/codec_v1.json'
 import xymFun from '../../utils/xymFun'
 import RadioGroup from '../../components/RadioGroup'
 import Footer from '../common/fotter'
-import CityChoose from '../../components/CityChoose'
+import CityChoose2 from '../../components/CityChoose2'
 import SearchCode from '../../components/SearchCode'
 
 
@@ -595,7 +595,7 @@ export default {
   components: {
     'radio-group': RadioGroup,
     'footer-temp': Footer,
-    'city-choose': CityChoose,
+    'city-choose2': CityChoose2,
     'search-code': SearchCode,
   }
 }
