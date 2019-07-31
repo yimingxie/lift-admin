@@ -43,15 +43,7 @@ const router = new Router({
       },
       component: (resolve) => require(['./views/settings/Permission.vue'], resolve)
     },
-    {
-      path: "/example",
-      name: "example",
-      meta: {
-        title: "一些例子",
-        auto: false // 是否需要权限
-      },
-      component: (resolve) => require(['./views/example/example.vue'], resolve)
-    },
+    
     {
       path: "/actApi",
       name: "actApi",
@@ -368,7 +360,15 @@ const router = new Router({
       },
       component: (resolve) => require(['./views/mission/MissionDetail.vue'], resolve)
     },
-    
+    {
+      path: "/xiang",
+      name: "xiang",
+      meta: {
+        title: "一些例子",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./components/PictureList.vue'], resolve)
+    },
   ]
 })
 

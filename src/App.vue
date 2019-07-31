@@ -67,8 +67,10 @@
           <div class="bg"></div>
           <div class="tac">
             <i class="headPic"></i>
-            <div class="name">彭秀英</div>
-            <div class="perTitle">例行维保项目组-高级主管</div>
+            <div class="name">{{getAccountDetail.name}}</div>
+            <p v-if="getAccountDetail.roleName" class="perTitle">{{getAccountDetail.roleName}}</p>
+            <p v-if="getAccountDetail.type == 'administrator'" class="perTitle">超级管理员</p>
+            <!-- <div class="perTitle">例行维保项目组-高级主管</div> -->
           </div>
         </div>
         <!-- disabled class="disabled" -->
@@ -191,7 +193,7 @@
 </template>
 
 <script>
-  // import { globalMixins } from './utils/mixins'
+  import api from 'api'
   import { mapState, mapGetters, mapActions } from 'vuex'
   import _ from 'lodash'
   export default {
@@ -206,7 +208,7 @@
         isCollapse: true,
         modulesJson: window.localStorage.getItem("modules"),
         type: window.localStorage.getItem("type"),
-
+        getAccountDetail:[]
       }
     },
     components: {
@@ -232,6 +234,8 @@
       layout () {
         // console.log('this.layout---' + this.layout)
         if (this.layout === 'admin') {
+          // 查询账户详情
+          this.getAllAccountData()
           // 重新获取用户的权限信息
           this.type = window.localStorage.getItem('type')
           this.modulesJson = window.localStorage.getItem('modules')
@@ -250,6 +254,17 @@
     },
 
     methods: {
+      // 查询账户详情
+      getAllAccountData(){
+        api.accountApi.getAccountDetail().then((res) => {
+
+          this.getAccountDetail = res.data.data || []
+          
+        }).catch((res) => {
+          
+        })
+        
+      },
       gotoCenter(){
         this.$router.push('/center')
       },

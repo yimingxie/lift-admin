@@ -162,11 +162,10 @@ export default  {
       `${url2}/upload/image`, params
     )
   },
-
+  // 查看图片
   viewPic(picName){
-    return http.get(
-      `${url2}/view/image?filename=${picName}`
-    )
+    return `${url2}/view/image?filename=${picName}`
+    
   }
 }
 

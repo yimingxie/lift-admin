@@ -68,9 +68,25 @@
       </div>
     </div>
     <div style="width:33%;float:left">
-      <div class="panel">
-        <div class="title"><div class="label1">作业结论</div></div>
-
+      <div class="panel conclusions" style="padding:0 0 3px">
+        <div class="title" style="margin:0"><div class="label1">作业结论</div></div>
+        <div style="margin:0 12px">
+          <table border="0" class="s_de_details s_de_details2 clearfix">
+            <tbody>
+              <tr>
+                <td><span class="tie">维修内容</span><span >配件更换</span></td>
+                <td><span class="tie">配件类型</span><span>一个配件，两个配件，三个配件，四个配件还有五个配件</span></td>
+              </tr>
+              <tr>
+                <td><span class="tie">维修费用</span><span>无费用</span></td>
+                <td>
+                  <span class="tie">作业记录单</span>
+                  <span><picture-list></picture-list></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -90,7 +106,8 @@
             
             <span class="stf_pic">
               <!-- <img :src="staff.url" alt="" width="104" height="104"/> -->
-              <img style="background:#ccc;border-radius:50%" alt="" width="104" height="104"/>
+              <img :src="staff.url" style="background:#ccc;border-radius:50%" alt="" width="104" height="104"/>
+              <div class="mask"></div>
             </span>
             <span class="stf_info">
               <div class="stf_name">{{staff.staffName}}
@@ -100,6 +117,16 @@
               <div class="stf_p stf_phone">{{staff.phone}}</div>
             </span>
           </div>
+          <div class="tabActiveSpan tabActiveSpanSelect" v-if="tab == max || tab == max + 1">
+            <span class="stf_pic">
+            </span> 
+            <span class="stf_info">
+              <div class="stf_name">请选择人员</div> 
+              <div class="stf_p stf_department">- -</div> 
+              <div class="stf_p stf_phone">- -</div>
+            </span>
+          </div>
+
         </div>
           <!-- <div v-if="tab == 0" :class="{tabActive:tab ==0}">必读</div>
           <div v-if="tab == 1" :class="{tabActive:tab ==1}">摘要</div>
@@ -109,16 +136,16 @@
       </div>
     </div>
     <div style="width:33%;float:left">
-      <div class="panel  liftInfo" style="padding:0 0 3px">
+      <div class="panel liftInfo">
         <div class="title" style="margin:0">
           <div class="label1">电梯DT-1
-            <span class="fr " style="line-height: 22px;margin-right:24px;font-size: 12px;cursor:pointer;color: #4272FF;">
+            <span class="fr" style="line-height: 22px;margin-right:24px;font-size: 12px;cursor:pointer;color: #4272FF;">
               查看地图
             </span>
           </div>
           
         </div>
-        <div class="s_de_details clearfix">
+        <!-- <div class="s_de_details s_de_details2 clearfix">
           <ul>
             <li><span class="tie">注册代码</span><span >123243254345678901234567890</span></li>
             <li><span class="tie">使用单位</span><span>深圳市招商物业有限公司</span></li>
@@ -127,6 +154,24 @@
             <li><span class="tie">物业单位</span><span>深圳市招商物业有限公司</span></li>
             <li><span class="tie">制造单位</span><span>上海三菱电梯有限公司</span></li>
           </ul>
+        </div> -->
+        <div class="scrollDiv">
+          <table border="0" class="s_de_details s_de_details2 clearfix">
+            <tbody>
+              <tr>
+                <td><span class="tie">注册代码</span><span >123243254345678901234567890</span></td>
+                <td><span class="tie">使用单位</span><span>深圳市招商物业有限公司</span></td>
+              </tr>
+              <tr>
+                <td><span class="tie">电梯区域</span><span>南山区-蛇口</span></td>
+                <td><span class="tie">详细地址</span><span>南光城市花园1栋c座</span></td>
+              </tr>
+              <tr>
+                <td><span class="tie">物业单位</span><span>深圳市招商物业有限公司</span></td>
+                <td><span class="tie">制造单位</span><span>上海三菱电梯有限公司</span></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -142,6 +187,7 @@ import RadioGroup from "../../components/RadioGroup";
 import SearchInput from "../../components/SearchInput";
 import fotter from "../../views/common/fotter";
 import choiceindex from "../../components/multi-cascader/multi-cascader"; //级联选择多选 完成
+import PictureList from "../../components/PictureList"; //级联选择多选 完成
 
 export default {
   data() {
@@ -162,12 +208,14 @@ export default {
         depId: "", // 部门ID
       },
       getStaffJson:[],
-      totalPerson:0
+      totalPerson:0,
+      max:0
     }
   },
   components: {
     'fotter': fotter,
     choiceindex, //级联
+    'picture-list':PictureList
 
   },
   mounted() {
@@ -175,10 +223,10 @@ export default {
   },
   methods: {
     tabShow(t) {
-      var max = Math.ceil(this.totalPerson/2) 
+      
       if(t == 'left' && this.tab > 0){
         this.tab = this.tab - 2
-      } else if(t == 'right' && this.tab < max){
+      } else if(t == 'right' && this.tab < this.max){
         this.tab = this.tab + 2
       }
       
@@ -188,9 +236,13 @@ export default {
       api.accountApi.getStaffs(this.queryParam).then((res) => {
         if(res.data.code === 200 && res.data.message === 'success'){
           this.getStaffJson = res.data.data.records
+
           this.totalPerson = this.getStaffJson.length
-          this.getStaffJson.forEach(item =>{
-            var url = "http://192.168.100.7:8080/domino/view/image?filename=" + item.avatar
+
+          this.max = this.totalPerson % 2 == 0 ?  Math.ceil(this.totalPerson/2) + 1 : Math.ceil(this.totalPerson/2)
+
+          this.getStaffJson.forEach(item => {
+            var url = api.accountApi.viewPic(item.avatar)
             Vue.set(item, 'url', url)
           })
 
@@ -308,19 +360,32 @@ export default {
   .el-step__head.is-finish
     .jiedan
       opacity 1
+  .conclusions
+    padding: 0;
+    td:nth-child(odd)
+      width: 15%;
   .liftInfo
+    padding: 0;
+  .scrollDiv
     overflow-x scroll
-    .s_de_details
-      width: 100%;
-      li 
-        min-width 0
-        width: 50%;
-        padding: 7px 0 8px 24px;
-        
-      .tie
-        display block
-        font-size: 12px;
-        margin-bottom: 3px;
+    height: 192px
+    padding 0 12px
+  .s_de_details2
+    width: 100%;
+    td 
+      min-width 0
+      width: 50%;
+      padding: 7px 12px 8px 12px;
+      white-space: normal;
+      vertical-align: top;
+    .tie
+      display block
+      font-size: 12px;
+      margin-bottom: 3px;
+    span
+      word-wrap: break-word;
+      word-break: break-all;
+      overflow: hidden;
   .leftErrow
     display inline-block
     width 32px;
@@ -328,14 +393,14 @@ export default {
     background url('../../assets/images/hs/left1.png') no-repeat center;
     position absolute
     top: 133px;
-    left:20px
+    left:25px
   .rightErrow
     display inline-block
     width 32px;
     height 32px;
     background url('../../assets/images/hs/right1.png') no-repeat center;
     position absolute;
-    right:20px;
+    right:25px;
     top: 133px;
   .tabBox
     padding-top: 45px
@@ -343,17 +408,23 @@ export default {
     overflow: hidden
 
   .tabActiveSpan
-    display inline-block
-    // border-left: 1px solid red;
     width 50%
+    float: left;
     text-align center
   .tabActiveSpan:nth-child(odd)
     border-right: 2px solid #D8DDDF;
+
   .stf_pic
     width:104px
     height 104px
     display inline-block
-    margin-right 15px
+    margin-right 11px
+    cursor pointer
+    position: relative;
+  // 图片遮罩层
+  .stf_pic:hover .mask {
+    opacity: 1;    
+  }
   .stf_info
     display inline-block
     vertical-align: top;
@@ -369,9 +440,31 @@ export default {
     background url('../../assets/images/hs/department.png') no-repeat left center;
 
   .stf_p
-    text-indent 20px
+    text-indent 17px
     color: #34414C;
     margin: 4px 0;
   .stf_phone
     background url('../../assets/images/hs/phone1.png') no-repeat left center;
+  .mask
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 104px;
+    height: 104px;
+    background: url('../../assets/images/hs/delete.png') no-repeat center rgba(52,65,76,0.80);
+    color: #ffffff;
+    opacity: 0;
+    border-radius: 50%
+
+  .tabActiveSpanSelect
+    .stf_pic
+      border-radius: 50%
+      background url('../../assets/images/hs/person.png') no-repeat center rgba(216,221,223,0.50);
+    .stf_phone
+      background url('../../assets/images/hs/phone3.png') no-repeat left center;
+    .stf_department
+      background url('../../assets/images/hs/department2.png') no-repeat left center;
+
+      
+
 </style>

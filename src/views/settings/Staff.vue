@@ -125,6 +125,7 @@
           @current-change="handleCurrentChange"
           :page-sizes="[1,9, 20, 30]"
           :page-size="queryParam.limit"
+          :current-page="queryParam.offset"
           layout="prev, pager, next, sizes, jumper"
           :total="totalPageSize">
         </el-pagination>
@@ -331,10 +332,14 @@ export default {
     'city-choose': CityChoose,
   },
   watch:{
+    // 账号状态筛选
     period1(val) {
       if(val != '-1'){
         this.searchKey = this.queryParam.staffName = this.queryParam.phone = '' // 筛选时清空搜索
       }
+      // 筛选时默认跳到第一页
+      this.queryParam.offset = 0
+
       this.queryParam.accountStatus = val
       this.getAllAccountData()
     }
@@ -356,6 +361,9 @@ export default {
       if(this.queryParam.depId !== '') {
         this.searchKey = this.queryParam.staffName = this.queryParam.phone = '' // 筛选时清空搜索
       }
+      // 筛选时默认跳到第一页
+      this.queryParam.offset = 0
+
       this.getAllAccountData()
     },
     // 查询所有部门
@@ -382,34 +390,29 @@ export default {
       // this.searchKey = this.queryParam.staffName = this.queryParam.phone = '' // 筛选时清空搜索
       this.queryParam.areaCode = cityArr[cityArr.length-1]
       console.log(cnName)
+      // 筛选时默认跳到第一页
+      this.queryParam.offset = 0
       this.getAllAccountData()
     },
     // 切换地区选择器
-    handleChange(value){
-      console.log("11111:::"+ value)
-      // this.form.city = this.myAddressCity(this.form.selectedOptions[0])
-      // this.form.city = this.form.selectedOptions[0];
-      // this.form.area = this.myAddressarea(this.form.selectedOptions[1])
-      // this.form.minarea = this.myAddressMinarea(this.form.selectedOptions[2])
-      // console.log('ddddd=====' + JSON.stringify(this.form))
-      if (!this.form.area) {
-        this.form.area = "深圳市";
-      }
-      // this.liftListParams.areaCode = value[1]
-      // this.map.setCity(this.form.area.trim());
-      // this.getAllLiftPoint()
+    // handleChange(value){
+    //   console.log("11111:::"+ value)
+     
+    //   if (!this.form.area) {
+    //     this.form.area = "深圳市";
+    //   }
 
-    },
+    // },
     // 全选，非全选
     handleCheckAllChange(val) {
       this.checkedStaffs = val ? this.checkedAllStaff : [];
       this.isIndeterminate = false;
-      console.log("check:" + this.checkedStaffs)
+      // console.log("check:" + this.checkedStaffs)
     },
     // 点击多选框
     handleCheckedStaffsChange(value) {
-      console.log("check:" + value)
-      console.log("Allcheckop:==" + this.checkedAllStaff)
+      // console.log("check:" + value)
+      // console.log("Allcheckop:==" + this.checkedAllStaff)
       let checkedCount = value.length;
       this.checkAll = checkedCount === this.getAllAccountJson.length;
       this.isIndeterminate = checkedCount > 0 && checkedCount < this.getAllAccountJson.length;
@@ -422,7 +425,9 @@ export default {
           this.getAllAccountJson.forEach(item =>{
             
             if(item.avatar && item.avatar != '' && item.avatar != null){
-              var url = "http://192.168.100.7:8080/domino/view/image?filename=" + item.avatar
+              // var url = "http://192.168.100.7:8080/domino/view/image?filename=" + item.avatar
+              var url = api.accountApi.viewPic(item.avatar)
+
               Vue.set(item, 'url', url)
             }
             if(item.manageArea && item.manageArea != '' && item.manageArea != null){

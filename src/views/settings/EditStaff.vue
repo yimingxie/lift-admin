@@ -357,7 +357,8 @@ export default {
 
       api.accountApi.uploadPic(formData).then((res) => {
         if(res.data.code === 200 && res.data.message === 'success'){
-          this.imageUrl1 = "http://192.168.100.7:8080/domino/view/image?filename=" + res.data.data.fileName
+          // this.imageUrl1 = "http://192.168.100.7:8080/domino/view/image?filename=" + res.data.data.fileName
+          this.imageUrl1 = api.accountApi.viewPic(res.data.data.fileName)
           this.editStaffForm.avatarUrl = res.data.data.fileName
         } else {
 
@@ -381,7 +382,8 @@ export default {
 
       api.accountApi.uploadPic(formData).then((res) => {
         if(res.data.code === 200 && res.data.message === 'success'){
-          this.imageUrl2 = "http://192.168.100.7:8080/domino/view/image?filename=" + res.data.data.fileName
+          // this.imageUrl2 = "http://192.168.100.7:8080/domino/view/image?filename=" + res.data.data.fileName
+          this.imageUrl2 = api.accountApi.viewPic(res.data.data.fileName)
           this.editStaffForm.empUrl = res.data.data.fileName
         } else {
         }
@@ -424,10 +426,14 @@ export default {
           })
           this.editStaffForm.minorRegCode = minorArr.join(',')
           if(this.getStaffInfo.avatarUrl){
-            this.imageUrl1 = "http://192.168.100.7:8080/domino/view/image?filename=" + this.getStaffInfo.avatarUrl
+            // this.imageUrl1 = "http://192.168.100.7:8080/domino/view/image?filename=" + this.getStaffInfo.avatarUrl
+            this.imageUrl1 = api.accountApi.viewPic(this.getStaffInfo.avatarUrl)
+            
           }
           if(this.getStaffInfo.empUrl){
-            this.imageUrl2 = "http://192.168.100.7:8080/domino/view/image?filename=" + this.getStaffInfo.empUrl
+            // this.imageUrl2 = "http://192.168.100.7:8080/domino/view/image?filename=" + this.getStaffInfo.empUrl
+            this.imageUrl2 = api.accountApi.viewPic(this.getStaffInfo.empUrl)
+
           }
         } else {
           this.getStaffInfo = []

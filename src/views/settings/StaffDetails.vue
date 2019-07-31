@@ -241,7 +241,9 @@ export default {
           console.log("this.birthdayFrom---" + this.birthdayFrom)
 
           this.elevatorList = res.data.data.elevatorList
-          this.url = "http://192.168.100.7:8080/domino/view/image?filename=" + this.getStaffInfo.avatarUrl
+          // this.url = "http://192.168.100.7:8080/domino/view/image?filename=" + this.getStaffInfo.avatarUrl
+          this.url = api.accountApi.viewPic(this.getStaffInfo.avatarUrl)
+          
           this.elevatorList.forEach(item =>{
             var areaName = newArea.getAreaName(item.areaCode).join('')
             Vue.set(item, 'areaName', areaName)
