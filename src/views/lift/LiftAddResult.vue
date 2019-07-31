@@ -52,7 +52,7 @@
                   <el-form-item prop="areaCode" class="lar-box">
                     <h4>城市/区域</h4>
                     <p class="show-pp" v-if="submitState == 'put'">{{ruleForm.localArea}}</p>
-                    <city-choose @childVal="getCity" :selectCity="special.areaCode" v-else></city-choose>
+                    <city-choose2 @childVal="getCity" :selectCity="special.areaCode" v-else></city-choose2>
                   </el-form-item>
 
                   <el-form-item prop="address" class="lar-box">
@@ -358,7 +358,7 @@
 // import pcas from '../../utils/citySelector/pcas-code.json'
 import api from '../../api'
 import SearchCode from '../../components/SearchCode'
-import CityChoose from '../../components/CityChoose'
+import CityChoose2 from '../../components/CityChoose2'
 import Footer from '../common/fotter'
 
 export default {
@@ -1106,7 +1106,7 @@ export default {
   components: {
     'footer-temp': Footer,
     'search-code': SearchCode,
-    'city-choose': CityChoose,
+    'city-choose2': CityChoose2,
   }
 }
 </script>

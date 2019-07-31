@@ -3,7 +3,7 @@
     <div class="">
       <div class="det-warn-title">
         <div class="det-warn-title-h">异常告警</div>
-        <div class="back-realtime" v-show="daginId" @click="backRealtime">实时</div>
+        <div class="back-realtime" v-show="diagnId" @click="backRealtime">实时</div>
       </div>
       <div class="det-warn-choose clearfix">
         <div class="dwc-box" style="width: 56%;">
@@ -37,7 +37,7 @@
 
       <div class="det-warn-list" id="det-warn-list">
         <div class="dw-list" id="dw-list">
-          <div class="dw-list-box" :class="addDiffClass(item.diagnType, item.id)" v-for="(item, i) in warnList" :key="i" @click="goDiagnose(item.id, i, item.diagnType, item.ts)">
+          <div class="dw-list-box" :class="addDiffClass(item.diagnType, item.diagnId)" v-for="(item, i) in warnList" :key="i" @click="goDiagnose(item.diagnId, i, item.diagnType, item.ts)">
             <div class="dw-list-box-wrap">
               <div class="dwlb-p">
                 <h4>{{item.reason}}</h4>
@@ -65,7 +65,7 @@ export default {
   data() {
     return {
       parentCode: '',
-      daginId: '',
+      diagnId: '',
       warnListTimer: null,
       // 告警列表
       boxOnIndex: '',
@@ -102,19 +102,19 @@ export default {
   },
   created() {
     this.parentCode = this.$route.query.regCode
-    this.daginId = this.$route.query.daginId
+    this.diagnId = this.$route.query.diagnId
   },
   mounted() {
     this.warnParams.endDate = xymFun.dateFormat(Date.now())
 
     // 首次加载
-    if (this.daginId) {
+    if (this.diagnId) {
       // 页面关闭清除定时器
       clearInterval(this.warnListTimer)
       this.warnListTimer = null
 
       // 当跳转详情页执行：
-      this.boxOnIndex = this.daginId
+      this.boxOnIndex = this.diagnId
       this.warnParams.diagnType = this.$route.query.diagnType
       this.warnParams.processed = this.$route.query.processed
       let params = {
@@ -157,6 +157,17 @@ export default {
     this.warnListTimer = null
   },
   methods: {
+    // 异常告警定时器
+    setWarnListTimer() {
+      // return false // 关闭定时器
+      const that = this
+      if (that.warnListTimer) clearInterval(that.warnListTimer)
+      // if (that.warnList.length === 0) return
+      this.warnListTimer = setInterval(() => {
+        that.getNewestWarn()
+      }, 2000) 
+    },
+
     // 转换list时间
     seDateFormat(timestamp) {
       // str.slice(-2) 从字符串的倒数第二个字符开始截取 "abcd" -> "cd"
@@ -168,16 +179,7 @@ export default {
       return result;
     },
 
-    // 异常告警定时器
-    setWarnListTimer() {
-      const that = this
-      if (that.warnListTimer) clearInterval(that.warnListTimer)
-      // if (that.warnList.length === 0) return
-      this.warnListTimer = setInterval(() => {
-        that.getNewestWarn()
-        console.log('that.warnList定时', that.warnList)
-      }, 2000) 
-    },
+    
 
     // 获取最新异常告警
     getNewestWarn() {
@@ -186,6 +188,7 @@ export default {
       let warnParamsCopy = xymFun.deepClone(that.warnParams)
       warnParamsCopy.offset = 1
       api.detection.getWarnList(warnParamsCopy).then(res => {
+        console.log('异常告警', res.data)
         let totalList = res.data.data.records
         totalList.forEach((item, i) => {
           // 如果第一条数据的时间戳不相等，则push
@@ -241,7 +244,7 @@ export default {
                 // if (this.currentComponent == 'DetectionDiagnoseC') return
               }
 
-              if (!that.$route.query.daginId) that.setWarnListTimer() // 如果为诊断页面，则不开启定时器，否则要重新开启
+              if (!that.$route.query.diagnId) that.setWarnListTimer() // 如果为诊断页面，则不开启定时器，否则要重新开启
             }, 1000)
           })
           .catch(err => {
@@ -291,8 +294,8 @@ export default {
     },
 
     // 渲染不同类
-    addDiffClass(diagnType, daginId) {
-      let onClass = this.boxOnIndex == daginId ? 'on' : ''
+    addDiffClass(diagnType, diagnId) {
+      let onClass = this.boxOnIndex == diagnId ? 'on' : ''
       if (diagnType == 1) {
         return 'faultBg' + ' ' + onClass
       } else if (diagnType == 2) {
@@ -306,15 +309,16 @@ export default {
     },
 
     // 跳转到诊断
-    goDiagnose(daginId, index, diagnType, timestamp) {
-      this.boxOnIndex = daginId
-      // clearInterval(this.warnListTimer)
-      // this.warnListTimer = null
+    goDiagnose(diagnId, index, diagnType, timestamp) {
+      this.boxOnIndex = diagnId
+      // console.log('diagnId', diagnId)
+      clearInterval(this.warnListTimer)
+      this.warnListTimer = null
       this.$router.push({
         path: '/detection-panel-detail',
         query: {
           regCode: this.parentCode,
-          daginId: daginId,
+          diagnId: diagnId,
           offset: this.warnParams.offset,
           limit : this.warnParams.limit,
           diagnType: this.warnParams.diagnType,
@@ -337,8 +341,6 @@ export default {
           regCode: this.parentCode
         }
       })
-
-      // this.setWarnListTimer()
     },
 
   },
@@ -384,6 +386,10 @@ export default {
 }
 #DetWarnListComp .el-date-editor .el-range-separator{
   width: auto;
+  line-height: 26px !important;
+}
+#DetWarnListComp .el-input__icon{
+  line-height: 26px !important;
 }
 </style>
 

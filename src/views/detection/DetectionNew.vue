@@ -12,7 +12,7 @@
           <div class="dhi-title">内部编号：{{inNum}}</div>
           <ul class="dhi-ul clearfix">
             <li><span>注册代码：</span>{{regCode}}</li>
-            <li><span>电梯负责人：</span>{{lift_man}}</li>
+            <li><span>电梯负责人：</span>{{liftPerson ? liftPerson : '无'}}</li>
             <li><span>电梯地址：</span>{{localArea}} {{address}}</li>
           </ul>
         </div>
@@ -102,6 +102,7 @@ export default {
   data() {
     return {
       parentCode: '',
+      liftPerson: '',
       dateNow: '',
       currentComponent: 'DetectionRealtimeC',
       
@@ -154,15 +155,17 @@ export default {
     // this.currentComponent = 'DetectionRealtimeC'
 
 
-    // 通过localStorage的daginId控制页面切换和刷新持久化
-    if (localStorage.getItem('daginId')) {
-      this.boxOnIndex = localStorage.getItem('daginId')
+    // 通过localStorage的diagnId控制页面切换和刷新持久化
+    if (localStorage.getItem('diagnId')) {
+      this.boxOnIndex = localStorage.getItem('diagnId')
       this.currentComponent = 'DetectionDiagnoseC'
     } else {
       this.currentComponent = 'DetectionRealtimeC'
     }
   },
   mounted() {
+    // 获取电梯负责人
+    this.getLiftPerson()
 
     // 获取电梯详情
     this.getLiftDetail()
@@ -184,7 +187,7 @@ export default {
     // 页面关闭清除定时器
     clearInterval(this.warnListTimer)
     this.warnListTimer = null
-    localStorage.setItem('daginId', '')
+    localStorage.setItem('diagnId', '')
   },
   methods: {
     // 异常告警定时器
@@ -196,6 +199,21 @@ export default {
         that.getNewestWarn()
         console.log('that.warnList', that.warnList)
       }, 2000) 
+    },
+
+    // 获取电梯负责人
+    getLiftPerson() {
+      this.liftPerson = ''
+      let personArr = []
+      api.lift.getLiftPerson(this.parentCode).then(res => {
+        if (res.data.data.personOne) {
+          personArr.push(res.data.data.personOne)
+        }
+        if (res.data.data.personTwo) {
+          personArr.push(res.data.data.personTwo)
+        }
+        this.liftPerson = personArr.join('、')
+      })
     },
 
     // 获取最新异常告警
@@ -327,8 +345,8 @@ export default {
     },
 
     // 渲染不同类
-    addDiffClass(diagnType, daginId) {
-      let onClass = this.boxOnIndex == daginId ? 'on' : ''
+    addDiffClass(diagnType, diagnId) {
+      let onClass = this.boxOnIndex == diagnId ? 'on' : ''
       if (diagnType == 1) {
         return 'faultBg' + ' ' + onClass
       } else if (diagnType == 2) {
@@ -342,9 +360,9 @@ export default {
     },
 
     // 跳转到诊断
-    goDiagnose(daginId) {
-      this.boxOnIndex = daginId
-      localStorage.setItem('daginId', daginId)
+    goDiagnose(diagnId) {
+      this.boxOnIndex = diagnId
+      localStorage.setItem('diagnId', diagnId)
       clearInterval(this.warnListTimer)
       this.warnListTimer = null
       this.currentComponent = 'DetectionDiagnoseC'
@@ -353,7 +371,7 @@ export default {
     // 跳回实时监测
     backRealtime() {
       this.boxOnIndex = ''
-      localStorage.setItem('daginId', '')
+      localStorage.setItem('diagnId', '')
       this.currentComponent = 'DetectionRealtimeC'
       // this.setWarnListTimer()
     },

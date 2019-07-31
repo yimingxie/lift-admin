@@ -12,7 +12,7 @@
           <div class="dhi-title">内部编号：{{inNum}}</div>
           <ul class="dhi-ul clearfix">
             <li><span>注册代码：</span>{{regCode}}</li>
-            <li><span>电梯负责人：</span>{{lift_man}}</li>
+            <li><span>电梯负责人：</span>{{liftPerson ? liftPerson : '无'}}</li>
             <li><span>电梯地址：</span>{{localArea}} {{address}}</li>
           </ul>
         </div>
@@ -166,12 +166,14 @@ export default {
   data() {
     return {
       parentCode: '',
+      runDataTimer: null,
       // 电梯详情
       regCode: '',
       inNum: '',
       address: '',
       lift_man: '',
       localArea: '',
+      liftPerson: '',
 
       // 实时运行状态
       curRunData: {
@@ -187,17 +189,33 @@ export default {
   created() {
     this.parentCode = this.$route.query.regCode
   },
+  beforeDestroy() {
+    // 页面关闭清除定时器
+    clearInterval(this.runDataTimer)
+    this.runDataTimer = null
+  },
   
   mounted() {
+    // 获取电梯负责人
+    this.getLiftPerson()
+
     // 获取电梯详情
     this.getLiftDetail()
 
-    // 获取电梯实时运行状态
-    this.getEleRunData()
-
+    // 开启定时器，获取电梯实时运行状态
+    this.setRunDataTimer()
 
   },
   methods: {
+    // 开启获取电梯实时运行状态定时器
+    setRunDataTimer() {
+      const that = this
+      this.getEleRunData()
+      this.runDataTimer = setInterval(() => {
+        that.getEleRunData()
+      }, 2000)
+    },
+
     // 搜索
     goToResult(val) {
       console.log('传值并跳转页面', val)
@@ -209,6 +227,21 @@ export default {
         }
       })
       console.log('pp', this.parentCode)
+    },
+
+    // 获取电梯负责人
+    getLiftPerson() {
+      this.liftPerson = ''
+      let personArr = []
+      api.lift.getLiftPerson(this.parentCode).then(res => {
+        if (res.data.data.personOne) {
+          personArr.push(res.data.data.personOne)
+        }
+        if (res.data.data.personTwo) {
+          personArr.push(res.data.data.personTwo)
+        }
+        this.liftPerson = personArr.join('、')
+      })
     },
 
     // 查询电梯详情

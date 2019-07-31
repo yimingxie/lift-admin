@@ -12,7 +12,7 @@
           <div class="dhi-title">内部编号：{{ruleForm.inNum}}</div>
           <ul class="dhi-ul clearfix">
             <li><span>注册代码：</span>{{ruleForm.regCode}}</li>
-            <li><span>电梯负责人：</span>{{ruleForm.lift_man}}</li>
+            <li><span>电梯负责人：</span>{{liftPerson ? liftPerson : '无'}}</li>
             <li><span>电梯地址：</span>{{ruleForm.localArea}} {{ruleForm.address}}</li>
           </ul>
         </div>
@@ -447,6 +447,7 @@ export default {
       submitState: 'post', // 判断录入电梯(post)还是编辑电梯(put)，查询电梯(get)
       flag: true, // 滚动节流阀
       menuActive: 'jbxx',
+      liftPerson: '',
 
       
       ruleForm2: {
@@ -746,6 +747,8 @@ export default {
     this.submitState = this.$route.query.submitState
   },
   mounted() {
+    // 获取电梯负责人
+    this.getLiftPerson()
 
     // 滚动高亮
     this.scrollMenu()
@@ -805,6 +808,21 @@ export default {
         this.searchMap(detail.latLon)
       })
 
+    },
+
+    // 获取电梯负责人
+    getLiftPerson() {
+      this.liftPerson = ''
+      let personArr = []
+      api.lift.getLiftPerson(this.parentCode).then(res => {
+        if (res.data.data.personOne) {
+          personArr.push(res.data.data.personOne)
+        }
+        if (res.data.data.personTwo) {
+          personArr.push(res.data.data.personTwo)
+        }
+        this.liftPerson = personArr.join('、')
+      })
     },
 
     // 特殊处理获得的areaCode区域码

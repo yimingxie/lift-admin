@@ -12,7 +12,7 @@
           <div class="dhi-title">内部编号：{{inNum}}</div>
           <ul class="dhi-ul clearfix">
             <li><span>注册代码：</span>{{regCode}}</li>
-            <li><span>电梯负责人：</span>{{lift_man}}</li>
+            <li><span>电梯负责人：</span>{{liftPerson ? liftPerson : '无'}}</li>
             <li><span>电梯地址：</span>{{localArea}} {{address}}</li>
           </ul>
         </div>
@@ -34,82 +34,18 @@
               <div class="diagnose-item-detail">
                 <div class="diagnose-item-detail-title">
                   <div class="didt-deal-btn" @click="dialogDispatch=true">处理</div>
-                  <div class="didt-h3">门锁回路短接异常</div>
-                  <div class="didt-date">04-24  14:47:12</div>
+                  <div class="didt-h3">{{reason}}</div>
+                  <div class="didt-date">{{triggleTime}}</div>
                 </div>
                 <div class="diagnose-item-detail-p">
-                  系统监测到门机马达 电流≠0A(03-20 16:54:05) 且门锁安全回路的电流≠0A (03-20 16:54:05)
-                  <br>
-                  门锁回路短接可能出现开门走梯的严重事故
+                  {{exReason}}
                 </div>
               </div>
 
               <!-- TODO 图表 所有图表和判断待完成 -->
               <!-- 用遍历、判断进行渲染，命名用后缀-pro区分 -->
-              <div class="diagnose-problem-chart">
-                <!-- 一级目录：运行环境 -->
-                <!-- monitorObject: "0:0:0" "2:0:0" -->
-                <!-- v-if="item.code.slice(0,5) == '0:0:0' ||" -->
-                <div class="dnProblem-first">
-                  <div class="dnProblem-first-title">运行环境</div>
-                  <div class="dnProblem-second">
-                    <div class="dnProblem-second-title">机房</div>
-                    <!-- v-if="item.code == '0:0:0:1'" -->
-                    <!-- chart id要记得加后缀-pro -->
-                    <div class="dcc-box">
-                      <div class="dcc-box-data clearfix">
-                        <div class="dccb-data-icon">
-                          <img src="../../assets/images/xym/wendu.png" alt="">
-                        </div>
-                        <div class="dccb-data-p">
-                          <div class="dccb-data-p1"><span>{{jfwdVal}}</span>℃</div>
-                          <div class="dccb-data-p2">机房温度</div>
-                        </div>
-                      </div>
-                      <div class="dcc-box-chart">
-                        <div class="real-chart" id="real-chart-jfwd-pro"></div>
-                      </div>
-                    </div>
-                    <div class="dcc-box">
-                      <div class="dcc-box-data clearfix">
-                        <div class="dccb-data-icon">
-                          <img src="../../assets/images/xym/shidu.png" alt="">
-                        </div>
-                        <div class="dccb-data-p">
-                          <div class="dccb-data-p1"><span>{{jfsdVal}}</span>℃</div>
-                          <div class="dccb-data-p2">机房湿度</div>
-                        </div>
-                      </div>
-                      <div class="dcc-box-chart">
-                        <div class="real-chart" id="real-chart-jfsd-pro"></div>
-                      </div>
-                    </div>
-                    <div class="dcc-box">
-                      <div class="dcc-box-data clearfix">
-                        <div class="dccb-data-icon">
-                          <img src="../../assets/images/xym/fengsu.png" alt="">
-                        </div>
-                        <div class="dccb-data-p">
-                          <div class="dccb-data-p1"><span>{{jffsVal}}</span>m/s</div>
-                          <div class="dccb-data-p2">机房风速</div>
-                        </div>
-                      </div>
-                      <div class="dcc-box-chart">
-                        <div class="real-chart" id="real-chart-jffs-pro"></div>
-                      </div>
-                    </div>
-
-
-
-                  </div>
-                  
-
-
-
-                </div>
-
-
-
+              <div>
+                <det-detail-chart-comp :codelist="diagnDevices"></det-detail-chart-comp>
               </div>
 
 
@@ -125,20 +61,22 @@
               </div>
               <div class="diagnose-item-running clearfix">
                 <div class="dnRunning-box">
-                  <img src="../../assets/images/xym/running-up.png" alt="">
-                  <div class="dnRunning-box-p">21<span>F</span></div>
+                  <img v-if="exElevator.move=='up'" src="../../assets/images/xym/running-up.png" alt="">
+                  <img v-else-if="exElevator.move=='down'" src="../../assets/images/xym/running-down.png" alt="">
+                  <img v-else-if="exElevator.move=='stop'" src="../../assets/images/xym/running-stop.png" alt="">
+                  <div class="dnRunning-box-p">{{exElevator.floor}}<span>F</span></div>
                 </div>
                 <div class="dnRunning-box">
                   <img src="../../assets/images/xym/running-speed.png" alt="">
-                  <div class="dnRunning-box-p">2.9<span>m/s</span></div>
+                  <div class="dnRunning-box-p">{{exElevator.speed}}<span>m/s</span></div>
                 </div>
                 <div class="dnRunning-box">
                   <img src="../../assets/images/xym/running-door.png" alt="">
-                  <div class="dnRunning-box-p">关</div>
+                  <div class="dnRunning-box-p">{{exElevator.prox}}</div>
                 </div>
                 <div class="dnRunning-box">
                   <img src="../../assets/images/xym/running-weight.png" alt="">
-                  <div class="dnRunning-box-p">4434<span>kg</span></div>
+                  <div class="dnRunning-box-p">{{exElevator.payload}}<span>kg</span></div>
                 </div>
 
               </div>
@@ -312,6 +250,8 @@ import api from '../../api.js'
 import SearchCode from '../../components/SearchCode'
 import DetWarnListComp from './DetWarnListComp'
 import DetChartComp from './DetChartComp'
+import DetDetailChartComp from './DetDetailChartComp'
+
 
 
 
@@ -319,6 +259,8 @@ export default {
   data() {
     return {
       parentCode: '',
+      parentDiagnId: '',
+      liftPerson: '',
       dialogDispatch: false,
       dispatchBtn: false,
       // 电梯详情
@@ -330,6 +272,20 @@ export default {
       userDepartment: '',
       propertyName: '',
       manufactName: '',
+
+      // 中间异常详情
+      reason: '',
+      triggleTime: '',
+      exReason: '',
+      exElevator: {
+        "floor": 0, // 楼层
+        "speed": 0, // 运行速度 xx m/s
+        "move": "stop", // 运行方向: stop - 停，up - 上， down - 下
+        "prox": "关", // 轿门状态: 0 - 关闭，1 - 开启
+        "payload": 0, // 当前载荷: xx kg
+      },
+      diagnDevices: [],
+
 
       // 派单表单
       ruleForm: {
@@ -348,42 +304,7 @@ export default {
       ],
 
 
-      // 实时值
-      jfwdVal: 0,
-      jfsdVal: 0,
-      jffsVal: 0,
-      jdwdVal: 0,
-      jdsdVal: 0,
-      jfdydyVal: 0,
-      jfdydlVal: 0,
-      msaqhldyVal: 0,
-      msaqhldlVal: 0,
-      aqkgmldyVal: 0,
-      jxkgdyVal: 0,
-      jskgdysVal: 0,
-      jskgdyxVal: 0,
-      qpjskgdysVal: 0,
-      pcgyqdyVal: 0,
-      ddjdydyVal: 0,
-      ddjdydlVal: 0,
-      ddjwkwdVal: 0,
-      ddjwkzdVal: 0,
-      ddjzcwdVal: 0,
-      ddjzczdVal: 0,
-      zdqdydyVal: 0,
-      zdqdydlVal: 0,
-      zdqxqwdVal: 0,
-      zdqzwwdVal: 0,
-      xsqsdVal: 0,
-      xsqqsVal: 0,
-      jdzhkzqdyVal: 0,
-      jdjxkgdyVal: 0,
-      jdmjmddyVal: 0,
-      jdmjmddlVal: 0,
-      jxwzVal: 0,
-      jxxtzdVal: 0,
-      jddgzdVal: 0,
-      jdcmkhVal: 0,
+  
 
       // 温湿度配置
       options: {
@@ -636,12 +557,20 @@ export default {
   },
   created() {
     this.parentCode = this.$route.query.regCode
+    this.parentDiagnId = this.$route.query.diagnId
     this.ruleForm.diagnType = parseInt(this.$route.query.diagnTypeSingle)
     
   },
+  
   mounted() {
+    // 获取电梯负责人
+    this.getLiftPerson()
+    
     // 获取电梯详情
     this.getLiftDetail()
+
+    // 获取中间异常详情
+    this.getDiagnInfo()
 
     // 获取所有实时图表监测数据
     this.getChartDataSum()
@@ -659,6 +588,21 @@ export default {
         }
       })
       console.log('pp', this.parentCode)
+    },
+
+    // 获取电梯负责人
+    getLiftPerson() {
+      this.liftPerson = ''
+      let personArr = []
+      api.lift.getLiftPerson(this.parentCode).then(res => {
+        if (res.data.data.personOne) {
+          personArr.push(res.data.data.personOne)
+        }
+        if (res.data.data.personTwo) {
+          personArr.push(res.data.data.personTwo)
+        }
+        this.liftPerson = personArr.join('、')
+      })
     },
 
     // 查询电梯详情
@@ -681,6 +625,55 @@ export default {
         // this.getWarnList()
       })
     },
+
+    // 获取中间异常详情
+    getDiagnInfo() {
+      const that = this
+      api.detection.getDiagnInfo(this.parentDiagnId).then(res => {
+        let detail = res.data.data
+        this.reason = detail.reason
+        this.triggleTime = detail.triggleTime
+        let extensions = JSON.parse(detail.extensions)
+        console.log('extensions', extensions.elevator)
+        this.exReason = ''
+        // 拼接
+        let separation = extensions.reason.diagnLogical
+        this.exReason = extensions.reason.diagnContent.join(`${separation}`) // 数组组合成字符串
+        // 异常设备数组，传数组给中间组件
+        this.diagnDevices = []
+        extensions.reason.diagnDevices.forEach((item, i) => {
+          this.diagnDevices.push(item.code)
+        })
+        // this.diagnDevices = ["0:2:2:5", '0:4:1:1']
+        console.log('this.diagnDevices', this.diagnDevices)
+
+        // 电梯故障时运行状态
+        if (extensions.elevator.floor !== undefined) {
+          this.exElevator.floor = extensions.elevator.floor
+        }
+        if (extensions.elevator.move !== undefined) {
+          this.exElevator.move = extensions.elevator.move.replace(/\"/g, "");
+        }
+        if (extensions.elevator.speed !== undefined) {
+          this.exElevator.speed = extensions.elevator.speed.replace(/\"/g, "");
+        }
+        if (extensions.elevator.prox !== undefined) {
+          let prox = extensions.elevator.prox.replace(/\"/g, "");
+          this.exElevator.prox = prox == 1 ? '开' : '关'
+          // if (prox == 1) {
+          //   this.exElevator.prox = '开'
+          // } else {
+          //   this.exElevator.prox = '关'
+          // }
+        }
+        if (extensions.elevator.payload !== undefined) {
+          this.exElevator.payload = extensions.elevator.payload.replace(/\"/g, "");
+        }
+
+        
+      })
+    },
+    
 
      // 转换tooltip时间戳
     tooltipFormatDate(timestamp) {
@@ -760,6 +753,7 @@ export default {
       api.detection.getMonitorData(params).then(res => {
         let resList = res.data.data || {}
         // that.drawJFWD(etime, resList['0:0:0:1'])
+
         this.drawChart1({container: 'real-chart-jfwd-pro',unit: '℃',name: '机房温度',max: etime,dataType: 'real_data',data: resList['0:0:0:1']})
         this.drawChart1({container: 'real-chart-jfsd-pro',unit: '%',name: '机房湿度',max: etime,dataType: 'real_data',data: resList['0:0:0:2']})
         this.drawChart1({container: 'real-chart-jffs-pro',unit: 'm/s',name: '机房风速',max: etime,dataType: 'real_data',data: resList['0:0:0:3']})
@@ -928,7 +922,9 @@ export default {
   components: {
     'search-code': SearchCode,
     'det-warn-list-comp': DetWarnListComp,
-    'det-chart-comp': DetChartComp
+    'det-chart-comp': DetChartComp,
+    'det-detail-chart-comp': DetDetailChartComp
+
 
   }
 }

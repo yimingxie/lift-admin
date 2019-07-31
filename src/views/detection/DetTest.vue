@@ -11,11 +11,15 @@ import DetDetailChartComp from './DetDetailChartComp'
 export default {
   data() {
     return {
-      list:["0:0:0:1", "0:0:0:2"]
+      // list: ["0:0:0:1", "0:0:0:2", '2:0:0:2']
+      list: []
 
     }
   },
   mounted() {
+    setTimeout(() => {
+      this.list = ["0:0:0:1", "0:0:0:2", '2:0:0:2']
+    }, 100)
 
   },
   methods: {
