@@ -204,7 +204,6 @@ import Vue from 'vue'
 import api from 'api'
 import RadioGroup from "../../components/RadioGroup";
 import SearchInput from "../../components/SearchInput";
-// import SearchBox from '../../components/SearchBox'
 import fotter from "../../views/common/fotter";
 
 export default {
@@ -282,7 +281,6 @@ export default {
     'radio-group': RadioGroup,
     'search-input': SearchInput,
     'fotter': fotter,
-    // 'search-box': SearchBox,
   },
   mounted() {
     // this.queryParam.corpId = window.localStorage.getItem('corpId')

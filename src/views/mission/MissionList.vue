@@ -56,7 +56,7 @@
       <div class="subBtns">
         <button class="btn blueBtn" @click="createAPlan" v-if="checkedDate.length > 8 && parseInt(checkedDate.substring(5,7)) >= parseInt(NowMonth)">创建计划</button>
         <button class="btn whiteBtn">立即派单</button>
-        <button class="btn whiteBtn" >导出计划</button>
+        <button class="btn whiteBtn">导出</button>
         <!-- <button class="btn whiteBtn" >全选</button> -->
         <span style="margin: 5px 10px;">
           <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange" class="checkbox16">全选</el-checkbox>
@@ -69,7 +69,7 @@
     </div>
     
   </div>
-  <div class="row" >
+  <div class="row" style="min-height: 600px;">
     <div style="position: absolute;">
       <div class="panel" style="padding:0">
         <div style="position: absolute;z-index:999;right:2px;top:15px">
@@ -79,10 +79,12 @@
           {{(checkedDate.substring(5,7) != NowMonth && checkedDate.length === 7)}} -->
           <!-- 月视图本月才会出现 -->
           <button class="btn whiteBtn" :class="(parseInt(checkedDate.substring(5,7)) < parseInt(NowMonth) || checkedDate.length !== 7)? 'disableWhiteBtn' :''">生成任务工单</button>
-          <button class="btn whiteBtn" :class="(parseInt(checkedDate.substring(5,7)) < parseInt(NowMonth) || checkedDate.length !== 7)? 'disableWhiteBtn' :''">生成维保计划</button>
+          <!-- <button class="btn whiteBtn" :class="(parseInt(checkedDate.substring(5,7)) < parseInt(NowMonth) || checkedDate.length !== 7)? 'disableWhiteBtn' :''">生成维保计划</button> -->
         </div>
-        <calendar :todos="todos" :snycCheckedDate.sync="checkedDate">
+        {{checkedDate}}
 
+        <calendar :todos="todos" :snycCheckedDate.sync="checkedDate">
+          
           <template slot-scope="slotProps" >
             <!-- <span v-if="slotProps.todo.isComplete">✓</span> -->
             <span class="ratio"><span>{{slotProps.todo.msg}}</span>/{{slotProps.todo.total}}</span>
@@ -134,47 +136,46 @@
           <div style="margin-bottom: 25px">
             <span class="titlePlan">创建计划</span>
             <span class="btns">
-              <i class="btnBlue">保存</i>
+              <i class="btnBlue" @click="addMission2">保存</i>
               <span class="splitLine" style="margin:0 3px">|</span>
               <i class="btnGray" @click="cancelCreatePlan">取消</i>
             </span>
           </div>
           
-          <el-form ref="form" :model="createPlan" label-width="84px" >
+          <el-form ref="form" :model="createPlanParam" label-width="84px" >
+            <!-- <el-form-item label="作业电梯：">
+              <el-input v-model="createPlanParam.elevCode"></el-input>
+            </el-form-item> -->
             <el-form-item label="作业电梯：">
-              <el-select v-model="createPlan.lift" clearable placeholder="请选择作业电梯">
-                <el-option
-                  v-for="item in tpyeOptions"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
-                </el-option>
-              </el-select>
+              <search-code @childCode="searchLift"></search-code>
             </el-form-item>
-            <el-form-item label="作业信息：">
-              <!-- <el-date-picker 
-                class="regionPicker"
-                prefix-icon="test-icon" 
-                format="MM-dd HH:mm"
-                v-model="formInline.region"
-                type="datetime"
-                placeholder="选择日期时间"
-              >
-              </el-date-picker> -->
+            <el-form-item label="作业信息：" v-if="showCreatePlan2">
 
-              <el-date-picker
+              <!-- <el-date-picker
                 style="width:135px!important"
-                v-model="createPlan.time"
+                v-model="createPlanParam.beginTime"
                 prefix-icon="test-icon" 
                 class="regionPicker"
-                format="MM-dd HH:mm:ss"
+                format="yyyy-MM-dd HH:mm:ss"
                 type="datetime"
                 placeholder="选择日期时间">
-              </el-date-picker>
+              </el-date-picker> -->
+
+              <!-- 作业时间 -->
+              {{checkedDate}}
+              <el-time-picker
+                class="regionPicker"
+                style="width:85px!important"
+                v-model="value2"
+                placeholder="任意时间点"
+                prefix-icon=""
+                value-format='HH:mm:ss'>
+              </el-time-picker>
 
               <span class="splitLine">|</span>
 
-              <el-select v-model="createPlan.type" clearable placeholder="作业类型" class="regionPicker">
+              <!-- 作业类型 -->
+              <el-select v-model="createPlanParam.type" placeholder="作业类型" class="regionPicker">
                 <el-option
                   v-for="item in tpyeOptions"
                   :key="item.value"
@@ -184,31 +185,62 @@
               </el-select>
               <span class="splitLine">|</span>
 
-              <el-select v-model="createPlan.person" clearable placeholder="作业人员" class="regionPicker">
-                <el-option
-                  v-for="item in tpyeOptions"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
-                </el-option>
-              </el-select>
+              <!-- 作业人员 -->
+              <!-- <el-cascader 
+                :filterable="true" 
+                class="regionPicker" 
+                :options="personOptions" 
+                v-model="selectPersons" 
+                @change="handleChange" 
+                @active-item-change="handleItemChange"
+                :show-all-levels="false"
+                placeholder="作业人员">
+              </el-cascader> -->
+              <choiceindex
+                class="regionPicker personMutiPicker" 
+                clearable 
+                :selectedLabels="selectedPersonsLabels" 
+                @change="handleChange" 
+                :is-two-dimension-value="false" 
+                v-model="selectPersons" 
+                :data="personOptions"
+                :only-last="true"
+                placeholder="作业人员">
+              </choiceindex>
+
+              
             </el-form-item>
+            <div v-if="!showCreatePlan2" class="errorTip">该电梯暂无负责人，请先绑定维保人员</div>
           </el-form>
         </div>
         <!-- //创建计划 end-->
-
+        
         <!-- //任务列表 -->
         <div class="missionTable">
+
+          <!-- 未创建计划 列表 -->
+          <div v-for="(item,i) in noPlan" :key="i * 111 + 1" class="missionTr" >
+            <p :style="{opacity:(nowTr !== item.lift && nowTr !== ''?'0.3':'1')}">
+              <i class="dispatch labelSize"></i>
+              <i class="history labelSize"></i>
+              <span class="lift">作业电梯：{{item.elevCode}}</span>
+              <span v-if="parseInt(checkedDate.substring(5,7)) >= parseInt(NowMonth) && nowTr === ''" class="addMission" @click="addMission(item.elevCode)"></span>
+            </p>
+            
+            <p>该电梯暂无维保记录，请手动创建下次维保计划</p>
+          </div>
+          <!-- 未创建计划 列表 end-->
+
+          <!-- 计划列表 -->
           <div v-for="(mission,index) in missionList" :key="index" class="missionTr" >
             <p :style="{opacity:(nowTr !== mission.lift && nowTr !== ''?'0.3':'1')}">
               <i class="dispatch labelSize"></i>
               <i class="history labelSize"></i>
-              <span class="lift">作业电梯：{{mission.lift}}</span>
-
-              <span v-if="parseInt(checkedDate.substring(5,7)) >= parseInt(NowMonth) && nowTr === ''" class="addMission" @click="addMission(mission.lift)"></span>
+              <span class="lift">作业电梯：{{mission.elevCode}}</span>
+              <span v-if="parseInt(checkedDate.substring(5,7)) >= parseInt(NowMonth) && nowTr === ''" class="addMission" @click="addMission(mission.elevCode)"></span>
               <span class="address">南山区-南油  南光城市花园1栋B座</span>
             </p>
-
+            
             <!-- 新建某梯计划 -->
             <div style="line-height:40px;margin-top: -10px;" v-if="nowTr === mission.lift">
               <!-- <el-date-picker 
@@ -268,32 +300,116 @@
             </div>
             <!-- 新建某梯计划 end-->
 
-            <p v-for="(order, index1) in mission.workOrder" :key="index1" class="order">
+            <!-- <p v-for="(order, index1) in mission.workOrder" :key="index1" class="order"> -->
               <el-checkbox-group :disabled="nowTr !== ''" style="display:inline-block" v-model="checkedStaffs" @change="handleCheckedStaffsChange">
-                <el-checkbox :label="order.id" :key="index1">{{nonetext}}</el-checkbox>
+                <el-checkbox :label="mission.id" :key="index">{{nonetext}}</el-checkbox>
               </el-checkbox-group>
-              <i style="color:#FFC60B;margin-right:2px">●</i>
-              <span :style="{opacity:(nowTr !== '' ?'0.3':'1')}">
-                <span>工单编号：{{order.order}}</span>
+              <span v-if="mission.id == currentEditPlanId">
+                <el-date-picker
+                  style="width:135px!important"
+                  v-model="createPlan.time"
+                  prefix-icon="test-icon" 
+                  class="regionPicker"
+                  format="MM-dd HH:mm:ss"
+                  type="datetime"
+                  placeholder="选择日期时间">
+                </el-date-picker>
                 <span class="splitLine">|</span>
-                <span>{{order.time}}</span>
+                <el-select v-model="createPlan.type" clearable placeholder="作业类型" class="regionPicker">
+                  <el-option
+                    v-for="item in tpyeOptions"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                  </el-option>
+                </el-select>
                 <span class="splitLine">|</span>
-                <span>月度维保</span>
-                <span class="splitLine">|</span>
-                <span>{{order.person}}</span>
-              </span>
-              <span class="btns" :style="{opacity:(nowTr !== '' ?'0.3':'1')}">
-                <i class="btnBlue">派单</i>
-                <span class="splitLine">|</span>
-                <i class="btnBlue">修改</i>
-                <span class="splitLine">|</span>
-                <i class="btnRed">删除</i>
-              </span>
-              
 
-            </p>
+                <el-select v-model="createPlan.person" clearable placeholder="作业人员" class="regionPicker">
+                  <el-option
+                    v-for="item in tpyeOptions"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                  </el-option>
+                </el-select>
+
+                <span class="btns">
+                  <i class="btnBlue">保存</i>
+                  <span class="splitLine">|</span>
+                  <i class="btnGray" @click="cancelEditPlan">取消</i>
+                </span>
+              </span>
+
+              <span v-else>
+                <i style="color:#FFC60B;margin-right:2px">●</i>
+                <span :style="{opacity:(nowTr !== '' ?'0.3':'1')}">
+                  <span v-if="mission.order">工单编号：{{mission.order}}</span>
+                  <span v-else>工单编号：--</span>
+                  <span class="splitLine">|</span>
+                  <span>{{mission.planTime}}</span>
+                  <span class="splitLine">|</span>
+                  <span>{{mission.type}}</span>
+                  <span class="splitLine">|</span>
+                  <!-- <span>{{mission.person}}</span> -->
+                  <!-- <span>处理进度：{{mission.status}}</span> -->
+                  <span>{{mission.major}}</span>
+                  <span>{{mission.minor}}</span>
+                </span>
+                <span class="btns" :style="{opacity:(nowTr !== '' ?'0.3':'1')}">
+                  <i class="btnBlue" @click="createTask(mission)">派单</i>
+                  <span class="splitLine">|</span>
+                  <i class="btnBlue" @click="editPlan(mission.id)">修改</i>
+                  <!-- <span class="splitLine">|</span>
+                  <i class="btnRed">删除</i> -->
+                </span>
+              </span>
+
+            <!-- </p> -->
+
           </div>
+          <!-- 计划列表end -->
+
+
+          <!-- 工单列表 -->
+          <div v-for="(task,ii) in taskList" :key="ii * 111 + 222" class="missionTr" >
+            <p>
+              <i class="dispatch labelSize"></i>
+              <i class="history labelSize"></i>
+              <span class="lift">作业电梯：{{task.elevCode}}</span>
+            </p>
+           
+            <!-- <el-checkbox-group :disabled="nowTr !== ''" style="display:inline-block" v-model="checkedStaffs" @change="handleCheckedStaffsChange">
+                <el-checkbox :label="mission.id" :key="index">{{nonetext}}</el-checkbox>
+            </el-checkbox-group> -->
+            <i style="color:rgb(52, 65, 76);margin-right:2px">●</i>
+            <span :style="{opacity:(nowTr !== '' ?'0.3':'1')}">
+              <span v-if="task.id">工单编号：{{task.id}}</span>
+              <span v-else>工单编号：--</span>
+              <span class="splitLine">|</span>
+              <span>{{task.beginTime}}</span>
+              <span class="splitLine">|</span>
+              <span>{{task.taskType}}</span>
+              <span class="splitLine">|</span>
+              <span>{{task.major}}</span>
+              <span class="splitLine">|</span>
+              <span>{{task.minor}}</span>
+              <span class="splitLine">|</span>
+              <span>{{task.person}}</span>
+              <span>处理进度：{{task.status}}</span>
+            </span>
+            <span class="btns" :style="{opacity:(nowTr !== '' ?'0.3':'1')}">
+              <i class="btnBlue" @click="gotoDetail(task.id)">详情</i>
+              <!-- <span class="splitLine">|</span>
+              <i class="btnRed">删除</i> -->
+            </span>
+
+
+          </div>
+          <!-- 工单列表 end-->
         </div>
+
+
         <!-- //任务列表 end-->
 
       </div>
@@ -312,29 +428,36 @@ import RadioGroup from "../../components/RadioGroup";
 import SearchInput from "../../components/SearchInput";
 import fotter from "../../views/common/fotter";
 import calendar from "../../components/DateContainer";
+import choiceindex from "../../components/multi-cascader/multi-cascader"; //级联选择多选 完成
+import SearchCode1 from '../../components/SearchCode1'
 
 
 export default {
   data() {
     return {
+      showCreatePlan2:true,
+      selectedPersonsLabels:[],
+      selectPersons:[],
+      personOptions:[],
+      value2:"09:00:00",
       showCreatePlan:false,
-      createPlan: {
-        lift:'',
+      createPlanParam: {
+        elevCode:'123',
         type: '',
-        time: '',
-        person:''
+        beginTime: '2019-08-06 09:00:00',
+        staffIds:[]
       },
       checkedDate:'',
       todos: [
-        {date: 1,msg: 4, total:6,overtime:2},
-        {date: 2,msg: 2, total:5},
-        {date: 3, msg: 4,total:8},
-        {date: 4,msg: 6,total:8},
-        {date: 6,msg: 4,total:8},
-        {date: 12,msg: 2,total:8},
-        {date: 16,msg: 3,total:12,overtime:2},
-        {date: 26,msg: 5,total:7},
-        {date: 31,msg: 6,total:9},
+        // {date: 1,msg: 4, total:6,overtime:2},
+        // {date: 2,msg: 2, total:5},
+        // {date: 3, msg: 4,total:8},
+        // {date: 4,msg: 6,total:8},
+        // {date: 6,msg: 4,total:8},
+        // {date: 12,msg: 2,total:8},
+        // {date: 16,msg: 3,total:12,overtime:2},
+        // {date: 26,msg: 5,total:7},
+        // {date: 31,msg: 6,total:9},
       ],
       totalPageSize:0, // 总页数
       queryParam:{
@@ -385,6 +508,7 @@ export default {
       openCondition3:false,
 
       missionList:[],
+      noPlan:[],
       checkAll: false,
       checkedStaffs: [],
       isIndeterminate: false,
@@ -392,23 +516,36 @@ export default {
       nonetext:'',
       checkTime:'',
       checkTpye:'',
+      // tpyeOptions: [
+      //   { label: '例行维保', value: "0" },
+      //   { label: '月度维保', value: "1" },
+      //   { label: '季度维保', value: "2" },
+      //   { label: '年度维保', value: "3" },
+      //   { label: '故障处理', value: "4" },
+      //   { label: '事故救援', value: "5" },
+      // ],
       tpyeOptions: [
-        { label: '例行维保', value: "0" },
-        { label: '月度维保', value: "1" },
-        { label: '季度维保', value: "2" },
-        { label: '年度维保', value: "3" },
-        { label: '故障处理', value: "4" },
-        { label: '事故救援', value: "5" },
+        { label: '例行维保', value: "例行维保" },
+        { label: '月度维保', value: "月度维保" },
+        { label: '季度维保', value: "季度维保" },
+        { label: '年度维保', value: "年度维保" },
+        { label: '故障处理', value: "故障处理" },
+        { label: '事故救援', value: "事故救援" },
       ],
       nowTr:'',
-      NowMonth: 0
+      NowMonth: 0,
+      taskList:[],
+      currentEditPlanId:'0'
     }
   },
   components: {
     'radio-group': RadioGroup,
     'search-input': SearchInput,
     'fotter': fotter,
-    'calendar':calendar
+    'calendar':calendar,
+    choiceindex, //级联
+    'search-code': SearchCode1,
+
   },
   watch:{
     period1(val){
@@ -439,7 +576,13 @@ export default {
       }
     },
     checkedDate(date){
-      this.getMissionList(date)
+      if(date.length > 9){
+        // 获取日视图列表
+        this.getdayTaskPlan(date)
+      } else {
+        // 获取月视图列表
+        this.getMissionList(date)
+      }
     }
   },
   mounted() {
@@ -448,53 +591,271 @@ export default {
     this.getDate()
     // 获取任务列表
     this.getMissionList()
+    // 获取日历数据
+    this.getRiliList()
+    // 获取部门列表
+    this.getdeps()
   },
   methods: {
+    // 搜索
+    // 监听子组件获取注册码，发送请求搜索并重新渲染列表
+    searchLift(regCode) {
+      this.createPlanParam.elevCode = regCode
+      api.taskApi.getLiftDetail(regCode).then((res) => {
+        this.selectPersons = []
+        if (res.data.message == '无负责人,请先绑定电梯相关人员'){
+          this.showCreatePlan2 = false
+          return
+        } else {
+          this.showCreatePlan2 = true
+          this.selectPersons.push(res.data.data.elevatorPerson.major)
+          if(res.data.data.elevatorPerson.major !== res.data.data.elevatorPerson.minor){
+            this.selectPersons.push(res.data.data.elevatorPerson.minor)
+          }
+        }
+        
+        if(res.data.data.plan){
+          this.tpyeOptions = [
+            { label: '故障处理', value: "故障处理" },
+            { label: '事故救援', value: "事故救援" },
+          ]
+          this.createPlanParam.type = '故障处理'
 
-    getMissionList(date){
+        }else {
+          this.tpyeOptions = [
+            { label: '例行维保', value: "例行维保" },
+            { label: '月度维保', value: "月度维保" },
+            { label: '季度维保', value: "季度维保" },
+            { label: '年度维保', value: "年度维保" },
+            { label: '故障处理', value: "故障处理" },
+            { label: '事故救援', value: "事故救援" }
+          ]
+          this.createPlanParam.type = '例行维保'
+        }
+
+      }).catch((res) => {
+        
+      })
+    },
+    // 获取公司下的部门
+    getdeps(){
+      api.accountApi.getCorpDepartments(window.localStorage.getItem('corpId')).then((res) => {
+     
+        var depData = res.data.data || []
+        if(depData.length > 0){
+          
+          depData.forEach(item =>{
+            var obj = {
+              label:'',
+              value:'',
+              children:[]
+            }
+            obj.label = item.depName
+            obj.value = item.id
+            this.personOptions.push(obj)
+            this.handleItemChange(item.id)
+          })
+          console.log("personOptions===" + this.personOptions)
+        }
+        
+
+
+      }).catch((res) => {
+        
+      })
+      
+    },
+    // 点击部门加载员工
+    handleItemChange(val) {
+      console.log('active item:', val);
+
+      api.accountApi.getDepStaffs(val).then((res) => {
+        var staffData = res.data.data || []
+        if(staffData.length > 0){
+          var obj2 = []
+          staffData.forEach(item =>{
+            var obj = {
+              label:'',
+              value:'',
+            }
+            obj.label = item.name
+            obj.value = item.id
+            obj2.push(obj)
+            
+
+            // this.personOptions.push(obj)
+            console.log("obj==" + JSON.stringify(obj))
+          })
+          this.personOptions.forEach((option, i) => {
+            if (option.value === val) {
+              option.children = obj2 ;
+            }
+          });
+          console.log("personOptions===" + JSON.stringify(this.personOptions))
+        }
+
+      }).catch((res) => {
+        
+      })
+
+    },
+    // 切换选择人员
+    handleChange(){
+      console.log("this.selectPersons===" + this.selectPersons)
+      this.selectedPersonsLabels = []
+      this.selectPersons.forEach(personId =>{
+
+        this.personOptions.forEach(item =>{
+          console.log("item" + item)
+          item.children.forEach(item2 =>{
+            if(item2.value === personId){
+              this.selectedPersonsLabels.push(item2.label)
+            }
+          })
+        })
+      })
+      
+    },
+    // 编辑计划
+    editPlan(planId){
+      this.currentEditPlanId = planId
+    },
+    cancelEditPlan(){
+      this.currentEditPlanId = 0
+    },
+    // 跳转到工单详情
+    gotoDetail(id){
+      this.$router.push({name: 'missionDetail', params: {'id': id}})
+    },
+    // 派单
+    createTask(mission){
+      var param = {
+        'elevCode': mission.elevCode,
+        'staffIds': ['8cfe6ec58499da8337926ab47f2de704', '5d3beb332a8c607734b66efe6ea1c05a'],
+        // 'minor': mission.minorId,
+        'planId':mission.id,
+        'beginTime':mission.planTime,
+        'type':mission.type
+      }
+      // 派单
+      api.taskApi.createTask(param).then((res) => {
+        if(res.data.code == 200){
+          this.$message.success('派单成功！');
+        } else {
+          this.$message.error(res.data.message);
+        }
+      }).catch((res) => {
+        
+      })
+    },
+    getdayTaskPlan(date){
+      api.taskApi.dayTaskPlan({'corp': window.localStorage.getItem('corpId'),'queryDate':date + ' ' + '00:00:00'}).then((res) => {
+        this.missionList = res.data.data.plan || []
+        this.noPlan = res.data.data.noPlan || []
+        this.taskList = res.data.data.task || []
+      }).catch((res) => {
+        
+      })
+    },
+    getRiliList(){
+      api.taskApi.riliList().then((res) => {
+        var rili = res.data.data
+        rili.forEach(element => {
+          for(var key in element){　//遍历对象的所有属性，包括原型链上的所有属性
+          // if(obj.hasOwnProperty(key)){ //判断是否是对象自身的属性，而不包含继承自原型链上的属性
+            if(key.substring(0,7) == '2019-08'){
+              var item ={
+                'date': parseInt(key.substr(8)),
+                'msg': 1, 
+                'total':parseInt(element[key])
+              }
+              this.todos.push(item)
+            }
+            
+          }
+        });
+        console.log("this.todos==="+ JSON.stringify(this.todos))
+
+      }).catch((res) => {
+        
+      })
+    },
+    getMissionList(){
       this.nowTr = '' // 关闭新建某梯计划
       this.showCreatePlan = false // 关闭新建计划
       this.missionList = []
-      for(var i= 0; i < 5 ; i++){
-        var mission = {
-          lift:i,
-          address:'南山区-南油 南光城市花园1栋B座',
-          workOrder:[{
-              id:'1',
-              order:'12345678901234',
-              time:'06-10 09:00',
-              type:'月度维保',
-              person:'覃一，林都晨'
-            },{
-              id:'2',
-              order:'12345678901234',
-              time:'06-10 09:00',
-              type:'月度维保',
-              person:'覃一，林都晨'
-          }],
-          
-          
-        }
-        this.missionList.push(mission)
-      }
-      // console.log("asfg" + JSON.stringify(this.missionList))
+     
+      api.taskApi.monthTaskPlan({'corp': window.localStorage.getItem('corpId')}).then((res) => {
+          // this.totalPageSize = res.data.data.total
+          this.missionList = res.data.data.plan || []
+          this.noPlan = res.data.data.noPlan || []
+          this.taskList = res.data.data.task || []
+          // console.log("missionList----" + JSON.stringify(this.missionList))
+      }).catch((res) => {
+        
+      })
     },
     // 获取现在月份
     getDate() {
       var newDate = new Date();
       this.NowMonth = newDate.getMonth() + 1 < 10 ? '0' + (newDate.getMonth() + 1) : (newDate.getMonth() + 1); //常量 不变
     },
+    
+    // 创建某梯计划
+    addMission(code){
+      alert(code)
+
+      
+      // this.nowTr = index
+    },
     // 创建计划
     createAPlan(){
+      // 显示创建计划
       this.showCreatePlan = true
+      // 显示作业信息
+      this.showCreatePlan2 = true
+
+      this.value2 = "09:00:00"
+      this.createPlanParam.type = ''
+      this.selectPersons = []
+      // console.log("this.value2---" + this.checkedDate + " " + this.value2)
+      // this.createPlanParam.beginTime = + '09:00:00'
     },
     // 取消创建计划
     cancelCreatePlan(){
       this.showCreatePlan = false
     },
-    // 创建某梯计划
-    addMission(index){
-      this.nowTr = index
+    // 创建计划
+    addMission2(){
+      // elevCode:'123',
+        // type: '',
+        // beginTime: '2019-08-06 09:00:00',
+        // staffIds:[]
+      this.createPlanParam.beginTime = this.checkedDate + ' ' + this.value2
+      this.createPlanParam.staffIds = this.selectPersons
+      console.log("this.createPlanParam==" + JSON.stringify(this.createPlanParam))
+      if(this.createPlanParam.type == '故障处理' || this.createPlanParam.type == '事故救援'){
+        api.taskApi.createTask(this.createPlanParam).then((res) => {
+          if(res.data.code == 200){
+            this.$message.success('派单成功！');
+          } else {
+            this.$message.error(res.data.message);
+          }
+        }).catch((res) => {
+          
+        })
+      } else {
+        api.taskApi.createPlan(this.createPlanParam).then((res) => {
+          if(res.data.code == 200){
+            this.$message.success('创建计划成功！');
+          } else {
+            this.$message.error(res.data.message);
+          }
+        }).catch((res) => {
+          
+        })
+      }
+      
     },
     // 取消创建某梯计划
     cancel(){
@@ -729,6 +1090,10 @@ export default {
       line-height: 31px;
     .el-form-item 
       margin-bottom: 10px!important
-
-
+  .personMutiPicker
+    width:150px!important
+    display: inline-block;
+  .errorTip
+    color:rgb(250, 79, 67);
+    margin:10px 0
 </style>

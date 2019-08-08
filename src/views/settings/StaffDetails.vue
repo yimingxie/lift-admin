@@ -174,7 +174,6 @@ import Vue from 'vue'
 import api from 'api'
 import RadioGroup from "../../components/RadioGroup";
 import SearchInput from "../../components/SearchInput";
-// import SearchBox from '../../components/SearchBox'
 import fotter from "../../views/common/fotter";
 import moment from 'moment';
 import newArea from "../../utils/newArea";
@@ -230,14 +229,14 @@ export default {
       api.accountApi.getStaffDetails(this.$route.params.staffId).then((res) => {
         if(res.data.code === 200 && res.data.message === 'success'){
           this.getStaffInfo = res.data.data.staffInfo
-          var areaName1 = newArea.getAreaName(this.getStaffInfo.manageArea).join('')
+          var areaName1 = newArea.getAreaName(this.getStaffInfo.manageArea).join('  ')
           Vue.set(this.getStaffInfo, 'areaName', areaName1)
 
           this.departmentName = res.data.data.departmentName
           this.elevatorTotal = res.data.data.elevatorTotal
-          this.birthdayFrom = moment(moment(this.getStaffInfo.birthday).format('YYYYMMDD'),'YYYYMMDD').fromNow().replace("前","")
-          this.entryTimeFrom = moment(moment(this.getStaffInfo.entryTime).format('YYYYMMDD'),'YYYYMMDD').fromNow().replace("前","")
-          this.empTimeFrom = moment(moment(this.getStaffInfo.empTime).format('YYYYMMDD'),'YYYYMMDD').fromNow().replace("前","")
+          this.birthdayFrom = moment(moment(this.getStaffInfo.birthday).format('YYYYMMDD'),'YYYYMMDD').fromNow().replace("前","").replace("内","")
+          this.entryTimeFrom = moment(moment(this.getStaffInfo.entryTime).format('YYYYMMDD'),'YYYYMMDD').fromNow().replace("前","").replace("内","")
+          this.empTimeFrom = moment(moment(this.getStaffInfo.empTime).format('YYYYMMDD'),'YYYYMMDD').fromNow().replace("前","").replace("内","")
           console.log("this.birthdayFrom---" + this.birthdayFrom)
 
           this.elevatorList = res.data.data.elevatorList

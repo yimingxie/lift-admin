@@ -141,7 +141,8 @@
               this.$message.success('登录成功！');
               this.$router.push('/corpApi')
             }
-            if(res.data.data.modules !== undefined){
+            // console.log("res.data.data.modules===" + res.data.data.modules)
+            if(res.data.data.modules == undefined && res.data.data.type == 'administrator'){
               this.$message.success('登录成功！');
               this.$router.push('/map')
             } else if(res.data.data.modules){

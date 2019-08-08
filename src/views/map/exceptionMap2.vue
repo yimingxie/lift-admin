@@ -49,12 +49,13 @@
         <!-- <div id="container" ></div> -->
         <!-- <tab></tab> -->
         <div class="searchArea">
+          
           <div class="circleType">
             <i class="circle"></i><span @click="selectExceptionType(-1)" :class="{'active': -1 === exceptionType}">全部异常&nbsp;&nbsp;({{abnormalCount}})&nbsp;</span>
-            <i class="circle" style="background:#76DDAC;" ></i><span @click="selectExceptionType(3)" :class="{'active': 3 === exceptionType}">预警&nbsp;&nbsp;({{warningCount}})&nbsp;</span>
+            <i class="circle" style="background:#4BCC8F;" ></i><span @click="selectExceptionType(3)" :class="{'active': 3 === exceptionType}">预警&nbsp;&nbsp;({{warningCount}})&nbsp;</span>
             <i class="circle" style="background:#8025FD;"></i><span @click="selectExceptionType(2)" :class="{'active': 2 === exceptionType}">违规&nbsp;&nbsp;({{violationCount}})&nbsp;</span>
-            <i class="circle" style="background:#F7B926;"></i><span @click="selectExceptionType(1)" :class="{'active': 1 === exceptionType}">故障&nbsp;&nbsp;({{faultCount}})&nbsp;</span>
-            <i class="circle" style="background:#FD3D53;"></i><span @click="selectExceptionType(0)" :class="{'active': 0 === exceptionType}">事件&nbsp;&nbsp;({{accidentCount}})&nbsp;</span>
+            <i class="circle" style="background:#FFA90B;"></i><span @click="selectExceptionType(1)" :class="{'active': 1 === exceptionType}">故障&nbsp;&nbsp;({{faultCount}})&nbsp;</span>
+            <i class="circle" style="background:#FA4F43;"></i><span @click="selectExceptionType(0)" :class="{'active': 0 === exceptionType}">事件&nbsp;&nbsp;({{accidentCount}})&nbsp;</span>
           </div>
           
 
@@ -94,7 +95,7 @@
 </template>
 
 <script>
-  import AMapUI from 'AMapUI'
+  // import AMapUI from 'AMapUI'
   import Vue from 'vue'
   import api from 'api'
   import globalMixins from '../../utils/mixins'
@@ -264,11 +265,7 @@
                 }
                 if(res.data.data.accident.count > 0){
                   this.accident = res.data.data.accident
-                  
-                  this.accident.diagninfo.extentions = JSON.parse(res.data.data.accident.diagninfo.extentions)
-                  // console.log("this.accident.diagninfo.extentions==" + this.accident.diagninfo.extentions.box.floor)
-                  // console.log("this.accident.diagninfo.extentions==" + JSON.stringify(this.accident.diagninfo.extentions))
-
+                  this.accident.diagninfo.extentions = JSON.parse(res.data.data.accident.diagninfo.extensions)
                 }
                 if(res.data.data.fault.count > 0){
                   this.fault = res.data.data.fault
