@@ -1,0 +1,277 @@
+{
+  "version": 1,
+  "contents": [
+    {
+      "id": 0,
+      "name": "machine_room",
+      "cn_name": "机房",
+      "subs": [
+        {
+          "id": 0,
+          "name": "space",
+          "cn_name": "空间",
+          "subs": [
+            {
+              "id": 0,
+              "name": "env",
+              "cn_name": "环境"
+            },
+            {
+              "id": 1,
+              "name": "human",
+              "cn_name": "人"
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "name": "power_board",
+          "cn_name": "电源柜",
+          "subs": [
+            {
+              "id": 0,
+              "name": "power_in_machine_room",
+              "cn_name": "机房电源"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "control_board",
+          "cn_name": "控制柜",
+          "subs": [
+            {
+              "id": 0,
+              "name": "",
+              "cn_name": "微机板LED屏"
+            },
+            {
+              "id": 1,
+              "name": "safety_circuit_of_gate_lock",
+              "cn_name": "门锁安全回路"
+            },
+            {
+              "id": 2,
+              "name": "safety_circuit_of_switch",
+              "cn_name": "安全开关回路"
+            },
+            {
+              "id": 3,
+              "name": "control_circuit",
+              "cn_name": "控制回路(检修开关)"
+            },
+            {
+              "id": 4,
+              "name": "decelerate_up",
+              "cn_name": "减速开关(上)"
+            },
+            {
+              "id": 5,
+              "name": "decelerate_down",
+              "cn_name": "减速开关(下)"
+            },
+            {
+              "id": 6,
+              "name": "force_decelerate_up",
+              "cn_name": "强迫减速开关(上)"
+            },
+            {
+              "id": 7,
+              "name": "force_decelerate_down",
+              "cn_name": "强迫减速开关(下)"
+            },
+            {
+              "id": 8,
+              "name": "flat_sensor",
+              "cn_name": "平层感应器"
+            },
+            {
+              "id": 9,
+              "name": "yw_onoff_up",
+              "cn_name": "越位开关(上)"
+            },
+            {
+              "id": 10,
+              "name": "yw_onoff_down",
+              "cn_name": "越位开关(下)"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "elec-motor",
+          "cn_name": "电动机",
+          "subs": [
+            {
+              "id": 0,
+              "name": "power",
+              "cn_name": "电源"
+            },
+            {
+              "id": 1,
+              "name": "shell",
+              "cn_name": "外壳"
+            },
+            {
+              "id": 2,
+              "name": "bearing",
+              "cn_name": "轴承"
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "brake",
+          "cn_name": "制动器",
+          "subs": [
+            {
+              "id": 0,
+              "name": "power",
+              "cn_name": "电源"
+            },
+            {
+              "id": 1,
+              "name": "coil",
+              "cn_name": "线圈"
+            },
+            {
+              "id": 2,
+              "name": "brake_shoe",
+              "cn_name": "闸瓦"
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "speed_limiter",
+          "cn_name": "限速器",
+          "subs": [
+            {
+              "id": 0,
+              "name": "speed_limit_wheel",
+              "cn_name": "限速轮"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "car",
+      "cn_name": "轿厢",
+      "subs": [
+        {
+          "id": 0,
+          "name": "roof",
+          "cn_name": "轿顶",
+          "subs": [
+            {
+              "id": 0,
+              "name": "human",
+              "cn_name": "人"
+            },
+            {
+              "id": 1,
+              "name": "inspection_switch",
+              "cn_name": "检修开关"
+            },
+            {
+              "id": 2,
+              "name": "motor_of_door",
+              "cn_name": "门机马达"
+            },
+            {
+              "id": 3,
+              "name": "payload",
+              "cn_name": "电梯重量载荷控制器"
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "name": "inside",
+          "cn_name": "轿内",
+          "subs": [
+            {
+              "id": 0,
+              "name": "human",
+              "cn_name": "人"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "case",
+          "cn_name": "箱体",
+          "subs": [
+            {
+              "id": 0,
+              "name": "whole",
+              "cn_name": "整体"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "hoistway",
+      "cn_name": "井道",
+      "subs": [
+        {
+          "id": 0,
+          "name": "space",
+          "cn_name": "空间",
+          "subs": [
+            {
+              "id": 0,
+              "name": "env",
+              "cn_name": "环境"
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "name": "component",
+          "cn_name": "部件",
+          "subs": [
+            {
+              "id": 0,
+              "name": "door",
+              "cn_name": "层门"
+            },
+            {
+              "id": 1,
+              "name": "rails",
+              "cn_name": "导轨"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "pit",
+      "cn_name": "底坑",
+      "subs": [
+        {
+          "id": 0,
+          "name": "space",
+          "cn_name": "空间",
+          "subs": [
+            {
+              "id": 0,
+              "name": "env",
+              "cn_name": "环境"
+            },
+            {
+              "id": 1,
+              "name": "human",
+              "cn_name": "人"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

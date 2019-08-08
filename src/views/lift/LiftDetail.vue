@@ -345,7 +345,7 @@
                     <p class="show-pp" v-else>{{ruleForm.highLevel !== '' ? ruleForm.highLevel : '--'}}</p>
                   </el-form-item>
                   <el-form-item prop="tractCircf" class="lar-box">
-                    <h4>曳引轮周长（cm）</h4>
+                    <h4>曳引轮直径（cm）</h4>
                     <el-input v-if="submitState == 'put'" v-model="ruleForm.tractCircf" size="small"></el-input>
                     <p class="show-pp" v-else>{{ruleForm.tractCircf !== '' ? ruleForm.tractCircf : '--'}}</p>
                   </el-form-item>
@@ -1239,7 +1239,7 @@ export default {
 
     // 获取省市区联动值
     getCity(arr, cityName) {
-      this.ruleForm.areaCode = arr[arr.length - 1]
+      this.ruleForm.areaCode = arr[arr.length - 1] || ""
       this.special.areaCode = arr
       this.special.chooseCity = cityName
       this.ruleForm.localArea = cityName.join(' ')

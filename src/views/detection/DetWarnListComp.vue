@@ -37,6 +37,7 @@
 
       <div class="det-warn-list" id="det-warn-list">
         <div class="dw-list" id="dw-list">
+          <div class="list-no-data" v-show="warnList.length == 0">暂无数据</div>
           <div class="dw-list-box" :class="addDiffClass(item.diagnType, item.diagnId)" v-for="(item, i) in warnList" :key="i" @click="goDiagnose(item.diagnId, i, item.diagnType, item.ts)">
             <div class="dw-list-box-wrap">
               <div class="dwlb-p">
@@ -103,6 +104,7 @@ export default {
   created() {
     this.parentCode = this.$route.query.regCode
     this.diagnId = this.$route.query.diagnId
+    // this.diagnType = this.$route.query.diagnType != -1 ? this.$route.query.diagnType : ''
   },
   mounted() {
     this.warnParams.endDate = xymFun.dateFormat(Date.now())
@@ -330,6 +332,8 @@ export default {
           timestamp: timestamp
         }
       })
+      // this.$router.go(0)
+
     },
 
     // 跳回实时监测

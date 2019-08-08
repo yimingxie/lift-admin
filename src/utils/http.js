@@ -134,7 +134,7 @@ if (process.env.NODE_ENV == 'development') {
   // localURL = `${protocol}//192.168.100.89:8080`
 } else if (process.env.NODE_ENV == 'production') {
 // axios.defaults.baseURL = `${protocol}//iot.gidomino.com`
-  localURL = iot = devURL = xiaohuURL = shupingURL = `${protocol}//192.168.100.89:8080`
+  localURL = iot = devURL = xiaohuURL = shupingURL = `${protocol}//192.168.100.3`
 }
 
 // let AUTH_TOKEN=(function(){

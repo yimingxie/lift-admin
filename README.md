@@ -142,17 +142,3 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 ```
 
 
-## 实时监测数据对应关系
-```javascript
-const table = {
-  "0:0:0:1": {"firstTitle": "运行环境", "secondTitle": "机房"},
-  "0:0:0:2": {"firstTitle": "运行环境", "secondTitle": "机房"},
-  "0:0:0:3": {"firstTitle": "运行环境", "secondTitle": "机房"},
-  "2:0:0:1": {"firstTitle": "运行环境", "secondTitle": "井道"},
-  "2:0:0:2": {"firstTitle": "运行环境", "secondTitle": "井道"},
-
-  "0:1:0:5": {"firstTitle": "电源柜", "secondTitle": "电源柜"},
-
-
-}
-```

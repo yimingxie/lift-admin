@@ -40,7 +40,7 @@
         </div>
 
         <div class="detSet-list clearfix">
-   
+
           <div class="dset-box" :class="item.enabled === 0 && modelNav == 'added' ? 'dsetDisable' : ''" v-for="(item, i) in allMonitorList" :key="i">
             <div class="dset-box-heading">
               <div class="dset-box-title">
@@ -87,6 +87,9 @@
               </div>
             </div>
           </div>
+
+          <div class="list-no-data" v-show="allMonitorList.length == 0">暂无数据</div>
+
 
         </div>
 

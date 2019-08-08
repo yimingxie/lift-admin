@@ -62,18 +62,22 @@
               <em>在线状态：</em>
               <radio-group :items="exceptItem" :value.sync="exceptValue" style="display: inline-block; margin-top: 3px;"></radio-group>
             </div>
-            
-          </div>
 
-          <div class="ll-choose-bottom clearfix">
-            <div class="llcb-operate">
-              <div class="llcb-btn info" @click="dialogAddDevice = true">+ 添加设备</div>
-            </div>
             <!-- 搜索 -->
             <div class="llcb-search">
               <search-code @childCode="searchLift"></search-code>
             </div>
+            
           </div>
+
+          <!-- <div class="ll-choose-bottom clearfix">
+            <div class="llcb-operate">
+              <div class="llcb-btn info" @click="dialogAddDevice = true">+ 添加设备</div>
+            </div>
+            <div class="llcb-search">
+              <search-code @childCode="searchLift"></search-code>
+            </div>
+          </div> -->
           
         </div>
 
@@ -88,7 +92,7 @@
             </div>
           </div>
           <div class="llt-tbody">
-        
+            <div class="list-no-data" v-show="list.length == 0">暂无数据</div>
             <div class="llt-tr clearfix" v-for="(item, i) in list" :key="i" :class="activeRegCode == item.regCode ? 'on' : ''">
               <div class="llt-tr-container clearfix">
                 <div class="llt-td">{{item.regCode}}</div>
@@ -109,11 +113,11 @@
               <div class="llt-drop" :class="item.children && item.children.length > 5 ? 'heightFix' : 'heightAuto'">
                 <div class="llt-drop-wrap">
        
-                  <div class="llt-drop-box" v-for="(childItem, childI) in item.children" :key="childI">
+                  <div class="llt-drop-box" :class="childItem.bonline == 1 ? '' : 'offline'" v-for="(childItem, childI) in item.children" :key="childI">
                     <div class="ldrop-left">
                       <div class="ldrop-title">{{childItem.devName}}</div>
                       <div class="ldrop-detail">
-                        <div class="ldd-status">● {{childItem.bonline}}</div>
+                        <div class="ldd-status">● {{childItem.bonline == 1 ? '在线' : '离线'}}</div>
                         <div class="ldd-line">|</div>
                         <div class="ldd-id">ID:{{childItem.devEui}}</div>
                         <div class="idd-project"><span>监测项：</span>{{childItem.monitorObj}}</div>
@@ -179,12 +183,12 @@
                 </div>
               </div>
 
-              <!-- TODO 人员搜索下拉 -->
+              <!-- 人员搜索下拉 -->
               <div class="dia-citem clearfix">
                 <div class="dia-citem-label">安装人员：</div>
                 <div class="dia-citem-ib">
                   <el-form-item prop="assembId">
-                    <el-input v-model="ruleForm.assembId" size="small" placeholder="安装人员"></el-input>
+                    <el-cascader ref="assembIdCascader" placeholder="请选择" :options="assembIdOptions" v-model="selectedAssembIdOptions" filterable clearable @change="assembIdChange" size="small" style="width: 100%;"></el-cascader>
                   </el-form-item>
                 </div>
               </div>
@@ -232,7 +236,7 @@
 
 <script>
 import api from '../../api'
-import codec from '../../utils/codec_v1.json'
+import codec from '../../utils/codec_v2.json'
 import xymFun from '../../utils/xymFun'
 import RadioGroup from '../../components/RadioGroup'
 import Footer from '../common/fotter'
@@ -260,6 +264,7 @@ export default {
         regCode: '',
         monitorObj: '',
         monitorVal: '',
+        devType: ''
       },
       rules: {
         // regCode: [
@@ -268,6 +273,8 @@ export default {
       },
       moniObjOptions: [],
       selectedMoniObjOptions: [],
+      assembIdOptions: [],
+      selectedAssembIdOptions: [],
       modelContentList: {},
       nativemonitorObj: '',
       nativemonitorVal: '',
@@ -280,7 +287,7 @@ export default {
         "regCode": ""
       },
       liftDeviceParams: {
-        "limit": 10,
+        "limit": 100,
         "offset": 1,
         "bonline": -1,
         "regCode": ""
@@ -312,6 +319,9 @@ export default {
 
     // 加载检测项下拉
     this.getMoniObjOptions()
+
+    // 获取安装人员下拉
+    this.getDepStaffOptions()
     
   },
   methods: {
@@ -325,10 +335,12 @@ export default {
       })
     },
 
+    
+
     // 区域筛选
     citySelect(cityArr) {
       this.activeRegCode = ''
-      this.liftParams.areaCode = cityArr[cityArr.length-1]
+      this.liftParams.areaCode = cityArr[cityArr.length-1] || ""
       this.getLiftList()
     },
 
@@ -404,12 +416,12 @@ export default {
             liftDeviceList.forEach((item, i) => {
               console.log(item.bonline)
 
-              let bonline = item.bonline === 1 ? '在线' : '离线'
+              // let bonline = item.bonline === 1 ? '在线' : '离线'
               let monitorObj = xymFun.changeMonitorObj(item.monitorObj).join('-')
               
               children.push({
                 devName: item.devName,
-                bonline: bonline,
+                bonline: item.bonline,
                 devEui: item.devEui,
                 monitorObj: monitorObj,
                 monitorVal: this.modelContentList[item.monitorVal],
@@ -426,6 +438,39 @@ export default {
         }
       })
 
+    },
+
+    // 获取安装人员下拉
+    getDepStaffOptions() {
+      api.device.getDepStaff().then(res => {
+        this.assembIdOptions = []
+        console.log('res.data', res.data)
+        for (var key in res.data.data) {
+          let obj = {}
+          obj.value = key
+          obj.label = key
+          obj.children = []
+          // console.log('key', key)
+          res.data.data[key].forEach((item, i) => {
+            let tempObj = {}
+            tempObj.value = item.id
+            tempObj.label = item.name
+            obj.children.push(tempObj)
+          })
+
+          this.assembIdOptions.push(obj)
+          
+        }
+
+        console.log('this.assembIdOptions', this.assembIdOptions)
+        
+      })
+
+    },
+
+    // 下拉人员选中值
+    assembIdChange(arr) {
+      this.ruleForm.assembId = arr[arr.length-1] // 取数组最后一个值赋值
     },
 
     // 加载检测项下拉
@@ -498,7 +543,7 @@ export default {
         // alert('搜索中')
 
         if (!res.data.data) {
-          alert('设备ID不存在')
+          alert(`${res.data.message}`)
           this.$refs.diaForm.resetFields();
           this.ruleForm.devEui = devEui
           return
@@ -508,6 +553,8 @@ export default {
 
         let list = res.data.data
         this.ruleForm.monitorVal = list.monitorVal
+        this.ruleForm.devType = list.devType
+
 
       })
       .catch(err => {
@@ -538,9 +585,20 @@ export default {
       let that = this
       this.$refs.diaForm.validate(valid => {
         if (valid) {
-          // alert('submit')
-          console.log(this.ruleForm)
-          api.device.addDeviceMainten(this.ruleForm).then(res => {
+          let params = {
+            assembId: this.ruleForm.assembId,
+            assembTime: this.ruleForm.assembTime,
+            devEui: this.ruleForm.devEui,
+            devType: this.ruleForm.devType,
+            regCode: this.ruleForm.regCode,
+          }
+          if (this.ruleForm.devType == '传感器') {
+            params.monitorObj = this.ruleForm.monitorObj
+            params.monitorVal = this.ruleForm.monitorVal
+          }
+          console.log('this.ruleForm', params)
+
+          api.device.addDeviceMainten(params).then(res => {
             if (res.data.code == '200') {
               that.$message.success(`${res.data.message}`)
               this.$router.push({

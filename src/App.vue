@@ -124,7 +124,7 @@
           <el-menu-item index="/roleApi" route="/roleApi">角色管理</el-menu-item>
           <el-menu-item index="/actApi" route="/actApi">账户管理</el-menu-item>
           <el-menu-item index="/corpApi" route="/corpApi">企业管理</el-menu-item>
-          <el-menu-item index="/device-add-gi" route="/device-add-gi">通用后台添加设备</el-menu-item>
+          <el-menu-item index="/device-gateway-add-gi" route="/device-gateway-add-gi">通用后台添加设备</el-menu-item>
           
           <!-- </el-menu-item-group> -->
         
@@ -144,45 +144,49 @@
       
       <div class="ant-layout">
         <!-- Start: 头部 -->
-        <transition name="header" mode="out-in">
-          <header class="header the-header" v-if="layout==='admin'" >
-            <!-- <el-radio-group v-model="isCollapse" style="position:absolute;z-index: 999;" v-if="layout==='admin'">
-              <el-radio-button :label="false">展开</el-radio-button>
-              <el-radio-button :label="true">收起</el-radio-button>
-            </el-radio-group> -->
-            <div class="collapseImg" v-if="isCollapse" @click="isCollapse = false">
-            </div>
-            <div class="collapseImg unCollapseImg" v-if="!isCollapse" @click="isCollapse = true">
-            </div>
-            <a class="logo"></a>
-            
-            <!-- <div @mouseover="isShowUserNav = true" @mouseout="isShowUserNav = false" class="user-navigation">
-              <span class="user-name">
-                <router-link to='/account'><i class="headPic"> </i><span style="margin:0 30px 0 74px">sss</span></router-link>
-                <a href="#" @click.prevent="openComfirmModal" class="quit"></a>
-              </span>
-            </div> -->
-            <div class="user_navigation">
-              <el-badge :value="9" :max="99" class="item">
-                <a class="infoAram"></a>
-              </el-badge>
-              <span style="margin: 0 15px;border-left:1px solid #919EA5;width:1px;height:10px "></span>
-              <el-dropdown>
-                <a class="personalCenter"></a>
-                <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item ><span @click.prevent="gotoCenter">账户设置</span></el-dropdown-item>
-                  <el-dropdown-item ><span @click.prevent="quit">退出登录</span></el-dropdown-item>
-                </el-dropdown-menu>
-              </el-dropdown>
-            </div>
-            
-          </header>
-        </transition>
+        <keep-alive>
+          <transition name="header" mode="out-in">
+            <header class="header the-header" v-if="layout==='admin'" >
+              <!-- <el-radio-group v-model="isCollapse" style="position:absolute;z-index: 999;" v-if="layout==='admin'">
+                <el-radio-button :label="false">展开</el-radio-button>
+                <el-radio-button :label="true">收起</el-radio-button>
+              </el-radio-group> -->
+              <div class="collapseImg" v-if="isCollapse" @click="isCollapse = false">
+              </div>
+              <div class="collapseImg unCollapseImg" v-if="!isCollapse" @click="isCollapse = true">
+              </div>
+              <a class="logo"></a>
+              
+              <!-- <div @mouseover="isShowUserNav = true" @mouseout="isShowUserNav = false" class="user-navigation">
+                <span class="user-name">
+                  <router-link to='/account'><i class="headPic"> </i><span style="margin:0 30px 0 74px">sss</span></router-link>
+                  <a href="#" @click.prevent="openComfirmModal" class="quit"></a>
+                </span>
+              </div> -->
+              <div class="user_navigation">
+                <el-badge :value="9" :max="99" class="item">
+                  <a class="infoAram"></a>
+                </el-badge>
+                <span style="margin: 0 15px;border-left:1px solid #919EA5;width:1px;height:10px "></span>
+                <el-dropdown>
+                  <a class="personalCenter"></a>
+                  <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item ><span @click.prevent="gotoCenter">账户设置</span></el-dropdown-item>
+                    <el-dropdown-item ><span @click.prevent="quit">退出登录</span></el-dropdown-item>
+                  </el-dropdown-menu>
+                </el-dropdown>
+              </div>
+              
+            </header>
+          </transition>
+        </keep-alive>
         <!-- End: 头部 -->
 
         <!-- Start: 路由视图 -->
         <transition name="view" mode="out-in">
-          <router-view ></router-view>
+          <keep-alive>
+            <router-view ></router-view>
+          </keep-alive>
         </transition>
         <!-- End: 路由视图 -->
       </div>
@@ -224,7 +228,7 @@
     watch:{
       $route(to,from){ //跳转组件页面后，监听路由参数中对应的当前页面以及上一个页面
         // console.log('to----' + to)
-        this.appKey=new Date().getTime(); // 监听地址栏参数变化
+        this.appKey = new Date().getTime(); // 监听地址栏参数变化
         if(to.name=='Login' || to.name=='lift-print'){
           this.$store.commit('SWITCH_LAYOUT', 'auth')
           // console.log('layout====' + this.layout)
@@ -337,7 +341,7 @@
     z-index: 99;
   // 头部淡入淡出
   .header-enter-active, .header-leave-active
-    transition transform 0.2s, opacity 0.2s
+    transition transform 0.4s, opacity 0.4s
 
   .header-enter
   .header-leave-to
@@ -353,7 +357,7 @@
     transform translate3d(-10px, 0, 0)
   // 视图淡入淡出
   .view-enter-active, .view-leave-active
-    transition transform .3s ease-in-out, opacity .3s ease-in-out
+    transition transform .5s ease-in-out, opacity .5s ease-in-out
 
   .view-enter
   .view-leave-to

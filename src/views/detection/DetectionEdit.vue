@@ -60,7 +60,7 @@
                   <div class="detAdd-abnormal-li clearfix" v-for="(item, i) in special.conditionsView" :key="i">
                     <span class="detAdd-label-span detAdd-label-span-blue">{{i+1}}</span>
                     <div class="detAdd-abul-p">
-                      {{item.monitorObjCN}}的{{item.monitorValCN}}{{item.calcTimeCN ? '/' + item.calcTimeCN : ''}}/{{item.calcOperatorCN}}/{{item.calcThreshold}}{{item.calcUnit}}
+                      {{item.monitorObjCN}}的{{item.monitorValCN}}{{item.calcTimeCN ? '/' + item.calcTimeCN + '秒' : ''}}/{{item.calcOperatorCN}}/{{item.calcThreshold}}{{item.calcUnit}}
                     </div>
                     <div class="detAdd-abul-edit" @click="openDialog(item.id, i)"></div>
                   </div>
@@ -98,7 +98,7 @@
                 <div class="detAdd-preview">
                   <div v-for="(item, i) in special.conditionsView" :key="i">
                     <span v-if="special.conditionsView.length > 1 && i !== 0">{{special.jw == 1 ? '或' : '且'}}</span>
-                    {{item.monitorObjCN}}的{{item.monitorValCN}}{{item.calcTimeCN ? '/' + item.calcTimeCN : ''}}/{{item.calcOperatorCN}}/{{item.calcThreshold}}{{item.calcUnit}}，
+                    {{item.monitorObjCN}}的{{item.monitorValCN}}{{item.calcTimeCN ? '/' + item.calcTimeCN + '秒' : ''}}/{{item.calcOperatorCN}}/{{item.calcThreshold}}{{item.calcUnit}}，
                   </div>
                   <div>
                     就{{special.tasksView.notiTypesCN}}{{special.tasksView.userTypesCN}}
@@ -166,7 +166,7 @@
               <div class="dia-citem-ib">
                 <!-- 瞬时 -->
                 <!-- <div class="detAddDia-citem-ib2" v-if="ruleFormDialog.calcMethod == 2 || ruleFormDialog.calcMethod == 3 || ruleFormDialog.calcMethod == 5"> -->
-                <div class="detAddDia-citem-ib2">
+                <!-- <div class="detAddDia-citem-ib2">
                   <div class="detAddDia-citem-ib2-select">
                     <el-form-item>
                       <el-select size="small" v-model="ruleFormDialog.dTimeUnit" placeholder="请选择">
@@ -177,11 +177,47 @@
                   <el-form-item prop="calcTimeInSeconds">
                     <el-input v-model="ruleFormDialog.calcTimeInSeconds" size="small"></el-input>
                   </el-form-item>
+                </div> -->
+
+                <!-- 新瞬时值 -->
+                <div class="detAddDia-citem-ib2 clearfix">
+                  <div class="detAddDia-citem-ib2-box">
+                    <el-form-item prop="minute">
+                      <el-input v-model="specialRuleFormDialog.minute" @input="minSecChange" size="small"></el-input>
+                    </el-form-item>
+                    <div class="detAddDia-citem-ib2-unit">分</div>
+                  </div>
+                  <div class="detAddDia-citem-ib2-box" style="float: right">
+                    <el-form-item prop="second">
+                      <el-input v-model="specialRuleFormDialog.second" @input="minSecChange" size="small"></el-input>
+                    </el-form-item>
+                    <div class="detAddDia-citem-ib2-unit">秒</div>
+                  </div>
                 </div>
+
+                <!-- 新持续时间 -->
+                <div class="detAddDia-citem-ib2 clearfix" v-if="ruleFormDialog.calcMethod == 4">
+                  <div style="float: left; line-height: 32px;margin-right: 20px;">持续</div>
+                  <div class="detAddDia-citem-ib2-box" style="width: 42%">
+                    <el-form-item prop="minute">
+                      <el-input v-model="specialRuleFormDialog.minute" @input="minSecChange" size="small"></el-input>
+                    </el-form-item>
+                    <div class="detAddDia-citem-ib2-unit">分</div>
+                  </div>
+                  <div class="detAddDia-citem-ib2-box" style="float: right;width: 42%">
+                    <el-form-item prop="second">
+                      <el-input v-model="specialRuleFormDialog.second" @input="minSecChange" size="small"></el-input>
+                    </el-form-item>
+                    <div class="detAddDia-citem-ib2-unit">秒</div>
+                  </div>
+                </div>
+
+
+
 
                 <!-- 持续时间 -->
                 <!-- <div class="detAddDia-citem-ib2" v-if="ruleFormDialog.calcMethod == 4"> -->
-                <div class="detAddDia-citem-ib2">
+                <!-- <div class="detAddDia-citem-ib2">
                   <div class="detAddDia-citem-ib2-title">持续</div>
                   <div class="detAddDia-citem-ib2-select">
                     <el-form-item>
@@ -193,7 +229,9 @@
                   <el-form-item prop="calcTimeInSeconds" class="dTime-item">
                     <el-input v-model="ruleFormDialog.calcTimeInSeconds" size="small"></el-input>
                   </el-form-item>
-                </div>
+                </div> -->
+
+                
 
                 <!-- 次数 -->
                 <!-- <div class="detAddDia-citem-ib2" v-if="ruleFormDialog.calcMethod == 5"> -->
@@ -226,7 +264,7 @@
           <div class="dia-con-head">预览</div>
           <div class="dia-clist">
             <div class="dia-clist-preview">
-              {{dialogPreview.monitorObjCN}}的{{dialogPreview.monitorValCN}}{{dialogPreview.calcTimeCN ? '/' + dialogPreview.calcTimeCN : ''}}/{{dialogPreview.calcOperatorCN}}/{{ruleFormDialog.calcThreshold}}{{dialogPreview.calcUnit}}，
+              {{dialogPreview.monitorObjCN}}的{{dialogPreview.monitorValCN}}{{specialRuleFormDialog.minSec ? '/' + specialRuleFormDialog.minSec + '秒' : ''}}/{{dialogPreview.calcOperatorCN}}/{{ruleFormDialog.calcThreshold}}{{dialogPreview.calcUnit}}，
             </div>
           </div>
 
@@ -298,11 +336,14 @@ export default {
         calcOperator: '',
         calcThreshold: 0,
       },
+      // 对话框预览
       dialogPreview: {},
       // 对话框需要特殊处理的字段
       specialRuleFormDialog: {
         monitorObj: [],
-        
+        minute: 0,
+        second: 0,
+        minSec: 0,
       },
       rulesDialog: {
 
@@ -388,6 +429,7 @@ export default {
         let detail = res.data.data
         that.ruleForm.name = detail.name
         that.ruleForm.diagnType = detail.diagnType
+        that.ruleForm.detail = detail.detail
 
         // 字段特殊处理
         // 处理条件
@@ -407,6 +449,8 @@ export default {
 
             that.special.conditionsView.push(policyOneObj)
           })
+
+          console.log('that.special', that.special)
 
         })
 
@@ -465,16 +509,20 @@ export default {
       this.ruleFormDialog.calcOperator = policyDetail.calcOperator
       this.ruleFormDialog.calcUnit = policyDetail.calcUnit
       this.ruleFormDialog.conditionFreqency = policyDetail.conditionFreqency
-      this.ruleFormDialog.calcTimeInSeconds = policyDetail.calcTimeInSeconds
+      this.ruleFormDialog.calcTimeInSeconds = policyDetail.calcTimeCN ? policyDetail.calcTimeCN : policyDetail.calcTimeInSeconds
       this.ruleFormDialog.calcThreshold = policyDetail.calcThreshold
 
       // 处理特殊字段
       this.specialRuleFormDialog.monitorObj = []
       let tempMoObjArr = policyDetail.monitorObj.split(':')
       this.specialRuleFormDialog.monitorObj.push(parseInt(tempMoObjArr[0]), parseInt(tempMoObjArr[1]), parseInt(tempMoObjArr[2]))
+      this.specialRuleFormDialog.minute = parseInt(this.ruleFormDialog.calcTimeInSeconds / 60)
+      this.specialRuleFormDialog.second = parseInt(this.ruleFormDialog.calcTimeInSeconds % 60)
+      this.specialRuleFormDialog.minSec = this.ruleFormDialog.calcTimeInSeconds
 
       // 加载预览
       this.dialogPreview = this.special.conditionsView[i]
+      console.log('this.dialogPreview', this.dialogPreview)
 
       console.log('this.ruleFormDialog', this.ruleFormDialog)
       console.log('this.specialRuleFormDialog', this.specialRuleFormDialog)
@@ -489,21 +537,32 @@ export default {
       this.special.conditionsView.forEach(item => {
         if (item.id == this.dialogPolicyId) {
           item['calcTimeInSeconds'] = this.ruleFormDialog.calcTimeInSeconds
+          item['calcTimeCN'] = this.ruleFormDialog.calcTimeInSeconds
           item['calcThreshold'] = this.ruleFormDialog.calcThreshold
           item['conditionFreqency'] = this.ruleFormDialog.conditionFreqency
         }
       })
+      // console.log('this.special.conditionsView', this.special.conditionsView)
 
       // 修改提交表单异常情况conditions值
       this.ruleForm.conditions.items.forEach((item, i) => {
         if (item.policyId == this.dialogPolicyId) {
           item['timeInSeconds'] = this.ruleFormDialog.calcTimeInSeconds
+          item['calcTimeCN'] = this.ruleFormDialog.calcTimeInSeconds
           item['threshold'] = this.ruleFormDialog.calcThreshold
           item['freqency'] = this.ruleFormDialog.conditionFreqency
         }
       })
 
       this.dialogDetSet = false
+    },
+
+    // 修改分秒
+    minSecChange() {
+      let min = this.specialRuleFormDialog.minute ? parseInt(this.specialRuleFormDialog.minute) : 0
+      let sec = this.specialRuleFormDialog.second ? parseInt(this.specialRuleFormDialog.second) : 0
+      this.specialRuleFormDialog.minSec = min * 60 + sec
+      this.ruleFormDialog.calcTimeInSeconds = this.specialRuleFormDialog.minSec
     },
 
 

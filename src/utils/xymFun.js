@@ -1,4 +1,4 @@
-import codec from './codec_v1.json'
+import codec from './codec_v2.json'
 import api from '../api'
 
 
@@ -176,8 +176,9 @@ export default {
             "monitorVal": "",
             "monitorValCN": "",
             "calcOperatorCN": "",
-            "calcTimeCN": ""
-
+            "calcTimeCN": "",
+            "calcTimeInSecondsMinute": 0,
+            "calcTimeInSecondsSecond": 0,
           }
           // 特殊处理
           // 监测项
@@ -214,6 +215,7 @@ export default {
           } else if (json[item.id].calcMethod === 5) {
             json[item.id].calcTimeCN = `${json[item.id].calcTimeInSeconds}秒内` // 持续值
           }
+
 
         })
 

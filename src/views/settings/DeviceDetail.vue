@@ -25,7 +25,7 @@
               <div class="ddi-td"><span>设备型号：</span>{{devModel}}</div>
               <div class="ddi-td"><span>监测内容：</span>{{monitorVal}}</div>
               <div class="ddi-td"><span>设备品牌：</span>{{devBrand}}</div>
-              <div class="ddi-td"><span>安装人员：</span>{{assembId}}</div>
+              <div class="ddi-td"><span>安装人员：</span>{{assembName}}</div>
               <div class="ddi-td"><span>安装时间：</span>{{assembTime}}</div>
             </div>
             <div class="ddi-table clearfix" style="margin-top: 10px;border-top: 1px dashed #D8DDDF;padding-top: 10px;">
@@ -109,12 +109,13 @@
                   </el-form-item>
                 </div>
               </div>
-              <!-- TODO 人员搜索下拉 -->
+
+              <!-- 人员搜索下拉 -->
               <div class="dia-citem clearfix">
                 <div class="dia-citem-label">安装人员：</div>
                 <div class="dia-citem-ib">
                   <el-form-item prop="assembId">
-                    <el-input v-model="ruleForm.assembId" size="small" placeholder="安装人员"></el-input>
+                    <el-cascader ref="assembIdCascader" placeholder="请选择" :options="assembIdOptions" v-model="selectedAssembIdOptions" filterable clearable @change="assembIdChange" size="small" style="width: 100%;"></el-cascader>
                   </el-form-item>
                 </div>
               </div>
@@ -175,7 +176,7 @@
 </template>
 
 <script>
-import codec from '../../utils/codec_v1.json'
+import codec from '../../utils/codec_v2.json'
 import api from '../../api'
 import xymFun from '../../utils/xymFun'
 import Footer from '../common/fotter'
@@ -190,6 +191,7 @@ export default {
       monitorVal: "",
       devBrand: "",
       assembId: "",
+      assembName: "",
       assembTime: "",
       regCode: "",
       localArea: "",
@@ -214,6 +216,8 @@ export default {
       },
       moniObjOptions: [],
       selectedMoniObjOptions: [],
+      assembIdOptions: [],
+      selectedAssembIdOptions: [],
       // moniValOptions: [],
       // selectedMoniValOptions: [],
       lineList: [], // 总数据
@@ -234,6 +238,8 @@ export default {
     // 加载检测项下拉
     this.getMoniObjOptions()
 
+    // 获取安装人员下拉
+    this.getDepStaffOptions()
 
 
   },
@@ -269,6 +275,7 @@ export default {
         this.monitorVal = that.modelContentList[detail.monitorVal]
         this.devBrand = detail.devBrand
         this.assembId = detail.assembId
+        this.assembName = detail.assembName
         this.assembTime = detail.assembTime
         this.regCode = detail.regCode
         this.localArea = detail.localArea
@@ -277,6 +284,8 @@ export default {
 
         this.nativemonitorObj = detail.monitorObj
         this.nativemonitorVal = detail.monitorVal
+
+        
 
         // 查询设备上下线记录
         this.getDeviceBonline()
@@ -396,7 +405,6 @@ export default {
     editDevice() {
       let that = this
       this.dialogEditDevice = true
-      
 
       // 赋旧值
       this.ruleForm.devEui = this.devEui
@@ -408,6 +416,14 @@ export default {
       // 字符串元素转为数字
       this.selectedMoniObjOptions.push(parseInt(this.nativemonitorObj.split(':')[0]), parseInt(this.nativemonitorObj.split(':')[1]), parseInt(this.nativemonitorObj.split(':')[2]))
       this.ruleForm.monitorVal = this.nativemonitorVal
+
+      this.selectedAssembIdOptions = []
+      // 通过员工id获取员工详情（部门）
+      api.accountApi.getStaffDetails(this.assembId).then(staffRes => {
+        let departmentName = staffRes.data.data.departmentName
+        this.selectedAssembIdOptions.push(departmentName, this.assembId)
+        console.log('id', this.selectedAssembIdOptions)
+      })
 
     },
 
@@ -433,6 +449,39 @@ export default {
         }
       })
 
+    },
+
+    // 获取安装人员下拉
+    getDepStaffOptions() {
+      api.device.getDepStaff().then(res => {
+        this.assembIdOptions = []
+        console.log('res.data', res.data)
+        for (var key in res.data.data) {
+          let obj = {}
+          obj.value = key
+          obj.label = key
+          obj.children = []
+          // console.log('key', key)
+          res.data.data[key].forEach((item, i) => {
+            let tempObj = {}
+            tempObj.value = item.id
+            tempObj.label = item.name
+            obj.children.push(tempObj)
+          })
+
+          this.assembIdOptions.push(obj)
+          
+        }
+
+        console.log('this.assembIdOptions', this.assembIdOptions)
+        
+      })
+
+    },
+
+    // 下拉人员选中值
+    assembIdChange(arr) {
+      this.ruleForm.assembId = arr[arr.length-1] // 取数组最后一个值赋值
     },
 
     // 提交

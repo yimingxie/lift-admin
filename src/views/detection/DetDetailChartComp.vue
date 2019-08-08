@@ -203,6 +203,49 @@
             <div class="real-chart" id="real-chart-qpjskgdys-pro"></div>
           </div>
         </div>
+        <div class="dcc-box" v-if="item == '0:2:5:5'">
+          <div class="dcc-box-data clearfix">
+            <div class="dccb-data-icon">
+              <img src="../../assets/images/xym/dianya.png" alt="">
+            </div>
+            <div class="dccb-data-p">
+              <div class="dccb-data-p1"><span>{{qpjskgdyxVal}}</span>V</div>
+              <div class="dccb-data-p2">（下）强迫减速开关电压</div>
+            </div>
+          </div>
+          <div class="dcc-box-chart">
+            <div class="real-chart" id="real-chart-qpjskgdyx-pro"></div>
+          </div>
+        </div>
+
+        <div class="dcc-box" v-if="item == '0:2:9:5'">
+          <div class="dcc-box-data clearfix">
+            <div class="dccb-data-icon">
+              <img src="../../assets/images/xym/dianya.png" alt="">
+            </div>
+            <div class="dccb-data-p">
+              <div class="dccb-data-p1"><span>{{ywkgdysVal}}</span>V</div>
+              <div class="dccb-data-p2">（上）越位开关电压</div>
+            </div>
+          </div>
+          <div class="dcc-box-chart">
+            <div class="real-chart" id="real-chart-ywkgdys-pro"></div>
+          </div>
+        </div>
+        <div class="dcc-box" v-if="item == '0:2:10:5'">
+          <div class="dcc-box-data clearfix">
+            <div class="dccb-data-icon">
+              <img src="../../assets/images/xym/dianya.png" alt="">
+            </div>
+            <div class="dccb-data-p">
+              <div class="dccb-data-p1"><span>{{ywkgdyxVal}}</span>V</div>
+              <div class="dccb-data-p2">（下）越位开关电压</div>
+            </div>
+          </div>
+          <div class="dcc-box-chart">
+            <div class="real-chart" id="real-chart-ywkgdyx-pro"></div>
+          </div>
+        </div>
         <div class="dcc-box" v-if="item == '0:2:8:5'">
           <div class="dcc-box-data clearfix">
             <div class="dccb-data-icon">
@@ -446,6 +489,20 @@
           </div>
         </div>
         <!-- 轿厢 -->
+        <div class="dcc-box" v-if="item == '1:2:0:10'">
+          <div class="dcc-box-data clearfix">
+            <div class="dccb-data-icon">
+              <img src="../../assets/images/xym/dianliu.png" alt="">
+            </div>
+            <div class="dccb-data-p">
+              <div class="dccb-data-p1"><span>{{jxjmkhVal}}</span></div>
+              <div class="dccb-data-p2">轿厢轿门开合</div>
+            </div>
+          </div>
+          <div class="dcc-box-chart">
+            <div class="real-chart" id="real-chart-jxjmkh-pro"></div>
+          </div>
+        </div>
         <div class="dcc-box" v-if="item == '1:2:0:9'">
           <div class="dcc-box-data clearfix">
             <div class="dccb-data-icon">
@@ -460,7 +517,7 @@
             <div class="real-chart" id="real-chart-jxwz-pro"></div>
           </div>
         </div>
-        <div class="dcc-box" v-if="item == '1:2:1:6'">
+        <div class="dcc-box" v-if="item == '1:2:0:6'">
           <div class="dcc-box-data clearfix">
             <div class="dccb-data-icon">
               <img src="../../assets/images/xym/zhendong.png" alt="">
@@ -548,6 +605,9 @@ export default {
       jskgdysVal: 0,
       jskgdyxVal: 0,
       qpjskgdysVal: 0,
+      qpjskgdyxVal: 0,
+      ywkgdysVal: 0,
+      ywkgdyxVal: 0,
       pcgyqdyVal: 0,
       ddjdydyVal: 0,
       ddjdydlVal: 0,
@@ -565,6 +625,7 @@ export default {
       jdjxkgdyVal: 0,
       jdmjmddyVal: 0,
       jdmjmddlVal: 0,
+      jxjmkhVal: 0,
       jxwzVal: 0,
       jxxtzdVal: 0,
       jddgzdVal: 0,
@@ -920,6 +981,15 @@ export default {
           if (resList['0:2:6:5'] !== undefined) {
             this.drawChart1({container: 'real-chart-qpjskgdys-pro',unit: 'V',name: '（上）强迫减速开关电压',max: etimePro,dataType: 'real_data',data: resList['0:2:6:5']})
           }
+          if (resList['0:2:7:5'] !== undefined) {
+            this.drawChart1({container: 'real-chart-qpjskgdyx-pro',unit: 'V',name: '（下）强迫减速开关电压',max: etime,dataType: 'real_data',data: resList['0:2:7:5']})
+          }
+          if (resList['0:2:9:5'] !== undefined) {
+            this.drawChart1({container: 'real-chart-ywkgdys-pro',unit: 'V',name: '（上）越位开关电压',max: etime,dataType: 'real_data',data: resList['0:2:9:5']})
+          }
+          if (resList['0:2:10:5'] !== undefined) {
+            this.drawChart1({container: 'real-chart-ywkgdyx-pro',unit: 'V',name: '（下）越位开关电压',max: etime,dataType: 'real_data',data: resList['0:2:10:5']})
+          }
           if (resList['0:2:8:5'] !== undefined) {
             this.drawChart1({container: 'real-chart-pcgyqdy-pro',unit: 'V',name: '平层感应器电压',max: etimePro,dataType: 'real_data',data: resList['0:2:8:5']})
           }
@@ -968,11 +1038,15 @@ export default {
           if (resList['1:0:2:4'] !== undefined) {
             this.drawChart1({container: 'real-chart-jdmjmddl-pro',unit: 'A',name: '轿顶门机马达电流',max: etimePro,dataType: 'real_data',data: resList['1:0:2:4']})
           }
+
+          if (resList['1:2:0:10'] !== undefined) {
+            this.drawChart1({container: 'real-chart-jxjmkh-pro',unit: '',name: '轿厢轿门开合',max: etime,dataType: 'real_data',data: resList['1:2:0:10']})
+          }
           if (resList['1:2:0:9'] !== undefined) {
             this.drawChart1({container: 'real-chart-jxwz-pro',unit: 'F',name: '轿厢位置',max: etimePro,dataType: 'floor',data: resList['1:2:0:9']})
           }
-          if (resList['1:2:1:6'] !== undefined) {
-            this.drawChart1({container: 'real-chart-jxxtzd-pro',unit: 'μm',name: '轿厢箱体振动',max: etimePro,dataType: 'real_data',data: resList['1:2:1:6']})
+          if (resList['1:2:0:6'] !== undefined) {
+            this.drawChart1({container: 'real-chart-jxxtzd-pro',unit: 'μm',name: '轿厢箱体振动',max: etimePro,dataType: 'real_data',data: resList['1:2:0:6']})
           }
           if (resList['2:1:1:6'] !== undefined) {
             this.drawChart1({container: 'real-chart-jddgzd-pro',unit: 'μm',name: '井道导轨振动',max: etimePro,dataType: 'real_data',data: resList['2:1:1:6']})
@@ -999,6 +1073,10 @@ export default {
         this.jskgdysVal = resList['0:2:4:5'] ? resList['0:2:4:5'][0].real_data : this.jskgdysVal
         this.jskgdyxVal = resList['0:2:5:5'] ? resList['0:2:5:5'][0].real_data : this.jskgdyxVal
         this.qpjskgdysVal = resList['0:2:6:5'] ? resList['0:2:6:5'][0].real_data : this.qpjskgdysVal
+        this.qpjskgdyxVal = resList['0:2:7:5'] ? resList['0:2:7:5'][0].real_data : this.qpjskgdyxVal
+        this.ywkgdysVal = resList['0:2:9:5'] ? resList['0:2:9:5'][0].real_data : this.ywkgdysVal
+        this.ywkgdyxVal = resList['0:2:10:5'] ? resList['0:2:10:5'][0].real_data : this.ywkgdyxVal
+
         this.pcgyqdyVal = resList['0:2:8:5'] ? resList['0:2:8:5'][0].real_data : this.pcgyqdyVal
         this.ddjdydyVal = resList['0:3:0:5'] ? resList['0:3:0:5'][0].real_data : this.ddjdydyVal
         this.ddjdydlVal = resList['0:3:0:4'] ? resList['0:3:0:4'][0].real_data : this.ddjdydlVal
@@ -1016,8 +1094,10 @@ export default {
         this.jdjxkgdyVal = resList['1:0:1:5'] ? resList['1:0:1:5'][0].real_data : this.jdjxkgdyVal
         this.jdmjmddyVal = resList['1:0:2:5'] ? resList['1:0:2:5'][0].real_data : this.jdmjmddyVal
         this.jdmjmddlVal = resList['1:0:2:4'] ? resList['1:0:2:4'][0].real_data : this.jdmjmddlVal
+
+        this.jxjmkhVal = resList['1:2:0:10'] ? resList['1:2:0:10'][0].real_data : this.jxjmkhVal
         this.jxwzVal = resList['1:2:0:9'] ? resList['1:2:0:9'][0].floor : this.jxwzVal
-        this.jxxtzdVal = resList['1:2:1:6'] ? resList['1:2:1:6'][0].real_data : this.jxxtzdVal
+        this.jxxtzdVal = resList['1:2:0:6'] ? resList['1:2:0:6'][0].real_data : this.jxxtzdVal
         this.jddgzdVal = resList['2:1:1:6'] ? resList['2:1:1:6'][0].real_data : this.jddgzdVal
         this.jdcmkhVal = resList['2:1:0:10'] ? resList['2:1:0:10'][0].real_data : this.jdcmkhVal
 
@@ -1041,6 +1121,8 @@ export default {
       s = s < 10 ? ("0" + s) : s;
       return m + '-' + d + ' ' + h + ':' + m1 + ':' + s
     },
+
+
 
     // 封装图表1
     drawChart1(obj) {
@@ -1069,7 +1151,6 @@ export default {
       }
       extendObj.data = dataArr
 
-      let chart = this.$echarts.init(document.getElementById(`${extendObj.container}`))
       let options = xymFun.deepClone(that.options)
       options.series[0].data = extendObj.data
       options.series[0].name = extendObj.name
@@ -1107,8 +1188,14 @@ export default {
         options.visualMap.range = []
         options.visualMap.range.push(0, parseInt(extendObj.threshold))
       }
-      
+
+      let chart = this.$echarts.init(document.getElementById(`${extendObj.container}`))
       chart.setOption(options)
+
+      // 自适应
+      window.addEventListener('resize', function () {
+        chart.resize()
+      })
     },
 
   },

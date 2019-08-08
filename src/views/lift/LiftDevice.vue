@@ -13,13 +13,17 @@
             <h3>{{elevName}} {{inNum}}</h3>
             <p>{{localArea}} {{address}} &nbsp;&nbsp;&nbsp; 注册代码：{{regCode}}</p>
           </div>
+          <div class="llcb-btn white" @click="deleteDevicesDialog">删除设备</div>
           <div class="llcb-btn info" @click="itemAddDevice(regCode)">+ 添加设备</div>
         </div>
 
         <div class="ll-table">
           <div class="llt-thead">
             <div class="llt-tr clearfix">
-              <div class="llt-th">设备类型-名称</div>
+              <div class="llt-th">
+                <el-checkbox v-model="checkedAll" @change="checkedAllChange"></el-checkbox>
+              </div>
+              <div class="llt-th">名称</div>
               <div class="llt-th">检测项</div>
               <div class="llt-th">检测内容</div>
               <div class="llt-th">设备ID</div>
@@ -31,18 +35,23 @@
             </div>
           </div>
           <div class="llt-tbody">
-
-            <div class="llt-tr clearfix"  :class="[activeRegCode === i ? 'on' : '', item.bonline == '在线' ? '' : 'offline']" v-for="(item, i) in liftDeviceList" :key="i">
+            <div class="list-no-data" v-show="liftDeviceList.length == 0">暂无数据</div>
+            <div class="llt-tr clearfix"  :class="[activeRegCode === i ? 'on' : '', item.bonline == 1 ? '' : 'offline']" v-for="(item, i) in liftDeviceList" :key="i">
               <div class="llt-tr-container clearfix">
-                <div class="llt-td">{{item.devType}}-{{item.devName}}</div>
+                <div class="llt-td">
+                  <el-checkbox-group v-model="checkedDevices" @change="checkedDevicesChange">
+                    <el-checkbox :label="i" :key="i">{{test}}</el-checkbox>
+                  </el-checkbox-group>
+                </div>
+                <div class="llt-td">{{item.devName}}</div>
                 <div class="llt-td">{{item.monitorObj}}</div>
                 <div class="llt-td">{{item.monitorVal}}</div>
                 <div class="llt-td">{{item.devEui}}</div>
                 <div class="llt-td">
-                  <div class="lift-device-status"><span>●</span>{{item.bonline}}</div>
+                  <div class="lift-device-status"><span>●</span>{{item.bonline == 1 ? '在线' : '离线'}}</div>
                 </div>
                 <div class="llt-td">{{item.assembTime}}</div>
-                <div class="llt-td">{{item.assembId}}</div>
+                <div class="llt-td">{{item.assembName}}</div>
                 <div class="llt-td">
                   <p class="llt-td-device">{{item.replaceCount}}</p>
                   <div class="llt-td-arrow" @click="showDrop(item.nativemonitorObj, item.nativemonitorVal, item.regCode, i)"></div>
@@ -58,19 +67,19 @@
                   <div class="ld-td"></div>
                   <div class="ld-td"></div>
                   <div class="ld-td"></div>
+                  <div class="ld-td"></div>
                   <div class="ld-td" style="border-bottom: 1px solid #E8E8E8;">{{childItem.devEui}}</div>
                   <div class="ld-td" style="border-bottom: 1px solid #E8E8E8;"></div>
                   <div class="ld-td" style="border-bottom: 1px solid #E8E8E8;">{{childItem.assembTime}}</div>
-                  <div class="ld-td" style="border-bottom: 1px solid #E8E8E8;">{{childItem.assembId}}</div>
+                  <div class="ld-td" style="border-bottom: 1px solid #E8E8E8;">{{childItem.assembName}}</div>
                   <div class="ld-td" style="border-bottom: 1px solid #E8E8E8;"></div>
                   <div class="ld-td"></div>
                 </div>
        
               </div>
             </div>
-
-            
           </div>
+          
 
           <!-- 分页 -->
           <div class="list-page">
@@ -119,12 +128,12 @@
                 </div>
               </div>
 
-              <!-- TODO 人员搜索下拉 -->
+              <!-- 人员搜索下拉 -->
               <div class="dia-citem clearfix">
                 <div class="dia-citem-label">安装人员：</div>
                 <div class="dia-citem-ib">
                   <el-form-item prop="assembId">
-                    <el-input v-model="ruleForm.assembId" size="small" placeholder="安装人员"></el-input>
+                    <el-cascader ref="assembIdCascader" placeholder="请选择" :options="assembIdOptions" v-model="selectedAssembIdOptions" filterable clearable @change="assembIdChange" size="small" style="width: 100%;"></el-cascader>
                   </el-form-item>
                 </div>
               </div>
@@ -167,12 +176,35 @@
   
     </el-dialog>
 
+
+    <!-- 删除设备对话框 -->
+    <el-dialog custom-class="noneTitle" :show-close="false" :visible.sync="dialogDelete">
+      <div class="dialog-delete">
+        <div class="dia-heading">
+          <div class="dia-con-pic">
+            <img src="../../assets/images/xym/dia-warn.png" alt="">
+          </div>
+          <div class="dia-con-p">
+            <h4>是否确认删除以下设备</h4>
+            <!-- <p>删除后不可复原，请谨慎操作</p> -->
+          </div>
+        </div>
+        <ul class="dia-ul clearfix">
+          <li :class="checkedDevicesList.length <= 1 ? 'single' : ''" v-for="(item, i) in checkedDevicesList" :key="i">{{item.devName}}</li>
+        </ul>
+        <div class="diaN-btn-con clearfix">
+          <div class="diaN-btn diaN-btn-cancel" @click="dialogDelete=false">取消</div>
+          <div class="diaN-btn diaN-btn-red" @click="deleteDevices">确认</div>
+        </div>
+      </div>
+    </el-dialog>
+
   </div>
 </template>
 
 <script>
 import api from '../../api'
-import codec from '../../utils/codec_v1.json'
+import codec from '../../utils/codec_v2.json'
 import xymFun from '../../utils/xymFun'
 import Footer from '../common/fotter'
 
@@ -180,12 +212,18 @@ export default {
   data() {
     return {
       dialogAddDevice: false,
+      dialogDelete: false,
       regCode: this.$route.query.regCode,
       elevName: '',
       inNum: '',
       localArea: '',
       address: '',
+      checkedDevices: [], // 选中设备的索引
+      checkedDevicesList: [], // 选中设备的数组对象
+      checkedDevicesOptions: [], // 用于全选
+      test: '',
       liftDeviceList: [],
+      checkedAll: false,
       modelContentList: {},
       activeRegCode: '',
       ruleForm: {
@@ -206,6 +244,8 @@ export default {
       },
       moniObjOptions: [],
       selectedMoniObjOptions: [],
+      assembIdOptions: [],
+      selectedAssembIdOptions: [],
       liftDeviceParams: {
         "limit": 10,
         "offset": 1,
@@ -231,6 +271,9 @@ export default {
 
     // 获取电梯详情
     this.getLiftDetail()
+
+    // 获取安装人员下拉
+    this.getDepStaffOptions()
 
     
   },
@@ -267,16 +310,25 @@ export default {
       api.lift.getLiftDevice(this.liftDeviceParams).then(res => {
         console.log('单部电梯设备列表', res.data)
         this.liftDeviceList = res.data.data.records
+        this.checkedDevicesOptions = [] // 用于全选
         this.liftDeviceList.forEach((item, i) => {
+          this.checkedDevicesOptions.push(i)
           item.nativemonitorObj = item.monitorObj
           item.nativemonitorVal = item.monitorVal
           item.monitorObj = xymFun.changeMonitorObj(item.monitorObj).join('-')
           item.monitorVal = this.modelContentList[item.monitorVal]
-          item.bonline = item.bonline == 1 ? '在线' : '离线'
+          // item.bonline = item.bonline == 1 ? '在线' : '离线'
         })
+
+        // 分页
+        this.currentPage = res.data.data.current
+        this.totalPage = res.data.data.total
+        this.pageSize = res.data.data.size
       })
 
     },
+
+    
 
     // 当前分页改变
     currentPageChange(current) {
@@ -370,6 +422,94 @@ export default {
       this.ruleForm.monitorObj = monitorObj.join(':')
     },
 
+    // 设备多选
+    checkedDevicesChange(val) {
+      let count = this.liftDeviceList.length
+      if (val.length == count) {
+        this.checkedAll = true
+      } else {
+        this.checkedAll = false
+      }
+    },
+
+    // 全选
+    checkedAllChange(checkedBoolean) {
+      this.checkedDevices = checkedBoolean ? this.checkedDevicesOptions : []
+    },
+
+    // 删除设备对话框
+    deleteDevicesDialog() {
+      let that = this
+      if (this.checkedDevices.length === 0) {
+        return this.$message.error('请勾选需要删除的设备');
+      }
+      this.checkedDevicesList = []
+      this.checkedDevices.forEach(item => {
+        this.checkedDevicesList.push(this.liftDeviceList[item])
+      })
+      this.dialogDelete = true
+    },
+
+    // 批量删除设备
+    deleteDevices() {
+      // 组装参数
+      let postParams = []
+      // {
+      //   monitorObj : "监测项",
+      //   monitorVal : "监测内容",
+      //   regCode : "电梯注册代码"
+      // }
+      this.checkedDevices.forEach(item => {
+        postParams.push({
+          monitorVal: this.liftDeviceList[item].nativemonitorVal,
+          monitorObj: this.liftDeviceList[item].nativemonitorObj,
+          regCode: this.liftDeviceList[item].regCode
+        })
+      })
+      console.log('post', postParams)
+
+      // 发送请求
+      api.device.deleteBatchDeviceMainten(postParams).then(res => {
+        console.log('delete', res.data)
+        if (res.data.code == '200') {
+          this.$message.success(`${res.data.message}`)
+          this.$router.go(0)
+        } else {
+          this.$message.error(`${res.data.message}`)
+        }
+      })
+      
+    },
+
+    // 获取安装人员下拉
+    getDepStaffOptions() {
+      api.device.getDepStaff().then(res => {
+        this.assembIdOptions = []
+        for (var key in res.data.data) {
+          let obj = {}
+          obj.value = key
+          obj.label = key
+          obj.children = []
+          // console.log('key', key)
+          res.data.data[key].forEach((item, i) => {
+            let tempObj = {}
+            tempObj.value = item.id
+            tempObj.label = item.name
+            obj.children.push(tempObj)
+          })
+
+          this.assembIdOptions.push(obj)
+          
+        }
+      })
+
+    },
+
+    // 下拉人员选中值
+    assembIdChange(arr) {
+      this.ruleForm.assembId = arr[arr.length-1] // 取数组最后一个值赋值
+    },
+
     // （弹窗）关闭弹窗，重置表单
     dialogClosed() {
       this.$refs.diaForm.resetFields()
@@ -392,14 +532,15 @@ export default {
       api.device.searchDevEui(devEui).then(res => {
         // alert('搜索中')
         if (!res.data.data) {
-          alert('设备ID不存在')
+          // alert('设备ID不存在')
+          this.$message.error('设备不存在，请重新填写')
           this.$refs.diaForm.resetFields();
           this.ruleForm.devEui = devEui
           return
         }
         console.log(res.data)
-        alert('设备存在，请继续填写')
-
+        // alert('设备存在，请继续填写')
+        this.$message.success('设备存在，请继续填写')
         let list = res.data.data
         this.ruleForm.monitorVal = list.monitorVal
 
@@ -490,31 +631,38 @@ export default {
     top 26px;
     right 20px;
   }
+  .lift-device-head .llcb-btn.white{
+    right: 140px;
+  }
   .llt-tr .llt-th:nth-child(1),.llt-tr .llt-td:nth-child(1),.lift-device-tr .ld-td:nth-child(1){
-    width 12%;
+    width 3%;
+    text-align center;
   }
   .llt-tr .llt-th:nth-child(2),.llt-tr .llt-td:nth-child(2),.lift-device-tr .ld-td:nth-child(2){
-    width 19%;
+    width 9%;
   }
   .llt-tr .llt-th:nth-child(3),.llt-tr .llt-td:nth-child(3),.lift-device-tr .ld-td:nth-child(3){
-    width 9%;
+    width 19%;
   }
   .llt-tr .llt-th:nth-child(4),.llt-tr .llt-td:nth-child(4),.lift-device-tr .ld-td:nth-child(4){
-    width 12%;
+    width 9%;
   }
   .llt-tr .llt-th:nth-child(5),.llt-tr .llt-td:nth-child(5),.lift-device-tr .ld-td:nth-child(5){
-    width 11%;
-  }
-  .llt-tr .llt-th:nth-child(6),.llt-tr .llt-td:nth-child(6),.lift-device-tr .ld-td:nth-child(6){
     width 12%;
   }
+  .llt-tr .llt-th:nth-child(6),.llt-tr .llt-td:nth-child(6),.lift-device-tr .ld-td:nth-child(6){
+    width 11%;
+  }
   .llt-tr .llt-th:nth-child(7),.llt-tr .llt-td:nth-child(7),.lift-device-tr .ld-td:nth-child(7){
-    width 9%;
+    width 12%;
   }
   .llt-tr .llt-th:nth-child(8),.llt-tr .llt-td:nth-child(8),.lift-device-tr .ld-td:nth-child(8){
     width 9%;
   }
   .llt-tr .llt-th:nth-child(9),.llt-tr .llt-td:nth-child(9),.lift-device-tr .ld-td:nth-child(9){
+    width 9%;
+  }
+  .llt-tr .llt-th:nth-child(10),.llt-tr .llt-td:nth-child(10),.lift-device-tr .ld-td:nth-child(10){
     width 7%;
   }
   .llt-drop{
@@ -557,19 +705,19 @@ export default {
     .llt-td{
       font-size 12px;
     }
-    .llt-thead .llt-th:nth-child(2),.llt-tbody .llt-td:nth-child(2){
+    .llt-thead .llt-th:nth-child(3),.llt-tbody .llt-td:nth-child(3){
       width 16%;
     }
-    .llt-thead .llt-th:nth-child(4),.llt-tbody .llt-td:nth-child(4){
+    .llt-thead .llt-th:nth-child(5),.llt-tbody .llt-td:nth-child(5){
       width 13%;
     }
-    .llt-thead .llt-th:nth-child(5),.llt-tbody .llt-td:nth-child(5){
+    .llt-thead .llt-th:nth-child(6),.llt-tbody .llt-td:nth-child(6){
       width 10%;
     }
-    .llt-thead .llt-th:nth-child(6),.llt-tbody .llt-td:nth-child(6){
+    .llt-thead .llt-th:nth-child(7),.llt-tbody .llt-td:nth-child(7){
       width 11%;
     }
-    .llt-thead .llt-th:nth-child(9),.llt-tbody .llt-td:nth-child(9){
+    .llt-thead .llt-th:nth-child(10),.llt-tbody .llt-td:nth-child(10){
       width 10%;
     }
   }

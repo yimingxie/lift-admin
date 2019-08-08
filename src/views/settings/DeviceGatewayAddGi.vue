@@ -1,6 +1,7 @@
 <template>
-  <div id="DeviceAddGi">
+  <div id="DeviceGatewayAddGi">
     <el-button type="primary" @click="dialogAddDevice = true">通用平台添加设备</el-button>
+
 
     <div>
       <table class="temp-table">
@@ -41,6 +42,16 @@
             <div class="dia-con-head"> </div>
             <div class="dia-clist">
               <div class="dia-citem clearfix">
+                <div class="dia-citem-label">设备类型：</div>
+                <div class="dia-citem-ib">
+                  <el-form-item>
+                    <el-select v-model="typeValue" placeholder="请选择" @change="typeChange">
+                      <el-option v-for="(item, i) in typeOptions" :key="i" :label="item.label" :value="item.label"></el-option>
+                    </el-select>
+                  </el-form-item>
+                </div>
+              </div>
+              <div class="dia-citem clearfix">
                 <div class="dia-citem-label">设备sn：</div>
                 <div class="dia-citem-ib">
                   <el-form-item prop="devSn">
@@ -64,7 +75,7 @@
                   </el-form-item>
                 </div>
               </div>
-              <div class="dia-citem clearfix">
+              <div class="dia-citem clearfix" v-show="typeValue == '传感器'">
                 <div class="dia-citem-label">设备型号：</div>
                 <div class="dia-citem-ib">
                   <el-form-item prop="modelValue">
@@ -74,7 +85,7 @@
                   </el-form-item>
                 </div>
               </div>
-              <div class="dia-citem clearfix" style="padding-bottom: 20px;">
+              <div class="dia-citem clearfix" style="padding-bottom: 20px;" v-show="typeValue == '传感器'">
                 <div class="dia-citem-label" style="line-height: 22px;">监测内容：</div>
                 <div class="dia-citem-ib">
                   <el-checkbox-group v-model="checkedMoniObj" @change="checkboxChange">
@@ -90,16 +101,7 @@
                   </el-form-item>
                 </div>
               </div>
-              <div class="dia-citem clearfix">
-                <div class="dia-citem-label">设备类型：</div>
-                <div class="dia-citem-ib">
-                  <el-form-item>
-                    <el-select v-model="typeValue" placeholder="请选择" @change="typeChange">
-                      <el-option v-for="(item, i) in typeOptions" :key="i" :label="item.label" :value="item.label"></el-option>
-                    </el-select>
-                  </el-form-item>
-                </div>
-              </div>
+          
               <div class="dia-citem clearfix">
                 <div class="dia-citem-label">设备品牌：</div>
                 <div class="dia-citem-ib">
@@ -141,6 +143,8 @@
     </el-dialog>
 
 
+
+
   </div>
 </template>
 
@@ -150,7 +154,6 @@ export default {
   data() {
     return {
       dialogAddDevice: false,
-      dialogAddNetDevice: true,
       ruleFormBlank: {
         devSn: '',
         devEui: '',
@@ -176,13 +179,13 @@ export default {
         extend: '',
       },
       rules: {
+        devType: [{ required: true, message: '必填', trigger: 'blur' }],
         devSn: [{ required: true, message: '必填', trigger: 'blur' }],
         devEui: [{ required: true, message: '必填', trigger: 'blur' }],
         modType: [{ required: true, message: '必填', trigger: 'blur' }],
-        // devModel: [{ required: true, message: '必填', trigger: 'change' }],
-        monitorVal: [{ required: true, message: '必填', trigger: 'blur' }],
+        // devModel: [{ required: true, message: '必填', trigger: 'change' }], // 设备型号
+        // monitorVal: [{ required: true, message: '必填', trigger: 'blur' }],
         devName: [{ required: true, message: '必填', trigger: 'blur' }],
-        devType: [{ required: true, message: '必填', trigger: 'blur' }],
         devBrand: [{ required: true, message: '必填', trigger: 'blur' }],
         manId: [{ required: true, message: '必填', trigger: 'blur' }],
 
@@ -208,9 +211,9 @@ export default {
       checkedMoniObj: [],
       typeOptions: [
         {label: '传感器'},
-        {label: '控制器'},
+        {label: '网关'},
       ],
-      typeValue: '',
+      typeValue: '传感器',
 
       // 重组监测类型和内容对应表
       modelContentList: {},
@@ -292,19 +295,37 @@ export default {
       let that = this
       this.$refs.diaForm.validate(valid => {
         if (valid) {
-          api.device.addDeviceGi(this.ruleForm).then(res => {
+          let params = {
+            devSn: this.ruleForm.devSn,
+            devEui: this.ruleForm.devEui,
+            modType: this.ruleForm.modType,
+            devName: this.ruleForm.devName,
+            devType: this.typeValue,
+            devBrand: this.ruleForm.devBrand,
+            manId: this.ruleForm.manId,
+            extend: this.ruleForm.extend,
+          }
+          if (this.typeValue == '传感器') {
+            params.devModel = this.ruleForm.devModel
+            params.monitorVal = this.ruleForm.monitorVal
+          }
+
+          api.device.addDeviceGi(params).then(res => {
             // alert('添加成功')
             // console.log(res)
             if (res.data.code == '200') {
               that.$message.success(`${res.data.message}`)
               // 清空表单
-              that.$refs.diaForm.resetFields()
-              that.ruleForm = that.ruleFormBlank
-              that.dialogAddDevice = true
+              // that.$refs.diaForm.resetFields()
+              // that.ruleForm = that.ruleFormBlank
+              // that.typeValue = '传感器'
+              // that.modelValue = ''
+              // that.dialogAddDevice = true
+              that.dialogClosed()
               setTimeout(function() {
                 that.$router.go(0)
-              }, 500)
-
+              }, 100)
+     
             } else {
               that.$message.error(`${res.data.message}`)
             }
@@ -317,21 +338,12 @@ export default {
     // 关闭弹窗，重置表单
     dialogClosed() {
       this.$refs.diaForm.resetFields()
-      this.ruleForm = {
-        devSn: '',
-        devEui: '',
-        modType: '',
-        devModel: '',
-        monitorVal: '',
-        devName: '',
-        devType: '',
-        devBrand: '',
-        manId: '',
-        extend: '',
-      },
+      this.ruleForm = this.ruleFormBlank
+      this.typeValue = '传感器'
+      this.modelValue = ''
+      this.moniObjList = ''
       this.dialogAddDevice = false
     },
-
 
 
   },
@@ -342,7 +354,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-#DeviceAddGi{
+#DeviceGatewayAddGi{
   @import '../../assets/stylus/xymStyle.styl'
 
   .temp-table{
@@ -361,8 +373,9 @@ export default {
 }
 
 @media screen and (max-width: 1360px) {
-  #DeviceAddGi{
+  #DeviceGatewayAddGi{
     min-width: 1360px;
+    
   }
 }
 

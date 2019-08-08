@@ -143,7 +143,7 @@
           <td>{{ruleForm.highLevel !== '' ? ruleForm.highLevel : ''}}</td>
         </tr>
         <tr>
-          <td>曳引轮周长（cm）</td>
+          <td>曳引轮直径（cm）</td>
           <td>{{ruleForm.tractCircf !== '' ? ruleForm.tractCircf : ''}}</td>
           <td>载荷控制器电压范围（V）</td>
           <td>

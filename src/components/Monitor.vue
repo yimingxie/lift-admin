@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import codec from '../utils/codec_v1.json'
+import codec from '../utils/codec_v2.json'
 
 export default {
   data() {

@@ -163,6 +163,15 @@ const router = new Router({
       component: (resolve) => require(['./views/settings/DeviceAddGi.vue'], resolve)
     },
     {
+      path: "/device-gateway-add-gi",
+      name: "device-gateway-add-gi",
+      meta: {
+        title: "添加设备网关（通用）",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/settings/DeviceGatewayAddGi.vue'], resolve)
+    },
+    {
       path: "/lift-device",
       name: "lift-device",
       meta: {
@@ -297,15 +306,6 @@ const router = new Router({
       },
       component: (resolve) => require(['./views/detection/Detection.vue'], resolve)
     },
-    // {
-    //   path: "/detection-new",
-    //   name: "detection-new",
-    //   meta: {
-    //     title: "检测诊断新",
-    //     auto: false // 是否需要权限
-    //   },
-    //   component: (resolve) => require(['./views/detection/DetectionNew.vue'], resolve)
-    // },
     {
       path: "/detection-panel",
       name: "detection-panel",
@@ -334,15 +334,7 @@ const router = new Router({
       component: (resolve) => require(['./views/detection/DetDetailChartComp.vue'], resolve)
     },
 
-    // {
-    //   path: "/detection-real",
-    //   name: "detection-real",
-    //   meta: {
-    //     title: "检测诊断实时组件",
-    //     auto: false // 是否需要权限
-    //   },
-    //   component: (resolve) => require(['./views/detection/DetectionRealtimeC.vue'], resolve)
-    // },
+
     {
       path: "/detection-add",
       name: "detection-add",

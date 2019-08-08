@@ -97,8 +97,9 @@ $accidentColor = #FA4F43; // 事件
   color: #34414C;
   border: 1px solid #D8DDDF;
   border-radius: 4px;
-  padding 8px 16px;
+  padding 0 16px;
   cursor pointer;
+  line-height 32px;
 }
 .llcb-operate .llcb-btn{
   margin-right 5px;
@@ -108,6 +109,7 @@ $accidentColor = #FA4F43; // 事件
   border: 1px solid #4272FF;
   color #fff;
 }
+
 
 
 
@@ -254,6 +256,9 @@ $accidentColor = #FA4F43; // 事件
   color: #000;
   line-height: 22px;
 }
+.llt-drop-box.offline .ldrop-title{
+  color: #C2C7CC;
+}
 .ldrop-detail{
   overflow hidden;
   text-overflow: ellipsis;
@@ -265,6 +270,9 @@ $accidentColor = #FA4F43; // 事件
   font-size: 14px;
   color: #4272FF;
   line-height: 22px;
+}
+.llt-drop-box.offline .ldd-status{
+  color: #C2C7CC;
 }
 .ldd-line{
   vertical-align: middle;
@@ -281,6 +289,9 @@ $accidentColor = #FA4F43; // 事件
   color: #7E8A95;
   line-height: 22px;
 }
+.llt-drop-box.offline .ldd-id{
+  color: #C2C7CC;
+}
 .idd-project{
   display inline-block;
   font-size: 14px;
@@ -288,8 +299,14 @@ $accidentColor = #FA4F43; // 事件
   line-height: 22px;
   margin-left 18px;
 }
+.llt-drop-box.offline .idd-project{
+  color: #C2C7CC;
+}
 .idd-project span{
   color: #7E8A95;
+}
+.llt-drop-box.offline .idd-project span{
+  color: #C2C7CC;
 }
 .bread-nav{
   padding: 0 20px;
@@ -1576,3 +1593,95 @@ $accidentColor = #FA4F43; // 事件
   background-image: linear-gradient(270deg, #6159FF 0%, #4272FF 100%);
   box-shadow: 0 8px 20px -10px rgba(27,69,191,0.60);
 }
+
+
+.detAddDia-citem-ib2-box{
+  position relative
+  float left
+  width 48%
+}
+
+.list-no-data{
+  color: #909399;
+  font-size: 14px;
+  line-height 60px;
+  text-align: center;
+}
+.dispatch-staff-box{
+  position relative;
+  float left
+  width 220px;
+  height 145px;
+  background: #FFFFFF;
+  box-shadow: 0 0 10px -2px rgba(12,22,49,0.30);
+  margin-top 10px;
+  margin-left 15px;
+}
+.dispatch-item-li-elevDetail .dispatch-staff-box:nth-child(3n+1){
+  margin-left: 0px;
+}
+.dispatch-staff-box-img{
+  float left
+  width 80px;
+  height 80px;
+  background: #EBEEEF url('../../assets/images/xym/dstaff-img.png') no-repeat center center;
+  margin-top 30px;
+  margin-left 14px;
+  overflow hidden
+  border-radius: 100%;
+}
+.dispatch-staff-box-info{
+  float left
+  width 114px;
+  margin-left 10px;
+  margin-top 20px;
+}
+.dstaff-box-input{
+  margin-top 10px;
+}
+.dstaff-box-department{
+  font-size: 14px;
+  color: #34414C;
+  padding-left 16px;
+  line-height 20px;
+  background: url('../../assets/images/xym/dstaff-department.png') no-repeat left center;
+  margin-top -16px;
+}
+.dstaff-box-phone{
+  font-size: 14px;
+  color: #34414C;
+  padding-left 16px;
+  line-height 20px;
+  margin-top 6px;
+  background: url('../../assets/images/xym/dstaff-phone.png') no-repeat left center;
+}
+.dstaff-delete{
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width 20px;
+  height 20px;
+  background: url('../../assets/images/xym/dstaff-delete.png') no-repeat center center;
+  background-size: 16px 16px;
+  cursor pointer;
+}
+.dealResult-descript{
+  margin-top: 5px;
+}
+.dealResult-p{
+  font-size: 14px;
+  color: #34414C;
+  line-height: 22px;
+}
+.dealResult-link{
+  font-size: 14px;
+  color: #4272FF;
+  margin-left 24px;
+}
+.dealResult-name{
+  position: absolute;
+  top: 0;
+  right: 0;
+  
+}
+

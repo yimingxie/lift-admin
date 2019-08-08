@@ -146,7 +146,7 @@
                   
                   <!-- 数据要特殊处理 -->
                   <el-form-item prop="carSize" class="lar-box">
-                    <h4>轿厢尺寸（m）</h4>
+                    <h4>轿厢尺寸（cm）</h4>
                     <div class="clearfix">
                       <div style="float: left; width: 30%; margin-right: 5%;">
                         <el-input v-model="special.carSize.kuan" size="small" placeholder="宽度"></el-input>
@@ -171,7 +171,7 @@
                     </el-select>
                   </el-form-item>
                   <el-form-item prop="doorOsize" class="lar-box">
-                    <h4>开门尺寸（m）</h4>
+                    <h4>开门尺寸（cm）</h4>
                     <el-input v-model="ruleForm.doorOsize" size="small"></el-input>
                   </el-form-item>
                   <el-form-item prop="doorOdir" class="lar-box">
@@ -200,7 +200,7 @@
                     <el-form-item prop="carForm" class="lar-box" style="width: 100%;">
                       <h4>轿厢形式</h4>
                       <div class="clearfix" v-for="(item, i) in special.carForm" :key="i">
-                        <div style="float: left; width: 22%;margin-bottom: 3px;">
+                        <div style="float: left; width: 22%;margin-bottom: 5px;">
                           <el-input v-model="item.value" size="small" placeholder="请输入"></el-input>
                         </div>
                         <div class="delete-floor-icon" @click="deleteCarForm(i)" v-if="i > 0"></div>
@@ -265,19 +265,19 @@
                   <div class="clearfix">
                   </div>
                   <el-form-item prop="topHeight" class="lar-box">
-                    <h4>顶层高度（m）</h4>
+                    <h4>顶层高度（cm）</h4>
                     <el-input v-model="ruleForm.topHeight" size="small"></el-input>
                   </el-form-item>
                   <el-form-item prop="bottomHeight" class="lar-box">
-                    <h4>底坑深度（m）</h4>
+                    <h4>底坑深度（cm）</h4>
                     <el-input v-model="ruleForm.bottomHeight" size="small"></el-input>
                   </el-form-item>
                   <el-form-item prop="wellHeight" class="lar-box">
-                    <h4>井道高度（m）</h4>
+                    <h4>井道高度（cm）</h4>
                     <el-input v-model="ruleForm.wellHeight" size="small"></el-input>
                   </el-form-item>
                   <el-form-item prop="carHeight" class="lar-box">
-                    <h4>轿厢高度（m）</h4>
+                    <h4>轿厢高度（cm）</h4>
                     <el-input v-model="ruleForm.carHeight" size="small"></el-input>
                   </el-form-item>
                   <el-form-item prop="lowLevel" class="lar-box">
@@ -289,12 +289,24 @@
                     <el-input v-model="ruleForm.highLevel" size="small"></el-input>
                   </el-form-item>
                   <el-form-item prop="tractCircf" class="lar-box">
-                    <h4>曳引轮周长（m）</h4>
+                    <h4>曳引轮直径（cm）</h4>
                     <el-input v-model="ruleForm.tractCircf" size="small"></el-input>
                   </el-form-item>
-                  <el-form-item prop="loadControl" class="lar-box">
+                  <!-- <el-form-item prop="loadControl" class="lar-box">
                     <h4>载荷控制器</h4>
                     <el-input v-model="ruleForm.loadControl" size="small"></el-input>
+                  </el-form-item> -->
+                  <el-form-item prop="loadControl" class="lar-box">
+                    <h4>载荷控制器电压范围（V）</h4>
+                    <div class="clearfix">
+                      <div style="float: left; width: 40%;">
+                        <el-input v-model="special.loadControl.value1" size="small" placeholder="范围"></el-input>
+                      </div>
+                      <div class="floors-split">-</div>
+                      <div style="float: left; width: 40%;">
+                        <el-input v-model="special.loadControl.value2" size="small" placeholder="范围"></el-input>
+                      </div>
+                    </div>
                   </el-form-item>
                   <el-form-item prop="countWeight" class="lar-box">
                     <h4>对重装置重量（kg）</h4>
@@ -303,8 +315,8 @@
 
                   <div style="width: 100%;overflow: hidden;">
                     <el-form-item prop="floorsHeight" class="lar-box" style="width: 100%;">
-                      <h4>层高（m）</h4>
-                      <div class="clearfix" v-for="(item, i) in special.floorsHeight" :key="i">
+                      <h4>层高（cm）</h4>
+                      <div class="clearfix" v-for="(item, i) in special.floorsHeight" :key="i" style="margin-bottom: 5px;">
                         <div style="float: left; width: 8%;">
                           <el-input v-model="item.floor1" size="small" placeholder="楼层"></el-input>
                         </div>
@@ -560,6 +572,10 @@ export default {
         floorsHeight: [
           {floor1: '', floor2: '', height: ''}
         ],
+        loadControl: {
+          value1: '',
+          value2: ''
+        },
         carForm: [
           {value: ''}
         ],
@@ -658,7 +674,7 @@ export default {
 
   created() {
     this.parentCode = this.$route.query.regCode
-    this.submitState = this.$route.query.submitState
+    // this.submitState = this.$route.query.submitState
   },
   mounted() {
 
@@ -676,13 +692,13 @@ export default {
       let that = this
       api.lift.getLiftResult(this.parentCode).then(res => {
         if (!res.data.data) {
-          // this.submitState = 'post'
-          // this.ruleForm = this.ruleFormBlank
-          // this.special = this.specialBlank
+          this.submitState = 'post'
+          this.ruleForm = this.ruleFormBlank
+          this.special = this.specialBlank
           this.ruleForm.regCode = this.parentCode
           return
         }
-        // this.submitState = 'put'
+        this.submitState = 'put'
         let detail = res.data.data
         for (var key in detail) {
           this.ruleForm[key] = detail[key]
@@ -701,6 +717,17 @@ export default {
         if (this.ruleForm.carForm !== '') {
           this.special.carForm = this.transformCarForm(this.ruleForm.carForm)
         }
+        this.special.loadControl.value1 = this.ruleForm.loadControl.split(',')[0] ? this.ruleForm.loadControl.split(',')[0] : ''
+        this.special.loadControl.value2 = this.ruleForm.loadControl.split(',')[1] ? this.ruleForm.loadControl.split(',')[1] : ''
+
+
+        // m转换成cm
+        this.ruleForm.doorOsize = (this.ruleForm.doorOsize * 100).toFixed(1); 
+        this.ruleForm.topHeight = (this.ruleForm.topHeight * 100).toFixed(1); 
+        this.ruleForm.bottomHeight = (this.ruleForm.bottomHeight * 100).toFixed(1); 
+        this.ruleForm.wellHeight = (this.ruleForm.wellHeight * 100).toFixed(1); 
+        this.ruleForm.carHeight = (this.ruleForm.carHeight * 100).toFixed(1); 
+        this.ruleForm.tractCircf = (this.ruleForm.tractCircf * 100).toFixed(1); 
 
         this.searchMap(detail.latLon)
       })
@@ -744,9 +771,10 @@ export default {
       // '10:20:30' => carSize: {gao: '', shen: '', kuan: ''}
       if (typeof carSize == 'string') {
         let carSizeObj = {}
-        carSizeObj.gao = carSize.split(':')[0]
-        carSizeObj.kuan = carSize.split(':')[1]
-        carSizeObj.shen = carSize.split(':')[2]
+        // 将m转为cm
+        carSizeObj.gao = carSize.split(':')[0] * 100
+        carSizeObj.kuan = carSize.split(':')[1] * 100
+        carSizeObj.shen = carSize.split(':')[2] * 100
         return carSizeObj
       }
 
@@ -756,7 +784,8 @@ export default {
         if (carSize.gao === '' || carSize.kuan === '' || carSize.shen === '') {
           return ''
         } else {
-          return carSize.gao + ':' + carSize.kuan + ':' + carSize.shen
+          // 除以100，将cm转为m
+          return carSize.gao / 100 + ':' + carSize.kuan / 100 + ':' + carSize.shen / 100
         }
       }
 
@@ -768,13 +797,14 @@ export default {
       // 字符串数组重组成新形式数组
       // "[{'floor': '-1, 1', 'height': '5'}, {'floor': '1, 5', 'height' : '4'}]" => [{floor1: '-1', floor2: '1', height: '5'}, {floor1: '1', floor2: '5', height: '4'}]
       if (typeof floorsHeight == 'string') {
+        // 将m转换成cm
         let evalFloorsHeight = eval(floorsHeight)
         let floorsHeightArr = []
         evalFloorsHeight.forEach(item => {
           floorsHeightArr.push({
             floor1: item.floor.split(',')[0],
             floor2: item.floor.split(',')[1],
-            height: item.height
+            height: item.height * 100
           })
         })
         return floorsHeightArr
@@ -783,6 +813,7 @@ export default {
       // 新形式数组重组为字符串数组
       // [{floor1: '-1', floor2: '1', height: '5'}, {floor1: '1', floor2: '5', height: '4'}] => "[{'floor': '-1, 1', 'height': '5'}, {'floor': '1, 5', 'height' : '4'}]"
       if (floorsHeight instanceof Array) {
+        // 将cm转化为m
         if (floorsHeight.length === 1 && floorsHeight[0].floor1 === '' && floorsHeight[0].floor2 === '' && floorsHeight[0].height === '') return ''
         let carSizeArrStr = []
         floorsHeight.forEach((item, i) => {
@@ -791,7 +822,7 @@ export default {
           } else {
             carSizeArrStr.push({
               floor: item.floor1 + ',' + item.floor2,
-              height: item.height
+              height: item.height / 100
             })
           }
           
@@ -1024,7 +1055,7 @@ export default {
 
     // 获取省市区联动值
     getCity(arr, cityName) {
-      this.ruleForm.areaCode = arr[arr.length - 1]
+      this.ruleForm.areaCode = arr[arr.length - 1] || ""
       this.special.areaCode = arr
       this.special.chooseCity = cityName
       this.ruleForm.localArea = cityName.join(' ')
@@ -1051,6 +1082,8 @@ export default {
           this.ruleForm.carSize = this.transformCarSize(this.special.carSize)
           this.ruleForm.floorsHeight = this.transformFloorsHeight(this.special.floorsHeight)
           this.ruleForm.carForm = this.transformCarForm(this.special.carForm)
+          this.ruleForm.loadControl = this.special.loadControl.value1 + ',' + this.special.loadControl.value2
+
           if (this.ruleForm.doorForm == '其他') {
             this.ruleForm.doorForm = this.special.doorForm
           }
@@ -1070,6 +1103,14 @@ export default {
           } else {
             this.ruleForm.latLon = ''
           }
+
+          // cm转换成m
+          this.ruleForm.doorOsize = this.ruleForm.doorOsize / 100
+          this.ruleForm.topHeight = this.ruleForm.topHeight / 100
+          this.ruleForm.bottomHeight = this.ruleForm.bottomHeight / 100
+          this.ruleForm.wellHeight = this.ruleForm.wellHeight / 100
+          this.ruleForm.carHeight = this.ruleForm.carHeight / 100
+          this.ruleForm.tractCircf = this.ruleForm.tractCircf / 100
 
           console.log(this.ruleForm)
 
@@ -1170,7 +1211,7 @@ export default {
   }
   .lar-item-title{
     line-height 16px;
-    height 16px;
+    // height 16px;
     padding 20px 0;
     border-bottom 1px dashed #D8DDDF;
   }
@@ -1267,7 +1308,7 @@ export default {
   .delete-floor-icon{
     float left;
     width 30px;
-    height 40px;
+    height 32px;
     background: url('../../assets/images/xym/delete.png') no-repeat center center;
     margin-left 8px;
     cursor pointer;

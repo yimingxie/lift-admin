@@ -152,12 +152,13 @@
               <div class="llt-th">详细地址</div>
               <div class="llt-th">在线/设备</div>
               <div class="llt-th">检测数</div>
-              <div class="llt-th"><div class="llt-th-sort" :class="sortClass" @click="warnSort">异常告警</div></div>
+              <!-- <div class="llt-th"><div class="llt-th-sort" :class="sortClass" @click="warnSort">异常告警</div></div> -->
+              <div class="llt-th">异常告警</div>
               <div class="llt-th">操作</div>
             </div>
           </div>
           <div class="llt-tbody">
-
+            <div class="list-no-data" v-show="liftList.length == 0">暂无数据</div>
             <div class="llt-tr clearfix" v-for="(item, i) in liftList" :key="i">
               <div class="llt-tr-container clearfix">
                 <div class="llt-td">
@@ -359,7 +360,7 @@ export default {
 
     // 区域筛选
     selectCity(cityArr, cnName) {
-      this.liftListParams.areaCode = cityArr[cityArr.length-1]
+      this.liftListParams.areaCode = cityArr[cityArr.length-1] || ""
       console.log(cnName)
       this.getLiftList()
     },

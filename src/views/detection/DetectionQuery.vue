@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import api from '../../api.js'
 import SearchCode from '../../components/SearchCode'
 import Footer from '../common/fotter'
 
@@ -52,13 +53,21 @@ export default {
 
   },
   methods: {
-    goToResult(val) {
-      this.$router.push({
-        path: '/detection',
-        query: {
-          regCode: val
+    goToResult(code) {
+      api.lift.getLiftResult(code).then(res => {
+        console.log('res', res.data)
+        if (res.data.data) {
+          this.$router.push({
+            path: '/detection-panel',
+            query: {
+              regCode: code
+            }
+          })
+        } else {
+          this.$message.error('该电梯不存在，请重新输入')
         }
       })
+      
     }
 
   },

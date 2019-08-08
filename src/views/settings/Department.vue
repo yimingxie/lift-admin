@@ -518,7 +518,7 @@ export default {
     // 区域筛选
     selectCity(cityArr, cnName) {
       this.queryParam.depName = ''
-      this.queryParam.areaCode = cityArr[cityArr.length-1]
+      this.queryParam.areaCode = cityArr[cityArr.length-1] || ""
       // console.log(cnName)
       this.getAllDepartmentData()
     },

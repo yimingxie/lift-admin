@@ -76,6 +76,11 @@ export default {
     return http.delete(`${url1}/elevator/device/unbind`, params)
   },
 
+  // 批量删除设备（维保）
+  deleteBatchDeviceMainten(params) {
+    return http.delete(`${url1}/elevator/device/batch/unbind`, params)
+  },
+
   // 设备更换记录
   deviceChangeLog(params) {
     // let url = `${url1}/elevator/device/record?query=` + params
@@ -96,6 +101,11 @@ export default {
   // 查询设备上下线记录
   getDeviceBonline(devEui) {
     return http.get(`${url1}/elevator/device/${devEui}/bonline`)
+  },
+
+  // 查询设备安装人员下拉
+  getDepStaff() {
+    return http.get(`${url1}/depStaff`)
   },
   
 

@@ -3,11 +3,12 @@
     <div class="llcb-search-box">
       <input class="lsearch-input" type="text" v-model="cCode" placeholder="搜索电梯注册码/详细地址" @keyup="showList" @keyup.enter="search(cCode)" @blur="show = false">
       <input class="lsearch-submit" type="button" value="" @click="search(cCode)">
+      <div class="code-clear" v-show="cCode" @click="clearCode"></div>
     </div>
 
     <!-- 搜索提示下拉 -->
     <div class="llcb-search-tips" v-show="show">
-      <div style="text-align: center;" v-show="resultList.length == 0">无搜索结果</div>
+      <div style="color: #909399;font-size: 14px;line-height 60px;text-align: center;" v-show="resultList.length == 0">无搜索结果</div>
       <div class="search-tip-box" v-for="(item, i) in resultList" :key="i" @mousedown="search(item.regCode)">
         <h4>{{item.regCode}}</h4>
         <p>{{item.inNum}}  {{item.address}}</p>
@@ -29,6 +30,7 @@ export default {
     }
   },
   mounted() {
+    console.log('cCode', this.cCode)
     
 
   },
@@ -66,7 +68,13 @@ export default {
       // this.cCode = regCode
       // this.$emit('childCode', this.cCode)
       this.$emit('childCode', regCode)
-    }
+    },
+
+    // 清空
+    clearCode() {
+      this.cCode = ''
+      this.search('')
+    },
 
   },
   components: {
@@ -78,6 +86,23 @@ export default {
 <style lang="stylus" scoped>
 .search-container{
   position relative;
+
+  .llcb-search-box{
+    position relative;
+  }
+  .code-clear{
+    position absolute;
+    top: 1px;
+    right 1px;
+    width 40px
+    height 30px;
+    background #fff url('../assets/images/xym/delete.png') no-repeat center center;
+    cursor pointer
+    opacity 0;
+  }
+  .llcb-search-box:hover .code-clear{
+    opacity 1
+  }
 
   .lsearch-input{
     position relative;

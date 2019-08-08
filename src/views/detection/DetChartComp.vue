@@ -1,7 +1,7 @@
 <template>
   <div id="DetChartComp">
     <!-- 右侧实时监测数据 -->
-    <div class="">
+    <div>
       <!-- 切换时间 -->
       <div class="det-warn-title">
         <div class="det-warn-title-h">实时监测数据</div> 
@@ -279,6 +279,50 @@
                   <div class="real-chart" id="real-chart-qpjskgdys"></div>
                 </div>
               </div>
+              <div class="dcc-box">
+                <div class="dcc-box-data clearfix">
+                  <div class="dccb-data-icon">
+                    <img src="../../assets/images/xym/dianya.png" alt="">
+                  </div>
+                  <div class="dccb-data-p">
+                    <div class="dccb-data-p1"><span>{{qpjskgdyxVal}}</span>V</div>
+                    <div class="dccb-data-p2">（下）强迫减速开关电压</div>
+                  </div>
+                </div>
+                <div class="dcc-box-chart">
+                  <div class="real-chart" id="real-chart-qpjskgdyx"></div>
+                </div>
+              </div>
+              <div class="dcc-box">
+                <div class="dcc-box-data clearfix">
+                  <div class="dccb-data-icon">
+                    <img src="../../assets/images/xym/dianya.png" alt="">
+                  </div>
+                  <div class="dccb-data-p">
+                    <div class="dccb-data-p1"><span>{{ywkgdysVal}}</span>V</div>
+                    <div class="dccb-data-p2">（上）越位开关电压</div>
+                  </div>
+                </div>
+                <div class="dcc-box-chart">
+                  <div class="real-chart" id="real-chart-ywkgdys"></div>
+                </div>
+              </div>
+              <div class="dcc-box">
+                <div class="dcc-box-data clearfix">
+                  <div class="dccb-data-icon">
+                    <img src="../../assets/images/xym/dianya.png" alt="">
+                  </div>
+                  <div class="dccb-data-p">
+                    <div class="dccb-data-p1"><span>{{ywkgdyxVal}}</span>V</div>
+                    <div class="dccb-data-p2">（下）越位开关电压</div>
+                  </div>
+                </div>
+                <div class="dcc-box-chart">
+                  <div class="real-chart" id="real-chart-ywkgdyx"></div>
+                </div>
+              </div>
+
+
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
                   <div class="dccb-data-icon">
@@ -571,6 +615,20 @@
                     <img src="../../assets/images/xym/dianliu.png" alt="">
                   </div>
                   <div class="dccb-data-p">
+                    <div class="dccb-data-p1"><span>{{jxjmkhVal}}</span></div>
+                    <div class="dccb-data-p2">轿厢轿门开合</div>
+                  </div>
+                </div>
+                <div class="dcc-box-chart">
+                  <div class="real-chart" id="real-chart-jxjmkh"></div>
+                </div>
+              </div>
+              <div class="dcc-box">
+                <div class="dcc-box-data clearfix">
+                  <div class="dccb-data-icon">
+                    <img src="../../assets/images/xym/dianliu.png" alt="">
+                  </div>
+                  <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{jxwzVal}}</span>楼</div>
                     <div class="dccb-data-p2">轿厢位置</div>
                   </div>
@@ -683,6 +741,9 @@ export default {
       jskgdysVal: 0,
       jskgdyxVal: 0,
       qpjskgdysVal: 0,
+      qpjskgdyxVal: 0,
+      ywkgdysVal: 0,
+      ywkgdyxVal: 0,
       pcgyqdyVal: 0,
       ddjdydyVal: 0,
       ddjdydlVal: 0,
@@ -700,6 +761,7 @@ export default {
       jdjxkgdyVal: 0,
       jdmjmddyVal: 0,
       jdmjmddlVal: 0,
+      jxjmkhVal: 0,
       jxwzVal: 0,
       jxxtzdVal: 0,
       jddgzdVal: 0,
@@ -966,6 +1028,7 @@ export default {
     // 获取所有实时图表监测数据
     this.getChartDataSum()
 
+
   },
   beforeDestroy() {
     // 页面关闭清除定时器
@@ -1082,6 +1145,9 @@ export default {
         {monitorObject: "0:2:4", monitorVal: "5", regCode: regCode, stime: stime, etime: etime},
         {monitorObject: "0:2:5", monitorVal: "5", regCode: regCode, stime: stime, etime: etime},
         {monitorObject: "0:2:6", monitorVal: "5", regCode: regCode, stime: stime, etime: etime},
+        {monitorObject: "0:2:7", monitorVal: "5", regCode: regCode, stime: stime, etime: etime},
+        {monitorObject: "0:2:9", monitorVal: "5", regCode: regCode, stime: stime, etime: etime},
+        {monitorObject: "0:2:10", monitorVal: "5", regCode: regCode, stime: stime, etime: etime},
         {monitorObject: "0:2:8", monitorVal: "5", regCode: regCode, stime: stime, etime: etime},
         {monitorObject: "0:3:0", monitorVal: "5", regCode: regCode, stime: stime, etime: etime},
         {monitorObject: "0:3:0", monitorVal: "4", regCode: regCode, stime: stime, etime: etime},
@@ -1099,8 +1165,9 @@ export default {
         {monitorObject: "1:0:1", monitorVal: "5", regCode: regCode, stime: stime, etime: etime},
         {monitorObject: "1:0:2", monitorVal: "5", regCode: regCode, stime: stime, etime: etime},
         {monitorObject: "1:0:2", monitorVal: "4", regCode: regCode, stime: stime, etime: etime},
+        {monitorObject: "1:2:0", monitorVal: "10", regCode: regCode, stime: stime, etime: etime},
         {monitorObject: "1:2:0", monitorVal: "9", regCode: regCode, stime: stime, etime: etime},
-        {monitorObject: "1:2:1", monitorVal: "6", regCode: regCode, stime: stime, etime: etime},
+        {monitorObject: "1:2:0", monitorVal: "6", regCode: regCode, stime: stime, etime: etime},
         {monitorObject: "2:1:1", monitorVal: "6", regCode: regCode, stime: stime, etime: etime},
         {monitorObject: "2:1:0", monitorVal: "10", regCode: regCode, stime: stime, etime: etime},
 
@@ -1111,7 +1178,7 @@ export default {
         let resList = res.data.data || {}
         console.log('请求所有图表数据', res.data)
         this.chartTimer = setTimeout(() => {
-           this.drawChart1({container: 'real-chart-jfwd',unit: '℃',name: '机房温度',max: etime,dataType: 'real_data',data: resList['0:0:0:1']})
+          this.drawChart1({container: 'real-chart-jfwd',unit: '℃',name: '机房温度',max: etime,dataType: 'real_data',data: resList['0:0:0:1']})
           this.drawChart1({container: 'real-chart-jfsd',unit: '%',name: '机房湿度',max: etime,dataType: 'real_data',data: resList['0:0:0:2']})
           this.drawChart1({container: 'real-chart-jffs',unit: 'm/s',name: '机房风速',max: etime,dataType: 'real_data',data: resList['0:0:0:3']})
           this.drawChart1({container: 'real-chart-jdwd',unit: '℃',name: '井道温度',max: etime,dataType: 'real_data',data: resList['2:0:0:1']})
@@ -1125,6 +1192,9 @@ export default {
           this.drawChart1({container: 'real-chart-jskgdys',unit: 'V',name: '（上）减速开关电压',max: etime,dataType: 'real_data',data: resList['0:2:4:5']})
           this.drawChart1({container: 'real-chart-jskgdyx',unit: 'V',name: '（下）减速开关电压',max: etime,dataType: 'real_data',data: resList['0:2:5:5']})
           this.drawChart1({container: 'real-chart-qpjskgdys',unit: 'V',name: '（上）强迫减速开关电压',max: etime,dataType: 'real_data',data: resList['0:2:6:5']})
+          this.drawChart1({container: 'real-chart-qpjskgdyx',unit: 'V',name: '（下）强迫减速开关电压',max: etime,dataType: 'real_data',data: resList['0:2:7:5']})
+          this.drawChart1({container: 'real-chart-ywkgdys',unit: 'V',name: '（上）越位开关电压',max: etime,dataType: 'real_data',data: resList['0:2:9:5']})
+          this.drawChart1({container: 'real-chart-ywkgdyx',unit: 'V',name: '（下）越位开关电压',max: etime,dataType: 'real_data',data: resList['0:2:10:5']})
           this.drawChart1({container: 'real-chart-pcgyqdy',unit: 'V',name: '平层感应器电压',max: etime,dataType: 'real_data',data: resList['0:2:8:5']})
           this.drawChart1({container: 'real-chart-ddjdydy',unit: 'V',name: '电动机电源电压',max: etime,dataType: 'real_data',data: resList['0:3:0:5']})
           this.drawChart1({container: 'real-chart-ddjdydl',unit: 'A',name: '电动机电源电流',max: etime,dataType: 'real_data',data: resList['0:3:0:4']})
@@ -1142,8 +1212,10 @@ export default {
           this.drawChart1({container: 'real-chart-jdjxkgdy',unit: 'V',name: '轿顶检修开关电压',max: etime,dataType: 'real_data',data: resList['1:0:1:5']})
           this.drawChart1({container: 'real-chart-jdmjmddy',unit: 'V',name: '轿顶门机马达电压',max: etime,dataType: 'real_data',data: resList['1:0:2:5']})
           this.drawChart1({container: 'real-chart-jdmjmddl',unit: 'A',name: '轿顶门机马达电流',max: etime,dataType: 'real_data',data: resList['1:0:2:4']})
+
+          this.drawChart1({container: 'real-chart-jxjmkh',unit: '',name: '轿厢轿门开合',max: etime,dataType: 'real_data',data: resList['1:2:0:10']})
           this.drawChart1({container: 'real-chart-jxwz',unit: 'F',name: '轿厢位置',max: etime,dataType: 'floor',data: resList['1:2:0:9']})
-          this.drawChart1({container: 'real-chart-jxxtzd',unit: 'μm',name: '轿厢箱体振动',max: etime,dataType: 'real_data',data: resList['1:2:1:6']})
+          this.drawChart1({container: 'real-chart-jxxtzd',unit: 'μm',name: '轿厢箱体振动',max: etime,dataType: 'real_data',data: resList['1:2:0:6']})
           this.drawChart1({container: 'real-chart-jddgzd',unit: 'μm',name: '井道导轨振动',max: etime,dataType: 'real_data',data: resList['2:1:1:6']})
           this.drawChart1({container: 'real-chart-jdcmkh',unit: '',name: '井道层门开合',max: etime,dataType: 'real_data',data: resList['2:1:0:10']})
         }, 300)
@@ -1163,6 +1235,10 @@ export default {
         this.jskgdysVal = resList['0:2:4:5'] ? resList['0:2:4:5'][0].real_data : this.jskgdysVal
         this.jskgdyxVal = resList['0:2:5:5'] ? resList['0:2:5:5'][0].real_data : this.jskgdyxVal
         this.qpjskgdysVal = resList['0:2:6:5'] ? resList['0:2:6:5'][0].real_data : this.qpjskgdysVal
+        this.qpjskgdyxVal = resList['0:2:7:5'] ? resList['0:2:7:5'][0].real_data : this.qpjskgdyxVal
+        this.ywkgdysVal = resList['0:2:9:5'] ? resList['0:2:9:5'][0].real_data : this.ywkgdysVal
+        this.ywkgdyxVal = resList['0:2:10:5'] ? resList['0:2:10:5'][0].real_data : this.ywkgdyxVal
+
         this.pcgyqdyVal = resList['0:2:8:5'] ? resList['0:2:8:5'][0].real_data : this.pcgyqdyVal
         this.ddjdydyVal = resList['0:3:0:5'] ? resList['0:3:0:5'][0].real_data : this.ddjdydyVal
         this.ddjdydlVal = resList['0:3:0:4'] ? resList['0:3:0:4'][0].real_data : this.ddjdydlVal
@@ -1180,27 +1256,16 @@ export default {
         this.jdjxkgdyVal = resList['1:0:1:5'] ? resList['1:0:1:5'][0].real_data : this.jdjxkgdyVal
         this.jdmjmddyVal = resList['1:0:2:5'] ? resList['1:0:2:5'][0].real_data : this.jdmjmddyVal
         this.jdmjmddlVal = resList['1:0:2:4'] ? resList['1:0:2:4'][0].real_data : this.jdmjmddlVal
+
+        this.jxjmkhVal = resList['1:2:0:10'] ? resList['1:2:0:10'][0].real_data : this.jxjmkhVal
         this.jxwzVal = resList['1:2:0:9'] ? resList['1:2:0:9'][0].floor : this.jxwzVal
-        this.jxxtzdVal = resList['1:2:1:6'] ? resList['1:2:1:6'][0].real_data : this.jxxtzdVal
+        this.jxxtzdVal = resList['1:2:0:6'] ? resList['1:2:0:6'][0].real_data : this.jxxtzdVal
         this.jddgzdVal = resList['2:1:1:6'] ? resList['2:1:1:6'][0].real_data : this.jddgzdVal
         this.jdcmkhVal = resList['2:1:0:10'] ? resList['2:1:0:10'][0].real_data : this.jdcmkhVal
-        
-
 
       })
     },
 
-    // 图表自适应
-    chartResponse() {
-      const that = this
-      let jfwd = that.$echarts.getInstanceByDom(document.getElementById("real-chart-jfwd"));
-
-      setTimeout(() => {
-        window.addEventListener("resize", function() {
-          jfwd.resize();
-        })
-      }, 300)
-    },
 
     // 锚点平滑跳转
     jump(index) {
@@ -1372,6 +1437,11 @@ export default {
       }
       
       chart.setOption(options)
+
+      // 自适应
+      window.addEventListener('resize', function() {
+        chart.resize()
+      })
     },
 
 

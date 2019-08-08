@@ -37,7 +37,7 @@
         </div>
 
         <div class="changelog-content">
-   
+
           <div class="changelog-item" v-for="(item, i) in changeLogList" :key="i">
             <div class="changelog-item-title">
               <div class="changelog-item-title-icon" :class="item.changeLogs[0].diagnTypeAfter | formatDiagnTypeClass">{{item.diagnMonitor.diagnType | formatDiagnType}}</div>
@@ -116,6 +116,7 @@
 
           </div>
 
+          <div class="list-no-data" v-show="changeLogList.length == 0">暂无数据</div>
 
         </div>
 
