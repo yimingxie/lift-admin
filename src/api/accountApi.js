@@ -101,6 +101,18 @@ export default  {
       `${url2}/department/${id}`
     )
   },
+  // 获取公司下的部门
+  getCorpDepartments(corpId){
+    return http.get(
+      `${url2}/dep/select/${corpId}`
+    )
+  },
+  // 获取部门下的员工
+  getDepStaffs(depId){
+    return http.get(
+      `${url2}/dep/${depId}/member`
+    )
+  },
   // ------------------------员工管理--------------------------------
 
   // 添加员工

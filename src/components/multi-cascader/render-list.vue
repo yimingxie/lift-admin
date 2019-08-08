@@ -9,10 +9,8 @@
       @mouseout="handleMouseOut"
     >
       <p class="li-label-style" v-toolTip>
-
         <!-- <span @click.stop v-show="!onlyLast || (onlyLast && node.isLeaf)"> -->
-        <span @click.stop v-show="level === 3 || level === 4">
-          <!-- {{level}} -->
+        <span @click.stop v-show="(level === 3 || level === 4) || (!onlyLast || (onlyLast && node.isLeaf))">
           <el-checkbox
             @change="handleCheck($event, node)"
             v-model="node.checked"

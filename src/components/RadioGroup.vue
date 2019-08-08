@@ -62,6 +62,7 @@
     white-space: nowrap;
     border-radius: 4px;
     margin 0 0 0 7px
+    
     &.active
       background: #4272FF;
       // box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50);

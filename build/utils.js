@@ -53,8 +53,10 @@ exports.cssLoaders = function (options) {
     } else {
       return ['vue-style-loader'].concat(loaders)
     }
+    
+    
   }
-
+  
   // https://vue-loader.vuejs.org/en/configurations/extract-css.html
   return {
     css: generateLoaders(),
@@ -62,7 +64,7 @@ exports.cssLoaders = function (options) {
     less: generateLoaders('less'),
     sass: generateLoaders('sass', { indentedSyntax: true }),
     scss: generateLoaders('sass'),
-    stylus: generateLoaders('stylus'),
+    stylus: generateLoaders('stylus'),  //红色文字对应上方配置
     styl: generateLoaders('stylus')
   }
 }

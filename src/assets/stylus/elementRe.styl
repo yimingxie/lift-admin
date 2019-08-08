@@ -1,4 +1,6 @@
 
+// @import "./mixin";/*引入配置*/
+
 /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
 ::-webkit-scrollbar {
     width: 0.2857142857142857rem;
@@ -11,8 +13,8 @@
 ::-webkit-scrollbar-track {
 /* -webkit-box-shadow: inset 0 0 0.42857142857142855rem rgba(0,0,0,0.3);
   */
-   background: #fff;
-    border-radius: 8px;
+  background: #fff;
+  border-radius: 8px;
 }
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
@@ -47,7 +49,7 @@
 
 // ---------------tab-------------------
 .el-tabs__header
-  background: #fff!important;
+  background: $background-color-theme!important;
   padding: 0 20px!important;
   margin: 0!important
   height: 52px!important
@@ -174,7 +176,6 @@
 // -----------------按钮  end---------------------------
 
 // ----------------- 导航 ---------------------------
-
 .el-menu
   box-shadow: 2px 0 6px 0 rgba(43,108,239,0.10)!important;
   z-index 99
@@ -308,6 +309,7 @@
 .el-input__inner {
   height: 32px !important;
   line-height: 32px !important;
+  color: $font-color-theme!important;
 }
 .el-input__icon
   line-height: 32px !important;
@@ -320,8 +322,8 @@
   background: rgba(66,114,255,0.10) !important;
 .el-cascader-menu__item.is-active
   color: #4272FF !important;
-.el-cascader-menu__item--extensible:after
-  color: transparent !important;
+// .el-cascader-menu__item--extensible:after
+//   color: transparent !important;
 // --------------------------级联-end-------------------------------
 
 // --------------------------checkbox--------------------------------
@@ -339,9 +341,22 @@
 // --------------------------区域选择-不要边框-------------------------------
 .regionPicker
   width 110px!important
- 
+  .el-input__inner
+    border: none!important
+.personPicker
+  width 130px!important
+  font-size: 20px;
+  color: #34414C;
   .el-input__inner
     border:none!important
+    padding: 0;
+    font-size: 20px;
+    color: #34414C;
+  .el-cascader__label
+    padding: 0;
+  .el-input__prefix, .el-input__suffix
+    color: #2f4e8e;
+
 // --------------------------区域选择-end-------------------------------
 
 // --------------------------tag--------------------------------
@@ -367,37 +382,104 @@
 .el-step__icon.is-text
   border none!important;
 .el-step__icon
-  width: auto
+  width: auto!important
   // height: auto
 .el-step__head.is-process
-  font-size: 16px;
+  font-size: 16px!important;
   color: #34414C;
 .el-step__title
-  margin 9px 0
+  margin 9px 0!important
 .el-step__title.is-finish
-  color: #7E8A95;
+  color: #7E8A95!important;
 .el-step.is-horizontal .el-step__line
-  height: 1px;
+  height: 1px!important;
 .el-step__line
   background-color: rgba(66,114,255,0.30)
 // 控制线条颜色
 .el-step__head.is-finish
   border-color: #4272FF;
-  border-radius: 6px;
+  border-radius: 6px!important;
   .el-step__line-inner
     transition-delay: 0ms!important;
     border-width: 0.5px!important;
     width: 100%!important;
+.chaoshiLine .el-step__head.is-finish
+  border-color: #FA4F43;
 .el-step__main
-  margin: 0 5px;
+  margin: 0 5px!important;
 .el-step__description
-  font-size: 14px;
-  // margin: 0 0 0 -23px;
+  font-size: 14px!important;
   p
-    margin 7px 0
+    margin 7px 0!important
 .el-step__description.is-process,.el-step__description.is-finish
-  color: #7E8A95;
+  color: #7E8A95!important;
 .el-step__description.is-wait
-  color: #C2C7CC;
+  color: #C2C7CC!important;
 // -------------------------- 进度条 -end ---------------------------
 
+// -------------------------- 删除弹窗样式 --------------------------
+
+.dia-heading{
+  text-align: center;
+}
+.dia-con-p h4{
+  font-size: 24px;
+  color: #34414C;
+  margin-top 10px;
+}
+.dia-con-p p{
+  font-size: 14px;
+  color: #7E8A95;
+  margin-top 8px;
+}
+.diaN-btn-con{
+  text-align: center;
+  padding-bottom 50px;
+}
+.diaN-btn{
+  display inline-block
+  font-size: 14px;
+  margin: 0 20px;
+  width 208px;
+  line-height 36px;
+  color: #FFFFFF;
+  background: #7E8A95;
+  box-shadow: 0 8px 20px -10px rgba(66,114,255,0.60);
+  border-radius: 24px;
+  cursor pointer;
+}
+.diaN-btn.diaN-btn-red{
+  background-image: linear-gradient(-90deg, #E9775E 0%, #E95E5E 100%);
+  box-shadow: 0 8px 20px -10px rgba(255,92,66,0.60);
+}
+.dia-ul{
+  list-style none;
+  overflow: auto;
+  width 430px;
+  margin: 30px auto;
+  max-height: 170px;
+  padding: 0 20px;
+}
+.dia-ul li{
+  float left
+  width 50%;
+  font-size: 14px;
+  color: #7E8A95;
+  line-height: 34px;
+}
+.dia-ul li:nth-child(n){
+  text-align: right;
+  padding: 0 10px 0 0 
+}
+.dia-ul li:nth-child(2n){
+  text-align: left;
+  padding: 0 0 0 10px
+}
+.dia-ul li.single{
+  width 100% !important;
+  text-align: center !important;
+}
+// -------------------------- 删除弹窗样式 end -------------------------- 
+
+.el-input__prefix
+  display: none!important;

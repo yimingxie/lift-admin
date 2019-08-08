@@ -150,9 +150,18 @@
               <el-radio-button :label="false">展开</el-radio-button>
               <el-radio-button :label="true">收起</el-radio-button>
             </el-radio-group> -->
+
+
+            
+
+
             <div class="collapseImg" v-if="isCollapse" @click="isCollapse = false">
             </div>
             <div class="collapseImg unCollapseImg" v-if="!isCollapse" @click="isCollapse = true">
+            </div>
+            <div id="contentDiv">
+              <p @click="changeTheme('theme1')">111</p>
+              <p @click="changeTheme('theme2')">222</p>
             </div>
             <a class="logo"></a>
             
@@ -224,7 +233,7 @@
     watch:{
       $route(to,from){ //跳转组件页面后，监听路由参数中对应的当前页面以及上一个页面
         // console.log('to----' + to)
-        this.appKey=new Date().getTime(); // 监听地址栏参数变化
+        // this.appKey=new Date().getTime(); // 监听地址栏参数变化
         if(to.name=='Login' || to.name=='lift-print'){
           this.$store.commit('SWITCH_LAYOUT', 'auth')
           // console.log('layout====' + this.layout)
@@ -252,10 +261,17 @@
       
     },
     mounted () {
-      
+      window.document.getElementById("page-container").setAttribute('class', 'theme1')
     },
 
     methods: {
+      changeTheme (theme) {
+        // window.document.documentElement.setAttribute('data-theme', theme)
+        window.document.getElementById("page-container").setAttribute('class', theme)
+
+        // console.log("111:::" + window.document.documentElement.getAttribute('data-theme'))
+
+      },
       // 查询账户详情
       getAllAccountData(){
         api.accountApi.getAccountDetail().then((res) => {
@@ -330,7 +346,10 @@
   // 头部
   .the-header
     size 100% 64px
-    background white
+    background #fff
+
+    // bg_color_main("")
+    // bg_pic('hs','chaoshi.png')
     -webkit-box-shadow: 0 1px 4px 0 rgba(81,108,100,0.25);
     box-shadow: 0 1px 4px 0 rgba(81,108,100,0.25);
     position relative
@@ -366,7 +385,8 @@
     flex: auto;
     flex-direction: column;
     min-height: 0;
-    background: #F1F5F7;
+    // background: #F1F5F7;
+    bg_color_submain("")
     min-height: calc(100vh);
     position: relative;
     width 100%
@@ -525,6 +545,15 @@
       .icon-setting
         background url('assets/images/hs/submenuIcon/set1.png') no-repeat center;
       // 设置侧边栏图标 end
-
+  #contentDiv
+    position: absolute;
+    top: 0;
+    left: 139px;
+    p{
+      padding: 10px;
+      margin: 10px;
+      float: left;
+      background: #f0dfdf;
+    }
 </style>
 
