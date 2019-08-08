@@ -230,6 +230,7 @@
   position relative
   #dateContainer
     background: #FFFFFF;
+    // bg_color_main("")
     border-radius: 8px;
     width 100%
     margin-right 2%

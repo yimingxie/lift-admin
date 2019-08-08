@@ -69,7 +69,7 @@ export default {
   },
   // 根据areaCode 返回地区名称
   /**
-   * 获取数组中相同元素的个数
+   * 
    * @param codeList 区code码的字符串集合
    */
   getAreaName(codeList){
@@ -120,6 +120,7 @@ export default {
           }
         })
       })
+      console.log("getAreaNameList:" +  JSON.stringify(getAreaNameList))
       var dest = [],
       map = {};
       for(var i = 0; i < getAreaNameList.length; i++) {
@@ -151,7 +152,7 @@ export default {
         selectedAreaLabels.push(labelItem)
       })
 
-      // console.log("getAreaNameList" + JSON.stringify(selectedAreaLabels) )
+      console.log("getAreaNameList" + JSON.stringify(selectedAreaLabels) )
       return selectedAreaLabels
     }
     

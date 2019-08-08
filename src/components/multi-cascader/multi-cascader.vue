@@ -145,6 +145,7 @@ export default {
     selectedLabels: {
       type: Array,
       default: () => [],
+      twoWay: true
     },
   },
   data () {
@@ -290,8 +291,8 @@ export default {
     },
     // 更新选择
     updateSelect (data = [], needCheckNode = false, setValue = false) {
-      console.log("================================")
-      console.log("needCheckNode==" + needCheckNode)
+      // console.log("================================")
+      // console.log("needCheckNode==" + needCheckNode)
       var util = require("util")
       let tempSelectedNodes = []
       let tempSelectedLabels = []

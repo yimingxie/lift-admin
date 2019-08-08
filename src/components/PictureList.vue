@@ -54,22 +54,25 @@ export default {
   props: {
     maxShow: {
       default:4
+    },
+    images:{
+      default:[]
     }
   },
   data () {
    return {
      slideIndex:1,
-     images:[
-      'http://192.168.100.89:8080/domino/view/image?filename=GI_bQ502kXGow80KFJXa.jpg',
-      'http://192.168.100.89:8080/domino/view/image?filename=GI_css6Ass5R7fgDBoUD.png',
-      'http://192.168.100.89:8080/domino/view/image?filename=GI_eD05guAm1I2c8dpw4.jpg',
-      'http://192.168.100.89:8080/domino/view/image?filename=GI_gnxeay4ZQ87gMGsVW.jpg',
-      'http://192.168.100.89:8080/domino/view/image?filename=GI_css6Ass5R7fgDBoUD.png',
-      'http://192.168.100.89:8080/domino/view/image?filename=GI_eD05guAm1I2c8dpw4.jpg',
-      'http://192.168.100.89:8080/domino/view/image?filename=GI_gnxeay4ZQ87gMGsVW.jpg',
-      'http://192.168.100.89:8080/domino/view/image?filename=GI_bQ502kXGow80KFJXa.jpg',
-      'http://192.168.100.89:8080/domino/view/image?filename=GI_css6Ass5R7fgDBoUD.png',
-     ],
+    //  images:[
+    //   'http://192.168.100.89:8080/domino/view/image?filename=GI_bQ502kXGow80KFJXa.jpg',
+    //   'http://192.168.100.89:8080/domino/view/image?filename=GI_css6Ass5R7fgDBoUD.png',
+    //   'http://192.168.100.89:8080/domino/view/image?filename=GI_eD05guAm1I2c8dpw4.jpg',
+    //   'http://192.168.100.89:8080/domino/view/image?filename=GI_gnxeay4ZQ87gMGsVW.jpg',
+    //   'http://192.168.100.89:8080/domino/view/image?filename=GI_css6Ass5R7fgDBoUD.png',
+    //   'http://192.168.100.89:8080/domino/view/image?filename=GI_eD05guAm1I2c8dpw4.jpg',
+    //   'http://192.168.100.89:8080/domino/view/image?filename=GI_gnxeay4ZQ87gMGsVW.jpg',
+    //   'http://192.168.100.89:8080/domino/view/image?filename=GI_bQ502kXGow80KFJXa.jpg',
+    //   'http://192.168.100.89:8080/domino/view/image?filename=GI_css6Ass5R7fgDBoUD.png',
+    //  ],
      centerDialogVisible:false
    }
   },
@@ -124,10 +127,13 @@ export default {
 #picList{
   .column {
     float: left;
+    margin:8px 18px 0 0;
+  }
+  .column:last-child{
+    margin-right:0 
   }
   .row > .column {
     position relative
-    margin: 0 8px;
     img{
       width: 59px;
       height: 88px;

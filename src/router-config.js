@@ -399,10 +399,10 @@ const router = new Router({
       component: (resolve) => require(['./views/detection/DetTest.vue'], resolve)
     },
     {
-      path: "/missionDetail",
+      path: "/missionDetail/:id",
       name: "missionDetail",
       meta: {
-        title: "任务管理",
+        title: "任务详情",
         auto: false // 是否需要权限
       },
       component: (resolve) => require(['./views/mission/MissionDetail.vue'], resolve)
@@ -415,6 +415,15 @@ const router = new Router({
         auto: false // 是否需要权限
       },
       component: (resolve) => require(['./components/PictureList.vue'], resolve)
+    },
+    {
+      path: "/switchSty",
+      name: "switchSty",
+      meta: {
+        title: "切换样式",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/example/switchSty.vue'], resolve)
     },
   ]
 })

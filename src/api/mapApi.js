@@ -24,6 +24,12 @@ export default  {
       `${url2}/map/abnormal/statistics`, params
     )
   },
+  /**
+   * 
+   * @param params:
+   *  {'regCode':val,'triggleTime':this.date}
+   * 
+   */
   getLiftDetails(params) {
     return http.post(
       `${url2}/map/abnormal/elevator/details`, params
