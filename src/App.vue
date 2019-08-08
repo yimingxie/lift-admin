@@ -1,5 +1,5 @@
 <template>
-  <div id="page-container" :key="appKey">
+  <div id="page-container">
     
     
     <!-- Start: 菜单栏 -->
@@ -54,7 +54,7 @@
     <!-- End: 菜单栏 -->
 
 
-    <div class="ant-layout ant-layout-has-sider">
+    <div id="page-container-layout" class="ant-layout ant-layout-has-sider" :key="appKey">
 
       <!-- Start: 菜单栏 -->
       
@@ -232,11 +232,18 @@
     watch:{
       $route(to,from){ //跳转组件页面后，监听路由参数中对应的当前页面以及上一个页面
         // console.log('to----' + to)
+        console.log('theme', to.name)
+        if (localStorage.getItem('theme')) {
+          console.log('gggg', localStorage.getItem('theme'))
+          this.changeTheme(localStorage.getItem('theme'))
+        }
+        
+
         this.appKey = new Date().getTime(); // 监听地址栏参数变化
         if(to.name=='Login' || to.name=='lift-print'){
           this.$store.commit('SWITCH_LAYOUT', 'auth')
           // console.log('layout====' + this.layout)
-        }else{
+        } else{
           this.$store.commit('SWITCH_LAYOUT', 'admin')
           // console.log('layout====' + this.layout)
         }
@@ -258,14 +265,21 @@
         
     created(){
       
+      
     },
+
     mounted () {
-      window.document.getElementById("page-container").setAttribute('class', 'theme1')
+      // window.document.getElementById("page-container").setAttribute('class', 'theme1')
+      let theme = localStorage.getItem('theme') ? localStorage.getItem('theme') : 'theme1'
+      this.changeTheme(theme)
+      
     },
 
     methods: {
       changeTheme (theme) {
-        window.document.getElementById("page-container").setAttribute('class', theme)
+        document.getElementById("page-container").setAttribute('class', theme)
+        console.log('change', theme)
+        localStorage.setItem('theme', theme)
       },
       // 查询账户详情
       getAllAccountData(){
