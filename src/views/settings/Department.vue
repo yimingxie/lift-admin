@@ -113,7 +113,14 @@
           </el-select>
         </el-form-item> -->
         <el-form-item label="管辖区域：" prop="areaCode" >
-          <choiceindex :selectedLabels="selectedAreaLabels" clearable @change="regionChange" :is-two-dimension-value="false" v-model="checkList" :data="regionOptions"></choiceindex>
+          <choiceindex 
+            :only-last="true" 
+            :selectedLabels="selectedAreaLabels" 
+            clearable @change="regionChange" 
+            :is-two-dimension-value="false" 
+            v-model="checkList" 
+            :data="regionOptions">
+          </choiceindex>
 
           
         </el-form-item>
@@ -147,7 +154,15 @@
           </el-select>
         </el-form-item>
         <el-form-item label="管辖区域：" prop="areaCode">
-          <choiceindex :selectedLabels="selectedAreaLabels" clearable @change="regionChange" :is-two-dimension-value="false" v-model="editAreaCode" :data="regionOptions"></choiceindex>
+          <choiceindex 
+            :only-last="true" 
+            :selectedLabels="selectedAreaLabels" 
+            clearable 
+            @change="regionChange" 
+            :is-two-dimension-value="false" 
+            v-model="editAreaCode" 
+            :data="regionOptions">
+          </choiceindex>
         </el-form-item>
       </el-form>
       <div slot="footer"  class="dialog-footer tac">
@@ -527,7 +542,7 @@ export default {
       api.accountApi.getDepartments(this.queryParam).then((res) => {
         if(res.data.code === 200 && res.data.message === 'success'){
           this.getAllAccountJson = res.data.data.records
-          newArea.getAreaName("440303001,440303003,440303004,440303005,440303006,440303007,440303008,440303009,440303010")
+          // newArea.getAreaName("440303001,440303003,440303004,440303005,440303006,440303007,440303008,440303009,440303010")
           this.getAllAccountJson.forEach(item =>{
             var areaName = newArea.getAreaName(item.areaCode).join('   ')
             Vue.set(item, 'areaName', areaName)

@@ -55,8 +55,8 @@
         <span class="fr" style="margin: 5px 10px;">
           <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange" class="checkbox16">全选</el-checkbox>
         </span>
-        <button class="btn whiteBtn fr" @click="deleteStaff()">删除员工</button>
-        <button class="btn whiteBtn fr" @click="resetPassword()">重置密码</button>
+        <button class="btn whiteBtn fr" @click="deleteStaffDialog()">删除员工</button>
+        <button class="btn whiteBtn fr" @click="resetPasswordDialog()">重置密码</button>
         <!-- <button class="btn whiteBtn fr" >更改部门</button> -->
         <search-input v-model.trim="searchKey" placeholderValue="搜索员工姓名/手机号">
           <span slot="btn" class="search_btn" @click="searchAccount()" @keyup.enter.native="searchAccount()"></span>
@@ -66,7 +66,8 @@
       <div class="splitBar"></div>
     </div>
   </div>
-  <div class="row" >
+  <!-- 员工列表 -->
+  <div class="row" v-if="getAllAccountJson.length > 0">
     <div class="panel" style="border-top-left-radius: 0;border-top-right-radius: 0; padding:0 13px 20px;margin-top: 0;">
       <!-- 列表 Start -->
       <el-row >
@@ -133,7 +134,12 @@
       <!-- 分页 End -->
     </div>
   </div>
-
+  <div class="row" v-if="getAllAccountJson.length == 0">
+    <div class="panel" style="border-top-left-radius: 0;border-top-right-radius: 0; padding:0 13px 20px;margin-top: 0;">
+      <div class="noData">暂无查询数据</div>
+    </div>
+  </div>
+  <!-- 员工列表 end-->
   <!-- 添加账号  弹窗  Start -->
   <el-dialog width="662px" title="添加账号" :visible.sync="add_dialogFormVisible">
     <el-form :model="addAccountForm" :label-width="formLabelWidth">
@@ -205,6 +211,52 @@
     </div>
   </el-dialog>
   <!-- 编辑账号 弹窗 End -->
+
+  <!-- 重置密码员工 弹窗 -->
+  <el-dialog custom-class="noneTitle" :show-close="false" :visible.sync="dialogReset">
+    <div class="dialog-delete">
+      <div class="dia-heading">
+        <div class="dia-con-pic">
+          <img src="../../assets/images/xym/dia-warn.png" alt="">
+        </div>
+        <div class="dia-con-p">
+          <h4>是否确认重置以下员工密码</h4>
+          <p>重置密码后不可复原，请谨慎操作</p>
+        </div>
+      </div>
+      <ul class="dia-ul clearfix">
+        <li :class="checkedStaffs.length <= 1 ? 'single' : ''" v-for="(item, i) in checkedStaffsName" :key="i">{{item}}</li>
+      </ul>
+      <div class="diaN-btn-con clearfix">
+        <div class="diaN-btn diaN-btn-cancel" @click="dialogReset=false">取消</div>
+        <div class="diaN-btn diaN-btn-red" @click="resetPassword">确认</div>
+      </div>
+    </div>
+  </el-dialog>
+  <!-- 重置密码员工 弹窗 end-->
+  <!-- 删除电梯 弹窗-->
+  <el-dialog custom-class="noneTitle" :show-close="false" :visible.sync="dialogDelete">
+    <div class="dialog-delete">
+      <div class="dia-heading">
+        <div class="dia-con-pic">
+          <img src="../../assets/images/xym/dia-warn.png" alt="">
+        </div>
+        <div class="dia-con-p">
+          <h4>是否确认删除以下员工</h4>
+          <p>删除后不可复原，请谨慎操作</p>
+        </div>
+      </div>
+      <ul class="dia-ul clearfix">
+        <li :class="checkedStaffs.length <= 1 ? 'single' : ''" v-for="(item, i) in checkedStaffsName" :key="i">{{item}}</li>
+      </ul>
+      <div class="diaN-btn-con clearfix">
+        <div class="diaN-btn diaN-btn-cancel" @click="dialogDelete=false">取消</div>
+        <div class="diaN-btn diaN-btn-red" @click="deleteStaff">确认</div>
+      </div>
+    </div>
+  </el-dialog>
+  <!-- 删除电梯 弹窗 end-->
+
   <fotter></fotter>
 </div>
 </template>
@@ -214,7 +266,6 @@ import Vue from 'vue'
 import api from 'api'
 import RadioGroup from "../../components/RadioGroup";
 import SearchInput from "../../components/SearchInput";
-// import SearchBox from '../../components/SearchBox'
 import fotter from "../../views/common/fotter";
 import CityChoose from '../../components/CityChoose2'
 import moment from 'moment';
@@ -297,6 +348,7 @@ export default {
       },
       checkAll: false,
       checkedStaffs: [],
+      checkedStaffsName:[],
       isIndeterminate: false,
       checkedAllStaff:[],
       selectedDpt:'',
@@ -322,7 +374,9 @@ export default {
         depName:'',
         areaCode:''
       },
-      selectArea:[]
+      selectArea:[],
+      dialogDelete: false,
+      dialogReset: false,
     }
   },
   components: {
@@ -460,27 +514,43 @@ export default {
       })
      
     },
+     // 重置密码对话框
+    resetPasswordDialog () {
+      if (this.checkedStaffs.length === 0) {
+        return this.$message.error('请勾选需要重置密码的员工');
+      } else {
+        this.checkedStaffsName = []
+        this.checkedStaffs.forEach(item =>{
+          var obj = this.getAllAccountJson.filter(function(value) {
+            return value.id == item;
+          })
+          this.checkedStaffsName.push(obj[0].staffName)
+        })
+      }
+      this.dialogReset = true
+    },
     // 重置密码
     resetPassword(index, row){
-      this.$confirm('是否重置密码?（重置后的密码为666666）', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'error'
-      }).then(() => {
+      // this.$confirm('是否重置密码?（重置后的密码为666666）', '提示', {
+      //   confirmButtonText: '确定',
+      //   cancelButtonText: '取消',
+      //   type: 'error'
+      // }).then(() => {
         var checkIds = this.checkedStaffs.join(',')
         // console.log("checkIds===" + checkIds)
         api.accountApi.resetPsd({"ids":checkIds,"corpId":window.localStorage.getItem('corpId')}).then((res) => {
           if (res.data.code === 200) {
             this.$message.success('重置密码成功！');
             this.getAllAccountData()
+            this.dialogReset = false
           }
         }).catch((res) => {
           this.$message.error(res.data.message);
         })
 
-      }).catch(() => {
-        this.$message.info("取消重置密码");            
-      });
+      // }).catch(() => {
+      //   this.$message.info("取消重置密码");            
+      // });
     },
    
     // 编辑账号
@@ -523,23 +593,38 @@ export default {
       })
       
     },
-
-    // 删除员工账号
-    deleteStaff(index, row){
-      // console.log('删除选中电梯', this.checkedLifts)
+    // 删除电梯对话框
+    deleteStaffDialog () {
       if (this.checkedStaffs.length === 0) {
         return this.$message.error('请勾选需要删除的员工。员工删除后无法复原，请谨慎操作');
       } else {
-        this.$confirm('此操作将永久删除该员工账号, 是否继续?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'error'
-        }).then(() => {
+        this.checkedStaffsName = []
+        this.checkedStaffs.forEach(item =>{
+          var obj = this.getAllAccountJson.filter(function(value) {
+            return value.id == item;
+          })
+          this.checkedStaffsName.push(obj[0].staffName)
+        })
+      }
+      this.dialogDelete = true
+    },
+    // 删除员工账号
+    deleteStaff(index, row){
+      // console.log('删除选中电梯', this.checkedLifts)
+      // if (this.checkedStaffs.length === 0) {
+      //   return this.$message.error('请勾选需要删除的员工。员工删除后无法复原，请谨慎操作');
+      // } else {
+      //   this.$confirm('此操作将永久删除该员工账号, 是否继续?', '提示', {
+      //     confirmButtonText: '确定',
+      //     cancelButtonText: '取消',
+      //     type: 'error'
+      //   }).then(() => {
           for(var i = 0 ; i < this.checkedStaffs.length; i++){
             api.accountApi.deleteStaff(this.checkedStaffs[i]).then((res) => {
               if (res.data.code === 200) {
                 this.$message.success('删除成功！');
                 this.getAllAccountData()
+                this.dialogDelete = false
               } else {
                 this.$message.error(res.data.message);
               }
@@ -547,10 +632,10 @@ export default {
               this.$message.error(res.data.message);
             })
           }
-        }).catch(() => {
-          this.$message.info("取消删除");            
-        });
-      }
+      //   }).catch(() => {
+      //     this.$message.info("取消删除");            
+      //   });
+      // }
       
     },
   
@@ -664,7 +749,7 @@ export default {
   .staff-grid-content 
     min-height: 36px;
     padding 15px
-    border-radius 8px
+    border-radius 8px;
     border: 1px solid #E8E8E8;
     vertical-align middle
     margin 12px

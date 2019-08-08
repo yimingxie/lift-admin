@@ -36,7 +36,7 @@ export default {
   bottom: 20px;
   width: 100%;
   text-align: center;
-  color: rgba(107, 105, 123,0.5);
+  color: rgba(107, 105, 123, 0.4);
   margin-top: 51px;
   span
     margin 5px 20px

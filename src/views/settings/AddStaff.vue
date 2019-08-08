@@ -106,7 +106,7 @@
               >
             </el-cascader> -->
             
-            <choiceindex :selectedLabels="selectedAreaLabels" clearable @change="regionChange2" :is-two-dimension-value="false" v-model="checkList2" :data="regionOptions2"></choiceindex>
+            <choiceindex :only-last="true" :selectedLabels="selectedAreaLabels" clearable @change="regionChange2" :is-two-dimension-value="false" v-model="checkList2" :data="regionOptions2"></choiceindex>
       
             <!-- <choiceindex clearable filterable @change="regionChange2" :is-two-dimension-value="false" v-model="checkList2" :data="regionOptions2"></choiceindex> -->
            
@@ -116,7 +116,8 @@
             <span slot="label">管辖电梯：<div class="subTip" >（第一负责人）</div></span>
             <el-dropdown trigger="click" :hide-on-click="false" class="selectLiftDropdown">
               <span class="el-dropdown-link ">
-                {{checkedLiftAs.join(", ")}}
+                <span v-if="checkedLiftAs.length > 0">{{checkedLiftAs.join(", ")}}</span>
+                <span v-else style="color:#C2C7CC;">(选填)请选择管辖区域后勾选管辖电梯</span>
                 <i class="el-icon-arrow-down el-icon--right"></i>
               </span>
               <el-dropdown-menu slot="dropdown" class="liftDropdown">
@@ -140,7 +141,8 @@
             <span slot="label">管辖电梯：<div class="subTip" >（第二负责人）</div></span>
             <el-dropdown trigger="click" :hide-on-click="false" class="selectLiftDropdown">
               <span class="el-dropdown-link ">
-                {{checkedLiftBs.join(", ")}}
+                <span v-if="checkedLiftBs.length > 0">{{checkedLiftBs.join(", ")}}</span>
+                <span v-else style="color:#C2C7CC;">(选填)请选择管辖区域后勾选管辖电梯</span>
                 <i class="el-icon-arrow-down el-icon--right"></i>
               </span>
               <el-dropdown-menu slot="dropdown" class="liftDropdown">
@@ -292,11 +294,11 @@ export default {
         areaCode:''
       },
       selectedAreaLabels: [],
-      checkAreaList:[], //员工管辖区域,数组
-      getLIftDataFirst:[],
-      getLIftDataSecond:[],
-      checkedLiftAs:[],
-      checkedLiftBs:[]
+      checkAreaList: [], //员工管辖区域,数组
+      getLIftDataFirst: [],
+      getLIftDataSecond: [],
+      checkedLiftAs: [],
+      checkedLiftBs: []
     }
   },
   components: {
@@ -306,8 +308,12 @@ export default {
 
   },
   watch:{
+    // 切换员工管辖区域，获取管辖电梯列表
     checkAreaList(val){
-      
+      this.getLIftDataFirst = []
+      this.getLIftDataSecond = []
+      this.checkedLiftAs = []
+      this.checkedLiftBs = []
       if(val.length > 0){
         for(var i = 0; i < val.length; i++){
           api.accountApi.getElevatorByArea(window.localStorage.getItem('corpId'),val[i]).then((res) => {
@@ -318,15 +324,20 @@ export default {
                 //   "lift" : res.data.data.major
                 // }
                 // this.getLIftDataFirst.push(majorObj)
-                this.getLIftDataFirst = res.data.data.major
+                if(res.data.data.major.length > 0){
 
-              // }
-              // if(res.data.data.minor){
-              //   var minorObj= {
-              //     "area" : val[i],
-              //     "lift" : res.data.data.major
-              //   }
-                this.getLIftDataSecond = res.data.data.minor
+                  res.data.data.major.forEach(item =>{
+                    this.getLIftDataFirst.push(item)
+                  })
+                  
+                }
+                if(res.data.data.minor.length > 0){
+                  res.data.data.minor.forEach(item =>{
+                    this.getLIftDataSecond.push(item)
+                  })
+                }
+               
+                console.log("this.getLIftDataFirst===" + JSON.stringify(this.getLIftDataFirst))
 
                 this.getLIftDataFirst.forEach(item =>{
                   var areaName = newArea.getAreaName(item.areaCode).join('')
@@ -507,6 +518,7 @@ export default {
                                   obj4.label = forthItem.label
                                   obj3.children.push(obj4)
                                 }
+                                // 直接加上对应code的片区
                                 if(this.checkList1[k].length > 6 && forthItem.value === this.checkList1[k]){
                                   // console.log("所选片区-" + forthItem.value)
                                   // console.log("所选片区-" + this.checkList1[k])
@@ -535,18 +547,17 @@ export default {
           // newFormat[item.code] = item.name
 
         })
-        // console.log("selectRange---" + this.regionOptions2)
         // 构建员工管辖区域数据 end
         this.checkList2 = selectRange.split(",")
 
         // this.regionChange2(this.checkList2)
       }
     },
+    // 切换员工管辖区域
     regionChange2(val, totalLabel) {
 
       this.selectedAreaLabels = [] // 重置
       
-      var util = require("util")
       // 重置联动数据 
       // this.regionOptions2 = []
       // console.log("所选区域码:" +  JSON.stringify(totalLabel));
@@ -601,51 +612,49 @@ export default {
           }
           this.checkAreaList = this.uniq(this.checkAreaList) // 去重
         })
-
-        // console.log("checkListNew==" + checkListNew)
-        // console.log("pianquLength==" + pianquLength)
-        // console.log("checkAreaList=" + this.checkAreaList)
+        // 区域标签展示格式转换
+        this.selectedAreaLabels = newArea.getAreaName(this.checkAreaList.join(','))
         // 区域标签展示格式转换---------
-        var dest = [],
-          map = {};
-        for(var i = 0; i < totalLabel.length; i++) {
-            var ai = {
-              "qu" : totalLabel[i].split("/")[2],
-              "pianqu": totalLabel[i].split("/")[3]
-            }
-          if(!map[ai.qu]) {
-            dest.push({
-              name: ai.qu,
-              data: [ai.pianqu]
-            });
-            map[ai.qu] = ai;
-          } else {
-            for(var j = 0; j < dest.length; j++){
-              var dj = dest[j];
-              if(dj.name == ai.qu) {
-                dj.data.push(ai.pianqu);
-                break;
-              }
-            }
-          }
-          // console.log("所选区域码ai:" +  JSON.stringify(ai))
-        }
-        // console.log("所选区域码:" +  JSON.stringify(dest));
-        dest.forEach(item =>{
-          // console.log("item.data=========" + item.data[0])
-          // 如果区全选
-          if(this.ifCheckAllQu(item.name, item.data.length)){
-            this.selectedAreaLabels.push(item.name + "-全部")
-          } else  {
-            if (item.data[0] !== undefined){
-              var labelItem = item.name + "-" + item.data
-            } else {
-              var labelItem = item.name + "-全部"
-            }
-            this.selectedAreaLabels.push(labelItem)
-          }
+        // var dest = [],
+        //   map = {};
+        // for(var i = 0; i < totalLabel.length; i++) {
+        //     var ai = {
+        //       "qu" : totalLabel[i].split("/")[2],
+        //       "pianqu": totalLabel[i].split("/")[3]
+        //     }
+        //   if(!map[ai.qu]) {
+        //     dest.push({
+        //       name: ai.qu,
+        //       data: [ai.pianqu]
+        //     });
+        //     map[ai.qu] = ai;
+        //   } else {
+        //     for(var j = 0; j < dest.length; j++){
+        //       var dj = dest[j];
+        //       if(dj.name == ai.qu) {
+        //         dj.data.push(ai.pianqu);
+        //         break;
+        //       }
+        //     }
+        //   }
+        //   // console.log("所选区域码ai:" +  JSON.stringify(ai))
+        // }
+        // // console.log("所选区域码:" +  JSON.stringify(dest));
+        // dest.forEach(item =>{
+        //   // console.log("item.data=========" + item.data[0])
+        //   // 如果区全选
+        //   if(this.ifCheckAllQu(item.name, item.data.length)){
+        //     this.selectedAreaLabels.push(item.name + "-全部")
+        //   } else  {
+        //     if (item.data[0] !== undefined){
+        //       var labelItem = item.name + "-" + item.data
+        //     } else {
+        //       var labelItem = item.name + "-全部"
+        //     }
+        //     this.selectedAreaLabels.push(labelItem)
+        //   }
          
-        })
+        // })
         // 区域标签展示格式转换---------end
         
         
@@ -709,6 +718,7 @@ export default {
       }
       return temp;
     },
+    
     // 获取员工的管辖区域可选范围
     getStaffAreaRange(list){
 
@@ -742,6 +752,7 @@ export default {
         
         if (res.data.code === 200) {
           this.$message.success('创建成功！');
+          this.$router.push('/staff')
           
         } else {
           this.$message.error(res.data.message);
@@ -877,16 +888,7 @@ export default {
       // console.log(date, dateString);
       this.addStaffForm.entryTime = dateString
     },
-    // 去重
-    uniq(array){
-      var temp = []; //一个新的临时数组
-      for(var i = 0; i < array.length; i++){
-          if(temp.indexOf(array[i]) == -1){
-              temp.push(array[i]);
-          }
-      }
-      return temp;
-    },
+    
     
   },
 }
@@ -901,7 +903,6 @@ export default {
     line-height: 32px!important;
   .el-form-item__label
     line-height: 32px!important;
-    color: #34414C;
   .el-input__icon
     line-height: 32px!important;
   .content
