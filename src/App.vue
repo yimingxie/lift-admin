@@ -234,7 +234,6 @@
         // console.log('to----' + to)
         console.log('theme', to.name)
         if (localStorage.getItem('theme')) {
-          console.log('gggg', localStorage.getItem('theme'))
           this.changeTheme(localStorage.getItem('theme'))
         }
         
@@ -267,8 +266,6 @@
     },
 
     mounted () {
-      // this.changeTheme(window.localStorage.getItem("theme"))
-      // window.document.getElementById("page-container").setAttribute('class', 'theme1')
       let theme = localStorage.getItem('theme') ? localStorage.getItem('theme') : 'theme1'
       this.changeTheme(theme)
       
@@ -276,8 +273,7 @@
 
     methods: {
       changeTheme (theme) {
-        window.document.getElementById("page-container").setAttribute('class', theme)
-        console.log('change', theme)
+        document.getElementById("page-container").setAttribute('class', theme)
         localStorage.setItem('theme', theme)
       },
       // 查询账户详情

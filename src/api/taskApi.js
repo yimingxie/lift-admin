@@ -26,6 +26,12 @@ export default  {
       `${url2}/plan/total`
     )
   },
+  // 日历分子 - 月视图
+  riliLista(){
+    return http.get(
+      `${url2}/task/total`
+    )
+  },
   // 点击日历查看某一个的列表
   dayTaskPlan(params){
     return http.post(

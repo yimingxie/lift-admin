@@ -136,16 +136,13 @@
               this.delCookie('password')
             }
             // 获取用户权限,并跳转页面
-            if(res.data.data.type == 'administrator') { // GI管理员
-              this.$message.success('登录成功！');
-              this.$router.push('/corpApi')
-            } else if(res.data.data.type.indexOf('manager') > -1) { // 维保超管
+            if(res.data.data.type == 'administrator' || res.data.data.type.indexOf('manager') > -1) { // GI管理员
               this.$message.success('登录成功！');
               this.$router.push('/map')
             } else if(!res.data.data.modules){
               this.$message.error('暂无权限，请联系管理员');
             }
-            
+                    
           } else {
             this.warningTip = res.data.message
           }

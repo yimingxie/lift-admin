@@ -301,7 +301,8 @@ export default {
       map:'',
       taskRecords:[],
       elevatorInfo:[],
-      status:''
+      status:'',
+      taskResult: []
     }
   },
   components: {
@@ -332,6 +333,7 @@ export default {
         this.taskRecords = res.data.data.taskRecords[0] || []
         this.elevatorInfo = res.data.data.elevatorInfo || []
         this.status = res.data.data.status
+        this.taskResult = res.data.data.taskResult
 
       }).catch((res) => {
         

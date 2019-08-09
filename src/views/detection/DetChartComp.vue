@@ -848,8 +848,10 @@ export default {
         visualMap: { //区间内控制显示颜色
           show: false,
           dimension: 1,
+          min: 0,
+          max: 100000,
           type: 'continuous',
-          range: [0, 500],
+          range: [0, 2000],
           inRange: {
             color: ['#4272FF']
           },
@@ -1177,91 +1179,195 @@ export default {
         clearTimeout(this.chartTimer)
         let resList = res.data.data || {}
         console.log('请求所有图表数据', res.data)
-        this.chartTimer = setTimeout(() => {
-          this.drawChart1({container: 'real-chart-jfwd',unit: '℃',name: '机房温度',max: etime,dataType: 'real_data',data: resList['0:0:0:1']})
-          this.drawChart1({container: 'real-chart-jfsd',unit: '%',name: '机房湿度',max: etime,dataType: 'real_data',data: resList['0:0:0:2']})
-          this.drawChart1({container: 'real-chart-jffs',unit: 'm/s',name: '机房风速',max: etime,dataType: 'real_data',data: resList['0:0:0:3']})
-          this.drawChart1({container: 'real-chart-jdwd',unit: '℃',name: '井道温度',max: etime,dataType: 'real_data',data: resList['2:0:0:1']})
-          this.drawChart1({container: 'real-chart-jdsd',unit: '%',name: '井道湿度',max: etime,dataType: 'real_data',data: resList['2:0:0:2']})
-          this.drawChart1({container: 'real-chart-jfdydy',unit: 'V',name: '机房电源电压',max: etime,dataType: 'real_data',data: resList['0:1:0:5']})
-          this.drawChart1({container: 'real-chart-jfdydl',unit: 'A',name: '机房电源电流',max: etime,dataType: 'real_data',data: resList['0:1:0:4']})
-          this.drawChart1({container: 'real-chart-msaqhldy',unit: 'V',name: '门锁安全回路电压',max: etime,dataType: 'real_data',data: resList['0:2:1:5']})
-          this.drawChart1({container: 'real-chart-msaqhldl',unit: 'A',name: '门锁安全回路电流',max: etime,dataType: 'real_data',data: resList['0:2:1:4']})
-          this.drawChart1({container: 'real-chart-aqkghldy',unit: 'V',name: '安全开关回路电压',max: etime,dataType: 'real_data',data: resList['0:2:2:5']})
-          this.drawChart1({container: 'real-chart-jxkgdy',unit: 'V',name: '检修开关电压',max: etime,dataType: 'real_data',data: resList['0:2:3:5']})
-          this.drawChart1({container: 'real-chart-jskgdys',unit: 'V',name: '（上）减速开关电压',max: etime,dataType: 'real_data',data: resList['0:2:4:5']})
-          this.drawChart1({container: 'real-chart-jskgdyx',unit: 'V',name: '（下）减速开关电压',max: etime,dataType: 'real_data',data: resList['0:2:5:5']})
-          this.drawChart1({container: 'real-chart-qpjskgdys',unit: 'V',name: '（上）强迫减速开关电压',max: etime,dataType: 'real_data',data: resList['0:2:6:5']})
-          this.drawChart1({container: 'real-chart-qpjskgdyx',unit: 'V',name: '（下）强迫减速开关电压',max: etime,dataType: 'real_data',data: resList['0:2:7:5']})
-          this.drawChart1({container: 'real-chart-ywkgdys',unit: 'V',name: '（上）越位开关电压',max: etime,dataType: 'real_data',data: resList['0:2:9:5']})
-          this.drawChart1({container: 'real-chart-ywkgdyx',unit: 'V',name: '（下）越位开关电压',max: etime,dataType: 'real_data',data: resList['0:2:10:5']})
-          this.drawChart1({container: 'real-chart-pcgyqdy',unit: 'V',name: '平层感应器电压',max: etime,dataType: 'real_data',data: resList['0:2:8:5']})
-          this.drawChart1({container: 'real-chart-ddjdydy',unit: 'V',name: '电动机电源电压',max: etime,dataType: 'real_data',data: resList['0:3:0:5']})
-          this.drawChart1({container: 'real-chart-ddjdydl',unit: 'A',name: '电动机电源电流',max: etime,dataType: 'real_data',data: resList['0:3:0:4']})
-          this.drawChart1({container: 'real-chart-ddjwkwd',unit: '℃',name: '电动机外壳温度',max: etime,dataType: 'real_data',data: resList['0:3:1:1']})
-          this.drawChart1({container: 'real-chart-ddjwkzd',unit: 'μm',name: '电动机外壳振动',max: etime,dataType: 'real_data',data: resList['0:3:1:6']})
-          this.drawChart1({container: 'real-chart-ddjzcwd',unit: '℃',name: '电动机轴承温度',max: etime,dataType: 'real_data',data: resList['0:3:2:1']})
-          this.drawChart1({container: 'real-chart-ddjzczd',unit: 'μm',name: '电动机轴承振动',max: etime,dataType: 'real_data',data: resList['0:3:2:6']})
-          this.drawChart1({container: 'real-chart-zdqdydy',unit: 'V',name: '制动器电源电压',max: etime,dataType: 'real_data',data: resList['0:4:0:5']})
-          this.drawChart1({container: 'real-chart-zdqdydl',unit: 'A',name: '制动器电源电流',max: etime,dataType: 'real_data',data: resList['0:4:0:4']})
-          this.drawChart1({container: 'real-chart-zdqxqwd',unit: '℃',name: '制动器线圈温度',max: etime,dataType: 'real_data',data: resList['0:4:1:1']})
-          this.drawChart1({container: 'real-chart-zdqzwwd',unit: '℃',name: '制动器闸瓦温度',max: etime,dataType: 'real_data',data: resList['0:4:2:1']})
-          this.drawChart1({container: 'real-chart-xsqsd',unit: 'm/s',name: '限速器速度',max: etime,dataType: 'real_data',data: resList['0:5:0:7']})
-          this.drawChart1({container: 'real-chart-xsqqs',unit: 'rpm',name: '限速器圈数',max: etime,dataType: 'real_data',data: resList['0:5:0:8']})
-          this.drawChart1({container: 'real-chart-jdzhkzqdy',unit: 'V',name: '轿顶载荷控制器电压',max: etime,dataType: 'real_data',data: resList['1:0:3:5']})
-          this.drawChart1({container: 'real-chart-jdjxkgdy',unit: 'V',name: '轿顶检修开关电压',max: etime,dataType: 'real_data',data: resList['1:0:1:5']})
-          this.drawChart1({container: 'real-chart-jdmjmddy',unit: 'V',name: '轿顶门机马达电压',max: etime,dataType: 'real_data',data: resList['1:0:2:5']})
-          this.drawChart1({container: 'real-chart-jdmjmddl',unit: 'A',name: '轿顶门机马达电流',max: etime,dataType: 'real_data',data: resList['1:0:2:4']})
+        let thresholdObj = {}
 
-          this.drawChart1({container: 'real-chart-jxjmkh',unit: '',name: '轿厢轿门开合',max: etime,dataType: 'real_data',data: resList['1:2:0:10']})
-          this.drawChart1({container: 'real-chart-jxwz',unit: 'F',name: '轿厢位置',max: etime,dataType: 'floor',data: resList['1:2:0:9']})
-          this.drawChart1({container: 'real-chart-jxxtzd',unit: 'μm',name: '轿厢箱体振动',max: etime,dataType: 'real_data',data: resList['1:2:0:6']})
-          this.drawChart1({container: 'real-chart-jddgzd',unit: 'μm',name: '井道导轨振动',max: etime,dataType: 'real_data',data: resList['2:1:1:6']})
-          this.drawChart1({container: 'real-chart-jdcmkh',unit: '',name: '井道层门开合',max: etime,dataType: 'real_data',data: resList['2:1:0:10']})
-        }, 300)
+        // let thresholdObj = {
+        //   "0:0:0:1": [{threshold: 50, operator: 1}],
+        //   "0:0:0:2": [{threshold: '', operator: 1}],
+        // }
+
+        api.detection.getThreshold(params).then(res => {
+          thresholdObj = res.data.data
+          console.log('ressss', thresholdObj)
+
+          this.chartTimer = setTimeout(() => {
+            this.drawChart1({container: 'real-chart-jfwd',unit: '℃',name: '机房温度',max: etime,dataType: 'real_data',data: resList['0:0:0:1'], threshold: thresholdObj['0:0:0:1'][0] ? thresholdObj['0:0:0:1'][0].threshold : '', operator: thresholdObj['0:0:0:1'][0] ? thresholdObj['0:0:0:1'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-jfsd',unit: '%',name: '机房湿度',max: etime,dataType: 'real_data',data: resList['0:0:0:2'], threshold: thresholdObj['0:0:0:2'][0] ? thresholdObj['0:0:0:2'][0].threshold : '', operator: thresholdObj['0:0:0:2'][0] ? thresholdObj['0:0:0:2'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-jffs',unit: 'm/s',name: '机房风速',max: etime,dataType: 'real_data',data: resList['0:0:0:3'], threshold: thresholdObj['0:0:0:3'][0] ? thresholdObj['0:0:0:3'][0].threshold : '', operator: thresholdObj['0:0:0:3'][0] ? thresholdObj['0:0:0:3'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-jdwd',unit: '℃',name: '井道温度',max: etime,dataType: 'real_data',data: resList['2:0:0:1'], threshold: thresholdObj['2:0:0:1'][0] ? thresholdObj['2:0:0:1'][0].threshold : '', operator: thresholdObj['2:0:0:1'][0] ? thresholdObj['2:0:0:1'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-jdsd',unit: '%',name: '井道湿度',max: etime,dataType: 'real_data',data: resList['2:0:0:2'], threshold: thresholdObj['2:0:0:3'][0] ? thresholdObj['2:0:0:3'][0].threshold : '', operator: thresholdObj['2:0:0:3'][0] ? thresholdObj['2:0:0:3'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-jfdydy',unit: 'V',name: '机房电源电压',max: etime,dataType: 'real_data',data: resList['0:1:0:5'], threshold: thresholdObj['0:1:0:5'][0] ? thresholdObj['0:1:0:5'][0].threshold : '', operator: thresholdObj['0:1:0:5'][0] ? thresholdObj['0:1:0:5'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-jfdydl',unit: 'A',name: '机房电源电流',max: etime,dataType: 'real_data',data: resList['0:1:0:4'], threshold: thresholdObj['0:1:0:4'][0] ? thresholdObj['0:1:0:4'][0].threshold : '', operator: thresholdObj['0:1:0:4'][0] ? thresholdObj['0:1:0:4'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-msaqhldy',unit: 'V',name: '门锁安全回路电压',max: etime,dataType: 'real_data',data: resList['0:2:1:5'], threshold: thresholdObj['0:2:1:5'][0] ? thresholdObj['0:2:1:5'][0].threshold : '', operator: thresholdObj['0:2:1:5'][0] ? thresholdObj['0:2:1:5'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-msaqhldl',unit: 'A',name: '门锁安全回路电流',max: etime,dataType: 'real_data',data: resList['0:2:1:4'], threshold: thresholdObj['0:2:1:4'][0] ? thresholdObj['0:2:1:4'][0].threshold : '', operator: thresholdObj['0:2:1:4'][0] ? thresholdObj['0:2:1:4'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-aqkghldy',unit: 'V',name: '安全开关回路电压',max: etime,dataType: 'real_data',data: resList['0:2:2:5']})
+            this.drawChart1({container: 'real-chart-jxkgdy',unit: 'V',name: '检修开关电压',max: etime,dataType: 'real_data',data: resList['0:2:3:5']})
+            this.drawChart1({container: 'real-chart-jskgdys',unit: 'V',name: '（上）减速开关电压',max: etime,dataType: 'real_data',data: resList['0:2:4:5']})
+            this.drawChart1({container: 'real-chart-jskgdyx',unit: 'V',name: '（下）减速开关电压',max: etime,dataType: 'real_data',data: resList['0:2:5:5']})
+            this.drawChart1({container: 'real-chart-qpjskgdys',unit: 'V',name: '（上）强迫减速开关电压',max: etime,dataType: 'real_data',data: resList['0:2:6:5']})
+            this.drawChart1({container: 'real-chart-qpjskgdyx',unit: 'V',name: '（下）强迫减速开关电压',max: etime,dataType: 'real_data',data: resList['0:2:7:5']})
+            this.drawChart1({container: 'real-chart-ywkgdys',unit: 'V',name: '（上）越位开关电压',max: etime,dataType: 'real_data',data: resList['0:2:9:5']})
+            this.drawChart1({container: 'real-chart-ywkgdyx',unit: 'V',name: '（下）越位开关电压',max: etime,dataType: 'real_data',data: resList['0:2:10:5']})
+            this.drawChart1({container: 'real-chart-pcgyqdy',unit: 'V',name: '平层感应器电压',max: etime,dataType: 'real_data',data: resList['0:2:8:5']})
+            this.drawChart1({container: 'real-chart-ddjdydy',unit: 'V',name: '电动机电源电压',max: etime,dataType: 'real_data',data: resList['0:3:0:5']})
+            this.drawChart1({container: 'real-chart-ddjdydl',unit: 'A',name: '电动机电源电流',max: etime,dataType: 'real_data',data: resList['0:3:0:4']})
+            this.drawChart1({container: 'real-chart-ddjwkwd',unit: '℃',name: '电动机外壳温度',max: etime,dataType: 'real_data',data: resList['0:3:1:1']})
+            this.drawChart1({container: 'real-chart-ddjwkzd',unit: 'μm',name: '电动机外壳振动',max: etime,dataType: 'real_data',data: resList['0:3:1:6']})
+            this.drawChart1({container: 'real-chart-ddjzcwd',unit: '℃',name: '电动机轴承温度',max: etime,dataType: 'real_data',data: resList['0:3:2:1']})
+            this.drawChart1({container: 'real-chart-ddjzczd',unit: 'μm',name: '电动机轴承振动',max: etime,dataType: 'real_data',data: resList['0:3:2:6']})
+            this.drawChart1({container: 'real-chart-zdqdydy',unit: 'V',name: '制动器电源电压',max: etime,dataType: 'real_data',data: resList['0:4:0:5']})
+            this.drawChart1({container: 'real-chart-zdqdydl',unit: 'A',name: '制动器电源电流',max: etime,dataType: 'real_data',data: resList['0:4:0:4']})
+            this.drawChart1({container: 'real-chart-zdqxqwd',unit: '℃',name: '制动器线圈温度',max: etime,dataType: 'real_data',data: resList['0:4:1:1']})
+            this.drawChart1({container: 'real-chart-zdqzwwd',unit: '℃',name: '制动器闸瓦温度',max: etime,dataType: 'real_data',data: resList['0:4:2:1']})
+            this.drawChart1({container: 'real-chart-xsqsd',unit: 'm/s',name: '限速器速度',max: etime,dataType: 'real_data',data: resList['0:5:0:7']})
+            this.drawChart1({container: 'real-chart-xsqqs',unit: 'rpm',name: '限速器圈数',max: etime,dataType: 'real_data',data: resList['0:5:0:8']})
+            this.drawChart1({container: 'real-chart-jdzhkzqdy',unit: 'V',name: '轿顶载荷控制器电压',max: etime,dataType: 'real_data',data: resList['1:0:3:5']})
+            this.drawChart1({container: 'real-chart-jdjxkgdy',unit: 'V',name: '轿顶检修开关电压',max: etime,dataType: 'real_data',data: resList['1:0:1:5']})
+            this.drawChart1({container: 'real-chart-jdmjmddy',unit: 'V',name: '轿顶门机马达电压',max: etime,dataType: 'real_data',data: resList['1:0:2:5']})
+            this.drawChart1({container: 'real-chart-jdmjmddl',unit: 'A',name: '轿顶门机马达电流',max: etime,dataType: 'real_data',data: resList['1:0:2:4']})
+
+            this.drawChart1({container: 'real-chart-jxjmkh',unit: '',name: '轿厢轿门开合',max: etime,dataType: 'real_data',data: resList['1:2:0:10']})
+            this.drawChart1({container: 'real-chart-jxwz',unit: 'F',name: '轿厢位置',max: etime,dataType: 'floor',data: resList['1:2:0:9']})
+            this.drawChart1({container: 'real-chart-jxxtzd',unit: 'μm',name: '轿厢箱体振动',max: etime,dataType: 'real_data',data: resList['1:2:0:6']})
+            this.drawChart1({container: 'real-chart-jddgzd',unit: 'μm',name: '井道导轨振动',max: etime,dataType: 'real_data',data: resList['2:1:1:6']})
+            this.drawChart1({container: 'real-chart-jdcmkh',unit: '',name: '井道层门开合',max: etime,dataType: 'real_data',data: resList['2:1:0:10']})
+          }, 300)
+        
+          // 给实时数据赋值
+          this.jfwdVal = resList['0:0:0:1'] ? resList['0:0:0:1'][0].real_data : this.jfwdVal
+          this.jfsdVal = resList['0:0:0:2'] ? resList['0:0:0:2'][0].real_data : this.jfsdVal
+          this.jffsVal = resList['0:0:0:3'] ? resList['0:0:0:3'][0].real_data : this.jffsVal
+          this.jdwdVal = resList['2:0:0:1'] ? resList['2:0:0:1'][0].real_data : this.jdwdVal
+          this.jdsdVal = resList['2:0:0:2'] ? resList['2:0:0:2'][0].real_data : this.jdsdVal
+          this.jfdydyVal = resList['0:1:0:5'] ? resList['0:1:0:5'][0].real_data : this.jfdydyVal
+          this.jfdydlVal = resList['0:1:0:4'] ? resList['0:1:0:4'][0].real_data : this.jfdydlVal
+          this.msaqhldyVal = resList['0:2:1:5'] ? resList['0:2:1:5'][0].real_data : this.msaqhldyVal
+          this.msaqhldlVal = resList['0:2:1:4'] ? resList['0:2:1:4'][0].real_data : this.msaqhldlVal
+          this.aqkgmldyVal = resList['0:2:2:5'] ? resList['0:2:2:5'][0].real_data : this.aqkgmldyVal
+          this.jxkgdyVal = resList['0:2:3:5'] ? resList['0:2:3:5'][0].real_data : this.jxkgdyVal
+          this.jskgdysVal = resList['0:2:4:5'] ? resList['0:2:4:5'][0].real_data : this.jskgdysVal
+          this.jskgdyxVal = resList['0:2:5:5'] ? resList['0:2:5:5'][0].real_data : this.jskgdyxVal
+          this.qpjskgdysVal = resList['0:2:6:5'] ? resList['0:2:6:5'][0].real_data : this.qpjskgdysVal
+          this.qpjskgdyxVal = resList['0:2:7:5'] ? resList['0:2:7:5'][0].real_data : this.qpjskgdyxVal
+          this.ywkgdysVal = resList['0:2:9:5'] ? resList['0:2:9:5'][0].real_data : this.ywkgdysVal
+          this.ywkgdyxVal = resList['0:2:10:5'] ? resList['0:2:10:5'][0].real_data : this.ywkgdyxVal
+
+          this.pcgyqdyVal = resList['0:2:8:5'] ? resList['0:2:8:5'][0].real_data : this.pcgyqdyVal
+          this.ddjdydyVal = resList['0:3:0:5'] ? resList['0:3:0:5'][0].real_data : this.ddjdydyVal
+          this.ddjdydlVal = resList['0:3:0:4'] ? resList['0:3:0:4'][0].real_data : this.ddjdydlVal
+          this.ddjwkwdVal = resList['0:3:1:1'] ? resList['0:3:1:1'][0].real_data : this.ddjwkwdVal
+          this.ddjwkzdVal = resList['0:3:1:6'] ? resList['0:3:1:6'][0].real_data : this.ddjwkzdVal
+          this.ddjzcwdVal = resList['0:3:2:1'] ? resList['0:3:2:1'][0].real_data : this.ddjzcwdVal
+          this.ddjzczdVal = resList['0:3:2:6'] ? resList['0:3:2:6'][0].real_data : this.ddjzczdVal
+          this.zdqdydyVal = resList['0:4:0:5'] ? resList['0:4:0:5'][0].real_data : this.zdqdydyVal
+          this.zdqdydlVal = resList['0:4:0:4'] ? resList['0:4:0:4'][0].real_data : this.zdqdydlVal
+          this.zdqxqwdVal = resList['0:4:1:1'] ? resList['0:4:1:1'][0].real_data : this.zdqxqwdVal
+          this.zdqzwwdVal = resList['0:4:2:1'] ? resList['0:4:2:1'][0].real_data : this.zdqzwwdVal
+          this.xsqsdVal = resList['0:5:0:7'] ? resList['0:5:0:7'][0].real_data : this.xsqsdVal
+          this.xsqqsVal = resList['0:5:0:8'] ? resList['0:5:0:8'][0].real_data : this.xsqqsVal
+          this.jdzhkzqdyVal = resList['1:0:3:5'] ? resList['1:0:3:5'][0].real_data : this.jdzhkzqdyVal
+          this.jdjxkgdyVal = resList['1:0:1:5'] ? resList['1:0:1:5'][0].real_data : this.jdjxkgdyVal
+          this.jdmjmddyVal = resList['1:0:2:5'] ? resList['1:0:2:5'][0].real_data : this.jdmjmddyVal
+          this.jdmjmddlVal = resList['1:0:2:4'] ? resList['1:0:2:4'][0].real_data : this.jdmjmddlVal
+
+          this.jxjmkhVal = resList['1:2:0:10'] ? resList['1:2:0:10'][0].real_data : this.jxjmkhVal
+          this.jxwzVal = resList['1:2:0:9'] ? resList['1:2:0:9'][0].floor : this.jxwzVal
+          this.jxxtzdVal = resList['1:2:0:6'] ? resList['1:2:0:6'][0].real_data : this.jxxtzdVal
+          this.jddgzdVal = resList['2:1:1:6'] ? resList['2:1:1:6'][0].real_data : this.jddgzdVal
+          this.jdcmkhVal = resList['2:1:0:10'] ? resList['2:1:0:10'][0].real_data : this.jdcmkhVal
+
+
+        })
+
+      
+
+
+
+        // this.chartTimer = setTimeout(() => {
+        //   this.drawChart1({container: 'real-chart-jfwd',unit: '℃',name: '机房温度',max: etime,dataType: 'real_data',data: resList['0:0:0:1'], threshold: thresholdObj['0:0:0:1'][0].threshold ? thresholdObj['0:0:0:1'][0].threshold : '', operator: thresholdObj['0:0:0:1'][0].operator ? thresholdObj['0:0:0:1'][0].operator : ''})
+        //   this.drawChart1({container: 'real-chart-jfsd',unit: '%',name: '机房湿度',max: etime,dataType: 'real_data',data: resList['0:0:0:2'], threshold: thresholdObj['0:0:0:2'][0].threshold ? thresholdObj['0:0:0:2'][0].threshold : '', operator: thresholdObj['0:0:0:2'][0].operator ? thresholdObj['0:0:0:2'][0].operator : ''})
+        //   this.drawChart1({container: 'real-chart-jffs',unit: 'm/s',name: '机房风速',max: etime,dataType: 'real_data',data: resList['0:0:0:3']})
+        //   this.drawChart1({container: 'real-chart-jdwd',unit: '℃',name: '井道温度',max: etime,dataType: 'real_data',data: resList['2:0:0:1']})
+        //   this.drawChart1({container: 'real-chart-jdsd',unit: '%',name: '井道湿度',max: etime,dataType: 'real_data',data: resList['2:0:0:2']})
+        //   this.drawChart1({container: 'real-chart-jfdydy',unit: 'V',name: '机房电源电压',max: etime,dataType: 'real_data',data: resList['0:1:0:5']})
+        //   this.drawChart1({container: 'real-chart-jfdydl',unit: 'A',name: '机房电源电流',max: etime,dataType: 'real_data',data: resList['0:1:0:4']})
+        //   this.drawChart1({container: 'real-chart-msaqhldy',unit: 'V',name: '门锁安全回路电压',max: etime,dataType: 'real_data',data: resList['0:2:1:5']})
+        //   this.drawChart1({container: 'real-chart-msaqhldl',unit: 'A',name: '门锁安全回路电流',max: etime,dataType: 'real_data',data: resList['0:2:1:4']})
+        //   this.drawChart1({container: 'real-chart-aqkghldy',unit: 'V',name: '安全开关回路电压',max: etime,dataType: 'real_data',data: resList['0:2:2:5']})
+        //   this.drawChart1({container: 'real-chart-jxkgdy',unit: 'V',name: '检修开关电压',max: etime,dataType: 'real_data',data: resList['0:2:3:5']})
+        //   this.drawChart1({container: 'real-chart-jskgdys',unit: 'V',name: '（上）减速开关电压',max: etime,dataType: 'real_data',data: resList['0:2:4:5']})
+        //   this.drawChart1({container: 'real-chart-jskgdyx',unit: 'V',name: '（下）减速开关电压',max: etime,dataType: 'real_data',data: resList['0:2:5:5']})
+        //   this.drawChart1({container: 'real-chart-qpjskgdys',unit: 'V',name: '（上）强迫减速开关电压',max: etime,dataType: 'real_data',data: resList['0:2:6:5']})
+        //   this.drawChart1({container: 'real-chart-qpjskgdyx',unit: 'V',name: '（下）强迫减速开关电压',max: etime,dataType: 'real_data',data: resList['0:2:7:5']})
+        //   this.drawChart1({container: 'real-chart-ywkgdys',unit: 'V',name: '（上）越位开关电压',max: etime,dataType: 'real_data',data: resList['0:2:9:5']})
+        //   this.drawChart1({container: 'real-chart-ywkgdyx',unit: 'V',name: '（下）越位开关电压',max: etime,dataType: 'real_data',data: resList['0:2:10:5']})
+        //   this.drawChart1({container: 'real-chart-pcgyqdy',unit: 'V',name: '平层感应器电压',max: etime,dataType: 'real_data',data: resList['0:2:8:5']})
+        //   this.drawChart1({container: 'real-chart-ddjdydy',unit: 'V',name: '电动机电源电压',max: etime,dataType: 'real_data',data: resList['0:3:0:5']})
+        //   this.drawChart1({container: 'real-chart-ddjdydl',unit: 'A',name: '电动机电源电流',max: etime,dataType: 'real_data',data: resList['0:3:0:4']})
+        //   this.drawChart1({container: 'real-chart-ddjwkwd',unit: '℃',name: '电动机外壳温度',max: etime,dataType: 'real_data',data: resList['0:3:1:1']})
+        //   this.drawChart1({container: 'real-chart-ddjwkzd',unit: 'μm',name: '电动机外壳振动',max: etime,dataType: 'real_data',data: resList['0:3:1:6']})
+        //   this.drawChart1({container: 'real-chart-ddjzcwd',unit: '℃',name: '电动机轴承温度',max: etime,dataType: 'real_data',data: resList['0:3:2:1']})
+        //   this.drawChart1({container: 'real-chart-ddjzczd',unit: 'μm',name: '电动机轴承振动',max: etime,dataType: 'real_data',data: resList['0:3:2:6']})
+        //   this.drawChart1({container: 'real-chart-zdqdydy',unit: 'V',name: '制动器电源电压',max: etime,dataType: 'real_data',data: resList['0:4:0:5']})
+        //   this.drawChart1({container: 'real-chart-zdqdydl',unit: 'A',name: '制动器电源电流',max: etime,dataType: 'real_data',data: resList['0:4:0:4']})
+        //   this.drawChart1({container: 'real-chart-zdqxqwd',unit: '℃',name: '制动器线圈温度',max: etime,dataType: 'real_data',data: resList['0:4:1:1']})
+        //   this.drawChart1({container: 'real-chart-zdqzwwd',unit: '℃',name: '制动器闸瓦温度',max: etime,dataType: 'real_data',data: resList['0:4:2:1']})
+        //   this.drawChart1({container: 'real-chart-xsqsd',unit: 'm/s',name: '限速器速度',max: etime,dataType: 'real_data',data: resList['0:5:0:7']})
+        //   this.drawChart1({container: 'real-chart-xsqqs',unit: 'rpm',name: '限速器圈数',max: etime,dataType: 'real_data',data: resList['0:5:0:8']})
+        //   this.drawChart1({container: 'real-chart-jdzhkzqdy',unit: 'V',name: '轿顶载荷控制器电压',max: etime,dataType: 'real_data',data: resList['1:0:3:5']})
+        //   this.drawChart1({container: 'real-chart-jdjxkgdy',unit: 'V',name: '轿顶检修开关电压',max: etime,dataType: 'real_data',data: resList['1:0:1:5']})
+        //   this.drawChart1({container: 'real-chart-jdmjmddy',unit: 'V',name: '轿顶门机马达电压',max: etime,dataType: 'real_data',data: resList['1:0:2:5']})
+        //   this.drawChart1({container: 'real-chart-jdmjmddl',unit: 'A',name: '轿顶门机马达电流',max: etime,dataType: 'real_data',data: resList['1:0:2:4']})
+
+        //   this.drawChart1({container: 'real-chart-jxjmkh',unit: '',name: '轿厢轿门开合',max: etime,dataType: 'real_data',data: resList['1:2:0:10']})
+        //   this.drawChart1({container: 'real-chart-jxwz',unit: 'F',name: '轿厢位置',max: etime,dataType: 'floor',data: resList['1:2:0:9']})
+        //   this.drawChart1({container: 'real-chart-jxxtzd',unit: 'μm',name: '轿厢箱体振动',max: etime,dataType: 'real_data',data: resList['1:2:0:6']})
+        //   this.drawChart1({container: 'real-chart-jddgzd',unit: 'μm',name: '井道导轨振动',max: etime,dataType: 'real_data',data: resList['2:1:1:6']})
+        //   this.drawChart1({container: 'real-chart-jdcmkh',unit: '',name: '井道层门开合',max: etime,dataType: 'real_data',data: resList['2:1:0:10']})
+        // }, 300)
        
-        // 给实时数据赋值
-        this.jfwdVal = resList['0:0:0:1'] ? resList['0:0:0:1'][0].real_data : this.jfwdVal
-        this.jfsdVal = resList['0:0:0:2'] ? resList['0:0:0:2'][0].real_data : this.jfsdVal
-        this.jffsVal = resList['0:0:0:3'] ? resList['0:0:0:3'][0].real_data : this.jffsVal
-        this.jdwdVal = resList['2:0:0:1'] ? resList['2:0:0:1'][0].real_data : this.jdwdVal
-        this.jdsdVal = resList['2:0:0:2'] ? resList['2:0:0:2'][0].real_data : this.jdsdVal
-        this.jfdydyVal = resList['0:1:0:5'] ? resList['0:1:0:5'][0].real_data : this.jfdydyVal
-        this.jfdydlVal = resList['0:1:0:4'] ? resList['0:1:0:4'][0].real_data : this.jfdydlVal
-        this.msaqhldyVal = resList['0:2:1:5'] ? resList['0:2:1:5'][0].real_data : this.msaqhldyVal
-        this.msaqhldlVal = resList['0:2:1:4'] ? resList['0:2:1:4'][0].real_data : this.msaqhldlVal
-        this.aqkgmldyVal = resList['0:2:2:5'] ? resList['0:2:2:5'][0].real_data : this.aqkgmldyVal
-        this.jxkgdyVal = resList['0:2:3:5'] ? resList['0:2:3:5'][0].real_data : this.jxkgdyVal
-        this.jskgdysVal = resList['0:2:4:5'] ? resList['0:2:4:5'][0].real_data : this.jskgdysVal
-        this.jskgdyxVal = resList['0:2:5:5'] ? resList['0:2:5:5'][0].real_data : this.jskgdyxVal
-        this.qpjskgdysVal = resList['0:2:6:5'] ? resList['0:2:6:5'][0].real_data : this.qpjskgdysVal
-        this.qpjskgdyxVal = resList['0:2:7:5'] ? resList['0:2:7:5'][0].real_data : this.qpjskgdyxVal
-        this.ywkgdysVal = resList['0:2:9:5'] ? resList['0:2:9:5'][0].real_data : this.ywkgdysVal
-        this.ywkgdyxVal = resList['0:2:10:5'] ? resList['0:2:10:5'][0].real_data : this.ywkgdyxVal
+        // // 给实时数据赋值
+        // this.jfwdVal = resList['0:0:0:1'] ? resList['0:0:0:1'][0].real_data : this.jfwdVal
+        // this.jfsdVal = resList['0:0:0:2'] ? resList['0:0:0:2'][0].real_data : this.jfsdVal
+        // this.jffsVal = resList['0:0:0:3'] ? resList['0:0:0:3'][0].real_data : this.jffsVal
+        // this.jdwdVal = resList['2:0:0:1'] ? resList['2:0:0:1'][0].real_data : this.jdwdVal
+        // this.jdsdVal = resList['2:0:0:2'] ? resList['2:0:0:2'][0].real_data : this.jdsdVal
+        // this.jfdydyVal = resList['0:1:0:5'] ? resList['0:1:0:5'][0].real_data : this.jfdydyVal
+        // this.jfdydlVal = resList['0:1:0:4'] ? resList['0:1:0:4'][0].real_data : this.jfdydlVal
+        // this.msaqhldyVal = resList['0:2:1:5'] ? resList['0:2:1:5'][0].real_data : this.msaqhldyVal
+        // this.msaqhldlVal = resList['0:2:1:4'] ? resList['0:2:1:4'][0].real_data : this.msaqhldlVal
+        // this.aqkgmldyVal = resList['0:2:2:5'] ? resList['0:2:2:5'][0].real_data : this.aqkgmldyVal
+        // this.jxkgdyVal = resList['0:2:3:5'] ? resList['0:2:3:5'][0].real_data : this.jxkgdyVal
+        // this.jskgdysVal = resList['0:2:4:5'] ? resList['0:2:4:5'][0].real_data : this.jskgdysVal
+        // this.jskgdyxVal = resList['0:2:5:5'] ? resList['0:2:5:5'][0].real_data : this.jskgdyxVal
+        // this.qpjskgdysVal = resList['0:2:6:5'] ? resList['0:2:6:5'][0].real_data : this.qpjskgdysVal
+        // this.qpjskgdyxVal = resList['0:2:7:5'] ? resList['0:2:7:5'][0].real_data : this.qpjskgdyxVal
+        // this.ywkgdysVal = resList['0:2:9:5'] ? resList['0:2:9:5'][0].real_data : this.ywkgdysVal
+        // this.ywkgdyxVal = resList['0:2:10:5'] ? resList['0:2:10:5'][0].real_data : this.ywkgdyxVal
 
-        this.pcgyqdyVal = resList['0:2:8:5'] ? resList['0:2:8:5'][0].real_data : this.pcgyqdyVal
-        this.ddjdydyVal = resList['0:3:0:5'] ? resList['0:3:0:5'][0].real_data : this.ddjdydyVal
-        this.ddjdydlVal = resList['0:3:0:4'] ? resList['0:3:0:4'][0].real_data : this.ddjdydlVal
-        this.ddjwkwdVal = resList['0:3:1:1'] ? resList['0:3:1:1'][0].real_data : this.ddjwkwdVal
-        this.ddjwkzdVal = resList['0:3:1:6'] ? resList['0:3:1:6'][0].real_data : this.ddjwkzdVal
-        this.ddjzcwdVal = resList['0:3:2:1'] ? resList['0:3:2:1'][0].real_data : this.ddjzcwdVal
-        this.ddjzczdVal = resList['0:3:2:6'] ? resList['0:3:2:6'][0].real_data : this.ddjzczdVal
-        this.zdqdydyVal = resList['0:4:0:5'] ? resList['0:4:0:5'][0].real_data : this.zdqdydyVal
-        this.zdqdydlVal = resList['0:4:0:4'] ? resList['0:4:0:4'][0].real_data : this.zdqdydlVal
-        this.zdqxqwdVal = resList['0:4:1:1'] ? resList['0:4:1:1'][0].real_data : this.zdqxqwdVal
-        this.zdqzwwdVal = resList['0:4:2:1'] ? resList['0:4:2:1'][0].real_data : this.zdqzwwdVal
-        this.xsqsdVal = resList['0:5:0:7'] ? resList['0:5:0:7'][0].real_data : this.xsqsdVal
-        this.xsqqsVal = resList['0:5:0:8'] ? resList['0:5:0:8'][0].real_data : this.xsqqsVal
-        this.jdzhkzqdyVal = resList['1:0:3:5'] ? resList['1:0:3:5'][0].real_data : this.jdzhkzqdyVal
-        this.jdjxkgdyVal = resList['1:0:1:5'] ? resList['1:0:1:5'][0].real_data : this.jdjxkgdyVal
-        this.jdmjmddyVal = resList['1:0:2:5'] ? resList['1:0:2:5'][0].real_data : this.jdmjmddyVal
-        this.jdmjmddlVal = resList['1:0:2:4'] ? resList['1:0:2:4'][0].real_data : this.jdmjmddlVal
+        // this.pcgyqdyVal = resList['0:2:8:5'] ? resList['0:2:8:5'][0].real_data : this.pcgyqdyVal
+        // this.ddjdydyVal = resList['0:3:0:5'] ? resList['0:3:0:5'][0].real_data : this.ddjdydyVal
+        // this.ddjdydlVal = resList['0:3:0:4'] ? resList['0:3:0:4'][0].real_data : this.ddjdydlVal
+        // this.ddjwkwdVal = resList['0:3:1:1'] ? resList['0:3:1:1'][0].real_data : this.ddjwkwdVal
+        // this.ddjwkzdVal = resList['0:3:1:6'] ? resList['0:3:1:6'][0].real_data : this.ddjwkzdVal
+        // this.ddjzcwdVal = resList['0:3:2:1'] ? resList['0:3:2:1'][0].real_data : this.ddjzcwdVal
+        // this.ddjzczdVal = resList['0:3:2:6'] ? resList['0:3:2:6'][0].real_data : this.ddjzczdVal
+        // this.zdqdydyVal = resList['0:4:0:5'] ? resList['0:4:0:5'][0].real_data : this.zdqdydyVal
+        // this.zdqdydlVal = resList['0:4:0:4'] ? resList['0:4:0:4'][0].real_data : this.zdqdydlVal
+        // this.zdqxqwdVal = resList['0:4:1:1'] ? resList['0:4:1:1'][0].real_data : this.zdqxqwdVal
+        // this.zdqzwwdVal = resList['0:4:2:1'] ? resList['0:4:2:1'][0].real_data : this.zdqzwwdVal
+        // this.xsqsdVal = resList['0:5:0:7'] ? resList['0:5:0:7'][0].real_data : this.xsqsdVal
+        // this.xsqqsVal = resList['0:5:0:8'] ? resList['0:5:0:8'][0].real_data : this.xsqqsVal
+        // this.jdzhkzqdyVal = resList['1:0:3:5'] ? resList['1:0:3:5'][0].real_data : this.jdzhkzqdyVal
+        // this.jdjxkgdyVal = resList['1:0:1:5'] ? resList['1:0:1:5'][0].real_data : this.jdjxkgdyVal
+        // this.jdmjmddyVal = resList['1:0:2:5'] ? resList['1:0:2:5'][0].real_data : this.jdmjmddyVal
+        // this.jdmjmddlVal = resList['1:0:2:4'] ? resList['1:0:2:4'][0].real_data : this.jdmjmddlVal
 
-        this.jxjmkhVal = resList['1:2:0:10'] ? resList['1:2:0:10'][0].real_data : this.jxjmkhVal
-        this.jxwzVal = resList['1:2:0:9'] ? resList['1:2:0:9'][0].floor : this.jxwzVal
-        this.jxxtzdVal = resList['1:2:0:6'] ? resList['1:2:0:6'][0].real_data : this.jxxtzdVal
-        this.jddgzdVal = resList['2:1:1:6'] ? resList['2:1:1:6'][0].real_data : this.jddgzdVal
-        this.jdcmkhVal = resList['2:1:0:10'] ? resList['2:1:0:10'][0].real_data : this.jdcmkhVal
+        // this.jxjmkhVal = resList['1:2:0:10'] ? resList['1:2:0:10'][0].real_data : this.jxjmkhVal
+        // this.jxwzVal = resList['1:2:0:9'] ? resList['1:2:0:9'][0].floor : this.jxwzVal
+        // this.jxxtzdVal = resList['1:2:0:6'] ? resList['1:2:0:6'][0].real_data : this.jxxtzdVal
+        // this.jddgzdVal = resList['2:1:1:6'] ? resList['2:1:1:6'][0].real_data : this.jddgzdVal
+        // this.jdcmkhVal = resList['2:1:0:10'] ? resList['2:1:0:10'][0].real_data : this.jdcmkhVal
 
       })
     },
@@ -1379,6 +1485,7 @@ export default {
         name: obj.name ? obj.name : '', // 名字
         max: obj.max ? obj.max : '', // 相当于eTime时间戳
         threshold: obj.threshold ? obj.threshold : '', // 报警阈值
+        operator: obj.operator ? obj.operator : '', // 操作符（大于、小于）
         dataType: obj.dataType ? obj.dataType : '', // 不同的数据类型使用不同字段 "real_data":温度  "real_data":湿度  "floor":楼层  "real_data":其他
         data: obj.data && obj.data.length ? obj.data : [] // 数据，需要经过处理
       }
@@ -1412,7 +1519,7 @@ export default {
         return res
       }
       // 如果有阈值，则设置标志线和范围
-      if (extendObj.threshold) {
+      if (extendObj.threshold !== '') {
         // 标志线
         options.series[0].markLine = {
           data: [{
@@ -1432,9 +1539,21 @@ export default {
           }
         }
         // 范围
+        // options.visualMap.show = true
         options.visualMap.range = []
-        options.visualMap.range.push(0, parseInt(extendObj.threshold))
+        // 判断操作符 0 - =, 1 - >, 2 - <, 3 - >=, 4 - <=, 5 - !=
+        if (extendObj.operator == 1 || extendObj.operator == 3) { // 大于
+          options.visualMap.min = 0
+          options.visualMap.max = 100000
+          options.visualMap.range.push(0, parseInt(extendObj.threshold))
+        } else if (extendObj.operator == 2 || extendObj.operator == 4) { // 小于
+          options.visualMap.min = 0
+          options.visualMap.max = 100000
+          options.visualMap.range.push(parseInt(extendObj.threshold), 2000)
+        }
       }
+
+
       
       chart.setOption(options)
 

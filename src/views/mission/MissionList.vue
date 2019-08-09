@@ -760,7 +760,7 @@ export default {
       })
     },
     getRiliList(){
-      api.taskApi.riliList().then((res) => {
+      api.taskApi.riliLista().then((res) => {
         var rili = res.data.data
         rili.forEach(element => {
           for(var key in element){　//遍历对象的所有属性，包括原型链上的所有属性
