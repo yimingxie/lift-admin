@@ -235,11 +235,13 @@
         this.appKey = new Date().getTime(); // 监听地址栏参数变化
         if(to.name=='Login' || to.name=='lift-print'){
           this.$store.commit('SWITCH_LAYOUT', 'auth')
+          
           // console.log('layout====' + this.layout)
         }else{
           this.$store.commit('SWITCH_LAYOUT', 'admin')
-          // console.log('layout====' + this.layout)
         }
+        this.changeTheme("theme2")
+        // alert(111)
       },
       layout () {
         // console.log('this.layout---' + this.layout)
@@ -257,15 +259,16 @@
     },
         
     created(){
-      
     },
     mounted () {
-      window.document.getElementById("page-container").setAttribute('class', 'theme1')
+      this.changeTheme(window.localStorage.getItem("theme"))
     },
 
     methods: {
       changeTheme (theme) {
+        // alert(222)
         window.document.getElementById("page-container").setAttribute('class', theme)
+        window.localStorage.setItem('theme', theme)
       },
       // 查询账户详情
       getAllAccountData(){

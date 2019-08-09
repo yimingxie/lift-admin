@@ -13,15 +13,15 @@
       <span class="orderNumber">工单编号：{{taskRecords.taskId}}</span>
       <div class="tar" style="float:right;">
         <button class="btn whiteBtn">关闭</button>
-        <button class="btn whiteBtn" style="background: #4272ff;color: #fff">修改</button>
+        <!-- <button class="btn whiteBtn" style="background: #4272ff;color: #fff">修改</button> -->
         <p class="status">状态</p>
         <p class="progress">{{taskRecords.taskStatus}}</p>
       </div>
       <div class="s_de_details">
         <ul>
           <li><span class="tie">派单人员：</span><span >曲丽丽</span></li>
-          <li><span class="tie">作业类型：</span><span>{{taskRecords.taskType}}</span></li>
-          <li><span class="tie">派单时间：</span><span>{{taskRecords.recordTime}}</span></li>
+          <li><span class="tie">作业类型：</span><span>{{ taskRecords.taskType }}</span></li>
+          <li><span class="tie">派单时间：</span><span>{{ taskRecords.recordTime }}</span></li>
           <li><span class="tie">作业时间：</span><span>2019-06-25 19:20:32</span></li>
         </ul>
       </div>
@@ -206,16 +206,16 @@
           <table border="0" class="s_de_details s_de_details2 clearfix">
             <tbody>
               <tr>
-                <td><span class="tie">注册代码</span><span >123243254345678901234567890</span></td>
-                <td><span class="tie">使用单位</span><span>深圳市招商物业有限公司</span></td>
+                <td><span class="tie">注册代码</span><span >{{elevatorInfo.regCode}}</span></td>
+                <td><span class="tie">使用单位</span><span>{{elevatorInfo.userDepartment}}</span></td>
               </tr>
               <tr>
-                <td><span class="tie">电梯区域</span><span>南山区-蛇口</span></td>
-                <td><span class="tie">详细地址</span><span>南光城市花园1栋c座</span></td>
+                <td><span class="tie">电梯区域</span><span>{{elevatorInfo.locaLarea}}</span></td>
+                <td><span class="tie">详细地址</span><span>{{elevatorInfo.locaLarea}}</span></td>
               </tr>
               <tr>
-                <td><span class="tie">物业单位</span><span>深圳市招商物业有限公司</span></td>
-                <td><span class="tie">制造单位</span><span>上海三菱电梯有限公司</span></td>
+                <td><span class="tie">物业单位</span><span>{{elevatorInfo.propertyName}}</span></td>
+                <td><span class="tie">制造单位</span><span>{{elevatorInfo.manufactName}}</span></td>
               </tr>
             </tbody>
           </table>
@@ -299,7 +299,8 @@ export default {
       ],
       ifWatchInfo:true,
       map:'',
-      taskRecords:[]
+      taskRecords:[],
+      elevatorInfo:[]
 
     }
   },
@@ -317,6 +318,7 @@ export default {
     getMissionDetailData(){
       api.taskApi.getMissionDetail(this.$route.params.id).then((res) => {
         this.taskRecords = res.data.data.taskRecords[0] || []
+        this.elevatorInfo = res.data.data.elevatorInfo || []
       }).catch((res) => {
         
       })
@@ -326,7 +328,7 @@ export default {
       this.ifWatchInfo = false
       // 构造地图
       this.map = new AMap.Map('mapContainer', {
-        center: [113.920652, 22.499146],
+        center: [this.elevatorInfo.latLon],
         mapStyle: 'amap://styles/db9065b28cc027a6a3240fc2ae093125',
         zoom: 20, //设置地图的缩放级别
         features: ['bg', 'road', 'building', 'point'],
