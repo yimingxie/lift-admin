@@ -7,7 +7,67 @@
     border: 1px solid $background-color-theme-dark!important;
     color: $font-color-theme-dark!important;
   }
+  .llct-area .el-input__inner, .regionPicker .el-input__inner{
+    background-color: $background-color-theme-dark !important;
+  }
   .el-form-item__label {
     color: $font-color-theme-dark!important;
+  }
+  .ant-input,.ant-calendar-picker-clear{
+    background-color: $background-color-theme-dark !important;
+    color: $font-color-theme-dark!important;
+  }
+  .ant-calendar-picker-icon{
+    color: $font-color-theme-dark!important;
+  }
+ 
+  // ----------------- 导航 ---------------------------
+  .el-menu{
+    background-color $input-bg-color-dark!important;
+    border-right: none!important;
+    box-shadow: 2px 0 6px 0 #191919!important;
+  }
+
+  .el-tabs__item.is-active, .el-tabs__item:hover{
+    // color: $color-main-dark !important;
+    color: $color-main !important;
+  }
+  .el-tabs__item{
+    color: $font-color-themesec-dark !important;
+  }
+  .el-tabs__nav-wrap::after{
+    background-color: $background-color-theme-dark;
+  }
+  .el-cascader__label{
+    color: $font-color-theme-dark !important;
+  }
+  //----------------表格-------------------------------
+  .el-table{
+    color: $font-color-theme-dark !important;
+    th{
+      background: #2C2E34!important;
+    }
+    tr{
+      background: $background-color-theme-dark !important;
+    }
+    thead {
+      color: $font-color-theme-dark !important;
+    }
+    td, th.is-leaf{
+      border-bottom: 1px solid $border-color-dark!important;
+    }
+    
+  }
+  .el-table--border::after, .el-table--group::after, .el-table::before{
+    border-bottom: 1px solid $border-color-dark!important;
+  }
+  //----------------表格-end------------------------------
+  // -----------------按钮---------------------------
+
+  // .el-button--text{
+  //   color: $color-main-dark !important;
+  // }
+  .el-step__icon {
+    background: $background-color-theme-dark !important;
   }
 }

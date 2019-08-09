@@ -55,6 +55,12 @@ export default  {
     return http.get(
       `${url2}/elevator/${code}/details`
     )
+  },
+  // 关闭订单
+  closeTask(taskId){
+    return http.post(
+      `${url2}/task/${taskId}/close`
+    )
   }
   // // 删除接口 根据接口id
   // deleteCorp(corpId){

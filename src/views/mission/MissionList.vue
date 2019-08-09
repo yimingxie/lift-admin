@@ -219,7 +219,7 @@
         <div class="missionTable">
 
           <!-- 未创建计划 列表 -->
-          <div v-for="(item,i) in noPlan" :key="i * 111 + 1" class="missionTr" >
+          <div v-for="(item,i) in noPlan" :key="i + 'noPlan'" class="missionTr" >
             <p :style="{opacity:(nowTr !== item.lift && nowTr !== ''?'0.3':'1')}">
               <i class="dispatch labelSize"></i>
               <i class="history labelSize"></i>
@@ -232,7 +232,7 @@
           <!-- 未创建计划 列表 end-->
 
           <!-- 计划列表 -->
-          <div v-for="(mission,index) in missionList" :key="index" class="missionTr" >
+          <div v-for="(mission,index) in missionList" :key="index + 'plan'" class="missionTr" >
             <p :style="{opacity:(nowTr !== mission.lift && nowTr !== ''?'0.3':'1')}">
               <i class="dispatch labelSize"></i>
               <i class="history labelSize"></i>
@@ -275,8 +275,8 @@
 
               <el-select v-model="createPlan.type" clearable placeholder="作业类型" class="regionPicker">
                 <el-option
-                  v-for="item in tpyeOptions"
-                  :key="item.value"
+                  v-for="(item,i) in tpyeOptions"
+                  :key="i + 'type'"
                   :label="item.label"
                   :value="item.value">
                 </el-option>
@@ -741,6 +741,8 @@ export default {
       api.taskApi.createTask(param).then((res) => {
         if(res.data.code == 200){
           this.$message.success('派单成功！');
+          // 获取任务列表
+          this.getMissionList()
         } else {
           this.$message.error(res.data.message);
         }
@@ -838,6 +840,8 @@ export default {
         api.taskApi.createTask(this.createPlanParam).then((res) => {
           if(res.data.code == 200){
             this.$message.success('派单成功！');
+            // 获取任务列表
+            this.getMissionList()
           } else {
             this.$message.error(res.data.message);
           }
@@ -846,8 +850,10 @@ export default {
         })
       } else {
         api.taskApi.createPlan(this.createPlanParam).then((res) => {
-          if(res.data.code == 200){
+          if(res.data.code == 200) {
             this.$message.success('创建计划成功！');
+            // 获取任务列表
+            this.getMissionList()
           } else {
             this.$message.error(res.data.message);
           }

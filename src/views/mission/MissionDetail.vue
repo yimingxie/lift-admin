@@ -12,10 +12,10 @@
     <div class="missionOrder clearfix">
       <span class="orderNumber">工单编号：{{taskRecords.taskId}}</span>
       <div class="tar" style="float:right;">
-        <button class="btn whiteBtn">关闭</button>
+        <button v-if="status =='已派单' || status =='已接单'" class="btn whiteBtn" @click="closeTask(taskRecords.taskId)">关闭</button>
         <!-- <button class="btn whiteBtn" style="background: #4272ff;color: #fff">修改</button> -->
         <p class="status">状态</p>
-        <p class="progress">{{taskRecords.taskStatus}}</p>
+        <p class="progress">{{status}}</p>
       </div>
       <div class="s_de_details">
         <ul>
@@ -112,7 +112,7 @@
       <div class="panel" >
         <div class="title">
           <div class="label1">人员信息
-          <span class="fr" style="font-size: 14px;color: #34414C;margin-right:24px;">
+          <span class="fr" style="font-size: 14px;margin-right:24px;">
             共{{totalPerson}}人
           </span>
           </div>
@@ -182,7 +182,7 @@
     <div style="width:33%;float:left">
       <div class="panel liftInfo">
         <div class="title" style="margin:0">
-          <div class="label1">电梯DT-1
+          <div class="label1">电梯{{elevatorInfo.inNum}}
             <span class="fr" v-if="ifWatchInfo" @click="watchMap()" style="line-height: 22px;margin-right:24px;font-size: 12px;cursor:pointer;color: #4272FF;">
               查看地图
             </span>
@@ -211,7 +211,7 @@
               </tr>
               <tr>
                 <td><span class="tie">电梯区域</span><span>{{elevatorInfo.locaLarea}}</span></td>
-                <td><span class="tie">详细地址</span><span>{{elevatorInfo.locaLarea}}</span></td>
+                <td><span class="tie">详细地址</span><span>{{elevatorInfo.address}}</span></td>
               </tr>
               <tr>
                 <td><span class="tie">物业单位</span><span>{{elevatorInfo.propertyName}}</span></td>
@@ -300,8 +300,8 @@ export default {
       ifWatchInfo:true,
       map:'',
       taskRecords:[],
-      elevatorInfo:[]
-
+      elevatorInfo:[],
+      status:''
     }
   },
   components: {
@@ -315,10 +315,24 @@ export default {
     this.getAllStaffData()
   },
   methods: {
+    closeTask(id){
+      api.taskApi.closeTask(id).then((res) => {
+        if (res.data.code === 200) {
+          this.$message.success('成功！');
+          this.status = '已关闭'
+        } else {
+          this.$message.error(res.data.message);
+        }
+      }).catch((res) => {
+        
+      })
+    },
     getMissionDetailData(){
       api.taskApi.getMissionDetail(this.$route.params.id).then((res) => {
         this.taskRecords = res.data.data.taskRecords[0] || []
         this.elevatorInfo = res.data.data.elevatorInfo || []
+        this.status = res.data.data.status
+
       }).catch((res) => {
         
       })
@@ -328,15 +342,15 @@ export default {
       this.ifWatchInfo = false
       // 构造地图
       this.map = new AMap.Map('mapContainer', {
-        center: [this.elevatorInfo.latLon],
+        center: this.elevatorInfo.latLon.split(","),
         mapStyle: 'amap://styles/db9065b28cc027a6a3240fc2ae093125',
-        zoom: 20, //设置地图的缩放级别
+        zoom: 20, // 设置地图的缩放级别
         features: ['bg', 'road', 'building', 'point'],
       });
       var markerContent = '<span class="dotMaker"></span>' 
       var marker = new AMap.Marker({
         content: markerContent,  // 自定义点标记覆盖物内容
-        position: [113.920652, 22.499146],// 基点位置
+        position: this.elevatorInfo.latLon.split(","),// 基点位置
         offset: new AMap.Pixel(1,4), // 相对于基点的偏移位置
         anchor:'center', // 设置锚点方位
         zIndex: 2,
@@ -425,7 +439,6 @@ export default {
     li
       float left
       font-size: 14px;
-      color: #34414C;
       padding: 5px 50px 5px 0
       min-width: 301px;
       // max-width: 301px;
@@ -480,7 +493,7 @@ export default {
   .liftInfo
     padding: 0;
   .scrollDiv
-    overflow-x scroll
+    overflow-x hidden
     height: 192px
     padding 0 12px
   .s_de_details2
