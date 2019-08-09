@@ -234,7 +234,6 @@
         // console.log('to----' + to)
         console.log('theme', to.name)
         if (localStorage.getItem('theme')) {
-          console.log('gggg', localStorage.getItem('theme'))
           this.changeTheme(localStorage.getItem('theme'))
         }
         
@@ -278,7 +277,6 @@
     methods: {
       changeTheme (theme) {
         document.getElementById("page-container").setAttribute('class', theme)
-        console.log('change', theme)
         localStorage.setItem('theme', theme)
       },
       // 查询账户详情

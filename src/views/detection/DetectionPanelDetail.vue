@@ -33,7 +33,7 @@
             <div class="diagnose-item">
               <div class="diagnose-item-detail">
                 <div class="diagnose-item-detail-title">
-                  <div class="didt-deal-btn" @click="dialogDispatch=true">处理</div>
+                  <div class="didt-deal-btn" @click="openDialogDispatch">处理</div>
                   <div class="didt-h3">{{reason}}</div>
                   <div class="didt-date">{{triggleTime}}</div>
                 </div>
@@ -42,7 +42,6 @@
                 </div>
               </div>
 
-              <!-- TODO 图表 所有图表和判断待完成 -->
               <!-- 用遍历、判断进行渲染，命名用后缀-pro区分 -->
               <div>
                 <det-detail-chart-comp :codelist="diagnDevices"></det-detail-chart-comp>
@@ -224,26 +223,33 @@
                   <div class="dispatch-item-li" style="width: 100%;">
                     <div class="dispatch-item-li-label">员工：</div>
                     <div class="dispatch-item-li-elevDetail clearfix">
-                      <div class="dispatch-staff-box clearfix">
-                        <div class="dstaff-delete"></div>
-                        <div class="dispatch-staff-box-img"></div>
+                      <div class="dispatch-staff-box clearfix" v-for="(item, i) in dispatchStaffList" :key="i">
+                        <div class="dstaff-delete" @click="deleteStaff(i)"></div>
+                        <div class="dispatch-staff-box-img">
+                          <div v-if="!item.imgUrl" class="dispatch-staff-box-imgBg"></div>
+                          <div v-else class="dispatch-staff-box-imgPic" :style="`background: url(${item.imgUrl}) no-repeat center center / cover`"></div>
+                        </div>
                         <div class="dispatch-staff-box-info">
-                          <div class="dstaff-box-input">
+                          <div class="dstaff-box-name">{{item.name}}</div>
+                          <!-- <div class="dstaff-box-input">
                             <el-form-item prop="assembId">
                               <el-cascader ref="assembIdCascader" placeholder="--" :options="assembIdOptions" v-model="selectedAssembIdOptions" filterable clearable @change="assembIdChange" :show-all-levels="false" size="small" style="width: 100%;"></el-cascader>
                             </el-form-item>
-                          </div>
-                          <div class="dstaff-box-department">维保部一部</div>
-                          <div class="dstaff-box-phone">19082317723</div>
+                          </div> -->
+                          <div class="dstaff-box-department">{{item.departmentName}}</div>
+                          <div class="dstaff-box-phone">{{item.account}}</div>
                         </div>
                       </div>
+
+
+                      <!-- 空模板 -->
                       <div class="dispatch-staff-box clearfix">
-                        <div class="dstaff-delete"></div>
+                        <!-- <div class="dstaff-delete"></div> -->
                         <div class="dispatch-staff-box-img"></div>
                         <div class="dispatch-staff-box-info">
                           <div class="dstaff-box-input">
-                            <el-form-item prop="assembId">
-                              <el-cascader ref="assembIdCascader" placeholder="--" :options="assembIdOptions" v-model="selectedAssembIdOptions" filterable clearable @change="assembIdChange" :show-all-levels="false" size="small" style="width: 100%;"></el-cascader>
+                            <el-form-item prop="departmentOp">
+                              <el-cascader ref="departmentCascader" placeholder="--" :options="departmentOptions" v-model="selectedDepartmentOptions" filterable clearable @change="departmentChange" :show-all-levels="false" size="small" style="width: 100%;"></el-cascader>
                             </el-form-item>
                           </div>
                           <div class="dstaff-box-department">--</div>
@@ -329,9 +335,12 @@ export default {
       parentCode: '',
       parentDiagnId: '',
       liftPerson: '',
+      liftPersonIdArr: [],
       dialogDispatch: false,
+      dispatchStaffList: [], // 员工详情数组
       dispatchBtn: false,
       dialogResult: false,
+
       // 电梯详情
       regCode: '',
       inNum: '',
@@ -371,8 +380,8 @@ export default {
         {value: 2, label: '违规'},
         {value: 3, label: '预警'},
       ],
-      assembIdOptions: [],
-      selectedAssembIdOptions: [],
+      departmentOptions: [],
+      selectedDepartmentOptions: [],
 
 
   
@@ -664,13 +673,16 @@ export default {
     // 获取电梯负责人
     getLiftPerson() {
       this.liftPerson = ''
+      this.liftPersonIdArr = []
       let personArr = []
       api.lift.getLiftPerson(this.parentCode).then(res => {
         if (res.data.data.personOne) {
           personArr.push(res.data.data.personOne)
+          this.liftPersonIdArr.push(res.data.data.oneId)
         }
         if (res.data.data.personTwo) {
           personArr.push(res.data.data.personTwo)
+          this.liftPersonIdArr.push(res.data.data.twoId)
         }
         this.liftPerson = personArr.join('、')
       })
@@ -693,37 +705,73 @@ export default {
       })
     },
 
-    // 获取安装人员下拉
-    getDepStaffOptions() {
-      api.device.getDepStaff().then(res => {
-        this.assembIdOptions = []
-        console.log('res.data', res.data)
-        for (var key in res.data.data) {
-          let obj = {}
-          obj.value = key
-          obj.label = key
-          obj.children = []
-          // console.log('key', key)
-          res.data.data[key].forEach((item, i) => {
-            let tempObj = {}
-            tempObj.value = item.id
-            tempObj.label = item.name
-            obj.children.push(tempObj)
+    // 打开诊断处理弹窗
+    openDialogDispatch() {
+      const that = this
+      this.dialogDispatch = true
+      this.dispatchStaffList = []
+      // this.dispatchStaffList = [{
+      //   imgUrl : '',
+      //   name: '',
+      //   department: '',
+      //   phone: '',
+      // }]
+
+      // 循环查询，通过id查询员工信息
+      this.liftPersonIdArr.forEach((id, i) => {
+        api.accountApi.getStaffDetails(id).then(staffRes => {
+          console.log('staffRes', staffRes.data)
+          let staffDetail = staffRes.data.data
+          this.dispatchStaffList.push({
+            imgUrl: api.accountApi.viewPic(staffDetail.staffInfo.avatarUrl),
+            name: staffDetail.staffInfo.name,
+            departmentName: staffDetail.departmentName,
+            account: staffDetail.staffInfo.account,
           })
+          console.log('this.dispatchStaffList', this.dispatchStaffList)
+        })
+      })
+    },
 
-          this.assembIdOptions.push(obj)
-          
-        }
+    // 删除员工
+    deleteStaff(i) {
+      this.dispatchStaffList.splice(i, 1)
+    },
 
-        console.log('this.assembIdOptions', this.assembIdOptions)
-        
+    // 获取部门下拉
+    getDepStaffOptions() {
+      const that = this
+  
+      api.accountApi.getCorpDepartments(window.localStorage.getItem('corpId')).then(res => {
+        console.log('部门人员', res.data)
+        this.departmentOptions = []
+        let departmentList = res.data.data
+        departmentList.forEach((item, i) => {
+          let obj = {}
+          obj.value = item.id
+          obj.label = item.depName
+          obj.children = []
+
+          // 通过部门名字获取员工，并添加到相应的children
+          api.accountApi.getDepStaffs(item.id).then(staffRes => {
+            console.log('staffRes', staffRes.data)
+            let staffDetail = staffRes.data.data
+            let objSec = {}
+            objSec.label = staffDetail.name
+            objSec.value = staffDetail.id
+            obj.children.push(objSec)
+          })
+        })
+
+        console.log('重组部门下拉', this.departmentOptions)
       })
 
     },
 
     // 下拉人员选中值
-    assembIdChange(arr) {
-      this.ruleForm.assembId = arr[arr.length-1] // 取数组最后一个值赋值
+    departmentChange(arr) {
+      // this.ruleForm.assembId = arr[arr.length-1] // 取数组最后一个值赋值
+      console.log('选中部门人员', arr)
     },
 
     // 获取中间异常详情

@@ -75,5 +75,12 @@ export default {
     return http.get(`${url1}/diagn/monitor_change_log/nice_list`, params)
   },
 
+  // 查询阈值
+  // /arctic/diagn/threshold/query
+  getThreshold(params) {
+    return http.post(`${url1}/diagn/threshold/query`, params)
+  }
+
+
 
 }

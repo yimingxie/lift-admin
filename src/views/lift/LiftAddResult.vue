@@ -538,9 +538,9 @@ export default {
         lng: '',
         lat: '',
         carSize: {
-          gao: '',
-          kuan: '',
-          shen: ''
+          gao: '0',
+          kuan: '0',
+          shen: '0'
         },
         doorForm: '',
         controlMode: '',
@@ -548,6 +548,10 @@ export default {
         floorsHeight: [
           {floor1: '', floor2: '', height: ''}
         ],
+        loadControl: {
+          value1: '',
+          value2: ''
+        },
         carForm: [
           {value: ''}
         ],
@@ -616,7 +620,7 @@ export default {
         highLevel: [{ required: true, message: '必填', trigger: 'blur' }],
         inNum: [{ required: true, message: '必填', trigger: 'blur' }],
         latLon: [{ required: true, message: '必填', trigger: 'blur' }],
-        loadControl: [{ required: true, message: '必填', trigger: 'blur' }],
+        // loadControl: [{ required: true, message: '必填', trigger: 'blur' }],
         localArea: [{ required: true, message: '必填', trigger: 'blur' }],
         lowLevel: [{ required: true, message: '必填', trigger: 'blur' }],
         maintenEtime: [{ required: true, message: '必填', trigger: 'blur' }],
