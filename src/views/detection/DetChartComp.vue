@@ -1195,42 +1195,42 @@ export default {
             this.drawChart1({container: 'real-chart-jfsd',unit: '%',name: '机房湿度',max: etime,dataType: 'real_data',data: resList['0:0:0:2'], threshold: thresholdObj['0:0:0:2'][0] ? thresholdObj['0:0:0:2'][0].threshold : '', operator: thresholdObj['0:0:0:2'][0] ? thresholdObj['0:0:0:2'][0].operator : ''})
             this.drawChart1({container: 'real-chart-jffs',unit: 'm/s',name: '机房风速',max: etime,dataType: 'real_data',data: resList['0:0:0:3'], threshold: thresholdObj['0:0:0:3'][0] ? thresholdObj['0:0:0:3'][0].threshold : '', operator: thresholdObj['0:0:0:3'][0] ? thresholdObj['0:0:0:3'][0].operator : ''})
             this.drawChart1({container: 'real-chart-jdwd',unit: '℃',name: '井道温度',max: etime,dataType: 'real_data',data: resList['2:0:0:1'], threshold: thresholdObj['2:0:0:1'][0] ? thresholdObj['2:0:0:1'][0].threshold : '', operator: thresholdObj['2:0:0:1'][0] ? thresholdObj['2:0:0:1'][0].operator : ''})
-            this.drawChart1({container: 'real-chart-jdsd',unit: '%',name: '井道湿度',max: etime,dataType: 'real_data',data: resList['2:0:0:2'], threshold: thresholdObj['2:0:0:3'][0] ? thresholdObj['2:0:0:3'][0].threshold : '', operator: thresholdObj['2:0:0:3'][0] ? thresholdObj['2:0:0:3'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-jdsd',unit: '%',name: '井道湿度',max: etime,dataType: 'real_data',data: resList['2:0:0:2'], threshold: thresholdObj['2:0:0:2'][0] ? thresholdObj['2:0:0:2'][0].threshold : '', operator: thresholdObj['2:0:0:2'][0] ? thresholdObj['2:0:0:2'][0].operator : ''})
             this.drawChart1({container: 'real-chart-jfdydy',unit: 'V',name: '机房电源电压',max: etime,dataType: 'real_data',data: resList['0:1:0:5'], threshold: thresholdObj['0:1:0:5'][0] ? thresholdObj['0:1:0:5'][0].threshold : '', operator: thresholdObj['0:1:0:5'][0] ? thresholdObj['0:1:0:5'][0].operator : ''})
             this.drawChart1({container: 'real-chart-jfdydl',unit: 'A',name: '机房电源电流',max: etime,dataType: 'real_data',data: resList['0:1:0:4'], threshold: thresholdObj['0:1:0:4'][0] ? thresholdObj['0:1:0:4'][0].threshold : '', operator: thresholdObj['0:1:0:4'][0] ? thresholdObj['0:1:0:4'][0].operator : ''})
             this.drawChart1({container: 'real-chart-msaqhldy',unit: 'V',name: '门锁安全回路电压',max: etime,dataType: 'real_data',data: resList['0:2:1:5'], threshold: thresholdObj['0:2:1:5'][0] ? thresholdObj['0:2:1:5'][0].threshold : '', operator: thresholdObj['0:2:1:5'][0] ? thresholdObj['0:2:1:5'][0].operator : ''})
             this.drawChart1({container: 'real-chart-msaqhldl',unit: 'A',name: '门锁安全回路电流',max: etime,dataType: 'real_data',data: resList['0:2:1:4'], threshold: thresholdObj['0:2:1:4'][0] ? thresholdObj['0:2:1:4'][0].threshold : '', operator: thresholdObj['0:2:1:4'][0] ? thresholdObj['0:2:1:4'][0].operator : ''})
-            this.drawChart1({container: 'real-chart-aqkghldy',unit: 'V',name: '安全开关回路电压',max: etime,dataType: 'real_data',data: resList['0:2:2:5']})
-            this.drawChart1({container: 'real-chart-jxkgdy',unit: 'V',name: '检修开关电压',max: etime,dataType: 'real_data',data: resList['0:2:3:5']})
-            this.drawChart1({container: 'real-chart-jskgdys',unit: 'V',name: '（上）减速开关电压',max: etime,dataType: 'real_data',data: resList['0:2:4:5']})
-            this.drawChart1({container: 'real-chart-jskgdyx',unit: 'V',name: '（下）减速开关电压',max: etime,dataType: 'real_data',data: resList['0:2:5:5']})
-            this.drawChart1({container: 'real-chart-qpjskgdys',unit: 'V',name: '（上）强迫减速开关电压',max: etime,dataType: 'real_data',data: resList['0:2:6:5']})
-            this.drawChart1({container: 'real-chart-qpjskgdyx',unit: 'V',name: '（下）强迫减速开关电压',max: etime,dataType: 'real_data',data: resList['0:2:7:5']})
-            this.drawChart1({container: 'real-chart-ywkgdys',unit: 'V',name: '（上）越位开关电压',max: etime,dataType: 'real_data',data: resList['0:2:9:5']})
-            this.drawChart1({container: 'real-chart-ywkgdyx',unit: 'V',name: '（下）越位开关电压',max: etime,dataType: 'real_data',data: resList['0:2:10:5']})
-            this.drawChart1({container: 'real-chart-pcgyqdy',unit: 'V',name: '平层感应器电压',max: etime,dataType: 'real_data',data: resList['0:2:8:5']})
-            this.drawChart1({container: 'real-chart-ddjdydy',unit: 'V',name: '电动机电源电压',max: etime,dataType: 'real_data',data: resList['0:3:0:5']})
-            this.drawChart1({container: 'real-chart-ddjdydl',unit: 'A',name: '电动机电源电流',max: etime,dataType: 'real_data',data: resList['0:3:0:4']})
-            this.drawChart1({container: 'real-chart-ddjwkwd',unit: '℃',name: '电动机外壳温度',max: etime,dataType: 'real_data',data: resList['0:3:1:1']})
-            this.drawChart1({container: 'real-chart-ddjwkzd',unit: 'μm',name: '电动机外壳振动',max: etime,dataType: 'real_data',data: resList['0:3:1:6']})
-            this.drawChart1({container: 'real-chart-ddjzcwd',unit: '℃',name: '电动机轴承温度',max: etime,dataType: 'real_data',data: resList['0:3:2:1']})
-            this.drawChart1({container: 'real-chart-ddjzczd',unit: 'μm',name: '电动机轴承振动',max: etime,dataType: 'real_data',data: resList['0:3:2:6']})
-            this.drawChart1({container: 'real-chart-zdqdydy',unit: 'V',name: '制动器电源电压',max: etime,dataType: 'real_data',data: resList['0:4:0:5']})
-            this.drawChart1({container: 'real-chart-zdqdydl',unit: 'A',name: '制动器电源电流',max: etime,dataType: 'real_data',data: resList['0:4:0:4']})
-            this.drawChart1({container: 'real-chart-zdqxqwd',unit: '℃',name: '制动器线圈温度',max: etime,dataType: 'real_data',data: resList['0:4:1:1']})
-            this.drawChart1({container: 'real-chart-zdqzwwd',unit: '℃',name: '制动器闸瓦温度',max: etime,dataType: 'real_data',data: resList['0:4:2:1']})
-            this.drawChart1({container: 'real-chart-xsqsd',unit: 'm/s',name: '限速器速度',max: etime,dataType: 'real_data',data: resList['0:5:0:7']})
-            this.drawChart1({container: 'real-chart-xsqqs',unit: 'rpm',name: '限速器圈数',max: etime,dataType: 'real_data',data: resList['0:5:0:8']})
-            this.drawChart1({container: 'real-chart-jdzhkzqdy',unit: 'V',name: '轿顶载荷控制器电压',max: etime,dataType: 'real_data',data: resList['1:0:3:5']})
-            this.drawChart1({container: 'real-chart-jdjxkgdy',unit: 'V',name: '轿顶检修开关电压',max: etime,dataType: 'real_data',data: resList['1:0:1:5']})
-            this.drawChart1({container: 'real-chart-jdmjmddy',unit: 'V',name: '轿顶门机马达电压',max: etime,dataType: 'real_data',data: resList['1:0:2:5']})
-            this.drawChart1({container: 'real-chart-jdmjmddl',unit: 'A',name: '轿顶门机马达电流',max: etime,dataType: 'real_data',data: resList['1:0:2:4']})
+            this.drawChart1({container: 'real-chart-aqkghldy',unit: 'V',name: '安全开关回路电压',max: etime,dataType: 'real_data',data: resList['0:2:2:5'], threshold: thresholdObj['0:2:2:5'][0] ? thresholdObj['0:2:2:5'][0].threshold : '', operator: thresholdObj['0:2:2:5'][0] ? thresholdObj['0:2:2:5'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-jxkgdy',unit: 'V',name: '检修开关电压',max: etime,dataType: 'real_data',data: resList['0:2:3:5'], threshold: thresholdObj['0:2:3:5'][0] ? thresholdObj['0:2:3:5'][0].threshold : '', operator: thresholdObj['0:2:3:5'][0] ? thresholdObj['0:2:3:5'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-jskgdys',unit: 'V',name: '（上）减速开关电压',max: etime,dataType: 'real_data',data: resList['0:2:4:5'], threshold: thresholdObj['0:2:4:5'][0] ? thresholdObj['0:2:4:5'][0].threshold : '', operator: thresholdObj['0:2:4:5'][0] ? thresholdObj['0:2:4:5'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-jskgdyx',unit: 'V',name: '（下）减速开关电压',max: etime,dataType: 'real_data',data: resList['0:2:5:5'], threshold: thresholdObj['0:2:5:5'][0] ? thresholdObj['0:2:5:5'][0].threshold : '', operator: thresholdObj['0:2:5:5'][0] ? thresholdObj['0:2:5:5'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-qpjskgdys',unit: 'V',name: '（上）强迫减速开关电压',max: etime,dataType: 'real_data',data: resList['0:2:6:5'], threshold: thresholdObj['0:2:6:5'][0] ? thresholdObj['0:2:6:5'][0].threshold : '', operator: thresholdObj['0:2:6:5'][0] ? thresholdObj['0:2:6:5'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-qpjskgdyx',unit: 'V',name: '（下）强迫减速开关电压',max: etime,dataType: 'real_data',data: resList['0:2:7:5'], threshold: thresholdObj['0:2:7:5'][0] ? thresholdObj['0:2:7:5'][0].threshold : '', operator: thresholdObj['0:2:7:5'][0] ? thresholdObj['0:2:7:5'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-ywkgdys',unit: 'V',name: '（上）越位开关电压',max: etime,dataType: 'real_data',data: resList['0:2:9:5'], threshold: thresholdObj['0:2:9:5'][0] ? thresholdObj['0:2:9:5'][0].threshold : '', operator: thresholdObj['0:2:9:5'][0] ? thresholdObj['0:2:9:5'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-ywkgdyx',unit: 'V',name: '（下）越位开关电压',max: etime,dataType: 'real_data',data: resList['0:2:10:5'], threshold: thresholdObj['0:2:10:5'][0] ? thresholdObj['0:2:10:5'][0].threshold : '', operator: thresholdObj['0:2:10:5'][0] ? thresholdObj['0:2:10:5'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-pcgyqdy',unit: 'V',name: '平层感应器电压',max: etime,dataType: 'real_data',data: resList['0:2:8:5'], threshold: thresholdObj['0:2:8:5'][0] ? thresholdObj['0:2:8:5'][0].threshold : '', operator: thresholdObj['0:2:8:5'][0] ? thresholdObj['0:2:8:5'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-ddjdydy',unit: 'V',name: '电动机电源电压',max: etime,dataType: 'real_data',data: resList['0:3:0:5'], threshold: thresholdObj['0:3:0:5'][0] ? thresholdObj['0:3:0:5'][0].threshold : '', operator: thresholdObj['0:3:0:5'][0] ? thresholdObj['0:3:0:5'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-ddjdydl',unit: 'A',name: '电动机电源电流',max: etime,dataType: 'real_data',data: resList['0:3:0:4'], threshold: thresholdObj['0:3:0:4'][0] ? thresholdObj['0:3:0:4'][0].threshold : '', operator: thresholdObj['0:3:0:4'][0] ? thresholdObj['0:3:0:4'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-ddjwkwd',unit: '℃',name: '电动机外壳温度',max: etime,dataType: 'real_data',data: resList['0:3:1:1'], threshold: thresholdObj['0:3:1:1'][0] ? thresholdObj['0:3:1:1'][0].threshold : '', operator: thresholdObj['0:3:1:1'][0] ? thresholdObj['0:3:1:1'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-ddjwkzd',unit: 'μm',name: '电动机外壳振动',max: etime,dataType: 'real_data',data: resList['0:3:1:6'], threshold: thresholdObj['0:3:1:6'][0] ? thresholdObj['0:3:1:6'][0].threshold : '', operator: thresholdObj['0:3:1:6'][0] ? thresholdObj['0:3:1:6'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-ddjzcwd',unit: '℃',name: '电动机轴承温度',max: etime,dataType: 'real_data',data: resList['0:3:2:1'], threshold: thresholdObj['0:3:2:1'][0] ? thresholdObj['0:3:2:1'][0].threshold : '', operator: thresholdObj['0:3:2:1'][0] ? thresholdObj['0:3:2:1'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-ddjzczd',unit: 'μm',name: '电动机轴承振动',max: etime,dataType: 'real_data',data: resList['0:3:2:6'], threshold: thresholdObj['0:3:2:6'][0] ? thresholdObj['0:3:2:6'][0].threshold : '', operator: thresholdObj['0:3:2:6'][0] ? thresholdObj['0:3:2:6'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-zdqdydy',unit: 'V',name: '制动器电源电压',max: etime,dataType: 'real_data',data: resList['0:4:0:5'], threshold: thresholdObj['0:4:0:5'][0] ? thresholdObj['0:4:0:5'][0].threshold : '', operator: thresholdObj['0:4:0:5'][0] ? thresholdObj['0:4:0:5'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-zdqdydl',unit: 'A',name: '制动器电源电流',max: etime,dataType: 'real_data',data: resList['0:4:0:4'], threshold: thresholdObj['0:4:0:4'][0] ? thresholdObj['0:4:0:4'][0].threshold : '', operator: thresholdObj['0:4:0:4'][0] ? thresholdObj['0:4:0:4'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-zdqxqwd',unit: '℃',name: '制动器线圈温度',max: etime,dataType: 'real_data',data: resList['0:4:1:1'], threshold: thresholdObj['0:4:1:1'][0] ? thresholdObj['0:4:1:1'][0].threshold : '', operator: thresholdObj['0:4:1:1'][0] ? thresholdObj['0:4:1:1'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-zdqzwwd',unit: '℃',name: '制动器闸瓦温度',max: etime,dataType: 'real_data',data: resList['0:4:2:1'], threshold: thresholdObj['0:4:2:1'][0] ? thresholdObj['0:4:2:1'][0].threshold : '', operator: thresholdObj['0:4:2:1'][0] ? thresholdObj['0:4:2:1'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-xsqsd',unit: 'm/s',name: '限速器速度',max: etime,dataType: 'real_data',data: resList['0:5:0:7'], threshold: thresholdObj['0:5:0:7'][0] ? thresholdObj['0:5:0:7'][0].threshold : '', operator: thresholdObj['0:5:0:7'][0] ? thresholdObj['0:5:0:7'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-xsqqs',unit: 'rpm',name: '限速器圈数',max: etime,dataType: 'real_data',data: resList['0:5:0:8'], threshold: thresholdObj['0:5:0:8'][0] ? thresholdObj['0:5:0:8'][0].threshold : '', operator: thresholdObj['0:5:0:8'][0] ? thresholdObj['0:5:0:8'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-jdzhkzqdy',unit: 'V',name: '轿顶载荷控制器电压',max: etime,dataType: 'real_data',data: resList['1:0:3:5'], threshold: thresholdObj['1:0:3:5'][0] ? thresholdObj['1:0:3:5'][0].threshold : '', operator: thresholdObj['1:0:3:5'][0] ? thresholdObj['1:0:3:5'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-jdjxkgdy',unit: 'V',name: '轿顶检修开关电压',max: etime,dataType: 'real_data',data: resList['1:0:1:5'], threshold: thresholdObj['1:0:1:5'][0] ? thresholdObj['1:0:1:5'][0].threshold : '', operator: thresholdObj['1:0:1:5'][0] ? thresholdObj['1:0:1:5'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-jdmjmddy',unit: 'V',name: '轿顶门机马达电压',max: etime,dataType: 'real_data',data: resList['1:0:2:5'], threshold: thresholdObj['1:0:2:5'][0] ? thresholdObj['1:0:2:5'][0].threshold : '', operator: thresholdObj['1:0:2:5'][0] ? thresholdObj['1:0:2:5'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-jdmjmddl',unit: 'A',name: '轿顶门机马达电流',max: etime,dataType: 'real_data',data: resList['1:0:2:4'], threshold: thresholdObj['1:0:2:4'][0] ? thresholdObj['1:0:2:4'][0].threshold : '', operator: thresholdObj['1:0:2:4'][0] ? thresholdObj['1:0:2:4'][0].operator : ''})
 
-            this.drawChart1({container: 'real-chart-jxjmkh',unit: '',name: '轿厢轿门开合',max: etime,dataType: 'real_data',data: resList['1:2:0:10']})
-            this.drawChart1({container: 'real-chart-jxwz',unit: 'F',name: '轿厢位置',max: etime,dataType: 'floor',data: resList['1:2:0:9']})
-            this.drawChart1({container: 'real-chart-jxxtzd',unit: 'μm',name: '轿厢箱体振动',max: etime,dataType: 'real_data',data: resList['1:2:0:6']})
-            this.drawChart1({container: 'real-chart-jddgzd',unit: 'μm',name: '井道导轨振动',max: etime,dataType: 'real_data',data: resList['2:1:1:6']})
-            this.drawChart1({container: 'real-chart-jdcmkh',unit: '',name: '井道层门开合',max: etime,dataType: 'real_data',data: resList['2:1:0:10']})
+            this.drawChart1({container: 'real-chart-jxjmkh',unit: '',name: '轿厢轿门开合',max: etime,dataType: 'real_data',data: resList['1:2:0:10'], threshold: thresholdObj['1:2:0:10'][0] ? thresholdObj['1:2:0:10'][0].threshold : '', operator: thresholdObj['1:2:0:10'][0] ? thresholdObj['1:2:0:10'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-jxwz',unit: 'F',name: '轿厢位置',max: etime,dataType: 'floor',data: resList['1:2:0:9'], threshold: thresholdObj['1:2:0:9'][0] ? thresholdObj['1:2:0:9'][0].threshold : '', operator: thresholdObj['1:2:0:9'][0] ? thresholdObj['1:2:0:9'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-jxxtzd',unit: 'μm',name: '轿厢箱体振动',max: etime,dataType: 'real_data',data: resList['1:2:0:6'], threshold: thresholdObj['1:2:0:6'][0] ? thresholdObj['1:2:0:6'][0].threshold : '', operator: thresholdObj['1:2:0:6'][0] ? thresholdObj['1:2:0:6'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-jddgzd',unit: 'μm',name: '井道导轨振动',max: etime,dataType: 'real_data',data: resList['2:1:1:6'], threshold: thresholdObj['2:1:1:6'][0] ? thresholdObj['2:1:1:6'][0].threshold : '', operator: thresholdObj['2:1:1:6'][0] ? thresholdObj['2:1:1:6'][0].operator : ''})
+            this.drawChart1({container: 'real-chart-jdcmkh',unit: '',name: '井道层门开合',max: etime,dataType: 'real_data',data: resList['2:1:0:10'], threshold: thresholdObj['2:1:0:10'][0] ? thresholdObj['2:1:0:10'][0].threshold : '', operator: thresholdObj['2:1:0:10'][0] ? thresholdObj['2:1:0:10'][0].operator : ''})
           }, 300)
         
           // 给实时数据赋值
@@ -1524,7 +1524,7 @@ export default {
         options.series[0].markLine = {
           data: [{
               name: '',
-              yAxis: parseInt(extendObj.threshold)
+              yAxis: parseFloat(extendObj.threshold)
           }],
           animation: false,
           symbolSize: 0,
@@ -1545,11 +1545,15 @@ export default {
         if (extendObj.operator == 1 || extendObj.operator == 3) { // 大于
           options.visualMap.min = 0
           options.visualMap.max = 100000
-          options.visualMap.range.push(0, parseInt(extendObj.threshold))
+          options.visualMap.range.push(0, parseFloat(extendObj.threshold))
         } else if (extendObj.operator == 2 || extendObj.operator == 4) { // 小于
           options.visualMap.min = 0
           options.visualMap.max = 100000
-          options.visualMap.range.push(parseInt(extendObj.threshold), 2000)
+          options.visualMap.range.push(parseFloat(extendObj.threshold), 2000)
+        } else {
+          options.visualMap.min = 0
+          options.visualMap.max = 100000
+          options.visualMap.range.push(parseFloat(extendObj.threshold), parseFloat(extendObj.threshold))
         }
       }
 
