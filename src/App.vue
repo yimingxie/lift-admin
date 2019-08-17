@@ -241,10 +241,10 @@
         this.appKey = new Date().getTime(); // 监听地址栏参数变化
         if(to.name=='Login' || to.name=='lift-print' || to.name=='panel-test'){
           this.$store.commit('SWITCH_LAYOUT', 'auth')
+          
           // console.log('layout====' + this.layout)
         } else{
           this.$store.commit('SWITCH_LAYOUT', 'admin')
-          // console.log('layout====' + this.layout)
         }
       },
       layout () {
@@ -263,12 +263,9 @@
     },
         
     created(){
-      
-      
     },
 
     mounted () {
-      // window.document.getElementById("page-container").setAttribute('class', 'theme1')
       let theme = localStorage.getItem('theme') ? localStorage.getItem('theme') : 'theme1'
       this.changeTheme(theme)
       
@@ -297,7 +294,7 @@
       ifDisabled(title){
         var flag = true
         
-        if(this.type.indexOf("administrator") > -1 || this.type.indexOf("domino") > -1) {
+        if(this.type.indexOf("administrator") > -1 || this.type.indexOf("manager") > -1) {
           flag = false
         }
         else{

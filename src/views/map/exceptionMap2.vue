@@ -32,7 +32,10 @@
             @focus="datePickerFocus"
             placeholder="选择日期">
           </el-date-picker> -->
-          <radio-group :items="periods" :value.sync="period" ><span slot="label">处理进度：</span></radio-group>
+          <radio-group :items="periods" :value.sync="period" >
+            <span slot="label">处理进度：</span>
+          </radio-group>
+          
           <span class="today">
            
             <!-- <search-input v-model="searchKey" style="margin:15px 0 0 0">

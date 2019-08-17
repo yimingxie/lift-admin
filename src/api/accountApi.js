@@ -177,7 +177,6 @@ export default  {
   // 查看图片
   viewPic(picName){
     return `${url2}/view/image?filename=${picName}`
-    
   }
 }
 

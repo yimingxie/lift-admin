@@ -34,14 +34,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="i in tr_str" :key=i>
-                <td v-for="k in 7" :key = "k+i" v-bind:class="{highlight: checkDay === (i-1) * 7 + k - firstnow} " @click="change((i-1) * 7 + k - firstnow)"> 
+              <tr v-for="i in tr_str" :key="i">
+                <td v-for="k in 7" :key= k v-bind:class="{highlight: checkDay === (i-1) * 7 + k - firstnow} " @click="change((i-1) * 7 + k - firstnow)"> 
                   <div class="dateNub" :class="{'today':getTitle((i-1) * 7 + k - firstnow) === '今'}">
                     {{ getTitle((i-1) * 7 + k - firstnow) }}
                   </div>
                   <!-- <slot :todo="todo">
                   </slot> -->
-                  <div class="dateRatio" v-for="(todo,index) in todos" :key= index  v-if="(i-1) * 7 + k - firstnow === todos[index].date && (i-1) * 7 + k - firstnow <= m_days[checkMonth]" >
+                  <div class="dateRatio" v-for="(todo,index) in todos" :key="index + '-label'"  v-if="(i-1) * 7 + k - firstnow === todos[index].date && (i-1) * 7 + k - firstnow <= m_days[checkMonth]" >
                     <!-- <p v-if="(i-1) * 7 + k - firstnow <= NowDay && NowMonth === checkMonth">{{ LMsg.msg }}</p>
                     <p v-else>0</p>
                     <div class="GqTotal">共{{ LMsg.total }}</div> -->

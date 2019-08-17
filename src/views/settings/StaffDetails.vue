@@ -332,7 +332,6 @@ export default {
     cursor pointer
   .s_de_name
     font-size: 24px;
-    color: #34414C;
     margin-left: 36px
   .s_de_department
     font-size: 14px;
@@ -342,8 +341,6 @@ export default {
     li
       float left
       font-size: 14px;
-      color: #34414C;
-      // padding: 5px 12px 5px 39px;
       padding: 5px 7px 5px 37px;
       min-width: 201px;
       max-width: 301px;
