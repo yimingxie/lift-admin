@@ -2,7 +2,7 @@
   <div id="DeviceDetail">
     <div class="container">
       <div class="bread-nav">
-        <span>设备管理</span>
+        <span @click="$router.push('/device')">设备管理</span>
         <em>/</em>
         <span class="on">设备详情</span>
       </div>
@@ -570,8 +570,9 @@ export default {
     font-size: 14px;
     color: #7E8A95;
     text-align: center;
-    line-height: 22px;
+    line-height: 20px;
     margin-top 10px;
+    padding: 0 10px;
   }
   .ddi-data{
     box-sizing border-box;

@@ -73,7 +73,7 @@ export default {
     // 清空
     clearCode() {
       this.cCode = ''
-      this.search('')
+      this.$emit('clearCode', this.cCode)      
     },
 
   },

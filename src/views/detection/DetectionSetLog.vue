@@ -2,7 +2,7 @@
   <div id="DetectionSetLog">
     <div class="container">
       <div class="bread-nav">
-        <span>数字电梯</span>
+        <span @click="$router.push('/lift-list')">数字电梯</span>
         <em>/</em>
         <span class="on">设置监测</span>
       </div>
@@ -105,7 +105,7 @@
                   </div>
 
 
-                  <div class="changelog-row3">{{item.diagnMonitor.operId}}</div>
+                  <div class="changelog-row3">{{clogItem.operName || '未知'}}</div>
                   <div class="changelog-row4">{{clogItem.createTime}}</div>
                 </div>
       
@@ -470,9 +470,14 @@ export default {
 
     },
 
-    // TODO 跳转到电梯档案
+    // 跳转到电梯档案
     goElevDetail() {
-      alert('TODO')
+      this.$router.push({
+        path: '/lift-detail',
+        query: {
+          regCode: this.parentCode
+        }
+      })
     }
 
   },

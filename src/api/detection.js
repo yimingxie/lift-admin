@@ -6,6 +6,7 @@ let protocol = process.env.NODE_ENV !== 'production' ? 'http:' : window.location
 // let url1 = `${protocol}//iot.gidomino.com/arctic`
 // let url1 = `${protocol}//192.168.100.2/arctic`
 let url1 = `${http.localURL}/arctic`
+let url2 = `${http.localURL}/domino`
 
 
 export default {
@@ -76,10 +77,27 @@ export default {
   },
 
   // 查询阈值
-  // /arctic/diagn/threshold/query
   getThreshold(params) {
     return http.post(`${url1}/diagn/threshold/query`, params)
+  },
+
+  // 派单
+  createTask(params) {
+    return http.post(`${url2}/task/diagnosis`, params)
+  },
+
+  // 处理结果
+  getTaskResult(taskId) {
+    return http.get(`${url2}/task/${taskId}/status`)
+  },
+
+  // 作业记录
+  getLogList(params) {
+    return http.post(`${url2}/elev/record/all`, params)
   }
+
+
+
 
 
 

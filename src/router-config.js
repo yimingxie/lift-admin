@@ -399,6 +399,15 @@ const router = new Router({
       component: (resolve) => require(['./views/detection/DetTest.vue'], resolve)
     },
     {
+      path: "/panel-test",
+      name: "panel-test",
+      meta: {
+        title: "检测诊断测试",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/detection/PanelTest.vue'], resolve)
+    },
+    {
       path: "/missionDetail/:id",
       name: "missionDetail",
       meta: {

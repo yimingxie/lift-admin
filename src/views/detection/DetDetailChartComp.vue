@@ -3,15 +3,11 @@
     <!-- <h2>detail</h2> -->
     <div>
       
-      <!-- TODO 图表 所有图表和判断待完成 -->
       <!-- 用遍历、判断进行渲染，命名用后缀-pro区分 -->
-
       <div class="diagnose-problem-chart" v-for="(item, i) in deviceList" :key="i">
         <div class="dcc-box" v-if="item == '0:0:0:1'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/wendu.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-jfwd-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{jfwdVal}}</span>℃</div>
               <div class="dccb-data-p2">机房温度</div>
@@ -23,9 +19,7 @@
         </div>
         <div class="dcc-box" v-if="item == '0:0:0:2'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/shidu.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-jfsd-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{jfsdVal}}</span>℃</div>
               <div class="dccb-data-p2">机房湿度</div>
@@ -37,9 +31,7 @@
         </div>
         <div class="dcc-box" v-if="item == '0:0:0:3'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/fengsu.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-jffs-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{jffsVal}}</span>m/s</div>
               <div class="dccb-data-p2">机房风速</div>
@@ -51,9 +43,7 @@
         </div>
         <div class="dcc-box" v-if="item == '2:0:0:1'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/wendu.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-jdwd-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{jdwdVal}}</span>℃</div>
               <div class="dccb-data-p2">井道温度</div>
@@ -65,9 +55,7 @@
         </div>
         <div class="dcc-box" v-if="item == '2:0:0:2'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/shidu.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-jdsd-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{jdsdVal}}</span>%</div>
               <div class="dccb-data-p2">井道湿度</div>
@@ -79,9 +67,7 @@
         </div>
         <div class="dcc-box" v-if="item == '0:1:0:5'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/dianya.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-jfdydy-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{jfdydyVal}}</span>V</div>
               <div class="dccb-data-p2">机房电源电压</div>
@@ -93,9 +79,7 @@
         </div>
         <div class="dcc-box" v-if="item == '0:1:0:4'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/dianliu.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-jfdydl-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{jfdydlVal}}</span>A</div>
               <div class="dccb-data-p2">机房电源电流</div>
@@ -107,9 +91,7 @@
         </div>
         <div class="dcc-box" v-if="item == '0:2:1:5'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/dianya.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-msaqhldy-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{msaqhldyVal}}</span>V</div>
               <div class="dccb-data-p2">门锁安全回路电压</div>
@@ -121,9 +103,7 @@
         </div>
         <div class="dcc-box" v-if="item == '0:2:1:4'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/dianliu.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-msaqhldl-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{msaqhldlVal}}</span>A</div>
               <div class="dccb-data-p2">门锁安全回路电流</div>
@@ -135,11 +115,9 @@
         </div>
         <div class="dcc-box" v-if="item == '0:2:2:5'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/dianya.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-aqkghldy-icon on"></div>
             <div class="dccb-data-p">
-              <div class="dccb-data-p1"><span>{{aqkgmldyVal}}</span>V</div>
+              <div class="dccb-data-p1"><span>{{aqkghldyVal}}</span>V</div>
               <div class="dccb-data-p2">安全开关回路电压</div>
             </div>
           </div>
@@ -149,9 +127,7 @@
         </div>
         <div class="dcc-box" v-if="item == '0:2:3:5'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/dianya.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-jxkgdy-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{jxkgdyVal}}</span>V</div>
               <div class="dccb-data-p2">检修开关电压</div>
@@ -163,9 +139,7 @@
         </div>
         <div class="dcc-box" v-if="item == '0:2:4:5'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/dianya.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-jskgdys-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{jskgdysVal}}</span>V</div>
               <div class="dccb-data-p2">（上）减速开关电压</div>
@@ -177,9 +151,7 @@
         </div>
         <div class="dcc-box" v-if="item == '0:2:5:5'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/dianya.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-jskgdyx-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{jskgdyxVal}}</span>V</div>
               <div class="dccb-data-p2">（下）减速开关电压</div>
@@ -191,9 +163,7 @@
         </div>
         <div class="dcc-box" v-if="item == '0:2:6:5'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/dianya.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-qpjskgdys-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{qpjskgdysVal}}</span>V</div>
               <div class="dccb-data-p2">（上）强迫减速开关电压</div>
@@ -205,9 +175,7 @@
         </div>
         <div class="dcc-box" v-if="item == '0:2:5:5'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/dianya.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-qpjskgdyx-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{qpjskgdyxVal}}</span>V</div>
               <div class="dccb-data-p2">（下）强迫减速开关电压</div>
@@ -220,9 +188,7 @@
 
         <div class="dcc-box" v-if="item == '0:2:9:5'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/dianya.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-ywkgdys-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{ywkgdysVal}}</span>V</div>
               <div class="dccb-data-p2">（上）越位开关电压</div>
@@ -234,9 +200,7 @@
         </div>
         <div class="dcc-box" v-if="item == '0:2:10:5'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/dianya.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-ywkgdyx-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{ywkgdyxVal}}</span>V</div>
               <div class="dccb-data-p2">（下）越位开关电压</div>
@@ -248,9 +212,7 @@
         </div>
         <div class="dcc-box" v-if="item == '0:2:8:5'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/dianya.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-pcgyqdy-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{pcgyqdyVal}}</span>V</div>
               <div class="dccb-data-p2">平层感应器电压</div>
@@ -263,9 +225,7 @@
         <!-- 电动机 -->
         <div class="dcc-box" v-if="item == '0:3:0:5'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/dianya.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-ddjdydy-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{ddjdydyVal}}</span>V</div>
               <div class="dccb-data-p2">电动机电源电压</div>
@@ -277,9 +237,7 @@
         </div>
         <div class="dcc-box" v-if="item == '0:3:0:4'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/dianliu.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-ddjdydl-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{ddjdydlVal}}</span>A</div>
               <div class="dccb-data-p2">电动机电源电流</div>
@@ -291,9 +249,7 @@
         </div>
         <div class="dcc-box" v-if="item == '0:3:1:1'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/wendu.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-ddjwkwd-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{ddjwkwdVal}}</span>℃</div>
               <div class="dccb-data-p2">电动机外壳温度</div>
@@ -305,9 +261,7 @@
         </div>
         <div class="dcc-box" v-if="item == '0:3:1:6'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/zhendong.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-ddjwkzd-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{ddjwkzdVal}}</span>μm</div>
               <div class="dccb-data-p2">电动机外壳振动</div>
@@ -318,10 +272,9 @@
           </div>
         </div>
         <div class="dcc-box" v-if="item == '0:3:2:1'">
+
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/wendu.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-ddjzcwd-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{ddjzcwdVal}}</span>℃</div>
               <div class="dccb-data-p2">电动机轴承温度</div>
@@ -333,9 +286,7 @@
         </div>
         <div class="dcc-box" v-if="item == '0:3:2:6'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/zhendong.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-ddjzczd-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{ddjzczdVal}}</span>μm</div>
               <div class="dccb-data-p2">电动机轴承振动</div>
@@ -348,9 +299,7 @@
         <!-- 制动器 -->
         <div class="dcc-box" v-if="item == '0:4:0:5'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/dianya.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-zdqdydy-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{zdqdydyVal}}</span>V</div>
               <div class="dccb-data-p2">制动器电源电压</div>
@@ -362,9 +311,7 @@
         </div>
         <div class="dcc-box" v-if="item == '0:4:0:4'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/dianliu.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-zdqdydl-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{zdqdydlVal}}</span>A</div>
               <div class="dccb-data-p2">制动器电源电流</div>
@@ -376,9 +323,7 @@
         </div>
         <div class="dcc-box" v-if="item == '0:4:1:1'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/wendu.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-zdqxqwd-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{zdqxqwdVal}}</span>℃</div>
               <div class="dccb-data-p2">制动器线圈温度</div>
@@ -390,24 +335,20 @@
         </div>
         <div class="dcc-box" v-if="item == '0:4:2:1'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/wendu.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-zdqzwwd-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{zdqzwwdVal}}</span>℃</div>
               <div class="dccb-data-p2">制动器闸瓦温度</div>
             </div>
           </div>
           <div class="dcc-box-chart">
-            <div class="real-chart" id="real-chart-zdqzwwd"></div>
+            <div class="real-chart" id="real-chart-zdqzwwd-pro"></div>
           </div>
         </div>
         <!-- 限速器 -->
         <div class="dcc-box" v-if="item == '0:5:0:7'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/sudu.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-xsqsd-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{xsqsdVal}}</span>m/s</div>
               <div class="dccb-data-p2">限速器速度</div>
@@ -419,9 +360,7 @@
         </div>
         <div class="dcc-box" v-if="item == '0:5:0:8'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/quanshu.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-xsqqs-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{xsqqsVal}}</span>rpm</div>
               <div class="dccb-data-p2">限速器圈数</div>
@@ -434,9 +373,7 @@
         <!-- 轿顶 -->
         <div class="dcc-box" v-if="item == '1:0:3:5'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/dianya.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-jdzhkzqdy-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{jdzhkzqdyVal}}</span>V</div>
               <div class="dccb-data-p2">轿顶载荷控制器电压</div>
@@ -448,9 +385,7 @@
         </div>
         <div class="dcc-box" v-if="item == '1:0:1:5'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/dianya.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-jdjxkgdy-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{jdjxkgdyVal}}</span>V</div>
               <div class="dccb-data-p2">轿顶检修开关电压</div>
@@ -462,9 +397,7 @@
         </div>
         <div class="dcc-box" v-if="item == '1:0:2:5'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/dianya.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-jdmjmddy-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{jdmjmddyVal}}</span>V</div>
               <div class="dccb-data-p2">轿顶门机马达电压</div>
@@ -476,9 +409,7 @@
         </div>
         <div class="dcc-box" v-if="item == '1:0:2:4'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/dianliu.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-jdmjmddl-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{jdmjmddlVal}}</span>A</div>
               <div class="dccb-data-p2">轿顶门机马达电流</div>
@@ -491,9 +422,7 @@
         <!-- 轿厢 -->
         <div class="dcc-box" v-if="item == '1:2:0:10'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/dianliu.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-jxjmkh-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{jxjmkhVal}}</span></div>
               <div class="dccb-data-p2">轿厢轿门开合</div>
@@ -505,9 +434,7 @@
         </div>
         <div class="dcc-box" v-if="item == '1:2:0:9'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/dianliu.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-jxwz-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{jxwzVal}}</span>楼</div>
               <div class="dccb-data-p2">轿厢位置</div>
@@ -519,9 +446,7 @@
         </div>
         <div class="dcc-box" v-if="item == '1:2:0:6'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/zhendong.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-jxxtzd-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{jxxtzdVal}}</span>μm</div>
               <div class="dccb-data-p2">轿厢箱体振动</div>
@@ -534,9 +459,7 @@
         <!-- 井道 -->
         <div class="dcc-box" v-if="item == '2:1:1:6'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/zhendong.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-jddgzd-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{jddgzdVal}}</span>μm</div>
               <div class="dccb-data-p2">井道导轨振动</div>
@@ -548,9 +471,7 @@
         </div>
         <div class="dcc-box" v-if="item == '2:1:0:10'">
           <div class="dcc-box-data clearfix">
-            <div class="dccb-data-icon">
-              <img src="../../assets/images/xym/kaihe.png" alt="">
-            </div>
+            <div class="dccb-data-icon real-chart-jdcmkh-icon on"></div>
             <div class="dccb-data-p">
               <div class="dccb-data-p1"><span>{{jdcmkhVal}}</span></div>
               <div class="dccb-data-p2">井道层门开合</div>
@@ -561,13 +482,7 @@
           </div>
         </div>
 
-
-
       </div>
-
-
-
-
 
     </div>
 
@@ -600,7 +515,7 @@ export default {
       jfdydlVal: 0,
       msaqhldyVal: 0,
       msaqhldlVal: 0,
-      aqkgmldyVal: 0,
+      aqkghldyVal: 0,
       jxkgdyVal: 0,
       jskgdysVal: 0,
       jskgdyxVal: 0,
@@ -912,7 +827,7 @@ export default {
       //   this.currentTimeBtn = 'able'
       // }
 
-      console.log('etimePro', etimePro)
+      // console.log('etimePro', etimePro)
 
       var stime = stime || etimePro - step
 
@@ -934,172 +849,180 @@ export default {
       
       api.detection.getMonitorData(params).then(res => {
         let resList = res.data.data || {}
-        clearTimeout(this.chartTimer)
+        let thresholdObj = {}
 
-        // 按需绘制图表
-        // 判断对象的属性是否存在
-        this.chartTimer = setTimeout(() => {
-          if (resList['0:0:0:1'] !== undefined) {
-            this.drawChart1({container: 'real-chart-jfwd-pro',unit: '℃',name: '机房温度',max: etimePro,dataType: 'real_data',data: resList['0:0:0:1']})
-          }
-          if (resList['0:0:0:2'] !== undefined) {
-            this.drawChart1({container: 'real-chart-jfsd-pro',unit: '%',name: '机房湿度',max: etimePro,dataType: 'real_data',data: resList['0:0:0:2']})
-          }
-          if (resList['0:0:0:3'] !== undefined) {
-            this.drawChart1({container: 'real-chart-jffs-pro',unit: 'm/s',name: '机房风速',max: etimePro,dataType: 'real_data',data: resList['0:0:0:3']})
-          }
-          if (resList['2:0:0:1'] !== undefined) {
-            this.drawChart1({container: 'real-chart-jdwd-pro',unit: '℃',name: '井道温度',max: etimePro,dataType: 'real_data',data: resList['2:0:0:1']})
-          }
-          if (resList['2:0:0:2'] !== undefined) {
-            this.drawChart1({container: 'real-chart-jdsd-pro',unit: '%',name: '井道湿度',max: etimePro,dataType: 'real_data',data: resList['2:0:0:2']})
-          }
-          if (resList['0:1:0:5'] !== undefined) {
-            this.drawChart1({container: 'real-chart-jfdydy-pro',unit: 'V',name: '机房电源电压',max: etimePro,dataType: 'real_data',data: resList['0:1:0:5']})
-          }
-          if (resList['0:1:0:4'] !== undefined) {
-            this.drawChart1({container: 'real-chart-jfdydl-pro',unit: 'A',name: '机房电源电流',max: etimePro,dataType: 'real_data',data: resList['0:1:0:4']})
-          }
-          if (resList['0:2:1:5'] !== undefined) {
-            this.drawChart1({container: 'real-chart-msaqhldy-pro',unit: 'V',name: '门锁安全回路电压',max: etimePro,dataType: 'real_data',data: resList['0:2:1:5']})
-          }
-          if (resList['0:2:1:4'] !== undefined) {
-            this.drawChart1({container: 'real-chart-msaqhldl-pro',unit: 'A',name: '门锁安全回路电流',max: etimePro,dataType: 'real_data',data: resList['0:2:1:4']})
-          }
-          if (resList['0:2:2:5'] !== undefined) {
-            this.drawChart1({container: 'real-chart-aqkghldy-pro',unit: 'V',name: '安全开关回路电压',max: etimePro,dataType: 'real_data',data: resList['0:2:2:5']})
-          }
-          if (resList['0:2:3:5'] !== undefined) {
-            this.drawChart1({container: 'real-chart-jxkgdy-pro',unit: 'V',name: '检修开关电压',max: etimePro,dataType: 'real_data',data: resList['0:2:3:5']})
-          }
-          if (resList['0:2:4:5'] !== undefined) {
-            this.drawChart1({container: 'real-chart-jskgdys-pro',unit: 'V',name: '（上）减速开关电压',max: etimePro,dataType: 'real_data',data: resList['0:2:4:5']})
-          }
-          if (resList['0:2:5:5'] !== undefined) {
-            this.drawChart1({container: 'real-chart-jskgdyx-pro',unit: 'V',name: '（下）减速开关电压',max: etimePro,dataType: 'real_data',data: resList['0:2:5:5']})
-          }
-          if (resList['0:2:6:5'] !== undefined) {
-            this.drawChart1({container: 'real-chart-qpjskgdys-pro',unit: 'V',name: '（上）强迫减速开关电压',max: etimePro,dataType: 'real_data',data: resList['0:2:6:5']})
-          }
-          if (resList['0:2:7:5'] !== undefined) {
-            this.drawChart1({container: 'real-chart-qpjskgdyx-pro',unit: 'V',name: '（下）强迫减速开关电压',max: etime,dataType: 'real_data',data: resList['0:2:7:5']})
-          }
-          if (resList['0:2:9:5'] !== undefined) {
-            this.drawChart1({container: 'real-chart-ywkgdys-pro',unit: 'V',name: '（上）越位开关电压',max: etime,dataType: 'real_data',data: resList['0:2:9:5']})
-          }
-          if (resList['0:2:10:5'] !== undefined) {
-            this.drawChart1({container: 'real-chart-ywkgdyx-pro',unit: 'V',name: '（下）越位开关电压',max: etime,dataType: 'real_data',data: resList['0:2:10:5']})
-          }
-          if (resList['0:2:8:5'] !== undefined) {
-            this.drawChart1({container: 'real-chart-pcgyqdy-pro',unit: 'V',name: '平层感应器电压',max: etimePro,dataType: 'real_data',data: resList['0:2:8:5']})
-          }
-          if (resList['0:3:0:5'] !== undefined) {
-            this.drawChart1({container: 'real-chart-ddjdydy-pro',unit: 'V',name: '电动机电源电压',max: etimePro,dataType: 'real_data',data: resList['0:3:0:5']})
-          }
-          if (resList['0:3:0:4'] !== undefined) {
-            this.drawChart1({container: 'real-chart-ddjdydl-pro',unit: 'A',name: '电动机电源电流',max: etimePro,dataType: 'real_data',data: resList['0:3:0:4']})
-          }
-          if (resList['0:3:1:1'] !== undefined) {
-            this.drawChart1({container: 'real-chart-ddjwkwd-pro',unit: '℃',name: '电动机外壳温度',max: etimePro,dataType: 'real_data',data: resList['0:3:1:1']})
-          }
-          if (resList['0:3:1:6'] !== undefined) {
-            this.drawChart1({container: 'real-chart-ddjwkzd-pro',unit: 'μm',name: '电动机外壳振动',max: etimePro,dataType: 'real_data',data: resList['0:3:1:6']})
-          }
-          if (resList['0:3:2:1'] !== undefined) {
-            this.drawChart1({container: 'real-chart-ddjzcwd-pro',unit: '℃',name: '电动机轴承温度',max: etimePro,dataType: 'real_data',data: resList['0:3:2:1']})
-          }
-          if (resList['0:3:2:6'] !== undefined) {
-            this.drawChart1({container: 'real-chart-ddjzczd-pro',unit: 'μm',name: '电动机轴承振动',max: etimePro,dataType: 'real_data',data: resList['0:3:2:6']})
-          }
-          if (resList['0:4:0:5'] !== undefined) {
-            this.drawChart1({container: 'real-chart-zdqdydy-pro',unit: 'V',name: '制动器电源电压',max: etimePro,dataType: 'real_data',data: resList['0:4:0:5']})
-          }
-          if (resList['0:4:0:4'] !== undefined) {
-            this.drawChart1({container: 'real-chart-zdqdydl-pro',unit: 'A',name: '制动器电源电流',max: etimePro,dataType: 'real_data',data: resList['0:4:0:4']})
-          }
-          if (resList['0:4:1:1'] !== undefined) {
-            this.drawChart1({container: 'real-chart-zdqxqwd-pro',unit: '℃',name: '制动器线圈温度',max: etimePro,dataType: 'real_data',data: resList['0:4:1:1']})
-          }
-          if (resList['0:5:0:7'] !== undefined) {
-            this.drawChart1({container: 'real-chart-xsqsd-pro',unit: 'm/s',name: '限速器速度',max: etimePro,dataType: 'real_data',data: resList['0:5:0:7']})
-          }
-          if (resList['0:5:0:8'] !== undefined) {
-            this.drawChart1({container: 'real-chart-xsqqs-pro',unit: 'rpm',name: '限速器圈数',max: etimePro,dataType: 'real_data',data: resList['0:5:0:8']})
-          }
-          if (resList['1:0:3:5'] !== undefined) {
-            this.drawChart1({container: 'real-chart-jdzhkzqdy-pro',unit: 'V',name: '轿顶载荷控制器电压',max: etimePro,dataType: 'real_data',data: resList['1:0:3:5']})
-          }
-          if (resList['1:0:1:5'] !== undefined) {
-            this.drawChart1({container: 'real-chart-jdjxkgdy-pro',unit: 'V',name: '轿顶检修开关电压',max: etimePro,dataType: 'real_data',data: resList['1:0:1:5']})
-          }
-          if (resList['1:0:2:5'] !== undefined) {
-            this.drawChart1({container: 'real-chart-jdmjmddy-pro',unit: 'V',name: '轿顶门机马达电压',max: etimePro,dataType: 'real_data',data: resList['1:0:2:5']})
-          }
-          if (resList['1:0:2:4'] !== undefined) {
-            this.drawChart1({container: 'real-chart-jdmjmddl-pro',unit: 'A',name: '轿顶门机马达电流',max: etimePro,dataType: 'real_data',data: resList['1:0:2:4']})
-          }
 
-          if (resList['1:2:0:10'] !== undefined) {
-            this.drawChart1({container: 'real-chart-jxjmkh-pro',unit: '',name: '轿厢轿门开合',max: etime,dataType: 'real_data',data: resList['1:2:0:10']})
-          }
-          if (resList['1:2:0:9'] !== undefined) {
-            this.drawChart1({container: 'real-chart-jxwz-pro',unit: 'F',name: '轿厢位置',max: etimePro,dataType: 'floor',data: resList['1:2:0:9']})
-          }
-          if (resList['1:2:0:6'] !== undefined) {
-            this.drawChart1({container: 'real-chart-jxxtzd-pro',unit: 'μm',name: '轿厢箱体振动',max: etimePro,dataType: 'real_data',data: resList['1:2:0:6']})
-          }
-          if (resList['2:1:1:6'] !== undefined) {
-            this.drawChart1({container: 'real-chart-jddgzd-pro',unit: 'μm',name: '井道导轨振动',max: etimePro,dataType: 'real_data',data: resList['2:1:1:6']})
-          }
-          if (resList['2:1:0:10'] !== undefined) {
-            this.drawChart1({container: 'real-chart-jdcmkh-pro',unit: '',name: '井道层门开合',max: etimePro,dataType: 'real_data',data: resList['2:1:0:10']})
-          }
-        }, 500)
+        api.detection.getThreshold(params).then(resThreshold => {
+          thresholdObj = resThreshold.data.data
+          // console.log('thresholdObj阈值', thresholdObj)
+          clearTimeout(this.chartTimer)
 
-   
+          // 按需绘制图表
+          // 判断对象的属性是否存在
+          this.chartTimer = setTimeout(() => {
+            if (resList['0:0:0:1'] !== undefined) {
+              this.drawChart1({container: 'real-chart-jfwd-pro',unit: '℃',name: '机房温度',max: etimePro,dataType: 'real_data',data: resList['0:0:0:1'], threshold: thresholdObj['0:0:0:1'][0] ? thresholdObj['0:0:0:1'][0].threshold : '', operator: thresholdObj['0:0:0:1'][0] ? thresholdObj['0:0:0:1'][0].operator : ''})
+            }
+            if (resList['0:0:0:2'] !== undefined) {
+              this.drawChart1({container: 'real-chart-jfsd-pro',unit: '%',name: '机房湿度',max: etimePro,dataType: 'real_data',data: resList['0:0:0:2'], threshold: thresholdObj['0:0:0:2'][0] ? thresholdObj['0:0:0:2'][0].threshold : '', operator: thresholdObj['0:0:0:2'][0] ? thresholdObj['0:0:0:2'][0].operator : ''})
+            }
+            if (resList['0:0:0:3'] !== undefined) {
+              this.drawChart1({container: 'real-chart-jffs-pro',unit: 'm/s',name: '机房风速',max: etimePro,dataType: 'real_data',data: resList['0:0:0:3'], threshold: thresholdObj['0:0:0:3'][0] ? thresholdObj['0:0:0:3'][0].threshold : '', operator: thresholdObj['0:0:0:3'][0] ? thresholdObj['0:0:0:3'][0].operator : ''})
+            }
+            if (resList['2:0:0:1'] !== undefined) {
+              this.drawChart1({container: 'real-chart-jdwd-pro',unit: '℃',name: '井道温度',max: etimePro,dataType: 'real_data',data: resList['2:0:0:1'], threshold: thresholdObj['2:0:0:1'][0] ? thresholdObj['2:0:0:1'][0].threshold : '', operator: thresholdObj['2:0:0:1'][0] ? thresholdObj['2:0:0:1'][0].operator : ''})
+            }
+            if (resList['2:0:0:2'] !== undefined) {
+              this.drawChart1({container: 'real-chart-jdsd-pro',unit: '%',name: '井道湿度',max: etimePro,dataType: 'real_data',data: resList['2:0:0:2'], threshold: thresholdObj['2:0:0:2'][0] ? thresholdObj['2:0:0:2'][0].threshold : '', operator: thresholdObj['2:0:0:2'][0] ? thresholdObj['2:0:0:2'][0].operator : ''})
+            }
+            if (resList['0:1:0:5'] !== undefined) {
+              this.drawChart1({container: 'real-chart-jfdydy-pro',unit: 'V',name: '机房电源电压',max: etimePro,dataType: 'real_data',data: resList['0:1:0:5'], threshold: thresholdObj['0:1:0:5'][0] ? thresholdObj['0:1:0:5'][0].threshold : '', operator: thresholdObj['0:1:0:5'][0] ? thresholdObj['0:1:0:5'][0].operator : ''})
+            }
+            if (resList['0:1:0:4'] !== undefined) {
+              this.drawChart1({container: 'real-chart-jfdydl-pro',unit: 'A',name: '机房电源电流',max: etimePro,dataType: 'real_data',data: resList['0:1:0:4'], threshold: thresholdObj['0:1:0:4'][0] ? thresholdObj['0:1:0:4'][0].threshold : '', operator: thresholdObj['0:1:0:4'][0] ? thresholdObj['0:1:0:4'][0].operator : ''})
+            }
+            if (resList['0:2:1:5'] !== undefined) {
+              this.drawChart1({container: 'real-chart-msaqhldy-pro',unit: 'V',name: '门锁安全回路电压',max: etimePro,dataType: 'real_data',data: resList['0:2:1:5'], threshold: thresholdObj['0:2:1:5'][0] ? thresholdObj['0:2:1:5'][0].threshold : '', operator: thresholdObj['0:2:1:5'][0] ? thresholdObj['0:2:1:5'][0].operator : ''})
+            }
+            if (resList['0:2:1:4'] !== undefined) {
+              this.drawChart1({container: 'real-chart-msaqhldl-pro',unit: 'A',name: '门锁安全回路电流',max: etimePro,dataType: 'real_data',data: resList['0:2:1:4'], threshold: thresholdObj['0:2:1:4'][0] ? thresholdObj['0:2:1:4'][0].threshold : '', operator: thresholdObj['0:2:1:4'][0] ? thresholdObj['0:2:1:4'][0].operator : ''})
+            }
+            if (resList['0:2:2:5'] !== undefined) {
+              this.drawChart1({container: 'real-chart-aqkghldy-pro',unit: 'V',name: '安全开关回路电压',max: etimePro,dataType: 'real_data',data: resList['0:2:2:5'], threshold: thresholdObj['0:2:2:5'][0] ? thresholdObj['0:2:2:5'][0].threshold : '', operator: thresholdObj['0:2:2:5'][0] ? thresholdObj['0:2:2:5'][0].operator : ''})
+            }
+            if (resList['0:2:3:5'] !== undefined) {
+              this.drawChart1({container: 'real-chart-jxkgdy-pro',unit: 'V',name: '检修开关电压',max: etimePro,dataType: 'real_data',data: resList['0:2:3:5'], threshold: thresholdObj['0:2:3:5'][0] ? thresholdObj['0:2:3:5'][0].threshold : '', operator: thresholdObj['0:2:3:5'][0] ? thresholdObj['0:2:3:5'][0].operator : ''})
+            }
+            if (resList['0:2:4:5'] !== undefined) {
+              this.drawChart1({container: 'real-chart-jskgdys-pro',unit: 'V',name: '（上）减速开关电压',max: etimePro,dataType: 'real_data',data: resList['0:2:4:5'], threshold: thresholdObj['0:2:4:5'][0] ? thresholdObj['0:2:4:5'][0].threshold : '', operator: thresholdObj['0:2:4:5'][0] ? thresholdObj['0:2:4:5'][0].operator : ''})
+            }
+            if (resList['0:2:5:5'] !== undefined) {
+              this.drawChart1({container: 'real-chart-jskgdyx-pro',unit: 'V',name: '（下）减速开关电压',max: etimePro,dataType: 'real_data',data: resList['0:2:5:5'], threshold: thresholdObj['0:2:5:5'][0] ? thresholdObj['0:2:5:5'][0].threshold : '', operator: thresholdObj['0:2:5:5'][0] ? thresholdObj['0:2:5:5'][0].operator : ''})
+            }
+            if (resList['0:2:6:5'] !== undefined) {
+              this.drawChart1({container: 'real-chart-qpjskgdys-pro',unit: 'V',name: '（上）强迫减速开关电压',max: etimePro,dataType: 'real_data',data: resList['0:2:6:5'], threshold: thresholdObj['0:2:6:5'][0] ? thresholdObj['0:2:6:5'][0].threshold : '', operator: thresholdObj['0:2:6:5'][0] ? thresholdObj['0:2:6:5'][0].operator : ''})
+            }
+            if (resList['0:2:7:5'] !== undefined) {
+              this.drawChart1({container: 'real-chart-qpjskgdyx-pro',unit: 'V',name: '（下）强迫减速开关电压',max: etime,dataType: 'real_data',data: resList['0:2:7:5'], threshold: thresholdObj['0:2:7:5'][0] ? thresholdObj['0:2:7:5'][0].threshold : '', operator: thresholdObj['0:2:7:5'][0] ? thresholdObj['0:2:7:5'][0].operator : ''})
+            }
+            if (resList['0:2:9:5'] !== undefined) {
+              this.drawChart1({container: 'real-chart-ywkgdys-pro',unit: 'V',name: '（上）越位开关电压',max: etime,dataType: 'real_data',data: resList['0:2:9:5'], threshold: thresholdObj['0:2:9:5'][0] ? thresholdObj['0:2:9:5'][0].threshold : '', operator: thresholdObj['0:2:9:5'][0] ? thresholdObj['0:2:9:5'][0].operator : ''})
+            }
+            if (resList['0:2:10:5'] !== undefined) {
+              this.drawChart1({container: 'real-chart-ywkgdyx-pro',unit: 'V',name: '（下）越位开关电压',max: etime,dataType: 'real_data',data: resList['0:2:10:5'], threshold: thresholdObj['0:2:10:5'][0] ? thresholdObj['0:2:10:5'][0].threshold : '', operator: thresholdObj['0:2:10:5'][0] ? thresholdObj['0:2:10:5'][0].operator : ''})
+            }
+            if (resList['0:2:8:5'] !== undefined) {
+              this.drawChart1({container: 'real-chart-pcgyqdy-pro',unit: 'V',name: '平层感应器电压',max: etimePro,dataType: 'real_data',data: resList['0:2:8:5'], threshold: thresholdObj['0:2:8:5'][0] ? thresholdObj['0:2:8:5'][0].threshold : '', operator: thresholdObj['0:2:8:5'][0] ? thresholdObj['0:2:8:5'][0].operator : ''})
+            }
+            if (resList['0:3:0:5'] !== undefined) {
+              this.drawChart1({container: 'real-chart-ddjdydy-pro',unit: 'V',name: '电动机电源电压',max: etimePro,dataType: 'real_data',data: resList['0:3:0:5'], threshold: thresholdObj['0:3:0:5'][0] ? thresholdObj['0:3:0:5'][0].threshold : '', operator: thresholdObj['0:3:0:5'][0] ? thresholdObj['0:3:0:5'][0].operator : ''})
+            }
+            if (resList['0:3:0:4'] !== undefined) {
+              this.drawChart1({container: 'real-chart-ddjdydl-pro',unit: 'A',name: '电动机电源电流',max: etimePro,dataType: 'real_data',data: resList['0:3:0:4'], threshold: thresholdObj['0:3:0:4'][0] ? thresholdObj['0:3:0:4'][0].threshold : '', operator: thresholdObj['0:3:0:4'][0] ? thresholdObj['0:3:0:4'][0].operator : ''})
+            }
+            if (resList['0:3:1:1'] !== undefined) {
+              this.drawChart1({container: 'real-chart-ddjwkwd-pro',unit: '℃',name: '电动机外壳温度',max: etimePro,dataType: 'real_data',data: resList['0:3:1:1'], threshold: thresholdObj['0:3:1:1'][0] ? thresholdObj['0:3:1:1'][0].threshold : '', operator: thresholdObj['0:3:1:1'][0] ? thresholdObj['0:3:1:1'][0].operator : ''})
+            }
+            if (resList['0:3:1:6'] !== undefined) {
+              this.drawChart1({container: 'real-chart-ddjwkzd-pro',unit: 'μm',name: '电动机外壳振动',max: etimePro,dataType: 'real_data',data: resList['0:3:1:6'], threshold: thresholdObj['0:3:1:6'][0] ? thresholdObj['0:3:1:6'][0].threshold : '', operator: thresholdObj['0:3:1:6'][0] ? thresholdObj['0:3:1:6'][0].operator : ''})
+            }
+            if (resList['0:3:2:1'] !== undefined) {
+              this.drawChart1({container: 'real-chart-ddjzcwd-pro',unit: '℃',name: '电动机轴承温度',max: etimePro,dataType: 'real_data',data: resList['0:3:2:1'], threshold: thresholdObj['0:3:2:1'][0] ? thresholdObj['0:3:2:1'][0].threshold : '', operator: thresholdObj['0:3:2:1'][0] ? thresholdObj['0:3:2:1'][0].operator : ''})
+            }
+            if (resList['0:3:2:6'] !== undefined) {
+              this.drawChart1({container: 'real-chart-ddjzczd-pro',unit: 'μm',name: '电动机轴承振动',max: etimePro,dataType: 'real_data',data: resList['0:3:2:6'], threshold: thresholdObj['0:3:2:6'][0] ? thresholdObj['0:3:2:6'][0].threshold : '', operator: thresholdObj['0:3:2:6'][0] ? thresholdObj['0:3:2:6'][0].operator : ''})
+            }
+            if (resList['0:4:0:5'] !== undefined) {
+              this.drawChart1({container: 'real-chart-zdqdydy-pro',unit: 'V',name: '制动器电源电压',max: etimePro,dataType: 'real_data',data: resList['0:4:0:5'], threshold: thresholdObj['0:4:0:5'][0] ? thresholdObj['0:4:0:5'][0].threshold : '', operator: thresholdObj['0:4:0:5'][0] ? thresholdObj['0:4:0:5'][0].operator : ''})
+            }
+            if (resList['0:4:0:4'] !== undefined) {
+              this.drawChart1({container: 'real-chart-zdqdydl-pro',unit: 'A',name: '制动器电源电流',max: etimePro,dataType: 'real_data',data: resList['0:4:0:4'], threshold: thresholdObj['0:4:0:4'][0] ? thresholdObj['0:4:0:4'][0].threshold : '', operator: thresholdObj['0:4:0:4'][0] ? thresholdObj['0:4:0:4'][0].operator : ''})
+            }
+            if (resList['0:4:1:1'] !== undefined) {
+              this.drawChart1({container: 'real-chart-zdqxqwd-pro',unit: '℃',name: '制动器线圈温度',max: etimePro,dataType: 'real_data',data: resList['0:4:1:1'], threshold: thresholdObj['0:4:1:1'][0] ? thresholdObj['0:4:1:1'][0].threshold : '', operator: thresholdObj['0:4:1:1'][0] ? thresholdObj['0:4:1:1'][0].operator : ''})
+            }
+            if (resList['0:4:2:1'] !== undefined) {
+              this.drawChart1({container: 'real-chart-zdqzwwd-pro',unit: '℃',name: '制动器闸瓦温度',max: etimePro,dataType: 'real_data',data: resList['0:4:2:1'], threshold: thresholdObj['0:4:2:1'][0] ? thresholdObj['0:4:2:1'][0].threshold : '', operator: thresholdObj['0:4:2:1'][0] ? thresholdObj['0:4:2:1'][0].operator : ''})
+            }
+            if (resList['0:5:0:7'] !== undefined) {
+              this.drawChart1({container: 'real-chart-xsqsd-pro',unit: 'm/s',name: '限速器速度',max: etimePro,dataType: 'real_data',data: resList['0:5:0:7'], threshold: thresholdObj['0:5:0:7'][0] ? thresholdObj['0:5:0:7'][0].threshold : '', operator: thresholdObj['0:5:0:7'][0] ? thresholdObj['0:5:0:7'][0].operator : ''})
+            }
+            if (resList['0:5:0:8'] !== undefined) {
+              this.drawChart1({container: 'real-chart-xsqqs-pro',unit: 'rpm',name: '限速器圈数',max: etimePro,dataType: 'real_data',data: resList['0:5:0:8'], threshold: thresholdObj['0:5:0:8'][0] ? thresholdObj['0:5:0:8'][0].threshold : '', operator: thresholdObj['0:5:0:8'][0] ? thresholdObj['0:5:0:8'][0].operator : ''})
+            }
+            if (resList['1:0:3:5'] !== undefined) {
+              this.drawChart1({container: 'real-chart-jdzhkzqdy-pro',unit: 'V',name: '轿顶载荷控制器电压',max: etimePro,dataType: 'real_data',data: resList['1:0:3:5'], threshold: thresholdObj['1:0:3:5'][0] ? thresholdObj['1:0:3:5'][0].threshold : '', operator: thresholdObj['1:0:3:5'][0] ? thresholdObj['1:0:3:5'][0].operator : ''})
+            }
+            if (resList['1:0:1:5'] !== undefined) {
+              this.drawChart1({container: 'real-chart-jdjxkgdy-pro',unit: 'V',name: '轿顶检修开关电压',max: etimePro,dataType: 'real_data',data: resList['1:0:1:5'], threshold: thresholdObj['1:0:1:5'][0] ? thresholdObj['1:0:1:5'][0].threshold : '', operator: thresholdObj['1:0:1:5'][0] ? thresholdObj['1:0:1:5'][0].operator : ''})
+            }
+            if (resList['1:0:2:5'] !== undefined) {
+              this.drawChart1({container: 'real-chart-jdmjmddy-pro',unit: 'V',name: '轿顶门机马达电压',max: etimePro,dataType: 'real_data',data: resList['1:0:2:5'], threshold: thresholdObj['1:0:2:5'][0] ? thresholdObj['1:0:2:5'][0].threshold : '', operator: thresholdObj['1:0:2:5'][0] ? thresholdObj['1:0:2:5'][0].operator : ''})
+            }
+            if (resList['1:0:2:4'] !== undefined) {
+              this.drawChart1({container: 'real-chart-jdmjmddl-pro',unit: 'A',name: '轿顶门机马达电流',max: etimePro,dataType: 'real_data',data: resList['1:0:2:4'], threshold: thresholdObj['1:0:2:4'][0] ? thresholdObj['1:0:2:4'][0].threshold : '', operator: thresholdObj['1:0:2:4'][0] ? thresholdObj['1:0:2:4'][0].operator : ''})
+            }
+            if (resList['1:2:0:10'] !== undefined) {
+              this.drawChart1({container: 'real-chart-jxjmkh-pro',unit: '',name: '轿厢轿门开合',max: etime,dataType: 'real_data',data: resList['1:2:0:10'], threshold: thresholdObj['1:2:0:10'][0] ? thresholdObj['1:2:0:10'][0].threshold : '', operator: thresholdObj['1:2:0:10'][0] ? thresholdObj['1:2:0:10'][0].operator : ''})
+            }
+            if (resList['1:2:0:9'] !== undefined) {
+              this.drawChart1({container: 'real-chart-jxwz-pro',unit: 'F',name: '轿厢位置',max: etimePro,dataType: 'floor',data: resList['1:2:0:9'], threshold: thresholdObj['1:2:0:9'][0] ? thresholdObj['1:2:0:9'][0].threshold : '', operator: thresholdObj['1:2:0:9'][0] ? thresholdObj['1:2:0:9'][0].operator : ''})
+            }
+            if (resList['1:2:0:6'] !== undefined) {
+              this.drawChart1({container: 'real-chart-jxxtzd-pro',unit: 'μm',name: '轿厢箱体振动',max: etimePro,dataType: 'real_data',data: resList['1:2:0:6'], threshold: thresholdObj['1:2:0:6'][0] ? thresholdObj['1:2:0:6'][0].threshold : '', operator: thresholdObj['1:2:0:6'][0] ? thresholdObj['1:2:0:6'][0].operator : ''})
+            }
+            if (resList['2:1:1:6'] !== undefined) {
+              this.drawChart1({container: 'real-chart-jddgzd-pro',unit: 'μm',name: '井道导轨振动',max: etimePro,dataType: 'real_data',data: resList['2:1:1:6'], threshold: thresholdObj['2:1:1:6'][0] ? thresholdObj['2:1:1:6'][0].threshold : '', operator: thresholdObj['2:1:1:6'][0] ? thresholdObj['2:1:1:6'][0].operator : ''})
+            }
+            if (resList['2:1:0:10'] !== undefined) {
+              this.drawChart1({container: 'real-chart-jdcmkh-pro',unit: '',name: '井道层门开合',max: etimePro,dataType: 'real_data',data: resList['2:1:0:10'], threshold: thresholdObj['2:1:0:10'][0] ? thresholdObj['2:1:0:10'][0].threshold : '', operator: thresholdObj['2:1:0:10'][0] ? thresholdObj['2:1:0:10'][0].operator : ''})
+            }
+          }, 300)
 
-        // 给实时数据赋值
-        this.jfwdVal = resList['0:0:0:1'] ? resList['0:0:0:1'][0].real_data : this.jfwdVal
-        this.jfsdVal = resList['0:0:0:2'] ? resList['0:0:0:2'][0].real_data : this.jfsdVal
-        this.jffsVal = resList['0:0:0:3'] ? resList['0:0:0:3'][0].real_data : this.jffsVal
-        this.jdwdVal = resList['2:0:0:1'] ? resList['2:0:0:1'][0].real_data : this.jdwdVal
-        this.jdsdVal = resList['2:0:0:2'] ? resList['2:0:0:2'][0].real_data : this.jdsdVal
-        this.jfdydyVal = resList['0:1:0:5'] ? resList['0:1:0:5'][0].real_data : this.jfdydyVal
-        this.jfdydlVal = resList['0:1:0:4'] ? resList['0:1:0:4'][0].real_data : this.jfdydlVal
-        this.msaqhldyVal = resList['0:2:1:5'] ? resList['0:2:1:5'][0].real_data : this.msaqhldyVal
-        this.msaqhldlVal = resList['0:2:1:4'] ? resList['0:2:1:4'][0].real_data : this.msaqhldlVal
-        this.aqkgmldyVal = resList['0:2:2:5'] ? resList['0:2:2:5'][0].real_data : this.aqkgmldyVal
-        this.jxkgdyVal = resList['0:2:3:5'] ? resList['0:2:3:5'][0].real_data : this.jxkgdyVal
-        this.jskgdysVal = resList['0:2:4:5'] ? resList['0:2:4:5'][0].real_data : this.jskgdysVal
-        this.jskgdyxVal = resList['0:2:5:5'] ? resList['0:2:5:5'][0].real_data : this.jskgdyxVal
-        this.qpjskgdysVal = resList['0:2:6:5'] ? resList['0:2:6:5'][0].real_data : this.qpjskgdysVal
-        this.qpjskgdyxVal = resList['0:2:7:5'] ? resList['0:2:7:5'][0].real_data : this.qpjskgdyxVal
-        this.ywkgdysVal = resList['0:2:9:5'] ? resList['0:2:9:5'][0].real_data : this.ywkgdysVal
-        this.ywkgdyxVal = resList['0:2:10:5'] ? resList['0:2:10:5'][0].real_data : this.ywkgdyxVal
+          // 给实时数据赋值
+          this.jfwdVal = resList['0:0:0:1'] ? resList['0:0:0:1'][0].real_data : this.jfwdVal
+          this.jfsdVal = resList['0:0:0:2'] ? resList['0:0:0:2'][0].real_data : this.jfsdVal
+          this.jffsVal = resList['0:0:0:3'] ? resList['0:0:0:3'][0].real_data : this.jffsVal
+          this.jdwdVal = resList['2:0:0:1'] ? resList['2:0:0:1'][0].real_data : this.jdwdVal
+          this.jdsdVal = resList['2:0:0:2'] ? resList['2:0:0:2'][0].real_data : this.jdsdVal
+          this.jfdydyVal = resList['0:1:0:5'] ? resList['0:1:0:5'][0].real_data : this.jfdydyVal
+          this.jfdydlVal = resList['0:1:0:4'] ? resList['0:1:0:4'][0].real_data : this.jfdydlVal
+          this.msaqhldyVal = resList['0:2:1:5'] ? resList['0:2:1:5'][0].real_data : this.msaqhldyVal
+          this.msaqhldlVal = resList['0:2:1:4'] ? resList['0:2:1:4'][0].real_data : this.msaqhldlVal
+          this.aqkghldyVal = resList['0:2:2:5'] ? resList['0:2:2:5'][0].real_data : this.aqkghldyVal
+          this.jxkgdyVal = resList['0:2:3:5'] ? resList['0:2:3:5'][0].real_data : this.jxkgdyVal
+          this.jskgdysVal = resList['0:2:4:5'] ? resList['0:2:4:5'][0].real_data : this.jskgdysVal
+          this.jskgdyxVal = resList['0:2:5:5'] ? resList['0:2:5:5'][0].real_data : this.jskgdyxVal
+          this.qpjskgdysVal = resList['0:2:6:5'] ? resList['0:2:6:5'][0].real_data : this.qpjskgdysVal
+          this.qpjskgdyxVal = resList['0:2:7:5'] ? resList['0:2:7:5'][0].real_data : this.qpjskgdyxVal
+          this.ywkgdysVal = resList['0:2:9:5'] ? resList['0:2:9:5'][0].real_data : this.ywkgdysVal
+          this.ywkgdyxVal = resList['0:2:10:5'] ? resList['0:2:10:5'][0].real_data : this.ywkgdyxVal
 
-        this.pcgyqdyVal = resList['0:2:8:5'] ? resList['0:2:8:5'][0].real_data : this.pcgyqdyVal
-        this.ddjdydyVal = resList['0:3:0:5'] ? resList['0:3:0:5'][0].real_data : this.ddjdydyVal
-        this.ddjdydlVal = resList['0:3:0:4'] ? resList['0:3:0:4'][0].real_data : this.ddjdydlVal
-        this.ddjwkwdVal = resList['0:3:1:1'] ? resList['0:3:1:1'][0].real_data : this.ddjwkwdVal
-        this.ddjwkzdVal = resList['0:3:1:6'] ? resList['0:3:1:6'][0].real_data : this.ddjwkzdVal
-        this.ddjzcwdVal = resList['0:3:2:1'] ? resList['0:3:2:1'][0].real_data : this.ddjzcwdVal
-        this.ddjzczdVal = resList['0:3:2:6'] ? resList['0:3:2:6'][0].real_data : this.ddjzczdVal
-        this.zdqdydyVal = resList['0:4:0:5'] ? resList['0:4:0:5'][0].real_data : this.zdqdydyVal
-        this.zdqdydlVal = resList['0:4:0:4'] ? resList['0:4:0:4'][0].real_data : this.zdqdydlVal
-        this.zdqxqwdVal = resList['0:4:1:1'] ? resList['0:4:1:1'][0].real_data : this.zdqxqwdVal
-        this.zdqzwwdVal = resList['0:4:2:1'] ? resList['0:4:2:1'][0].real_data : this.zdqzwwdVal
-        this.xsqsdVal = resList['0:5:0:7'] ? resList['0:5:0:7'][0].real_data : this.xsqsdVal
-        this.xsqqsVal = resList['0:5:0:8'] ? resList['0:5:0:8'][0].real_data : this.xsqqsVal
-        this.jdzhkzqdyVal = resList['1:0:3:5'] ? resList['1:0:3:5'][0].real_data : this.jdzhkzqdyVal
-        this.jdjxkgdyVal = resList['1:0:1:5'] ? resList['1:0:1:5'][0].real_data : this.jdjxkgdyVal
-        this.jdmjmddyVal = resList['1:0:2:5'] ? resList['1:0:2:5'][0].real_data : this.jdmjmddyVal
-        this.jdmjmddlVal = resList['1:0:2:4'] ? resList['1:0:2:4'][0].real_data : this.jdmjmddlVal
+          this.pcgyqdyVal = resList['0:2:8:5'] ? resList['0:2:8:5'][0].real_data : this.pcgyqdyVal
+          this.ddjdydyVal = resList['0:3:0:5'] ? resList['0:3:0:5'][0].real_data : this.ddjdydyVal
+          this.ddjdydlVal = resList['0:3:0:4'] ? resList['0:3:0:4'][0].real_data : this.ddjdydlVal
+          this.ddjwkwdVal = resList['0:3:1:1'] ? resList['0:3:1:1'][0].real_data : this.ddjwkwdVal
+          this.ddjwkzdVal = resList['0:3:1:6'] ? resList['0:3:1:6'][0].real_data : this.ddjwkzdVal
+          this.ddjzcwdVal = resList['0:3:2:1'] ? resList['0:3:2:1'][0].real_data : this.ddjzcwdVal
+          this.ddjzczdVal = resList['0:3:2:6'] ? resList['0:3:2:6'][0].real_data : this.ddjzczdVal
+          this.zdqdydyVal = resList['0:4:0:5'] ? resList['0:4:0:5'][0].real_data : this.zdqdydyVal
+          this.zdqdydlVal = resList['0:4:0:4'] ? resList['0:4:0:4'][0].real_data : this.zdqdydlVal
+          this.zdqxqwdVal = resList['0:4:1:1'] ? resList['0:4:1:1'][0].real_data : this.zdqxqwdVal
+          this.zdqzwwdVal = resList['0:4:2:1'] ? resList['0:4:2:1'][0].real_data : this.zdqzwwdVal
+          this.xsqsdVal = resList['0:5:0:7'] ? resList['0:5:0:7'][0].real_data : this.xsqsdVal
+          this.xsqqsVal = resList['0:5:0:8'] ? resList['0:5:0:8'][0].real_data : this.xsqqsVal
+          this.jdzhkzqdyVal = resList['1:0:3:5'] ? resList['1:0:3:5'][0].real_data : this.jdzhkzqdyVal
+          this.jdjxkgdyVal = resList['1:0:1:5'] ? resList['1:0:1:5'][0].real_data : this.jdjxkgdyVal
+          this.jdmjmddyVal = resList['1:0:2:5'] ? resList['1:0:2:5'][0].real_data : this.jdmjmddyVal
+          this.jdmjmddlVal = resList['1:0:2:4'] ? resList['1:0:2:4'][0].real_data : this.jdmjmddlVal
 
-        this.jxjmkhVal = resList['1:2:0:10'] ? resList['1:2:0:10'][0].real_data : this.jxjmkhVal
-        this.jxwzVal = resList['1:2:0:9'] ? resList['1:2:0:9'][0].floor : this.jxwzVal
-        this.jxxtzdVal = resList['1:2:0:6'] ? resList['1:2:0:6'][0].real_data : this.jxxtzdVal
-        this.jddgzdVal = resList['2:1:1:6'] ? resList['2:1:1:6'][0].real_data : this.jddgzdVal
-        this.jdcmkhVal = resList['2:1:0:10'] ? resList['2:1:0:10'][0].real_data : this.jdcmkhVal
+          this.jxjmkhVal = resList['1:2:0:10'] ? resList['1:2:0:10'][0].real_data : this.jxjmkhVal
+          this.jxwzVal = resList['1:2:0:9'] ? resList['1:2:0:9'][0].floor : this.jxwzVal
+          this.jxxtzdVal = resList['1:2:0:6'] ? resList['1:2:0:6'][0].real_data : this.jxxtzdVal
+          this.jddgzdVal = resList['2:1:1:6'] ? resList['2:1:1:6'][0].real_data : this.jddgzdVal
+          this.jdcmkhVal = resList['2:1:0:10'] ? resList['2:1:0:10'][0].real_data : this.jdcmkhVal
+
+        })
 
 
       })
@@ -1165,12 +1088,32 @@ export default {
         return res
       }
       // 如果有阈值，则设置标志线和范围
-      if (extendObj.threshold) {
+      if (extendObj.threshold !== '') {
+
+        // 范围
+        // options.visualMap.show = true
+        options.visualMap.range = []
+        // 判断操作符 0 - =, 1 - >, 2 - <, 3 - >=, 4 - <=, 5 - !=
+        if (extendObj.operator == 1 || extendObj.operator == 3) { // 大于
+          options.visualMap.min = 0
+          options.visualMap.max = 100000
+          options.visualMap.range.push(0, parseFloat(extendObj.threshold))
+        } else if (extendObj.operator == 2 || extendObj.operator == 4) { // 小于
+          options.visualMap.min = 0
+          options.visualMap.max = 100000
+          options.visualMap.range.push(parseFloat(extendObj.threshold), 2000)
+        } else {
+          options.visualMap.min = 0
+          options.visualMap.max = 100000
+          options.visualMap.range.push(parseFloat(extendObj.threshold), parseFloat(extendObj.threshold))
+        }
+
+
         // 标志线
         options.series[0].markLine = {
           data: [{
-              name: '',
-              yAxis: parseInt(extendObj.threshold)
+            name: '',
+            yAxis: parseFloat(extendObj.threshold)
           }],
           animation: false,
           symbolSize: 0,
@@ -1184,18 +1127,22 @@ export default {
             },
           }
         }
-        // 范围
-        options.visualMap.range = []
-        options.visualMap.range.push(0, parseInt(extendObj.threshold))
+
+        
       }
 
       let chart = this.$echarts.init(document.getElementById(`${extendObj.container}`))
       chart.setOption(options)
 
+      var timeoutId = null
       // 自适应
-      window.addEventListener('resize', function () {
-        chart.resize()
+      window.addEventListener('resize', () => {
+        clearTimeout(timeoutId) // 节流
+        timeoutId = setTimeout(() => {
+          chart.resize()
+        }, 200)
       })
+
     },
 
   },

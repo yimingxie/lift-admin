@@ -2,7 +2,7 @@
   <div id="LiftAddResult">
     <div class="container">
       <div class="bread-nav">
-        <span>数字电梯</span>
+        <span @click="$router.push('/lift-list')">数字电梯</span>
         <em>/</em>
         <span class="on">添加电梯</span>
       </div>
@@ -920,7 +920,7 @@ export default {
     // 搜索地图
     searchMap(latLon) {
       let that = this
-      console.log('latLon', latLon)
+      console.log('经纬度latLon', latLon)
 
       // 地图基础配置
       var marker;

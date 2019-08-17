@@ -2,9 +2,9 @@
   <div id="LiftDetail">
     <div class="container">
       <div class="bread-nav">
-        <span>数字电梯</span>
+        <span @click="$router.push('/lift-list')">数字电梯</span>
         <em>/</em>
-        <span class="on">添加电梯</span>
+        <span class="on">电梯档案</span>
       </div>
 
       <div class="det-heading clearfix">
@@ -434,7 +434,6 @@
 <script>
 // import pcas from '../../utils/citySelector/pcas-code.json'
 import api from '../../api'
-import SearchCode from '../../components/SearchCode'
 import CityChoose from '../../components/CityChoose'
 import Footer from '../common/fotter'
 
@@ -1112,7 +1111,7 @@ export default {
 
       function addMarker(lng, lat) {
         // 创建覆盖物
-        marker = new AMap.Marker({
+        var markerOptions = {
           map: map,
           // icon: "https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
           content: 
@@ -1124,8 +1123,13 @@ export default {
           `
           ,
           position: [lng, lat],
-          draggable: true
-        });
+          // draggable: true
+        }
+        if (that.submitState == 'put') {
+          markerOptions.draggable = true
+        }
+
+        marker = new AMap.Marker(markerOptions);
 
         marker.setMap(map)
 
@@ -1390,7 +1394,6 @@ export default {
   },
   components: {
     'footer-temp': Footer,
-    'search-code': SearchCode,
     'city-choose': CityChoose,
   }
 }

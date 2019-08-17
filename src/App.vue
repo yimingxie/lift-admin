@@ -239,7 +239,7 @@
         
 
         this.appKey = new Date().getTime(); // 监听地址栏参数变化
-        if(to.name=='Login' || to.name=='lift-print'){
+        if(to.name=='Login' || to.name=='lift-print' || to.name=='panel-test'){
           this.$store.commit('SWITCH_LAYOUT', 'auth')
           // console.log('layout====' + this.layout)
         } else{
@@ -347,6 +347,7 @@
 @import 'assets/stylus/base'
 // -------------------------------------------------------
 #page-container
+
   width: 100%;
   height: 100%;
  
@@ -562,5 +563,12 @@
       float: left;
       background: #f0dfdf;
     }
+
+
+@media screen and (max-width: 1280px) {
+  // #page-container{
+  //   min-width: 1280px;
+  // }
+}
 </style>
 

@@ -65,7 +65,7 @@
 
             <!-- 搜索 -->
             <div class="llcb-search">
-              <search-code @childCode="searchLift"></search-code>
+              <search-code @childCode="searchLift" @clearCode="clearRegCode"></search-code>
             </div>
             
           </div>
@@ -390,6 +390,13 @@ export default {
       this.getLiftList()
     },
 
+    // 清空
+    clearRegCode() {
+      this.activeRegCode = ''
+      this.liftParams.regCode = ''
+      this.getLiftList()
+    },
+
     // 单部电梯设备列表下拉
     showDrop(regCode) {
       let that = this
@@ -410,7 +417,6 @@ export default {
             if (res.data.data.records) {
               liftDeviceList = res.data.data.records
             }
-            console.log('777', liftDeviceList)
 
             let children = []
             liftDeviceList.forEach((item, i) => {
@@ -768,10 +774,10 @@ export default {
     width 15%;
   }
   .llt-thead .llt-th:nth-child(2),.llt-tbody .llt-td:nth-child(2){
-    width 12%;
+    width 15%;
   }
   .llt-thead .llt-th:nth-child(3),.llt-tbody .llt-td:nth-child(3){
-    width 16%;
+    width 13%;
   }
   .llt-thead .llt-th:nth-child(4),.llt-tbody .llt-td:nth-child(4){
     width 43%;
@@ -794,9 +800,6 @@ export default {
 /* 适配 */
 @media screen and (max-width: 1550px) {
   #Device{
-    .llt-td{
-      font-size 12px;
-    }
     .ldd-status,.ldd-line,.ldd-id,.idd-project,.idd-project {
       font-size 12px;
     }
@@ -808,10 +811,6 @@ export default {
 
 }
 
-@media screen and (max-width: 1360px) {
-  #Device{
-    min-width: 1360px;
-  }
-}
+
 
 </style>

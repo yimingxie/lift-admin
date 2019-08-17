@@ -90,6 +90,9 @@ export default {
   .la-search-box .lsearch-submit{
     height: 38px !important;
   }
+  .la-search-box .code-clear{
+    height: 38px !important;
+  }
 </style>
 
 <style lang="stylus" scoped>

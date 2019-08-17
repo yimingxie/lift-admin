@@ -1,5 +1,5 @@
 <template>
-  <div id="DetChartComp">
+  <div id="PanelTest">
     <!-- 右侧实时监测数据 -->
     <div>
       <!-- 切换时间 -->
@@ -632,6 +632,7 @@
 
 <script>
 import xymFun from '../../utils/xymFun'
+import http from '../../utils/http'
 import api from '../../api.js'
 
 export default {
@@ -989,12 +990,30 @@ export default {
     this.diagnId = this.$route.query.diagnId ? this.$route.query.diagnId : ''
   },
   mounted() {
+    let user = {
+      account: '13333333333',
+      password: '111',
+      type: 0
+    }
 
-    // 滚动高亮
-    this.scrollMenu()
+    http.post('http://192.168.100.2/domino/login', user).then(res => {
+      console.log(res)
+      window.localStorage.setItem('accessToken', res.data.data.token)
 
-    // 获取所有实时图表监测数据
-    this.getChartDataSum()
+      // 滚动高亮
+      this.scrollMenu()
+
+      // 获取所有实时图表监测数据
+      this.getChartDataSum()
+
+    })
+
+    // api.log.login(user).then((res) => {
+      
+
+    // })
+
+    
 
 
   },
@@ -1012,7 +1031,7 @@ export default {
       if (that.timer) clearInterval(that.timer)
       this.timer = setInterval(() => {
         that.getChartDataSum()
-      }, 10000) // 10秒TODO
+      }, 10000) // 10秒
     },
 
     // 转换tooltip时间戳
@@ -1075,7 +1094,7 @@ export default {
           this.nextTimeBtn = 'disable'
           this.currentTimeBtn = 'disable'
           etime = nowTime
-          this.setTimer() // TODO开启定时器
+          this.setTimer() // 开启定时器
         } else {
           this.nextTimeBtn = 'able'
           this.currentTimeBtn = 'able'
@@ -1083,7 +1102,7 @@ export default {
 
       } 
       // 进入详情页
-      // TODO 根据url传参获取告警时间设置endTime值，并且不开启定时器
+      // 根据url传参获取告警时间设置endTime值，并且不开启定时器
       // /app/elevator/diaginInfo/{diaginId}
       else {
         etime = parseInt(this.$route.query.timestamp) + this.changeTimeNum * step
@@ -1141,7 +1160,7 @@ export default {
 
       ]
 
-      api.detection.getMonitorData(params).then(res => {
+      http.post(`http://192.168.100.2/arctic/elevator/monitorData/list`, params).then(res => {
         let resList = res.data.data || {}
         console.log('请求所有图表数据', res.data)
         let thresholdObj = {}
@@ -1151,9 +1170,9 @@ export default {
         //   "0:0:0:2": [{threshold: '', operator: 1}],
         // }
 
-        api.detection.getThreshold(params).then(resThreshold => {
+        http.post(`http://192.168.100.2/arctic/diagn/threshold/query`, params).then(resThreshold => {
           thresholdObj = resThreshold.data.data
-          // console.log('thresholdObj阈值', thresholdObj)
+          console.log('thresholdObj阈值', thresholdObj)
 
           clearTimeout(this.chartTimer)
           this.chartTimer = setTimeout(() => {
@@ -1471,10 +1490,7 @@ export default {
       extendObj.data = dataArr
 
       let chart = this.$echarts.init(document.getElementById(`${extendObj.container}`))
-      // 判断主题配置使用
       let options = xymFun.deepClone(that.options)
-
-      
       options.series[0].data = extendObj.data
       options.series[0].name = extendObj.name
       options.xAxis.max = extendObj.max
@@ -1590,7 +1606,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-#DetChartComp{
+#PanelTest{
   @import '../../assets/stylus/xymStyle.styl'
 
   background: #fff
