@@ -177,6 +177,12 @@ export default  {
   // 查看图片
   viewPic(picName){
     return `${url2}/view/image?filename=${picName}`
+  },
+  // 员工作业记录
+  staffTaskList(params){
+    return http.post(
+      `${url2}/staff/record/log`, params
+    )
   }
 }
 

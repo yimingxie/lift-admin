@@ -7,6 +7,7 @@ let protocol = process.env.NODE_ENV !== 'production' ? 'http:' : window.location
 // let url2 = `${protocol}//192.168.100.2/arctic`
 // let url2 = `${protocol}//127.0.0.1/arctic`
 let url2 = `${http.localURL}/arctic`
+let url3 = `${http.localURL}/domino`
 
 
 
@@ -38,6 +39,23 @@ export default  {
   getAbnormalDates(date){
     return http.post(
       `${url2}/map/abnormal/undone`, date
+    )
+  },
+  //维保作业
+  getMap3TotalData(corpId){
+    return http.post(
+      `${url3}/map/task/info/count`, corpId
+    )
+  },
+  // 获取地图所有点
+  getMap3AllDots(params){
+    return http.post(
+      `${url3}/map/task/info`, params
+    )
+  },
+  getMap3Details(params){
+    return http.post(
+      `${url3}/map/task/elev/details`, params
     )
   },
 }

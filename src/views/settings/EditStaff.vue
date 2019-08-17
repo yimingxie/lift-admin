@@ -81,7 +81,8 @@
               @change="regionChange2" 
               :is-two-dimension-value="false" 
               v-model="checkList2" 
-              :data="regionOptions2">
+              :data="regionOptions2"
+              placeholder="请选择完部门勾选管辖区域">
             </choiceindex>
       
            
@@ -96,7 +97,7 @@
               </span>
               <el-dropdown-menu slot="dropdown" class="liftDropdown">
                 <div v-if="getLIftDataFirst.length > 0" v-for="item in getLIftDataFirst" :key="item.regCode">
-                    <div class="dropdownArea">{{item.areaName}}</div>
+                    <!-- <div class="dropdownArea">{{item.areaName}}</div>
                     <span class="dropdownList dropdown1">{{item.regCode}}</span>
                     <span class="dropdownList dropdown2">{{item.inNum}}</span>
                     <span class="dropdownList dropdown3">{{item.address}}</span>
@@ -104,8 +105,20 @@
                       <el-checkbox-group v-model="checkedLiftAs" @change="handleCheckedLiftAsChange">
                         <el-checkbox :label="item.regCode" :key="item.regCode" class="checkbox16">{{nonetext}}</el-checkbox>
                       </el-checkbox-group>
-                    </span>
-                </div>
+                    </span> -->
+
+                    <div class="dropdownArea">{{item.areaName}}</div>
+                    <div v-for="list in item.data" :key="list.regCode">
+                      <span class="dropdownList dropdown1">{{list.regCode}}</span>
+                      <span class="dropdownList dropdown2">{{list.inNum}}</span>
+                      <span class="dropdownList dropdown3">{{list.address}}</span>
+                      <span class="dropdownList dropdown4">
+                        <el-checkbox-group v-model="checkedLiftAs" @change="handleCheckedLiftAsChange">
+                          <el-checkbox :label="list.regCode" :key="list.regCode" class="checkbox16">{{nonetext}}</el-checkbox>
+                        </el-checkbox-group>
+                      </span>
+                    </div>
+                  </div>
                 <div v-if="getLIftDataFirst.length === 0" class="tac" style="color: #999;"> 无数据 </div>
               </el-dropdown-menu>
             </el-dropdown>
@@ -121,15 +134,17 @@
               </span>
               <el-dropdown-menu slot="dropdown" class="liftDropdown">
                 <div v-if="getLIftDataSecond.length > 0" v-for="item in getLIftDataSecond" :key="item.regCode">
-                    <div class="dropdownArea">{{item.areaName}}</div>
-                    <span class="dropdownList dropdown1">{{item.regCode}}</span>
-                    <span class="dropdownList dropdown2">{{item.inNum}}</span>
-                    <span class="dropdownList dropdown3">{{item.address}}</span>
+                  <div class="dropdownArea">{{item.areaName}}</div>
+                  <div v-for="list in item.data" :key="list.regCode">
+                    <span class="dropdownList dropdown1">{{list.regCode}}</span>
+                    <span class="dropdownList dropdown2">{{list.inNum}}</span>
+                    <span class="dropdownList dropdown3">{{list.address}}</span>
                     <span class="dropdownList dropdown4">
                       <el-checkbox-group v-model="checkedLiftBs" @change="handleCheckedLiftBsChange">
-                        <el-checkbox :label="item.regCode" :key="item.regCode" class="checkbox16">{{nonetext}}</el-checkbox>
+                        <el-checkbox :label="list.regCode" :key="list.regCode" class="checkbox16">{{nonetext}}</el-checkbox>
                       </el-checkbox-group>
                     </span>
+                  </div>
                 </div>
                 <div v-if="getLIftDataSecond.length === 0" class="tac" style="color: #999;"> 无数据 </div>
               </el-dropdown-menu>
@@ -274,38 +289,44 @@ export default {
       this.getLIftDataSecond = []
       this.checkedLiftAs = []
       this.checkedLiftBs = []
+      var firstList = []
+      var secondList = []
       if(val.length > 0){
         for(var i = 0; i < val.length; i++){
           api.accountApi.getElevatorByArea(window.localStorage.getItem('corpId'),val[i]).then((res) => {
             if(res.data.code === 200 && res.data.message === 'success'){
-              // if(res.data.data.major){
-                // var majorObj= {
-                //   "area" : val[i],
-                //   "lift" : res.data.data.major
-                // }
-                // this.getLIftDataFirst.push(majorObj)
-                this.getLIftDataFirst = res.data.data.major
+               
+                if(res.data.data.major.length > 0){
 
-              // }
-              // if(res.data.data.minor){
-              //   var minorObj= {
-              //     "area" : val[i],
-              //     "lift" : res.data.data.major
-              //   }
-                this.getLIftDataSecond = res.data.data.minor
+                  res.data.data.major.forEach(item =>{
+                    firstList.push(item)
+                  })
+                  
+                }
+                if(res.data.data.minor.length > 0){
+                  res.data.data.minor.forEach(item =>{
+                    secondList.push(item)
+                  })
+                }
+               
+                console.log("this.getLIftDataFirst===" + JSON.stringify(this.getLIftDataFirst))
 
-                this.getLIftDataFirst.forEach(item =>{
+                firstList.forEach(item =>{
                   var areaName = newArea.getAreaName(item.areaCode).join('')
                   Vue.set(item, 'areaName', areaName)
                 })
-                this.getLIftDataSecond.forEach(item =>{
+                secondList.forEach(item =>{
                   var areaName = newArea.getAreaName(item.areaCode).join('')
                   Vue.set(item, 'areaName', areaName)
                 })
 
-              // }
-              // console.log("getLIftDataFirst:::::::::" + JSON.stringify(this.getLIftDataFirst))
-              // console.log("getLIftDataSecond:::::::::" + JSON.stringify(this.getLIftDataSecond))
+
+                ///////////////////////////
+                this.getLIftDataFirst = this.mergeArrayList(firstList)
+                this.getLIftDataSecond = this.mergeArrayList(secondList)
+                console.log("dest::::" + JSON.stringify(this.getLIftDataFirst));
+                //////////////////////////
+
 
             } else {
               this.getLIftDataFirst = []
@@ -353,6 +374,30 @@ export default {
     
   },
   methods: {
+    // 相同属性的数据合并处理
+    mergeArrayList(arrData){
+      var map = {},
+      dest = [];
+      for(var i = 0; i < arrData.length; i++){
+        var ai = arrData[i];
+        if(!map[ai.areaName]){
+          dest.push({
+            areaName: ai.areaName,
+            data: [ai]
+          });
+          map[ai.areaName] = ai;
+        }else{
+          for(var j = 0; j < dest.length; j++){
+            var dj = dest[j];
+            if(dj.areaName == ai.areaName){
+              dj.data.push(ai);
+              break;
+            }
+          }
+        }
+      }
+      return dest
+    },
     // 自定义头像上传方法
     upLoadHeadPic(fileObj) {
       const _file = fileObj.file;

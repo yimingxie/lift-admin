@@ -10,18 +10,19 @@
       
     </div>
     <div class="missionOrder clearfix">
-      <span class="orderNumber">工单编号：{{taskRecords.taskId}}</span>
+      <span class="orderNumber">工单编号：{{taskNo}}</span>
       <div class="tar" style="float:right;">
-        <button v-if="status =='已派单' || status =='已接单'" class="btn whiteBtn" @click="closeTask(taskRecords.taskId)">关闭</button>
+        <button v-if="status =='已派单' || status =='已接单'" class="btn whiteBtn" @click="closeTask(taskNo)">关闭</button>
+
         <!-- <button class="btn whiteBtn" style="background: #4272ff;color: #fff">修改</button> -->
         <p class="status">状态</p>
-        <p class="progress">{{status}}</p>
+        <p class="progress" :style="{'color':getStatusColor(status)}">{{status}}</p>
       </div>
       <div class="s_de_details">
         <ul>
           <li><span class="tie">派单人员：</span><span >曲丽丽</span></li>
-          <li><span class="tie">作业类型：</span><span>{{ taskRecords.taskType }}</span></li>
-          <li><span class="tie">派单时间：</span><span>{{ taskRecords.recordTime }}</span></li>
+          <li><span class="tie">作业类型：</span><span>{{ taskType }}</span></li>
+          <li><span class="tie">派单时间：</span><span>{{ taskRecords[0].recordTime }}</span></li>
           <li><span class="tie">作业时间：</span><span>2019-06-25 19:20:32</span></li>
         </ul>
       </div>
@@ -29,52 +30,59 @@
   </div>
   <div class="row" >
     <div style="width:67%;float:left">
-      <div class="panel" >
+      <div class="panel" style="height: 284px;">
         <div class="title"><div class="label1">作业进度</div>
         </div>
         <div class="progressPanel">
-          <!-- <el-steps :active="active">
-            <el-step title="步骤 1" icon="el-icon-edit"></el-step>
-            <el-step title="步骤 2" icon="el-icon-upload"></el-step>
-            <el-step title="步骤 3" icon="el-icon-picture"></el-step>
+       
+          <!-- 完成状态下的 -->
+          <el-steps :active="taskRecords.length - 1" v-if="status!== '已派单' && status!== '已接单'">
+             <!-- class="chaoshiLine" -->
+
+            <el-step :title="item.taskStatus" v-for="(item,index) in taskRecords" :key="index" :class="item.taskStatus == '已超时'?chaoshiLine:''">
+              <i slot="icon" class="progressIcon paidan" v-if="item.taskStatus == '已派单'"></i>
+              <i slot="icon" class="progressIcon jiedan" v-if="item.taskStatus == '已接单'"></i>
+              <i slot="icon" class="progressIcon wancheng" v-if="item.taskStatus == '已完成' || item.taskStatus == '已关闭'"></i>
+              <i slot="icon" class="progressIcon chaoshi" v-if="item.taskStatus == '已超时'"></i>
+              
+              <div slot="description">
+                <p>{{item.recordTime}}</p>
+              </div>
+            </el-step>
           </el-steps>
-          <br>
-          <br> -->
-          <el-steps :active="active">
+          <!-- 未完成状态下的 -->
+          <el-steps :active="taskRecords.length - 1" v-else>
             <el-step title="已派单">
               <i slot="icon" class="progressIcon paidan"></i>
               <div slot="description" >
-                <p>曲丽丽 01-10 19:20:32</p>
+                <p>{{taskRecords[0].recordTime}}</p>
               </div>
             </el-step>
-            <el-step title="已接单" class="chaoshiLine">
+            <el-step title="已接单">
               <i slot="icon" class="progressIcon jiedan"></i>
               <div slot="description" >
-                <p>曲丽丽 01-10 19:20:32</p>
-                <p>曲丽丽 01-10 19:20:32</p>
+                <p v-if="taskRecords[1]">{{taskRecords[1].recordTime}}</p>
+                <p v-else>--</p>
+                <!-- <p>曲丽丽 01-10 19:20:32</p> -->
               </div>
             </el-step>
-            <el-step title="已完成" >
+            <el-step title="已完成">
               <i slot="icon" class="progressIcon wancheng"></i>
               <div slot="description">
-                <p>01-10 19:20:32</p>
+                <p>--</p>
               </div>
             </el-step>
-            <!-- <el-step title="已超时" >
-              <i slot="icon" class="progressIcon chaoshi"></i>
-              
-            </el-step> -->
+            
           </el-steps>
-
-          <br>
-          <el-button style="margin-top: 12px;" @click="next">下一步</el-button>
+          <!-- <br> -->
+          <!-- <el-button style="margin-top: 12px;" @click="next">下一步</el-button> -->
         </div>
       </div>
     </div>
     <div style="width:33%;float:left">
       <div class="panel conclusions" style="padding:0 0 3px;min-height:282px;">
         <div class="title" style="margin:0"><div class="label1">作业结论</div></div>
-        <div style="margin:0 12px">
+        <div style="margin:0 12px" v-if="status == '已完成'">
           <table border="0" class="s_de_details s_de_details2 clearfix">
             <tbody>
               <tr>
@@ -85,24 +93,14 @@
                 <td style="width: 13%;"><span class="tie">维修费用</span><span>无费用</span></td>
                 <td>
                   <span class="tie">作业记录单</span>
-                  <span><picture-list :maxShow="3" :images="images"></picture-list></span>
+                  <span><picture-list :maxShow="3" :images="taskImage"></picture-list></span>
                 </td>
               </tr>
             </tbody>
           </table>
-          <!-- <table border="0" class="s_de_details s_de_details2 clearfix">
-            <tbody>
-              <tr>
-                <td><span class="tie">维保结论</span><span>设备检修</span></td>
-              </tr>
-              <tr>
-                <td>
-                  <span class="tie" style="margin-bottom: 10px;">作业记录单</span>
-                  <span><picture-list :maxShow="4" :images="images"></picture-list></span>
-                </td>
-              </tr>
-            </tbody>
-          </table> -->
+        </div>
+        <div style="margin:0 12px" v-else class="noneConclusion">
+          暂无结论
         </div>
       </div>
     </div>
@@ -125,46 +123,39 @@
             <span class="stf_pic">
               <!-- <img :src="staff.url" alt="" width="104" height="104"/> -->
               <img :src="staff.url" style="background:#ccc;border-radius:50%" alt="" width="104" height="104"/>
-              <div class="mask"></div>
+              <div v-if="status == '已派单'" class="mask" @click="deleteStaff(index)"></div>
             </span>
             <span class="stf_info">
-              <!-- <div class="stf_name">{{staff.staffName}}
-              </div> -->
+              <div class="stf_name">{{staff.staffName}}
+              </div>
 
-              <!-- <el-cascader 
-                :filterable="true" 
-                class="regionPicker" 
-                :options="options" 
-                v-model="form.selectedOptions" 
-                @change="handleChange" 
-                :show-all-levels="false"
-              ></el-cascader> -->
-              <el-cascader
-                :options="personsOptions"
+           
+              <!-- <el-cascader
+                :options="personOptions"
                 :show-all-levels="false"
                 class="personPicker"
                 clearable
-                v-model="aaaa"
                 :filterable="true" 
-              ></el-cascader>
-
+              ></el-cascader> -->
               <div class="stf_p stf_department">{{staff.depName}}</div>
               <div class="stf_p stf_phone">{{staff.phone}}</div>
             </span>
           </div>
           <!-- 新增人员 -->
-          <div class="tabActiveSpan tabActiveSpanSelect" v-if="tab + 2 == max * 2">
+          <div class="tabActiveSpan tabActiveSpanSelect" v-if="tab + 2 == max * 2 && status == '已派单'">
             <span class="stf_pic">
             </span> 
             <span class="stf_info">
               <!-- <div class="stf_name">请选择人员</div>  -->
               <el-cascader
-                :options="personsOptions"
+                :options="personOptions"
                 :show-all-levels="false"
                 class="personPicker" 
                 placeholder="请选择人员"
                 clearable
-                :filterable="true" 
+                :filterable="true"
+                v-model="selectedDepartmentOptions"
+                @change="departmentChange"
               ></el-cascader>
               <div class="stf_p stf_department">- -</div> 
               <div class="stf_p stf_phone">- -</div>
@@ -244,65 +235,34 @@ export default {
   data() {
     return {
       aaaa:['zhinan','小明'],
-      personsOptions: [{
-          value: 'zhinan',
-          label: '维保一部',
-          children: [{
-            value: '小明',
-            label: '小明',
-          }, {
-            value: '小李',
-            label: '小李',
-          }]
-        }, {
-          value: 'ziyuan',
-          label: '维保二部',
-          children: [{
-              value: '小圆',
-              label: '小圆'
-            }, {
-              value: '员工1',
-              label: '员工1'
-            }, {
-              value: '小林',
-              label: '小林'
-          }]
-      }],
-      active: 0,
+      personOptions: [],
+      activeStatus: 0,
       tab: 0, //人员页卡切换
-      queryParam:{
-        offset:0,
-        limit:5,
-        column: "create_time",
-        order: false,
-        corpId:window.localStorage.getItem('corpId'),
-        accountStatus:"-1",// 账号状态
-        worksStatus: "-1", // 作业状态
-        phone: "",
-        staffName: "",
-        areaCode: "",
-        depId: "", // 部门ID
-      },
       getStaffJson:[],
       totalPerson:0,
       max:0,
-      images:[
-      'http://192.168.100.89:8080/domino/view/image?filename=GI_bQ502kXGow80KFJXa.jpg',
-      'http://192.168.100.89:8080/domino/view/image?filename=GI_css6Ass5R7fgDBoUD.png',
-      'http://192.168.100.89:8080/domino/view/image?filename=GI_eD05guAm1I2c8dpw4.jpg',
-      'http://192.168.100.89:8080/domino/view/image?filename=GI_gnxeay4ZQ87gMGsVW.jpg',
-      'http://192.168.100.89:8080/domino/view/image?filename=GI_css6Ass5R7fgDBoUD.png',
-      'http://192.168.100.89:8080/domino/view/image?filename=GI_eD05guAm1I2c8dpw4.jpg',
-      'http://192.168.100.89:8080/domino/view/image?filename=GI_gnxeay4ZQ87gMGsVW.jpg',
-      'http://192.168.100.89:8080/domino/view/image?filename=GI_bQ502kXGow80KFJXa.jpg',
-      'http://192.168.100.89:8080/domino/view/image?filename=GI_css6Ass5R7fgDBoUD.png',
+      taskImage:[
+      // 'http://192.168.100.7:8080/domino/view/image?filename=GI_be3P7mMdJ3W7p9W0V.png',
+      // 'http://192.168.100.89:8080/domino/view/image?filename=GI_css6Ass5R7fgDBoUD.png',
+      // 'http://192.168.100.89:8080/domino/view/image?filename=GI_eD05guAm1I2c8dpw4.jpg',
+      // 'http://192.168.100.89:8080/domino/view/image?filename=GI_gnxeay4ZQ87gMGsVW.jpg',
+      // 'http://192.168.100.89:8080/domino/view/image?filename=GI_css6Ass5R7fgDBoUD.png',
+      // 'http://192.168.100.89:8080/domino/view/image?filename=GI_eD05guAm1I2c8dpw4.jpg',
+      // 'http://192.168.100.89:8080/domino/view/image?filename=GI_gnxeay4ZQ87gMGsVW.jpg',
+      // 'http://192.168.100.89:8080/domino/view/image?filename=GI_bQ502kXGow80KFJXa.jpg',
+      // 'http://192.168.100.89:8080/domino/view/image?filename=GI_css6Ass5R7fgDBoUD.png',
       ],
       ifWatchInfo:true,
       map:'',
       taskRecords:[],
+      taskNo:'',
+
       elevatorInfo:[],
       status:'',
-      taskResult: []
+      // taskResult: [],
+      selectedDepartmentOptions: [],
+      lastStep: '',
+      taskType:''
     }
   },
   components: {
@@ -313,9 +273,199 @@ export default {
   },
   mounted() {
     this.getMissionDetailData()
-    this.getAllStaffData()
+    // 获取部门列表
+    this.getdeps()
   },
   methods: {
+    getStatusColor(status){
+      var color = ''
+      if(status == '未派单' || status == '可派单'){
+        color = 'rgb(255, 169, 11)'
+      } else if(status == '已派单'){
+        color = 'rgb(52, 65, 76)'
+      } else if(status == '已接单'){
+        color = 'rgb(159, 185, 247)'
+      } else if(status == '已完成'){
+        color = 'rgb(66, 114, 255)'
+      } else if(status == '已超时'){
+        color = 'rgb(250, 79, 67)'
+      } else if(status == '已关闭'){
+        color = 'rgb(194, 199, 204)'
+      }
+      return color
+    },
+    // 下拉人员选中值
+    departmentChange(arr) {
+      const that = this
+      let flag = true
+      // this.ruleForm.assembId = arr[arr.length-1] // 取数组最后一个值赋值
+      let checkedId = arr[arr.length-1]
+      console.log("checkedId===" + checkedId)
+      this.selectedDepartmentOptions = []
+      console.log('this.dispatchStaffList', this.getStaffJson)
+      this.getStaffJson.forEach(item => {
+        if (item.userId == checkedId) {
+          this.$message.error('员工已存在')
+          flag = false
+          return false // 跳出循环，不能跳出方法
+        }
+      })
+
+      if (!flag) return // 控制函数执行
+      var personIds = []
+      this.getStaffJson.forEach(item => {
+        personIds.push(item.userId)
+      })
+      personIds.push(checkedId) // 包含新增人员的ID数组
+      // 新增
+      this.editOrDeletePerson(personIds,checkedId)
+    },
+    // 删除员工
+    deleteStaff(i) {
+      if(this.getStaffJson.length > 1){
+        this.getStaffJson.splice(i, 1)
+        var personIds = []
+        this.getStaffJson.forEach(item => {
+          personIds.push(item.userId)
+        })
+        // 删除
+        this.editOrDeletePerson(personIds)
+      } else {
+        this.$message.error("不能再删除啦")
+      }
+
+    },
+    // 调用接口 编辑/删除接单人员
+    editOrDeletePerson(personIdsArr,checkedId){
+      
+      // 编辑接单人员
+      let params = {
+        taskId: this.taskNo,
+        mpIds: personIdsArr
+      }
+      api.taskApi.editPersons(params).then(res => {
+        // this.$message
+        if(res.data.message == 'success'){
+          // 新增员工
+          if(checkedId){
+            api.accountApi.getStaffDetails(checkedId).then(res2 => {
+              // console.log('resId', res.data)
+              let staffDetail = res2.data.data
+              console.log('staffDetail', staffDetail)
+              this.getStaffJson.push({
+                userId: staffDetail.staffInfo.id,
+                avatarUrl: staffDetail.staffInfo.avatarUrl,
+                staffName: staffDetail.staffInfo.name,
+                depName: staffDetail.departmentName,
+                phone: staffDetail.staffInfo.account,
+              })
+              // 重新计算人数
+              this.totalPerson = this.getStaffJson.length
+
+              if(this.status == '已派单'){
+                this.max = this.totalPerson % 2 == 0 ?  Math.ceil(this.totalPerson/2) + 1 : Math.ceil(this.totalPerson/2)
+              } else {
+                this.max = Math.ceil(this.totalPerson/2)
+              }
+              this.getStaffJson.forEach(item => {
+                if(item.avatarUrl && !item.url) {
+                  var url = api.accountApi.viewPic(item.avatarUrl)
+                  Vue.set(item, 'url', url)
+                }
+              })
+
+            })
+          } else {
+            console.log("1111111111this.getStaffJson===" + JSON.stringify(this.getStaffJson))
+
+            // 重新计算人数
+            this.totalPerson = this.getStaffJson.length
+
+            if(this.status == '已派单'){
+              this.max = this.totalPerson % 2 == 0 ?  Math.ceil(this.totalPerson/2) + 1 : Math.ceil(this.totalPerson/2)
+            } else {
+              this.max = Math.ceil(this.totalPerson/2)
+            }
+            this.getStaffJson.forEach(item => {
+              if(item.avatarUrl && !item.url) {
+                alert(111)
+                var url = api.accountApi.viewPic(item.avatarUrl)
+                Vue.set(item, 'url', url)
+              }
+            })
+          }
+
+        } else {
+          // 重新获取详情
+          this.getMissionDetailData()
+          this.$message.error(res.data.message)
+        }
+        
+
+      })
+    },
+    // 获取公司下的部门
+    getdeps(){
+      api.accountApi.getCorpDepartments(window.localStorage.getItem('corpId')).then((res) => {
+     
+        var depData = res.data.data || []
+        if(depData.length > 0){
+          
+          depData.forEach(item =>{
+            var obj = {
+              label:'',
+              value:'',
+              children:[]
+            }
+            obj.label = item.depName
+            obj.value = item.id
+            this.personOptions.push(obj)
+            this.handleItemChange(item.id)
+          })
+          console.log("personOptions===" + this.personOptions)
+        }
+        
+
+
+      }).catch((res) => {
+        
+      })
+      
+    },
+    // 点击部门加载员工
+    handleItemChange(val) {
+      // console.log('active item:', val);
+      api.accountApi.getDepStaffs(val).then((res) => {
+        var staffData = res.data.data || []
+        if(staffData.length > 0){
+          var obj2 = []
+          staffData.forEach(item =>{
+            var obj = {
+              label:'',
+              value:'',
+            }
+            obj.label = item.name
+            obj.value = item.id
+            obj2.push(obj)
+            
+
+            // this.personOptions.push(obj)
+            // console.log("obj==" + JSON.stringify(obj))
+          })
+          this.personOptions.forEach((option, i) => {
+            if (option.value === val) {
+              option.children = obj2 ;
+            }
+          });
+          console.log("personOptions===" + JSON.stringify(this.personOptions))
+        }
+
+      }).catch((res) => {
+        
+      })
+
+    },
+    // 关闭工单
     closeTask(id){
       api.taskApi.closeTask(id).then((res) => {
         if (res.data.code === 200) {
@@ -328,12 +478,40 @@ export default {
         
       })
     },
+    // 获取工单详情
     getMissionDetailData(){
       api.taskApi.getMissionDetail(this.$route.params.id).then((res) => {
-        this.taskRecords = res.data.data.taskRecords[0] || []
+        this.taskRecords = res.data.data.taskRecords || []
         this.elevatorInfo = res.data.data.elevatorInfo || []
         this.status = res.data.data.status
-        this.taskResult = res.data.data.taskResult
+        // this.taskResult = res.data.data.taskResult
+        this.taskNo = res.data.data.taskNo
+        this.taskType = res.data.data.taskType
+        this.taskImage = []
+        var taskImageArr = res.data.data.taskImage
+        taskImageArr.forEach(item => {
+          console.log("this.taskImage---" + item)
+          // if(item) {
+            this.taskImageArr.push(api.accountApi.viewPic(item))
+          // }
+        })
+        console.log("this.taskImage---" + JSON.stringify(this.taskImage))
+        this.getStaffJson = res.data.data.mpList
+        this.totalPerson = this.getStaffJson.length
+        if(this.status == '已派单'){
+          this.max = this.totalPerson % 2 == 0 ?  Math.ceil(this.totalPerson/2) + 1 : Math.ceil(this.totalPerson/2)
+        } else {
+          this.max = Math.ceil(this.totalPerson/2)
+        }
+        console.log("最大页数：：：" + this.max)
+
+        this.getStaffJson.forEach(item => {
+          if(item.avatarUrl) {
+            var url = api.accountApi.viewPic(item.avatarUrl)
+            Vue.set(item, 'url', url)
+          }
+        })
+        console.log("this.getStaffJson===" + JSON.stringify(this.getStaffJson))
 
       }).catch((res) => {
         
@@ -369,33 +547,33 @@ export default {
       }
       console.log("当前页数：：" + this.tab)
     },
-    // 查询所有员工账户
-    getAllStaffData(){
-      api.accountApi.getStaffs(this.queryParam).then((res) => {
-        if(res.data.code === 200 && res.data.message === 'success'){
-          this.getStaffJson = res.data.data.records
+    // // 查询所有员工账户
+    // getAllStaffData(){
+    //   api.accountApi.getStaffs(this.queryParam).then((res) => {
+    //     if(res.data.code === 200 && res.data.message === 'success'){
+    //       this.getStaffJson = res.data.data.records
 
-          this.totalPerson = this.getStaffJson.length
+    //       this.totalPerson = this.getStaffJson.length
 
-          this.max = this.totalPerson % 2 == 0 ?  Math.ceil(this.totalPerson/2) + 1 : Math.ceil(this.totalPerson/2)
-          console.log("最大页数：：：" + this.max)
-          this.getStaffJson.forEach(item => {
-            var url = api.accountApi.viewPic(item.avatar)
-            Vue.set(item, 'url', url)
-          })
+    //       this.max = this.totalPerson % 2 == 0 ?  Math.ceil(this.totalPerson/2) + 1 : Math.ceil(this.totalPerson/2)
+    //       console.log("最大页数：：：" + this.max)
+    //       this.getStaffJson.forEach(item => {
+    //         var url = api.accountApi.viewPic(item.avatar)
+    //         Vue.set(item, 'url', url)
+    //       })
 
-        } else {
-          this.getStaffJson = []
-        }
+    //     } else {
+    //       this.getStaffJson = []
+    //     }
         
-      }).catch((res) => {
+    //   }).catch((res) => {
         
-      })
+    //   })
      
-    },
+    // },
     // 步骤条 下一步
     next() {
-      if (this.active++ > 2) this.active = 0;
+      if (this.activeStatus++ > 2) this.activeStatus = 0;
     }
   },
 }
@@ -449,7 +627,7 @@ export default {
       text-overflow: ellipsis;
     .tie
       color: #7E8A95;
-  // 初始状态
+  // 步骤条 初始状态
   .progressPanel
     padding 60px 50px 0
     .progressIcon
@@ -465,33 +643,38 @@ export default {
       background url('../../assets/images/hs/wancheng.png') no-repeat center
       opacity .3
     
-  // 正在进行中
-  .el-step__head.is-process
-    .progressIcon
-      box-shadow: 0 8px 12px -4px rgba(26,65,178,0.40);
-      width 48px;
-      height 48px
-      border-radius: 50%
-      margin 0 5px
-    .paidan
-      background url('../../assets/images/hs/paidanLight.png') no-repeat center #4272FF;
-    .jiedan
-      background url('../../assets/images/hs/jiedanLight.png') no-repeat center #4272FF;
-      opacity 1
-    .wancheng
-      background url('../../assets/images/hs/wanchengLight.png') no-repeat center #4272FF;
-      opacity 1
-    .chaoshi
-      background url('../../assets/images/hs/chaoshi.png') no-repeat center #FA4F43
-      box-shadow: 0 8px 12px -4px rgba(178,26,26,0.40);
-  // 已完成
-  .el-step__head.is-finish
-    .jiedan
-      opacity 1
+    // 正在进行中
+    .el-step__head.is-process
+      .progressIcon
+        box-shadow: 0 8px 12px -4px rgba(26,65,178,0.40);
+        width 48px;
+        height 48px
+        border-radius: 50%
+        margin 0 5px
+      .paidan
+        background url('../../assets/images/hs/paidanLight.png') no-repeat center #4272FF;
+      .jiedan
+        background url('../../assets/images/hs/jiedanLight.png') no-repeat center #4272FF;
+        opacity 1
+      .wancheng
+        background url('../../assets/images/hs/wanchengLight.png') no-repeat center #4272FF;
+        opacity 1
+      .chaoshi
+        background url('../../assets/images/hs/chaoshi.png') no-repeat center #FA4F43
+        box-shadow: 0 8px 12px -4px rgba(178,26,26,0.40);
+    // 已完成
+    .el-step__head.is-finish
+      .jiedan
+        opacity 1
 
   .conclusions
     padding: 0;
-
+    .noneConclusion
+      background url('../../assets/images/hs/noneCon.png') no-repeat center
+      text-align center 
+      height 200px
+      padding-top 150px
+      color: #C2C7CC;
   .liftInfo
     padding: 0;
   .scrollDiv
@@ -640,7 +823,7 @@ export default {
     -webkit-animation-name:'ripple';/*动画属性名，也就是我们前面keyframes定义的动画名*/
     -webkit-animation-duration: 1s;/*动画持续时间*/
     -webkit-animation-timing-function: ease; /*动画频率，和transition-timing-function是一样的*/
-    -webkit-animation-delay: 0s;/*动画延迟时间*/
+    -webkit-animation-delay: 0s; /*动画延迟时间*/
     -webkit-animation-iteration-count: infinite;/*定义循环资料，infinite为无限次*/
     -webkit-animation-direction: normal;/*定义动画方式*/
 

@@ -3,15 +3,17 @@
     <div class="row" >
       <div class="panel" style="padding:0">
         <div class="regionArea">
-          <el-cascader :filterable="true" class="regionPicker" :options="options" v-model="form.selectedOptions" @change="handleChange" :show-all-levels="false"></el-cascader>
-          <!-- <el-select v-model="value" placeholder="请选择" class="regionPicker" >
-            <el-option
-              v-for="item in options1"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select> -->
+          <el-cascader
+            ref="regionPicker"
+            :filterable="true" 
+            class="regionPicker" 
+            :options="options" 
+            v-model="form.selectedOptions" 
+            @change="handleChange" 
+            :show-all-levels="false"
+            >
+          </el-cascader>
+       
           <span style="color: #D8DDDF;">|</span>
           <span style="width: 127px;overflow: hidden;display: inline-block;vertical-align: top;margin-top: 13px;">
             <a-date-picker @change="aChangePickDate" :defaultValue="moment(timeDefault, dateFormat)" :format="dateFormat" :showToday="false" placeholder="请选择日期" >
@@ -306,7 +308,7 @@
       
       methods:{
         goToDetail(){
-          $this.$router.push({path:'/detection', query:{regCode:this.regCode}})
+          $this.$router.push({path:'/detection-panel', query:{regCode:this.regCode}})
         },
       
       }
@@ -438,6 +440,7 @@
         features: ['bg', 'road', 'building', 'point'],
         // showLabel: false //不显示地图文字标记
       });
+      this.map.setCity('深圳市');
       this.map.on('click', function(e) {
         _this.map.clearInfoWindow( )
       });
@@ -796,12 +799,11 @@
       },
       // 切换地区选择器
       handleChange(value){
-        console.log("11111:::"+ value)
-        this.form.city = this.myAddressCity(this.form.selectedOptions[0])
-        // this.form.city = this.form.selectedOptions[0];
-        this.form.area = this.myAddressarea(this.form.selectedOptions[1])
-        this.form.minarea = this.myAddressMinarea(this.form.selectedOptions[2])
-        // console.log('ddddd=====' + JSON.stringify(this.form))
+        console.log("value:::"+ value)
+        console.log('黑科技？', this.$refs['regionPicker'].currentLabels)
+        var regionLabels = this.$refs['regionPicker'].currentLabels
+        this.form.city = regionLabels[0]
+        this.form.area = regionLabels[1]
         if (!this.form.area) {
           this.form.area = "深圳市";
         }
@@ -810,33 +812,8 @@
         this.getAllLiftPoint()
 
       },
-      myAddressCity:function(value){
-        for(var y in pcas){
-          if(pcas[y].code == value){
-            return value = pcas[y].name
-          }
-        }
-      },
-      myAddressarea:function(value){
-        for(var y in pcas){
-          for(var z in pcas[y].children){
-            if(pcas[y].children[z].code == value && value!=undefined){
-              return value = pcas[y].children[z].name;
-            }
-          }
-        }
-      },
-      myAddressMinarea:function(value){
-        for(var y in pcas){
-          for(var z in pcas[y].children){
-            for(var i in pcas[y].children[z].children){
-              if(pcas[y].children[z].children[i].code == value && value!=undefined){
-                return value = pcas[y].children[z].children[i].name
-              }
-            }
-          }
-        }
-      },
+      
+      
     }
     
   }
