@@ -917,7 +917,7 @@ export default {
 
       api.detection.createTask(params).then(res => {
         console.log('派单', res)
-        if (res == 200) {
+        if (res.data == 200) {
           this.$router.go(0)
         } else {
           this.$message.error(`${res.data.message}`)

@@ -128,15 +128,8 @@ if (process.env.NODE_ENV == 'development') {
   xiaohuURL = `${protocol}//192.168.100.89:8080`
   shupingURL = `${protocol}//192.168.100.7:8080`
   // localURL = `${protocol}//127.0.0.1`
-<<<<<<< HEAD
   localURL = `${protocol}//192.168.100.7:8080`
-  // localURL = `${protocol}//192.168.100.2`
-=======
-  // localURL = `${protocol}//192.168.100.7:8080`
-  localURL = `${protocol}//192.168.100.89:8080`
->>>>>>> 00ac5c51ef3676ec255ccaa9d0c6aa486463e181
-  
-  // localURL = `${protocol}//192.168.100.89:8080`
+
 } else if (process.env.NODE_ENV == 'production') {
 // axios.defaults.baseURL = `${protocol}//iot.gidomino.com`
   localURL = iot = devURL = xiaohuURL = shupingURL = `${protocol}//192.168.100.2`
