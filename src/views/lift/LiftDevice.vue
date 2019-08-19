@@ -2,7 +2,7 @@
   <div id="LiftDevice">
     <div class="container">
       <div class="bread-nav">
-        <span>数字电梯</span>
+        <span @click="$router.push('/device')">设备管理</span>
         <em>/</em>
         <span class="on">设备列表</span>
       </div>
@@ -21,7 +21,7 @@
           <div class="llt-thead">
             <div class="llt-tr clearfix">
               <div class="llt-th">
-                <el-checkbox v-model="checkedAll" @change="checkedAllChange"></el-checkbox>
+                <el-checkbox v-model="checkedAll" @change="checkedAllChange">{{test}}</el-checkbox>
               </div>
               <div class="llt-th">名称</div>
               <div class="llt-th">检测项</div>
@@ -637,9 +637,10 @@ export default {
   .llt-tr .llt-th:nth-child(1),.llt-tr .llt-td:nth-child(1),.lift-device-tr .ld-td:nth-child(1){
     width 3%;
     text-align center;
+    text-overflow: clip;
   }
   .llt-tr .llt-th:nth-child(2),.llt-tr .llt-td:nth-child(2),.lift-device-tr .ld-td:nth-child(2){
-    width 9%;
+    width 14%;
   }
   .llt-tr .llt-th:nth-child(3),.llt-tr .llt-td:nth-child(3),.lift-device-tr .ld-td:nth-child(3){
     width 19%;
@@ -651,10 +652,10 @@ export default {
     width 12%;
   }
   .llt-tr .llt-th:nth-child(6),.llt-tr .llt-td:nth-child(6),.lift-device-tr .ld-td:nth-child(6){
-    width 11%;
+    width 8%;
   }
   .llt-tr .llt-th:nth-child(7),.llt-tr .llt-td:nth-child(7),.lift-device-tr .ld-td:nth-child(7){
-    width 12%;
+    width 10%;
   }
   .llt-tr .llt-th:nth-child(8),.llt-tr .llt-td:nth-child(8),.lift-device-tr .ld-td:nth-child(8){
     width 9%;
@@ -702,34 +703,25 @@ export default {
 /* 适配 */
 @media screen and (max-width: 1550px) {
   #LiftDevice{
-    .llt-td{
-      font-size 12px;
+    .llt-thead .llt-th:nth-child(2),.llt-tbody .llt-td:nth-child(2){
+      width 16%;
     }
     .llt-thead .llt-th:nth-child(3),.llt-tbody .llt-td:nth-child(3){
-      width 16%;
+      width 14%;
     }
     .llt-thead .llt-th:nth-child(5),.llt-tbody .llt-td:nth-child(5){
       width 13%;
-    }
-    .llt-thead .llt-th:nth-child(6),.llt-tbody .llt-td:nth-child(6){
-      width 10%;
     }
     .llt-thead .llt-th:nth-child(7),.llt-tbody .llt-td:nth-child(7){
       width 11%;
     }
     .llt-thead .llt-th:nth-child(10),.llt-tbody .llt-td:nth-child(10){
-      width 10%;
+      width 8%;
     }
   }
 
 }
 
-
-@media screen and (max-width: 1360px) {
-  #LiftDevice{
-    min-width: 1360px;
-  }
-}
 
 
 

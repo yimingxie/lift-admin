@@ -3,9 +3,9 @@
   <div class="row" >
 
     <div class="panel" style="padding-bottom:0">
-      <router-link to="/missionDetail">
+      <!-- <router-link to="/missionDetail">
         <span>任务详情</span>
-      </router-link>
+      </router-link> -->
       <div class="title"><div class="label1">作业计划</div></div>
       <div class="subSelect" :class="open ? 'openSel' :''">
   
@@ -558,6 +558,7 @@ export default {
   },
   watch:{
     period1(val){
+      this.searchMode = false
       this.conditions1 = []
       this.openCondition1 = false
       if(val !== ""){ //无计划
@@ -584,6 +585,7 @@ export default {
     },
     // 处理进度
     period2(val){
+      this.searchMode = false
       this.conditions2 = []
       this.openCondition2 = false
       if(val !== ""){ //筛选进度
@@ -618,6 +620,7 @@ export default {
     },
     // 作业类型
     period3(val){
+      this.searchMode = false
       this.conditions3 = []
       this.openCondition3 = false
       if(val !== ""){
@@ -638,6 +641,7 @@ export default {
     },
     // 判断是否为日视图
     checkedDate(date){
+      this.searchMode = false
       if(date.length > 9){
         // 获取日视图列表
         this.period1 = "" // 只能获取有维保计划的电梯
@@ -686,7 +690,7 @@ export default {
       this.period3 = ''
       // 获取月视图统计数据
       this.getMonthTotalData()
-      // 获取任务列表
+      // 获取月视图任务列表
       this.getMissionList()
     },
     // 搜索电梯

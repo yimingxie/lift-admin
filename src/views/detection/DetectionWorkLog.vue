@@ -2,9 +2,9 @@
   <div id="DetectionWorkLog">
     <div class="container">
       <div class="bread-nav">
-        <span>数字电梯</span>
+        <span @click="$router.push('/lift-list')">数字电梯</span>
         <em>/</em>
-        <span>电梯检测</span>
+        <span @click="$router.go(-1)">电梯检测</span>
         <em>/</em>
         <span class="on">作业记录</span>
       </div>
@@ -26,7 +26,9 @@
           <div class="lift-detail-operate-btn">打印</div>
 
           <!-- TODO搜索工单 -->
-
+          <div class="llcb-search">
+            <search-code></search-code>
+          </div>
         </div>
 
 
@@ -34,30 +36,33 @@
           <div class="llt-thead">
             <div class="llt-tr clearfix">
               <div class="llt-th">
-                <el-checkbox v-model="checkedAll" @change="checkedAllChange"></el-checkbox>
+                <el-checkbox v-model="checkedAll" @change="checkedAllChange">{{test}}</el-checkbox>
               </div>
               <div class="llt-th">工单编号</div>
               <div class="llt-th">作业类型</div>
               <div class="llt-th">作业人员</div>
               <div class="llt-th">处理结果</div>
-              <div class="llt-th"><div class="llt-th-sort" :class="sortClass" @click="warnSort">完成时间</div></div>
+              <div class="llt-th">完成时间</div>
               <div class="llt-th">操作</div>
             </div>
           </div>
           <div class="llt-tbody">
-            <div class="llt-tr clearfix">
+            <div class="llt-tr clearfix" v-for="(item, i) in workLogList" :key="i">
               <div class="llt-tr-container clearfix">
                 <div class="llt-td">
-                  <input type="checkbox">
+                  <el-checkbox-group v-model="checkedLogs" @change="checkedLogsChange">
+                    <el-checkbox :label="item.taskId" :key="item.taskId">{{test}}</el-checkbox>
+                  </el-checkbox-group>
                 </div>
-                <div class="llt-td">31104403002014002777</div>
-                <div class="llt-td">例行维保</div>
-                <div class="llt-td">覃一，林依晨</div>
-                <div class="llt-td">合格</div>
-                <div class="llt-td">2018-01-01 19:20:21</div>
-                <div class="llt-td"><span class="llt-td-a">查看详情</span></div>
+                <div class="llt-td">{{item.taskId}}</div>
+                <div class="llt-td">{{item.taskType}}</div>
+                <div class="llt-td">{{item.person}}</div>
+                <div class="llt-td">{{item.result}}</div>
+                <div class="llt-td">{{item.completeTime}}</div>
+                <div class="llt-td"><span class="llt-td-a" @click="goWorkLogDetail(item.taskId)">查看详情</span></div>
               </div>
             </div>
+            <div class="list-no-data" v-show="workLogList.length == 0">暂无数据</div>
 
           </div>
 
@@ -78,15 +83,10 @@
 
       </div>
 
-
     </div>
-
-
 
     <!-- 底部 -->
     <footer-temp></footer-temp>
-
-
 
 
   </div>
@@ -96,12 +96,16 @@
 import xymFun from '../../utils/xymFun'
 import api from '../../api.js'
 import Footer from '../common/fotter'
+import SearchCode from '../../components/SearchCode'
+
+
 
 export default {
   data() {
     return {
       parentCode: '',
       liftPerson: '',
+      test: '',
       // 电梯详情
       regCode: '',
       inNum: '',
@@ -109,9 +113,19 @@ export default {
       lift_man: '',
       localArea: '',
 
+      // 工单
+      checkedAll: false,
+      checkedLogs: [],
+      workLogOptions: [], // 用于全选
+      workLogList: [],
+
+
       detWorkLogParams: {
+        elevCode: '',
         offset: 1, 
         limit: 10,
+        order: true, // 时间排序
+        column: 'id',
       },
       currentPage: 1,
       totalPage: 1,
@@ -128,6 +142,9 @@ export default {
 
     // 获取电梯详情
     this.getLiftDetail()
+
+    // 查询工作记录
+    this.getWorkLog()
 
   },
   methods: {
@@ -160,6 +177,63 @@ export default {
       })
     },
 
+    // 查询工作记录
+    getWorkLog() {
+      // this.workLogList= [{
+      //   taskId: 'aaaaaaaaa',
+      //   taskType: 'bbb',
+      //   person: 'ccc',
+      //   result: 'dddd',
+      //   completeTime: 'eee',
+      // }]
+
+      this.workLogList = []
+
+      this.detWorkLogParams.elevCode = this.parentCode
+      api.detection.getLogList(this.detWorkLogParams).then(res => {
+        console.log('工作记录', res.data)
+        let result = res.data.data.records
+        this.workLogOptions = []
+
+        result.forEach((item, i) => {
+          let workLogObj = {
+            taskId: item.taskId,
+            taskType: item.taskType,
+            person: '',
+            result: item.result,
+            completeTime: item.recordTime,
+          }
+          this.workLogOptions.push(item.taskId) // 全选选项，填入id
+          let staffArr = []
+          // 员工
+          item.mp.forEach(secItem => {
+            staffArr.push(secItem.staffName)
+          })
+          workLogObj.person = staffArr.join('，') ? staffArr.join('，') : '无'
+          this.workLogList.push(workLogObj)
+        })
+
+        // 分页
+        this.currentPage = res.data.data.current
+        this.totalPage = res.data.data.total ? res.data.data.total : 1
+        this.pageSize = res.data.data.size
+
+      })
+
+
+    },
+
+    // 工作记录多选
+    checkedLogsChange(val) {
+      let count = this.workLogList.length
+      this.checkedAll = val.length === count ? true : false
+    },
+
+    // 全选
+    checkedAllChange(checkedBoolean) {
+      this.checkedLogs = checkedBoolean ? this.workLogOptions : []
+    },
+
     // 当前分页改变
     currentPageChange(current) {
       this.detWorkLogParams.offset = current
@@ -170,9 +244,16 @@ export default {
       this.detWorkLogParams.limit = size
     },
 
+    // 跳转到工单详情
+    goWorkLogDetail(logId) {
+      this.$router.push({name: 'missionDetail', params: {'id': logId}})
+    },
+
   },
   components: {
     'footer-temp': Footer,
+    'search-code': SearchCode,
+
 
   }
 }
@@ -189,6 +270,7 @@ export default {
   .llt-thead .llt-th:nth-child(1),.llt-tbody .llt-td:nth-child(1){
     width 3%;
     text-align center;
+    text-overflow: clip;
   }
   .llt-thead .llt-th:nth-child(2),.llt-tbody .llt-td:nth-child(2){
     width 16%;

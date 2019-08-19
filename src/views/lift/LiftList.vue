@@ -133,7 +133,7 @@
               <div class="llcb-btn" @click="deleteLiftsDialog">删除电梯</div>
             </div>
             <div class="llcb-search">
-              <search-code @childCode="searchLift"></search-code>
+              <search-code @childCode="searchLift" @clearCode="clearRegCode"></search-code>
             </div>
           </div>
           
@@ -144,7 +144,7 @@
             <div class="llt-tr clearfix">
               <div class="llt-th">
                 <!-- <input type="checkbox"> -->
-                <el-checkbox v-model="checkedAll" @change="checkedAllChange"></el-checkbox>
+                <el-checkbox v-model="checkedAll" @change="checkedAllChange">{{test}}</el-checkbox>
               </div>
               <div class="llt-th">电梯注册代码</div>
               <div class="llt-th">内部编号</div>
@@ -343,6 +343,12 @@ export default {
     // 监听子组件获取注册码，发送请求搜索并重新渲染列表
     searchLift(regCode) {
       this.liftListParams.regCode = regCode
+      this.getLiftList()
+    },
+
+    // 清空
+    clearRegCode() {
+      this.liftListParams.regCode = ''
       this.getLiftList()
     },
 
@@ -660,6 +666,7 @@ export default {
   .llt-thead .llt-th:nth-child(1),.llt-tbody .llt-td:nth-child(1){
     width 3%;
     text-align center;
+    text-overflow: clip;
   }
   .llt-thead .llt-th:nth-child(2),.llt-tbody .llt-td:nth-child(2){
     width 14%;
@@ -693,8 +700,8 @@ export default {
 /* 适配 */
 @media screen and (max-width: 1550px) {
   #LiftList{
-    .llt-td{
-      font-size 12px;
+    .llt-thead .llt-th:nth-child(3),.llt-tbody .llt-td:nth-child(3){
+      width 7%
     }
     .llt-thead .llt-th:nth-child(5),.llt-tbody .llt-td:nth-child(5){
       width 10%;

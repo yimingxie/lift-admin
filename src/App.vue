@@ -113,7 +113,7 @@
         
           
         </el-submenu>
-        <el-submenu index="2" v-if="!ifDisabled()">
+        <el-submenu index="2" v-if="type == 'domino'">
           <template slot="title">
             <i class="icon-setting"></i>
             <span slot="title">通用设置</span>
@@ -155,10 +155,10 @@
               </div>
               <div class="collapseImg unCollapseImg" v-if="!isCollapse" @click="isCollapse = true">
               </div>
-              <div id="contentDiv">
+              <!-- <div id="contentDiv">
                 <p @click="changeTheme('theme1')">111</p >
                 <p @click="changeTheme('theme2')">222</p >
-              </div>
+              </div> -->
               <a class="logo"></a>
               
               <!-- <div @mouseover="isShowUserNav = true" @mouseout="isShowUserNav = false" class="user-navigation">
@@ -239,7 +239,7 @@
         
 
         this.appKey = new Date().getTime(); // 监听地址栏参数变化
-        if(to.name=='Login' || to.name=='lift-print'){
+        if(to.name=='Login' || to.name=='lift-print' || to.name=='panel-test'){
           this.$store.commit('SWITCH_LAYOUT', 'auth')
           
           // console.log('layout====' + this.layout)
@@ -294,9 +294,9 @@
       ifDisabled(title){
         var flag = true
         
-        if(this.type.indexOf("administrator") > -1 || this.type.indexOf("manager") > -1) {
+        if(this.type.indexOf("domino") > -1 || this.type.indexOf("administrator") > -1 || this.type.indexOf("manager") > -1) {
           flag = false
-        }
+        } 
         else{
           var modulesJson = JSON.parse(this.modulesJson)
           for(var i = 0; i < modulesJson.length ; i++) {
@@ -344,6 +344,7 @@
 @import 'assets/stylus/base'
 // -------------------------------------------------------
 #page-container
+
   width: 100%;
   height: 100%;
  
@@ -559,5 +560,12 @@
       float: left;
       background: #f0dfdf;
     }
+
+
+@media screen and (max-width: 1280px) {
+  // #page-container{
+  //   min-width: 1280px;
+  // }
+}
 </style>
 

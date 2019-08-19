@@ -64,9 +64,7 @@
               <div class="dcc-item-title">机房</div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/wendu.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-jfwd-icon" :class="jfwdIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{jfwdVal}}</span>℃</div>
                     <div class="dccb-data-p2">机房温度</div>
@@ -78,9 +76,7 @@
               </div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/shidu.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-jfsd-icon" :class="jfsdIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{jfsdVal}}</span>℃</div>
                     <div class="dccb-data-p2">机房湿度</div>
@@ -92,9 +88,7 @@
               </div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/fengsu.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-jffs-icon" :class="jffsIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{jffsVal}}</span>m/s</div>
                     <div class="dccb-data-p2">机房风速</div>
@@ -109,9 +103,7 @@
               <div class="dcc-item-title">井道</div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/wendu.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-jdwd-icon" :class="jdwdIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{jdwdVal}}</span>℃</div>
                     <div class="dccb-data-p2">井道温度</div>
@@ -123,9 +115,7 @@
               </div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/shidu.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-jdsd-icon" :class="jdsdIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{jdsdVal}}</span>%</div>
                     <div class="dccb-data-p2">井道湿度</div>
@@ -145,9 +135,7 @@
               <div class="dcc-item-title">电源柜</div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/dianya.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-jfdydy-icon" :class="jfdydyIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{jfdydyVal}}</span>V</div>
                     <div class="dccb-data-p2">机房电源电压</div>
@@ -159,9 +147,7 @@
               </div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/dianliu.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-jfdydl-icon" :class="jfdydlIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{jfdydlVal}}</span>A</div>
                     <div class="dccb-data-p2">机房电源电流</div>
@@ -183,9 +169,7 @@
               <div class="dcc-item-title">控制柜</div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/dianya.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-msaqhldy-icon" :class="msaqhldyIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{msaqhldyVal}}</span>V</div>
                     <div class="dccb-data-p2">门锁安全回路电压</div>
@@ -197,9 +181,7 @@
               </div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/dianliu.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-msaqhldl-icon" :class="msaqhldlIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{msaqhldlVal}}</span>A</div>
                     <div class="dccb-data-p2">门锁安全回路电流</div>
@@ -211,11 +193,9 @@
               </div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/dianya.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-aqkghldy-icon" :class="aqkghldyIcon"></div>
                   <div class="dccb-data-p">
-                    <div class="dccb-data-p1"><span>{{aqkgmldyVal}}</span>V</div>
+                    <div class="dccb-data-p1"><span>{{aqkghldyVal}}</span>V</div>
                     <div class="dccb-data-p2">安全开关回路电压</div>
                   </div>
                 </div>
@@ -225,9 +205,7 @@
               </div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/dianya.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-jxkgdy-icon" :class="jxkgdyIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{jxkgdyVal}}</span>V</div>
                     <div class="dccb-data-p2">检修开关电压</div>
@@ -239,9 +217,7 @@
               </div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/dianya.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-jskgdys-icon" :class="jskgdysIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{jskgdysVal}}</span>V</div>
                     <div class="dccb-data-p2">（上）减速开关电压</div>
@@ -253,9 +229,7 @@
               </div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/dianya.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-jskgdyx-icon" :class="jskgdyxIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{jskgdyxVal}}</span>V</div>
                     <div class="dccb-data-p2">（下）减速开关电压</div>
@@ -267,9 +241,7 @@
               </div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/dianya.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-qpjskgdys-icon" :class="qpjskgdysIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{qpjskgdysVal}}</span>V</div>
                     <div class="dccb-data-p2">（上）强迫减速开关电压</div>
@@ -281,9 +253,7 @@
               </div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/dianya.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-qpjskgdyx-icon" :class="qpjskgdyxIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{qpjskgdyxVal}}</span>V</div>
                     <div class="dccb-data-p2">（下）强迫减速开关电压</div>
@@ -295,9 +265,7 @@
               </div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/dianya.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-ywkgdys-icon" :class="ywkgdysIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{ywkgdysVal}}</span>V</div>
                     <div class="dccb-data-p2">（上）越位开关电压</div>
@@ -309,9 +277,7 @@
               </div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/dianya.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-ywkgdyx-icon" :class="ywkgdyxIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{ywkgdyxVal}}</span>V</div>
                     <div class="dccb-data-p2">（下）越位开关电压</div>
@@ -325,9 +291,7 @@
 
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/dianya.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-pcgyqdy-icon" :class="pcgyqdyIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{pcgyqdyVal}}</span>V</div>
                     <div class="dccb-data-p2">平层感应器电压</div>
@@ -348,9 +312,7 @@
               <div class="dcc-item-title">电动机</div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/dianya.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-ddjdydy-icon" :class="ddjdydyIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{ddjdydyVal}}</span>V</div>
                     <div class="dccb-data-p2">电动机电源电压</div>
@@ -362,9 +324,7 @@
               </div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/dianliu.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-ddjdydl-icon" :class="ddjdydlIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{ddjdydlVal}}</span>A</div>
                     <div class="dccb-data-p2">电动机电源电流</div>
@@ -376,9 +336,7 @@
               </div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/wendu.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-ddjwkwd-icon" :class="ddjwkwdIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{ddjwkwdVal}}</span>℃</div>
                     <div class="dccb-data-p2">电动机外壳温度</div>
@@ -390,9 +348,7 @@
               </div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/zhendong.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-ddjwkzd-icon" :class="ddjwkzdIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{ddjwkzdVal}}</span>μm</div>
                     <div class="dccb-data-p2">电动机外壳振动</div>
@@ -404,9 +360,7 @@
               </div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/wendu.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-ddjzcwd-icon" :class="ddjzcwdIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{ddjzcwdVal}}</span>℃</div>
                     <div class="dccb-data-p2">电动机轴承温度</div>
@@ -418,9 +372,7 @@
               </div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/zhendong.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-ddjzczd-icon" :class="ddjzczdIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{ddjzczdVal}}</span>μm</div>
                     <div class="dccb-data-p2">电动机轴承振动</div>
@@ -443,9 +395,7 @@
               <div class="dcc-item-title">制动器</div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/dianya.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-zdqdydy-icon" :class="zdqdydyIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{zdqdydyVal}}</span>V</div>
                     <div class="dccb-data-p2">制动器电源电压</div>
@@ -457,9 +407,7 @@
               </div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/dianliu.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-zdqdydl-icon" :class="zdqdydlIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{zdqdydlVal}}</span>A</div>
                     <div class="dccb-data-p2">制动器电源电流</div>
@@ -471,9 +419,7 @@
               </div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/wendu.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-zdqxqwd-icon" :class="zdqxqwdIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{zdqxqwdVal}}</span>℃</div>
                     <div class="dccb-data-p2">制动器线圈温度</div>
@@ -485,9 +431,7 @@
               </div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/wendu.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-zdqzwwd-icon" :class="zdqzwwdIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{zdqzwwdVal}}</span>℃</div>
                     <div class="dccb-data-p2">制动器闸瓦温度</div>
@@ -508,9 +452,7 @@
               <div class="dcc-item-title">限速器</div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/sudu.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-xsqsd-icon" :class="xsqsdIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{xsqsdVal}}</span>m/s</div>
                     <div class="dccb-data-p2">限速器速度</div>
@@ -522,9 +464,7 @@
               </div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/quanshu.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-xsqqs-icon" :class="xsqqsIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{xsqqsVal}}</span>rpm</div>
                     <div class="dccb-data-p2">限速器圈数</div>
@@ -545,9 +485,7 @@
               <div class="dcc-item-title">轿顶</div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/dianya.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-jdzhkzqdy-icon" :class="jdzhkzqdyIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{jdzhkzqdyVal}}</span>V</div>
                     <div class="dccb-data-p2">轿顶载荷控制器电压</div>
@@ -559,9 +497,7 @@
               </div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/dianya.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-jdjxkgdy-icon" :class="jdjxkgdyIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{jdjxkgdyVal}}</span>V</div>
                     <div class="dccb-data-p2">轿顶检修开关电压</div>
@@ -573,9 +509,7 @@
               </div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/dianya.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-jdmjmddy-icon" :class="jdmjmddyIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{jdmjmddyVal}}</span>V</div>
                     <div class="dccb-data-p2">轿顶门机马达电压</div>
@@ -587,9 +521,7 @@
               </div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/dianliu.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-jdmjmddl-icon" :class="jdmjmddlIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{jdmjmddlVal}}</span>A</div>
                     <div class="dccb-data-p2">轿顶门机马达电流</div>
@@ -611,9 +543,7 @@
               <div class="dcc-item-title">轿厢</div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/dianliu.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-jxjmkh-icon" :class="jxjmkhIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{jxjmkhVal}}</span></div>
                     <div class="dccb-data-p2">轿厢轿门开合</div>
@@ -625,9 +555,7 @@
               </div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/dianliu.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-jxwz-icon" :class="jxwzIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{jxwzVal}}</span>楼</div>
                     <div class="dccb-data-p2">轿厢位置</div>
@@ -639,9 +567,7 @@
               </div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/zhendong.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-jxxtzd-icon" :class="jxxtzdIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{jxxtzdVal}}</span>μm</div>
                     <div class="dccb-data-p2">轿厢箱体振动</div>
@@ -661,9 +587,7 @@
               <div class="dcc-item-title">井道</div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
-                    <img src="../../assets/images/xym/zhendong.png" alt="">
-                  </div>
+                  <div class="dccb-data-icon real-chart-jddgzd-icon" :class="jddgzdIcon"></div>
                   <div class="dccb-data-p">
                     <div class="dccb-data-p1"><span>{{jddgzdVal}}</span>μm</div>
                     <div class="dccb-data-p2">井道导轨振动</div>
@@ -675,7 +599,7 @@
               </div>
               <div class="dcc-box">
                 <div class="dcc-box-data clearfix">
-                  <div class="dccb-data-icon">
+                  <div class="dccb-data-icon real-chart-jdcmkh-icon" :class="jdcmkhIcon">
                     <img src="../../assets/images/xym/kaihe.png" alt="">
                   </div>
                   <div class="dccb-data-p">
@@ -713,6 +637,7 @@ import api from '../../api.js'
 export default {
   data() {
     return {
+      testGT: 'GTFGTGTGT',
       parentCode: '',
       diagnId: '',
       // 实时监测数据
@@ -736,7 +661,7 @@ export default {
       jfdydlVal: 0,
       msaqhldyVal: 0,
       msaqhldlVal: 0,
-      aqkgmldyVal: 0,
+      aqkghldyVal: 0,
       jxkgdyVal: 0,
       jskgdysVal: 0,
       jskgdyxVal: 0,
@@ -766,6 +691,48 @@ export default {
       jxxtzdVal: 0,
       jddgzdVal: 0,
       jdcmkhVal: 0,
+
+      // 控制报警图标
+      jfwdIcon: '',
+      jfsdIcon: '',
+      jffsIcon: '',
+      jdwdIcon: '',
+      jdsdIcon: '',
+      jfdydyIcon: '',
+      jfdydlIcon: '',
+      msaqhldyIcon: '',
+      msaqhldlIcon: '',
+      aqkghldyIcon: '',
+      jxkgdyIcon: '',
+      jskgdysIcon: '',
+      jskgdyxIcon: '',
+      qpjskgdysIcon: '',
+      qpjskgdyxIcon: '',
+      ywkgdysIcon: '',
+      ywkgdyxIcon: '',
+      pcgyqdyIcon: '',
+      ddjdydyIcon: '',
+      ddjdydlIcon: '',
+      ddjwkwdIcon: '',
+      ddjwkzdIcon: '',
+      ddjzcwdIcon: '',
+      ddjzczdIcon: '',
+      zdqdydyIcon: '',
+      zdqdydlIcon: '',
+      zdqxqwdIcon: '',
+      zdqzwwdIcon: '',
+      xsqsdIcon: '',
+      xsqqsIcon: '',
+      jdzhkzqdyIcon: '',
+      jdjxkgdyIcon: '',
+      jdmjmddyIcon: '',
+      jdmjmddlIcon: '',
+      jxjmkhIcon: '',
+      jxwzIcon: '',
+      jxxtzdIcon: '',
+      jddgzdIcon: '',
+      jdcmkhIcon: '',
+      
 
       // 温湿度配置
       options: {
@@ -1020,7 +987,6 @@ export default {
   created() {
     this.parentCode = this.$route.query.regCode
     this.diagnId = this.$route.query.diagnId ? this.$route.query.diagnId : ''
-    console.log(this.diagnId)
   },
   mounted() {
 
@@ -1176,7 +1142,6 @@ export default {
       ]
 
       api.detection.getMonitorData(params).then(res => {
-        clearTimeout(this.chartTimer)
         let resList = res.data.data || {}
         console.log('请求所有图表数据', res.data)
         let thresholdObj = {}
@@ -1186,10 +1151,11 @@ export default {
         //   "0:0:0:2": [{threshold: '', operator: 1}],
         // }
 
-        api.detection.getThreshold(params).then(res => {
-          thresholdObj = res.data.data
-          console.log('ressss', thresholdObj)
+        api.detection.getThreshold(params).then(resThreshold => {
+          thresholdObj = resThreshold.data.data
+          // console.log('thresholdObj阈值', thresholdObj)
 
+          clearTimeout(this.chartTimer)
           this.chartTimer = setTimeout(() => {
             this.drawChart1({container: 'real-chart-jfwd',unit: '℃',name: '机房温度',max: etime,dataType: 'real_data',data: resList['0:0:0:1'], threshold: thresholdObj['0:0:0:1'][0] ? thresholdObj['0:0:0:1'][0].threshold : '', operator: thresholdObj['0:0:0:1'][0] ? thresholdObj['0:0:0:1'][0].operator : ''})
             this.drawChart1({container: 'real-chart-jfsd',unit: '%',name: '机房湿度',max: etime,dataType: 'real_data',data: resList['0:0:0:2'], threshold: thresholdObj['0:0:0:2'][0] ? thresholdObj['0:0:0:2'][0].threshold : '', operator: thresholdObj['0:0:0:2'][0] ? thresholdObj['0:0:0:2'][0].operator : ''})
@@ -1243,7 +1209,7 @@ export default {
           this.jfdydlVal = resList['0:1:0:4'] ? resList['0:1:0:4'][0].real_data : this.jfdydlVal
           this.msaqhldyVal = resList['0:2:1:5'] ? resList['0:2:1:5'][0].real_data : this.msaqhldyVal
           this.msaqhldlVal = resList['0:2:1:4'] ? resList['0:2:1:4'][0].real_data : this.msaqhldlVal
-          this.aqkgmldyVal = resList['0:2:2:5'] ? resList['0:2:2:5'][0].real_data : this.aqkgmldyVal
+          this.aqkghldyVal = resList['0:2:2:5'] ? resList['0:2:2:5'][0].real_data : this.aqkghldyVal
           this.jxkgdyVal = resList['0:2:3:5'] ? resList['0:2:3:5'][0].real_data : this.jxkgdyVal
           this.jskgdysVal = resList['0:2:4:5'] ? resList['0:2:4:5'][0].real_data : this.jskgdysVal
           this.jskgdyxVal = resList['0:2:5:5'] ? resList['0:2:5:5'][0].real_data : this.jskgdyxVal
@@ -1336,7 +1302,7 @@ export default {
         // this.jfdydlVal = resList['0:1:0:4'] ? resList['0:1:0:4'][0].real_data : this.jfdydlVal
         // this.msaqhldyVal = resList['0:2:1:5'] ? resList['0:2:1:5'][0].real_data : this.msaqhldyVal
         // this.msaqhldlVal = resList['0:2:1:4'] ? resList['0:2:1:4'][0].real_data : this.msaqhldlVal
-        // this.aqkgmldyVal = resList['0:2:2:5'] ? resList['0:2:2:5'][0].real_data : this.aqkgmldyVal
+        // this.aqkghldyVal = resList['0:2:2:5'] ? resList['0:2:2:5'][0].real_data : this.aqkghldyVal
         // this.jxkgdyVal = resList['0:2:3:5'] ? resList['0:2:3:5'][0].real_data : this.jxkgdyVal
         // this.jskgdysVal = resList['0:2:4:5'] ? resList['0:2:4:5'][0].real_data : this.jskgdysVal
         // this.jskgdyxVal = resList['0:2:5:5'] ? resList['0:2:5:5'][0].real_data : this.jskgdyxVal
@@ -1505,7 +1471,10 @@ export default {
       extendObj.data = dataArr
 
       let chart = this.$echarts.init(document.getElementById(`${extendObj.container}`))
+      // 判断主题配置使用
       let options = xymFun.deepClone(that.options)
+
+      
       options.series[0].data = extendObj.data
       options.series[0].name = extendObj.name
       options.xAxis.max = extendObj.max
@@ -1520,24 +1489,7 @@ export default {
       }
       // 如果有阈值，则设置标志线和范围
       if (extendObj.threshold !== '') {
-        // 标志线
-        options.series[0].markLine = {
-          data: [{
-              name: '',
-              yAxis: parseFloat(extendObj.threshold)
-          }],
-          animation: false,
-          symbolSize: 0,
-          label: {
-            position: 'start'
-          },
-          lineStyle: {
-            normal: {
-              type: 'solid',
-              color: '#FA4F43',
-            },
-          }
-        }
+
         // 范围
         // options.visualMap.show = true
         options.visualMap.range = []
@@ -1555,16 +1507,77 @@ export default {
           options.visualMap.max = 100000
           options.visualMap.range.push(parseFloat(extendObj.threshold), parseFloat(extendObj.threshold))
         }
+
+
+        // 控制标志线，只有超出阈值才会显示标志线
+        let markLineFlag = false
+        if (extendObj.operator == 1 || extendObj.operator == 3) { // 大于
+          dataArr.forEach(item => {
+            let val = item[1]
+            if (val >= extendObj.threshold) {
+              markLineFlag = true
+              return false
+            }
+          })
+        } else if (extendObj.operator == 2 || extendObj.operator == 4) { // 小于
+          dataArr.forEach(item => {
+            let val = item[1]
+            if (val <= extendObj.threshold) {
+              markLineFlag = true
+              return false
+            }
+          })
+        } else { // 不等于
+          dataArr.forEach(item => {
+            let val = item[1]
+            if (val != extendObj.threshold) {
+              markLineFlag = true
+              return false
+            }
+          })
+        }
+
+        // 标志线
+        if (markLineFlag) {
+          // 控制报警高亮图标 取container的id横线最后值
+          let iconName = extendObj.container.split('-')[2] + 'Icon'
+          this[iconName] = 'on'
+
+          options.series[0].markLine = {
+            data: [{
+              name: '',
+              yAxis: parseFloat(extendObj.threshold)
+            }],
+            animation: false,
+            symbolSize: 0,
+            label: {
+              position: 'start'
+            },
+            lineStyle: {
+              normal: {
+                type: 'solid',
+                color: '#FA4F43',
+              },
+            }
+          }
+        }
+        
+        
       }
 
 
-      
       chart.setOption(options)
 
+      var timeoutId = null
       // 自适应
-      window.addEventListener('resize', function() {
-        chart.resize()
+      window.addEventListener('resize', () => {
+        clearTimeout(timeoutId) // 节流
+        timeoutId = setTimeout(() => {
+          chart.resize()
+        }, 200)
       })
+
+
     },
 
 

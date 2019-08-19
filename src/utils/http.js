@@ -127,14 +127,12 @@ if (process.env.NODE_ENV == 'development') {
   devURL = `${protocol}//192.168.100.2`
   xiaohuURL = `${protocol}//192.168.100.89:8080`
   shupingURL = `${protocol}//192.168.100.7:8080`
-  // localURL = `${protocol}//127.0.0.1`
-  localURL = `${protocol}//192.168.100.7:8080`
-  // localURL = `${protocol}//192.168.100.89:8080`
+  localURL = `${protocol}//iot.gidomino.com`
+  // localURL = `${protocol}//192.168.100.7:8080`
   
-  // localURL = `${protocol}//192.168.100.89:8080`
 } else if (process.env.NODE_ENV == 'production') {
-// axios.defaults.baseURL = `${protocol}//iot.gidomino.com`
-  localURL = iot = devURL = xiaohuURL = shupingURL = `${protocol}//192.168.100.2`
+  // localURL = iot = devURL = xiaohuURL = shupingURL = `${protocol}//192.168.100.2`
+  localURL = iot = devURL = xiaohuURL = shupingURL = `${protocol}//iot.gidomino.com`
 }
 
 // let AUTH_TOKEN=(function(){
@@ -172,8 +170,8 @@ export default {
         })
       }).then(res => {
         resolve(res)
-      }).catch(err => {   
-        reject(err.data)  
+      }).catch(err => {
+        reject(err.data)
       }) 
     })
   },

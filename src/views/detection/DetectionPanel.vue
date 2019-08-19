@@ -2,7 +2,7 @@
   <div id="DetectionPanel">
     <div class="container">
       <div class="bread-nav">
-        <span>数字电梯</span>
+        <span @click="$router.push('/lift-list')">数字电梯</span>
         <em>/</em>
         <span class="on">电梯检测</span>
       </div>
@@ -96,45 +96,17 @@
           <div class="det-mid-log">
             <div class="det-warn-title">
               <div class="det-warn-title-h">作业记录</div>
-              <span class="dm-go-detail">全部作业 ></span></div>
+              <span class="dm-go-detail" @click="$router.push(`/detection-work-log?regCode=${parentCode}`)">全部作业 ></span></div>
             <div class="dm-log-content">
-              <div class="dm-log-list clearfix">
-                <div class="dmll-td">例行维保</div>
-                <div class="dmll-td">周莘羽</div>
-                <div class="dmll-td">04-24  14:47:12</div>
+              <div class="dm-log-list clearfix" v-for="(item, i) in logList" @click="goWorkLogDetail(item.taskId)" :key="i">
+                <div class="dmll-td">{{item.taskType}}</div>
+                <div class="dmll-td">{{item.taskPerson}}</div>
+                <div class="dmll-td">{{item.completeTime}}</div>
               </div>
-              <div class="dm-log-list clearfix">
-                <div class="dmll-td">例行维保</div>
-                <div class="dmll-td">周莘羽</div>
-                <div class="dmll-td">04-24  14:47:12</div>
-              </div>
-              <div class="dm-log-list clearfix">
-                <div class="dmll-td">例行维保</div>
-                <div class="dmll-td">周莘羽</div>
-                <div class="dmll-td">04-24  14:47:12</div>
-              </div>
-              <div class="dm-log-list clearfix">
-                <div class="dmll-td">例行维保</div>
-                <div class="dmll-td">周莘羽</div>
-                <div class="dmll-td">04-24  14:47:12</div>
-              </div>
-              <div class="dm-log-list clearfix">
-                <div class="dmll-td">例行维保</div>
-                <div class="dmll-td">周莘羽</div>
-                <div class="dmll-td">04-24  14:47:12</div>
-              </div>
-              <div class="dm-log-list clearfix">
-                <div class="dmll-td">例行维保</div>
-                <div class="dmll-td">周莘羽</div>
-                <div class="dmll-td">04-24  14:47:12</div>
-              </div>
-
-
+              <div class="list-no-data" v-show="logList.length == 0">暂无数据</div>
             </div>
 
-
           </div>
-
 
         </div>
 
@@ -142,13 +114,10 @@
         <div class="det-right">
           <det-chart-comp></det-chart-comp>
         </div>
-
         
       </div>
 
-
     </div>
-
 
 
   </div>
@@ -184,6 +153,16 @@ export default {
         "prox": "关"
       },
 
+      // 作业记录列表
+      logList: [],
+      detWorkLogParams: {
+        elevCode: '',
+        offset: 1, 
+        limit: 2000,
+        order: true, // 时间排序
+        column: 'id',
+      },
+
     }
   },
   created() {
@@ -205,6 +184,9 @@ export default {
     // 开启定时器，获取电梯实时运行状态
     this.setRunDataTimer()
 
+    // 获取作业记录
+    this.getLogList()
+
   },
   methods: {
     // 开启获取电梯实时运行状态定时器
@@ -221,7 +203,7 @@ export default {
       console.log('传值并跳转页面', val)
       this.parentCode = val
       this.$router.push({
-        path: '/detection',
+        path: '/detection-panel',
         query: {
           regCode: val
         }
@@ -271,6 +253,42 @@ export default {
         this.curRunData.prox = detail.prox == '"01"' ? '开' : '关'
       })
     },
+
+    // 获取作业记录
+    getLogList() {
+
+      // 请求作业记录
+      this.logList = []
+      this.detWorkLogParams.elevCode = this.parentCode
+      api.detection.getLogList(this.detWorkLogParams).then(res => {
+        console.log('工作记录', res.data)
+        let result = res.data.data.records
+
+        result.forEach((item, i) => {
+          let workLogObj = {
+            taskId: item.taskId,
+            taskType: item.taskType,
+            taskPerson: '',
+            completeTime: item.recordTime,
+          }
+          // 员工
+          let staffArr = []
+          item.mp.forEach(secItem => {
+            staffArr.push(secItem.staffName)
+          })
+          workLogObj.taskPerson = staffArr.join('，') ? staffArr.join('，') : '无'
+          this.logList.push(workLogObj)
+          console.log('this', this.logList)
+        })
+
+      })
+
+    },
+
+    // 跳转到工单详情
+    goWorkLogDetail(taskId) {
+      this.$router.push({name: 'missionDetail', params: {'id': taskId}})
+    }
 
   },
   components: {

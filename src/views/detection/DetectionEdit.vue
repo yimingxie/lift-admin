@@ -2,7 +2,7 @@
   <div id="DetectionAdd">
     <div class="container">
       <div class="bread-nav">
-        <span>数字电梯</span>
+        <span @click="$router.push('/lift-list')">数字电梯</span>
         <em>/</em>
         <span class="on">编辑监测</span>
       </div>

@@ -2,7 +2,7 @@
   <div id="DetectionPanelDetail">
     <div class="container">
       <div class="bread-nav">
-        <span>数字电梯</span>
+        <span @click="$router.push('/lift-list')">数字电梯</span>
         <em>/</em>
         <span class="on">电梯检测</span>
       </div>
@@ -33,7 +33,8 @@
             <div class="diagnose-item">
               <div class="diagnose-item-detail">
                 <div class="diagnose-item-detail-title">
-                  <div class="didt-deal-btn" @click="openDialogDispatch">处理</div>
+                  <div class="didt-deal-btn" @click="openDialogDispatch" v-if="processed === 0">处理</div>
+                  <div class="didt-deal-btn" @click="openDialogResult" v-else>处理结果</div>
                   <div class="didt-h3">{{reason}}</div>
                   <div class="didt-date">{{triggleTime}}</div>
                 </div>
@@ -147,15 +148,15 @@
           <el-form :model="ruleForm" :rules="rules" ref="diaForm">
             <div class="dia-con-head">诊断描述</div>
             <div>
-              <el-form-item prop="textarea">
-                <el-input type="textarea" :rows="3" placeholder="请输入内容" v-model="ruleForm.textarea"></el-input>
+              <el-form-item prop="diagInfo">
+                <el-input type="textarea" :rows="3" placeholder="请输入内容" v-model="ruleForm.diagInfo"></el-input>
               </el-form-item>
             </div>
-            <div style="margin-top: -10px">
-              <el-checkbox v-model="dispatchBtn">派单</el-checkbox>
+            <div style="margin-top: -6px">
+              <el-checkbox v-model="send">派单</el-checkbox>
             </div>
             <!-- 工单信息 -->
-            <div class="dispatch-content" v-show="dispatchBtn">
+            <div class="dispatch-content" v-show="send">
               <div class="dia-con-head">工单信息</div>
               <div class="dispatch-ib">
                 <div class="dispatch-item clearfix">
@@ -172,8 +173,8 @@
                   <div class="dispatch-item-li">
                     <div class="dispatch-item-li-label">作业时间：</div>
                     <div class="dispatch-item-li-input">
-                      <el-form-item prop="dateTime">
-                        <el-date-picker v-model="ruleForm.dateTime" @change="changeDateTime" type="datetime" size="small" prefix-icon="test-icon" placeholder="选择作业时间" style="width: 100%"></el-date-picker>
+                      <el-form-item prop="beginTime">
+                        <el-date-picker v-model="ruleForm.beginTime" @change="changeBeginTime" type="datetime" size="small" prefix-icon="test-icon" placeholder="选择作业时间"  value-format="timestamp" style="width: 100%"></el-date-picker>
                       </el-form-item>
                     </div>
                   </div>
@@ -288,20 +289,20 @@
         <div class="dia-content">
           <div class="dealResult-c">
             <div class="dealResult-name">
-
+              {{operName}} {{completeTime}}
             </div>
             <div class="dispatch-item clearfix">
               <div class="dispatch-item-li clearfix" style="width: 100%;">
-                <div class="dispatch-item-li-label">工单类型：</div>
+                <div class="dispatch-item-li-label">诊断描述：</div>
                 <div class="dealResult-descript dealResult-p">
-                  这是一段很长的诊断概述这是一段很长的诊断概述这是一段很长的诊断概述这是一段很长的诊断概述这是一段很长的诊断概述这是一段很长的诊断概述这是一段很长的诊断概述这是一段很长的诊断概述
+                  {{operContent}}
                 </div>
               </div>
               <div class="dispatch-item-li clearfix" style="width: 100%;">
                 <div class="dispatch-item-li-label">是否派单：</div>
                 <div class="dealResult-descript dealResult-p">
-                  已派单
-                  <router-link :to="{path: '/', query: {id: 123}}" class="dealResult-link">查看工单详情 &gt;</router-link>
+                  {{processedResult}}
+                  <span v-if="taskId" class="dealResult-link" @click="gotoDetail(taskId)">查看工单详情 &gt;</span>
                 </div>
               </div>
 
@@ -309,6 +310,10 @@
 
           </div>
 
+        </div>
+
+        <div class="dia-btn-con" style="margin-top: 30px;">
+          <input class="dia-btn dia-btn-submit" @click="dialogResult=false" type="button" value="确认">
         </div>
 
       </div>
@@ -331,6 +336,18 @@ import DetDetailChartComp from './DetDetailChartComp'
 
 export default {
   data() {
+    // 自定义表单作业时间验证规则
+    var validBeginTime = (rule, value, callback) => {
+      if (this.send) {
+        if (!value) {
+          return callback(new Error('作业时间不能为空'));
+        } else {
+          callback()
+        }
+      } else {
+        callback()
+      }
+    }
     return {
       parentCode: '',
       parentDiagnId: '',
@@ -338,7 +355,7 @@ export default {
       liftPersonIdArr: [],
       dialogDispatch: false,
       dispatchStaffList: [], // 员工详情数组
-      dispatchBtn: false,
+      send: false,
       dialogResult: false,
 
       // 电梯详情
@@ -367,21 +384,28 @@ export default {
 
       // 派单表单
       ruleForm: {
-        textarea: '',
+        diagInfo: '',
         diagnType: '',
-        dateTime: ''
+        beginTime: '',
       },
       rules: {
-        // regCode: [{ required: true, message: '必填', trigger: 'blur' }],
+        diagInfo: [{ required: true, message: '必填', trigger: 'blur' }],
+        beginTime: [{ validator: validBeginTime, trigger: 'change' }],
       },
       diagnTypeOptions: [
-        {value: 0, label: '事件'},
-        {value: 1, label: '故障'},
-        {value: 2, label: '违规'},
-        {value: 3, label: '预警'},
+        {value: '事故救援', label: '事故救援'},
+        {value: '故障处理', label: '故障处理'}
       ],
       departmentOptions: [],
       selectedDepartmentOptions: [],
+
+      // 处理结果
+      processed: 0,
+      operContent: '',
+      taskId: '',
+      operName: '',
+      completeTime: '',
+      processedResult: '',
 
 
   
@@ -637,7 +661,7 @@ export default {
   created() {
     this.parentCode = this.$route.query.regCode
     this.parentDiagnId = this.$route.query.diagnId
-    this.ruleForm.diagnType = parseInt(this.$route.query.diagnTypeSingle)
+    // this.ruleForm.diagnType = parseInt(this.$route.query.diagnTypeSingle)
     
   },
   
@@ -651,7 +675,7 @@ export default {
     // 获取中间异常详情
     this.getDiagnInfo()
 
-    // 获取安装人员下拉（TODO）
+    // 获取安装人员下拉
     this.getDepStaffOptions()
 
 
@@ -711,18 +735,20 @@ export default {
       this.dialogDispatch = true
       this.dispatchStaffList = []
       // this.dispatchStaffList = [{
+      //   id: '',  
       //   imgUrl : '',
       //   name: '',
       //   department: '',
-      //   phone: '',
+      //   account: '',
       // }]
 
       // 循环查询，通过id查询员工信息
       this.liftPersonIdArr.forEach((id, i) => {
         api.accountApi.getStaffDetails(id).then(staffRes => {
-          console.log('staffRes', staffRes.data)
+          // console.log('staffRes', staffRes.data)
           let staffDetail = staffRes.data.data
           this.dispatchStaffList.push({
+            id: staffDetail.staffInfo.id,
             imgUrl: api.accountApi.viewPic(staffDetail.staffInfo.avatarUrl),
             name: staffDetail.staffInfo.name,
             departmentName: staffDetail.departmentName,
@@ -743,7 +769,7 @@ export default {
       const that = this
   
       api.accountApi.getCorpDepartments(window.localStorage.getItem('corpId')).then(res => {
-        console.log('部门人员', res.data)
+        // console.log('部门人员', res.data)
         this.departmentOptions = []
         let departmentList = res.data.data
         departmentList.forEach((item, i) => {
@@ -754,35 +780,71 @@ export default {
 
           // 通过部门名字获取员工，并添加到相应的children
           api.accountApi.getDepStaffs(item.id).then(staffRes => {
-            console.log('staffRes', staffRes.data)
+            // console.log('staffRes', staffRes.data)
             let staffDetail = staffRes.data.data
-            let objSec = {}
-            objSec.label = staffDetail.name
-            objSec.value = staffDetail.id
-            obj.children.push(objSec)
+            staffDetail.forEach(secItem => {
+              let objSec = {}
+              objSec.label = secItem.name
+              objSec.value = secItem.id
+              obj.children.push(objSec)
+            })
+            
+            this.departmentOptions.push(obj)
           })
         })
 
-        console.log('重组部门下拉', this.departmentOptions)
+        // console.log('重组部门下拉', this.departmentOptions)
       })
 
     },
 
     // 下拉人员选中值
     departmentChange(arr) {
+      const that = this
+      let flag = true
       // this.ruleForm.assembId = arr[arr.length-1] // 取数组最后一个值赋值
-      console.log('选中部门人员', arr)
+      let checkedId = arr[arr.length-1]
+      this.selectedDepartmentOptions = []
+      console.log('this.dispatchStaffList', this.dispatchStaffList)
+      this.dispatchStaffList.forEach(item => {
+        if (item.id == checkedId) {
+          this.$message.error('员工已存在')
+          flag = false
+          return false // 跳出循环，不能跳出方法
+        }
+      })
+
+      if (!flag) return // 控制函数执行
+      api.accountApi.getStaffDetails(checkedId).then(res => {
+        // console.log('resId', res.data)
+        let staffDetail = res.data.data
+        // console.log('staffDetail', staffDetail)
+        this.dispatchStaffList.push({
+          id: staffDetail.staffInfo.id,
+          imgUrl: api.accountApi.viewPic(staffDetail.staffInfo.avatarUrl),
+          name: staffDetail.staffInfo.name,
+          departmentName: staffDetail.departmentName,
+          account: staffDetail.staffInfo.account,
+        })
+      })
+
     },
 
     // 获取中间异常详情
     getDiagnInfo() {
       const that = this
       api.detection.getDiagnInfo(this.parentDiagnId).then(res => {
+        console.log('异常详情', res.data)
         let detail = res.data.data
         this.reason = detail.reason
         this.triggleTime = detail.triggleTime
+        this.operContent = detail.operContent
+        this.taskId = detail.taskId
+        this.processed = detail.processed
+        // this.completeTime = detail.completeTime
+        // this.operName = detail.operName
         let extensions = JSON.parse(detail.extensions)
-        console.log('extensions', extensions.elevator)
+        // console.log('extensions', extensions.elevator)
         this.exReason = ''
         // 拼接
         let separation = extensions.reason.diagnLogical
@@ -793,7 +855,7 @@ export default {
           this.diagnDevices.push(item.code)
         })
         // this.diagnDevices = ["0:2:2:5", '0:4:1:1']
-        console.log('this.diagnDevices', this.diagnDevices)
+        // console.log('this.diagnDevices', this.diagnDevices)
 
         // 电梯故障时运行状态
         if (extensions.elevator.floor !== undefined) {
@@ -818,24 +880,86 @@ export default {
     },
     
 
-
-
-
     // 改变作业时间
-    changeDateTime(val) {
-      console.log(val)
+    changeBeginTime(datetime) {
+      // console.log('time', datetime)
+      this.ruleForm.beginTime = datetime + ""
     },
 
     // 提交表单
     submit() {
-      console.log('提交')
+      const that = this
+      // this.$refs.diaForm.validate(valid => {
+      //   if (valid) {
+      //     console.log('验证通过')
+      //   }
+      // })
+
+      let params = {
+        diagId: this.parentDiagnId,
+        diagInfo: this.ruleForm.diagInfo,
+        send: this.send,
+      }
+
+      // 如果是派单
+      if (this.send) {
+        let staffIdArr = []
+        this.dispatchStaffList.forEach(item => {
+          staffIdArr.push(item.id)
+        })
+        params.elevCode = this.parentCode
+        params.staffIds = staffIdArr
+        params.type = this.ruleForm.diagnType
+        params.beginTime = this.ruleForm.beginTime
+      }
+
+      console.log('params', params)
+
+      api.detection.createTask(params).then(res => {
+        console.log('派单', res)
+        if (res.data == 200) {
+          this.$router.go(0)
+        } else {
+          this.$message.error(res.data.message)
+        }
+      })
+
+    },
+
+    // 打开处理结果弹窗
+    openDialogResult() {
+      this.dialogResult = true
+
+      // 请求处理结果
+      // operName completeTime operContent processed taskId
+      if (!this.taskId) {
+        this.processedResult = '未派单'
+
+      } else {
+        api.detection.getTaskResult(this.taskId).then(res => {
+          console.log('处理结果', res.data)
+          this.operName = res.data.data.name
+          this.processedResult = res.data.data.status
+          this.completeTime = res.data.data.time
+        })
+      }
+      
+
+    },
+
+    // 跳转到工单详情
+    gotoDetail(id){
+      this.$router.push({name: 'missionDetail', params: {'id': id}})
     },
 
     // 关闭弹窗
     dialogClosed() {
-      console.log('关闭弹窗')
-    }
-
+      this.ruleForm.diagInfo = ''
+      this.send = false
+      this.ruleForm.beginTime = ''
+      this.$refs.diaForm.resetFields();
+      this.dialogDispatch = false
+    },
 
   },
   components: {
@@ -848,7 +972,7 @@ export default {
 </script>
 
 <style>
-#DetectionPanelDetail .el-input__inner{
+#DetectionPanelDetail .dstaff-box-input .el-input__inner{
   border: none !important;
 }
 #DetectionPanelDetail .el-cascader__label{

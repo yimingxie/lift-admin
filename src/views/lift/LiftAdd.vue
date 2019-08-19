@@ -2,7 +2,7 @@
   <div id="LiftAdd">
     <div class="container">
       <div class="bread-nav">
-        <span>数字电梯</span>
+        <span @click="$router.push('/lift-list')">数字电梯</span>
         <em>/</em>
         <span class="on">添加电梯</span>
       </div>

@@ -328,7 +328,7 @@ export default {
           startDate: this.warnParams.startDate, // 固定很早时间
           endDate: this.warnParams.endDate,
           index: index,
-          diagnTypeSingle: diagnType, // 单条告警信息的类型
+          // diagnTypeSingle: diagnType, // 单条告警信息的类型
           timestamp: timestamp
         }
       })
