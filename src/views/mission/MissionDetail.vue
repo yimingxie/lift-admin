@@ -22,7 +22,7 @@
         <ul>
           <li><span class="tie">派单人员：</span><span >曲丽丽</span></li>
           <li><span class="tie">作业类型：</span><span>{{ taskType }}</span></li>
-          <li><span class="tie">派单时间：</span><span>{{ taskRecords[0].recordTime }}</span></li>
+          <li><span class="tie">派单时间：</span><span>{{ taskRecords[0].recordTime ? taskRecords[0].recordTime :'--'}}</span></li>
           <li><span class="tie">作业时间：</span><span>2019-06-25 19:20:32</span></li>
         </ul>
       </div>
@@ -39,7 +39,9 @@
           <el-steps :active="taskRecords.length - 1" v-if="status!== '已派单' && status!== '已接单'">
              <!-- class="chaoshiLine" -->
 
-            <el-step :title="item.taskStatus" v-for="(item,index) in taskRecords" :key="index" :class="item.taskStatus == '已超时'?chaoshiLine:''">
+            <el-step :title="item.taskStatus" v-for="(item,index) in taskRecords" :key="index" :class="(status == '已超时' && index == taskRecords.length - 2)?'chaoshiLine':''">
+              
+
               <i slot="icon" class="progressIcon paidan" v-if="item.taskStatus == '已派单'"></i>
               <i slot="icon" class="progressIcon jiedan" v-if="item.taskStatus == '已接单'"></i>
               <i slot="icon" class="progressIcon wancheng" v-if="item.taskStatus == '已完成' || item.taskStatus == '已关闭'"></i>
@@ -83,14 +85,54 @@
       <div class="panel conclusions" style="padding:0 0 3px;min-height:282px;">
         <div class="title" style="margin:0"><div class="label1">作业结论</div></div>
         <div style="margin:0 12px" v-if="status == '已完成'">
-          <table border="0" class="s_de_details s_de_details2 clearfix">
+          <!-- 维保结果 -->
+          <table border="0" class="s_de_details s_de_details2 clearfix" v-if="taskResult.commitType == '0'">
             <tbody>
               <tr>
-                <td style="width: 13%;"><span class="tie">维修内容</span><span >配件更换</span></td>
-                <td><span class="tie">配件类型</span><span>一个配件，两个配件，三个配件，四个配件还有五个配件</span></td>
+                <td><span class="tie">作业结论</span><span >{{taskResult.conclusion}}</span></td>
               </tr>
               <tr>
-                <td style="width: 13%;"><span class="tie">维修费用</span><span>无费用</span></td>
+                <td>
+                  <span class="tie">作业记录单</span>
+                  <span><picture-list :maxShow="3" :images="taskImage"></picture-list></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- 配件更换 -->
+          <table border="0" class="s_de_details s_de_details2 clearfix" v-else-if="taskResult.commitType == '1'">
+            <tbody>
+              <tr>
+                <td style="width: 13%;"><span class="tie">维修内容</span><span >{{taskResult.conclusion}}</span></td>
+                <td><span class="tie">配件类型</span><span>{{taskResult.annexType}}</span></td>
+              </tr>
+              <tr>
+                <td style="width: 13%;"><span class="tie">维修费用</span><span>{{taskResult.repairFee}}</span></td>
+                <td>
+                  <span class="tie">作业记录单</span>
+                  <span><picture-list :maxShow="3" :images="taskImage"></picture-list></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- 设备检修 -->
+          <table border="0" class="s_de_details s_de_details2 clearfix" v-else-if="taskResult.commitType == '2'">
+            <tbody>
+              <tr>
+                <td><span class="tie">维修内容</span><span >{{taskResult.conclusion}}</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="tie">作业记录单</span>
+                  <span><picture-list :maxShow="3" :images="taskImage"></picture-list></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- 救援结果 -->
+          <table border="0" class="s_de_details s_de_details2 clearfix" v-else-if="taskResult.commitType == '3'">
+            <tbody>
+              <tr>
                 <td>
                   <span class="tie">作业记录单</span>
                   <span><picture-list :maxShow="3" :images="taskImage"></picture-list></span>
@@ -256,13 +298,13 @@ export default {
       map:'',
       taskRecords:[],
       taskNo:'',
-
       elevatorInfo:[],
       status:'',
-      // taskResult: [],
+      taskResult: [],
       selectedDepartmentOptions: [],
       lastStep: '',
-      taskType:''
+      taskType:'',
+      taskImage:[],
     }
   },
   components: {
@@ -484,18 +526,16 @@ export default {
         this.taskRecords = res.data.data.taskRecords || []
         this.elevatorInfo = res.data.data.elevatorInfo || []
         this.status = res.data.data.status
-        // this.taskResult = res.data.data.taskResult
+        this.taskResult = res.data.data.taskResult || []
         this.taskNo = res.data.data.taskNo
         this.taskType = res.data.data.taskType
         this.taskImage = []
         var taskImageArr = res.data.data.taskImage
         taskImageArr.forEach(item => {
-          console.log("this.taskImage---" + item)
-          // if(item) {
-            this.taskImageArr.push(api.accountApi.viewPic(item))
-          // }
+          // console.log("this.taskImage---" + item)
+            this.taskImage.push(api.accountApi.viewPic(item))
         })
-        console.log("this.taskImage---" + JSON.stringify(this.taskImage))
+        // console.log("this.taskImage---" + JSON.stringify(this.taskImage))
         this.getStaffJson = res.data.data.mpList
         this.totalPerson = this.getStaffJson.length
         if(this.status == '已派单'){
@@ -503,8 +543,8 @@ export default {
         } else {
           this.max = Math.ceil(this.totalPerson/2)
         }
-        console.log("最大页数：：：" + this.max)
-
+        // console.log("最大页数：：：" + this.max)
+        // 人员头像
         this.getStaffJson.forEach(item => {
           if(item.avatarUrl) {
             var url = api.accountApi.viewPic(item.avatarUrl)

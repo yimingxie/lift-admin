@@ -756,7 +756,7 @@
                 id: i + 1
               }
             });
-            console.log("_this.lnglats[i].lat_lon----" + _this.lnglats[i].latLon)
+            // console.log("_this.lnglats[i].lat_lon----" + _this.lnglats[i].latLon)
             markers1.push(marker);
           }
           // 创建覆盖物群组，并将 marker 传给 OverlayGroup

@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-top:160px">
+  <div style="margin-top:160px" id="register">
     <el-upload 
       class="avatar-uploader"
       action="111"
@@ -340,6 +340,7 @@
   }
 </script>
 <style>
+#register
   .avatar-uploader .el-upload {
     border: 1px dashed #d9d9d9;
     border-radius: 6px;
@@ -366,7 +367,6 @@
 /* ---------------------------------- */
   .panel {
     border-radius: 4px;
-    overflow: hidden;
   }
 
   .panel-header {

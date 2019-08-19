@@ -280,7 +280,7 @@
                   <span :style="{'color':getStatusColor(task.status)}">{{task.status}}</span>
                 </span>
                 <span v-if="task.status == '可派单'" class="btns" :style="{opacity:(nowTr !== '' ?'0.3':'1')}">
-                  <i class="btnBlue" @click="createTask(task)">派单</i>
+                  <i class="btnBlue" @click="openPaidanDialog(task)">派单</i>
                   <span class="splitLine">|</span>
                   <i class="btnBlue" @click="openEditPlan(task)">修改</i>
                 </span>
@@ -316,7 +316,7 @@
                 <!-- 作业类型 -->
                 <el-select v-model="editPlanParam.type" placeholder="作业类111型" class="regionPicker">
                   <el-option
-                    v-for="item in tpyeOptions"
+                    v-for="item in tpyeOptions2"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value">
@@ -383,9 +383,62 @@
 
       </div>
     </div>
+
     
     
   </div>
+  <!-- 添加是否确认派单对话框 -->
+  <el-dialog custom-class="noneTitle" :show-close="false" :visible.sync="paidanModelDialog">
+    <div class="dialog-delete">
+      <div class="dia-heading">
+        <div class="dia-con-pic">
+          <img src="../../assets/images/xym/dia-question.png" alt="">
+        </div>
+        <div class="dia-con-p">
+          <h4>是否确认派单</h4>
+          <p>派单后不可复原，请谨慎操作</p>
+        </div>
+
+        <div style="margin:20px 0">
+          <div style="font-size: 20px;margin-bottom: 10px">计划信息</div>
+           <!-- <table border="0" class="s_de_details s_de_details2 clearfix">
+            <tbody>
+              <tr>
+                <td><span class="tie">电梯注册代码</span></td>
+                <td><span class="tie">作业时间</span></td>
+                <td><span class="tie">作业类型</span></td>
+                <td><span class="tie">派单人员</span></td>
+              </tr>
+              <tr>
+                <td><span class="tie">{{confirmCreateTask.elevCode}}</span></td>
+                <td><span class="tie">{{confirmCreateTask.beginTime}}</span></td>
+                <td><span class="tie">{{confirmCreateTask.type}}</span></td>
+                <td><span class="tie">{{confirmCreateTask.persons}}</span></td>
+              </tr>
+             
+            </tbody>
+          </table> -->
+          <el-row style="border-bottom: 1px solid #bdc3d1;">
+            <el-col :span="6"><div class="grid-content bg-purple">电梯注册代码</div></el-col>
+            <el-col :span="6"><div class="grid-content bg-purple-light">作业时间</div></el-col>
+            <el-col :span="6"><div class="grid-content bg-purple">作业类型</div></el-col>
+            <el-col :span="6"><div class="grid-content bg-purple-light">派单人员</div></el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="6"><div class="grid-content bg-purple">{{confirmCreateTask.elevCode}}</div></el-col>
+            <el-col :span="6"><div class="grid-content bg-purple-light">{{confirmCreateTask.beginTime}}</div></el-col>
+            <el-col :span="6"><div class="grid-content bg-purple">{{confirmCreateTask.type}}</div></el-col>
+            <el-col :span="6"><div class="grid-content bg-purple-light">{{confirmCreateTask.persons}}</div></el-col>
+          </el-row>
+        </div>
+      </div>
+      
+    </div>
+    <div slot="footer"  class="dialog-footer tac">
+      <el-button @click="cancelCreateTask()" class="dialogCancel">取 消</el-button>
+      <el-button type="primary" @click="createTask(confirmCreateTask)" class="dialogSure">确 认</el-button>
+    </div>
+  </el-dialog>
   <fotter></fotter>
 </div>
 </template>
@@ -491,7 +544,7 @@ export default {
       nonetext:'',
       checkTime:'',
       checkTpye:'',
-   
+      // 新增计划类型
       tpyeOptions: [
         { label: '例行维保', value: "例行维保" },
         { label: '季度维保', value: "季度维保" },
@@ -500,7 +553,14 @@ export default {
         { label: '故障处理', value: "故障处理" },
         { label: '事故救援', value: "事故救援" },
       ],
-      nowTr:'',
+      // 修改工单类型
+      tpyeOptions2: [
+        { label: '例行维保', value: "例行维保" },
+        { label: '季度维保', value: "季度维保" },
+        { label: '半年维保', value: "半年维保" },
+        { label: '年度维保', value: "年度维保" }
+      ],
+      nowTr:'', // 创建某梯计划
       NowMonth: 0,
       selectType:'',
       monthTotal:[],
@@ -525,7 +585,7 @@ export default {
         type: "",
         timestamp: 0
       },
-      currentEditPlanId:'0',
+      currentEditPlanId:'',
       value3:'',
       searchLiftListParams:{
         elevCode: "",
@@ -534,7 +594,9 @@ export default {
       },
       searchMode:false,
       searchTotalPageSize:0,
-      searchRegCode:''
+      searchRegCode:'',
+      paidanModelDialog: false,
+      confirmCreateTask:[]
     }
   },
   components: {
@@ -679,8 +741,7 @@ export default {
     this.getRiliList()
     // 获取部门列表
     this.getdeps()
-    // 获取月视图统计数据
-    this.getMonthTotalData()
+    
   },
   methods: {
     clearSearch(){
@@ -695,8 +756,9 @@ export default {
     },
     // 搜索电梯
     searchLiftRegCode(regCode) {
-      this.nowTr = ''
-      this.searchMode = true
+      this.nowTr = '' // 关闭新建模式
+      this.currentEditPlanId = ''// 关闭修改模式
+      this.searchMode = true // 搜索模式列表
       console.log("reg_code==" + regCode)
       this.searchLiftListParams.elevCode = regCode 
       this.searchRegCode = regCode
@@ -710,6 +772,26 @@ export default {
         }
         this.searchTotalPageSize = res.data.data.total
         var missionArr = res.data.data.list || []
+
+        // 人员数组加persons 字段便于展示
+        missionArr.forEach(item => {
+          // item.data.forEach(item2 => {
+            var persons = []
+            if(item.mps) {
+              item.mps.forEach(item2 => {
+                persons.push(item2.staffName)
+                
+              })
+              Vue.set(item, 'persons', persons.join(','))
+            } else if(item.mp){
+              item.mp.forEach(item2 => {
+                persons.push(item2.name)
+              })
+              Vue.set(item, 'persons', persons.join(','))
+            }
+          // })
+
+        })
         this.missionList = this.mergeArrayList(missionArr)
       })
       
@@ -736,10 +818,20 @@ export default {
       api.taskApi.closeTask(id).then((res) => {
         if (res.data.code === 200) {
           this.$message.success('关闭工单成功！');
-          if(this.checkedDate.length > 9){
+          // if(this.checkedDate.length > 9){
+          //   // 获取日视图列表
+          //   this.getdayTaskPlan(this.checkedDate)
+          // } else {
+          //   // 获取月视图列表
+          //   this.getMissionList()
+          // }
+          if(this.searchMode){
+            // 获取搜索电梯列表
+            this.searchLiftRegCode(this.searchLiftListParams.elevCode)
+          } else if(this.checkedDate.length > 9) {
             // 获取日视图列表
             this.getdayTaskPlan(this.checkedDate)
-          } else {
+          } else if(this.checkedDate.length < 10){
             // 获取月视图列表
             this.getMissionList()
           }
@@ -878,11 +970,23 @@ export default {
         if(res.data.code == 200){
           this.$message.success('修改成功！');
           // 获取任务列表
-          this.currentEditPlanId = ''
-          if(this.checkedDate.length > 9){
+          this.currentEditPlanId = '' 
+          // if(this.checkedDate.length > 9){
+          //   // 获取日视图列表
+          //   this.getdayTaskPlan(this.checkedDate)
+          // } else {
+          //   // 获取月视图列表
+          //   this.getMissionList()
+          // }
+          // 获取任务列表
+          if(this.searchMode){
+            // 获取搜索电梯列表
+            this.searchLiftRegCode(this.searchLiftListParams.elevCode)
+          }
+          else if(this.checkedDate.length > 9){
             // 获取日视图列表
             this.getdayTaskPlan(this.checkedDate)
-          } else {
+          } else if(this.checkedDate.length < 10){
             // 获取月视图列表
             this.getMissionList()
           }
@@ -892,13 +996,24 @@ export default {
       })
     },
     cancelEditPlan() {
-      this.currentEditPlanId = '0'
+      this.currentEditPlanId = ''
     },
     // 跳转到工单详情
     gotoDetail(id){
       this.$router.push({name: 'missionDetail', params: {'id': id}})
     },
-    // 派单派单
+    // 打开派单确认弹窗
+    openPaidanDialog(plan){
+      this.paidanModelDialog = true
+      this.confirmCreateTask = plan
+      console.log("this.confirmCreateTask====" + JSON.stringify(this.confirmCreateTask))
+    },
+    // 取消派单
+    cancelCreateTask(){
+      this.paidanModelDialog = false
+      this.confirmCreateTask = []
+    },
+    // 维保计划派单
     createTask(plan){
       console.log("mission===" + JSON.stringify(plan))
       var persons = []
@@ -924,14 +1039,29 @@ export default {
       api.taskApi.createTask(param).then((res) => {
         if(res.data.code == 200){
           this.$message.success('派单成功！');
-          // 获取任务列表
-          if(this.checkedDate.length > 9){
+
+          // // 获取任务列表
+          // if(this.checkedDate.length > 9){
+          //   // 获取日视图列表
+          //   this.getdayTaskPlan(this.checkedDate)
+          // } else {
+          //   // 获取月视图列表
+          //   this.getMissionList()
+          // }
+          // 获取任务列表  
+          if(this.searchMode){
+            // 获取搜索电梯列表
+            this.searchLiftRegCode(this.searchLiftListParams.elevCode)
+          } else if(this.checkedDate.length > 9){
             // 获取日视图列表
             this.getdayTaskPlan(this.checkedDate)
-          } else {
+          } else if(this.checkedDate.length < 10){
             // 获取月视图列表
             this.getMissionList()
           }
+          // 日历数据
+          this.getRiliList()
+          this.paidanModelDialog = false
         } else {
           this.$message.error(res.data.message);
         }
@@ -945,6 +1075,7 @@ export default {
       api.taskApi.rili({'corp': window.localStorage.getItem('corpId'),'timestamp':Date.parse(new Date())}).then((res) => {
         var fenzi = res.data.data.denominator
         var fenmu = res.data.data.molecule
+        this.todos = []
         fenmu.forEach(element => {
           // for(var key in element){　//遍历对象的所有属性，包括原型链上的所有属性
           // if(obj.hasOwnProperty(key)){ //判断是否是对象自身的属性，而不包含继承自原型链上的属性
@@ -975,17 +1106,21 @@ export default {
     },
     // 月视图 查询任务列表
     getMissionList(){
-      this.nowTr = '' // 关闭新建某梯计划
+      this.nowTr = '' // 关闭新建模式
+      this.currentEditPlanId = ''// 关闭修改模式
       this.showCreatePlan = false // 关闭新建计划
       this.missionList = []
       this.monthTaskListParam.timestamp = this.transformTimestamp(this.checkedDate)
-     
+      // 获取月视图统计数据
+      this.getMonthTotalData()
+      
       api.taskApi.monthTaskPlan(this.monthTaskListParam).then((res) => {
         
         this.totalPageSize = res.data.data.count
         if(res.data.data.monthList){
           var missionArr = res.data.data.monthList || []
-        
+          
+          // 人员数组加persons 字段
           missionArr.forEach(item => {
             // item.data.forEach(item2 => {
               var persons = []
@@ -1018,6 +1153,8 @@ export default {
     },
     // 日视图 查询任务列表
     getdayTaskPlan(date) {
+      this.nowTr = '' // 关闭新建模式
+      this.currentEditPlanId = ''// 关闭修改模式
       this.dateTaskListParam.timestamp = this.transformTimestamp(date)
       console.log("this.dateTaskListParam.timestamp===" + JSON.stringify(this.dateTaskListParam))
 
@@ -1080,13 +1217,15 @@ export default {
     },
     // 创建某梯计划
     openAddLiftMission(code){
-      
+      // 获取该电梯绑定负责人以及是否已创建计划
       this.searchLift(code)
+
       this.value2 = this.timeDefault + '09:00:00'
     },
-    // 搜索电梯
-    // 监听子组件获取注册码，发送请求搜索并重新渲染列表
+    // 根据regcode 获取电梯负责人以及是否创建过计划
     searchLift(regCode) {
+      // this.nowTr = '' // 关闭新建模式
+      // this.currentEditPlanId = ''// 关闭修改模式
       this.createPlanParam.elevCode = regCode
       api.taskApi.getLiftDetail(regCode).then((res) => {
         this.selectPersons = []
@@ -1117,7 +1256,6 @@ export default {
               { label: '事故救援', value: "事故救援" }
             ]
             this.selectType = '例行维保'
-
           }
         }
 
@@ -1133,15 +1271,15 @@ export default {
       let timestamp = new Date(time).getTime()
       return timestamp
     },
-    // 创建计划 or 派单
+    // 创建维保计划 或者 事故故障派单
     addMission2(){
       // elevCode:'123',
         // type: '',
         // beginTime: '2019-08-06 09:00:00',
         // staffIds:[]
-      console.log("this.value2;;;;;" + this.value2)
+      // console.log("this.value2;;;;;" + this.value2)
       this.createPlanParam.timestamp = this.transformTimestamp(this.value2)
-      console.log("this.createPlanParam.timestamp----" + this.createPlanParam.timestamp)
+      // console.log("this.createPlanParam.timestamp----" + this.createPlanParam.timestamp)
       this.createPlanParam.staffIds = this.selectPersons
       this.createPlanParam.type = this.selectType
       // console.log("this.createPlanParam==" + JSON.stringify(this.createPlanParam))
@@ -1151,13 +1289,20 @@ export default {
           if(res.data.code == 200) {
             this.$message.success('派单成功！');
             // 获取任务列表
-            if(this.checkedDate.length > 9){
+            if(this.searchMode){
+              // 获取搜索电梯列表
+              this.searchLiftRegCode(this.searchLiftListParams.elevCode)
+            }
+            else if(this.checkedDate.length > 9){
               // 获取日视图列表
               this.getdayTaskPlan(this.checkedDate)
-            } else {
+            } else if(this.checkedDate.length < 10){
               // 获取月视图列表
               this.getMissionList()
             }
+            // 日历数据
+            this.getRiliList()
+
           } else {
             this.$message.error(res.data.message);
           }
@@ -1169,10 +1314,14 @@ export default {
           if(res.data.code == 200) {
             this.$message.success('创建计划成功！');
             // 获取任务列表
-            if(this.checkedDate.length > 9){
+            if(this.searchMode){
+              // 获取搜索电梯列表
+              this.searchLiftRegCode(this.searchLiftListParams.elevCode)
+            }
+            else if(this.checkedDate.length > 9){
               // 获取日视图列表
               this.getdayTaskPlan(this.checkedDate)
-            } else {
+            } else if(this.checkedDate.length < 10){
               // 获取月视图列表
               this.getMissionList()
             }
@@ -1285,6 +1434,8 @@ export default {
         this.monthTaskListParam.limit = val
         this.getMissionList(date)
       }
+      this.nowTr = ''
+      this.currentEditPlanId = ''
     },
 
     // 当前页变化
@@ -1298,23 +1449,25 @@ export default {
         this.monthTaskListParam.offset = val - 1
         this.getMissionList()
       }
+      this.nowTr = ''
+      this.currentEditPlanId = ''
     },
       // 搜索模式
     handleSizeChange2(val) {
       this.searchLiftListParams.limit = val
       this.searchLiftRegCode(this.searchLiftListParams.elevCode)
+      this.nowTr = ''
+      this.currentEditPlanId = ''
     },
 
     // 搜索模式
     handleCurrentChange2(val) {
       this.searchLiftListParams.offset = val - 1
       this.searchLiftRegCode(this.searchLiftListParams.elevCode)
+      this.nowTr = ''
+      this.currentEditPlanId = ''
     },
-    // 搜索真实姓名/手机号
-    // searchAccount(){
-    //   this.queryParam.queryStr = this.searchKey
-    //   this.getAllAccountData()
-    // }
+
 
   },
 }
@@ -1452,4 +1605,12 @@ export default {
   .addmissionDiv
     line-height:40px;
     margin: -10px 0 0 46px;
+  .bg-purple {
+    background: #d3dce6;
+    padding:5px 0
+  }
+  .bg-purple-light {
+    background: #e5e9f2;
+    padding:5px 0
+  }
 </style>

@@ -296,7 +296,7 @@
         
         if(this.type.indexOf("domino") > -1 || this.type.indexOf("administrator") > -1 || this.type.indexOf("manager") > -1) {
           flag = false
-        } 
+        }
         else{
           var modulesJson = JSON.parse(this.modulesJson)
           for(var i = 0; i < modulesJson.length ; i++) {

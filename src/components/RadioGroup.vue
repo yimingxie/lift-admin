@@ -47,6 +47,7 @@
 <style lang="stylus">
 .btn-group
   display: inline-block;
+  
   .btn
     position relative
     height 22px
@@ -55,7 +56,7 @@
     cursor pointer
     padding 0 7px
     display: inline-block;
-    transition: background .3s;
+    transition: background .3s; 
     font-size: 14px;
     color: #7E8A95;
     letter-spacing: 0.03px;
@@ -75,6 +76,7 @@
     i 
       width: 7px;
       display: inline-block;
+      border-radius: 50%;
   span
     display inline-block
     color: rgba(0,0,0,0.85);
