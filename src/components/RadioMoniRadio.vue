@@ -64,7 +64,7 @@ export default {
     z-index: 1;
     border: 1px solid rgba(255,255,255,0.30);
     border-radius: 50%;
-    top 0 
+    top 3px
     left 0
     // border: 1px solid #ddd
     // &:hover

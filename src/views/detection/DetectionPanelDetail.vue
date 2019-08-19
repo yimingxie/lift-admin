@@ -920,7 +920,7 @@ export default {
         if (res.data == 200) {
           this.$router.go(0)
         } else {
-          this.$message.error(`${res.data.message}`)
+          this.$message.error(res.data.message)
         }
       })
 

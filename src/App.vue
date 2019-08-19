@@ -113,7 +113,7 @@
         
           
         </el-submenu>
-        <el-submenu index="2" v-if="!ifDisabled()">
+        <el-submenu index="2" v-if="type == 'domino'">
           <template slot="title">
             <i class="icon-setting"></i>
             <span slot="title">通用设置</span>
@@ -155,10 +155,10 @@
               </div>
               <div class="collapseImg unCollapseImg" v-if="!isCollapse" @click="isCollapse = true">
               </div>
-              <div id="contentDiv">
+              <!-- <div id="contentDiv">
                 <p @click="changeTheme('theme1')">111</p >
                 <p @click="changeTheme('theme2')">222</p >
-              </div>
+              </div> -->
               <a class="logo"></a>
               
               <!-- <div @mouseover="isShowUserNav = true" @mouseout="isShowUserNav = false" class="user-navigation">
@@ -294,9 +294,9 @@
       ifDisabled(title){
         var flag = true
         
-        if(this.type.indexOf("administrator") > -1 || this.type.indexOf("manager") > -1) {
+        if(this.type.indexOf("domino") > -1 || this.type.indexOf("administrator") > -1 || this.type.indexOf("manager") > -1) {
           flag = false
-        }
+        } 
         else{
           var modulesJson = JSON.parse(this.modulesJson)
           for(var i = 0; i < modulesJson.length ; i++) {
@@ -563,9 +563,9 @@
 
 
 @media screen and (max-width: 1280px) {
-  // #page-container{
-  //   min-width: 1280px;
-  // }
+  #page-container{
+    min-width: 1280px;
+  }
 }
 </style>
 

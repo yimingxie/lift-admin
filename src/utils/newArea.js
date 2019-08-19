@@ -120,7 +120,7 @@ export default {
           }
         })
       })
-      console.log("getAreaNameList:" +  JSON.stringify(getAreaNameList))
+      // console.log("getAreaNameList:" +  JSON.stringify(getAreaNameList))
       var dest = [],
       map = {};
       for(var i = 0; i < getAreaNameList.length; i++) {
@@ -146,13 +146,13 @@ export default {
         // console.log("所选区域码ai:" +  JSON.stringify(ai))
       }
       var selectedAreaLabels = []
-      // console.log("所选区域码:" +  JSON.stringify(dest));
+      console.log("所选区域码:" +  JSON.stringify(dest));
       dest.forEach(item =>{
         var labelItem = item.name + "-" + item.data
         selectedAreaLabels.push(labelItem)
       })
 
-      console.log("getAreaNameList" + JSON.stringify(selectedAreaLabels) )
+      // console.log("getAreaNameList" + JSON.stringify(selectedAreaLabels) )
       return selectedAreaLabels
     }
     

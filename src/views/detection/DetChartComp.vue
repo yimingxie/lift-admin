@@ -868,27 +868,28 @@ export default {
               color: '#1D1B25',
             }
           },
-          formatter: '{a}: {c}℃<br /> '
+          // formatter: '{a}: {c}℃<br /> '
         },
         xAxis: {
-          type: 'value',
+          type: 'time',
           // inverse: true,
           boundaryGap: false,
           axisTick: {
             show: false
           },
           axisLabel: {
-            formatter: '{value}s',
-            color: '#66667F',
+            // formatter: '{value}s',
+            color: '#C2C7CC',
             margin: 12
           },
-          min: 0,
-          max: 60,
-          interval: 10,
-          name: '(℃)',
+          min: 1561969680000,
+          max: 1561970280000,
+          interval: 300000,
+          // splitNumber: 3,
+          // name: '0',
           nameLocation: 'start',
           nameTextStyle: {
-            color: '#66667F'
+            color: '#C2C7CC'
           },
           splitLine: {
             show: false,
@@ -896,7 +897,7 @@ export default {
           // nameGap: 6,
           axisLine: {
             lineStyle: {
-              color: '#303240'
+              color: '#C2C7CC'
             }
           },
           // data: []
@@ -909,20 +910,20 @@ export default {
           },
           axisLabel: {
             // show: true,
-            color: '#66667F',
+            color: '#C2C7CC',
             formatter: function (value, index) {
               if (value == 0) {
-                return '异常'
+                return '合'
               }
               if (value == 1) {
-                return '正常'
+                return '开'
               }
               // return '异常'
             }
           },
           axisLine: {
             lineStyle: {
-              color: '#303240'
+              color: '#C2C7CC'
             }
           },
           splitLine: {
@@ -931,21 +932,21 @@ export default {
       
         },
         grid: {
-          top: '20px',  
+          top: '8px',  
           left: '50px',  
           right: '26px',  
           bottom: '24px'
-        }, 
+        },  
         visualMap: { //区间内控制显示颜色
           show: false,
           dimension: 1,
           type: 'continuous',
-          range: [0, 0.01],
+          range: [0, 1],
           inRange: {
-            color: ['#E75561']
+            color: ['#4272FF']
           },
           outOfRange: {
-            color: ['#29DDB6']
+            color: ['#FA4F43']
           }
         },
         series: [
@@ -955,7 +956,7 @@ export default {
             step: true,
             showSymbol: false,
             lineStyle: {
-              width: 2
+              width: 3
             },
             // markLine: {
             //   data: [
@@ -1196,7 +1197,7 @@ export default {
             this.drawChart1({container: 'real-chart-jxwz',unit: 'F',name: '轿厢位置',max: etime,dataType: 'floor',data: resList['1:2:0:9'], threshold: thresholdObj['1:2:0:9'][0] ? thresholdObj['1:2:0:9'][0].threshold : '', operator: thresholdObj['1:2:0:9'][0] ? thresholdObj['1:2:0:9'][0].operator : ''})
             this.drawChart1({container: 'real-chart-jxxtzd',unit: 'μm',name: '轿厢箱体振动',max: etime,dataType: 'real_data',data: resList['1:2:0:6'], threshold: thresholdObj['1:2:0:6'][0] ? thresholdObj['1:2:0:6'][0].threshold : '', operator: thresholdObj['1:2:0:6'][0] ? thresholdObj['1:2:0:6'][0].operator : ''})
             this.drawChart1({container: 'real-chart-jddgzd',unit: 'μm',name: '井道导轨振动',max: etime,dataType: 'real_data',data: resList['2:1:1:6'], threshold: thresholdObj['2:1:1:6'][0] ? thresholdObj['2:1:1:6'][0].threshold : '', operator: thresholdObj['2:1:1:6'][0] ? thresholdObj['2:1:1:6'][0].operator : ''})
-            this.drawChart1({container: 'real-chart-jdcmkh',unit: '',name: '井道层门开合',max: etime,dataType: 'real_data',data: resList['2:1:0:10'], threshold: thresholdObj['2:1:0:10'][0] ? thresholdObj['2:1:0:10'][0].threshold : '', operator: thresholdObj['2:1:0:10'][0] ? thresholdObj['2:1:0:10'][0].operator : ''})
+            this.drawChart2({container: 'real-chart-jdcmkh',unit: '',name: '井道层门开合',max: etime,dataType: 'real_data',data: resList['2:1:0:10'], threshold: thresholdObj['2:1:0:10'][0] ? thresholdObj['2:1:0:10'][0].threshold : '', operator: thresholdObj['2:1:0:10'][0] ? thresholdObj['2:1:0:10'][0].operator : ''})
           }, 300)
         
           // 给实时数据赋值
@@ -1442,7 +1443,7 @@ export default {
 
     },
 
-    // 封装图表1
+    // 封装图表1，温湿度配置
     drawChart1(obj) {
       const that = this
       let extendObj = {
@@ -1492,6 +1493,144 @@ export default {
 
         // 范围
         // options.visualMap.show = true
+        options.visualMap.range = []
+        // 判断操作符 0 - =, 1 - >, 2 - <, 3 - >=, 4 - <=, 5 - !=
+        if (extendObj.operator == 1 || extendObj.operator == 3) { // 大于
+          options.visualMap.min = 0
+          options.visualMap.max = 100000
+          options.visualMap.range.push(0, parseFloat(extendObj.threshold))
+        } else if (extendObj.operator == 2 || extendObj.operator == 4) { // 小于
+          options.visualMap.min = 0
+          options.visualMap.max = 100000
+          options.visualMap.range.push(parseFloat(extendObj.threshold), 2000)
+        } else {
+          options.visualMap.min = 0
+          options.visualMap.max = 100000
+          options.visualMap.range.push(parseFloat(extendObj.threshold), parseFloat(extendObj.threshold))
+        }
+
+
+        // 控制标志线，只有超出阈值才会显示标志线
+        let markLineFlag = false
+        if (extendObj.operator == 1 || extendObj.operator == 3) { // 大于
+          dataArr.forEach(item => {
+            let val = item[1]
+            if (val >= extendObj.threshold) {
+              markLineFlag = true
+              return false
+            }
+          })
+        } else if (extendObj.operator == 2 || extendObj.operator == 4) { // 小于
+          dataArr.forEach(item => {
+            let val = item[1]
+            if (val <= extendObj.threshold) {
+              markLineFlag = true
+              return false
+            }
+          })
+        } else { // 不等于
+          dataArr.forEach(item => {
+            let val = item[1]
+            if (val != extendObj.threshold) {
+              markLineFlag = true
+              return false
+            }
+          })
+        }
+
+        // 标志线
+        if (markLineFlag) {
+          // 控制报警高亮图标 取container的id横线最后值
+          let iconName = extendObj.container.split('-')[2] + 'Icon'
+          this[iconName] = 'on'
+
+          options.series[0].markLine = {
+            data: [{
+              name: '',
+              yAxis: parseFloat(extendObj.threshold)
+            }],
+            animation: false,
+            symbolSize: 0,
+            label: {
+              position: 'start'
+            },
+            lineStyle: {
+              normal: {
+                type: 'solid',
+                color: '#FA4F43',
+              },
+            }
+          }
+        }
+        
+        
+      }
+
+
+      chart.setOption(options)
+
+      var timeoutId = null
+      // 自适应
+      window.addEventListener('resize', () => {
+        clearTimeout(timeoutId) // 节流
+        timeoutId = setTimeout(() => {
+          chart.resize()
+        }, 200)
+      })
+
+
+    },
+
+    // 封装图表2，开合配置
+    drawChart2(obj) {
+      const that = this
+      let extendObj = {
+        container: obj.container, // 容器id
+        unit: obj.unit ? obj.unit : '', // 单位
+        name: obj.name ? obj.name : '', // 名字
+        max: obj.max ? obj.max : '', // 相当于eTime时间戳
+        threshold: obj.threshold ? obj.threshold : '', // 报警阈值
+        operator: obj.operator ? obj.operator : '', // 操作符（大于、小于）
+        dataType: obj.dataType ? obj.dataType : '', // 不同的数据类型使用不同字段 "real_data":温度  "real_data":湿度  "floor":楼层  "real_data":其他
+        data: obj.data && obj.data.length ? obj.data : [] // 数据，需要经过处理
+      }
+
+      // 重新处理数据并赋值给extendObj
+      let dataArr = []
+      // let dataArr = [[1563868712000, 50], [1563868832000, 90], [1563868892000, 100]]
+      if (extendObj.data.length) {
+        // 重组数据
+        extendObj.data.forEach((item, i) => {
+          let arr = []
+          let value = item[extendObj.dataType]
+          arr.push(new Date(item.time).getTime(), value)
+          dataArr.push(arr)
+        })
+      }
+      extendObj.data = dataArr
+
+      let chart = this.$echarts.init(document.getElementById(`${extendObj.container}`))
+      // 判断主题配置使用
+      let options = xymFun.deepClone(that.options2)
+
+      
+      options.series[0].data = extendObj.data
+      options.series[0].name = extendObj.name
+      options.xAxis.max = extendObj.max
+      options.xAxis.min = extendObj.max - 10*60*1000
+      options.tooltip.formatter = (params,ticket,callback) => {
+        var key = params[0].data[0] 
+        var value = params[0].data[1]
+        key = that.tooltipFormatDate(key)
+        // var res = params[0].seriesName + '：' + value + '℃' + '<br>时间：' + key
+        var res = key + '<br>' + params[0].seriesName + '：' + value + extendObj.unit
+        return res
+      }
+      // 如果有阈值，则设置标志线和范围
+      if (extendObj.threshold !== '') {
+
+
+        // 范围
         options.visualMap.range = []
         // 判断操作符 0 - =, 1 - >, 2 - <, 3 - >=, 4 - <=, 5 - !=
         if (extendObj.operator == 1 || extendObj.operator == 3) { // 大于

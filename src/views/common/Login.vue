@@ -139,6 +139,9 @@
             if(res.data.data.type == 'administrator' || res.data.data.type.indexOf('manager') > -1) { // GI管理员
               this.$message.success('登录成功！');
               this.$router.push('/map')
+            } else if(res.data.data.type == 'domino') { // 通用超级管理员
+              this.$message.success('登录成功！');
+              this.$router.push('/corpApi')
             } else if(!res.data.data.modules){
               this.$message.error('暂无权限，请联系管理员');
             }

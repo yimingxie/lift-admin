@@ -394,15 +394,15 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: 34px;
-    &:hover{
-      background-color: rgba(69,200,220,.1);
-    }
+    // &:hover{
+    //   background-color:  rgba(66,114,255,0.10);
+    // }
     &.selected {
-      color: #45c8dc;
+      color: #4272FF;
     }
     &.active-li {
-      background-color: rgba(69,200,220,.1);
-      color: #45c8dc;
+      // background-color:  rgba(66,114,255,0.10);
+      color: #4272FF;
     }
     .li-label-style{
       text-align: left;

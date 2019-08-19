@@ -2,7 +2,7 @@
   <div style="height: 100%;">
     <el-tabs class="mapTab" v-model="activeName" @tab-click="handleClick" style="height: 100%;">
       <el-tab-pane label="异常处理" name="first" style="height: 100%;"><exceptionMap></exceptionMap></el-tab-pane>
-      <el-tab-pane label="维保作业" name="second">维保作业</el-tab-pane>
+      <el-tab-pane label="维保作业" name="second" style="height: 100%;"><MainMap></MainMap></el-tab-pane>
     </el-tabs>
   </div>
 </template>
@@ -13,6 +13,7 @@
   import { mapState, mapGetters, mapActions  } from 'vuex'
   import RadioGroup from "../../components/RadioGroup";
   import ExceptionMap from "./exceptionMap2";
+  import MainMap from "./exceptionMap3";
   import fotter from "../../views/common/fotter";
   
   export default {
@@ -24,6 +25,7 @@
     },
     components: {
       'exceptionMap':ExceptionMap,
+      'MainMap':MainMap,
       'fotter': fotter,
     },
     computed: {

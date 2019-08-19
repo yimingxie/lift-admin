@@ -86,7 +86,7 @@ export default {
 <style lang="stylus" scoped>
 .search-container{
   position relative;
-
+  z-index:999;
   .llcb-search-box{
     position relative;
   }

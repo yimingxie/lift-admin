@@ -54,7 +54,9 @@
         <div class="panel" :class="open ? '':'closePanel'">
           <div class="title" style="border-bottom:none">
             <!-- <div class="label1">管辖电梯<span class="open" @click="open = !open" v-text="open ? '收起' : '展开'"></span></div> -->
-            <div class="label1">管辖电梯<span class="open">展开</span></div>
+            <div class="label1">管辖电梯
+              <!-- <span class="open">展开</span> -->
+            </div>
           </div>
         
           <!-- 表格 Start -->
@@ -115,26 +117,26 @@
           <div style="position:relative;;display:flex;">
             &nbsp;
             <el-table :data="jobRecord">
-              <el-table-column prop="account" label="工单编号">
+              <el-table-column prop="taskId" label="工单编号">
               </el-table-column>
           
-              <el-table-column prop="name" label="作业类型">
+              <el-table-column prop="taskType" label="作业类型">
               </el-table-column>
               
-              <el-table-column prop="roleName" label="作业电梯">
+              <el-table-column prop="elevCode" label="作业电梯">
               </el-table-column>
           
-              <el-table-column prop="name" label="处理进度">
+              <el-table-column prop="taskStatus" label="处理进度">
               </el-table-column>
               
-              <el-table-column prop="account" label="完成时间">
+              <el-table-column prop="recordTime" label="完成时间">
               </el-table-column>
             
               <el-table-column label="操作" width="75">
                 <template slot-scope="scope">
                   <!-- 1.在封装好的组件上使用，所以要加上.native才能click
                   2.prevent就相当于..event.preventDefault() -->
-                  <el-button @click.native.prevent="editAccount(scope.$index, scope.row)" type="text">查看详情
+                  <el-button @click.native.prevent="goToDetail(scope.$index, scope.row)" type="text">查看详情
                   </el-button>
                  
                 </template>
@@ -147,13 +149,13 @@
           <!-- 分页 Start -->
           <div class="pagination_block">
             <el-pagination
-              @size-change="handleSizeChange"
-              @current-change="handleCurrentChange"
-              :current-page.sync="queryParam.offset"
+              @size-change="handleSizeChange2"
+              @current-change="handleCurrentChange2"
+              :current-page.sync="taskListParams.offset"
               :page-sizes="[10, 20, 30]"
-              :page-size="queryParam.limit"
+              :page-size="taskListParams.limit"
               layout="prev, pager, next, sizes, jumper"
-              :total="totalPageSize">
+              :total="totalPageSize2">
             </el-pagination>
           </div>
           <!-- 分页 End -->
@@ -202,14 +204,21 @@ export default {
       entryTimeFrom:'',
       empTimeFrom:'',
       elevatorList:[],
-      elevatorTotal:0
+      elevatorTotal:0,
+      taskListParams:{
+        userId: this.$route.params.staffId,
+        limit: 10,
+        offset: 0
+      },
+      totalPageSize2:0,
     }
   },
   components: {
     'fotter': fotter,
   },
   mounted() {
-    this.getAllAccountData()
+    this.getAllAccountData(),
+    this.getStaffTaskList()
     console.log("params==" + this.$route.params.staffId)
     // console.log("111111111111111::" + moment("20121031", "YYYYMMDD").fromNow())
   },
@@ -218,7 +227,7 @@ export default {
     // 跳转到诊断
     goDetection(regCode) {
       this.$router.push({
-        path: '/detection',
+        path: '/detection-panel',
         query: {
           regCode: regCode
         }
@@ -240,6 +249,7 @@ export default {
           console.log("this.birthdayFrom---" + this.birthdayFrom)
 
           this.elevatorList = res.data.data.elevatorList
+          this.totalPageSize = res.data.data.elevatorTotal
           // this.url = "http://192.168.100.7:8080/domino/view/image?filename=" + this.getStaffInfo.avatarUrl
           this.url = api.accountApi.viewPic(this.getStaffInfo.avatarUrl)
           
@@ -265,9 +275,19 @@ export default {
       })
      
     },
+    // 跳转到工单详情
+    goToDetail(index,row){
+      this.$router.push({name: 'missionDetail', params: {'id': row.taskId}})
+    },
     // 展开
     // open(){
-
+      // 作业记录
+    getStaffTaskList(){
+      api.accountApi.staffTaskList(this.taskListParams).then((res) => {
+        this.jobRecord = res.data.data.records || []
+        this.totalPageSize2 = res.data.data.total
+      })
+    },
     // },
     // 每页条数变化
     handleSizeChange(val) {
@@ -282,7 +302,19 @@ export default {
       // console.log(`当前页: ${val}`);
       this.getAllAccountData()
     },
-    
+    // 每页条数变化
+    handleSizeChange2(val) {
+      this.taskListParams.limit = val
+      // console.log(`每页 ${val} 条`);
+      this.getStaffTaskList()
+    },
+
+    // 当前页变化
+    handleCurrentChange2(val) {
+      this.taskListParams.offset = val
+      // console.log(`当前页: ${val}`);
+      this.getStaffTaskList()
+    },
     
 
   },

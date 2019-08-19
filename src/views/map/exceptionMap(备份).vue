@@ -440,7 +440,6 @@
         features: ['bg', 'road', 'building', 'point'],
         // showLabel: false //不显示地图文字标记
       });
-      this.map.setCity('深圳市');
       this.map.on('click', function(e) {
         _this.map.clearInfoWindow( )
       });

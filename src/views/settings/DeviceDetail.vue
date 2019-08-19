@@ -16,7 +16,7 @@
         <div class="ddi-data">
           <div class="ddi-data-wrap">
             <div class="ddi-data-icon clearfix">
-              <div class="ddid-icon-del" @click="deleteDevice"></div>
+              <div class="ddid-icon-del" @click="dialogDelete=true"></div>
               <div class="ddid-icon-line">|</div>
               <div class="ddid-icon-edit" @click="editDevice"></div>
             </div>
@@ -84,7 +84,7 @@
 
     <footer-temp></footer-temp>
 
-    <!-- 弹窗 -->
+    <!-- 编辑设备弹窗 -->
     <el-dialog :visible.sync="dialogEditDevice" title="编辑设备" :show-close="false" width="690px">
       <div>
         <!-- <div class="dia-title">编辑设备</div> -->
@@ -172,6 +172,26 @@
 
     </el-dialog>
 
+    <!-- 删除设备弹窗 -->
+    <el-dialog custom-class="noneTitle" :show-close="false" :visible.sync="dialogDelete">
+      <div class="dialog-delete">
+        <div class="dia-heading">
+          <div class="dia-con-pic">
+            <img src="../../assets/images/xym/dia-warn.png" alt="">
+          </div>
+          <div class="dia-con-p">
+            <h4>是否确认删除此设备</h4>
+            <!-- <p>删除后不可复原，请谨慎操作</p> -->
+          </div>
+        </div>
+
+        <div class="diaN-btn-con clearfix" style="margin-top: 20px;">
+          <div class="diaN-btn diaN-btn-cancel" @click="dialogDelete=false">取消</div>
+          <div class="diaN-btn diaN-btn-red" @click="deleteDevice">确认</div>
+        </div>
+      </div>
+    </el-dialog>
+
   </div>
 </template>
 
@@ -184,6 +204,7 @@ import Footer from '../common/fotter'
 export default {
   data() {
     return {
+      dialogDelete: false,
       modelContentList: {},
       bonline: "",
       devEui: "",

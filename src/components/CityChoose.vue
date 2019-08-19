@@ -1,5 +1,5 @@
 <template>
-  <!-- 区域选择组件 -->
+  <!-- 区域选择组件 需选到最后一级-->
   <div class="city-box">
     <el-cascader ref="cityCascader" placeholder="请选择区域"  :options="options" clearable v-model="selectedOptions" size="small" @change="handleChange" style="width: 100%;"></el-cascader>
   </div>

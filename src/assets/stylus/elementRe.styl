@@ -339,6 +339,10 @@
     left: 5px;
   .el-checkbox__input.is-indeterminate .el-checkbox__inner::before
     top: 6px;
+.el-checkbox__input.is-checked .el-checkbox__inner, .el-checkbox__input.is-indeterminate .el-checkbox__inner
+  background-color: #4272FF!important;
+  border-color:  #4272FF!important;
+  border-radius: 2px!important;
 // --------------------------checkbox-end-------------------------------
 
 // --------------------------区域选择-不要边框-------------------------------
@@ -396,11 +400,17 @@
   color: #7E8A95!important;
 .el-step.is-horizontal .el-step__line
   height: 1px!important;
+.el-step.is-vertical 
+  .el-step__line
+    width: 1px!important;
+    background: rgba(194,199,204,0.32);
+  .el-step__line-inner
+    border: none!important;
 .el-step__line
   background-color: rgba(66,114,255,0.30)
 // 控制线条颜色
 .el-step__head.is-finish
-  border-color: #4272FF;
+  border-color: #4272FF!important;
   border-radius: 6px!important;
   .el-step__line-inner
     transition-delay: 0ms!important;

@@ -13,16 +13,15 @@
       <span class="orderNumber">工单编号：{{taskNo}}</span>
       <div class="tar" style="float:right;">
         <button v-if="status =='已派单' || status =='已接单'" class="btn whiteBtn" @click="closeTask(taskNo)">关闭</button>
-
         <!-- <button class="btn whiteBtn" style="background: #4272ff;color: #fff">修改</button> -->
         <p class="status">状态</p>
-        <p class="progress" :style="{'color':getStatusColor(status)}">{{status}}</p>
+        <p class="progress">{{status}}</p>
       </div>
       <div class="s_de_details">
         <ul>
           <li><span class="tie">派单人员：</span><span >曲丽丽</span></li>
           <li><span class="tie">作业类型：</span><span>{{ taskType }}</span></li>
-          <li><span class="tie">派单时间：</span><span>{{ taskRecords[0].recordTime }}</span></li>
+          <li><span class="tie">派单时间：</span><span>{{ taskRecords.recordTime }}</span></li>
           <li><span class="tie">作业时间：</span><span>2019-06-25 19:20:32</span></li>
         </ul>
       </div>
@@ -30,59 +29,58 @@
   </div>
   <div class="row" >
     <div style="width:67%;float:left">
-      <div class="panel" style="height: 284px;">
+      <div class="panel" >
         <div class="title"><div class="label1">作业进度</div>
         </div>
         <div class="progressPanel">
        
           <!-- 完成状态下的 -->
-          <el-steps :active="taskRecords.length - 1" v-if="status!== '已派单' && status!== '已接单'">
+          <el-steps :active="taskRecords.length - 1">
+            <!-- <el-step title="已派单">
+              <i slot="icon" class="progressIcon paidan"></i>
+              <div slot="description" >
+                <p>曲丽丽 01-10 19:20:32</p>
+              </div>
+            </el-step> -->
              <!-- class="chaoshiLine" -->
+            <!-- <el-step title="已接单">
+              <i slot="icon" class="progressIcon jiedan"></i>
+              <div slot="description" >
+                <p>曲丽丽 01-10 19:20:32</p>
+                <p>曲丽丽 01-10 19:20:32</p>
+              </div>
+            </el-step>
+            <el-step :title="lastStep">
+              <i slot="icon" class="progressIcon wancheng"></i>
+              <div slot="description">
+                <p>01-10 19:20:32</p>
+              </div>
+            </el-step> -->
 
-            <el-step :title="item.taskStatus" v-for="(item,index) in taskRecords" :key="index" :class="item.taskStatus == '已超时'?chaoshiLine:''">
+            <el-step :title="item.taskStatus" v-for="(item,index) in taskRecords" :key="index">
               <i slot="icon" class="progressIcon paidan" v-if="item.taskStatus == '已派单'"></i>
               <i slot="icon" class="progressIcon jiedan" v-if="item.taskStatus == '已接单'"></i>
-              <i slot="icon" class="progressIcon wancheng" v-if="item.taskStatus == '已完成' || item.taskStatus == '已关闭'"></i>
-              <i slot="icon" class="progressIcon chaoshi" v-if="item.taskStatus == '已超时'"></i>
-              
-              <div slot="description">
+              <i slot="icon" class="progressIcon wancheng" v-if="item.taskStatus == '已完成'|| item.taskStatus == '已超时'||item.taskStatus == '已关闭'"></i>
+              <div slot="description" >
                 <p>{{item.recordTime}}</p>
               </div>
             </el-step>
+            <!-- <el-step title="已超时" >
+              <i slot="icon" class="progressIcon chaoshi"></i>
+            </el-step> -->
+            <!-- <el-step title="已关闭" >
+              <i slot="icon" class="progressIcon chaoshi"></i>
+            </el-step> -->
           </el-steps>
-          <!-- 未完成状态下的 -->
-          <el-steps :active="taskRecords.length - 1" v-else>
-            <el-step title="已派单">
-              <i slot="icon" class="progressIcon paidan"></i>
-              <div slot="description" >
-                <p>{{taskRecords[0].recordTime}}</p>
-              </div>
-            </el-step>
-            <el-step title="已接单">
-              <i slot="icon" class="progressIcon jiedan"></i>
-              <div slot="description" >
-                <p v-if="taskRecords[1]">{{taskRecords[1].recordTime}}</p>
-                <p v-else>--</p>
-                <!-- <p>曲丽丽 01-10 19:20:32</p> -->
-              </div>
-            </el-step>
-            <el-step title="已完成">
-              <i slot="icon" class="progressIcon wancheng"></i>
-              <div slot="description">
-                <p>--</p>
-              </div>
-            </el-step>
-            
-          </el-steps>
-          <!-- <br> -->
-          <!-- <el-button style="margin-top: 12px;" @click="next">下一步</el-button> -->
+          <br>
+          <el-button style="margin-top: 12px;" @click="next">下一步</el-button>
         </div>
       </div>
     </div>
     <div style="width:33%;float:left">
       <div class="panel conclusions" style="padding:0 0 3px;min-height:282px;">
         <div class="title" style="margin:0"><div class="label1">作业结论</div></div>
-        <div style="margin:0 12px" v-if="status == '已完成'">
+        <div style="margin:0 12px">
           <table border="0" class="s_de_details s_de_details2 clearfix">
             <tbody>
               <tr>
@@ -93,14 +91,24 @@
                 <td style="width: 13%;"><span class="tie">维修费用</span><span>无费用</span></td>
                 <td>
                   <span class="tie">作业记录单</span>
-                  <span><picture-list :maxShow="3" :images="taskImage"></picture-list></span>
+                  <span><picture-list :maxShow="3" :images="images"></picture-list></span>
                 </td>
               </tr>
             </tbody>
           </table>
-        </div>
-        <div style="margin:0 12px" v-else class="noneConclusion">
-          暂无结论
+          <!-- <table border="0" class="s_de_details s_de_details2 clearfix">
+            <tbody>
+              <tr>
+                <td><span class="tie">维保结论</span><span>设备检修</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="tie" style="margin-bottom: 10px;">作业记录单</span>
+                  <span><picture-list :maxShow="4" :images="images"></picture-list></span>
+                </td>
+              </tr>
+            </tbody>
+          </table> -->
         </div>
       </div>
     </div>
@@ -241,28 +249,26 @@ export default {
       getStaffJson:[],
       totalPerson:0,
       max:0,
-      taskImage:[
-      // 'http://192.168.100.7:8080/domino/view/image?filename=GI_be3P7mMdJ3W7p9W0V.png',
-      // 'http://192.168.100.89:8080/domino/view/image?filename=GI_css6Ass5R7fgDBoUD.png',
-      // 'http://192.168.100.89:8080/domino/view/image?filename=GI_eD05guAm1I2c8dpw4.jpg',
-      // 'http://192.168.100.89:8080/domino/view/image?filename=GI_gnxeay4ZQ87gMGsVW.jpg',
-      // 'http://192.168.100.89:8080/domino/view/image?filename=GI_css6Ass5R7fgDBoUD.png',
-      // 'http://192.168.100.89:8080/domino/view/image?filename=GI_eD05guAm1I2c8dpw4.jpg',
-      // 'http://192.168.100.89:8080/domino/view/image?filename=GI_gnxeay4ZQ87gMGsVW.jpg',
-      // 'http://192.168.100.89:8080/domino/view/image?filename=GI_bQ502kXGow80KFJXa.jpg',
-      // 'http://192.168.100.89:8080/domino/view/image?filename=GI_css6Ass5R7fgDBoUD.png',
+      images:[
+      'http://192.168.100.89:8080/domino/view/image?filename=GI_bQ502kXGow80KFJXa.jpg',
+      'http://192.168.100.89:8080/domino/view/image?filename=GI_css6Ass5R7fgDBoUD.png',
+      'http://192.168.100.89:8080/domino/view/image?filename=GI_eD05guAm1I2c8dpw4.jpg',
+      'http://192.168.100.89:8080/domino/view/image?filename=GI_gnxeay4ZQ87gMGsVW.jpg',
+      'http://192.168.100.89:8080/domino/view/image?filename=GI_css6Ass5R7fgDBoUD.png',
+      'http://192.168.100.89:8080/domino/view/image?filename=GI_eD05guAm1I2c8dpw4.jpg',
+      'http://192.168.100.89:8080/domino/view/image?filename=GI_gnxeay4ZQ87gMGsVW.jpg',
+      'http://192.168.100.89:8080/domino/view/image?filename=GI_bQ502kXGow80KFJXa.jpg',
+      'http://192.168.100.89:8080/domino/view/image?filename=GI_css6Ass5R7fgDBoUD.png',
       ],
       ifWatchInfo:true,
       map:'',
       taskRecords:[],
       taskNo:'',
-
       elevatorInfo:[],
       status:'',
-      // taskResult: [],
+      taskResult: [],
       selectedDepartmentOptions: [],
-      lastStep: '',
-      taskType:''
+      lastStep: ''
     }
   },
   components: {
@@ -277,23 +283,7 @@ export default {
     this.getdeps()
   },
   methods: {
-    getStatusColor(status){
-      var color = ''
-      if(status == '未派单' || status == '可派单'){
-        color = 'rgb(255, 169, 11)'
-      } else if(status == '已派单'){
-        color = 'rgb(52, 65, 76)'
-      } else if(status == '已接单'){
-        color = 'rgb(159, 185, 247)'
-      } else if(status == '已完成'){
-        color = 'rgb(66, 114, 255)'
-      } else if(status == '已超时'){
-        color = 'rgb(250, 79, 67)'
-      } else if(status == '已关闭'){
-        color = 'rgb(194, 199, 204)'
-      }
-      return color
-    },
+    
     // 下拉人员选中值
     departmentChange(arr) {
       const that = this
@@ -484,18 +474,34 @@ export default {
         this.taskRecords = res.data.data.taskRecords || []
         this.elevatorInfo = res.data.data.elevatorInfo || []
         this.status = res.data.data.status
-        // this.taskResult = res.data.data.taskResult
+        this.taskResult = res.data.data.taskResult
         this.taskNo = res.data.data.taskNo
         this.taskType = res.data.data.taskType
-        this.taskImage = []
-        var taskImageArr = res.data.data.taskImage
-        taskImageArr.forEach(item => {
-          console.log("this.taskImage---" + item)
-          // if(item) {
-            this.taskImageArr.push(api.accountApi.viewPic(item))
-          // }
-        })
-        console.log("this.taskImage---" + JSON.stringify(this.taskImage))
+
+        if(this.status == '已完成'){
+          this.lastStep = this.status
+          this.activeStatus = 2
+        } else if(this.status == '已超时' || this.status == '已关闭') {
+          this.lastStep = this.status
+          this.activeStatus = 2
+          
+        } else {
+          this.lastStep == '已完成'
+          // 派单当前状态为已派单或已接单
+          if(this.taskRecords.length == 1){
+            this.activeStatus = 0
+          } else if(this.taskRecords.length == 2){
+            this.activeStatus = 1
+          }
+        }
+        // 判断进度
+        //已派单
+        // if(this.taskRecords.length == 1 && this.taskRecords[0].taskStatus == '已派单'){
+        //   this.activeStatus = 0
+        // } else if(){
+          
+        // }
+
         this.getStaffJson = res.data.data.mpList
         this.totalPerson = this.getStaffJson.length
         if(this.status == '已派单'){
@@ -627,7 +633,7 @@ export default {
       text-overflow: ellipsis;
     .tie
       color: #7E8A95;
-  // 步骤条 初始状态
+  // 初始状态
   .progressPanel
     padding 60px 50px 0
     .progressIcon
@@ -643,38 +649,33 @@ export default {
       background url('../../assets/images/hs/wancheng.png') no-repeat center
       opacity .3
     
-    // 正在进行中
-    .el-step__head.is-process
-      .progressIcon
-        box-shadow: 0 8px 12px -4px rgba(26,65,178,0.40);
-        width 48px;
-        height 48px
-        border-radius: 50%
-        margin 0 5px
-      .paidan
-        background url('../../assets/images/hs/paidanLight.png') no-repeat center #4272FF;
-      .jiedan
-        background url('../../assets/images/hs/jiedanLight.png') no-repeat center #4272FF;
-        opacity 1
-      .wancheng
-        background url('../../assets/images/hs/wanchengLight.png') no-repeat center #4272FF;
-        opacity 1
-      .chaoshi
-        background url('../../assets/images/hs/chaoshi.png') no-repeat center #FA4F43
-        box-shadow: 0 8px 12px -4px rgba(178,26,26,0.40);
-    // 已完成
-    .el-step__head.is-finish
-      .jiedan
-        opacity 1
+  // 正在进行中
+  .el-step__head.is-process
+    .progressIcon
+      box-shadow: 0 8px 12px -4px rgba(26,65,178,0.40);
+      width 48px;
+      height 48px
+      border-radius: 50%
+      margin 0 5px
+    .paidan
+      background url('../../assets/images/hs/paidanLight.png') no-repeat center #4272FF;
+    .jiedan
+      background url('../../assets/images/hs/jiedanLight.png') no-repeat center #4272FF;
+      opacity 1
+    .wancheng
+      background url('../../assets/images/hs/wanchengLight.png') no-repeat center #4272FF;
+      opacity 1
+    .chaoshi
+      background url('../../assets/images/hs/chaoshi.png') no-repeat center #FA4F43
+      box-shadow: 0 8px 12px -4px rgba(178,26,26,0.40);
+  // 已完成
+  .el-step__head.is-finish
+    .jiedan
+      opacity 1
 
   .conclusions
     padding: 0;
-    .noneConclusion
-      background url('../../assets/images/hs/noneCon.png') no-repeat center
-      text-align center 
-      height 200px
-      padding-top 150px
-      color: #C2C7CC;
+
   .liftInfo
     padding: 0;
   .scrollDiv
@@ -823,7 +824,7 @@ export default {
     -webkit-animation-name:'ripple';/*动画属性名，也就是我们前面keyframes定义的动画名*/
     -webkit-animation-duration: 1s;/*动画持续时间*/
     -webkit-animation-timing-function: ease; /*动画频率，和transition-timing-function是一样的*/
-    -webkit-animation-delay: 0s; /*动画延迟时间*/
+    -webkit-animation-delay: 0s;/*动画延迟时间*/
     -webkit-animation-iteration-count: infinite;/*定义循环资料，infinite为无限次*/
     -webkit-animation-direction: normal;/*定义动画方式*/
 
