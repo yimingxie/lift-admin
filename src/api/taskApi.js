@@ -98,6 +98,12 @@ export default  {
       `${url2}/elev/task/list`, params
     )
     
+  },
+  // 获取任务管理统计数据
+  getTotalStatis(corpId){
+    return http.get(
+      `${url2}/task/statistics?corp=${corpId}`
+    )
   }
   // // 删除接口 根据接口id
   // deleteCorp(corpId){

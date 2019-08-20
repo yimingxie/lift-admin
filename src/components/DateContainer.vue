@@ -13,7 +13,7 @@
                 <!-- this.checkMonth+1 < 10 ? '0' + (this.checkMonth+1) : (this.checkMonth+1)
                 {{ checkMonth +1 < 10 ? '0' + (this.checkMonth+1) : (this.checkMonth+1) }}-{{checkDay}} -->
                 <span v-text="(this.checkMonth+1 < 10 ? '0' + (this.checkMonth+1) : (this.checkMonth+1)) + '-' + (this.checkDay < 10 ? '0' + this.checkDay : this.checkDay)"></span>
-                <span v-if="NowDay === checkDay">，今天</span>
+                <span v-if="NowDay === checkDay && this.checkMonth == NowMonth">，今天</span>
               </span>
             </span>
             <span class="nextMon" @click="nextMon"></span>
@@ -185,8 +185,12 @@
       preMon() {
         var _this = this;
         // this.checkMonth = this.NowMonth
-        this.checkMonth = this.checkMonth - 1
-
+        // this.checkMonth = this.checkMonth - 1
+        if(this.checkMonth == 0){
+          this.checkMonth = 0
+        } else {
+          this.checkMonth = this.checkMonth - 1
+        }
         // 上个月
         this.sureDate(_this,"up");
 
@@ -200,7 +204,11 @@
       },
       nextMon() {
         var _this = this;
-        this.checkMonth = this.checkMonth + 1
+        if(this.checkMonth == 11){
+          this.checkMonth = 11
+        } else {
+          this.checkMonth = this.checkMonth + 1
+        }
         // this.checkMonth = this.checkMonth + 1
 
         // 下个月

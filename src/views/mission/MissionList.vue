@@ -87,7 +87,7 @@
           <button class="btn whiteBtn" :class="(parseInt(checkedDate.substring(5,7)) < parseInt(NowMonth) || checkedDate.length !== 7)? 'disableWhiteBtn' :''">生成任务工单</button>
           <!-- <button class="btn whiteBtn" :class="(parseInt(checkedDate.substring(5,7)) < parseInt(NowMonth) || checkedDate.length !== 7)? 'disableWhiteBtn' :''">生成维保计划</button> -->
         </div>
-        {{checkedDate}}
+        <!-- {{checkedDate}} -->
 
         <calendar :todos="todos" :snycCheckedDate.sync="checkedDate">
           
@@ -107,15 +107,15 @@
 
       </div>
       <div class="panel" style="padding: 2px 0 4px 25px;">
-        <div class="title missionTitle " style="border-bottom:0">
-          <span class="taskTotal">124</span>
+        <div class="title missionTitle " style="border-bottom:0;padding:12px 0 11px 16px">
+          <span class="taskTotal">{{totalStatis.numta}}</span>
           <span class="taskTotalText">任务总数</span>
           <span class="splitLine" style="margin: 0 11px;">|</span>
-          <span>维保总数：4</span>
+          <span>维保总数：{{totalStatis.numwb}}</span>
           <span class="splitLine" style="margin: 0 11px;">|</span>
-          <span>故障处理：23</span>
+          <span>故障处理：{{totalStatis.numgz}}</span>
           <span class="splitLine" style="margin: 0 11px;">|</span>
-          <span>事件救援：4</span>
+          <span>事件救援：{{totalStatis.numjy}}</span>
         </div>
       </div>
     </div>
@@ -138,7 +138,7 @@
         <!-- 任务总数等一些统计数据 end-->
 
         <!-- //创建计划 -->
-        <div class="creatPlan" v-if="showCreatePlan">
+        <!-- <div class="creatPlan" v-if="showCreatePlan">
           <div style="margin-bottom: 25px">
             <span class="titlePlan">创建计划</span>
             <span class="btns">
@@ -149,16 +149,9 @@
           </div>
           
           <el-form ref="form" :model="createPlanParam" label-width="84px" >
-            <!-- <el-form-item label="作业电梯：">
-              <el-input v-model="createPlanParam.elevCode"></el-input>
-            </el-form-item> -->
-            <!-- <el-form-item label="作业电梯：">
-              <search-code @childCode="searchLift"></search-code>
-            </el-form-item> -->
+          
             <el-form-item label="作业信息：" v-if="showCreatePlan2">
 
-              <!-- 作业时间 -->
-              {{checkedDate}}
               <el-time-picker
                 class="regionPicker"
                 style="width:85px!important"
@@ -170,7 +163,6 @@
 
               <span class="splitLine">|</span>
 
-              <!-- 作业类型 -->
               <el-select v-model="createPlanParam.type" placeholder="作业类型" class="regionPicker">
                 <el-option
                   v-for="item in tpyeOptions"
@@ -198,7 +190,7 @@
             </el-form-item>
             <div v-if="!showCreatePlan2" class="errorTip">该电梯暂无负责人，请先绑定维保人员</div>
           </el-form>
-        </div>
+        </div> -->
         <!-- //创建计划 end-->
         
         <!-- //任务列表 -->
@@ -263,13 +255,22 @@
             <!-- 新建 -->
            
             <div v-for="(task) in taskList.data" :key="task.id" class="taskDiv">
-              <div v-if="task.status !== '无计划' && currentEditPlanId !== task.id" >
+              <!-- <el-checkbox-group v-model="checkedStaffs" @change="handleCheckedStaffsChange">
+                <el-checkbox :label="account.id" :key="index" class="checkbox16">{{nonetext}}</el-checkbox>
+              </el-checkbox-group> -->
+              <!-- <div style="position:absolute;">
+                <el-checkbox-group>
+                  <el-checkbox class="checkbox16"></el-checkbox>
+                </el-checkbox-group>
+              </div> -->
+
+              <div v-if="task.status !== '无计划' && currentEditPlanId !== task.id" class="taskListStyle">
                 <i :style="{'color':getStatusColor(task.status)}" style="margin-right:2px">●</i>
                 <span :style="{opacity:(nowTr !== '' ?'0.3':'1')}" >
                   <span v-if="task.status !== '未派单' && task.status !== '可派单'">工单编号：{{ task.id }}</span>
                   <span v-else>工单编号：--</span>
                   <span class="splitLine">|</span>
-                  <span>{{task.beginTime}}</span>
+                  <span>{{task.beginTime.substring(5)}}</span>
                   <span class="splitLine">|</span>
                   <span>{{task.type}}</span>
                   <!-- <span>{{task.major}}</span>
@@ -287,12 +288,12 @@
                 <span v-if="task.status == '已派单'" class="btns" :style="{opacity:(nowTr !== '' ?'0.3':'1')}">
                   <i class="btnBlue" @click="gotoDetail(task.id)">修改</i>
                   <span class="splitLine">|</span>
-                  <i class="btnBlue" @click="closeTask(task.id)">关闭</i>
+                  <i class="btnBlue" @click="openCloseDislog(task)">关闭</i>
                 </span>
                 <span v-if="task.status == '已接单'" class="btns" :style="{opacity:(nowTr !== '' ?'0.3':'1')}">
                   <i class="btnBlue" @click="gotoDetail(task.id)">详情</i>
                   <span class="splitLine">|</span>
-                  <i class="btnBlue" @click="closeTask(task.id)">关闭</i>
+                  <i class="btnBlue" @click="openCloseDislog(task)">关闭</i>
                 </span>
                 <span v-if="task.status == '已完成' || task.status == '已超时' || task.status == '已关闭'" class="btns" :style="{opacity:(nowTr !== '' ?'0.3':'1')}">
                   <i class="btnBlue" @click="gotoDetail(task.id)">详情</i>
@@ -301,7 +302,8 @@
 
               <!-- 修改计划 -->
               <div class="addmissionDiv" v-if="currentEditPlanId == task.id">
-            
+                
+                <!-- 作业时间 -->
                 <el-date-picker
                   v-model="value3"
                   prefix-icon="test-icon" 
@@ -374,7 +376,7 @@
           <!-- 工单列表 end-->
         </div>
         <div class="missionTable" v-if="missionList.length == 0">
-          <div style="border-top-left-radius: 0;border-top-right-radius: 0; padding:0 13px 20px;margin-top: 0;">
+          <div style="border-top-left-radius: 0;border-top-right-radius: 0; padding:20px 13px 4px;margin-top: 0;">
             <div class="noData">暂无查询数据</div>
           </div>
         </div>
@@ -399,30 +401,13 @@
           <p>派单后不可复原，请谨慎操作</p>
         </div>
 
-        <div style="margin:20px 0">
-          <div style="font-size: 20px;margin-bottom: 10px">计划信息</div>
-           <!-- <table border="0" class="s_de_details s_de_details2 clearfix">
-            <tbody>
-              <tr>
-                <td><span class="tie">电梯注册代码</span></td>
-                <td><span class="tie">作业时间</span></td>
-                <td><span class="tie">作业类型</span></td>
-                <td><span class="tie">派单人员</span></td>
-              </tr>
-              <tr>
-                <td><span class="tie">{{confirmCreateTask.elevCode}}</span></td>
-                <td><span class="tie">{{confirmCreateTask.beginTime}}</span></td>
-                <td><span class="tie">{{confirmCreateTask.type}}</span></td>
-                <td><span class="tie">{{confirmCreateTask.persons}}</span></td>
-              </tr>
-             
-            </tbody>
-          </table> -->
+        <div style="margin:20px 0 30px">
+          <div style="font-size: 20px;margin-bottom: 10px">作业信息</div>
           <el-row style="border-bottom: 1px solid #bdc3d1;">
             <el-col :span="6"><div class="grid-content bg-purple">电梯注册代码</div></el-col>
             <el-col :span="6"><div class="grid-content bg-purple-light">作业时间</div></el-col>
             <el-col :span="6"><div class="grid-content bg-purple">作业类型</div></el-col>
-            <el-col :span="6"><div class="grid-content bg-purple-light">派单人员</div></el-col>
+            <el-col :span="6"><div class="grid-content bg-purple-light">作业人员</div></el-col>
           </el-row>
           <el-row>
             <el-col :span="6"><div class="grid-content bg-purple">{{confirmCreateTask.elevCode}}</div></el-col>
@@ -439,6 +424,40 @@
       <el-button type="primary" @click="createTask(confirmCreateTask)" class="dialogSure">确 认</el-button>
     </div>
   </el-dialog>
+  <!-- 关闭确认 弹窗-->
+  <el-dialog custom-class="noneTitle" :show-close="false" :visible.sync="closeModelDialog">
+    <div class="dialog-delete">
+      <div class="dia-heading">
+        <div class="dia-con-pic">
+          <img src="../../assets/images/xym/dia-warn.png" alt="">
+        </div>
+        <div class="dia-con-p">
+          <h4>是否确认关闭任务？</h4>
+          <p>关闭后不可复原，请谨慎操作</p>
+        </div>
+      </div>
+      <div style="margin:20px 0 40px" class="tac">
+        <div style="font-size: 20px;margin-bottom: 10px">任务信息</div>
+        <el-row style="border-bottom: 1px solid #bdc3d1;">
+          <el-col :span="6"><div class="grid-content bg-purple">电梯注册代码</div></el-col>
+          <el-col :span="6"><div class="grid-content bg-purple-light">作业时间</div></el-col>
+          <el-col :span="6"><div class="grid-content bg-purple">作业类型</div></el-col>
+          <el-col :span="6"><div class="grid-content bg-purple-light">作业人员</div></el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="6"><div class="grid-content bg-purple">{{confirmCloseTask.elevCode}}</div></el-col>
+          <el-col :span="6"><div class="grid-content bg-purple-light">{{confirmCloseTask.beginTime}}</div></el-col>
+          <el-col :span="6"><div class="grid-content bg-purple">{{confirmCloseTask.type}}</div></el-col>
+          <el-col :span="6"><div class="grid-content bg-purple-light">{{confirmCloseTask.persons}}</div></el-col>
+        </el-row>
+      </div>
+      <div class="diaN-btn-con clearfix">
+        <div class="diaN-btn diaN-btn-cancel" @click="cancelCloseTask()">取消</div>
+        <div class="diaN-btn diaN-btn-red" @click="closeTask(confirmCloseTask.id)">确认</div>
+      </div>
+    </div>
+  </el-dialog>
+  <!-- 关闭确认 弹窗 end-->
   <fotter></fotter>
 </div>
 </template>
@@ -596,7 +615,10 @@ export default {
       searchTotalPageSize:0,
       searchRegCode:'',
       paidanModelDialog: false,
-      confirmCreateTask:[]
+      confirmCreateTask:[],
+      totalStatis:{},
+      closeModelDialog:false,
+      confirmCloseTask:[]
     }
   },
   components: {
@@ -717,6 +739,8 @@ export default {
         this.monthTaskListParam.stat = this.period2
         this.monthTaskListParam.type = this.period3
         this.getMissionList()
+        // 获取日历数据
+        this.getRiliList()
       }
     },
     selectType(type){
@@ -741,9 +765,17 @@ export default {
     this.getRiliList()
     // 获取部门列表
     this.getdeps()
-    
+    // 获取统计数据
+    this.getTotalStatis()
   },
   methods: {
+    // 获取统计数据
+    getTotalStatis(){
+      api.taskApi.getTotalStatis(window.localStorage.getItem('corpId')).then((res) => {
+        this.totalStatis = res.data.data || {}
+      })
+    },
+    // 清空搜索框
     clearSearch(){
       this.searchMode = false
       this.period1 = ''
@@ -813,18 +845,21 @@ export default {
       }
       return color
     },
+    // 打开确认关闭工单弹窗
+    openCloseDislog(task){
+      this.closeModelDialog = true
+      this.confirmCloseTask = task
+    },
+    // 取消关闭工单
+    cancelCloseTask(){
+      this.closeModelDialog = false
+      this.confirmCloseTask = []
+    },
     // 关闭工单
     closeTask(id){
       api.taskApi.closeTask(id).then((res) => {
         if (res.data.code === 200) {
           this.$message.success('关闭工单成功！');
-          // if(this.checkedDate.length > 9){
-          //   // 获取日视图列表
-          //   this.getdayTaskPlan(this.checkedDate)
-          // } else {
-          //   // 获取月视图列表
-          //   this.getMissionList()
-          // }
           if(this.searchMode){
             // 获取搜索电梯列表
             this.searchLiftRegCode(this.searchLiftListParams.elevCode)
@@ -835,6 +870,7 @@ export default {
             // 获取月视图列表
             this.getMissionList()
           }
+          this.closeModelDialog = false
         } else {
           this.$message.error(res.data.message);
         }
@@ -1002,7 +1038,7 @@ export default {
     gotoDetail(id){
       this.$router.push({name: 'missionDetail', params: {'id': id}})
     },
-    // 打开派单确认弹窗
+    // 打开确认派单弹窗
     openPaidanDialog(plan){
       this.paidanModelDialog = true
       this.confirmCreateTask = plan
@@ -1072,7 +1108,7 @@ export default {
     
     // 获取日历数据
     getRiliList(){
-      api.taskApi.rili({'corp': window.localStorage.getItem('corpId'),'timestamp':Date.parse(new Date())}).then((res) => {
+      api.taskApi.rili({'corp': window.localStorage.getItem('corpId'),'timestamp':this.transformTimestamp(this.checkedDate)}).then((res) => {
         var fenzi = res.data.data.denominator
         var fenmu = res.data.data.molecule
         this.todos = []
@@ -1602,8 +1638,10 @@ export default {
     margin:10px 0
   .taskDiv
     margin:13px 0 5px;
+  .taskListStyle
+    padding-left: 45px;
   .addmissionDiv
-    line-height:40px;
+    line-height: 40px;
     margin: -10px 0 0 46px;
   .bg-purple {
     background: #d3dce6;
@@ -1613,4 +1651,7 @@ export default {
     background: #e5e9f2;
     padding:5px 0
   }
+  .pagination_block
+    height 40px;
+    margin-top:30px;
 </style>

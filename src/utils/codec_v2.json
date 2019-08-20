@@ -184,7 +184,13 @@
               "id": 3,
               "name": "payload",
               "cn_name": "电梯重量载荷控制器"
+            },
+            {
+              "id": 4,
+              "name": "position",
+              "cn_name": "位置"
             }
+            
           ]
         },
         {
@@ -270,7 +276,20 @@
               "cn_name": "人"
             }
           ]
+        },
+        {
+          "id": 1,
+          "name": "bottom",
+          "cn_name": "坑底",
+          "subs": [
+            {
+              "id": 0,
+              "name": "position",
+              "cn_name": "位置"
+            }
+          ]
         }
+
       ]
     }
   ]

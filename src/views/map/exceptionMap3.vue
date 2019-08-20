@@ -289,7 +289,7 @@
               } else if(this.stat == '已超时'){
                 this.procList = res.data.data.proc.records || []
                 this.elevatorInfo = res.data.data || []
-              } else {
+              } else { 
                 this.elevatorInfo = res.data.data || []
                 this.record = res.data.data.record || []
                 

@@ -12,7 +12,7 @@
     <div class="missionOrder clearfix">
       <span class="orderNumber">工单编号：{{taskNo}}</span>
       <div class="tar" style="float:right;">
-        <button v-if="status =='已派单' || status =='已接单'" class="btn whiteBtn" @click="closeTask(taskNo)">关闭</button>
+        <button v-if="status =='已派单' || status =='已接单'" class="btn whiteBtn" @click="openCloseDislog()">关闭</button>
 
         <!-- <button class="btn whiteBtn" style="background: #4272ff;color: #fff">修改</button> -->
         <p class="status">状态</p>
@@ -20,10 +20,10 @@
       </div>
       <div class="s_de_details">
         <ul>
-          <li><span class="tie">派单人员：</span><span >曲丽丽</span></li>
+          <li><span class="tie">派单人员：</span><span >{{ paidanPerson }}</span></li>
           <li><span class="tie">作业类型：</span><span>{{ taskType }}</span></li>
-          <li><span class="tie">派单时间：</span><span>{{ taskRecords[0].recordTime ? taskRecords[0].recordTime :'--'}}</span></li>
-          <li><span class="tie">作业时间：</span><span>2019-06-25 19:20:32</span></li>
+          <li><span class="tie">派单时间：</span><span>{{ paidanTime }}</span></li>
+          <li><span class="tie">作业时间：</span><span>{{ workTime }}</span></li>
         </ul>
       </div>
     </div>
@@ -39,16 +39,18 @@
           <el-steps :active="taskRecords.length - 1" v-if="status!== '已派单' && status!== '已接单'">
              <!-- class="chaoshiLine" -->
 
-            <el-step :title="item.taskStatus" v-for="(item,index) in taskRecords" :key="index" :class="(status == '已超时' && index == taskRecords.length - 2)?'chaoshiLine':''">
+            <el-step :title="item.stat" v-for="(item,index) in taskRecords" :key="index" :class="(status == '已超时' && index == taskRecords.length - 2)?'chaoshiLine':''">
               
-
-              <i slot="icon" class="progressIcon paidan" v-if="item.taskStatus == '已派单'"></i>
-              <i slot="icon" class="progressIcon jiedan" v-if="item.taskStatus == '已接单'"></i>
-              <i slot="icon" class="progressIcon wancheng" v-if="item.taskStatus == '已完成' || item.taskStatus == '已关闭'"></i>
-              <i slot="icon" class="progressIcon chaoshi" v-if="item.taskStatus == '已超时'"></i>
+              <i slot="icon" class="progressIcon paidan" v-if="item.stat == '已派单'"></i>
+              <i slot="icon" class="progressIcon jiedan" v-if="item.stat == '已接单'"></i>
+              <i slot="icon" class="progressIcon wancheng" v-if="item.stat == '已完成' || item.stat == '已关闭'"></i>
+              <i slot="icon" class="progressIcon chaoshi" v-if="item.stat == '已超时'"></i>
               
-              <div slot="description">
-                <p>{{item.recordTime}}</p>
+              <div slot="description" >
+                <p v-for="(list) in item.data" :key="list.time">
+                  <span v-if="item.stat !== '已完成' && item.stat !== '已关闭' && item.stat !== '已超时'">{{list.name}}&nbsp;</span> 
+                  <span v-if="item.stat !== '已超时'">{{list.time}}</span>
+                </p>
               </div>
             </el-step>
           </el-steps>
@@ -57,14 +59,20 @@
             <el-step title="已派单">
               <i slot="icon" class="progressIcon paidan"></i>
               <div slot="description" >
-                <p>{{taskRecords[0].recordTime}}</p>
+                <p v-for="(list) in taskRecords[0].data" :key="list.time" v-if="taskRecords[0]">
+                  <span>{{list.name}}&nbsp;</span>
+                  <span >{{list.time}}</span>
+                </p>
               </div>
             </el-step>
             <el-step title="已接单">
               <i slot="icon" class="progressIcon jiedan"></i>
-              <div slot="description" >
-                <p v-if="taskRecords[1]">{{taskRecords[1].recordTime}}</p>
-                <p v-else>--</p>
+              <div slot="description" v-if="status == '已接单'">
+                
+                <p v-for="(list) in taskRecords[1].data" :key="list.time" >
+                  <span >{{list.name}}&nbsp;</span> 
+                  <span >{{list.time}}</span>
+                </p>
                 <!-- <p>曲丽丽 01-10 19:20:32</p> -->
               </div>
             </el-step>
@@ -260,6 +268,40 @@
       </div>
     </div>
   </div>
+  <!-- 关闭确认 弹窗-->
+  <el-dialog custom-class="noneTitle" :show-close="false" :visible.sync="closeModelDialog">
+    <div class="dialog-delete">
+      <div class="dia-heading">
+        <div class="dia-con-pic">
+          <img src="../../assets/images/xym/dia-warn.png" alt="">
+        </div>
+        <div class="dia-con-p">
+          <h4>是否确认关闭工单？</h4>
+          <p>关闭后不可复原，请谨慎操作</p>
+        </div>
+      </div>
+      <div style="margin:20px 0 40px" class="tac">
+        <div style="font-size: 20px;margin-bottom: 10px">工单详情</div>
+        <el-row style="border-bottom: 1px solid #bdc3d1;">
+          <el-col :span="8"><div class="grid-content bg-purple">电梯注册代码</div></el-col>
+          <el-col :span="8"><div class="grid-content bg-purple-light">作业时间</div></el-col>
+          <el-col :span="8"><div class="grid-content bg-purple">作业类型</div></el-col>
+          <!-- <el-col :span="6"><div class="grid-content bg-purple-light">作业人员</div></el-col> -->
+        </el-row>
+        <el-row>
+          <el-col :span="8"><div class="grid-content bg-purple">{{elevatorInfo.regCode}}</div></el-col>
+          <el-col :span="8"><div class="grid-content bg-purple-light">{{workTime}}</div></el-col>
+          <el-col :span="8"><div class="grid-content bg-purple">{{taskType}}</div></el-col>
+          <!-- <el-col :span="6"><div class="grid-content bg-purple-light">{{confirmCloseTask.persons}}</div></el-col> -->
+        </el-row>
+      </div>
+      <div class="diaN-btn-con clearfix">
+        <div class="diaN-btn diaN-btn-cancel" @click="cancelCloseTask()">取消</div>
+        <div class="diaN-btn diaN-btn-red" @click="closeTask(taskNo)">确认</div>
+      </div>
+    </div>
+  </el-dialog>
+  <!-- 关闭确认 弹窗 end-->
   <fotter></fotter>
 </div>
 </template>
@@ -296,7 +338,7 @@ export default {
       ],
       ifWatchInfo:true,
       map:'',
-      taskRecords:[],
+      taskRecords:[{data:[]}],
       taskNo:'',
       elevatorInfo:[],
       status:'',
@@ -305,6 +347,11 @@ export default {
       lastStep: '',
       taskType:'',
       taskImage:[],
+      workTime:'',
+      paidanPerson:'',
+      paidanTime:'',
+      closeModelDialog:false,
+      confirmCloseTask:[]
     }
   },
   components: {
@@ -464,7 +511,7 @@ export default {
             this.personOptions.push(obj)
             this.handleItemChange(item.id)
           })
-          console.log("personOptions===" + this.personOptions)
+          // console.log("personOptions===" + this.personOptions)
         }
         
 
@@ -499,7 +546,7 @@ export default {
               option.children = obj2 ;
             }
           });
-          console.log("personOptions===" + JSON.stringify(this.personOptions))
+          // console.log("personOptions===" + JSON.stringify(this.personOptions))
         }
 
       }).catch((res) => {
@@ -507,12 +554,21 @@ export default {
       })
 
     },
+    // 打开确认关闭工单弹窗
+    openCloseDislog(task){
+      this.closeModelDialog = true
+    },
+    // 取消关闭工单
+    cancelCloseTask(){
+      this.closeModelDialog = false
+    },
     // 关闭工单
     closeTask(id){
       api.taskApi.closeTask(id).then((res) => {
         if (res.data.code === 200) {
-          this.$message.success('成功！');
+          this.$message.success('关闭工单成功！');
           this.status = '已关闭'
+          this.closeModelDialog = false
         } else {
           this.$message.error(res.data.message);
         }
@@ -524,6 +580,12 @@ export default {
     getMissionDetailData(){
       api.taskApi.getMissionDetail(this.$route.params.id).then((res) => {
         this.taskRecords = res.data.data.taskRecords || []
+        if(this.taskRecords.length > 0){
+          this.paidanPerson = this.taskRecords[0].name
+          this.paidanTime = this.taskRecords[0].time
+        }
+        this.taskRecords = this.mergeArrayList(this.taskRecords)
+        console.log("this.taskRecords---" + JSON.stringify(this.taskRecords))
         this.elevatorInfo = res.data.data.elevatorInfo || []
         this.status = res.data.data.status
         this.taskResult = res.data.data.taskResult || []
@@ -531,6 +593,7 @@ export default {
         this.taskType = res.data.data.taskType
         this.taskImage = []
         var taskImageArr = res.data.data.taskImage
+        this.workTime = res.data.data.workTime || ''
         taskImageArr.forEach(item => {
           // console.log("this.taskImage---" + item)
             this.taskImage.push(api.accountApi.viewPic(item))
@@ -551,7 +614,7 @@ export default {
             Vue.set(item, 'url', url)
           }
         })
-        console.log("this.getStaffJson===" + JSON.stringify(this.getStaffJson))
+        // console.log("this.getStaffJson===" + JSON.stringify(this.getStaffJson))
 
       }).catch((res) => {
         
@@ -586,6 +649,30 @@ export default {
         this.tab = this.tab + 2
       }
       console.log("当前页数：：" + this.tab)
+    },
+     // 相同属性的数据合并处理
+    mergeArrayList(arrData){
+      var map = {},
+      dest = [];
+      for(var i = 0; i < arrData.length; i++){
+        var ai = arrData[i];
+        if(!map[ai.stat]){
+          dest.push({
+            stat: ai.stat,
+            data: [ai]
+          });
+          map[ai.stat] = ai;
+        }else{
+          for(var j = 0; j < dest.length; j++){
+            var dj = dest[j];
+            if(dj.stat == ai.stat){
+              dj.data.push(ai);
+              break;
+            }
+          }
+        }
+      }
+      return dest
     },
     // // 查询所有员工账户
     // getAllStaffData(){
@@ -669,7 +756,7 @@ export default {
       color: #7E8A95;
   // 步骤条 初始状态
   .progressPanel
-    padding 60px 50px 0
+    padding 60px 22px 0
     .progressIcon
       display inline-block
       width:45px;
@@ -866,5 +953,12 @@ export default {
     -webkit-animation-delay: 0s; /*动画延迟时间*/
     -webkit-animation-iteration-count: infinite;/*定义循环资料，infinite为无限次*/
     -webkit-animation-direction: normal;/*定义动画方式*/
-
+  .bg-purple {
+    background: #d3dce6;
+    padding:5px 0
+  }
+  .bg-purple-light {
+    background: #e5e9f2;
+    padding:5px 0
+  }
 </style>
