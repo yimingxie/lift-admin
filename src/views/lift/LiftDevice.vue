@@ -40,7 +40,8 @@
               <div class="llt-tr-container clearfix">
                 <div class="llt-td">
                   <el-checkbox-group v-model="checkedDevices" @change="checkedDevicesChange">
-                    <el-checkbox :label="i" :key="i">{{test}}</el-checkbox>
+                    <el-checkbox :label="item.devEui" :key="item.devEui">{{test}}</el-checkbox>
+                    <!-- <el-checkbox :label="item.devE" :key="i">{{test}}</el-checkbox> -->
                   </el-checkbox-group>
                 </div>
                 <div class="llt-td">{{item.devName}}</div>
@@ -57,7 +58,8 @@
                   <div class="llt-td-arrow" @click="showDrop(item.nativemonitorObj, item.nativemonitorVal, item.regCode, i)"></div>
                 </div>
                 <div class="llt-td">
-                  <span class="llt-td-a" @click="goDetail(item.nativemonitorObj, item.nativemonitorVal, item.regCode)">查看详情</span>
+                  <!-- <span class="llt-td-a" @click="goDetail(item.nativemonitorObj, item.nativemonitorVal, item.regCode)">查看详情</span> -->
+                  <span class="llt-td-a" @click="goDetail(item.devEui)">查看详情</span>
                 </div>
               </div>
 
@@ -190,7 +192,8 @@
           </div>
         </div>
         <ul class="dia-ul clearfix">
-          <li :class="checkedDevicesList.length <= 1 ? 'single' : ''" v-for="(item, i) in checkedDevicesList" :key="i">{{item.devName}}</li>
+          <!-- <li :class="checkedDevicesList.length <= 1 ? 'single' : ''" v-for="(item, i) in checkedDevicesList" :key="i">{{item.devName}}</li> -->
+          <li :class="checkedDevices.length <= 1 ? 'single' : ''" v-for="(item, i) in checkedDevices" :key="i">{{item}}</li>
         </ul>
         <div class="diaN-btn-con clearfix">
           <div class="diaN-btn diaN-btn-cancel" @click="dialogDelete=false">取消</div>
@@ -218,8 +221,8 @@ export default {
       inNum: '',
       localArea: '',
       address: '',
-      checkedDevices: [], // 选中设备的索引
-      checkedDevicesList: [], // 选中设备的数组对象
+      checkedDevices: [], // 选中设备的devEui
+      // checkedDevicesList: [], // 选中设备的数组对象
       checkedDevicesOptions: [], // 用于全选
       test: '',
       liftDeviceList: [],
@@ -311,14 +314,25 @@ export default {
         console.log('单部电梯设备列表', res.data)
         this.liftDeviceList = res.data.data.records
         this.checkedDevicesOptions = [] // 用于全选
+        let tempDevEuiArr = []
         this.liftDeviceList.forEach((item, i) => {
-          this.checkedDevicesOptions.push(i)
+          // this.checkedDevicesOptions.push(i)
+          tempDevEuiArr.push(item.devEui)
           item.nativemonitorObj = item.monitorObj
           item.nativemonitorVal = item.monitorVal
           item.monitorObj = xymFun.changeMonitorObj(item.monitorObj).join('-')
           item.monitorVal = this.modelContentList[item.monitorVal]
           // item.bonline = item.bonline == 1 ? '在线' : '离线'
         })
+        this.checkedDevicesOptions = Array.from(new Set(tempDevEuiArr)) // ES6数组去重
+        // this.liftDeviceTable = {}
+        // res.data.data.records.forEach(item => {
+        //   this.liftDeviceTable[item.devEui] = {
+        //     monitorObj: item.monitorObj,
+        //     monitorVal: item.monitorVal
+        //   }
+        // })
+
 
         // 分页
         this.currentPage = res.data.data.current
@@ -343,13 +357,23 @@ export default {
     },
 
     // 设备详情跳转
-    goDetail(monitorObj, monitorVal, regCode) {
+    // goDetail(monitorObj, monitorVal, regCode) {
+    //   this.$router.push({
+    //     path: '/device-detail',
+    //     query: {
+    //       monitorObj: monitorObj,
+    //       monitorVal: monitorVal,
+    //       regCode: regCode
+    //     }
+    //   })
+    // },
+
+    // 设备详情跳转
+    goDetail(devEui) {
       this.$router.push({
         path: '/device-detail',
         query: {
-          monitorObj: monitorObj,
-          monitorVal: monitorVal,
-          regCode: regCode
+          devEui: devEui
         }
       })
     },
@@ -424,12 +448,15 @@ export default {
 
     // 设备多选
     checkedDevicesChange(val) {
-      let count = this.liftDeviceList.length
-      if (val.length == count) {
+      console.log('选择', val)
+      // let count = this.liftDeviceList.length
+      // 判断数组相同，则多选
+      if (this.checkedDevicesOptions.sort().toString() == this.checkedDevices.sort().toString()) {
         this.checkedAll = true
       } else {
         this.checkedAll = false
       }
+
     },
 
     // 全选
@@ -443,10 +470,10 @@ export default {
       if (this.checkedDevices.length === 0) {
         return this.$message.error('请勾选需要删除的设备');
       }
-      this.checkedDevicesList = []
-      this.checkedDevices.forEach(item => {
-        this.checkedDevicesList.push(this.liftDeviceList[item])
-      })
+      // this.checkedDevicesList = []
+      // this.checkedDevices.forEach(item => {
+      //   this.checkedDevicesList.push(this.liftDeviceList[item])
+      // })
       this.dialogDelete = true
     },
 
@@ -459,19 +486,34 @@ export default {
       //   monitorVal : "监测内容",
       //   regCode : "电梯注册代码"
       // }
-      this.checkedDevices.forEach(item => {
-        postParams.push({
-          monitorVal: this.liftDeviceList[item].nativemonitorVal,
-          monitorObj: this.liftDeviceList[item].nativemonitorObj,
-          regCode: this.liftDeviceList[item].regCode
+      console.log('this.liftDeviceList', this.liftDeviceList)
+      this.liftDeviceList.forEach(item => {
+        this.checkedDevices.forEach(checkedDevEui => {
+          if (item.devEui == checkedDevEui) {
+            postParams.push({
+              monitorVal: item.nativemonitorVal,
+              monitorObj: item.nativemonitorObj,
+              regCode: item.regCode
+            })
+          }
         })
       })
+   
+
+
+      // this.checkedDevices.forEach(item => {
+      //   postParams.push({
+      //     monitorVal: this.liftDeviceList[item].nativemonitorVal,
+      //     monitorObj: this.liftDeviceList[item].nativemonitorObj,
+      //     regCode: this.liftDeviceList[item].regCode
+      //   })
+      // })
       console.log('post', postParams)
 
       // 发送请求
       api.device.deleteBatchDeviceMainten(postParams).then(res => {
         console.log('delete', res.data)
-        if (res.data.code == '200') {
+        if (res.data.code == 200) {
           this.$message.success(`${res.data.message}`)
           this.$router.go(0)
         } else {
@@ -485,24 +527,24 @@ export default {
     getDepStaffOptions() {
       api.device.getDepStaff().then(res => {
         this.assembIdOptions = []
+        // console.log('安装人员', res.data)
         for (var key in res.data.data) {
-          let obj = {}
-          obj.value = key
-          obj.label = key
-          obj.children = []
-          // console.log('key', key)
+          let obj = {
+            value: key,
+            label: key,
+            children: []
+          }
+
           res.data.data[key].forEach((item, i) => {
-            let tempObj = {}
-            tempObj.value = item.id
-            tempObj.label = item.name
-            obj.children.push(tempObj)
+            obj.children.push({
+              value: item.id,
+              label: item.name
+            })
           })
 
           this.assembIdOptions.push(obj)
-          
         }
       })
-
     },
 
     // 下拉人员选中值
@@ -521,6 +563,8 @@ export default {
         monitorObj: '',
         monitorVal: '',
       }
+      this.selectedAssembIdOptions = []
+      this.selectedMoniObjOptions = []
       this.dialogAddDevice = false
     },
 
@@ -539,7 +583,6 @@ export default {
           return
         }
         console.log(res.data)
-        // alert('设备存在，请继续填写')
         this.$message.success('设备存在，请继续填写')
         let list = res.data.data
         this.ruleForm.monitorVal = list.monitorVal
@@ -556,9 +599,9 @@ export default {
       this.$refs.diaForm.validate(valid => {
         if (valid) {
           // alert('submit')
-          console.log(this.ruleForm)
+          console.log('this.ruleForm', this.ruleForm)
           api.device.addDeviceMainten(this.ruleForm).then(res => {
-            if (res.data.code == '200') {
+            if (res.data.code == 200) {
               that.$message.success(`${res.data.message}`)
               this.$router.go(0)
             } else {

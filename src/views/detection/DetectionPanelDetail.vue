@@ -772,6 +772,7 @@ export default {
         // console.log('部门人员', res.data)
         this.departmentOptions = []
         let departmentList = res.data.data
+        // 加载一级部门
         departmentList.forEach((item, i) => {
           let obj = {}
           obj.value = item.id
@@ -779,21 +780,35 @@ export default {
           obj.children = []
 
           // 通过部门名字获取员工，并添加到相应的children
-          api.accountApi.getDepStaffs(item.id).then(staffRes => {
-            // console.log('staffRes', staffRes.data)
+          // api.accountApi.getDepStaffs(item.id).then(staffRes => {
+          //   // console.log('staffRes', staffRes.data)
+          //   let staffDetail = staffRes.data.data
+          //   staffDetail.forEach(secItem => {
+          //     let objSec = {}
+          //     objSec.label = secItem.name
+          //     objSec.value = secItem.id
+          //     obj.children.push(objSec)
+          //   })
+            
+          // })
+          
+          this.departmentOptions.push(obj)
+
+        })
+
+        // 加载部门里的员工
+        this.departmentOptions.forEach((item, i) => {
+          api.accountApi.getDepStaffs(item.value).then(staffRes => {
             let staffDetail = staffRes.data.data
             staffDetail.forEach(secItem => {
-              let objSec = {}
-              objSec.label = secItem.name
-              objSec.value = secItem.id
-              obj.children.push(objSec)
+              item.children.push({
+                label: secItem.name,
+                value: secItem.id
+              })
             })
-            
-            this.departmentOptions.push(obj)
           })
         })
 
-        // console.log('重组部门下拉', this.departmentOptions)
       })
 
     },

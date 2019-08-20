@@ -46,12 +46,12 @@ export default {
 
   // 获取（维保后台）设备详情 √
   // 需要monitorObj monitorVal regCode 参数确定设备唯一性
-  getDetailMainten(params) {
+  getDetailMainten(devEui) {
     // let url = `${url1}/elevator/device/?query=` + query
     // console.log('获取（维保后台）设备详情url', url)
     // let uri = encodeURI(url)
     // return http.get(uri)
-    return http.post(`${url1}/elevator/device/detail`, params)
+    return http.get(`${url1}/elevator/device/detail/${devEui}`)
   },
 
   // 新增设备（维保平台）
