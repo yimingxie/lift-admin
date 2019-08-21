@@ -44,7 +44,7 @@
                   <div class="dmsl-dt-up-on"></div>
                 </div>
                 <div class="dmsl-dt-floor">
-                  <h4><span>{{curRunData.floor}}</span>F</h4>
+                  <h4><span>{{curRunData.floor || '-- '}}</span>F</h4>
                   <p>当前楼层</p>
                 </div>
                 <div class="dmsl-dt dmsl-dt-down">
@@ -53,7 +53,7 @@
               </div>
               <div class="dms-lift-data">
                 <div class="dmsl-data">
-                  <h4><span>{{curRunData.speed}}</span>m/s</h4>
+                  <h4><span>{{curRunData.speed || 0}}</span>m/s</h4>
                   <p>运行速度</p>
                 </div>
                 <div class="dmsl-data">
@@ -61,7 +61,7 @@
                   <p>轿门状态</p>
                 </div>
                 <div class="dmsl-data">
-                  <h4><span>1600</span>kg</h4>
+                  <h4><span>-- </span>kg</h4>
                   <p>当前荷载</p>
                 </div>
               </div>
@@ -244,12 +244,13 @@ export default {
     // 获取电梯实时运行状态
     getEleRunData() {
       api.detection.getElevatorData(this.parentCode).then(res => {
-        console.log('电梯实时运行状态数据', res.data.data[this.parentCode])
+        // if (!res.data.data[this.parentCode]) return
+        // console.log('电梯实时运行状态数据', res)
         let detail = res.data.data[this.parentCode]
         this.curRunData.move = detail.move
         this.curRunData.floor = detail.floor
         this.curRunData.height = detail.height
-        this.curRunData.speed = parseFloat(detail.speed).toFixed(2)
+        this.curRunData.speed = this.curRunData.speed ? parseFloat(detail.speed).toFixed(2) : 0
         this.curRunData.prox = detail.prox == '"01"' ? '开' : '关'
       })
     },

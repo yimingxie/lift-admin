@@ -531,7 +531,7 @@ export default {
     left 0;
     width 36px
     height 16px;
-    line-height 16px;
+    line-height 14px;
     text-align center
     font-size: 10px;
     color: #000;

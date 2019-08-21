@@ -42,7 +42,7 @@
 
  
         <!-- 右侧详情 -->
-        <div class="la-result" id="lift-detail-wrap">
+        <div class="la-result-container" id="lift-detail-wrap">
           <el-form :model="ruleForm" :rules="rules" ref="laForm">
             <div class="lar-wrap">
               <div class="lar-item" id="jbxx_type">
@@ -82,7 +82,7 @@
                     <p class="show-pp">{{ruleForm.localArea !== '' ? ruleForm.localArea : '--'}}</p>
                   </el-form-item>
 
-                  <el-form-item prop="address" class="lar-box">
+                  <el-form-item prop="address" class="lar-box" style="width: 46%">
                     <h4>详细地址</h4>
                     <el-input v-if="submitState == 'put'" v-model="ruleForm.address" size="small" id="address" @input="searchMap()"></el-input>
                     <p class="show-pp" v-else>{{ruleForm.address !== '' ? ruleForm.address : '--'}}</p>
@@ -1450,11 +1450,15 @@ export default {
   .lift-list{
     background none;
   }
-  .la-result{
+  .la-result-container{
     float: left;
     width: 82%;
-    height: 716px;
+    // height: 716px;
+    height: calc(100vh - 390px)
+    min-height: 390px;
+    background: #fff;
     overflow: auto;
+    box-shadow: 0 8px 20px -12px rgba(66,114,255,0.30);
   }
   .lar-wrap{
     padding 1px 10px 30px;
@@ -1577,6 +1581,9 @@ export default {
     line-height: 32px;
     height: 32px;
     margin-bottom: 0 !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   .lift-detail-height-block{
     height: 360px;

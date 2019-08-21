@@ -134,7 +134,7 @@
               <div class="dia-citem-label">检测项：</div>
               <div class="dia-citem-ib">
                 <el-form-item prop="monitorObj">
-                  <el-cascader ref="moniCascader" placeholder="请选择" :options="moniObjOptions" v-model="selectedMoniObjOptions" size="small" @change="moniObjChange" style="width: 100%;"></el-cascader>
+                  <el-cascader ref="moniCascader" placeholder="请选择" :options="moniObjOptions" v-model="selectedMoniObjOptions" size="small" @change="moniObjChange" clearable style="width: 100%;"></el-cascader>
                 </el-form-item>
               </div>
             </div>

@@ -29,7 +29,7 @@
               <div class="doo-p">
                 <span class="doo-p-name doo-p-name1">● 在线设备</span>
                 <em class="doo-p-line">|</em>
-                <span class="doo-p-per">{{onlineCount_per}}%</span>
+                <span class="doo-p-per">{{onlineCount_per || 0}}%</span>
               </div>
             </div>
             <div class="device-oo-box">
@@ -37,7 +37,7 @@
               <div class="doo-p">
                 <span class="doo-p-name doo-p-name2">● 离线设备</span>
                 <em class="doo-p-line">|</em>
-                <span class="doo-p-per">{{offline_count_per}}%</span>
+                <span class="doo-p-per">{{offline_count_per || 0}}%</span>
               </div>
             </div>
           </div>
@@ -211,7 +211,7 @@
                 <div class="dia-citem-label">检测项：</div>
                 <div class="dia-citem-ib">
                   <el-form-item prop="monitorObj">
-                    <el-cascader ref="moniCascader" placeholder="请选择" :options="moniObjOptions" v-model="selectedMoniObjOptions" size="small" @change="moniObjChange" style="width: 100%;"></el-cascader>
+                    <el-cascader ref="moniCascader" placeholder="请选择" :options="moniObjOptions" v-model="selectedMoniObjOptions" clearable size="small" @change="moniObjChange" style="width: 100%;"></el-cascader>
                   </el-form-item>
                 </div>
               </div>
@@ -764,7 +764,7 @@ export default {
     margin 0 8px;
     color #919EA5;
     font-size 12px;
-    margin-top -4px;
+    margin-top -7px;
   }
   .doo-p-per{
     color: #34414C;

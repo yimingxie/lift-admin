@@ -158,7 +158,7 @@
                 <div class="dia-citem-label">检测项：</div>
                 <div class="dia-citem-ib">
                   <el-form-item prop="monitorObj">
-                    <el-cascader ref="moniCascader" placeholder="请选择" :options="moniObjOptions" v-model="selectedMoniObjOptions" size="small" @change="moniObjChange" style="width: 100%;"></el-cascader>
+                    <el-cascader ref="moniCascader" placeholder="请选择" :options="moniObjOptions" v-model="selectedMoniObjOptions" size="small" @change="moniObjChange" clearable style="width: 100%;"></el-cascader>
                   </el-form-item>
                 </div>
               </div>
@@ -746,19 +746,19 @@ export default {
 /* 适配 */
 @media screen and (max-width: 1550px) {
   #LiftDevice{
-    .llt-thead .llt-th:nth-child(2),.llt-tbody .llt-td:nth-child(2){
+    .llt-thead .llt-th:nth-child(2),.llt-tbody .llt-td:nth-child(2),.lift-device-tr .ld-td:nth-child(2){
       width 16%;
     }
-    .llt-thead .llt-th:nth-child(3),.llt-tbody .llt-td:nth-child(3){
+    .llt-thead .llt-th:nth-child(3),.llt-tbody .llt-td:nth-child(3),.lift-device-tr .ld-td:nth-child(3){
       width 14%;
     }
-    .llt-thead .llt-th:nth-child(5),.llt-tbody .llt-td:nth-child(5){
+    .llt-thead .llt-th:nth-child(5),.llt-tbody .llt-td:nth-child(5),.lift-device-tr .ld-td:nth-child(5){
       width 13%;
     }
-    .llt-thead .llt-th:nth-child(7),.llt-tbody .llt-td:nth-child(7){
+    .llt-thead .llt-th:nth-child(7),.llt-tbody .llt-td:nth-child(7),.lift-device-tr .ld-td:nth-child(7){
       width 11%;
     }
-    .llt-thead .llt-th:nth-child(10),.llt-tbody .llt-td:nth-child(10){
+    .llt-thead .llt-th:nth-child(10),.llt-tbody .llt-td:nth-child(10),.lift-device-tr .ld-td:nth-child(10){
       width 8%;
     }
   }
