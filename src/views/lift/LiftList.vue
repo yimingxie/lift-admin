@@ -10,7 +10,7 @@
             </div>
             <div class="les-box-bottom clearfix">
               <p>电梯总数：{{eleStList.elevatorCount}}</p>
-              <p>未处理：<span>{{eleStList.elevatorCount - eleStList.abnormalHandle}}</span></p>
+              <p>未处理：<span>{{eleStList.abnormalCount - eleStList.abnormalHandle}}</span></p>
               <p>已处理：{{eleStList.abnormalHandle}}</p>
             </div>
           </div>
@@ -98,7 +98,7 @@
               <div class="les-box-top-day">今日</div>
             </div>
             <div class="les-box-bottom clearfix">
-              <p style="width: 100%;">异常作业及时率：{{eleStList.promptness}}%</p>
+              <p style="width: 100%;">异常作业及时率：{{eleStList.promptness || 0}}%</p>
             </div>
           </div>
 
@@ -334,6 +334,7 @@ export default {
     // 查询数字电梯统计
     getEleStatistics() {
       api.lift.getEleStatistics().then(res => {
+        console.log('电梯统计', res.data)
         if (!res.data.data) return
         this.eleStList = res.data.data
       })

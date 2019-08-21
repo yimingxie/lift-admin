@@ -97,6 +97,9 @@ export default {
   .lift-list{
     background none;
   }
+  .la-result{
+    height: calc(100vh - 430px);
+  }
   
   
 }
