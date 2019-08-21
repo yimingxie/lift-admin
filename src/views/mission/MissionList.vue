@@ -204,7 +204,7 @@
               <span class="lift">作业电梯：{{taskList.elevCode}}</span>
               <span v-if="parseInt(checkedDate.substring(5,7)) >= parseInt(NowMonth) && nowTr === ''" class="addMission" @click="openAddLiftMission(taskList.elevCode)"></span>
 
-              <span style="float:right">{{taskList.localArea}}{{taskList.address}}</span>
+              <span style="max-width:300px;float:right;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{taskList.localArea}}{{taskList.address}}</span>
             </p>
             <!-- 新建 -->
             <div class="addmissionDiv" v-if="nowTr === taskList.elevCode">
@@ -616,7 +616,12 @@ export default {
       searchRegCode:'',
       paidanModelDialog: false,
       confirmCreateTask:[],
-      totalStatis:{},
+      totalStatis:{
+        numta:0,
+        numwb:0,
+        numgz:0,
+        numjy:0
+      },
       closeModelDialog:false,
       confirmCloseTask:[]
     }
@@ -641,6 +646,8 @@ export default {
     } 
   },
   watch:{
+    // period1为空时，stat参数取period2（全部："";未派单，可派单;已派单;已接单;已完成;已超时;已关闭）
+    // period1为无计划时，stat参数取"'无计划'"
     period1(val){
       this.searchMode = false
       this.conditions1 = []
@@ -652,7 +659,7 @@ export default {
         this.monthTaskListParam.stat = val
         this.monthTaskListParam.offset = 0
         this.getMissionList()
-      } else { //维保计划
+      } else { // 已创建计划
         if(this.checkedDate.length > 9) {
           // 获取日视图列表
           this.dateTaskListParam.offset = 0
@@ -687,7 +694,7 @@ export default {
           this.monthTaskListParam.stat = val
           this.getMissionList()
         }
-      }else { //全部
+      } else { //全部
         if(this.checkedDate.length > 9) {
           // 获取日视图列表
           this.dateTaskListParam.offset = 0
@@ -772,7 +779,7 @@ export default {
     // 获取统计数据
     getTotalStatis(){
       api.taskApi.getTotalStatis(window.localStorage.getItem('corpId')).then((res) => {
-        this.totalStatis = res.data.data || {}
+        this.totalStatis = res.data.data || {numta:0,numwb:0,numgz:0,numjy:0}
       })
     },
     // 清空搜索框

@@ -104,7 +104,7 @@
             </div>
             <div class="lift_readMore" @click="goLiftResult(elevatorInfo.elevCode)">查看详情</div>
           </div>
-          <div style="display:none;">// 未派单、已派单、等工单列表</div>
+          <div style="display:none;">// 未派单、可派单、已派单、已接单、无计划等工单列表</div>
           <div v-if="elevatorInfo.regCode !== ''&& stat !=='已超时'" style="position: absolute;left: 300px;top: 8px;width:288px;background: rgba(52,65,76,0.90);
             border-radius: 4px;padding: 17px 17px 12px;">
             <div class="info_num">
@@ -115,12 +115,14 @@
             <div class="lift_row">
               <el-row class="">
                 <el-col :span="7"><div class="info_title">工单编号</div></el-col>
-                <el-col :span="17"><div class="info_content" v-text="record.length > 0 ? record[0].taskId:'--'"></div></el-col>
+                <el-col :span="17"><div v-if="stat !=='无计划'" class="info_content" v-text="record.length > 0 ? record[0].taskId:'- -'"></div></el-col>
+                <el-col :span="17"><div v-if="stat =='无计划'" class="info_content">- -</div></el-col>
               </el-row>
               <el-row>
                 <el-col :span="7"><div class="info_title">作业时间</div></el-col>
                 <el-col :span="17" v-if="stat == '可派单'"><div class="info_content">{{getStaffJson.beginTime}}</div></el-col>
-                <el-col :span="17" v-else><div class="info_content" v-text="record.length > 0 ? record[0].taskId:'--'"></div></el-col>
+                <el-col :span="17" v-else-if="stat !=='无计划'"><div class="info_content" v-text="workTime ? workTime:'- -'"></div></el-col>
+                <el-col :span="17"><div v-if="stat =='无计划'" class="info_content">- -</div></el-col>
               </el-row>
               <el-row>
                 <el-col :span="7"><div class="info_title" >作业人员</div></el-col>
@@ -162,7 +164,7 @@
                     </el-row>
                     <div style="display:none;">// 无计划 无作业人员</div>
                     <el-row v-if="stat == '无计划'">
-                      <div class="stf_name"> -- </div>
+                      <div class="stf_name">- -</div>
                     </el-row>
                   </div>
                 </el-col>
@@ -234,25 +236,26 @@
       // router: router,
       data() {
         return {
-          activeIndex: 0,
+          // activeIndex: 0,
 
-          id: 0, // 等同regCode码
-          regCode:'',
-          stat:'',
+          id: 0, //数据传入
+          regCode:'',//数据传入
+          stat:'',//数据传入
 
-          type:"",
+          // type:"",
           taskRecords:[],
-          taskNo:'',
+          // taskNo:'',
           elevatorInfo:[],
           status:'',
-          lastStep: '',
-          taskType:'',
+          // lastStep: '',
+          // taskType:'',
           getStaffJson:[],
           infoTitleColor:'',
           arrowImg:'arrowImg4',
-          infoTitle:'',
+          infoTitle:'', //数据传入
           record:[],
-          procList:[]
+          procList:[],
+          workTime:''
           // authorURL:'/detection'
         }
       },
@@ -265,15 +268,18 @@
           
          
           if(val !== ''){
+            // if(this.infoTitle == '超时任务'){
             var params = {
-              "id": this.id,
-              "elevCode": val,
-              "stat": this.stat,
+              "id": this.id, //数据传入
+              "elevCode": val, //数据传入
+              "stat": this.stat, //数据传入
               "begin": Date.parse(new Date()),
               "end": Date.parse(new Date()),
               "limit": 10,
-              "offset": 0
+              "offset": 0,
+              "type": $this.period2
             }
+            
             if(this.infoTitle == '3天内维保'){
               params.begin = Date.parse(new Date())+24*60*60*1000, // 明天
               params.end= Date.parse(new Date())+24*60*60*1000*2 // 后天
@@ -289,16 +295,16 @@
               } else if(this.stat == '已超时'){
                 this.procList = res.data.data.proc.records || []
                 this.elevatorInfo = res.data.data || []
-              } else { 
+              } else {
                 this.elevatorInfo = res.data.data || []
                 this.record = res.data.data.record || []
-                
+                this.workTime = res.data.data.workTime || ''
               }
               // this.status = res.data.data.status
               // this.taskNo = res.data.data.taskNo
               // this.taskType = res.data.data.taskType
 
-              this.getStaffJson = res.data.data.mp
+              this.getStaffJson = res.data.data.mp || []
               console.log("this.getStaffJson::" + this.getStaffJson)
               if(this.getStaffJson.length>0){
                 this.getStaffJson.forEach(item => {
@@ -314,11 +320,11 @@
               
             })
 
-
           }
           // 每次请求数据完成后将id重置，重新点开弹窗时再次请求数据
           this.regCode = ''
         },
+        // 根据分类不同设置不同颜色
         infoTitle(type){
           console.log("type：：：：" + type)
           if(type == '正常'){
@@ -437,14 +443,20 @@
       // 筛选已完成，未完成
       period(val) {
         this.liftListParams.status = val
+        // // 只针对当天维保筛选
+        if(val !== '全部'){
+          this.exceptionType = "当天维保"
+        } 
         this.getTotalData()
         this.getAllLiftPoint()
+        // this.selectExceptionType(this.exceptionType)
       },
       // 筛选类型
       period2(val) {
         this.liftListParams.type = val
         this.getTotalData()
         this.getAllLiftPoint()
+        // this.selectExceptionType(this.exceptionType)
       }
     },
     computed: {
@@ -512,18 +524,19 @@
       },
       // 选择特定异常状态 筛选
       selectExceptionType(type){
-        console.log("type---" + type)
-        // normal:'正常运行',
-        // status:'全部',
-        // type:'全部',
-        // begin: Date.parse(new Date()),
-        // end: Date.parse(new Date())
-        if(type == '正常'){
-          // this.liftListParams.status = this.period
-          // this.liftListParams.type = this.period2
-          // this.liftListParams.normal = '正常'
-          // this.liftListParams.begin = Date.parse(new Date())
-          // this.liftListParams.end = Date.parse(new Date())
+
+        this.exceptionType = type
+        // console.log("this.exceptionType" + this.exceptionType)
+        // if(this.exceptionType !== '当天维保'){
+        //   this.period = "全部"
+        // }
+        this.getAllLiftPoint()
+      },
+      // 获取地图上所有圆环点的 数据
+      getAllLiftPoint(){
+        // console.log("this.exceptionType" + this.exceptionType)
+        if( this.exceptionType == '正常'){
+          
           this.liftListParams = {
             status: this.period,
             type: this.period2,
@@ -532,11 +545,9 @@
             begin: Date.parse(new Date()),
             end: Date.parse(new Date())
           }
-        } else if(type == '当天维保') {
-          // this.liftListParams.status = this.period
-          // this.liftListParams.type = this.period2
-          // this.liftListParams.begin = Date.parse(new Date())
-          // this.liftListParams.end = Date.parse(new Date())
+          
+        } else if( this.exceptionType == '当天维保') {
+        
           this.liftListParams = {
             status: this.period,
             type: this.period2,
@@ -544,11 +555,8 @@
             begin: Date.parse(new Date()),
             end: Date.parse(new Date())
           }
-        } else if(type == '3天内维保') {
-          // this.liftListParams.status = this.period
-          // this.liftListParams.type = this.period2
-          // this.liftListParams.begin = Date.parse(new Date())+24*60*60*1000 // 明天
-          // this.liftListParams.end = Date.parse(new Date())+24*60*60*1000*2 // 后天
+        } else if( this.exceptionType == '3天内维保') {
+       
           this.liftListParams = {
             status: this.period,
             type: this.period2,
@@ -564,14 +572,8 @@
             begin: Date.parse(new Date()),
             end: Date.parse(new Date())
           }
-          this.period = "全部"
         }
-        
-        this.exceptionType = type
-        this.getAllLiftPoint()
-      },
-      // 获取地图上所有圆环点的 数据
-      getAllLiftPoint(){
+
         api.mapApi.getMap3AllDots(this.liftListParams).then((res) => {
           
           if (res.data.code === 200 ){
@@ -582,25 +584,12 @@
             // if(res.data.data == undefined){
               this.lnglats = res.data.data || []
               // this.lnglats = [{
-              //   type: "正常运行",
-              //   latLon: "113.920402,22.499711",
-              //   regCode: "007",
-              //   status: "0"
+              //   elevCode: "31104403002009001047"
+              //   id: "1164058492633657346"
+              //   latLon: "113.920659,22.4988"
+              //   status: "已派单"
               // },{
-              //   type: "当天维保",
-              //   latLon: "113.920702,22.499511",
-              //   regCode: "007",
-              //   status: "0"
-              // },{
-              //   type: "3天内维保",
-              //   latLon: "113.920902,22.499121",
-              //   regCode: "007",
-              //   status: "0"
-              // },{
-              //   type: "超时任务",
-              //   latLon: "113.921202,22.499711",
-              //   regCode: "007",
-              //   status: "0"
+
               // }]
               for( var i = 0 ;i< this.lnglats.length ; i++ ){
                 this.lnglats[i].latLon = this.lnglats[i].latLon.split(',');
@@ -1150,15 +1139,27 @@
 @keyframes ripple3 {
   0% {
     transform scale(0.5);
+    // left: -4px;
+    // top: -4px;
+    // width:10px;
+    // height:10px;
     opacity: 0.3;
   }
   50% {
     transform scale(1);
+    // left: -10px;
+    // top: -10px;
+    // width: 20px;
+    // height: 20px;
     opacity: 1;
   }
   100% {
     transform scale(0.5);
-    opacity: 0.2;
+    // left: -5px;
+    // top: -5px;
+    // width: 10px;
+    // height: 10px;
+    opacity: 0.3;
   }
 }
 .mapDotMaker

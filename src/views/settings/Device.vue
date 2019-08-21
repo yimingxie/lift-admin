@@ -379,6 +379,7 @@ export default {
         this.offline_count = this.devCount - this.onlineCount
         this.onlineCount_per = (this.onlineCount / this.devCount).toFixed(2) * 100
         this.offline_count_per = 100 - this.onlineCount_per
+        
       })
     },
 

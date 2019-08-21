@@ -408,6 +408,7 @@ export default {
               if (res.data.code === 200) {
                 this.$message.success('修改成功！');
                 this.edit_dialogFormVisible = false
+                this.getAllAccountData()
               } else {
                 this.$message.error(res.data.message);
               }
@@ -416,7 +417,7 @@ export default {
             // this.edit_dialogFormVisible = false
             
           }
-          this.getAllAccountData()
+          // this.getAllAccountData()
         } else {
           this.$message.error(res.data.message);
         }

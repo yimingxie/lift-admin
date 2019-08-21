@@ -281,19 +281,23 @@ export default {
     // 获取设备详情
     getDetail() {
       let that = this
-      let query = {
-        monitorObj: this.$route.query.monitorObj,
-        monitorVal: this.$route.query.monitorVal,
-        regCode: this.$route.query.regCode
-      }
+      // let query = {
+      //   // monitorObj: this.$route.query.monitorObj,
+      //   // monitorVal: this.$route.query.monitorVal,
+      //   // regCode: this.$route.query.regCode
+      //   devEui: this.$route.query.devEui
+      // }
+      let query = this.$route.query.devEui
 
       api.device.getDetailMainten(query).then(res => {
         let detail = res.data.data
+        console.log('detail', detail)
+
         this.devName = detail.devName
         this.bonline = detail.bonline
         this.devEui = detail.devEui
         this.devModel = detail.devModel
-        this.monitorVal = that.modelContentList[detail.monitorVal]
+        // this.monitorVal = that.modelContentList[detail.monitorVal]
         this.devBrand = detail.devBrand
         this.assembId = detail.assembId
         this.assembName = detail.assembName
@@ -302,6 +306,11 @@ export default {
         this.localArea = detail.localArea
         this.address = detail.address
         this.monitorObj = xymFun.changeMonitorObj(detail.monitorObj).join('-')
+        let monitorValTempArr = []
+        detail.monitorVal.split(',').forEach(item => {
+          monitorValTempArr.push(that.modelContentList[item])
+        })
+        this.monitorVal = monitorValTempArr.join('、')
 
         this.nativemonitorObj = detail.monitorObj
         this.nativemonitorVal = detail.monitorVal

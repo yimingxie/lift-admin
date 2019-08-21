@@ -293,11 +293,11 @@
       // 判断菜单是否可用
       ifDisabled(title){
         var flag = true
-        
-        if(this.type.indexOf("domino") > -1 || this.type.indexOf("administrator") > -1 || this.type.indexOf("manager") > -1) {
+        // 通用管理员与维保超管拥有全部权限
+        if(this.type.indexOf("domino") > -1 || this.type.indexOf("administrator") > -1) {
           flag = false
         }
-        else{
+        else {
           var modulesJson = JSON.parse(this.modulesJson)
           for(var i = 0; i < modulesJson.length ; i++) {
             // if( modulesJson[i].name.indexOf(title) !== -1 || modulesJson[i].name.indexOf('通用') !== -1 || modulesJson[i].name.indexOf('管理员专用') !== -1){

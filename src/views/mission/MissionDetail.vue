@@ -111,7 +111,7 @@
           <table border="0" class="s_de_details s_de_details2 clearfix" v-else-if="taskResult.commitType == '1'">
             <tbody>
               <tr>
-                <td style="width: 13%;"><span class="tie">维修内容</span><span >{{taskResult.conclusion}}</span></td>
+                <td style="width: 13%;"><span class="tie">维修内容</span><span>{{taskResult.conclusion}}</span></td>
                 <td><span class="tie">配件类型</span><span>{{taskResult.annexType}}</span></td>
               </tr>
               <tr>
