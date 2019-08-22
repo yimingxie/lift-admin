@@ -206,7 +206,7 @@
 
               <span style="max-width:300px;float:right;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{taskList.localArea}}{{taskList.address}}</span>
             </p>
-            <!-- 新建 -->
+            <!-- 新建计划或任务 -->
             <div class="addmissionDiv" v-if="nowTr === taskList.elevCode">
            
               <el-date-picker
@@ -216,7 +216,8 @@
                 format="MM-dd HH:mm:ss"
                 value-format='yyyy-MM-dd HH:mm:ss'
                 type="datetime"
-                placeholder="选择日期时间">
+                placeholder="选择日期时间"
+                :picker-options="pickerOptions">
               </el-date-picker>
               <span class="splitLine">|</span>
 
@@ -253,7 +254,8 @@
 
             </div>
             <!-- 新建 -->
-           
+
+            <!-- 任务列表 -->
             <div v-for="(task) in taskList.data" :key="task.id" class="taskDiv">
               <!-- <el-checkbox-group v-model="checkedStaffs" @change="handleCheckedStaffsChange">
                 <el-checkbox :label="account.id" :key="index" class="checkbox16">{{nonetext}}</el-checkbox>
@@ -311,7 +313,8 @@
                   format="MM-dd HH:mm:ss"
                   value-format='yyyy-MM-dd HH:mm:ss'
                   type= "datetime"
-                  placeholder="选择日期时间">
+                  placeholder="选择日期时间"
+                  :picker-options="pickerOptions">
                 </el-date-picker>
                 <span class="splitLine">|</span>
 
@@ -336,7 +339,10 @@
               </div>
               <!-- 修改计划 -->
 
-              <div v-if="task.status == '无计划'" style="color: #C2C7CC;">该电梯暂无维保记录，请手动创建下次维保时间</div>
+              <div v-if="task.status == '无计划'" style="color: #C2C7CC;"  class="taskListStyle">
+                <i style="color:#76DDAC;margin-right:2px">●</i>
+                该电梯暂无维保记录，请手动创建下次维保时间
+              </div>
             </div>
             
           </div>
@@ -477,7 +483,13 @@ import SearchCode from '../../components/SearchCode'
 
 export default {
   data() {
+    
     return {
+      pickerOptions: { // 工单时间不让选择今天以前的
+        disabledDate(time) {
+          return time.getTime() < Date.now() - 24 * 60 * 60 * 1000
+        }
+      },
       parentCode:'',
       showCreatePlan2: true,
       selectedPersonsLabels:[],
@@ -780,10 +792,13 @@ export default {
     getTotalStatis(){
       api.taskApi.getTotalStatis(window.localStorage.getItem('corpId')).then((res) => {
         // this.totalStatis = res.data.data || {numta:0,numwb:0,numgz:0,numjy:0}
-        this.totalStatis.numta =  res.data.data.numta || 0
-        this.totalStatis.numwb =  res.data.data.numwb || 0
-        this.totalStatis.numgz =  res.data.data.numgz || 0
-        this.totalStatis.numjy =  res.data.data.numjy || 0
+        if(res.data.data !== null){
+          this.totalStatis.numta =  res.data.data.numta || 0
+          this.totalStatis.numwb =  res.data.data.numwb || 0
+          this.totalStatis.numgz =  res.data.data.numgz || 0
+          this.totalStatis.numjy =  res.data.data.numjy || 0
+        }
+        
       })
     },
     // 清空搜索框

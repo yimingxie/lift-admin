@@ -3,14 +3,18 @@
   <div class="row" >
 
     <div class="panel" >
-      <div class="title"><div class="label1">编辑员工</div></div>
+      <div class="title"><div class="label1">添加员工</div></div>
       <div class="content">
         <!-- http-request：覆盖默认的上传行为，可以自定义上传的实现
         show-file-list：是否显示已上传文件列表，默认是true
         multiple：是否支持多选文件
         action：必选参数，上传的地址
         （如果不自定义上传行为，可以直接在action配置地址就行，没有地址可以为空，但是不能不写action） 
-        headers="application/x-www-form-urlencoded"-->
+        headers="application/x-www-form-urlencoded"
+          :http-request="upLoadHeadPic"
+          :on-success="handleAvatarSuccess"
+          :before-upload="beforeAvatarUpload"
+        -->
 
         <el-upload
           class="avatar-uploader"
@@ -25,47 +29,62 @@
           <div class="uploadBtn">点击上传员工照片</div>
           <div class="uploadTip">图片格式为.jpg/.png；建议图片尺寸为300像素*300像素，图片大小不可超过2M</div>
         </el-upload>
-
-        <el-form :model="editStaffForm" :rules="rules" ref="form" label-width="105px" :hide-required-asterisk='true'>
+        <!-- <el-upload 1
+          class="avatar-uploader"
+          :http-request="Upload" 
+          :multiple="true" 
+          :show-file-list="false" 
+          :on-success="handleAvatarSuccess"
+          action="">
+          <img v-if="imageUrl" :src="imageUrl" class="avatar">
+          <i v-else class="uploader-icon"></i>
+          <div class="uploadBtn">点击上传员工照片</div>
+          <div class="uploadTip">图片格式为.jpg/.png；建议图片尺寸为300像素*300像素，图片大小不可超过2M</div>
+        </el-upload> -->
+ 
+        
+        <el-form ref="form" :model="addStaffForm" label-width="105px">
           <el-row>
             <el-col :span="12">
-              <el-form-item label="姓名：" prop="name">
-                <el-input v-model="editStaffForm.name" placeholder="请输入姓名"></el-input>
+              <el-form-item label="姓名：">
+                <el-input v-model="addStaffForm.name" placeholder="请输入姓名"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="11" :offset="1">
-              <el-form-item label="性别：" prop="gender">
+              <el-form-item label="性别：">
                 <div class="chooseSex">
-                  <label class="btn male" :class="editStaffForm.gender == '1' ? 'active': ''">
+                  <label class="btn male" :class="addStaffForm.gender === '1' ? 'active': ''">
                     <input type="radio" autocomplete="off" @click="onSelectSex('1')"/>
                   </label>
-                  <label class="btn female" :class="editStaffForm.gender == '0' ? 'active': ''">
+                  <label class="btn female" :class="addStaffForm.gender === '0' ? 'active': ''">
                     <input type="radio" autocomplete="off" @click="onSelectSex('0')"/>
                   </label>
                 </div>
               </el-form-item>
             </el-col>
           </el-row>
-          <el-form-item label="手机号：" prop="account">
-            <el-input v-model="editStaffForm.account" placeholder="(将作为为app登录账号)请输入手机号"></el-input>
+          <el-form-item label="手机号：">
+            <el-input v-model="addStaffForm.account" placeholder="(将作为为app登录账号)请输入手机号"></el-input>
           </el-form-item>
-          <el-form-item label="出生日期：" prop="birthday">
-            <!-- <a-date-picker @change="aChangePickDate1" :defaultValue="moment(birthday, 'YYYY-MM-DD')" :format="dateFormat" :showToday="false" placeholder="请选择日期" style="width: 248px">
-            </a-date-picker> -->
-            <el-date-picker type="date" value-format="yyyy-MM-dd HH:mm:ss" placeholder="请选择日期" v-model="editStaffForm.birthday" style="width: 248px"></el-date-picker>
+          <el-form-item label="身份证号：">
+            <el-input v-model="addStaffForm.idCard" placeholder="请输入身份证号"></el-input>
           </el-form-item>
-          <el-form-item label="从业日期：" prop="empTime">
-            <!-- <a-date-picker @change="aChangePickDate2" :defaultValue="moment(empTime, 'YYYY-MM-DD')" format="YYYY-MM-DD" :showToday="false" placeholder="请选择日期" style="width: 248px">
-            </a-date-picker> -->
-            <el-date-picker type="date" value-format="yyyy-MM-dd HH:mm:ss" placeholder="请选择日期" v-model="editStaffForm.empTime" style="width: 248px"></el-date-picker>
+          <el-form-item label="出生日期：">
+            <a-date-picker @change="aChangePickDate1" format="YYYY-MM-DD" :showToday="false" placeholder="请选择日期" style="width: 248px">
+            </a-date-picker>
+          </el-form-item>
+          <el-form-item label="从业日期：">
+            <a-date-picker @change="aChangePickDate2" format="YYYY-MM-DD" :showToday="false" placeholder="请选择日期" style="width: 248px">
+            </a-date-picker>
           </el-form-item>
           <el-form-item label="入职日期：">
-            <!-- <a-date-picker @change="aChangePickDate3" :defaultValue="moment(entryTime, 'YYYY-MM-DD')" format="YYYY-MM-DD" :showToday="false" placeholder="(选填)请选择日期" style="width: 248px">
-            </a-date-picker> -->
-            <el-date-picker type="date" value-format="yyyy-MM-dd HH:mm:ss" placeholder="(选填)请选择日期" v-model="editStaffForm.entryTime" style="width: 248px"></el-date-picker>
+            <a-date-picker @change="aChangePickDate3" format="YYYY-MM-DD" :showToday="false" placeholder="(选填)请选择日期" style="width: 248px">
+            </a-date-picker>
           </el-form-item>
-          <el-form-item label="部门：" prop="depId">
-            <el-select @change="depSelectChange" v-model="editStaffForm.depId" placeholder="请选择部门" >
+          <el-form-item label="部门：">
+            <!-- <choiceindex clearable filterable @change="regionChange" :is-two-dimension-value="false" :selectedLabels="selectedArea" v-model="checkList" :data="regionOptions"></choiceindex> -->
+            <!-- <el-input v-model="addStaffForm.depId"></el-input> -->
+            <el-select @change="depSelectChange" v-model="addStaffForm.depId" placeholder="请选择部门" >
               <el-option
                 v-for="item in getAllDepJson"
                 :key="item.id"
@@ -76,6 +95,16 @@
 
           </el-form-item>
           <el-form-item label="管辖区域：">
+            <!-- <el-cascader 
+              filterable 
+              :props="props" 
+              :options="regionOptions" 
+              v-model="areaForm.selectedOptions" 
+              @change="handleChange" 
+              :show-all-levels="false" clearable
+               style="width: 100%"
+              >
+            </el-cascader> -->
             
             <choiceindex 
               :only-last="true" 
@@ -85,10 +114,12 @@
               :is-two-dimension-value="false" 
               v-model="checkList2" 
               :data="regionOptions2"
-              placeholder="请选择完部门勾选管辖区域">
+              placeholder="请选择完部门勾选管辖区域" >
             </choiceindex>
       
+            <!-- <choiceindex clearable filterable @change="regionChange2" :is-two-dimension-value="false" v-model="checkList2" :data="regionOptions2"></choiceindex> -->
            
+            <!-- <el-input v-model="addStaffForm.manageArea" @blur="inputBlur()"></el-input> -->
           </el-form-item>
           <el-form-item >
             <span slot="label">管辖电梯：<div class="subTip" >（第一负责人）</div></span>
@@ -99,29 +130,19 @@
                 <i class="el-icon-arrow-down el-icon--right"></i>
               </span>
               <el-dropdown-menu slot="dropdown" class="liftDropdown">
-                <div v-if="getLIftDataFirst.length > 0" v-for="item in getLIftDataFirst" :key="item.regCode">
-                    <!-- <div class="dropdownArea">{{item.areaName}}</div>
-                    <span class="dropdownList dropdown1">{{item.regCode}}</span>
-                    <span class="dropdownList dropdown2">{{item.inNum}}</span>
-                    <span class="dropdownList dropdown3">{{item.address}}</span>
+                <div v-if="getLIftDataFirst.length > 0" v-for="item in getLIftDataFirst" :key="item.areaName">
+                  <div class="dropdownArea">{{item.areaName}}</div>
+                  <div v-for="list in item.data" :key="list.regCode">
+                    <span class="dropdownList dropdown1">{{list.regCode}}</span>
+                    <span class="dropdownList dropdown2">{{list.inNum}}</span>
+                    <span class="dropdownList dropdown3">{{list.address}}</span>
                     <span class="dropdownList dropdown4">
                       <el-checkbox-group v-model="checkedLiftAs" @change="handleCheckedLiftAsChange">
-                        <el-checkbox :label="item.regCode" :key="item.regCode" class="checkbox16">{{nonetext}}</el-checkbox>
+                        <el-checkbox :label="list.regCode" :key="list.regCode" class="checkbox16">{{nonetext}}</el-checkbox>
                       </el-checkbox-group>
-                    </span> -->
-
-                    <div class="dropdownArea">{{item.areaName}}</div>
-                    <div v-for="list in item.data" :key="list.regCode">
-                      <span class="dropdownList dropdown1">{{list.regCode}}</span>
-                      <span class="dropdownList dropdown2">{{list.inNum}}</span>
-                      <span class="dropdownList dropdown3">{{list.address}}</span>
-                      <span class="dropdownList dropdown4">
-                        <el-checkbox-group v-model="checkedLiftAs" @change="handleCheckedLiftAsChange">
-                          <el-checkbox :label="list.regCode" :key="list.regCode" class="checkbox16">{{nonetext}}</el-checkbox>
-                        </el-checkbox-group>
-                      </span>
-                    </div>
+                    </span>
                   </div>
+                </div>
                 <div v-if="getLIftDataFirst.length === 0" class="tac" style="color: #999;"> 无数据 </div>
               </el-dropdown-menu>
             </el-dropdown>
@@ -136,7 +157,7 @@
                 <i class="el-icon-arrow-down el-icon--right"></i>
               </span>
               <el-dropdown-menu slot="dropdown" class="liftDropdown">
-                <div v-if="getLIftDataSecond.length > 0" v-for="item in getLIftDataSecond" :key="item.regCode">
+                <div v-if="getLIftDataSecond.length > 0" v-for="item in getLIftDataSecond" :key="item.areaName">
                   <div class="dropdownArea">{{item.areaName}}</div>
                   <div v-for="list in item.data" :key="list.regCode">
                     <span class="dropdownList dropdown1">{{list.regCode}}</span>
@@ -149,15 +170,39 @@
                     </span>
                   </div>
                 </div>
+                <!-- <div v-if="getLIftDataSecond.length > 0" v-for="item in getLIftDataSecond" :key="item.regCode">
+                    <div class="dropdownArea">{{item.areaName}}</div>
+                    <span class="dropdownList dropdown1">{{item.regCode}}</span>
+                    <span class="dropdownList dropdown2">{{item.inNum}}</span>
+                    <span class="dropdownList dropdown3">{{item.address}}</span>
+                    <span class="dropdownList dropdown4">
+                      <el-checkbox-group v-model="checkedLiftBs" @change="handleCheckedLiftBsChange">
+                        <el-checkbox :label="item.regCode" :key="item.regCode" class="checkbox16">{{nonetext}}</el-checkbox>
+                      </el-checkbox-group>
+                    </span>
+                </div> -->
                 <div v-if="getLIftDataSecond.length === 0" class="tac" style="color: #999;"> 无数据 </div>
               </el-dropdown-menu>
             </el-dropdown>
-            <!-- <el-input v-model="editStaffForm.minorRegCode"></el-input> -->
+            <!-- <el-input v-model="addStaffForm.minorRegCode"></el-input> -->
          
           </el-form-item>
           <el-form-item label="从业资格证：">
             <el-row >
               <el-col :span="5">
+                <!-- <el-upload
+                  class="avatar-uploader"
+                  :headers="{'Content-Type':'multipart/form-data'}"
+                  :http-request="upLoadHeadPic"
+                  :action="upLoadUrl"
+                  :show-file-list="false" 
+                  
+                >
+                  <img v-if="imageUrl1" :src="imageUrl1" class="avatar">
+                  <i v-else class="uploader-icon"></i>
+                  <div class="uploadBtn">点击上传员工照片</div>
+                  <div class="uploadTip">图片格式为.jpg/.png；建议图片尺寸为300像素*300像素，图片大小不可超过2M</div>
+                </el-upload> -->
                 <el-upload
                   class="avatar-uploader2"
                   :headers="{'Content-Type':'multipart/form-data'}"
@@ -180,7 +225,7 @@
           <div class="tac" style="margin-top:33px">
             <router-link to="/staff"><el-button class="dialogCancel">取 消</el-button></router-link>
 
-            <el-button type="primary" @click="confirmEditAccount()" class="dialogSure" style="margin-left:45px;">确 认</el-button>
+            <el-button type="primary" @click="confirmAddAccount()" class="dialogSure" style="margin-left:45px;">确 认</el-button>
           </div>
         </el-form>
       </div>
@@ -202,15 +247,15 @@ import newArea from "../../utils/newArea";
 import { client } from '@/utils/alioss'
 import choiceindex from "../../components/multi-cascader/multi-cascader"; //级联选择多选 完成
 let pcas = require("../../utils/citySelector/pcas-code.json")
-import moment from 'moment';
 
 export default {
   data() {
     return {
+      token: window.localStorage.getItem('accessToken'),
       upLoadUrl:'http://192.168.100.7:8080/domino/upload/image',
       imageUrl1:'',
       imageUrl2:'',
-      dateFormat: 'YYYY-MM-DD',
+      pic:'',
       form: {
         name: '',
         region: '',
@@ -232,6 +277,7 @@ export default {
         minarea : '',
         selectedOptions: [],//地区筛选数组
       },
+      
       // data:[], // 与element级联选择器格式一致
       checkList1: [],
       checkList2: [],
@@ -244,14 +290,14 @@ export default {
       checkedAllStaff:[],
       nonetext:'',
       searchKey:'',
-      editStaffForm: {
-        id:'',
+      addStaffForm: {
         name: '', //员工姓名
+        idCard: '', // 身份证
         account: "", //账号:限定手机号
         corpId: window.localStorage.getItem('corpId'), //公司id
         depId: "" , //部门id
         manageArea:'', //管理区域
-        gender:'0', //性别; 0:女;1:男
+        gender:'1', //性别; 0:女;1:男
         birthday:'', //生日 日期 须限定格式 2003-11-19 00:00:00
         empTime:'', //从业日期 须限定格式 2003-11-19 00:00:00
         empUrl:'', // 从业资格证 图片地址
@@ -259,23 +305,6 @@ export default {
         entryTime:'',//入职日期 须限定格式 2003-11-19 00:00:00
         majorRegCode:'',  // 管辖电梯（第一负责人） regcode 逗号分隔
         minorRegCode:'', // 管辖电梯（第二负责人） regcode 逗号分隔
-      },
-      rules: {
-        name: [
-          { required: true, message: '请输入姓名', trigger: 'blur' },
-        ],
-        idCard: [
-          { required: true, message: '请输入身份证号', trigger: 'blur' }
-        ],
-        account: [
-          {required: true, message: '请输入手机号', trigger: 'blur' }
-        ],
-        birthday: [
-          { required: true, message: '请选择日期', trigger: 'blur' }
-        ],
-        empTime: [
-          { required: true, message: '请选择日期', trigger: 'blur' }
-        ]
       },
       getAllDepJson:[],
       queryParam:{
@@ -289,11 +318,11 @@ export default {
         areaCode:''
       },
       selectedAreaLabels: [],
-      checkAreaList:[], //员工管辖区域,数组
-      getLIftDataFirst:[],
-      getLIftDataSecond:[],
-      checkedLiftAs:[],
-      checkedLiftBs:[],
+      checkAreaList: [], //员工管辖区域,数组
+      getLIftDataFirst: [],
+      getLIftDataSecond: [],
+      checkedLiftAs: [],
+      checkedLiftBs: []
     }
   },
   components: {
@@ -315,7 +344,12 @@ export default {
         for(var i = 0; i < val.length; i++){
           api.accountApi.getElevatorByArea(window.localStorage.getItem('corpId'),val[i]).then((res) => {
             if(res.data.code === 200 && res.data.message === 'success'){
-               
+              // if(res.data.data.major){
+                // var majorObj= {
+                //   "area" : val[i],
+                //   "lift" : res.data.data.major
+                // }
+                // this.getLIftDataFirst.push(majorObj)
                 if(res.data.data.major.length > 0){
 
                   res.data.data.major.forEach(item =>{
@@ -329,7 +363,7 @@ export default {
                   })
                 }
                
-                console.log("this.getLIftDataFirst===" + JSON.stringify(this.getLIftDataFirst))
+                console.log("this.getLIftDataFirst===" + JSON.stringify(secondList))
 
                 firstList.forEach(item =>{
                   var areaName = newArea.getAreaName(item.areaCode).join('')
@@ -341,19 +375,18 @@ export default {
                 })
 
 
+
                 ///////////////////////////
                 this.getLIftDataFirst = this.mergeArrayList(firstList)
                 this.getLIftDataSecond = this.mergeArrayList(secondList)
-                console.log("dest::::" + JSON.stringify(this.getLIftDataFirst));
+                console.log("dest::::" + JSON.stringify(this.getLIftDataSecond));
                 //////////////////////////
-
 
             } else {
               this.getLIftDataFirst = []
               this.getLIftDataSecond = []
             }
             
-            // console.log("res.data.code" + res.data.data.records[0])s
           }).catch((res) => {
             
           })
@@ -366,31 +399,30 @@ export default {
       
     }
   },
-  computed: { 
-    // birthday() {
-    //   //    console.log("this.getStaffInfo.birthday---" + this.getStaffInfo.birthday)
-
-    //   // if(this.getStaffInfo.birthday){
-    //     var birthday = moment(this.getStaffInfo.birthday).format(this.dateFormat)//入职日期
-    //   // } else {
-    //   //   var birthday = ''
-    //   // }
-    //   return birthday; 
-    // },
-    // entryTime() {
-    //   var entryTime = moment(this.getStaffInfo.entryTime).format(this.dateFormat)//入职日期
-    //   return entryTime; 
-    // },
-    // empTime() { 
-    //   var empTime = moment(this.getStaffInfo.empTime).format(this.dateFormat)//入职日期
-    //   return empTime; 
-    // },
-  },
   mounted() {
     this.getAllDepartmentData()
+    // for(var i= 0; i<2 ; i++){
+      var mission = {
+        address:'南山区-蛇口',
+        lifts:[{
+            id:'1',
+            order:'2345…5555',
+            code:'DT-1',
+            address:'花园城数码大厦a座',
+          },{
+            id:'2',
+            order:'2345…5555',
+            code:'DT-1',
+            address:'花园城数码大厦a座',
+        }]
+        
+      }
+    // }
+    this.liftList.push(mission)
+    // 重置多选
     
-    this.editStaffForm.id = this.$route.params.staffId
-    // console.log("params==" + this.$route.params.staffId)
+
+    // }
     
   },
   methods: {
@@ -418,116 +450,8 @@ export default {
       }
       return dest
     },
-    // 自定义头像上传方法
-    upLoadHeadPic(fileObj) {
-      const _file = fileObj.file;
-      const isLt2M = _file.size / 1024 / 1024 < 2;
-
-      if (!isLt2M) {
-        this.$message.error("上传头像图片大小不能超过 2MB!");
-        return false;
-      }
-
-      const formData = new FormData()
-      formData.append('file', fileObj.file)
-      formData.append('type', fileObj.file.type)
-
-      api.accountApi.uploadPic(formData).then((res) => {
-        if(res.data.code === 200 && res.data.message === 'success'){
-          // this.imageUrl1 = "http://192.168.100.7:8080/domino/view/image?filename=" + res.data.data.fileName
-          this.imageUrl1 = api.accountApi.viewPic(res.data.data.fileName)
-          this.editStaffForm.avatarUrl = res.data.data.fileName
-        } else {
-
-        }
-        
-      })
-    },
-    // 自定义从业资格证上传方法
-    upLoadQualificationPic(fileObj) {
-      const _file = fileObj.file;
-      const isLt2M = _file.size / 1024 / 1024 < 2;
-
-      if (!isLt2M) {
-        this.$message.error("上传从业资格证图片大小不能超过 2MB!");
-        return false;
-      }
-
-      const formData = new FormData()
-      formData.append('file', fileObj.file)
-      formData.append('type', fileObj.file.type)
-
-      api.accountApi.uploadPic(formData).then((res) => {
-        if(res.data.code === 200 && res.data.message === 'success'){
-          // this.imageUrl2 = "http://192.168.100.7:8080/domino/view/image?filename=" + res.data.data.fileName
-          this.imageUrl2 = api.accountApi.viewPic(res.data.data.fileName)
-          this.editStaffForm.empUrl = res.data.data.fileName
-        } else {
-        }
-      })
-
-    },
-    moment,
-    // 查询账户详情
-    getAllAccountData(){
-      api.accountApi.getStaffDetails(this.$route.params.staffId).then((res) => {
-        if(res.data.code === 200 && res.data.message === 'success'){
-          this.getStaffInfo = res.data.data.staffInfo
-          this.editStaffForm.name = this.getStaffInfo.name//员工姓名
-          this.editStaffForm.account = this.getStaffInfo.account//员工姓名
-          this.editStaffForm.depId = this.getStaffInfo.depId//员工姓名
-          
-          this.editStaffForm.gender = this.getStaffInfo.gender// 从业资格证 图片地址
-          this.checkList2 = this.getStaffInfo.manageArea.split(',')// 从业资格证 图片地址
-
-          this.editStaffForm.empUrl = this.getStaffInfo.empUrl// 从业资格证 图片地址
-          this.editStaffForm.avatarUrl = this.getStaffInfo.avatarUrl// 头像地址
-
-          this.editStaffForm.empTime = this.getStaffInfo.empTime || ''
-          this.editStaffForm.entryTime = this.getStaffInfo.entryTime|| ''//入职日期
-          this.editStaffForm.birthday = this.getStaffInfo.birthday || ''//入职日期
-          // console.log("this.editStaffForm.birthday" + this.editStaffForm.birthday)
-          // this.birthday = moment(this.getStaffInfo.birthday).format(this.dateFormat)//入职日期
-          // 设置员工管辖区域
-
-          this.depSelectChange(this.editStaffForm.depId, 1)
-
-          var majorArr = []
-          res.data.data.major.forEach(item =>{
-            majorArr.push(item.regCode)
-          })
-
-          this.editStaffForm.majorRegCode = majorArr.join(',')
-
-          var minorArr = []
-
-          res.data.data.minor.forEach(item =>{
-            minorArr.push(item.regCode)
-          })
-
-          this.editStaffForm.minorRegCode = minorArr.join(',')
-
-          // 员工头像
-          if(this.getStaffInfo.avatarUrl){
-            this.imageUrl1 = api.accountApi.viewPic(this.getStaffInfo.avatarUrl)
-            
-          }
-          // 从业资格证
-          if(this.getStaffInfo.empUrl){
-            this.imageUrl2 = api.accountApi.viewPic(this.getStaffInfo.empUrl)
-          }
-        } else {
-          this.getStaffInfo = []
-        }
-        
-        // console.log("res.data.code" + res.data.data.records[0])s
-      }).catch((res) => {
-        
-      })
-     
-    },
     handleCheckedLiftAsChange(value){
-      console.log("checkA:" + value)
+      // console.log("checkA:" + value)
       // console.log("Allcheckop:==" + this.checkedAllStaff)
       // let checkedCount = value.length;
       // this.checkAll = checkedCount === this.getAllAccountJson.length;
@@ -542,30 +466,25 @@ export default {
     },
     // 根据部门值变化
     // val- 部门ID
-    depSelectChange(val,type){
-      console.log("val---" + val)
+    depSelectChange(val){
+      // console.log("val---" + val)
       var selectDep = this.getAllDepJson.filter(item => {
-        return item.id == val
+        // console.log("val---" + item.id)
+        return item.id === val
       })
-
       // var processArr = arr.filter(function(value) {
       //     return value == val;
       // })
-      // console.log("this.getAllDepJson" + JSON.stringify(this.getAllDepJson))
-
-      // console.log("selectRange---" + selectDep)
+      // console.log("val---" + JSON.stringify(selectDep))
       var selectRange = selectDep[0].areaCode
-      
-
-      // alert(1)
-
       // 重置联动数据 
       this.regionOptions2 = []
-
       //   console.log("checkList1=" + this.checkList)
+      // console.log("selectRange---" + this.regionOptions2)
       this.checkList1 = selectRange.split(",")
-
-      // this.createPickAreaRange()
+      // console.log("checkList1=" + this.checkList1)
+      // alert(this.checkList.length)
+      // var checkArr = this.checkList.split(",")
       if(this.checkList1.length > 0){
         // this.getStaffAreaRange(this.checkList1)
         var sheng = this.checkList1[0].substring(0,2)
@@ -587,6 +506,7 @@ export default {
           // console.log("所选区：" + qu)
         }
         // var aaa = this.regionOptions.filter(item => item.code === '11')
+
         // 构建员工管辖区域数据
         this.regionOptions = newArea.newAreaOption()
         this.regionOptions.forEach((item, i) => {
@@ -650,6 +570,7 @@ export default {
                                   obj4.label = forthItem.label
                                   obj3.children.push(obj4)
                                 }
+                                // 直接加上对应code的片区
                                 if(this.checkList1[k].length > 6 && forthItem.value === this.checkList1[k]){
                                   // console.log("所选片区-" + forthItem.value)
                                   // console.log("所选片区-" + this.checkList1[k])
@@ -678,24 +599,17 @@ export default {
           // newFormat[item.code] = item.name
 
         })
-        // console.log("selectRange---" + this.regionOptions2)
         // 构建员工管辖区域数据 end
-          
+        this.checkList2 = selectRange.split(",")
+
         // this.regionChange2(this.checkList2)
       }
-      if(type !== 1){
-        this.checkList2 = selectRange.split(",")
-      }
-      // console.log("this.checkList2--11111111111111-" + this.checkList2)
     },
-    createPickAreaRange(){
-      
-    },
+    // 切换员工管辖区域
     regionChange2(val, totalLabel) {
 
       this.selectedAreaLabels = [] // 重置
       
-      var util = require("util")
       // 重置联动数据 
       // this.regionOptions2 = []
       // console.log("所选区域码:" +  JSON.stringify(totalLabel));
@@ -742,7 +656,7 @@ export default {
           // 判断片区总数是否与选中片区个数相等 若相等 则为全选
           if(this.ifCheckAllQu(quitem, pianquLength)){
             for(var i = 0; i < this.checkAreaList.length; i++){
-              // console.log("quitem::::" + quitem)
+              console.log("quitem::::" + quitem)
               if(this.checkAreaList[i].substring(0,6) === quitem){
                 this.checkAreaList[i] = this.checkAreaList[i].substring(0,6)
               }
@@ -750,14 +664,9 @@ export default {
           }
           this.checkAreaList = this.uniq(this.checkAreaList) // 去重
         })
-
-        // console.log("checkListNew==" + checkListNew)
-        // console.log("pianquLength==" + pianquLength)
-        // console.log("checkAreaList=" + this.checkAreaList)
         // 区域标签展示格式转换
         this.selectedAreaLabels = newArea.getAreaName(this.checkAreaList.join(','))
         // 区域标签展示格式转换---------
-        
         // var dest = [],
         //   map = {};
         // for(var i = 0; i < totalLabel.length; i++) {
@@ -784,7 +693,7 @@ export default {
         // }
         // // console.log("所选区域码:" +  JSON.stringify(dest));
         // dest.forEach(item =>{
-        //   console.log("item.data=========" + item.data[0])
+        //   // console.log("item.data=========" + item.data[0])
         //   // 如果区全选
         //   if(this.ifCheckAllQu(item.name, item.data.length)){
         //     this.selectedAreaLabels.push(item.name + "-全部")
@@ -861,6 +770,7 @@ export default {
       }
       return temp;
     },
+    
     // 获取员工的管辖区域可选范围
     getStaffAreaRange(list){
 
@@ -871,9 +781,8 @@ export default {
       api.accountApi.getDepartments(this.queryParam).then((res) => {
         if(res.data.code === 200 && res.data.message === 'success'){
           this.getAllDepJson = res.data.data.records
-          // 加载部门数据后再加载员工详情
-          this.getAllAccountData()
-          // console.log("this.getAllDepJson" + JSON.stringify(this.getAllDepJson))
+          // this.totalPageSize = res.data.data.total
+
         } else {
           this.getAllDepJson = []
         }
@@ -885,36 +794,23 @@ export default {
       
     },
     // 确认添加员工账号
-    confirmEditAccount(){
+    confirmAddAccount(){
 
-      if(this.checkedLiftAs.length > 0){
-        this.editStaffForm.majorRegCode = this.checkedLiftAs.join(',')
-      }
-      if(this.checkedLiftBs.length > 0){
-        this.editStaffForm.minorRegCode = this.checkedLiftBs.join(',')
-      }
-      this.editStaffForm.manageArea = this.checkAreaList.join(',')
-
-      console.log("this.addStaffForm===" + JSON.stringify(this.editStaffForm))
-
-      if(this.editStaffForm.avatarUrl == ''){
-        this.$message.error('请上传员工照片');
-        return
-      }
-      this.$refs['form'].validate((valid) => {
-        if (valid) {
-          // 修改账号名
-          api.accountApi.editStaff(this.editStaffForm).then((res) => {
-            
-            if (res.data.code === 200) {
-              this.$message.success('编辑成功！');
-              this.$router.push('/staff')
-              
-            } else {
-              this.$message.error(res.data.message);
-            }
-          })
+      this.addStaffForm.majorRegCode = this.checkedLiftAs.join(',')
+      this.addStaffForm.minorRegCode = this.checkedLiftBs.join(',')
+      this.addStaffForm.manageArea = this.checkAreaList.join(',')
+      // 修改账号名
+      api.accountApi.createStaff(this.addStaffForm).then((res) => {
+        
+        if (res.data.code === 200) {
+          this.$message.success('创建成功！');
+          this.$router.push('/staff')
+          
+        } else {
+          this.$message.error(res.data.message);
         }
+      }).catch((res) => {
+        
       })
       
     },
@@ -933,36 +829,117 @@ export default {
       this.checkAll = checkedCount === this.liftList[0].lifts.length;
       // this.isIndeterminate = checkedCount > 0 && checkedCount < this.getAllAccountJson.length;
     },
-   
+    // beforeAvatarUpload(file){
+    //   const isJPG = file.type === 'image/jpeg';
+    //   const isLt2M = file.size / 1024 / 1024 < 0.1;
+    //   if (!isJPG) {
+    //     this.$message.error('上传头像图片只能是 JPG 格式!')
+    //     return
+    //   }
+    //   if (!isLt2M) {
+    //     this.$message.error('上传头像图片大小不能超过 2MB!')
+    //     return
+    //   }   
+    // },
+    // 自定义头像上传方法
+    upLoadHeadPic(fileObj) {
+      const _file = fileObj.file;
+      const isLt2M = _file.size / 1024 / 1024 < 2;
+
+      if (!isLt2M) {
+        this.$message.error("上传头像图片大小不能超过 2MB!");
+        return false;
+      }
+
+      const formData = new FormData()
+      formData.append('file', fileObj.file)
+      formData.append('type', fileObj.file.type)
+
+      api.accountApi.uploadPic(formData).then((res) => {
+        if(res.data.code === 200 && res.data.message === 'success'){
+          this.imageUrl1 = api.accountApi.viewPic(res.data.data.fileName)
+          this.addStaffForm.avatarUrl = res.data.data.fileName
+        } else {
+
+        }
+        
+      })
+    },
+    // 自定义从业资格证上传方法
+    upLoadQualificationPic(fileObj) {
+      const _file = fileObj.file;
+      const isLt2M = _file.size / 1024 / 1024 < 2;
+
+      if (!isLt2M) {
+        this.$message.error("上传从业资格证图片大小不能超过 2MB!");
+        return false;
+      }
+
+      const formData = new FormData()
+      formData.append('file', fileObj.file)
+      formData.append('type', fileObj.file.type)
+
+      api.accountApi.uploadPic(formData).then((res) => {
+        if(res.data.code === 200 && res.data.message === 'success'){
+          // this.imageUrl2 = "http://192.168.100.7:8080/domino/view/image?filename=" + res.data.data.fileName
+          this.imageUrl2 = api.accountApi.viewPic(res.data.data.fileName)
+          this.addStaffForm.empUrl = res.data.data.fileName
+        } else {
+        }
+      })
+
+    },
+    
+    // // 上传成功
+    // handleAvatarSuccess2(res, file, fileList) {
+    //   // console.log(res)
+    //   console.log("file" + JSON.stringify(file))
+    //   // console.log(fileList)  // 这里可以获得上传成功的相关信息
+    //   var picName = file.response.data.fileName
+    //   this.imageUrl2 = URL.createObjectURL(file.raw);
+    //   this.addStaffForm.empUrl = picName
+
+    //   api.accountApi.viewPic(picName).then((res) => {
+    //     // if(res.data.code === 200 && res.data.message === 'success'){
+    //     // console.log("res===" + JSON.stringify(res))
+    //     // this.pic =URL.createObjectURL(res.data)
+    //     // }
+    //     // console.log("res.data.code" + res.data.data.records[0])s
+    //   }).catch((res) => {
+        
+    //   })
+      
+    // },
+    
+    // // 上传成功
+    // handleAvatarSuccess(res, file, fileList) {
+    //   // console.log(res)
+    //   alert(111)
+    //   console.log("1111======" + file)
+    //   // console.log(fileList)  // 这里可以获得上传成功的相关信息
+    //   var picName = file.response.data.fileName
+    //   this.imageUrl1 = URL.createObjectURL(file.raw);
+    //   this.addStaffForm.avatarUrl = picName
+      
+    // },
     // 切换性别
     onSelectSex (value) {
       // this.value = value
-      this.editStaffForm.gender = value
+      this.addStaffForm.gender = value
     },
     // A日历选择框改变时触发
     aChangePickDate1(date, dateString){
       // console.log(date, dateString);
-      this.editStaffForm.birthday = dateString
+      this.addStaffForm.birthday = dateString
     },
     aChangePickDate2(date, dateString){
       // console.log(date, dateString);
-      this.editStaffForm.empTime = dateString
+      this.addStaffForm.empTime = dateString
     },
     aChangePickDate3(date, dateString){
       // console.log(date, dateString);
-      this.editStaffForm.entryTime = dateString
+      this.addStaffForm.entryTime = dateString
     },
-    // 去重
-    uniq(array){
-      var temp = []; //一个新的临时数组
-      for(var i = 0; i < array.length; i++){
-          if(temp.indexOf(array[i]) == -1){
-              temp.push(array[i]);
-          }
-      }
-      return temp;
-    },
-    
     
     
   },

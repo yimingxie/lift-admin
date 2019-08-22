@@ -43,15 +43,15 @@
         </el-upload> -->
  
         
-        <el-form ref="form" :model="addStaffForm" label-width="105px">
+        <el-form :model="addStaffForm" :rules="rules" ref="form"  label-width="105px" :hide-required-asterisk='true'>
           <el-row>
             <el-col :span="12">
-              <el-form-item label="姓名：">
+              <el-form-item label="姓名：" prop="name">
                 <el-input v-model="addStaffForm.name" placeholder="请输入姓名"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="11" :offset="1">
-              <el-form-item label="性别：">
+              <el-form-item label="性别：" prop="gender">
                 <div class="chooseSex">
                   <label class="btn male" :class="addStaffForm.gender === '1' ? 'active': ''">
                     <input type="radio" autocomplete="off" @click="onSelectSex('1')"/>
@@ -63,25 +63,28 @@
               </el-form-item>
             </el-col>
           </el-row>
-          <el-form-item label="手机号：">
+          <el-form-item label="手机号：" prop="account">
             <el-input v-model="addStaffForm.account" placeholder="(将作为为app登录账号)请输入手机号"></el-input>
           </el-form-item>
-          <el-form-item label="身份证号：">
+          <el-form-item label="身份证号：" prop="idCard">
             <el-input v-model="addStaffForm.idCard" placeholder="请输入身份证号"></el-input>
           </el-form-item>
-          <el-form-item label="出生日期：">
-            <a-date-picker @change="aChangePickDate1" format="YYYY-MM-DD" :showToday="false" placeholder="请选择日期" style="width: 248px">
-            </a-date-picker>
+          <el-form-item label="出生日期：" prop="birthday">
+            <!-- <a-date-picker @change="aChangePickDate1" format="YYYY-MM-DD" :showToday="false" placeholder="请选择日期" style="width: 248px">
+            </a-date-picker> -->
+            <el-date-picker type="date" value-format="yyyy-MM-dd HH:mm:ss" placeholder="请选择日期" v-model="addStaffForm.birthday" style="width: 248px"></el-date-picker>
           </el-form-item>
-          <el-form-item label="从业日期：">
-            <a-date-picker @change="aChangePickDate2" format="YYYY-MM-DD" :showToday="false" placeholder="请选择日期" style="width: 248px">
-            </a-date-picker>
+          <el-form-item label="从业日期：" prop="empTime">
+            <!-- <a-date-picker @change="aChangePickDate2" format="YYYY-MM-DD" :showToday="false" placeholder="请选择日期" style="width: 248px">
+            </a-date-picker> -->
+            <el-date-picker type="date" value-format="yyyy-MM-dd HH:mm:ss" placeholder="请选择日期" v-model="addStaffForm.empTime" style="width: 248px"></el-date-picker>
           </el-form-item>
           <el-form-item label="入职日期：">
-            <a-date-picker @change="aChangePickDate3" format="YYYY-MM-DD" :showToday="false" placeholder="(选填)请选择日期" style="width: 248px">
-            </a-date-picker>
+            <!-- <a-date-picker @change="aChangePickDate3" format="YYYY-MM-DD" :showToday="false" placeholder="(选填)请选择日期" style="width: 248px">
+            </a-date-picker> -->
+            <el-date-picker type="date" value-format="yyyy-MM-dd HH:mm:ss" placeholder="(选填)请选择日期" v-model="addStaffForm.entryTime" style="width: 248px"></el-date-picker>
           </el-form-item>
-          <el-form-item label="部门：">
+          <el-form-item label="部门：" prop="depId">
             <!-- <choiceindex clearable filterable @change="regionChange" :is-two-dimension-value="false" :selectedLabels="selectedArea" v-model="checkList" :data="regionOptions"></choiceindex> -->
             <!-- <el-input v-model="addStaffForm.depId"></el-input> -->
             <el-select @change="depSelectChange" v-model="addStaffForm.depId" placeholder="请选择部门" >
@@ -305,6 +308,26 @@ export default {
         entryTime:'',//入职日期 须限定格式 2003-11-19 00:00:00
         majorRegCode:'',  // 管辖电梯（第一负责人） regcode 逗号分隔
         minorRegCode:'', // 管辖电梯（第二负责人） regcode 逗号分隔
+      },
+      rules: {
+        name: [
+          { required: true, message: '请输入姓名', trigger: 'blur' },
+        ],
+        idCard: [
+          { required: true, message: '请输入身份证号', trigger: 'blur' }
+        ],
+        account: [
+          {required: true, message: '请输入手机号', trigger: 'blur' }
+        ],
+        depId: [
+          {required: true, message: '请选择部门', trigger: 'change' }
+        ],
+        birthday: [
+          { required: true, message: '请选择日期', trigger: 'blur' }
+        ],
+        empTime: [
+          { required: true, message: '请选择日期', trigger: 'blur' }
+        ]
       },
       getAllDepJson:[],
       queryParam:{
@@ -795,22 +818,34 @@ export default {
     },
     // 确认添加员工账号
     confirmAddAccount(){
+      
+      this.addStaffForm.majorRegCode = this.checkedLiftAs.join(',') // 管辖电梯（第一负责人）
+      this.addStaffForm.minorRegCode = this.checkedLiftBs.join(',') // 管辖电梯（第二负责人）
+      this.addStaffForm.manageArea = this.checkAreaList.join(',') // 管辖区域
 
-      this.addStaffForm.majorRegCode = this.checkedLiftAs.join(',')
-      this.addStaffForm.minorRegCode = this.checkedLiftBs.join(',')
-      this.addStaffForm.manageArea = this.checkAreaList.join(',')
-      // 修改账号名
-      api.accountApi.createStaff(this.addStaffForm).then((res) => {
-        
-        if (res.data.code === 200) {
-          this.$message.success('创建成功！');
-          this.$router.push('/staff')
-          
-        } else {
-          this.$message.error(res.data.message);
+      console.log("this.addStaffForm===" + JSON.stringify(this.addStaffForm))
+
+      if(this.addStaffForm.avatarUrl == ''){
+        this.$message.error('请上传员工照片');
+        return
+      }
+      this.$refs['form'].validate((valid) => {
+        if (valid) {
+          // 添加员工1
+          api.accountApi.createStaff(this.addStaffForm).then((res) => {
+            
+            if (res.data.code === 200) {
+              this.$message.success('创建成功！');
+              this.$router.push('/staff')
+              
+            } else {
+              this.$message.error(res.data.message);
+            }
+          })
+        }else {
+          console.log('error submit!!');
+          return false;
         }
-      }).catch((res) => {
-        
       })
       
     },

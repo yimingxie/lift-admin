@@ -174,7 +174,7 @@
                     <div class="dispatch-item-li-label">作业时间：</div>
                     <div class="dispatch-item-li-input">
                       <el-form-item prop="beginTime">
-                        <el-date-picker v-model="ruleForm.beginTime" @change="changeBeginTime" type="datetime" size="small" prefix-icon="test-icon" placeholder="选择作业时间"  value-format="timestamp" style="width: 100%" :picker-options="pickerOptions"></el-date-picker>
+                        <el-date-picker v-model="ruleForm.beginTime" @change="changeBeginTime" type="datetime" size="small" prefix-icon="test-icon" placeholder="选择作业时间"  value-format="timestamp" style="width: 100%"></el-date-picker>
                       </el-form-item>
                     </div>
                   </div>
@@ -349,11 +349,6 @@ export default {
       }
     }
     return {
-      pickerOptions: { // 工单时间不让选择今天以前的
-        disabledDate(time) {
-          return time.getTime() < Date.now() - 24 * 60 * 60 * 1000
-        }
-      },
       parentCode: '',
       parentDiagnId: '',
       liftPerson: '',
@@ -937,7 +932,7 @@ export default {
 
       api.detection.createTask(params).then(res => {
         console.log('派单', res)
-        if (res.data.code == 200) {
+        if (res.data == 200) {
           this.$router.go(0)
         } else {
           this.$message.error(res.data.message)

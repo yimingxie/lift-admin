@@ -82,10 +82,11 @@
                     <p class="show-pp">{{ruleForm.localArea !== '' ? ruleForm.localArea : '--'}}</p>
                   </el-form-item>
 
-                  <el-form-item prop="address" class="lar-box" style="width: 46%">
+                  <el-form-item prop="address" class="lar-box" style="width: 50%">
                     <h4>详细地址</h4>
-                    <el-input v-if="submitState == 'put'" v-model="ruleForm.address" size="small" id="address" @input="searchMap()"></el-input>
-                    <p class="show-pp" v-else>{{ruleForm.address !== '' ? ruleForm.address : '--'}}</p>
+                    <!-- 待确认 貌似不允许修改 -->
+                    <!-- <el-input v-if="submitState == 'put'" v-model="ruleForm.address" size="small" id="address" @input="searchMap()"></el-input> -->
+                    <p class="show-pp">{{ruleForm.address !== '' ? ruleForm.address : '--'}}</p>
                   </el-form-item>
                   
                 </div>
@@ -100,34 +101,40 @@
                 <div class="lar-con clearfix">
                   <el-form-item prop="elevName" class="lar-box">
                     <h4>电梯名称</h4>
-                    <el-input v-if="submitState == 'put'" v-model="ruleForm.elevName" size="small"></el-input>
-                    <p class="show-pp" v-else>{{ruleForm.elevName !== '' ? ruleForm.elevName : '--'}}</p>
+                    <!-- 不允许修改 -->
+                    <!-- <el-input v-if="submitState == 'put'" v-model="ruleForm.elevName" size="small"></el-input> -->
+                    <p class="show-pp">{{ruleForm.elevName !== '' ? ruleForm.elevName : '--'}}</p>
                   </el-form-item>
                   <el-form-item prop="elevType" class="lar-box">
                     <h4>型号</h4>
-                    <el-input v-if="submitState == 'put'" v-model="ruleForm.elevType" size="small"></el-input>
-                    <p class="show-pp" v-else>{{ruleForm.elevType !== '' ? ruleForm.elevType : '--'}}</p>
+                    <!-- 不允许修改 -->
+                    <!-- <el-input v-if="submitState == 'put'" v-model="ruleForm.elevType" size="small"></el-input> -->
+                    <p class="show-pp">{{ruleForm.elevType !== '' ? ruleForm.elevType : '--'}}</p>
                   </el-form-item>
                   <el-form-item prop="elevVar" class="lar-box">
                     <h4>电梯品种</h4>
-                    <el-input v-if="submitState == 'put'" v-model="ruleForm.elevVar" size="small"></el-input>
-                    <p class="show-pp" v-else>{{ruleForm.elevVar !== '' ? ruleForm.elevVar : '--'}}</p>
+                    <!-- 不允许修改 -->
+                    <!-- <el-input v-if="submitState == 'put'" v-model="ruleForm.elevVar" size="small"></el-input> -->
+                    <p class="show-pp">{{ruleForm.elevVar !== '' ? ruleForm.elevVar : '--'}}</p>
                   </el-form-item>
                   <el-form-item prop="elevFacnum" class="lar-box">
                     <h4>出厂编号</h4>
-                    <el-input v-if="submitState == 'put'" v-model="ruleForm.elevFacnum" size="small"></el-input>
-                    <p class="show-pp" v-else>{{ruleForm.elevFacnum !== '' ? ruleForm.elevFacnum : '--'}}</p>
+                    <!-- 不允许修改 -->
+                    <!-- <el-input v-if="submitState == 'put'" v-model="ruleForm.elevFacnum" size="small"></el-input> -->
+                    <p class="show-pp">{{ruleForm.elevFacnum !== '' ? ruleForm.elevFacnum : '--'}}</p>
                   </el-form-item>
                   <el-form-item prop="manufactName" class="lar-box">
                     <h4>制造单位</h4>
-                    <el-input v-if="submitState == 'put'" v-model="ruleForm.manufactName" size="small"></el-input>
-                    <p class="show-pp" v-else>{{ruleForm.manufactName !== '' ? ruleForm.manufactName : '--'}}</p>
+                    <!-- 不允许修改 -->
+                    <!-- <el-input v-if="submitState == 'put'" v-model="ruleForm.manufactName" size="small"></el-input> -->
+                    <p class="show-pp">{{ruleForm.manufactName !== '' ? ruleForm.manufactName : '--'}}</p>
                   </el-form-item>
                   <el-form-item prop="elevDate" class="lar-box">
                     <h4>制造日期</h4>
-                    <div v-if="submitState == 'put'" class="dwc-date-icon"></div>
-                    <el-date-picker v-if="submitState == 'put'" v-model="ruleForm.elevDate" type="date" placeholder="选择日期" prefix-icon="test-icon" value-format="yyyy-MM-dd" size="small" style="width: 100%"></el-date-picker>
-                    <p class="show-pp" v-else>{{ruleForm.elevDate !== '' ? ruleForm.elevDate : '--'}}</p>
+                    <!-- 不允许修改 -->
+                    <!-- <div v-if="submitState == 'put'" class="dwc-date-icon"></div> -->
+                    <!-- <el-date-picker v-if="submitState == 'put'" v-model="ruleForm.elevDate" type="date" placeholder="选择日期" prefix-icon="test-icon" value-format="yyyy-MM-dd" size="small" style="width: 100%"></el-date-picker> -->
+                    <p class="show-pp">{{ruleForm.elevDate !== '' ? ruleForm.elevDate : '--'}}</p>
                   </el-form-item>
 
                 </div>
@@ -1338,6 +1345,7 @@ export default {
             if (res.data.code == '200') {
               that.$message.success(`${res.data.message}`)
               // this.submitState = 'get'
+
               that.$router.push({
                 path: '/lift-detail',
                 query: {

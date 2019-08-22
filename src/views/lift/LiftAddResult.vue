@@ -55,7 +55,7 @@
                     <city-choose @childVal="getCity" :selectCity="special.areaCode" v-else></city-choose>
                   </el-form-item>
 
-                  <el-form-item prop="address" class="lar-box" style="width: 46%;">
+                  <el-form-item prop="address" class="lar-box" style="width: 50%;">
                     <h4>详细地址</h4>
                     <p class="show-pp" v-if="submitState == 'put'">{{ruleForm.address}}</p>
                     <el-input v-model="ruleForm.address" size="small" id="address" @input="searchMap()" v-else></el-input>
@@ -1120,7 +1120,8 @@ export default {
 
 
           if (this.submitState == 'put') {
-            api.lift.editLift(this.ruleForm).then(res => {
+            // api.lift.editLift(this.ruleForm).then(res => {
+            api.lift.addLift(this.ruleForm).then(res => {
               console.log('put', res)
               if (res.data.code == '200') {
                 that.$message.success(`${res.data.message}`)
@@ -1331,6 +1332,9 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+  .la-result{
+    height: auto !important;
   }
   
 

@@ -5,9 +5,8 @@
       <div class="box">
         <form @submit.prevent="onSubmit" autocomplete="off" class="loginForm">
           <div class="title">
-            <h1>Welcome</h1>
-            <h2>电梯维保管理后台
-            </h2>
+            <div class="title1">Welcome</div>
+            <div class="title2">电梯维保管理后台</div>
           </div> 
           <div>
             <div v-if="warningTip!==''" class="loginInput warningTip tal">{{warningTip}}</div>
@@ -237,13 +236,13 @@
     color: #FFFFFF;
     text-align left 
     margin-bottom: 50px;
-    h1
+    .title1
       font-size: 48px;
       color: #FFFFFF;
       line-height 67px
       font-weight: 400;
 
-    h2
+    .title2
       font-size: 20px;
       color: #FFFFFF;
       font-weight: 400;

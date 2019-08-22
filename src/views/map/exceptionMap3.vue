@@ -592,8 +592,11 @@
 
               // }]
               for( var i = 0 ;i< this.lnglats.length ; i++ ){
-                this.lnglats[i].latLon = this.lnglats[i].latLon.split(',');
+                if(this.lnglats[i].latLon !== ""){
+                  this.lnglats[i].latLon = this.lnglats[i].latLon.split(',');
+                }
               }
+              console.log("this.lnglats===" + JSON.stringify(this.lnglats))
             // }
             
           }
