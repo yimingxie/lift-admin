@@ -779,7 +779,11 @@ export default {
     // 获取统计数据
     getTotalStatis(){
       api.taskApi.getTotalStatis(window.localStorage.getItem('corpId')).then((res) => {
-        this.totalStatis = res.data.data || {numta:0,numwb:0,numgz:0,numjy:0}
+        // this.totalStatis = res.data.data || {numta:0,numwb:0,numgz:0,numjy:0}
+        this.totalStatis.numta =  res.data.data.numta || 0
+        this.totalStatis.numwb =  res.data.data.numwb || 0
+        this.totalStatis.numgz =  res.data.data.numgz || 0
+        this.totalStatis.numjy =  res.data.data.numjy || 0
       })
     },
     // 清空搜索框
