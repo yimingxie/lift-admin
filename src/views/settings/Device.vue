@@ -124,7 +124,7 @@
                         <div class="idd-project"><span>监测内容：</span>{{childItem.monitorVal}}</div>
                       </div>
                     </div>
-                    <div class="ldrop-detail-a" @click="goDetail(childItem.nativemonitorObj, childItem.nativemonitorVal, item.regCode)">设备详情</div>
+                    <div class="ldrop-detail-a" @click="goDetail(childItem.devEui)">设备详情</div>
                   </div>
 
                 </div>
@@ -570,13 +570,14 @@ export default {
     },
 
     // 设备详情跳转
-    goDetail(monitorObj, monitorVal, regCode) {
+    goDetail(devEui) {
       this.$router.push({
         path: '/device-detail',
         query: {
-          monitorObj: monitorObj,
-          monitorVal: monitorVal,
-          regCode: regCode
+          // monitorObj: monitorObj,
+          // monitorVal: monitorVal,
+          // regCode: regCode
+          devEui: devEui
         }
       })
     },

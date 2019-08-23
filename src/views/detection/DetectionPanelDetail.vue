@@ -395,7 +395,7 @@ export default {
       },
       rules: {
         diagInfo: [{ required: true, message: '必填', trigger: 'blur' }],
-        beginTime: [{ validator: validBeginTime, trigger: 'change' }],
+        // beginTime: [{ validator: validBeginTime, trigger: 'change' }],
       },
       diagnTypeOptions: [
         {value: '事故救援', label: '事故救援'},
@@ -909,38 +909,39 @@ export default {
     // 提交表单
     submit() {
       const that = this
-      // this.$refs.diaForm.validate(valid => {
-      //   if (valid) {
-      //     console.log('验证通过')
-      //   }
-      // })
+      this.$refs.diaForm.validate(valid => {
+        if (valid) {
+          let params = {
+            diagId: this.parentDiagnId,
+            diagInfo: this.ruleForm.diagInfo,
+            send: this.send,
+          }
 
-      let params = {
-        diagId: this.parentDiagnId,
-        diagInfo: this.ruleForm.diagInfo,
-        send: this.send,
-      }
+          // 如果是派单
+          if (this.send) {
+            let staffIdArr = []
+            this.dispatchStaffList.forEach(item => {
+              staffIdArr.push(item.id)
+            })
+            params.elevCode = this.parentCode
+            params.staffIds = staffIdArr
+            params.type = this.ruleForm.diagnType
+            params.beginTime = this.ruleForm.beginTime
+          }
 
-      // 如果是派单
-      if (this.send) {
-        let staffIdArr = []
-        this.dispatchStaffList.forEach(item => {
-          staffIdArr.push(item.id)
-        })
-        params.elevCode = this.parentCode
-        params.staffIds = staffIdArr
-        params.type = this.ruleForm.diagnType
-        params.beginTime = this.ruleForm.beginTime
-      }
+          console.log('params', params)
 
-      console.log('params', params)
+          api.detection.createTask(params).then(res => {
+            console.log('派单', res)
+            if (res.data.code == 200) {
+              this.$router.go(0)
+            } else {
+              this.$message.error(res.data.message)
+            }
+          })
 
-      api.detection.createTask(params).then(res => {
-        console.log('派单', res)
-        if (res.data.code == 200) {
-          this.$router.go(0)
-        } else {
-          this.$message.error(res.data.message)
+
+
         }
       })
 
