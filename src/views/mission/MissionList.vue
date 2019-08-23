@@ -55,7 +55,7 @@
       </div>
       <div class="subBtns">
         <!-- <button class="btn blueBtn" @click="createAPlan" v-if="checkedDate.length > 8 && parseInt(checkedDate.substring(5,7)) >= parseInt(NowMonth)">创建计划</button> -->
-        <button class="btn whiteBtn">立即派单</button>
+        <button class="btn whiteBtn" @click="multiCreateTask">立即派单</button>
         <button class="btn whiteBtn">导出</button>
         <!-- <button class="btn whiteBtn" >全选</button> -->
         <span style="margin: 5px 10px;">
@@ -261,7 +261,7 @@
                 <el-checkbox :label="account.id" :key="index" class="checkbox16">{{nonetext}}</el-checkbox>
               </el-checkbox-group> -->
 
-              <div style="position:absolute;">
+              <div style="position:absolute;" v-if="task.status !== '无计划'">
                 <el-checkbox-group v-model="checkedTasks" @change="handleCheckedStaffsChange">
                   <el-checkbox :label="task.id" :key="task.id" class="checkbox16">{{nonetext}}</el-checkbox>
                 </el-checkbox-group>
@@ -792,6 +792,7 @@ export default {
     this.getTotalStatis()
   },
   methods: {
+    
     // 全选，非全选
     handleCheckAllChange(val) {
       this.checkedTasks = val ? this.checkedAllTasks : [];
@@ -1108,7 +1109,7 @@ export default {
     },
     // 维保计划派单
     createTask(plan){
-      // console.log("mission===" + JSON.stringify(plan))
+      console.log("plan===" + JSON.stringify(plan))
       var persons = []
       // 获取派单人员集合
       if(plan.mps) {
@@ -1162,7 +1163,10 @@ export default {
         
       })
     },
-    
+    // 批量派单
+    multiCreateTask(){
+
+    },
     // 获取日历数据
     getRiliList(){
       api.taskApi.rili({'corp': window.localStorage.getItem('corpId'),'timestamp':this.transformTimestamp(this.checkedDate)}).then((res) => {

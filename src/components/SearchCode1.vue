@@ -1,4 +1,5 @@
 <template>
+  <!-- 任务管理搜索电梯 -->
   <div class="search-container">
     <div class="llcb-search-box">
       <input class="lsearch-input" type="text" v-model="cCode" placeholder="搜索电梯注册码" @keyup="showList" @keyup.enter="search(cCode)" @blur="show = false">
