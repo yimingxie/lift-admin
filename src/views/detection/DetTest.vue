@@ -13,7 +13,7 @@
             <div class="input-item-prepend">
               <span class="input-item-text" style="width:8rem;">请输入关键字</span>
             </div>
-            <input id='tipinput' type="text">
+            <input id='tipinput' type="text" autocomplete="off">
           </div>
       </div>
     </div>
@@ -72,7 +72,7 @@ export default {
     AMap.event.addListener(auto, 'select', function(e){
       //TODO 针对选中的poi实现自己的功能
       console.log('e', e)
-      map.setCenter([e.poi.location.lng, e.poi.location.lat]); //设置地图中心点
+      map.setZoomAndCenter(20, [e.poi.location.lng, e.poi.location.lat]); //设置地图中心点
       addMarker(e.poi.location.lng, e.poi.location.lat)
       // placeSearch.search(e.poi.name)
     })
