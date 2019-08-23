@@ -723,6 +723,8 @@ export default {
         }
         this.special.loadControl.value1 = this.ruleForm.loadControl.split(',')[0] ? this.ruleForm.loadControl.split(',')[0] : ''
         this.special.loadControl.value2 = this.ruleForm.loadControl.split(',')[1] ? this.ruleForm.loadControl.split(',')[1] : ''
+        this.special.lng = detail.latLon.split(',')[0]
+        this.special.lat = detail.latLon.split(',')[1]
 
 
         // m转换成cm
@@ -1107,6 +1109,8 @@ export default {
           } else {
             this.ruleForm.latLon = ''
           }
+          if (!this.special.lng || !this.special.lat) return this.$message.error('请点击地图确定电梯具体位置')
+
 
           // cm转换成m
           this.ruleForm.doorOsize = this.ruleForm.doorOsize / 100
@@ -1128,6 +1132,9 @@ export default {
                 that.$router.push({path: '/lift-list'})
               } else {
                 that.$message.error(`${res.data.message}`)
+                setTimeout(() => {
+                  that.$router.go(0)
+                }, 300)
               }
             })
           } else {
@@ -1138,6 +1145,9 @@ export default {
                 that.$router.push({path: '/lift-list'})
               } else {
                 that.$message.error(`${res.data.message}`)
+                setTimeout(() => {
+                  that.$router.go(0)
+                }, 300)
               }
             })
           }
