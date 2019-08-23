@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes">
+  <div :class="classes" id="select22">
     <slot name="label"></slot>
     <div class="v-select-1-wrap" :style="selectWrapStyle">
       <div class="v-select-1-trigger">
@@ -182,8 +182,8 @@
 </script>
 
 <style lang="stylus">
-  @import '../assets/stylus/base'
-
+@import '../assets/stylus/base'
+#select22
   .v-select
     & > span
       display inline-block
@@ -393,7 +393,7 @@
 
 
 
-.el-input__suffix
+  .el-input__suffix
     position absolute
     height 100%
     right 5px

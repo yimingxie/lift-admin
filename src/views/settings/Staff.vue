@@ -348,9 +348,10 @@ export default {
       },
       checkAll: false,
       checkedStaffs: [],
-      checkedStaffsName:[],
+      checkedStaffsName:[], //确认弹窗显示数据
       isIndeterminate: false,
       checkedAllStaff:[],
+      nonetext:'',
       selectedDpt:'',
       departments:[{
         value: '选项1',
@@ -362,7 +363,7 @@ export default {
         value: '选项3',
         label: '蚵仔煎'
       }],
-      nonetext:'',
+      
       getAllDepJson:[],
       queryDepartParam:{
         offset:1,

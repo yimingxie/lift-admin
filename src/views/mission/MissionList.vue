@@ -208,7 +208,7 @@
             </p>
             <!-- 新建计划或任务 -->
             <div class="addmissionDiv" v-if="nowTr === taskList.elevCode">
-           
+              <!-- 作业时间 -->
               <el-date-picker
                 v-model="value2"
                 prefix-icon="test-icon" 
@@ -222,7 +222,7 @@
               <span class="splitLine">|</span>
 
               <!-- 作业类型 -->
-              <el-select v-model="selectType" placeholder="作业类111型" class="regionPicker">
+              <el-select v-model="selectType" placeholder="作业类型" class="regionPicker">
                 <el-option
                   v-for="item in tpyeOptions"
                   :key="item.value"
@@ -232,7 +232,7 @@
               </el-select>
 
               <span class="splitLine">|</span>
-
+              <!-- 作业人员 -->
               <choiceindex
                 class="regionPicker personMutiPicker" 
                 clearable 
@@ -260,11 +260,12 @@
               <!-- <el-checkbox-group v-model="checkedStaffs" @change="handleCheckedStaffsChange">
                 <el-checkbox :label="account.id" :key="index" class="checkbox16">{{nonetext}}</el-checkbox>
               </el-checkbox-group> -->
-              <!-- <div style="position:absolute;">
-                <el-checkbox-group>
-                  <el-checkbox class="checkbox16"></el-checkbox>
+
+              <div style="position:absolute;">
+                <el-checkbox-group v-model="checkedTasks" @change="handleCheckedStaffsChange">
+                  <el-checkbox :label="task.id" :key="task.id" class="checkbox16">{{nonetext}}</el-checkbox>
                 </el-checkbox-group>
-              </div> -->
+              </div>
 
               <div v-if="task.status !== '无计划' && currentEditPlanId !== task.id" class="taskListStyle">
                 <i :style="{'color':getStatusColor(task.status)}" style="margin-right:2px">●</i>
@@ -567,12 +568,7 @@ export default {
 
       missionList:[],
       noPlan:[],
-      // taskList:[],
-      checkAll: false,
-      checkedStaffs: [],
-      isIndeterminate: false,
-      checkedAllStaff:[],
-      nonetext:'',
+      
       checkTime:'',
       checkTpye:'',
       // 新增计划类型
@@ -635,7 +631,15 @@ export default {
         numjy:0
       },
       closeModelDialog:false,
-      confirmCloseTask:[]
+      confirmCloseTask:[],
+
+      checkAll: false,
+      checkedTasks: [],
+      checkedTasksName:[], //确认弹窗显示数据
+      isIndeterminate: false,
+      checkedAllTasks:[],
+      nonetext:'',
+      currentTotalPage:0
     }
   },
   components: {
@@ -788,6 +792,20 @@ export default {
     this.getTotalStatis()
   },
   methods: {
+    // 全选，非全选
+    handleCheckAllChange(val) {
+      this.checkedTasks = val ? this.checkedAllTasks : [];
+      this.isIndeterminate = false;
+      // console.log("check:" + this.checkedStaffs)
+    },
+    // 点击多选框
+    handleCheckedStaffsChange(value) {
+      // console.log("check:" + value)
+      // console.log("Allcheckop:==" + this.checkedAllStaff)
+      let checkedCount = value.length;
+      this.checkAll = checkedCount === this.currentTotalPage
+      this.isIndeterminate = checkedCount > 0 && checkedCount < this.currentTotalPage;
+    },
     // 获取统计数据
     getTotalStatis(){
       api.taskApi.getTotalStatis(window.localStorage.getItem('corpId')).then((res) => {
@@ -817,7 +835,7 @@ export default {
       this.nowTr = '' // 关闭新建模式
       this.currentEditPlanId = ''// 关闭修改模式
       this.searchMode = true // 搜索模式列表
-      console.log("reg_code==" + regCode)
+      // console.log("reg_code==" + regCode)
       this.searchLiftListParams.elevCode = regCode 
       this.searchRegCode = regCode
       api.taskApi.getLiftTaskList(this.searchLiftListParams).then((res) => {
@@ -850,6 +868,19 @@ export default {
           // })
 
         })
+
+        // 用作全选总数
+        this.currentTotalPage = missionArr.length
+        // 重置多选
+        this.checkedAllTasks = []
+        this.checkedTasks = []
+        this.checkAll = false
+        this.isIndeterminate = false
+        missionArr.forEach(item => {
+          this.checkedAllTasks.push(item.id)
+        })
+
+        // 将相同电梯数据汇合在一起
         this.missionList = this.mergeArrayList(missionArr)
       })
       
@@ -911,7 +942,7 @@ export default {
         this.monthTotal = res.data.data
       })
     },
-     // 相同属性的数据合并处理
+    // 相同属性的数据合并处理
     mergeArrayList(arrData){
       var map = {},
       dest = [];
@@ -1027,7 +1058,7 @@ export default {
     // 确认编辑 1161174926778949633
     confirmEditPlan() {
       this.editPlanParam.timestamp = this.transformTimestamp(this.value3)
-      console.log("this.editPlanParam===" + JSON.stringify(this.editPlanParam))
+      // console.log("this.editPlanParam===" + JSON.stringify(this.editPlanParam))
       api.taskApi.editPlan(this.editPlanParam).then((res) => {
         if(res.data.code == 200){
           this.$message.success('修改成功！');
@@ -1068,7 +1099,7 @@ export default {
     openPaidanDialog(plan){
       this.paidanModelDialog = true
       this.confirmCreateTask = plan
-      console.log("this.confirmCreateTask====" + JSON.stringify(this.confirmCreateTask))
+      // console.log("this.confirmCreateTask====" + JSON.stringify(this.confirmCreateTask))
     },
     // 取消派单
     cancelCreateTask(){
@@ -1077,7 +1108,7 @@ export default {
     },
     // 维保计划派单
     createTask(plan){
-      console.log("mission===" + JSON.stringify(plan))
+      // console.log("mission===" + JSON.stringify(plan))
       var persons = []
       // 获取派单人员集合
       if(plan.mps) {
@@ -1096,7 +1127,7 @@ export default {
         'timestamp': this.transformTimestamp(plan.beginTime),
         'type': plan.type
       }
-      console.log("mission===" + JSON.stringify(param))
+      // console.log("mission===" + JSON.stringify(param))
       // 派单
       api.taskApi.createTask(param).then((res) => {
         if(res.data.code == 200){
@@ -1204,11 +1235,21 @@ export default {
         } else if(res.data.data.list){ 
           var missionArr = res.data.data.list || []
         }
-        
+
+        // 用作全选总数
+        this.currentTotalPage = missionArr.length
+        // 重置多选
+        this.checkedAllTasks = []
+        this.checkedTasks = []
+        this.checkAll = false
+        this.isIndeterminate = false
+        missionArr.forEach(item => {
+          this.checkedAllTasks.push(item.id)
+        })
+
+        // 将相同电梯数据汇合在一起
         this.missionList = this.mergeArrayList(missionArr)
         
-        // console.log("this.missionList==="+ JSON.stringify(this.missionList))
-
       }).catch((res) => {
         
       })
@@ -1218,7 +1259,7 @@ export default {
       this.nowTr = '' // 关闭新建模式
       this.currentEditPlanId = ''// 关闭修改模式
       this.dateTaskListParam.timestamp = this.transformTimestamp(date)
-      console.log("this.dateTaskListParam.timestamp===" + JSON.stringify(this.dateTaskListParam))
+      // console.log("this.dateTaskListParam.timestamp===" + JSON.stringify(this.dateTaskListParam))
 
       api.taskApi.dayTaskPlan(this.dateTaskListParam).then((res) => {
 
@@ -1231,7 +1272,7 @@ export default {
           'not': res.data.data.not,
           'timeout': res.data.data.timeout,
         }
-        console.log("this.monthTotal::" + JSON.stringify(this.monthTotal))
+        // console.log("this.monthTotal::" + JSON.stringify(this.monthTotal))
         missionArr.forEach(item => {
           var persons = []
           if(item.mps) {
@@ -1247,6 +1288,19 @@ export default {
           }
 
         })
+
+        // 用作全选总数
+        this.currentTotalPage = missionArr.length
+        // 重置多选
+        this.checkedAllTasks = []
+        this.checkedTasks = []
+        this.checkAll = false
+        this.isIndeterminate = false
+        missionArr.forEach(item => {
+          this.checkedAllTasks.push(item.id)
+        })
+
+        // 将相同电梯数据汇合在一起
         this.missionList = this.mergeArrayList(missionArr)
       }).catch((res) => {
         
@@ -1291,7 +1345,7 @@ export default {
       this.createPlanParam.elevCode = regCode
       api.taskApi.getLiftDetail(regCode).then((res) => {
         this.selectPersons = []
-        console.log("res.data.data.plan--------" + this.selectPersons)
+        // console.log("res.data.data.plan--------" + this.selectPersons)
         if (res.data.message == '无负责人,请先绑定电梯相关人员'){
           // this.showCreatePlan2 = false
           this.$message.error("该电梯暂无负责人，请先绑定维保人员")
@@ -1405,20 +1459,6 @@ export default {
       return Math.floor(Math.random()*(upper-lower+1))+lower;
     },
     
-    // 全选，非全选
-    handleCheckAllChange(val) {
-      this.checkedStaffs = val ? this.checkedAllStaff : [];
-      this.isIndeterminate = false;
-      // console.log("check:" + this.checkedStaffs)
-    },
-    // 点击多选框
-    handleCheckedStaffsChange(value) {
-      // console.log("check:" + value)
-      // console.log("Allcheckop:==" + this.checkedAllStaff)
-      let checkedCount = value.length;
-      this.checkAll = checkedCount === this.getAllAccountJson.length;
-      this.isIndeterminate = checkedCount > 0 && checkedCount < this.getAllAccountJson.length;
-    },
     // 清空筛选
     clearCondition(){
       this.openCondition1 = false
@@ -1514,7 +1554,7 @@ export default {
       this.nowTr = ''
       this.currentEditPlanId = ''
     },
-      // 搜索模式
+      // 搜索模式 
     handleSizeChange2(val) {
       this.searchLiftListParams.limit = val
       this.searchLiftRegCode(this.searchLiftListParams.elevCode)
@@ -1522,7 +1562,7 @@ export default {
       this.currentEditPlanId = ''
     },
 
-    // 搜索模式
+    // 搜索模式 翻页
     handleCurrentChange2(val) {
       this.searchLiftListParams.offset = val - 1
       this.searchLiftRegCode(this.searchLiftListParams.elevCode)
