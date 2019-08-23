@@ -138,7 +138,7 @@
             </el-row>
           </div>
           <div slot="second">
-            <div v-if="accident.count !== 0">
+            <div v-if="accident.count !== -1">
               <div style="margin-bottom:20px">
                 <span class="lift_status">电梯状态</span>
                 <span class="lift_time info_font12">{{ accident.diagninfo.triggleTime | dateformat('HH:mm:ss')}} </span> 
@@ -163,7 +163,7 @@
             <div v-else class="noneAlarm"> 暂无异常告警</div>
           </div>
           <div slot="third" >
-            <div v-if="fault.count !==0">
+            <div v-if="fault.count !== -1">
               <div class="lift_row">
                 <el-row v-for="(item,index) in fault.diagninfo" :key="index" class="liftRow">
                   <el-col :span="14">
@@ -183,7 +183,7 @@
             <div v-else class="noneAlarm"> 暂无异常告警</div>
           </div>
           <div slot="fourth">
-            <div v-if="violation.count !==0">
+            <div v-if="violation.count !== -1">
               <div class="lift_row">
                 <el-row v-for="(item,index) in violation.diagninfo" :key="index" >
                   <el-col :span="14"><div class="info_content">{{item.reason}} </div></el-col>
@@ -200,7 +200,7 @@
             <div v-else class="noneAlarm"> 暂无异常告警</div>
           </div>
           <div slot="fifth">
-            <div v-if="warning.count !==0">
+            <div v-if="warning.count !== -1">
               <div class="lift_row">
                 <el-row v-for="(item,index) in warning.diagninfo" :key="index" class="liftRow">
                   <el-col :span="14"><div class="info_content">{{item.reason}} </div></el-col>
@@ -218,10 +218,10 @@
             <div v-else class="noneAlarm"> 暂无异常告警</div>
           </div>
 
-          <div v-if="accident.count !== 0" v-text="accident.count < 100 ? accident.count : '99+'" slot="num1" class="numSign"></div>
-          <div v-if="fault.count !== 0" v-text="fault.count < 100 ? fault.count : '99+'" slot="num2" class="numSign">{{fault.count}}</div>
-          <div v-if="violation.count !== 0" v-text="violation.count < 100 ? violation.count : '99+'" slot="num3" class="numSign">{{violation.count}}</div>
-          <div v-if="warning.count !== 0" v-text="warning.count < 100 ? warning.count : '99+'" slot="num4" class="numSign">{{warning.count}}</div>
+          <div v-if="accident.count > 0" v-text="accident.count < 100 ? accident.count : '99+'" slot="num1" class="numSign"></div>
+          <div v-if="fault.count > 0" v-text="fault.count < 100 ? fault.count : '99+'" slot="num2" class="numSign">{{fault.count}}</div>
+          <div v-if="violation.count > 0" v-text="violation.count < 100 ? violation.count : '99+'" slot="num3" class="numSign">{{violation.count}}</div>
+          <div v-if="warning.count > 0" v-text="warning.count < 100 ? warning.count : '99+'" slot="num4" class="numSign">{{warning.count}}</div>
         </tab>
        
        </div>
@@ -231,16 +231,16 @@
         return {
           titleItems:['基本信息', '事件','故障','违规','预警'],
           activeIndex: 0,
-          id:0, // 等同regCode码
+          id:0, // 等同regCode码 数据传入
           type:"[0,-,-,-]", // 等同diagnCode
           elevInfo:{inNum:'0'},
           accident:{diagninfo:{extentions:{box:{floor:"000"}},reason: "", processed: 0, elevId: "", triggleTime: "", diagnType: 1}},
           fault :{diagninfo:{reason: "", processed: 0, elevId: "", triggleTime: "", diagnType: 1}},
           violation: {diagninfo:{reason: "", processed: 0, elevId: "", triggleTime: "", diagnType: 1}},
           warning :{diagninfo:{reason: "", processed: 0, elevId: "", triggleTime: "", diagnType: 1}},
-          processed:['待诊断','已完成'],
+          processed:['未处理','处理中','已完成'],
           arrowImg:'arrowImg0',
-          date:'',
+          date:'',//数据传入
           regCode:0
           // authorURL:'/detection'
         }
@@ -252,33 +252,38 @@
           // 		fault :故障
           //    violation: 违规
           // alert(val)
+          // console.log("" + )
           if(val !== 0){
             this.regCode = val
           }
           this.activeIndex = 0 // 每次重新点开弹窗时 初始tab都为第一个
           this.elevInfo = {inNum:'0'}
-          this.accident={diagninfo:{extentions:{box:{floor:"000"}},reason: "", processed: 0, elevId: "", triggleTime: "", diagnType: 1}}
-          this.accident = {count: 0,diagninfo:[{reason: "", processed: 0, elevId: "", triggleTime: "", diagnType: 1}]}
-          this.fault = {count: 0,diagninfo:[{reason: "", processed: 0, elevId: "", triggleTime: "", diagnType: 1}]}
-          this.violation = {count: 0,diagninfo:[{reason: "", processed: 0, elevId: "", triggleTime: "", diagnType: 1}]}
-          this.warning = {count: 0,diagninfo:[{reason: "", processed: 0, elevId: "", triggleTime: "", diagnType: 1}]}
+          // this.accident = {diagninfo:{extentions:{box:{floor:"000"}},reason: "", processed: 0, elevId: "", triggleTime: "", diagnType: 1}}
+          // count=-1是为了方便判断请求接口后是否有各类异常数据，如有count为接口数据，若没有count为-1
+          this.accident = {count: -1,diagninfo:[{reason: "", processed: 0, elevId: "", triggleTime: "", diagnType: 1}]}
+          this.fault = {count:-1,diagninfo:[{reason: "", processed: 0, elevId: "", triggleTime: "", diagnType: 1}]}
+          this.violation = {count:-1,diagninfo:[{reason: "", processed: 0, elevId: "", triggleTime: "", diagnType: 1}]}
+          this.warning = {count: -1,diagninfo:[{reason: "", processed: 0, elevId: "", triggleTime: "", diagnType: 1}]}
           if(this.id !== 0){
             api.mapApi.getLiftDetails({'regCode':val,'triggleTime':this.date}).then((res) => {
               if(res.data.code === 200){
                 if(res.data.data.elevInfo){
                   this.elevInfo = res.data.data.elevInfo
                 }
-                if(res.data.data.accident.count > 0){
+                
+                if(res.data.data.accident.diagninfo !== null && res.data.data.accident.diagninfo.length>0 ){
                   this.accident = res.data.data.accident
                   this.accident.diagninfo.extentions = JSON.parse(res.data.data.accident.diagninfo.extensions)
                 }
-                if(res.data.data.fault.count > 0){
+                if(res.data.data.fault.diagninfo !== null && res.data.data.fault.diagninfo.length>0){
                   this.fault = res.data.data.fault
                 }
-                if(res.data.data.violation.count > 0){
+                // if(res.data.data.violation.count !== -1){
+                if(res.data.data.violation.diagninfo !== null && res.data.data.violation.diagninfo.length>0){
                   this.violation = res.data.data.violation
                 }
-                if(res.data.data.warning.count > 0){
+                // if(res.data.data.warning.count !== -1){
+                if(res.data.data.warning.diagninfo !== null && res.data.data.warning.diagninfo.length > 0){
                   this.warning = res.data.data.warning
                 }
               }
@@ -335,7 +340,7 @@
         periods: [
           { label: '全部', value: -1 },
           { label: '已完成', value: 1 },
-          { label: '待诊断', value: 0 },
+          { label: '未完成', value: 0 },
         ],
         period: -1,
         options: [],

@@ -16,8 +16,8 @@
           </div>
           <div class="shadow"></div>
           <div class="right">
-            <p ><span class="pTitle pTitle1">登录账号</span><span class="pCon">{{getAccountJson.account}}</span></p>
-            <p ><span class="pTitle">注册时间</span><span class="pCon">{{getAccountJson.createTime}}</span></p>
+            <div><span class="pTitle pTitle1">登录账号</span><span class="pCon">{{getAccountJson.account}}</span></div>
+            <div><span class="pTitle">注册时间</span><span class="pCon">{{getAccountJson.createTime}}</span></div>
             <button class="btn blueBtn editPsd" @click="editPsd('EditAccountForm')" >修改登录密码</button>
           </div>
         </div>

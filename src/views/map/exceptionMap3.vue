@@ -500,11 +500,12 @@
         mapStyle: 'amap://styles/db9065b28cc027a6a3240fc2ae093125',
         zoom: 20, //设置地图的缩放级别
         features: ['bg', 'road', 'building', 'point'],
+        // features: ['bg', 'building', 'point'],
         // showLabel: false //不显示地图文字标记
       });
       this.map.setCity('深圳市');
       this.map.on('click', function(e) {
-        _this.map.clearInfoWindow( )
+        _this.map.clearInfoWindow()
       });
       
 

@@ -69,7 +69,7 @@
         //   '基本信息', '事件','故障','违规','预警'
         // ],
         windowWidth:316, // tab宽度，根据菜单总长度相加而得，改变的话需先改变菜单的宽度
-        tabHeight:152 // 初始弹窗内容部分的高度，后面跟随切换菜单会变化
+        tabHeight:182 // 初始弹窗内容部分的高度，后面跟随切换菜单会变化
         // nowIndex:0
       }
     },
@@ -84,11 +84,11 @@
         this.initTab(val)
       },
       id(val){
-        this.tabHeight = 152
+        this.tabHeight = 182
         this.initTab(0)
       },
       date(val){
-        this.tabHeight = 152
+        this.tabHeight = 182
         this.initTab(0)
         
       }
@@ -160,7 +160,7 @@
                   if(tabList[star].offsetHeight !== 0){
                     _this.tabHeight = tabList[star].offsetHeight
                   } else {
-                    _this.tabHeight = 152
+                    _this.tabHeight = 182
                   }
                   console.log("tabHeight===" + _this.tabHeight)
                   console.log("star===" + star)
