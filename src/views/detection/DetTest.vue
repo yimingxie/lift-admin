@@ -13,7 +13,8 @@
             <div class="input-item-prepend">
               <span class="input-item-text" style="width:8rem;">请输入关键字</span>
             </div>
-            <input id='tipinput' type="text" autocomplete="off">
+            <!-- <input id='tipinput' type="text" autocomplete="off"> -->
+            <el-input v-model="input" id='tipinput' placeholder="请输入内容"></el-input>
           </div>
       </div>
     </div>
@@ -27,7 +28,8 @@ import Monitor from '../../components/Monitor'
 export default {
   data() {
     return {
-      testMoObj: []
+      testMoObj: [],
+      input: '',
     }
   },
   mounted() {

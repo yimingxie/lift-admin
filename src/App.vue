@@ -509,6 +509,7 @@
     // 设置侧边栏图标
     .icon-map
       background url('assets/images/hs/submenuIcon/map2.png') no-repeat center;
+      background-size: 16px auto;
     .icon-lift
       background url('assets/images/hs/submenuIcon/lift2.png') no-repeat center;
     .icon-diagnosis
@@ -523,6 +524,7 @@
     .el-menu-item:hover:not(.disabled)
       .icon-map
         background url('assets/images/hs/submenuIcon/map3.png') no-repeat center;
+        background-size: 16px auto;
       .icon-lift
         background url('assets/images/hs/submenuIcon/lift3.png') no-repeat center;
       .icon-diagnosis
@@ -538,6 +540,7 @@
     .el-menu-item.is-active:not(.disabled)
       .icon-map
         background url('assets/images/hs/submenuIcon/map1.png') no-repeat center;
+        background-size: 16px auto;
       .icon-lift
         background url('assets/images/hs/submenuIcon/lift1.png') no-repeat center;
       .icon-diagnosis
