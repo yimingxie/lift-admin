@@ -74,14 +74,14 @@
                   </el-form-item>
                 </div>
               </div>
-              <div class="dia-citem clearfix" style="padding-bottom: 20px;">
+              <!-- <div class="dia-citem clearfix" style="padding-bottom: 20px;">
                 <div class="dia-citem-label" style="line-height: 22px;">监测内容：</div>
                 <div class="dia-citem-ib">
                   <el-checkbox-group v-model="checkedMoniObj" @change="checkboxChange">
-                    <el-checkbox v-for="(item, i) in moniObjList" :label="item.id" :key="i">{{item.monitorVal}}</el-checkbox>
+                    <el-checkbox v-for="(item, i) in moniObjList" :label="item.id" :key="i" disabled>{{item.monitorVal}}</el-checkbox>
                   </el-checkbox-group>
                 </div>
-              </div>
+              </div> -->
               <div class="dia-citem clearfix">
                 <div class="dia-citem-label">设备名称：</div>
                 <div class="dia-citem-ib">
@@ -189,17 +189,30 @@ export default {
         // modelValue: [{ required: true, message: '必填', trigger: 'change' }],
  
       },
+
       modelOptions: [
-        {label: 'WS'},
-        {label: 'VIB'},
-        {label: 'Thermal'},
-        {label: 'Tacho'},
-        {label: 'Rht'},
-        {label: 'Prox'},
-        {label: 'LD'},
-        {label: 'IRT'},
-        {label: '600V&60V'},
-        {label: '200A'},
+        // {label: 'WS'},
+        // {label: 'VIB'},
+        // {label: 'Thermal'},
+        // {label: 'Tacho'},
+        // {label: 'Rht'},
+        // {label: 'Prox'},
+        // {label: 'LD'},
+        // {label: 'IRT'},
+        // {label: '600V&60V'},
+        // {label: '200A'},
+
+        {label: 'IoT WS Sensor'},
+        {label: 'IoT VIB Sensor'},
+        {label: 'IoT Thermal Sensor'},
+        {label: 'IoT Tacho Sensor'},
+        {label: 'IoT RHT Sensor'},
+        {label: 'IoT Prox Sensor'},
+        {label: 'IoT LD Sensor'},
+        {label: 'IoT IRT Sensor'},
+        {label: 'IoT 60V Sensor'},
+        {label: 'IoT 600V Sensor'},
+        {label: 'IoT 200A Sensor'},
       ],
       modelValue: '',
       moniObjList: [
@@ -256,7 +269,6 @@ export default {
     // 获取设备型号下拉选中值，渲染监测内容多选框
     modelChange(devModel) {
       let that = this
-      console.log(devModel)
       this.ruleForm.devModel = devModel
       this.ruleForm.modelValue = devModel
       this.checkedMoniObj = [] // 重置已选择的选项
@@ -265,14 +277,23 @@ export default {
       api.device.getMonitorValByModel(devModel).then(res => {
         this.moniObjList = []
         let list = res.data.data
-        list.forEach((item, i) => {
-          this.moniObjList.push({
-            "id": item.monitorVal,
-            "monitorVal": that.modelContentList[item.monitorVal]
-          })
 
-        })
-        console.log('监测内容多选框', this.moniObjList)
+        // list.forEach((item, i) => {
+        //   this.moniObjList.push({
+        //     "id": item.monitorVal,
+        //     "monitorVal": that.modelContentList[item.monitorVal]
+        //   })
+        //   this.checkedMoniObj.push(item.monitorVal)
+
+        // })
+        // // this.checkedMoniObj = this.moniObjList
+        // console.log('监测内容多选框', this.moniObjList)
+        // console.log('选中', this.checkedMoniObj)
+        // this.ruleForm.monitorVal = this.checkedMoniObj.join(',')
+
+        this.ruleForm.monitorVal = res.data.data[0].monitorVal
+
+
       })
       
     },
@@ -290,6 +311,7 @@ export default {
     // 提交
     submit() {
       let that = this
+      console.log('提交表单', this.ruleForm)
       this.$refs.diaForm.validate(valid => {
         if (valid) {
           api.device.addDeviceGi(this.ruleForm).then(res => {

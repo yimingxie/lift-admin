@@ -408,6 +408,15 @@ const router = new Router({
       component: (resolve) => require(['./views/detection/PanelTest.vue'], resolve)
     },
     {
+      path: "/device-bind",
+      name: "device-bind",
+      meta: {
+        title: "设备绑定",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/produceline/DeviceBind.vue'], resolve)
+    },
+    {
       path: "/missionDetail/:id",
       name: "missionDetail",
       meta: {

@@ -22,6 +22,7 @@ $accidentColor = #FA4F43; // 事件
 
 
 
+
 // 列表
 .lift-list{
   background #fff;
@@ -997,7 +998,8 @@ $accidentColor = #FA4F43; // 事件
 // 检测
 .det-mid{
   float: left;
-  width 35%;
+  // width 35%;
+  width 41%;
   margin-left 1.5%;
 }
 .det-mid-status{
@@ -1030,8 +1032,12 @@ $accidentColor = #FA4F43; // 事件
 .dms-lift-pic{
   float left;
   width 180px;
+  height 268px;
   margin-top 10px;
   margin-left 24px;
+}
+.dms-lift-pic img{
+  width 100%;
 }
 .dms-lift-derection{
   position: absolute;
@@ -1191,7 +1197,8 @@ $accidentColor = #FA4F43; // 事件
   box-shadow: 0 8px 20px -12px rgba(66,114,255,0.30);
   border-radius: 8px;
   height 783px;
-  width 34%;
+  // width 34%;
+  width 56%;
 }
 .det-cTime-con{
   position: absolute;
@@ -1656,15 +1663,27 @@ $accidentColor = #FA4F43; // 事件
 
 // dete待封装
 .det-content{
+  position relative;
   margin: 20px;
+  padding-left 310px;
 }
+// .det-warn{
+//   float: left;
+//   background: #FFFFFF;
+//   box-shadow: 0 8px 20px -12px rgba(66,114,255,0.30);
+//   border-radius: 8px;
+//   height: 783px;
+//   width: 28%;
+// }
 .det-warn{
-  float: left;
+  position: absolute;
+  top: 0;
+  left: 0;
   background: #FFFFFF;
   box-shadow: 0 8px 20px -12px rgba(66,114,255,0.30);
   border-radius: 8px;
   height: 783px;
-  width: 28%;
+  width: 310px;
 }
 
 .dwc-box{
@@ -1998,4 +2017,22 @@ $accidentColor = #FA4F43; // 事件
   .dms-lift-derection{
     margin-left: -10px;
   }
+  .dmsl-data h4 span{
+    font-size: 20px;
+  }
+  .dms-lift-data{
+    margin-right: 0;
+  }
 }
+@media screen and (max-width: 1360px) {
+  .det-right{
+    width: 53%;
+  }
+  .det-mid{
+    width: 44%;
+  }
+  .dms-lift-pic{
+    width 166px;
+  }
+}
+
