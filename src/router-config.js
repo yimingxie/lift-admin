@@ -434,6 +434,16 @@ const router = new Router({
       },
       component: (resolve) => require(['./views/example/switchSty.vue'], resolve)
     },
+    {
+      path: "/import",
+      name: "BatchBatchImport",
+      meta: {
+        title: "切换样式",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/settings/BatchImport.vue'], resolve)
+    },
+    
   ]
 })
 

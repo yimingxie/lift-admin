@@ -62,7 +62,7 @@
   </div>
   <img class="loginLeft" src="../../assets/images/hs/loginLeft@1x.png"/>
   <img class="loginRight" src="../../assets/images/hs/loginRight@1x.png"/>
-  <img class="loginBrand" src="../../assets/images/hs/logo.png"/>
+  <span class="loginBrand"></span>
 </div>
 
 </template>
@@ -231,6 +231,12 @@
     absolute bottom 0 right 0
   .loginBrand
     absolute bottom 40px right 40px
+    display inline-block
+    width: 293px;
+    height: 18px;
+    background: url('../../assets/images/hs/logo3.png') no-repeat center;
+    background-size:293px 18px;
+    background-repeat:no-repeat;
   .title
     font-size: 48px;
     color: #FFFFFF;

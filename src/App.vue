@@ -459,7 +459,7 @@
         size 32px 16px
         display inline-block
   
-  // 设置侧边栏图标 小图标
+  // 设置侧边栏图标 小图标 灰色图标
   .icon-map
       background url('assets/images/hs/submenuIcon/openMap2.png') no-repeat center;
   .icon-lift
@@ -472,7 +472,7 @@
     background url('assets/images/hs/submenuIcon/openTable2.png') no-repeat center;
   .icon-setting
     background url('assets/images/hs/submenuIcon/openSet2.png') no-repeat center;
-  // 鼠标移动后菜单高亮
+  // 鼠标移动后菜单高亮 黑色图标
   .el-menu-item:not(.disabled):hover
     .icon-map
       background url('assets/images/hs/submenuIcon/openMap3.png') no-repeat center;
@@ -487,7 +487,7 @@
   .el-submenu:not(.disabled):hover
     .icon-setting
       background url('assets/images/hs/submenuIcon/openSet3.png') no-repeat center;
-  // 点击后菜单高亮
+  // 点击后菜单高亮 蓝色图标
   .el-menu-item.is-active:not(.disabled)
     .icon-map
       background url('assets/images/hs/submenuIcon/openMap1.png') no-repeat center;

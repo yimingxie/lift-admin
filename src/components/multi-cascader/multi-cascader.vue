@@ -151,6 +151,7 @@ export default {
   data () {
     return {
       // selectedLabels: [], // 源代码注释
+      // cSelectedLabels: this.selectedLabels,
       selectedIds: [],
       selectedNodes: [],
       activeClass: 'floor-width-1',
@@ -172,6 +173,9 @@ export default {
     }
   },
   watch: {
+    selectedLabels(value){
+      // console.log("value================" + value)
+    },
     data: {
       deep: true,
       handler () {
@@ -193,6 +197,7 @@ export default {
       // this.$emit('change', this.selectedNodes.map(o => o['totalLabel'])) //北京市/北京市/西城区/西长安街街道
     }
   },
+ 
   methods: {
     // 下拉框出现/隐藏时触发	出现则为 true，隐藏则为 false
     visibleChange (v) {
@@ -217,6 +222,7 @@ export default {
       this.selectedNodes.forEach(node => {
         node.check(false)
       })
+      // 注释
       this.$emit('input', [])
       this.$emit('clear')
     },
@@ -279,6 +285,7 @@ export default {
       // console.log("selectedIds==" + this.selectedIds)
       this.updateSelect(this.store.selectedIds)
       // this.$emit('change', this.selectedNodes.map(o => o[this.isTwoDimensionValue ? '_idArr' : this.valueKey]))
+      console.log("this.selectedNodes.map---------" +  this.selectedNodes.map(o => o[this.isTwoDimensionValue ? '_idArr' : this.valueKey]))
       this.$emit('input', this.selectedNodes.map(o => o[this.isTwoDimensionValue ? '_idArr' : this.valueKey]))
     },
     // 多选模式下移除tag时触发 v:移除的tag值
@@ -360,6 +367,8 @@ export default {
   },
   mounted () {
     this.init()
+    // this.cSelectedLabels = this.selectedLabels
+    // console.log("ccccccc===" + this.cSelectedLabels)
   }
 }
 </script>
@@ -462,6 +471,15 @@ export default {
     overflow: hidden;
     text-overflow:ellipsis;
     white-space: nowrap;
+  }
+  .el-tag{
+    background-color: #ffffff!important;
+  }
+  .el-tag--info{
+    color: #34414C!important;
+  }
+  .el-tag--small{
+    padding: 0 0 0 8px!important;
   }
   // .el-select__tags-text{
   //   text-overflow:ellipsis;表示文本超出用省略号代替

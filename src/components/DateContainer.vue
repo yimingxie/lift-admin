@@ -1,4 +1,5 @@
 <template>
+<!-- 日历组件 -->
     <div class="dataList">
       <div id="dateContainer">
         <div class="nowTime">
@@ -7,13 +8,13 @@
             <span class="thisMon tac" style="min-width:119px;padding: 0;">
               <span v-if="checkDay == -999">
                 {{ checkMonth +1 }}月
-                <span v-if="NowMonth === checkMonth">，本月</span>
+                <span v-if="NowMonth === checkMonth && this.ynow == new Date().getFullYear()">，本月</span>
               </span>
               <span v-else>
                 <!-- this.checkMonth+1 < 10 ? '0' + (this.checkMonth+1) : (this.checkMonth+1)
                 {{ checkMonth +1 < 10 ? '0' + (this.checkMonth+1) : (this.checkMonth+1) }}-{{checkDay}} -->
                 <span v-text="(this.checkMonth+1 < 10 ? '0' + (this.checkMonth+1) : (this.checkMonth+1)) + '-' + (this.checkDay < 10 ? '0' + this.checkDay : this.checkDay)"></span>
-                <span v-if="NowDay === checkDay && this.checkMonth == NowMonth">，今天</span>
+                <span v-if="NowDay === checkDay && this.checkMonth == NowMonth && this.ynow == new Date().getFullYear()">，今天</span>
               </span>
             </span>
             <span class="nextMon" @click="nextMon"></span>
@@ -74,18 +75,20 @@
       return {
         NowMonth:0, // 当前月份
         NowDay:0, // 当前日期
-        newDate: 0,//当前的日期的信息
-        ynow: 0, //当前的年数
-        checkMonth: 0,  //当前选择月份
-        checkDay: -999,  //当前选择日期
-        firstDay: '',//第一天
-        firstnow: '',//当前的星期
-        m_days: [],//每个月的天数
-        tr_str: '',//行数
+        newDate: 0,// 当前的日期的信息
+        ynow: 0, // 当前的年数
+        checkMonth: 0,  // 当前选择月份
+        checkDay: -999,  // 当前选择日期
+        firstDay: '',// 第一天
+        firstnow: '',// 当前的星期
+        m_days: [],// 每个月的天数
+        tr_str: '',// 行数
       }
     },
     mounted() {
-      
+      // 获取今年
+      this.ynow = new Date().getFullYear();
+
       //画出当前的月份的天数对应的表格
       this.getDaysInfo();
 
@@ -96,21 +99,20 @@
     },
     methods: {
       
-      // JS获取n至m随机整数
-      randomNumber(lower,upper){
-        return Math.floor(Math.random()*(upper-lower+1))+lower;
-      },
-       
-      // 筛选时触发事件
-      handleFilterChange(filters) {
-        console.log(filters);
-        console.log('筛选条件变化');
-      },
-     
+      // // JS获取n至m随机整数
+      // randomNumber(lower,upper){
+      //   return Math.floor(Math.random()*(upper-lower+1))+lower;
+      // },
+      // // 筛选时触发事件
+      // handleFilterChange(filters) {
+      //   console.log(filters);
+      //   console.log('筛选条件变化');
+      // },
+      // 日期展示
       getTitle (data1) {
         if ( data1 <= 0 || data1 > this.m_days[this.checkMonth] ) {
           return '';
-        } else if( data1 === this.NowDay && this.NowMonth === this.checkMonth ) {
+        } else if( data1 === this.NowDay && this.NowMonth === this.checkMonth && this.ynow == new Date().getFullYear()) {
           return '今';
         } else {
           return data1;
@@ -123,7 +125,7 @@
 
           console.log("当前点击===" + index)
           console.log("已经选择===" + this.checkDay)
-          // 若点击已选择的td
+          // 若点击已选择的td，切换成月视图
           if(index === this.checkDay) {
             
             // 日期置零
@@ -150,13 +152,14 @@
         var _this = this;
         this.sureDate(_this);
       },
-      is_leap (year) {//判断是不是闰年
+      //判断是不是闰年
+      is_leap (year) {
         return (year%100==0?(year%400==0?1:0):(year%4==0?1:0));
       },
-      //两个参数代表的含义分别是this对象以及判断当前的操作是不是在进行月份的修改
+      //两个参数代表的含义分别是this对象、判断当前的操作是不是在进行月份的修改
       sureDate(_this,other) {
         this.newDate = new Date();
-        this.ynow = this.newDate.getFullYear();
+        // this.ynow = this.newDate.getFullYear();
         this.NowMonth=this.newDate.getMonth();//常量 不变
         this.NowDay=this.newDate.getDate(); //常量 不变
         if(!other) {
@@ -174,7 +177,7 @@
         console.log("firstDay==" + this.firstDay)
 
         // 获取每月第一天是星期几
-        this.firstnow=this.firstDay.getDay();
+        this.firstnow = this.firstDay.getDay();
         console.log(this.firstnow)
 
         this.m_days = [31,28+this.is_leap(this.ynow),31,30,31,30,31,31,30,31,30,31];
@@ -182,12 +185,15 @@
         this.tr_str = Math.ceil((_this.m_days[this.checkMonth] + this.firstnow) / 7);
         // this.showMsg();
       },
+      // 上个月
       preMon() {
         var _this = this;
         // this.checkMonth = this.NowMonth
         // this.checkMonth = this.checkMonth - 1
         if(this.checkMonth == 0){
-          this.checkMonth = 0
+         // 上一年的12月
+          this.ynow = this.ynow - 1
+          this.checkMonth = 11
         } else {
           this.checkMonth = this.checkMonth - 1
         }
@@ -202,10 +208,13 @@
         var month = this.checkMonth+1 < 10 ? '0' + (this.checkMonth+1) : (this.checkMonth+1)
         this.$emit('update:snycCheckedDate', this.ynow + '-' + month)
       },
+      // 下个月
       nextMon() {
         var _this = this;
         if(this.checkMonth == 11){
-          this.checkMonth = 11
+          // 下一年的一月
+          this.ynow = this.ynow + 1
+          this.checkMonth = 0
         } else {
           this.checkMonth = this.checkMonth + 1
         }

@@ -300,6 +300,7 @@ export default {
         corpId: window.localStorage.getItem('corpId'), //公司id
         depId: "" , //部门id
         manageArea:'', //管理区域
+        areaCode:'',
         gender:'1', //性别; 0:女;1:男
         birthday:'', //生日 日期 须限定格式 2003-11-19 00:00:00
         empTime:'', //从业日期 须限定格式 2003-11-19 00:00:00
@@ -821,8 +822,11 @@ export default {
       
       this.addStaffForm.majorRegCode = this.checkedLiftAs.join(',') // 管辖电梯（第一负责人）
       this.addStaffForm.minorRegCode = this.checkedLiftBs.join(',') // 管辖电梯（第二负责人）
-      this.addStaffForm.manageArea = this.checkAreaList.join(',') // 管辖区域
+      // this.addStaffForm.manageArea = this.checkAreaList.join(',') // 管辖区域
+      this.addStaffForm.areaCode = this.checkAreaList.join(',') // 管辖区域
+      this.addStaffForm.manageArea = this.selectedAreaLabels.join(',')
 
+      this.addStaffForm.avatarUrl = 'GI_gbHqaBlcxAB2y4ILd.jpg'
       console.log("this.addStaffForm===" + JSON.stringify(this.addStaffForm))
 
       if(this.addStaffForm.avatarUrl == ''){

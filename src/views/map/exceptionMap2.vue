@@ -785,8 +785,14 @@
         
         api.lift.getLiftResult(regCode).then(res => {
           if (res.data.data) {
+            //  some() 方法用于检测数组中的元素是否满足指定条件（函数提供）。
 
-            this.lnglats.forEach(item =>{
+            // some() 方法会依次执行数组的每个元素：
+
+            //  如果有一个元素满足条件，则表达式返回true , 剩余的元素不会再执行检测。
+            //  如果没有满足条件的元素，则返回false。
+
+            var flag = this.lnglats.some(item =>{
               if(item.regCode === regCode){
                 this.searchMarker = new AMap.Marker({
                     // position: new AMap.LngLat(lnglat[0], lnglat[1]),
@@ -796,8 +802,12 @@
                 });
                 // this.map.add(this.searchMarker)
                 this.map.setZoomAndCenter(18, res.data.data.latLon.split(',')); //同时设置地图层级与中心点
+                return true;
               }
             })
+            if(!flag){
+              this.$message.error("地图上暂无此部电梯")
+            }
           }
         })
       },
@@ -984,17 +994,15 @@
   // ==============================
 .custom-content-marker {
     
-    .huanPic{
-      size 66px 65px 
-      &:hover {
-        transform scale(1)
-      }
+  .huanPic, .huanPicStop{
+    size 66px 65px 
+    &:hover {
+      transform scale(1)
     }
-   
+  }
+  
 }
-.bigger{
-  transform scale(1.5)
-}
+
 .shadowMarker{
   size 22px 5px
   background: -webkit-radial-gradient(rgba(181,190,199,0.95), rgba(181,190,199,0.85), rgba(181,190,199,0.25), rgba(0,0,0,0)); /* Safari 5.1 - 6.0 */

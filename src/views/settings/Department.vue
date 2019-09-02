@@ -29,8 +29,8 @@
         </div>
         <div class="subBtns">
           <button class="btn blueBtn" @click="add_dialogForm">添加部门</button>
-          <search-input v-model.trim="searchKey" placeholderValue="搜索部门名称">
-            <span slot="btn" class="search_btn" @click="searchAccount()" @keyup.enter.native="searchAccount()"></span>
+          <search-input v-model.trim="searchKey" placeholderValue="搜索部门名称" @search="searchAccount()" @cancel="searchAccount()">
+            <!-- <span slot="btn" class="search_btn" @click="searchAccount()" @keyup.enter.native="searchAccount()"></span> -->
           </search-input>
         </div>
         <div class="splitBar"></div>
@@ -49,7 +49,10 @@
             </el-table-column>
             <el-table-column prop="staffTotal" label="员工数量">
             </el-table-column>
-            <el-table-column prop="manager" label="部门负责人">
+            <el-table-column label="部门负责人">
+               <template slot-scope="scope">
+                <span v-html="scope.row.manager == null ? '--' : scope.row.manager"></span>
+              </template>
             </el-table-column>
             <el-table-column label="创建时间">
               <template slot-scope="scope">
@@ -171,8 +174,8 @@
       </div>
     </el-dialog>
     <!-- 编辑账号 弹窗 End -->
-    <fotter></fotter>
   </div>
+  <fotter></fotter>
 </div>
 </template>
 
@@ -185,7 +188,7 @@ import fotter from "../../views/common/fotter";
 import CityChoose from '../../components/CityChoose2'
 import choiceindex from "../../components/multi-cascader/multi-cascader"; //级联选择多选 完成
 import newArea from "../../utils/newArea";
-import pcas from '../../utils/citySelector/pcas-code.json'
+// import pcas from '../../utils/citySelector/pcas-code.json'
 
 export default {
   data() {
@@ -272,62 +275,64 @@ export default {
     this.getAllDepartmentData()
     // this.getAllStaffData()
     this.getAllAccountData()
-    // 一级循环，加载省市下拉选项
+    // 加载省市下拉选项
+    this.regionOptions = newArea.newAreaOption()
     // ----------------------省市区数据-----------------
-    pcas.forEach((item, i) => {
-      let obj = {
-        value: item.code,
-        label: item.name,
-        children: []
-      }
-      this.newFormat[item.code] = item.name
+    // pcas.forEach((item, i) => {
+    //   let obj = {
+    //     value: item.code,
+    //     label: item.name,
+    //     children: []
+    //   }
+    //   this.newFormat[item.code] = item.name
 
-      if (item.children) {
-        // 二级循环
-        item.children.forEach((secondItem, secondI) => {
-          let secondObj = {
-            value: secondItem.code,
-            label: secondItem.name,
-          }
-          this.newFormat[secondItem.code] = secondItem.name
+    //   if (item.children) {
+    //     // 二级循环
+    //     item.children.forEach((secondItem, secondI) => {
+    //       let secondObj = {
+    //         value: secondItem.code,
+    //         label: secondItem.name,
+    //       }
+    //       this.newFormat[secondItem.code] = secondItem.name
 
-          if (secondItem.children) {
-            secondObj.children = []
+    //       if (secondItem.children) {
+    //         secondObj.children = []
 
-            // 三级循环
-            secondItem.children.forEach((thirdItem, thirdI) => {
-              let thirdObj = {
-                value: thirdItem.code,
-                label: thirdItem.name,
-              }
-              this.newFormat[thirdItem.code] = thirdItem.name
+    //         // 三级循环
+    //         secondItem.children.forEach((thirdItem, thirdI) => {
+    //           let thirdObj = {
+    //             value: thirdItem.code,
+    //             label: thirdItem.name,
+    //           }
+    //           this.newFormat[thirdItem.code] = thirdItem.name
 
 
-              if (thirdItem.children) {
-                thirdObj.children = []
+    //           if (thirdItem.children) {
+    //             thirdObj.children = []
 
-                // 四级循环
-                thirdItem.children.forEach((fourthItem, fourthI) => {
-                  let fourthObj = {
-                    value: fourthItem.code,
-                    label: fourthItem.name,
-                  }
-                  this.newFormat[fourthItem.code] = fourthItem.name
+    //             // 四级循环
+    //             thirdItem.children.forEach((fourthItem, fourthI) => {
+    //               let fourthObj = {
+    //                 value: fourthItem.code,
+    //                 label: fourthItem.name,
+    //               }
+    //               this.newFormat[fourthItem.code] = fourthItem.name
 
-                  thirdObj.children.push(fourthObj)
-                })
-              }
-              secondObj.children.push(thirdObj)
+    //               thirdObj.children.push(fourthObj)
+    //             })
+    //           }
+    //           secondObj.children.push(thirdObj)
 
-            })
+    //         })
 
-          }
-          obj.children.push(secondObj)
-        })
-      }
-      this.regionOptions.push(obj)
+    //       }
+    //       obj.children.push(secondObj)
+    //     })
+    //   }
+    //   this.regionOptions.push(obj)
 
-    })
+    // })
+    
     // ----------------------省市区数据-end----------------
     // this.regionOptions = newArea.newAreaOption()
   },
@@ -343,7 +348,7 @@ export default {
     // 选择部门管辖区域
     regionChange(val, totalLabel) {
       this.selectedAreaLabels = [] // 重置
-      var util = require("util")
+      // var util = require("util")
       // 重置联动数据 
       // this.regionOptions2 = []
       // console.log("所选区域码:" +  JSON.stringify(totalLabel));
@@ -369,9 +374,9 @@ export default {
         }
         // var aaa = this.regionOptions.filter(item => item.code === '11')
 
-        console.log("省：" + sheng)
-        console.log("市：" + shi)
-        console.log("区：" + qu)
+        // console.log("省：" + sheng)
+        // console.log("市：" + shi)
+        // console.log("区：" + qu)
         var checkListNew = [] // 片区数组截取前6位
         this.checkAreaList = val
         var pianquLength = 0 //同区的片区个数
@@ -397,50 +402,53 @@ export default {
           this.checkAreaList = this.uniq(this.checkAreaList) // 去重
         })
 
-        console.log("checkListNew==" + checkListNew)
-        console.log("pianquLength==" + pianquLength)
-        console.log("checkAreaList=" + this.checkAreaList)
-        var dest = [],
-          map = {};
-        for(var i = 0; i < totalLabel.length; i++) {
-            var ai = {
-              "qu" : totalLabel[i].split("/")[2],
-              "pianqu": totalLabel[i].split("/")[3]
-            }
-          if(!map[ai.qu]) {
-            dest.push({
-              name: ai.qu,
-              data: [ai.pianqu]
-            });
-            map[ai.qu] = ai;
-          } else {
-            for(var j = 0; j < dest.length; j++){
-              var dj = dest[j];
-              if(dj.name == ai.qu) {
-                dj.data.push(ai.pianqu);
-                break;
-              }
-            }
-          }
-          // console.log("所选区域码ai:" +  JSON.stringify(ai))
-        }
-        // console.log("所选区域码:" +  JSON.stringify(dest));
-        dest.forEach(item =>{
-          // console.log("item.data=========" + item.data[0])
-          // 如果区全选
-          if(this.ifCheckAllQu(item.name, item.data.length)){
-            this.selectedAreaLabels.push(item.name + "-全部")
-          } else  {
-            if (item.data[0] !== undefined){
-              var labelItem = item.name + "-" + item.data
-            } else {
-              var labelItem = item.name + "-全部"
-            }
-            this.selectedAreaLabels.push(labelItem)
-          }
+        // console.log("checkListNew==" + checkListNew)
+        // console.log("pianquLength==" + pianquLength)
+        // console.log("checkAreaList=" + this.checkAreaList)
+
+        // 区域标签展示格式转换
+        this.selectedAreaLabels = newArea.getAreaName(this.checkAreaList.join(','))
+        // var dest = [],
+        //   map = {};
+        // for(var i = 0; i < totalLabel.length; i++) {
+        //     var ai = {
+        //       "qu" : totalLabel[i].split("/")[2],
+        //       "pianqu": totalLabel[i].split("/")[3]
+        //     }
+        //   if(!map[ai.qu]) {
+        //     dest.push({
+        //       name: ai.qu,
+        //       data: [ai.pianqu]
+        //     });
+        //     map[ai.qu] = ai;
+        //   } else {
+        //     for(var j = 0; j < dest.length; j++){
+        //       var dj = dest[j];
+        //       if(dj.name == ai.qu) {
+        //         dj.data.push(ai.pianqu);
+        //         break;
+        //       }
+        //     }
+        //   }
+        //   // console.log("所选区域码ai:" +  JSON.stringify(ai))
+        // }
+        // // console.log("所选区域码:" +  JSON.stringify(dest));
+        // dest.forEach(item =>{
+        //   // console.log("item.data=========" + item.data[0])
+        //   // 如果区全选
+        //   if(this.ifCheckAllQu(item.name, item.data.length)){
+        //     this.selectedAreaLabels.push(item.name + "-全部")
+        //   } else  {
+        //     if (item.data[0] !== undefined){
+        //       var labelItem = item.name + "-" + item.data
+        //     } else {
+        //       var labelItem = item.name + "-全部"
+        //     }
+        //     this.selectedAreaLabels.push(labelItem)
+        //   }
          
-        })
-        
+        // })
+         // 区域标签展示格式转换---------end
         
       }
     },
@@ -613,8 +621,9 @@ export default {
       this.EditAccountForm.id = row.id
       this.EditAccountForm.userId = row.userId
       this.EditAccountForm.name = row.depName
-      this.editAreaCode = row.areaCode.split(",")
       this.edit_dialogFormVisible = true
+      // 选择区域比较慢所以放在最后
+      this.editAreaCode = row.areaCode.split(",")
     },
    
     // 确认修改

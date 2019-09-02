@@ -108,6 +108,17 @@ export default {
     return http.get(`${url1}/depStaff`)
   },
   
+  // 批量导入
+  batchImport(file) {
+    // return http.get(`${http.localURL}/puffer/risinghf/v1/import/devices`)
+    // console.log("111----" + `${url2}/puffer/risinghf/v1/import/devices`)
+    return http.post(
+      `${url1}/risinghf/v1/import/devices`, file
+    )
+  },
+  getImportDeviceData(params){
+    return http.post(`${url1}/risinghf/v1/devices`, params)
+  }
 
 
 }
