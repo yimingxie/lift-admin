@@ -717,10 +717,5 @@ export default {
 
 }
 
-@media screen and (max-width: 1360px) {
-  #LiftList{
-    min-width: 1360px;
-  }
-}
 
 </style>

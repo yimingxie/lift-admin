@@ -1,137 +1,96 @@
 <template>
   <div id="DetTest">
-    <h1>测试</h1>
-    <div>
-      <monitor @selectedMoniObj="getCompMoniObj" :parentMoniObj="testMoObj"></monitor>
+    <el-form :model="dynamicValidateForm" :rules="rules" ref="dynamicValidateForm" label-width="100px" class="demo-dynamic">
+      <el-form-item prop="regCode" class="lar-box">
+        <h4>电梯注册代码</h4>
+        <el-input v-model="dynamicValidateForm.regCode" size="small"></el-input>
+      </el-form-item>
 
-    </div>
 
-    <div>
-      <div id="container" style="height: 300px;width: 1000px;"></div>
-      <div class="info">
-          <div class="input-item">
-            <div class="input-item-prepend">
-              <span class="input-item-text" style="width:8rem;">请输入关键字</span>
-            </div>
-            <!-- <input id='tipinput' type="text" autocomplete="off"> -->
-            <el-input v-model="input" id='tipinput' placeholder="请输入内容"></el-input>
-          </div>
-      </div>
-    </div>
+      <el-form-item
+        prop="email"
+        label="邮箱"
+        :rules="[
+          { required: true, message: '请输入邮箱地址', trigger: 'blur' },
+          { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
+        ]"
+      >
+        <el-input v-model="dynamicValidateForm.email"></el-input>
+      </el-form-item>
+
+      
+      <el-form-item
+        v-for="(domain, index) in dynamicValidateForm.domains"
+        :label="'域名' + index"
+        :key="domain.key"
+        :prop="'domains.' + index + '.value'"
+        :rules="{
+          required: true, message: '域名不能为空', trigger: 'blur'
+        }"
+      >
+        <el-input v-model="domain.value"></el-input><el-button @click.prevent="removeDomain(domain)">删除</el-button>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="submitForm('dynamicValidateForm')">提交</el-button>
+        <el-button @click="addDomain">新增域名</el-button>
+        <el-button @click="resetForm('dynamicValidateForm')">重置</el-button>
+      </el-form-item>
+    </el-form>
 
   </div>
 </template>
 
 <script>
-// import DetDetailChartComp from './DetDetailChartComp'
-import Monitor from '../../components/Monitor'
-export default {
-  data() {
-    return {
-      testMoObj: [],
-      input: '',
-    }
-  },
-  mounted() {
-    this.getCompMoniObj()
-
-    function addMarker(lng, lat) {
-        // 创建覆盖物
-        marker = new AMap.Marker({
-          map: map,
-          // icon: "https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
-          content: 
-          `
-          <div class="point">
-            <div class="point-light"></div>
-            <div class="point-circle"></div>
-          </div>
-          `
-          ,
-          position: [lng, lat],
-          draggable: true
+  export default {
+    data() {
+      return {
+        rules: {
+          regCode: [{ required: true, message: '必填', trigger: 'blur' }],
+          areaCode: [{ required: true, message: '必填', trigger: 'blur' }],
+        },
+        dynamicValidateForm: {
+          domains: [{
+            value: '',
+            value2: ''
+          }],
+          email: ''
+        }
+      };
+    },
+    methods: {
+      submitForm(formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            alert('submit!');
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
         });
-
-        marker.setMap(map)
-
-        // 拖拽
-        marker.on('dragging', function (e) {
-          this.special.lng = e.lnglat.lng
-          this.special.lat = e.lnglat.lat
+      },
+      resetForm(formName) {
+        this.$refs[formName].resetFields();
+      },
+      removeDomain(item) {
+        var index = this.dynamicValidateForm.domains.indexOf(item)
+        if (index !== -1) {
+          this.dynamicValidateForm.domains.splice(index, 1)
+        }
+      },
+      addDomain() {
+        this.dynamicValidateForm.domains.push({
+          value: '',
+          key: Date.now()
         });
-
       }
-    
-
-    var marker;
-    var map = new AMap.Map("container", {
-      resizeEnable: true
-    });
-    //输入提示
-    var auto = new AMap.Autocomplete({
-      input: "tipinput"
-    });
-    AMap.event.addListener(auto, 'select', function(e){
-      //TODO 针对选中的poi实现自己的功能
-      console.log('e', e)
-      map.setZoomAndCenter(20, [e.poi.location.lng, e.poi.location.lat]); //设置地图中心点
-      addMarker(e.poi.location.lng, e.poi.location.lat)
-      // placeSearch.search(e.poi.name)
-    })
-
-  },
-  methods: {
-    getCompMoniObj(val) {
-      console.log('父组件', val)
     }
-
-  },
-  components: {
-    'monitor': Monitor
-
   }
-}
 </script>
 
-<style>
+<style lang="stylus" scoped>
+#DetTest{
   
-/* 地图marker样式 */
-#DetTest .point{
-  position: relative;
-  width: 48px;
-  height: 48px;
-  margin-left: -16px;
-  margin-top: -24px;
-}
-#DetTest .point-light{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #4272FF;
-  opacity: 0.5;
-  border-radius: 100%;
-  animation: myScale 1.5s infinite forwards;
-}
-#DetTest .point-circle{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 12px;
-  height: 12px;
-  background: #4272FF;
-  border-radius: 100%;
-}
-
-@keyframes myScale{
-  0% {opacity: 0.8;transform: scale(0.1);}
-  100% {opacity: 0;transform: scale(1);}
-}
   
-</style>
-
-<style scoped>
+}
 
 </style>

@@ -361,17 +361,21 @@
                     <!-- <el-input v-model="ruleForm.loadControl" size="small"></el-input> -->
                     <div v-if="submitState == 'put'" class="clearfix">
                       <div style="float: left; width: 40%;">
-                        <el-input v-model="special.loadControl.value1" size="small" placeholder="范围"></el-input>
+                        <el-form-item prop="loadControl1">
+                          <el-input v-model="ruleForm.loadControl1" size="small" placeholder="范围"></el-input>
+                        </el-form-item>
                       </div>
                       <div class="floors-split">-</div>
                       <div style="float: left; width: 40%;">
-                        <el-input v-model="special.loadControl.value2" size="small" placeholder="范围"></el-input>
+                        <el-form-item prop="loadControl2">
+                          <el-input v-model="ruleForm.loadControl2" size="small" placeholder="范围"></el-input>
+                        </el-form-item>
                       </div>
                     </div>
                     <div v-else class="clearfix">
-                      <p class="show-pp" style="float: left;">{{special.loadControl.value1 !== '' ? special.loadControl.value1 : '--'}}</p>
+                      <p class="show-pp" style="float: left;">{{ruleForm.loadControl1 !== '' ? ruleForm.loadControl1 : '--'}}</p>
                       <div class="floors-split" style="padding: 0 7px;">-</div>
-                      <p class="show-pp" style="float: left;">{{special.loadControl.value2 !== '' ? special.loadControl.value2 : '--'}}V</p>
+                      <p class="show-pp" style="float: left;">{{ruleForm.loadControl2 !== '' ? ruleForm.loadControl2 : '--'}}V</p>
                     </div>
                   </el-form-item>
                   <el-form-item prop="countWeight" class="lar-box">
@@ -381,32 +385,74 @@
                   </el-form-item>
 
                   <div style="width: 100%;overflow: hidden;">
-                    <el-form-item prop="floorsHeight" class="lar-box" style="width: 100%;">
+                    <div class="lar-box" style="width: 100%;">
                       <h4>层高（cm）</h4>
-                      <div class="clearfix" v-for="(item, i) in special.floorsHeight" :key="i">
-                        <div v-if="submitState == 'put'" class="clearfix">
-                          <div style="float: left; width: 8%;">
-                            <el-input v-model="item.floor1" size="small" placeholder="楼层"></el-input>
-                          </div>
-                          <div class="floors-split">-</div>
-                          <div style="float: left; width: 8%;">
-                            <el-input v-model="item.floor2" size="small" placeholder="楼层"></el-input>
-                          </div>
-                          <div class="floors-split">高度为</div>
-                          <div style="float: left; width: 12%">
-                            <el-input v-model="item.height" size="small" placeholder="高度"></el-input>
-                          </div>
-                          <div class="delete-floor-icon" @click="deleteFloor(i)" v-if="i > 0"></div>
+                      <div class="clearfix">
+                        <div v-if="submitState == 'put'" style="float: left; width: 8%;">
+                          <el-form-item
+                            v-for="(item, index) in ruleForm.floorsHeightFloor1"
+                            :key="item.key"
+                            :prop="'floorsHeightFloor1.' + index + '.floor1'"
+                            :rules="{
+                              required: true, message: '必填', trigger: 'blur'
+                            }"
+                          >
+                            <el-input v-model="item.floor1" size="small"></el-input>
+                          </el-form-item>
                         </div>
-                        <div v-else class="clearfix">
-                          <p class="show-pp" style="float: left;">{{item.floor1 !== '' ? item.floor1 : '--'}}</p>
-                          <div class="floors-split" style="padding: 0 7px;">-</div>
-                          <p class="show-pp" style="float: left;">{{item.floor2 !== '' ? item.floor2 : '--'}}层</p>
-                          <div class="floors-split" style="padding: 0 5px; margin-left: 16px;">高度为</div>
-                          <p class="show-pp" style="float: left;">{{item.height !== '' ? item.height : '--'}}</p>
+                        <div v-else style="float: left;">
+                          <div class="show-pp" v-for="(item, index) in ruleForm.floorsHeightFloor1" :key="index">{{item.floor1 !== '' ? item.floor1 : '--'}}</div>
                         </div>
+
+                        <div class="floors-split" :class="submitState == 'put' ? 'on' : ''">
+                          <div class="floors-split-p" v-for="(item, index) in ruleForm.floorsHeightH" :key="index">-</div>
+                        </div>
+
+                        <div v-if="submitState == 'put'" style="float: left; width: 8%;">
+                          <el-form-item
+                            v-for="(item, index) in ruleForm.floorsHeightFloor2"
+                            :key="item.key"
+                            :prop="'floorsHeightFloor2.' + index + '.floor2'"
+                            :rules="{
+                              required: true, message: '必填', trigger: 'blur'
+                            }"
+                          >
+                            <el-input v-model="item.floor2" size="small"></el-input>
+                          </el-form-item>
+                        </div>
+                        <div v-else style="float: left;">
+                          <div class="show-pp" v-for="(item, index) in ruleForm.floorsHeightFloor2" :key="index">{{item.floor2 !== '' ? item.floor2 : '--'}}层</div>
+                        </div>
+
+                        <div class="floors-split" :class="submitState == 'put' ? 'on' : ''">
+                          <div class="floors-split-p" v-for="(item, index) in ruleForm.floorsHeightH" :key="index">高度为</div>
+                        </div>
+
+                        <div v-if="submitState == 'put'" style="float: left; width: 12%;">
+                          <el-form-item
+                            v-for="(item, index) in ruleForm.floorsHeightH"
+                            :key="item.key"
+                            :prop="'floorsHeightH.' + index + '.height'"
+                            :rules="{
+                              required: true, message: '必填', trigger: 'blur'
+                            }"
+                          >
+                            <el-input v-model="item.height" size="small"></el-input>
+                          </el-form-item>
+                        </div>
+                        <div v-else style="float: left;">
+                          <div class="show-pp" v-for="(item, index) in ruleForm.floorsHeightH" :key="index">{{item.height !== '' ? item.height : '--'}}</div>
+                        </div>
+                        <div v-if="submitState == 'put'" style="float: left; width: 38px;">
+                          <div style="width: 30px; height: 32px; margin-bottom: 22px;"></div> <!-- 占位div -->
+                          <div v-for="(item, i) in ruleForm.floorsHeightH" :key="i">
+                            <div class="delete-floor-icon" style="margin-bottom: 22px;" @click="deleteFloor(i)" v-if="i>0"></div>
+                          </div>
+                        </div>
+
+
                       </div>
-                    </el-form-item>
+                    </div>
                   </div>
 
                   <div class="add-floor clearfix" v-if="submitState == 'put'">
@@ -554,6 +600,19 @@ export default {
         'countWeight': '',
         'floorsHeight': '',
         'extend': '',
+
+        // 特殊处理数据，方便校验
+        'loadControl1': '',
+        'loadControl2': '',
+        floorsHeightFloor1: [
+          {floor1: ''}
+        ],
+        floorsHeightFloor2: [
+          {floor2: ''}
+        ],
+        floorsHeightH: [
+          {height: ''}
+        ],
         
       },
 
@@ -605,6 +664,19 @@ export default {
         'countWeight': '',
         'floorsHeight': '',
         'extend': '',
+
+        // 特殊处理数据，方便校验
+        'loadControl1': '',
+        'loadControl2': '',
+        floorsHeightFloor1: [
+          {floor1: ''}
+        ],
+        floorsHeightFloor2: [
+          {floor2: ''}
+        ],
+        floorsHeightH: [
+          {height: ''}
+        ],
         
       },
 
@@ -664,7 +736,7 @@ export default {
       rules: {
 
         regCode: [{ required: true, message: '必填', trigger: 'blur' }],
-        areaCode: [{ required: true, message: '必填', trigger: 'blur' }],
+        areaCode: [{ required: true, message: '必填', trigger: 'change' }],
         address: [{ required: true, message: '必填', trigger: 'blur' }],
         bottomHeight: [{ required: true, message: '必填', trigger: 'blur' }],
         // carForm: [{ required: true, message: '必填', trigger: 'blur' }],
@@ -692,7 +764,8 @@ export default {
         highLevel: [{ required: true, message: '必填', trigger: 'blur' }],
         inNum: [{ required: true, message: '必填', trigger: 'blur' }],
         latLon: [{ required: true, message: '必填', trigger: 'blur' }],
-        loadControl: [{ required: true, message: '必填', trigger: 'blur' }],
+        loadControl1: [{ required: true, message: '必填', trigger: 'blur' }],
+        loadControl2: [{ required: true, message: '必填', trigger: 'blur' }],
         localArea: [{ required: true, message: '必填', trigger: 'blur' }],
         lowLevel: [{ required: true, message: '必填', trigger: 'blur' }],
         maintenEtime: [{ required: true, message: '必填', trigger: 'blur' }],
@@ -798,8 +871,8 @@ export default {
         if (this.ruleForm.carForm !== '') {
           this.special.carForm = this.transformCarForm(this.ruleForm.carForm)
         }
-        this.special.loadControl.value1 = this.ruleForm.loadControl.split(',')[0] ? this.ruleForm.loadControl.split(',')[0] : ''
-        this.special.loadControl.value2 = this.ruleForm.loadControl.split(',')[1] ? this.ruleForm.loadControl.split(',')[1] : ''
+        this.ruleForm.loadControl1 = this.ruleForm.loadControl.split(',')[0] ? this.ruleForm.loadControl.split(',')[0] : ''
+        this.ruleForm.loadControl2 = this.ruleForm.loadControl.split(',')[1] ? this.ruleForm.loadControl.split(',')[1] : ''
 
         // m转换成cm
         this.ruleForm.doorOsize = (this.ruleForm.doorOsize * 100).toFixed(1); 
@@ -891,42 +964,34 @@ export default {
 
     // 特殊处理层高
     transformFloorsHeight(floorsHeight) {
-      // 字符串数组重组成新形式数组
+      const that = this
+      // 字符串数组分解为3个数组
       // "[{'floor': '-1, 1', 'height': '5'}, {'floor': '1, 5', 'height' : '4'}]" => [{floor1: '-1', floor2: '1', height: '5'}, {floor1: '1', floor2: '5', height: '4'}]
       if (typeof floorsHeight == 'string') {
         // 将m转换成cm
         let evalFloorsHeight = eval(floorsHeight)
-        let floorsHeightArr = []
+        this.ruleForm.floorsHeightFloor1 = []
+        this.ruleForm.floorsHeightFloor2 = []
+        this.ruleForm.floorsHeightH = []
         evalFloorsHeight.forEach(item => {
-          floorsHeightArr.push({
-            floor1: item.floor.split(',')[0],
-            floor2: item.floor.split(',')[1],
-            height: item.height * 100
-          })
+          this.ruleForm.floorsHeightFloor1.push({floor1: item.floor.split(',')[0]})
+          this.ruleForm.floorsHeightFloor2.push({floor2: item.floor.split(',')[1]})
+          this.ruleForm.floorsHeightH.push({height: item.height * 100})
         })
-        return floorsHeightArr
       }
 
       // 新形式数组重组为字符串数组
-      // [{floor1: '-1', floor2: '1', height: '5'}, {floor1: '1', floor2: '5', height: '4'}] => "[{'floor': '-1, 1', 'height': '5'}, {'floor': '1, 5', 'height' : '4'}]"
-      if (floorsHeight instanceof Array) {
-        // 将cm转化为m
-        if (floorsHeight.length === 1 && floorsHeight[0].floor1 === '' && floorsHeight[0].floor2 === '' && floorsHeight[0].height === '') return ''
+      else {
         let carSizeArrStr = []
-        floorsHeight.forEach((item, i) => {
-          if (item.floor1 === '' || item.floor2 === '') {
-            return true
-          } else {
-            carSizeArrStr.push({
-              floor: item.floor1 + ',' + item.floor2,
-              height: item.height / 100
-            })
-          }
-          
+        this.ruleForm.floorsHeightFloor1.forEach((item, i) => {
+          carSizeArrStr.push({
+            floor: item.floor1 + ',' + that.ruleForm.floorsHeightFloor2[i].floor2,
+            height: that.ruleForm.floorsHeightH[i].height / 100
+          })
         })
         return JSON.stringify(carSizeArrStr)
       }
-      
+
       console.log('floorsHeight传入类型错误')
     },
 
@@ -1134,6 +1199,13 @@ export default {
         }
         if (that.submitState == 'put') {
           markerOptions.draggable = true
+          // 点击添加点
+          map.on('click', (e) => {
+            map.clearMap()
+            that.special.lng = e.lnglat.lng
+            that.special.lat = e.lnglat.lat
+            addMarker(e.lnglat.lng, e.lnglat.lat)
+          });
         }
 
         marker = new AMap.Marker(markerOptions);
@@ -1224,16 +1296,24 @@ export default {
 
     // 添加层高
     addFloor() {
-      this.special.floorsHeight.push({
-        floor1: '',
-        floor2: '',
-        height: '',
-      })
+      // this.special.floorsHeight.push({
+      //   floor1: '',
+      //   floor2: '',
+      //   height: '',
+      // })
+      this.ruleForm.floorsHeightFloor1.push({floor1: ''})
+      this.ruleForm.floorsHeightFloor2.push({floor2: ''})
+      this.ruleForm.floorsHeightH.push({height: ''})
     },
 
     // 删除层高
     deleteFloor(i) {
-      this.special.floorsHeight.splice(i, 1)
+      // this.special.floorsHeight.splice(i, 1)
+      console.log('删除', i)
+      this.ruleForm.floorsHeightFloor1.splice(i, 1)
+      this.ruleForm.floorsHeightFloor2.splice(i, 1)
+      this.ruleForm.floorsHeightH.splice(i, 1)
+
     },
 
     // 添加轿厢形式
@@ -1301,9 +1381,10 @@ export default {
           // 特殊处理字段
           this.ruleForm.areaCode = this.transformAreaCode(this.special.areaCode)
           this.ruleForm.carSize = this.transformCarSize(this.special.carSize)
-          this.ruleForm.floorsHeight = this.transformFloorsHeight(this.special.floorsHeight)
+          this.ruleForm.floorsHeight = this.transformFloorsHeight()
           this.ruleForm.carForm = this.transformCarForm(this.special.carForm)
-          this.ruleForm.loadControl = this.special.loadControl.value1 + ',' + this.special.loadControl.value2
+          this.ruleForm.loadControl = this.ruleForm.loadControl1 + ',' + this.ruleForm.loadControl2
+          
 
           if (this.ruleForm.doorForm == '其他') {
             this.ruleForm.doorForm = this.special.doorForm
@@ -1324,11 +1405,6 @@ export default {
           } else {
             this.ruleForm.latLon = ''
           }
-
-
-          // this.special.loadControl.value1 = this.ruleForm.loadControl.split(':')[0] ? this.ruleForm.loadControl.split(':')[0] : ''
-          // this.special.loadControl.value2 = this.ruleForm.loadControl.split(':')[1] ? this.ruleForm.loadControl.split(':')[1] : ''
-
 
           // cm转换成m
           this.ruleForm.doorOsize = this.ruleForm.doorOsize / 100
@@ -1359,29 +1435,6 @@ export default {
             }
           })
 
-
-
-          // if (this.submitState == 'put') {
-          //   api.lift.editLift(this.ruleForm).then(res => {
-          //     console.log('put', res)
-          //     if (res.data.code == '200') {
-          //       that.$message.success(`${res.data.message}`)
-          //       that.$router.push({path: '/lift-list'})
-          //     } else {
-          //       that.$message.error(`${res.data.message}`)
-          //     }
-          //   })
-          // } else {
-          //   api.lift.addLift(this.ruleForm).then(res => {
-          //     console.log('post', res)
-          //     if (res.data.code == '200') {
-          //       that.$message.success('添加电梯成功')
-          //       that.$router.push({path: '/lift-list'})
-          //     } else {
-          //       that.$message.error(`${res.data.message}`)
-          //     }
-          //   })
-          // }
 
         } else {
           console.log('error',this.ruleForm)
@@ -1573,7 +1626,7 @@ export default {
   .delete-floor-icon{
     float left;
     width 30px;
-    height 40px;
+    height 32px;
     background: url('../../assets/images/xym/delete.png') no-repeat center center;
     margin-left 8px;
     cursor pointer;
@@ -1595,6 +1648,9 @@ export default {
   }
   .lift-detail-height-block{
     height: 360px;
+  }
+  .floors-split.on .floors-split-p{
+    margin-bottom: 22px;
   }
   
 

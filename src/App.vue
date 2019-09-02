@@ -211,6 +211,7 @@
 
     data () {
       return {
+        allowResponse: true, // 自适应
         appKey: 1, // 监听地址栏参数
         title:'电梯行业监管战情室',
         showMenu: true,
@@ -243,7 +244,8 @@
           this.$store.commit('SWITCH_LAYOUT', 'auth')
           
           // console.log('layout====' + this.layout)
-        } else{
+        }
+        else{
           this.$store.commit('SWITCH_LAYOUT', 'admin')
         }
       },
@@ -570,5 +572,6 @@
     min-width: 1280px;
   }
 }
+
 </style>
 

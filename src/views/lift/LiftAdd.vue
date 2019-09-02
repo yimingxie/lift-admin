@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import api from '../../api'
 import SearchCode from '../../components/SearchCode'
 import Footer from '../common/fotter'
 
@@ -51,17 +52,42 @@ export default {
     }
   },
   mounted() {
+    
 
   },
   methods: {
     goToResult(val) {
-      this.$router.push({
-        path: '/lift-add-result',
-        query: {
-          regCode: val,
-          submitState: 'post'
+      const that = this
+      let skipFlag = true
+      let liftListParams = {
+        offset: 1, 
+        limit: 1000,
+        excpType: -1,
+        order: 'desc', // 异常排序
+        timeOrder: 'desc' // 添加时间
+      }
+      api.lift.getLiftList(liftListParams).then(res => {
+        let list = res.data.data.records
+        // 电梯存在则不跳转
+        list.find(item => {
+          if (item.regCode == val) {
+            skipFlag = false
+            return this.$message.error('电梯已存在')
+          }
+        })
+
+        if (skipFlag) {
+          this.$router.push({
+            path: '/lift-add-result',
+            query: {
+              regCode: val,
+              submitState: 'post'
+            }
+          })
         }
       })
+      
+      
     }
 
   },

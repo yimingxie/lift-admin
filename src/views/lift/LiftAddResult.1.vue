@@ -58,7 +58,7 @@
                   <el-form-item prop="address" class="lar-box" style="width: 50%;">
                     <h4>详细地址</h4>
                     <p class="show-pp" v-if="submitState == 'put'">{{ruleForm.address}}</p>
-                    <el-input v-model="ruleForm.address" size="small" id="address" @input="searchMap()" v-else></el-input>
+                    <el-input v-model="ruleForm.address" size="small" id="address" placeholder="请输入详细地址并选择" v-else></el-input>
                   </el-form-item>
                   
                 </div>
@@ -301,6 +301,7 @@
                     <div class="clearfix">
                       <div style="float: left; width: 40%;">
                         <el-input v-model="special.loadControl.value1" size="small" placeholder="范围"></el-input>
+                        <!-- <el-input v-model="special.loadControl1" size="small" placeholder="范围"></el-input> -->
                       </div>
                       <div class="floors-split">-</div>
                       <div style="float: left; width: 40%;">
@@ -308,6 +309,8 @@
                       </div>
                     </div>
                   </el-form-item>
+
+
                   <el-form-item prop="countWeight" class="lar-box">
                     <h4>对重装置重量（kg）</h4>
                     <el-input v-model="ruleForm.countWeight" size="small"></el-input>
@@ -530,6 +533,7 @@ export default {
         'countWeight': '',
         'floorsHeight': '',
         'extend': '',
+
         
       },
 
@@ -932,8 +936,8 @@ export default {
         mapStyle: 'amap://styles/db9065b28cc027a6a3240fc2ae093125',
       });
 
+      // 创建覆盖物
       function addMarker(lng, lat) {
-        // 创建覆盖物
         marker = new AMap.Marker({
           map: map,
           // icon: "https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
@@ -950,13 +954,13 @@ export default {
         });
 
         marker.setMap(map)
-
+        that.special.lng = lng
+        that.special.lat = lat
         // 拖拽
         marker.on('dragging', function (e) {
           that.special.lng = e.lnglat.lng
           that.special.lat = e.lnglat.lat
         });
-
       }
 
       if (latLon) {
@@ -966,70 +970,20 @@ export default {
         map.setCenter([lng, lat]); //设置地图中心点
         console.log('gggggg', lng, lat)
         return
-
       }
 
       // 搜索
       let keywords = this.ruleForm.localArea + this.ruleForm.address
       console.log('搜索关键字', keywords)
-      AMap.plugin('AMap.Autocomplete', function() {
-        // 实例化Autocomplete
-        var autoOptions = {
-          city: '全国'
-        }
-        var autoComplete = new AMap.Autocomplete(autoOptions);
-
-        function addMarker(lng, lat) {
-          // 创建覆盖物
-          marker = new AMap.Marker({
-            map: map,
-            // icon: "https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
-            content: 
-            `
-            <div class="point">
-              <div class="point-light"></div>
-              <div class="point-circle"></div>
-            </div>
-            `
-            ,
-            position: [lng, lat],
-            draggable: true
-          });
-
-          marker.setMap(map)
-
-          // 拖拽
-          marker.on('dragging', function (e) {
-            that.special.lng = e.lnglat.lng
-            that.special.lat = e.lnglat.lat
-          });
-
-        }
-
-
-        autoComplete.search(keywords, function(status, result) {
-          // 搜索成功时，result即是对应的匹配数据
-          console.log(status, result)
-          if (status !== 'complete' || result.tips.length == 0) return
-          let lng = result.tips[0].location.lng
-          let lat = result.tips[0].location.lat
-          that.special.lng = lng
-          that.special.lat = lat
-          // map.setZoom(20)
-          map.setCenter([lng, lat]); //设置地图中心点
-          addMarker(lng, lat)
-
-          // 根据覆盖物自适应缩放
-          map.setFitView();
-        })
-
-        map.on('click', (e) => {
-          console.log(e)
-          map.clearMap()
-          that.special.lng = e.lnglat.lng
-          that.special.lat = e.lnglat.lat
-          addMarker(e.lnglat.lng, e.lnglat.lat)
-        });
+      // 输入提示
+      var auto = new AMap.Autocomplete({
+        input: "address"
+      });
+      AMap.event.addListener(auto, 'select', function(e){
+        console.log('e', e)
+        map.setZoomAndCenter(20, [e.poi.location.lng, e.poi.location.lat]); //设置地图中心点
+        addMarker(e.poi.location.lng, e.poi.location.lat)
+        // placeSearch.search(e.poi.name)
       })
     },
 
@@ -1138,7 +1092,7 @@ export default {
               }
             })
           } else {
-            api.lift.addLift(this.ruleForm).then(res => {
+            api.lift.editLift(this.ruleForm).then(res => {
               console.log('post', res)
               if (res.data.code == '200') {
                 that.$message.success('添加电梯成功')

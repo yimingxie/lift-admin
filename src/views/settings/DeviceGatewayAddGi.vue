@@ -85,14 +85,14 @@
                   </el-form-item>
                 </div>
               </div>
-              <div class="dia-citem clearfix" style="padding-bottom: 20px;" v-show="typeValue == '传感器'">
+              <!-- <div class="dia-citem clearfix" style="padding-bottom: 20px;" v-show="typeValue == '传感器'">
                 <div class="dia-citem-label" style="line-height: 22px;">监测内容：</div>
                 <div class="dia-citem-ib">
                   <el-checkbox-group v-model="checkedMoniObj" @change="checkboxChange">
                     <el-checkbox v-for="(item, i) in moniObjList" :label="item.id" :key="i">{{item.monitorVal}}</el-checkbox>
                   </el-checkbox-group>
                 </div>
-              </div>
+              </div> -->
               <div class="dia-citem clearfix">
                 <div class="dia-citem-label">设备名称：</div>
                 <div class="dia-citem-ib">
@@ -193,16 +193,28 @@ export default {
  
       },
       modelOptions: [
-        {label: 'WS'},
-        {label: 'VIB'},
-        {label: 'Thermal'},
-        {label: 'Tacho'},
-        {label: 'Rht'},
-        {label: 'Prox'},
-        {label: 'LD'},
-        {label: 'IRT'},
-        {label: '600V&60V'},
-        {label: '200A'},
+        // {label: 'WS'},
+        // {label: 'VIB'},
+        // {label: 'Thermal'},
+        // {label: 'Tacho'},
+        // {label: 'Rht'},
+        // {label: 'Prox'},
+        // {label: 'LD'},
+        // {label: 'IRT'},
+        // {label: '600V&60V'},
+        // {label: '200A'},
+
+        {label: 'IoT WS Sensor'},
+        {label: 'IoT VIB Sensor'},
+        {label: 'IoT Thermal Sensor'},
+        {label: 'IoT Tacho Sensor'},
+        {label: 'IoT RHT Sensor'},
+        {label: 'IoT Prox Sensor'},
+        {label: 'IoT LD Sensor'},
+        {label: 'IoT IRT Sensor'},
+        {label: 'IoT 60V Sensor'},
+        {label: 'IoT 600V Sensor'},
+        {label: 'IoT 200A Sensor'},
       ],
       modelValue: '',
       moniObjList: [
@@ -268,13 +280,15 @@ export default {
       api.device.getMonitorValByModel(devModel).then(res => {
         this.moniObjList = []
         let list = res.data.data
-        list.forEach((item, i) => {
-          this.moniObjList.push({
-            "id": item.monitorVal,
-            "monitorVal": that.modelContentList[item.monitorVal]
-          })
+        // list.forEach((item, i) => {
+        //   this.moniObjList.push({
+        //     "id": item.monitorVal,
+        //     "monitorVal": that.modelContentList[item.monitorVal]
+        //   })
 
-        })
+        // })
+
+        this.ruleForm.monitorVal = res.data.data[0].monitorVal
         console.log('监测内容多选框', this.moniObjList)
       })
       
