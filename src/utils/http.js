@@ -98,22 +98,21 @@ axios.interceptors.request.use(config => {
 // 响应拦截器即异常处理
 axios.interceptors.response.use(response => {
   // console.log('response===', response); 
-  // if(response.data.code == 401000) {
+  if(response.data.code == 401000) {
     
-  //   // alert('token失效，请重新登录');
-  //   // router.push('/');
+    // alert('token失效，请重新登录');
+    // router.push('/');
 
-    
-  //   if(localStorage.getItem('accessToken')) {
-  //     // message.info(res.data.Errors + ',请重新登录', 3);
-  //     alert('token失效，请重新登录');
-  //   }
-  //   // 清除token
-  //   localStorage.removeItem('accessToken');
-  //   // 跳转登陆页
-  //   router.push('/');
+    if(localStorage.getItem('accessToken')) {
+      // message.info(res.data.Errors + ',请重新登录', 3);
+      alert('token失效，请重新登录');
+    }
+    // 清除token
+    localStorage.removeItem('accessToken');
+    // 跳转登陆页
+    router.push('/');
 
-  // }
+  }
   return response;
 }, error => {
   //对响应数据错误做操作

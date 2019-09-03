@@ -826,7 +826,7 @@ export default {
       this.addStaffForm.areaCode = this.checkAreaList.join(',') // 管辖区域
       this.addStaffForm.manageArea = this.selectedAreaLabels.join(',')
 
-      this.addStaffForm.avatarUrl = 'GI_gbHqaBlcxAB2y4ILd.jpg'
+      // this.addStaffForm.avatarUrl = 'GI_gbHqaBlcxAB2y4ILd.jpg'
       console.log("this.addStaffForm===" + JSON.stringify(this.addStaffForm))
 
       if(this.addStaffForm.avatarUrl == ''){

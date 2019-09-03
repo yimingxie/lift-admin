@@ -180,11 +180,11 @@
                     <el-steps :active="record.length - 1" direction="vertical" >
                       <!-- class="chaoshiLine" -->
 
-                      <el-step :title="item.taskStatus" v-for="(item,index) in record" :key="index" :class="item.taskStatus == 6000?chaoshiLine:''">
-                        <i slot="icon" class="progressIcon paidan" v-if="item.taskStatus == 3000"></i>
-                        <i slot="icon" class="progressIcon jiedan" v-if="item.taskStatus == 4000"></i>
-                        <i slot="icon" class="progressIcon wancheng" v-if="item.taskStatus == 7000 || item.taskStatus == 5000"></i>
-                        <i slot="icon" class="progressIcon chaoshi" v-if="item.taskStatus == 6000"></i>
+                      <el-step :title="statusText[item.status]" v-for="(item,index) in record" :key="index" :class="item.status == 6000?chaoshiLine:''">
+                        <i slot="icon" class="progressIcon paidan" v-if="item.status == 3000"></i>
+                        <i slot="icon" class="progressIcon jiedan" v-if="item.status == 4000"></i>
+                        <i slot="icon" class="progressIcon wancheng" v-if="item.status == 7000 || item.status == 5000"></i>
+                        <i slot="icon" class="progressIcon chaoshi" v-if="item.status == 6000"></i>
                         
                         <div slot="description">
                           <p>{{item.recordTime}}</p>
@@ -266,7 +266,17 @@
             1090:'季度维保',
             1180:'半年维保',
             1365:'年度维保',
-          }
+          },
+          statusText:{
+            0:'无计划',
+            1000:'可派单',
+            2000:'未派单',
+            3000:'已派单',
+            4000:'已接单',
+            5000:'已关闭',
+            6000:'已超时',
+            7000:'已完成',
+          },
           // authorURL:'/detection'
         }
       },
@@ -314,9 +324,9 @@
               // this.status = res.data.data.status
               // this.taskNo = res.data.data.taskNo
               // this.taskType = res.data.data.taskType
-
+              
               this.getStaffJson = res.data.data.mp || []
-              console.log("this.getStaffJson::" + this.getStaffJson)
+              console.log("this.record::" + JSON.stringify(this.record))
               if(this.getStaffJson.length>0){
                 this.getStaffJson.forEach(item => {
                   if(item.avatarUrl) {

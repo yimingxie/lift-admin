@@ -112,7 +112,7 @@ export default {
   methods: {
     // 查询所有角色
     getAllRoleData(){
-      api.roleApi.getRoles(this.roleQueryParam).then((res) => {
+      api.accountApi.getRoles(this.roleQueryParam).then((res) => {
         
         this.rolesJson = res.data.data.records
 
@@ -130,7 +130,7 @@ export default {
     },
     // 确认修改
     confirmEdit(){
-      api.roleApi.editRole(this.EditRoleForm).then((res) => {
+      api.accountApi.editRole(this.EditRoleForm).then((res) => {
         if (res.data.code === 200) {
           this.$message.success('修改成功！');
           this.getAllRoleData()
@@ -156,7 +156,7 @@ export default {
     getbindModules(id){
       var _this = this
       _this.value = []
-      api.roleApi.roleGetmodule(id).then((res) => {
+      api.accountApi.roleGetmodule(id).then((res) => {
         if (res.data.code === 200) {
           this.bindModules = res.data.data
           // res.data.data.forEach((item) => {

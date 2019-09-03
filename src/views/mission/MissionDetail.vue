@@ -439,7 +439,7 @@ export default {
         // 删除
         this.editOrDeletePerson(personIds)
       } else {
-        this.$message.error("不能再删除啦")
+        this.$message.error("不能再删啦")
       }
 
     },

@@ -268,9 +268,9 @@
               </div>
 
               <div v-if="task.status !== '0' && currentEditPlanId !== task.id" class="taskListStyle">
-                <i :style="{'color':getStatusColor(task.status)}" style="margin-right:2px">●</i>
+                <i :style="{'color':getStatusColor(statusText[task.status])}" style="margin-right:2px">●</i>
                 <span :style="{opacity:(nowTr !== '' ?'0.3':'1')}" >
-                  <span v-if="task.status !== '未派单' && task.status !== '可派单'">工单编号：{{ task.id }}</span>
+                  <span v-if="task.status !== '2000' && task.status !== '1000'">工单编号：{{ task.id }}</span>
                   <span v-else>工单编号：--</span>
                   <span class="splitLine">|</span>
                   <span>{{task.beginTime.substring(5)}}</span>
@@ -457,7 +457,7 @@
         <el-row>
           <el-col :span="8"><div class="grid-content bg-purple">{{confirmCloseTask.elevCode}}</div></el-col>
           <el-col :span="6"><div class="grid-content bg-purple-light">{{confirmCloseTask.beginTime}}</div></el-col>
-          <el-col :span="4"><div class="grid-content bg-purple">{{confirmCloseTask.type}}</div></el-col>
+          <el-col :span="4"><div class="grid-content bg-purple">{{ typeText[confirmCloseTask.type] }}</div></el-col>
           <el-col :span="6"><div class="grid-content bg-purple-light">{{confirmCloseTask.persons}}</div></el-col>
         </el-row>
       </div>
@@ -831,7 +831,8 @@ export default {
     },
     // 新增计划时选择作业类型
     selectType(type){
-      if(type == '故障处理' || type == '事故救援'){
+      console.log("type---" + type)
+      if(type == '2000' || type == '4000'){
         this.selectPersonsDisabled = false
       } else {
         this.selectPersonsDisabled = true
@@ -982,6 +983,7 @@ export default {
       
     },
     getStatusColor(status){
+      console.log("status==" + status)
       var color = ''
       if(status == '未派单' || status == '可派单'){
         color = 'rgb(255, 169, 11)'
@@ -1285,7 +1287,7 @@ export default {
         })
         // // this.checkedStaffsName.push(obj[0].staffName)
         console.log("this.obj===" + obj[0])
-        if(obj[0].status == "可派单"){
+        if(obj[0].status == "1000"){
           _this.checkTaskListArr.push(obj[0])
         }
         console.log("this.checkTaskListArr===" + JSON.stringify(_this.checkTaskListArr))
@@ -1462,23 +1464,23 @@ export default {
     
     
     // 创建计划
-    createAPlan(){
-      // 显示创建计划
-      this.showCreatePlan = true
-      // 显示作业信息
-      this.showCreatePlan2 = true
+    // createAPlan(){
+    //   // 显示创建计划
+    //   this.showCreatePlan = true
+    //   // 显示作业信息
+    //   this.showCreatePlan2 = true
 
-      this.value2 = this.timeDefault + "09:00:00"
-      this.createPlanParam.type = ''
-      this.selectPersons = []
-      this.selectPersonsDisabled = true
-      // console.log("this.value2---" + this.checkedDate + " " + this.value2)
-      // this.createPlanParam.beginTime = + '09:00:00'
-    },
+    //   this.value2 = this.timeDefault + "09:00:00"
+    //   this.createPlanParam.type = ''
+    //   this.selectPersons = []
+    //   this.selectPersonsDisabled = true
+    //   // console.log("this.value2---" + this.checkedDate + " " + this.value2)
+    //   // this.createPlanParam.beginTime = + '09:00:00'
+    // },
     // 取消创建计划
-    cancelCreatePlan() {
-      this.showCreatePlan = false
-    },
+    // cancelCreatePlan() {
+    //   this.showCreatePlan = false
+    // },
     // 创建某梯计划
     openAddLiftMission(code){
       // 获取该电梯绑定负责人以及是否已创建计划
@@ -1509,7 +1511,7 @@ export default {
               { label: '故障处理', value: "2000" },
               { label: '事故救援', value: "4000" },
             ]
-            this.selectType = '故障处理'
+            this.selectType = '2000'
           } else {
             this.tpyeOptions = [
               { label: '例行维保', value: "1015" },
@@ -1519,7 +1521,7 @@ export default {
               { label: '故障处理', value: "2000" },
               { label: '事故救援', value: "4000" }
             ]
-            this.selectType = '例行维保'
+            this.selectType = '1015'
           }
         }
 
@@ -1548,7 +1550,7 @@ export default {
       this.createPlanParam.type = this.selectType
       // console.log("this.createPlanParam==" + JSON.stringify(this.createPlanParam))
       // 派单
-      if(this.createPlanParam.type == '故障处理' || this.createPlanParam.type == '事故救援'){
+      if(this.createPlanParam.type == '2000' || this.createPlanParam.type == '4000'){
         api.taskApi.createTask(this.createPlanParam).then((res) => {
           if(res.data.code == 200) {
             this.$message.success('派单成功！');
@@ -1575,6 +1577,7 @@ export default {
         })
       } else { // 创建计划
         api.taskApi.createPlan(this.createPlanParam).then((res) => {
+          alert(2)
           if(res.data.code == 200) {
             this.$message.success('创建计划成功！');
             // 获取任务列表

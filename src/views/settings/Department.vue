@@ -513,7 +513,7 @@ export default {
         if(res.data.code === 200 && res.data.message === 'success'){
           this.getAllStaffJson = res.data.data.records
           // this.totalPageSize = res.data.data.total
-
+          // this.EditAccountForm.userId = this.getAllStaffJson[0].id
         } else {
           this.getAllStaffJson = []
         }
@@ -617,7 +617,7 @@ export default {
     },
     // 编辑账号
     editAccount(index, row){
-      console.log("111" + JSON.stringify(row))
+      // console.log("111" + JSON.stringify(row))
       this.EditAccountForm.id = row.id
       this.EditAccountForm.userId = row.userId
       this.EditAccountForm.name = row.depName
@@ -628,6 +628,10 @@ export default {
    
     // 确认修改
     confirmEdit(){
+      if(this.EditAccountForm.userId == null){
+        this.$message.error("部门负责人不能为空");
+        return
+      }
       this.getAllStaffJson.forEach(item => {
         if(item.id === this.EditAccountForm.userId) {
           this.EditAccountForm.managerName = item.staffName

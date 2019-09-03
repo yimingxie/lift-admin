@@ -169,21 +169,44 @@ export default  {
       `${url2}/staff/${corpId}/${areaCode}/elevator`
     )
   },
+  // 上传图片
   uploadPic(params){
     return http.post(
-      `${http.localURL}/corp/upload/image`, params
+      `${http.localURL}/arctic/corp/upload/image`, params
     )
   },
   // 查看图片
   viewPic(picName){
-    return `${http.localURL}/corp/view/image?filename=${picName}`
+    return `${http.localURL}/arctic/corp/view/image?filename=${picName}`
   },
   // 员工作业记录
   staffTaskList(params){
     return http.post(
       `${url2}/staff/record/log`, params
     )
-  }
+  },
+
+
+  // ------------------------角色管理--------------------------------
+  // 查询角色列表
+  getRoles(params){
+    return http.post(
+      `${url2}/role/list`, params
+    )
+  },
+  
+  // 修改角色名称
+  editRole(params){
+    return http.put(
+      `${url2}/role`, params
+    )
+  },
+  // 查询角色下已绑定的模块
+  roleGetmodule(id){
+    return http.get(
+      `${url2}/${id}/funcs`
+    )
+  },
 }
 
 

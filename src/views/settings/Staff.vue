@@ -58,10 +58,12 @@
         <button class="btn whiteBtn fr" @click="deleteStaffDialog()">删除员工</button>
         <button class="btn whiteBtn fr" @click="resetPasswordDialog()">重置密码</button>
         <!-- <button class="btn whiteBtn fr" >更改部门</button> -->
-        <search-input v-model.trim="searchKey" placeholderValue="搜索员工姓名/手机号">
-          <span slot="btn" class="search_btn" @click="searchAccount()" @keyup.enter.native="searchAccount()"></span>
+        <search-input v-model.trim="searchKey" placeholderValue="搜索员工姓名/手机号" @search="searchAccount()" @cancel="searchAccount()">
+          <!-- <span slot="btn" class="search_btn" @click="searchAccount()" @keyup.enter.native="searchAccount()"></span> -->
         </search-input>
 
+        <!-- <search-input v-model.trim="searchKey" placeholderValue="搜索部门名称" @search="searchAccount()" @cancel="searchAccount()">
+        </search-input> -->
       </div>
       <div class="splitBar"></div>
     </div>
@@ -672,7 +674,7 @@ export default {
     
     // 查询所有角色
     getAllRoleData(){
-      api.roleApi.getRoles(this.roleQueryParam).then((res) => {
+      api.accountApi.getRoles(this.roleQueryParam).then((res) => {
         if (res.data.code === 200) {
           this.rolesJson = res.data.data.records
           // this.periods = [{ label: '全部', value: "-1" }]
