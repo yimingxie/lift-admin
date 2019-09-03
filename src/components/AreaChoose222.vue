@@ -1,5 +1,5 @@
 <template>
-  <!-- 区域选择组件 -->
+  <!-- 区域选择组件 *已废弃 -->
   <div class="area-box">
     <choiceindex clearable filterable @change="regionChange" :is-two-dimension-value="false" v-model="checkList" :data="regionOptions"></choiceindex>
   </div>

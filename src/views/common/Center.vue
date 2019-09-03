@@ -44,11 +44,10 @@
       <div slot="footer" class="dialog-footer tac">
         <el-button @click="edit_dialogFormVisible = false" class="dialogCancel">取 消</el-button>
         <el-button type="primary" @click="confirmEdit('EditAccountForm')" class="dialogSure">确 认</el-button>
-
       </div>
     </el-dialog>
     <!-- 编辑账号 弹窗 End -->
-    <fotter></fotter>
+    <fotter class="fotter"></fotter>
   </div>
 </template>
 
@@ -228,4 +227,8 @@ export default {
     color: #7E8A95;
     text-align center
     margin 6px 0 30px
+  // .fotter
+  //   position absolute
+
+
 </style>

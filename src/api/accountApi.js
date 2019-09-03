@@ -171,12 +171,12 @@ export default  {
   },
   uploadPic(params){
     return http.post(
-      `${url2}/upload/image`, params
+      `${http.localURL}/corp/upload/image`, params
     )
   },
   // 查看图片
   viewPic(picName){
-    return `${url2}/view/image?filename=${picName}`
+    return `${http.localURL}/corp/view/image?filename=${picName}`
   },
   // 员工作业记录
   staffTaskList(params){

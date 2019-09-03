@@ -1,4 +1,5 @@
 <template>
+<!-- *已废弃 -->
   <div :class="{'auto-search': auto, 'active': active && key.length}" class="search-box">
     <slot></slot>
     <div class="search-box-input">

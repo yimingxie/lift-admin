@@ -44,7 +44,7 @@
           
           <div class="circleType">
             <i class="circle"></i><span @click="selectExceptionType('正常')" :class="{'active': '正常' === exceptionType}">正常运行&nbsp;&nbsp;({{totalData.normalTotal}})&nbsp;</span>
-            <i class="circle" style="background:#FFA90B;" ></i><span @click="selectExceptionType('当天维保')" :class="{'active': '当天维保' === exceptionType}">当天维保&nbsp;&nbsp;({{totalData.dtCount}})&nbsp;</span>
+            <i class="circle" style="background:#FFC60B;" ></i><span @click="selectExceptionType('当天维保')" :class="{'active': '当天维保' === exceptionType}">当天维保&nbsp;&nbsp;({{totalData.dtCount}})&nbsp;</span>
             <i class="circle" style="background:#9D55FF;"></i><span @click="selectExceptionType('3天内维保')" :class="{'active': '3天内维保' === exceptionType}">3天内维保&nbsp;&nbsp;({{totalData.trCount}})&nbsp;</span>
             <i class="circle" style="background:#FA4F43;"></i><span @click="selectExceptionType('超时任务')" :class="{'active': '超时任务' === exceptionType}">超时任务&nbsp;&nbsp;({{totalData.overCount}})&nbsp;</span>
           </div>
@@ -93,11 +93,11 @@
                 <el-col :span="7"><div class="info_title">详细地址</div></el-col>
                 <el-col :span="17"><div class="info_content">{{elevatorInfo.localArea}}{{elevatorInfo.address}}</div></el-col>
               </el-row>
-              <el-row v-if="stat != 0">
+              <el-row v-if="stat !=='无计划'">
                 <el-col :span="7"><div class="info_title" >上次维保</div></el-col>
                 <el-col :span="17"><div class="info_content">{{elevatorInfo.beforeTime ? elevatorInfo.beforeTime: '--'}}</div></el-col>
               </el-row>
-              <el-row v-if="stat != 0">
+              <el-row v-if="stat !=='无计划'">
                 <el-col :span="7"><div class="info_title">下次维保</div></el-col>
                 <el-col :span="17"><div class="info_content">{{elevatorInfo.nextTime ? elevatorInfo.nextTime: '--'}}</div></el-col>
               </el-row>
@@ -105,13 +105,13 @@
             <div class="lift_readMore" @click="goLiftResult(elevatorInfo.elevCode)">查看详情</div>
           </div>
           <div style="display:none;">// 未派单、可派单、已派单、已接单、已完成、无计划工单列表</div>
-          <div v-if="elevatorInfo.regCode !== ''&& stat != 6000" style="position: absolute;left: 300px;top: 8px;width:288px;background: rgba(52,65,76,0.90);
+          <div v-if="elevatorInfo.regCode !== ''&& stat !=='已超时'" style="position: absolute;left: 300px;top: 8px;width:288px;background: rgba(52,65,76,0.90);
             border-radius: 4px;padding: 17px 17px 12px;">
 
             <div style="display:none;">// 标题 第一行</div>
             <div class="info_num">
-              <span v-if="stat==0">暂无维保计划</span>
-              <span v-else>{{ typeText[elevatorInfo.type] }}</span>
+              <span v-if="stat=='无计划'">暂无维保计划</span>
+              <span v-else>{{elevatorInfo.type}}</span>
               <span class="infoTitle" :style="{'color': infoTitleColor,'border-color':infoTitleColor}">{{infoTitle}}</span>
             </div>
 
@@ -121,16 +121,16 @@
               <el-row>
                 <el-col :span="7"><div class="info_title">工单编号</div></el-col>
 
-                <el-col :span="17"><div v-if="stat != 0" class="info_content" v-text="record.length > 0 ? record[0].taskId:'- -'"></div></el-col>
-                <el-col :span="17"><div v-if="stat == 0" class="info_content">- -</div></el-col>
+                <el-col :span="17"><div v-if="stat !=='无计划'" class="info_content" >{{ taskNo }}</div></el-col>
+                <el-col :span="17"><div v-if="stat =='无计划'" class="info_content">- -</div></el-col>
               </el-row>
 
               <el-row>
                 <el-col :span="7"><div class="info_title">作业时间</div></el-col>
 
-                <el-col :span="17" v-if="stat == 1000 || stat == 2000"><div class="info_content">{{getStaffJson.beginTime}}</div></el-col>
-                <el-col :span="17" v-else-if="stat != 0"><div class="info_content" v-text="workTime ? workTime:'- -'"></div></el-col>
-                <el-col :span="17"><div v-if="stat == 0" class="info_content">- -</div></el-col>
+                <el-col :span="17" v-if="stat == '可派单' || stat == '未派单'"><div class="info_content">{{getStaffJson.beginTime}}</div></el-col>
+                <el-col :span="17" v-else-if="stat !=='无计划'"><div class="info_content" v-text="workTime ? workTime:'- -'"></div></el-col>
+                <el-col :span="17"><div v-if="stat =='无计划'" class="info_content">- -</div></el-col>
               </el-row>
 
               <el-row>
@@ -139,7 +139,7 @@
                 <el-col :span="17">
 
                   <div style="display:none;">// 未派单、可派单的作业人员 为默认负责人</div>
-                  <div v-if="stat == 1000 || stat == 2000" class="info_content" >
+                  <div v-if="stat == '可派单' || stat == '未派单'" class="info_content" >
                     <span class="stf_name">{{getStaffJson.majorName}}
                     </span>
                     <span class="stf_name">{{getStaffJson.minorName}}
@@ -153,7 +153,7 @@
                       
                       <el-col :span="6" class="stf_pic">
                         <img :src="staff.url" style="background:#ccc;border-radius:50%" alt="" width="32" height="32"/>
-                        <div v-if="status == 3000" class="mask" @click="deleteStaff(index)"></div>
+                        <div v-if="status == '已派单'" class="mask" @click="deleteStaff(index)"></div>
                       </el-col>
                       <el-col :span="18" class="stf_info">
                         <div class="stf_name">{{staff.staffName}}
@@ -165,29 +165,30 @@
                       </el-col>
                     </el-row>
                     <div style="display:none;">// 无计划 无作业人员</div>
-                    <el-row v-if="stat == 0">
+                    <el-row v-if="stat == '无计划'">
                       <div class="stf_name">- -</div>
                     </el-row>
                   </div>
                 </el-col>
               </el-row>
 
-              <el-row  v-if="stat != 1000 && stat != 2000 && stat != 0 && stat != 6000">
+              <el-row  v-if="stat !== '可派单' && stat !== '未派单' && stat !== '无计划' && stat !== '已超时'">
                 <el-col :span="7"><div class="info_title">处理进度</div></el-col>
                 
                 <el-col :span="17">
                   <div class="info_content progressPanel">
                     <el-steps :active="record.length - 1" direction="vertical" >
-                      <!-- class="chaoshiLine" -->
 
-                      <el-step :title="item.taskStatus" v-for="(item,index) in record" :key="index" :class="item.taskStatus == 6000?chaoshiLine:''">
-                        <i slot="icon" class="progressIcon paidan" v-if="item.taskStatus == 3000"></i>
-                        <i slot="icon" class="progressIcon jiedan" v-if="item.taskStatus == 4000"></i>
-                        <i slot="icon" class="progressIcon wancheng" v-if="item.taskStatus == 7000 || item.taskStatus == 5000"></i>
-                        <i slot="icon" class="progressIcon chaoshi" v-if="item.taskStatus == 6000"></i>
+                      <el-step :title="item.taskStatus" v-for="(item,index) in record" :key="index" :class="item.taskStatus == '已超时'?chaoshiLine:''">
+                        <i slot="icon" class="progressIcon paidan" v-if="item.taskStatus == '已派单'"></i>
+                        <i slot="icon" class="progressIcon jiedan" v-if="item.taskStatus == '已接单'"></i>
+                        <i slot="icon" class="progressIcon wancheng" v-if="item.taskStatus == '已完成' || item.taskStatus == '已关闭'"></i>
+                        <i slot="icon" class="progressIcon chaoshi" v-if="item.taskStatus == '已超时'"></i>
                         
                         <div slot="description">
-                          <p>{{item.recordTime}}</p>
+                          <p v-for="(list) in item.data" :key="list.time">
+                            {{list.recordTime}}
+                          </p>
                         </div>
                       </el-step>
                     </el-steps>
@@ -196,14 +197,14 @@
               </el-row>
 
             </div>
-            <div class="lift_readMore" v-if="stat != 1000 && stat != 0" @click="goToDetail(record[0].taskId)">查看详情</div>
+            <div class="lift_readMore" v-if="stat !== '可派单' && stat !== '无计划'" @click="goToDetail(record[0].taskId)">查看详情</div>
           </div>
           <div style="display:none;">// 已超时 工单列表</div>
-          <div v-if="stat == 6000 && procList.length > 0" style="position: absolute;left: 300px;top: 8px;width:288px;background: rgba(52,65,76,0.90);
+          <div v-if="stat =='已超时' && procList.length > 0" style="position: absolute;left: 300px;top: 8px;width:288px;background: rgba(52,65,76,0.90);
             border-radius: 4px;padding: 17px 17px 12px;max-height:470px;overflow: auto;">
             <div v-for="(list,index) in procList" :key="index" style="padding-bottom: 10px;border-bottom: 10px solid #626b73;margin-bottom:20px">
               <div class="info_num" >
-                {{typeText[list.type]}}
+                {{list.type}}
               
                 <span class="infoTitle" :style="{'color': infoTitleColor,'border-color':infoTitleColor}">{{infoTitle}}</span>
               </div>
@@ -238,7 +239,6 @@
 
        </div>
         `,
-      // router: router,
       data() {
         return {
           // activeIndex: 0,
@@ -248,25 +248,18 @@
           stat:'',//数据传入
 
           // type:"",
-          taskRecords:[],
-          // taskNo:'',
+          taskNo:'- -', // 工单编号
           elevatorInfo:[],
           status:'',
           // lastStep: '',
           // taskType:'',
           getStaffJson:[],
           infoTitleColor:'',
-          arrowImg:'arrowImg5',
+          arrowImg:'arrowImg4',
           infoTitle:'', //数据传入
           record:[],
           procList:[],
-          workTime:'',
-          typeText:{
-            1015:'例行维保',
-            1090:'季度维保',
-            1180:'半年维保',
-            1365:'年度维保',
-          }
+          workTime:''
           // authorURL:'/detection'
         }
       },
@@ -300,16 +293,23 @@
 
               // this.taskRecords = res.data.data.taskRecords || []
               
-              if(this.stat == '0'){ //无计划
+              if(this.stat == '无计划'){
                 this.elevatorInfo = res.data.data[0]
                 
-              } else if(this.stat == '6000'){ // 已超时
+              } else if(this.stat == '已超时'){
                 this.procList = res.data.data.proc.records || []
                 this.elevatorInfo = res.data.data || []
               } else {
                 this.elevatorInfo = res.data.data || []
                 this.record = res.data.data.record || []
                 this.workTime = res.data.data.workTime || ''
+                // 工单编号
+                if(this.record.length > 0){
+                  this.taskNo = this.record[0].taskId
+                }
+                // 相同进度的合并处理
+                this.record = this.mergeArrayList(this.record)
+                console.log("this.record===" + JSON.stringify(this.record))
               }
               // this.status = res.data.data.status
               // this.taskNo = res.data.data.taskNo
@@ -341,7 +341,7 @@
           if(type == '正常'){
             this.infoTitleColor = '#4BCC8F'
           } else if(type == '当天维保') {
-            this.infoTitleColor = '#FFA90B'
+            this.infoTitleColor = '#FFC60B'
           } else if(type == '3天内维保') {
             this.infoTitleColor = '#9D55FF'
           } else if(type == '超时任务') {
@@ -368,7 +368,30 @@
         goToDetail(id){
           $this.$router.push({name: 'missionDetail', params: {'id': id}})
         },
-      
+        // 相同属性的数据合并处理
+        mergeArrayList(arrData){
+          var map = {},
+          dest = [];
+          for(var i = 0; i < arrData.length; i++){
+            var ai = arrData[i];
+            if(!map[ai.taskStatus]){
+              dest.push({
+                taskStatus: ai.taskStatus,
+                data: [ai]
+              });
+              map[ai.stat] = ai;
+            }else{
+              for(var j = 0; j < dest.length; j++){
+                var dj = dest[j];
+                if(dj.taskStatus == ai.taskStatus){
+                  dj.data.push(ai);
+                  break;
+                }
+              }
+            }
+          }
+          return dest
+        }
       }
   })
   var infoWindowComponent= new MyComponent().$mount();
@@ -392,16 +415,16 @@
         exceptionType:"当天维保",
         periods: [
           { label: '全部', value: '全部' },
-          { label: "已完成", value: '已完成' },
-          { label: "未完成", value: '未完成' },
+          { label: "已完成", value: "'已完成'" },
+          { label: "未完成", value: "'未完成'" },
         ],
         period: '全部',
         periods2: [
           { label: '全部', value: '全部' },
-          { label: "例行维保", value: "1015" },
-          { label: "季度维保", value: "1090" },
-          { label: "半年维保", value: "1180" },
-          { label: "年度维保", value: "1365" },
+          { label: "例行维保", value: "'例行维保'" },
+          { label: "季度维保", value: "'季度维保'" },
+          { label: "半年维保", value: "'半年维保'" },
+          { label: "年度维保", value: "'年度维保'" },
         ],
         period2: '全部',
         options: [],
@@ -446,13 +469,7 @@
         pickedMonth:'',
         pickedYear:'',
         flagMonth: '',
-        abnormalDate: [],
-        typeText:{
-          1015:'例行维保',
-          1090:'季度维保',
-          1180:'半年维保',
-          1365:'年度维保',
-        }
+        abnormalDate: []
       }
     },
     
@@ -584,7 +601,7 @@
           }
         } else {
           this.liftListParams = {
-            status: '已超时',
+            status: "'已超时'",
             type: this.period2, 
             corp: window.localStorage.getItem('corpId'),
             begin: Date.parse(new Date()),
@@ -644,7 +661,7 @@
           isCustom: true,  // 使用自定义窗体
           autoMove: true, // 是否自动调整窗体到视野内
           content: infoWindowComponent.$el,
-          offset: new AMap.Pixel(70, -27),
+          offset: new AMap.Pixel(70, -25),
           anchor: 'top-left', // 设置锚点方位
           // closeWhenClickMap:true //点击地图关闭
         });
@@ -679,12 +696,7 @@
               if(_this.exceptionType == "正常") {
                 var markerContent = '<span class="mapDotMaker dotMakerGreen"></span>' 
               } else if(_this.exceptionType == "当天维保") {
-                if(_this.lnglats[i].status == "已完成"){
-                  var markerContent = '<span class="mapDotMakerStop dotMakerYellow"></span>' 
-                } else {
-                  var markerContent = '<span class="mapDotMaker dotMakerYellow"></span>' 
-                }
-                
+                var markerContent = '<span class="mapDotMaker dotMakerYellow"></span>' 
               } else if(_this.exceptionType == "3天内维保") {
                 var markerContent = '<span class="mapDotMaker dotMakerPurple"></span>' 
               } else if(_this.exceptionType == "超时任务") {
@@ -729,7 +741,7 @@
                 
                 // console.log("aaa" + orContent)
                 var markerContent = '' +
-                '<div class="custom-content-marker2">' +
+                '<div class="custom-content-marker">' +
                   orContent +
                 '</div>';
                 // console.log("aaa" + markerContent)
@@ -744,7 +756,6 @@
             // console.log(e.target.id)
             
             infoWindow.close()
-            // 传值
             infoWindowComponent.$data.regCode = e.target.regCode
             infoWindowComponent.$data.infoTitle = e.target.infoTitle
             infoWindowComponent.$data.id = e.target.id
@@ -790,7 +801,7 @@
         api.lift.getLiftResult(regCode).then(res => {
           if (res.data.data) {
 
-            var flag = this.lnglats.some(item =>{
+            this.lnglats.forEach(item =>{
               if(item.elevCode === regCode){
                 this.searchMarker = new AMap.Marker({
                     // position: new AMap.LngLat(lnglat[0], lnglat[1]),
@@ -800,12 +811,8 @@
                 // alert(res.data.data.latLon.split(','))
                 // this.map.add(this.searchMarker)
                 this.map.setZoomAndCenter(18, res.data.data.latLon.split(',')); //同时设置地图层级与中心点
-                return true;
               }
             })
-            if(!flag){
-              this.$message.error("地图上暂无此部电梯")
-            }
           }
         })
       },
@@ -978,36 +985,111 @@
     padding 4.5px 16px
 
 
+  // ==============================
+
+.info_num
+  font-size: 20px;
+  color: #FFFFFF;
+  margin-bottom:10px
+.info_title
+  font-size: 14px;
+  color: #C2C7CC;
+.info_content
+  font-size: 14px;
+  color: #FFFFFF;
+  margin-bottom: 8px;
   
-// =============地图上的圆环点=================
+.info_font12
+  font-size: 12px;
+.lift_split
+  color: rgba(255,255,255,0.45);
+.lift_time
+  color: rgba(255,255,255,0.65);
+.lift_row
+  border-bottom: 1px rgba(255, 255, 255, .45) dashed;
+  padding-bottom: 5px;
+.lift_readMore
+  text-indent 100px
+  margin-top 10px
+  background url("../../assets/images/hs/readMore.png") 165px no-repeat;
+  cursor pointer
+  color:#fff
+.noneAlarm
+  height 100px
+  line-height 100px
+  text-align center
+  color: rgba(255,255,255,0.65);
+.accident_detail
+  float right
+  font-size: 12px;
+  letter-spacing: 0.02px;
+  cursor: pointer;
+.lift_status
+  margin-right 15px
+.lift_font10
+  font-size: 10px;
+  color: #C2C7CC;
+.lift_font20
+  font-size: 20px;
+.arrowImg
+  width 20px
+  height 20px
+  display inline-block
+  position absolute
+  left -30px
+  top: 22px;
+.arrowImg4
+  background url("../../assets/images/hs/mapIcon/arrow4.png") no-repeat;
+.arrowImg3
+  background url("../../assets/images/hs/mapIcon/arrow3.png") no-repeat;
+.arrowImg2
+  background url("../../assets/images/hs/mapIcon/arrow2.png") no-repeat;
+.arrowImg1
+  background url("../../assets/images/hs/mapIcon/arrow1.png") no-repeat;
+.arrowImg0
+  background url("../../assets/images/hs/mapIcon/arrow0.png") no-repeat;
+.redDot:after
+  content: ''
+  width: 5px;
+  height: 5px;
+  border: 1px solid red;
+  border-radius: 50%;
+  background:red
+  position absolute
+  bottom: -5px;
+  right: 8px;
+  text-align center
+.ant-calendar-date
+  position relative
+
+
+
 @keyframes ripple2 {
   0% {
-    // left: 0px;
-    // top: 0px;
-    // opcity:75;
-    // width:0;
-    // height:0;
-    transform scale(0.3);
+    left: 0px;
+    top: 0px;
+    opcity:75;
+    width:0;
+    height:0;
   }
   100% {
-    // left: -32px;
-    // top: -32px;
+    left: -32px;
+    top: -32px;
     opacity: 0;
-    // width:48px;
-    // height:48px;
-    transform scale(3);
+    width:64px;
+    height:64px;
   }
 }
 @keyframes ripple3 {
   0% {
     transform scale(0.5);
-    // left: 0;
-    // top: 0;
-    // width:0;
-    // height:0;
+    // left: -4px;
+    // top: -4px;
+    // width:10px;
+    // height:10px;
     opacity: 0.3;
   }
-  60% {
+  50% {
     transform scale(1);
     // left: -10px;
     // top: -10px;
@@ -1024,24 +1106,19 @@
     opacity: 0.3;
   }
 }
-
-
-// 动态圆点, 静态圆点
-.mapDotMaker,.mapDotMakerStop
+.mapDotMaker
   size 20px
   position relative
-.mapDotMaker:before,.mapDotMakerStop:before
+.mapDotMaker:before
   content:' ';
   position: absolute;
   z-index: 2;
-  width: 20px;
-  height: 20px;
   left: -10px;
   top: -10px;
-  background-color: #FFA90B;
+  width: 20px;
+  height: 20px;
+  background-color: #FFC60B;
   border-radius: 50%;
-  // border: 4px solid #FFC864;
-.mapDotMaker:before
   -webkit-animation-name:'ripple3';/*动画属性名，也就是我们前面keyframes定义的动画名*/
   -webkit-animation-duration: 1.2s;/*动画持续时间*/
   -webkit-animation-timing-function: ease; /*动画频率，和transition-timing-function是一样的*/
@@ -1054,9 +1131,7 @@
   z-index: 1;
   width: 20px;
   height: 20px;
-  left: -10px;
-  top: -10px;
-  background-color: #FFA90B;
+  background-color: #FFC60B;
   border-radius: 50%;
   box-shadow: 0 0 10px rgba(0,0,0,.3) inset;
   -webkit-animation-name:'ripple2';/*动画属性名，也就是我们前面keyframes定义的动画名*/
@@ -1065,26 +1140,17 @@
   -webkit-animation-delay: 0s; /*动画延迟时间*/
   -webkit-animation-iteration-count: infinite;/*定义循环资料，infinite为无限次*/
   -webkit-animation-direction: normal;/*定义动画方式*/
-// 静态图标
-.mapDotMakerStop:after
-  content:' ';
-  position: absolute;
-  z-index: 1;
-  width: 48px;
-  height: 48px;
-  background-color: rgba(255,169,11,1);
-  opacity:0.3
-  border-radius: 50%;
-  left: -24px;
-  top: -24px;
-.custom-content-marker2 {
-  transform scale(1.3);
-  .mapDotMaker:before, .mapDotMakerStop:before{
+.custom-content-marker {
+  .mapDotMaker:before{
     background-color: #4272FF;
-    // border: 2px solid #92AEFF;
+    transform scale(1.5);
+    // &:hover {
+    //   transform scale(1)
+    // }
   }
-  .mapDotMaker:after, .mapDotMakerStop:after{
+  .mapDotMaker:after{
     background-color: #4272FF;
+    transform scale(1.5);
   }
 }
 .dotMakerGreen:before
@@ -1107,43 +1173,16 @@
   padding: 2px 5px;
   float: right;
 
-//========地图信息弹窗=============
+//地图信息弹窗
 .map3InfoWindow
   width: 600px;
   height: 250px;
-  .info_num
-    font-size: 20px;
-    color: #FFFFFF;
-    margin-bottom:10px
-  .info_title
-    font-size: 14px;
-    color: #C2C7CC;
-  .info_content
-    font-size: 14px;
-    color: #FFFFFF;
-    margin-bottom: 8px;
-    
   .lift_row
-    border-bottom: 1px rgba(255, 255, 255, .45) dashed;
-    padding-bottom: 5px;
     border-bottom:none;
   .lift_readMore
-    text-indent 100px
-    margin-top 10px
-    cursor pointer
-    color:#fff
     border-top: 1px rgba(255,255,255,0.45) dashed;
     padding-top:10px
     background url("../../assets/images/hs/readMore.png") 165px 13px no-repeat;
-  .arrowImg
-    width 20px
-    height 20px
-    display inline-block
-    position absolute
-    left -30px
-    top: 22px;
-  .arrowImg5
-    background url("../../assets/images/hs/mapIcon/arrow5.png") no-repeat;
   .progressPanel
     // 初始状态
     .progressIcon

@@ -29,7 +29,7 @@
                   <span v-if="getStaffInfo.birthday">{{ getStaffInfo.birthday | dateformat(dateFormat)}} &nbsp;{{ birthdayFrom}}</span>
                   <span v-else>--</span>
                 </li>
-                <li><span class="tie">从业资格证：</span><span>从业资格证.jpg</span></li>
+                <li><span class="tie">从业资格证：</span><span style="color: #4272FF;">从业资格证.jpg</span></li>
                 <li><span class="tie">从业日期：</span>
                   <span v-if="getStaffInfo.empTime">{{ getStaffInfo.empTime | dateformat(dateFormat)}} &nbsp;{{ empTimeFrom}}</span>
                   <span v-else>--</span>
@@ -120,13 +120,19 @@
               <el-table-column prop="taskId" label="工单编号">
               </el-table-column>
           
-              <el-table-column prop="taskType" label="作业类型">
+              <el-table-column label="作业类型">
+                <template slot-scope="scope">
+                  <span v-html="typeText[scope.row.type]" :style="{'color': getTypeColor(typeText[scope.row.type])}"></span>
+                </template>
               </el-table-column>
               
               <el-table-column prop="elevCode" label="作业电梯">
               </el-table-column>
           
-              <el-table-column prop="taskStatus" label="处理进度">
+              <el-table-column label="处理进度">
+                <template slot-scope="scope">
+                  <span >{{statusText[scope.row.status]}}</span>
+                </template>
               </el-table-column>
               
               <el-table-column prop="recordTime" label="完成时间">
@@ -211,6 +217,24 @@ export default {
         offset: 0
       },
       totalPageSize2:0,
+      statusText:{
+        0:'无计划',
+        1000:'可派单',
+        2000:'未派单',
+        3000:'已派单',
+        4000:'已接单',
+        5000:'已关闭',
+        6000:'已超时',
+        7000:'已完成',
+      },
+      typeText:{
+        1015:'例行维保',
+        1090:'季度维保',
+        1180:'半年维保',
+        1365:'年度维保',
+        2000:'故障处理',
+        4000:'事故救援',
+      }
     }
   },
   components: {
@@ -224,6 +248,15 @@ export default {
   },
   methods: {
     moment,
+    getTypeColor(type){
+      var color =  ''
+      if(type == '故障处理'){
+        color = '#FFA90B'
+      } else if(type == '事故救援'){
+        color = '#E9645D'
+      }
+      return color
+    },
     // 跳转到诊断
     goDetection(regCode) {
       this.$router.push({

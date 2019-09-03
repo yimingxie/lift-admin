@@ -257,10 +257,10 @@ export default {
       checkedAll: false,
       exceptItem: [
         {label: '全部', value: -1},
-        {label: '预警', value: 0},
-        {label: '违规', value: 1},
-        {label: '故障', value: 2},
-        {label: '事件', value: 3}
+        {label: '预警', value: 3},
+        {label: '违规', value: 2},
+        {label: '故障', value: 1},
+        {label: '事件', value: 0}
       ],
       exceptValue: -1,
       sortItem: [

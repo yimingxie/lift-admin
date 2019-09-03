@@ -124,8 +124,9 @@
           <el-menu-item index="/roleApi" route="/roleApi">角色管理</el-menu-item>
           <el-menu-item index="/actApi" route="/actApi">账户管理</el-menu-item>
           <el-menu-item index="/corpApi" route="/corpApi">企业管理</el-menu-item>
-          <el-menu-item index="/device-gateway-add-gi" route="/device-gateway-add-gi">通用后台添加设备</el-menu-item>
           
+          <el-menu-item index="/device-gateway-add-gi" route="/device-gateway-add-gi">通用后台添加设备</el-menu-item>
+          <el-menu-item index="/import" route="/import">通用后台批量导入设备</el-menu-item>
           <!-- </el-menu-item-group> -->
         
           
@@ -240,7 +241,7 @@
         
 
         this.appKey = new Date().getTime(); // 监听地址栏参数变化
-        if(to.name=='Login' || to.name=='lift-print' || to.name=='panel-test'){
+        if(to.name=='Login' || to.name=='Login1'|| to.name=='lift-print' || to.name=='panel-test'){
           this.$store.commit('SWITCH_LAYOUT', 'auth')
           
           // console.log('layout====' + this.layout)
@@ -461,7 +462,7 @@
         size 32px 16px
         display inline-block
   
-  // 设置侧边栏图标 小图标
+  // 设置侧边栏图标 小图标 灰色图标
   .icon-map
       background url('assets/images/hs/submenuIcon/openMap2.png') no-repeat center;
   .icon-lift
@@ -474,7 +475,7 @@
     background url('assets/images/hs/submenuIcon/openTable2.png') no-repeat center;
   .icon-setting
     background url('assets/images/hs/submenuIcon/openSet2.png') no-repeat center;
-  // 鼠标移动后菜单高亮
+  // 鼠标移动后菜单高亮 黑色图标
   .el-menu-item:not(.disabled):hover
     .icon-map
       background url('assets/images/hs/submenuIcon/openMap3.png') no-repeat center;
@@ -489,7 +490,7 @@
   .el-submenu:not(.disabled):hover
     .icon-setting
       background url('assets/images/hs/submenuIcon/openSet3.png') no-repeat center;
-  // 点击后菜单高亮
+  // 点击后菜单高亮 蓝色图标
   .el-menu-item.is-active:not(.disabled)
     .icon-map
       background url('assets/images/hs/submenuIcon/openMap1.png') no-repeat center;

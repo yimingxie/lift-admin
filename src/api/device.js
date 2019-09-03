@@ -29,6 +29,11 @@ export default {
     return http.get(`${url1}/elevator/device/monitorval`)
   },
 
+  // 获取设备检测内容表（通用）
+  getMonitorValGi() {
+    return http.get(`${http.localURL}/gielevbackend/elevator/device/monitorval`)
+  },
+
   // 查询通用设备列表
   getDeviceListGi(params) {
     // return http.get(`${url1}/devices`)
@@ -36,7 +41,7 @@ export default {
     // console.log('查询通用设备列表url', url)
     // let uri = encodeURI(url)
     // return http.get(uri)
-    return http.post(`${url1}/devices/all`, params)
+    return http.post(`${http.localURL}/gielevbackend/devices/all`, params)
   },
 
   // 获取（通用）设备详情 √
@@ -62,7 +67,7 @@ export default {
 
   // 新增设备（通用）
   addDeviceGi(ruleForm) {
-    return http.post(`${url1}/device`, ruleForm)
+    return http.post(`${http.localURL}/gielevbackend/device`, ruleForm)
   },
 
   // 编辑设备（维保）
@@ -91,11 +96,11 @@ export default {
 
   },
 
-  // 根据设备型号获取监测内容id（多条）
+  // 根据设备型号获取监测内容id（多条，通用）
   // 设备型号和监测内容相互绑定
   // 可以结合“监测内容表”获取id对应的中文内容
   getMonitorValByModel(devModel) {
-    return http.get(`${url1}/elevator/devicemodel/${devModel}`)
+    return http.get(`${http.localURL}/gielevbackend/elevator/devicemodel/${devModel}`)
   },
 
   // 查询设备上下线记录
@@ -108,6 +113,18 @@ export default {
     return http.get(`${url1}/depStaff`)
   },
   
+  // 批量导入
+  batchImport(file) {
+    // return http.get(`${http.localURL}/puffer/risinghf/v1/import/devices`)
+    // console.log("111----" + `${url2}/puffer/risinghf/v1/import/devices`)
+    return http.post(
+      `${http.localURL}/gielevbackend/risinghf/v1/import/devices`, file
+    )
+  },
+  // 批量导入设备数据
+  getImportDeviceData(params){
+    return http.post(`${http.localURL}/gielevbackend/risinghf/v1/devices`, params)
+  }
 
 
 }

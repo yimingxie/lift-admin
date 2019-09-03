@@ -598,45 +598,37 @@
             // console.log("_this.lnglats.length=====================" + _this.lnglats.length)
             for (var i = 0, marker; i < _this.lnglats.length; i++) { // 故障检修
             var diagnCode = _this.lnglats[i].diagnCode
-            var status = _this.lnglats[i].status
-            if(status == "0"){ // 未完成
-              var huanPicClass = 'huanPic'
-            } else if (status == "1"){ // 已完成
-              var huanPicClass = 'huanPicStop'
-            }
-            if(diagnCode === "[0,-,-,-]") {
-              // var markerContent = '<span class="huanPic huanPic0"></span>' 
-              var markerContent = `<span class="${huanPicClass} huanPic0"></span>`
-            } else if(diagnCode === "[0,1,-,-]"){
-              var markerContent = `<span class="${huanPicClass} huanPic01"></span>` 
-            } else if(diagnCode === "[-,1,-,-]"){
-              // var markerContent = '<span class="huanPic huanPic1"></span>'
-              var markerContent = `<span class="${huanPicClass} huanPic1"></span>`
-            } else if(diagnCode === "[0,-,2,-]"){
-              var markerContent = `<span class="${huanPicClass} huanPic02"></span>`
-            } else if(diagnCode === "[-,-,2,-]"){
-              var markerContent = `<span class="${huanPicClass} huanPic2"></span>`
-            } else if(diagnCode === "[0,-,-,3]"){
-              var markerContent = `<span class="${huanPicClass} huanPic03"></span>`
-            } else if(diagnCode === "[-,-,-,3]"){
-              var markerContent = `<span class="${huanPicClass} huanPic3"></span>` 
-            } else if(diagnCode === "[0,1,2,-]"){
-              var markerContent = `<span class="${huanPicClass} huanPic012"></span>` 
-            } else if(diagnCode === "[-,1,2,-]"){
-              var markerContent = `<span class="${huanPicClass} huanPic12"></span>` 
-            } else if(diagnCode === "[0,1,2,3]"){
-              var markerContent = `<span class="${huanPicClass} huanPic0123"></span>` 
-            } else if(diagnCode === "[0,1,-,3]"){
-              var markerContent = `<span class="${huanPicClass} huanPic013"></span>` 
-            } else if(diagnCode === "[-,1,-,3]"){
-              var markerContent = `<span class="${huanPicClass} huanPic13"></span>` 
-            } else if(diagnCode === "[0,-,2,3]"){
-              var markerContent = `<span class="${huanPicClass} huanPic023"></span>` 
-            } else if(diagnCode === "[-,-,2,3]"){
-              var markerContent = `<span class="${huanPicClass} huanPic23"></span>` 
-            } else if(diagnCode === "[-,1,2,3]"){
-              var markerContent = `<span class="${huanPicClass} huanPic123"></span>` 
-            }
+              if(diagnCode === "[0,-,-,-]") {
+                var markerContent = '<span class="huanPic huanPic0"></span>' 
+              } else if(diagnCode === "[0,1,-,-]"){
+                var markerContent = '<span class="huanPic huanPic01"></span>' 
+              } else if(diagnCode === "[-,1,-,-]"){
+                var markerContent = '<span class="huanPic huanPic1"></span>'
+              } else if(diagnCode === "[0,-,2,-]"){
+                var markerContent = '<span class="huanPic huanPic02"></span>' 
+              } else if(diagnCode === "[-,-,2,-]"){
+                var markerContent = '<span class="huanPic huanPic2"></span>' 
+              } else if(diagnCode === "[0,-,-,3]"){
+                var markerContent = '<span class="huanPic huanPic03"></span>' 
+              } else if(diagnCode === "[-,-,-,3]"){
+                var markerContent = '<span class="huanPic huanPic3"></span>' 
+              } else if(diagnCode === "[0,1,2,-]"){
+                var markerContent = '<span class="huanPic huanPic012"></span>' 
+              } else if(diagnCode === "[-,1,2,-]"){
+                var markerContent = '<span class="huanPic huanPic12"></span>' 
+              } else if(diagnCode === "[0,1,2,3]"){
+                var markerContent = '<span class="huanPic huanPic0123"></span>' 
+              } else if(diagnCode === "[0,1,-,3]"){
+                var markerContent = '<span class="huanPic huanPic013"></span>' 
+              } else if(diagnCode === "[-,1,-,3]"){
+                var markerContent = '<span class="huanPic huanPic13"></span>' 
+              } else if(diagnCode === "[0,-,2,3]"){
+                var markerContent = '<span class="huanPic huanPic023"></span>' 
+              } else if(diagnCode === "[-,-,2,3]"){
+                var markerContent = '<span class="huanPic huanPic23"></span>' 
+              } else if(diagnCode === "[-,1,2,3]"){
+                var markerContent = '<span class="huanPic huanPic123"></span>' 
+              }
               // console.log("1111111111111" + "[" + markerContent +"]")
               var marker = new AMap.Marker({
                 content: markerContent,  // 自定义点标记覆盖物内容
@@ -785,14 +777,8 @@
         
         api.lift.getLiftResult(regCode).then(res => {
           if (res.data.data) {
-            //  some() 方法用于检测数组中的元素是否满足指定条件（函数提供）。
 
-            // some() 方法会依次执行数组的每个元素：
-
-            //  如果有一个元素满足条件，则表达式返回true , 剩余的元素不会再执行检测。
-            //  如果没有满足条件的元素，则返回false。
-
-            var flag = this.lnglats.some(item =>{
+            this.lnglats.forEach(item =>{
               if(item.regCode === regCode){
                 this.searchMarker = new AMap.Marker({
                     // position: new AMap.LngLat(lnglat[0], lnglat[1]),
@@ -802,12 +788,8 @@
                 });
                 // this.map.add(this.searchMarker)
                 this.map.setZoomAndCenter(18, res.data.data.latLon.split(',')); //同时设置地图层级与中心点
-                return true;
               }
             })
-            if(!flag){
-              this.$message.error("地图上暂无此部电梯")
-            }
           }
         })
       },
@@ -994,15 +976,17 @@
   // ==============================
 .custom-content-marker {
     
-  .huanPic, .huanPicStop{
-    size 66px 65px 
-    &:hover {
-      transform scale(1)
+    .huanPic{
+      size 66px 65px 
+      &:hover {
+        transform scale(1)
+      }
     }
-  }
-  
+   
 }
-
+.bigger{
+  transform scale(1.5)
+}
 .shadowMarker{
   size 22px 5px
   background: -webkit-radial-gradient(rgba(181,190,199,0.95), rgba(181,190,199,0.85), rgba(181,190,199,0.25), rgba(0,0,0,0)); /* Safari 5.1 - 6.0 */
@@ -1022,15 +1006,7 @@
     }
         
 }
-// 已完成电梯无动画
-.huanPicStop{
-  display inline-block
-  size 40px 35px
-  &:hover {
-    transform scale(1.2)
-  }
-}
-// 未完成电梯有动画
+
 .huanPic{
   display inline-block
   size 40px 35px

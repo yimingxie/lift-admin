@@ -873,6 +873,8 @@ export default {
         }
         this.ruleForm.loadControl1 = this.ruleForm.loadControl.split(',')[0] ? this.ruleForm.loadControl.split(',')[0] : ''
         this.ruleForm.loadControl2 = this.ruleForm.loadControl.split(',')[1] ? this.ruleForm.loadControl.split(',')[1] : ''
+        this.special.lng = detail.latLon.split(',')[0]
+        this.special.lat = detail.latLon.split(',')[1]
 
         // m转换成cm
         this.ruleForm.doorOsize = (this.ruleForm.doorOsize * 100).toFixed(1); 
@@ -976,7 +978,7 @@ export default {
         evalFloorsHeight.forEach(item => {
           this.ruleForm.floorsHeightFloor1.push({floor1: item.floor.split(',')[0]})
           this.ruleForm.floorsHeightFloor2.push({floor2: item.floor.split(',')[1]})
-          this.ruleForm.floorsHeightH.push({height: item.height * 100})
+          this.ruleForm.floorsHeightH.push({height: (item.height * 100).toFixed(1)})
         })
       }
 
@@ -1398,6 +1400,7 @@ export default {
           if (this.ruleForm.tractMode == '其他') {
             this.ruleForm.tractMode = this.special.tractMode
           }
+  
           let lng = this.special.lng || ''
           let lat = this.special.lat || ''
           if (lng && lat) {
@@ -1405,6 +1408,7 @@ export default {
           } else {
             this.ruleForm.latLon = ''
           }
+          if (!this.special.lng || !this.special.lat) return this.$message.error('请点击地图确定电梯具体位置')
 
           // cm转换成m
           this.ruleForm.doorOsize = this.ruleForm.doorOsize / 100

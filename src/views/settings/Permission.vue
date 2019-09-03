@@ -256,6 +256,7 @@ export default {
     margin-right 16px
   .icon-map
     background url('../../assets/images/hs/submenuIcon/map3.png') no-repeat center;
+    background-size: 16px auto;
   .icon-lift
     background url('../../assets/images/hs/submenuIcon/lift3.png') no-repeat center;
   .icon-diagnosis

@@ -378,6 +378,7 @@ export default {
       selectArea:[],
       dialogDelete: false,
       dialogReset: false,
+  
     }
   },
   components: {
@@ -402,12 +403,13 @@ export default {
   mounted() {
     // console.log("111111111111111::" + moment("20121031", "YYYYMMDD").fromNow())
     // this.getAllRoleData()
-    this.regionOptions = newArea.newAreaOption()
 
     // 所有员工列表
     this.getAllAccountData()
     // 所有部门列表
     this.getAllDepartmentData()
+    // 加载省市下拉选项
+    this.regionOptions = newArea.newAreaOption()
   },
   methods: {
     moment,
@@ -485,8 +487,8 @@ export default {
 
               Vue.set(item, 'url', url)
             }
-            if(item.manageArea && item.manageArea != '' && item.manageArea != null){
-              var areaName = newArea.getAreaName(item.manageArea).join('   ')
+            if(item.areaCode && item.areaCode != '' && item.areaCode != null){
+              var areaName = newArea.getAreaName(item.areaCode).join('   ')
               Vue.set(item, 'areaName', areaName)
             }
             
@@ -769,11 +771,13 @@ export default {
   .stf_content
     padding-bottom 13px
   .stf_pic
-    border: 1px solid #E8E8E8;
+    // border: 1px solid #E8E8E8;
     width:88px
     height 132px
     display inline-block
-    margin-right 15px
+    margin-right 19px
+    img
+      border-radius 4px;
   .stf_info
     height 132px
     display inline-block

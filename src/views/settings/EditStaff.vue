@@ -251,6 +251,7 @@ export default {
         corpId: window.localStorage.getItem('corpId'), //公司id
         depId: "" , //部门id
         manageArea:'', //管理区域
+        areaCode:'',
         gender:'0', //性别; 0:女;1:男
         birthday:'', //生日 日期 须限定格式 2003-11-19 00:00:00
         empTime:'', //从业日期 须限定格式 2003-11-19 00:00:00
@@ -478,7 +479,7 @@ export default {
           this.editStaffForm.depId = this.getStaffInfo.depId//员工姓名
           
           this.editStaffForm.gender = this.getStaffInfo.gender// 从业资格证 图片地址
-          this.checkList2 = this.getStaffInfo.manageArea.split(',')// 从业资格证 图片地址
+          
 
           this.editStaffForm.empUrl = this.getStaffInfo.empUrl// 从业资格证 图片地址
           this.editStaffForm.avatarUrl = this.getStaffInfo.avatarUrl// 头像地址
@@ -486,7 +487,10 @@ export default {
           this.editStaffForm.empTime = this.getStaffInfo.empTime || ''
           this.editStaffForm.entryTime = this.getStaffInfo.entryTime|| ''//入职日期
           this.editStaffForm.birthday = this.getStaffInfo.birthday || ''//入职日期
-          // console.log("this.editStaffForm.birthday" + this.editStaffForm.birthday)
+
+          console.log("this.editStaffForm.birthday" + this.editStaffForm.avatarUrl)
+          
+          this.checkList2 = this.getStaffInfo.areaCode.split(',')// 从业资格证 图片地址
           // this.birthday = moment(this.getStaffInfo.birthday).format(this.dateFormat)//入职日期
           // 设置员工管辖区域
 
@@ -893,7 +897,8 @@ export default {
       if(this.checkedLiftBs.length > 0){
         this.editStaffForm.minorRegCode = this.checkedLiftBs.join(',')
       }
-      this.editStaffForm.manageArea = this.checkAreaList.join(',')
+      this.editStaffForm.areaCode = this.checkAreaList.join(',')
+      this.editStaffForm.manageArea = this.selectedAreaLabels.join(',')
 
       console.log("this.addStaffForm===" + JSON.stringify(this.editStaffForm))
 

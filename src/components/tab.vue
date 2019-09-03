@@ -1,43 +1,43 @@
 <template>
 
-        <!-- <div class="wrap" id="wrap" :style="{'width':windowWidth + 'px','margin':'260px auto'}"> -->
-        <div class="tabWrap" id="tabWrap" >
-            <!-- <p :style="{fontFamily:arr.conFontFamily,color:arr.conFontColor,backgroundColor:arr.conBgColor}">{{con.title}}</p> -->
-            <ul class="tabClick" ref="tabClick">
-                <!-- <li class="active">Tab1</li>
-                <li>Tab2</li>
-                <li>Tab3</li>
-                <li>Tab4</li> -->
-                <li v-for="(item,index) in titleItems" :key="index" :class="(nowIndex === index) ? 'active active' + nowIndex : ''">
-                  {{item}}
-                  <slot :name="'num' + index"></slot>
-                </li>
+  <!-- <div class="wrap" id="wrap" :style="{'width':windowWidth + 'px','margin':'260px auto'}"> -->
+  <div class="tabWrap" id="tabWrap" >
+      <!-- <p :style="{fontFamily:arr.conFontFamily,color:arr.conFontColor,backgroundColor:arr.conBgColor}">{{con.title}}</p> -->
+      <ul class="tabClick" ref="tabClick">
+          <!-- <li class="active">Tab1</li>
+          <li>Tab2</li>
+          <li>Tab3</li>
+          <li>Tab4</li> -->
+          <li v-for="(item,index) in titleItems" :key="index" :class="(nowIndex === index) ? 'active active' + nowIndex : ''">
+            {{item}}
+            <slot :name="'num' + index"></slot>
+          </li>
 
-            </ul>
+      </ul>
 
-            <div class="lineBorder" :style="{'width':windowWidth + 'px'}">
-                <div class="lineDiv"  :class="('active' + nowIndex)" ref="lineDiv"><!--移动的div--></div>
-            </div>
-            <div class="tabCon" :style="{'width':windowWidth + 'px' ,'height':tabHeight + 'px'}">
-                <div class="tabBox" ref="tabBox" >
-                    <div class="tabList">
-                      <slot name="first"></slot>
-                    </div>
-                    <div class="tabList">
-                      <slot name="second"></slot>
-                    </div>
-                    <div class="tabList">
-                      <slot name="third"></slot>
-                    </div>
-                    <div class="tabList">
-                      <slot name="fourth"></slot>
-                    </div>
-                    <div class="tabList">
-                      <slot name="fifth"></slot>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <div class="lineBorder" :style="{'width':windowWidth + 'px'}">
+          <div class="lineDiv"  :class="('active' + nowIndex)" ref="lineDiv"><!--移动的div--></div>
+      </div>
+      <div class="tabCon" :style="{'width':windowWidth + 'px' ,'height':tabHeight + 'px'}">
+          <div class="tabBox" ref="tabBox" >
+              <div class="tabList">
+                <slot name="first"></slot>
+              </div>
+              <div class="tabList">
+                <slot name="second"></slot>
+              </div>
+              <div class="tabList">
+                <slot name="third"></slot>
+              </div>
+              <div class="tabList">
+                <slot name="fourth"></slot>
+              </div>
+              <div class="tabList">
+                <slot name="fifth"></slot>
+              </div>
+          </div>
+      </div>
+  </div>
 
 </template>
 

@@ -12,16 +12,16 @@
     <div class="missionOrder clearfix">
       <span class="orderNumber">工单编号：{{taskNo}}</span>
       <div class="tar" style="float:right;">
-        <button v-if="status =='已派单' || status =='已接单'" class="btn whiteBtn" @click="openCloseDislog()">关闭</button>
+        <button v-if="statusText[status] =='已派单' || statusText[status] =='已接单'" class="btn whiteBtn" @click="openCloseDislog()">关闭</button>
 
         <!-- <button class="btn whiteBtn" style="background: #4272ff;color: #fff">修改</button> -->
         <p class="status">状态</p>
-        <p class="progress" :style="{'color':getStatusColor(status)}">{{status}}</p>
+        <p class="progress" :style="{'color':getStatusColor(statusText[status])}">{{statusText[status]}}</p>
       </div>
       <div class="s_de_details">
         <ul>
           <li><span class="tie">派单人员：</span><span >{{ paidanPerson }}</span></li>
-          <li><span class="tie">作业类型：</span><span>{{ taskType }}</span></li>
+          <li><span class="tie">作业类型：</span><span>{{ typeText[taskType] }}</span></li>
           <li><span class="tie">派单时间：</span><span>{{ paidanTime }}</span></li>
           <li><span class="tie">作业时间：</span><span>{{ workTime }}</span></li>
         </ul>
@@ -36,25 +36,25 @@
         <div class="progressPanel">
        
           <!-- 完成状态下的 -->
-          <el-steps :active="taskRecords.length - 1" v-if="status!== '已派单' && status!== '已接单'">
+          <el-steps :active="taskRecords.length - 1" v-if="statusText[status]!== '已派单' && statusText[status]!== '已接单'">
              <!-- class="chaoshiLine" -->
 
-            <el-step :title="item.stat" v-for="(item,index) in taskRecords" :key="index" :class="(status == '已超时' && index == taskRecords.length - 2)?'chaoshiLine':''">
+            <el-step :title="statusText[item.stat]" v-for="(item,index) in taskRecords" :key="index" :class="(statusText[status] == '已超时' && index == taskRecords.length - 2)?'chaoshiLine':''">
               
-              <i slot="icon" class="progressIcon paidan" v-if="item.stat == '已派单'"></i>
-              <i slot="icon" class="progressIcon jiedan" v-if="item.stat == '已接单'"></i>
-              <i slot="icon" class="progressIcon wancheng" v-if="item.stat == '已完成' || item.stat == '已关闭'"></i>
-              <i slot="icon" class="progressIcon chaoshi" v-if="item.stat == '已超时'"></i>
+              <i slot="icon" class="progressIcon paidan" v-if="statusText[item.stat] == '已派单'"></i>
+              <i slot="icon" class="progressIcon jiedan" v-if="statusText[item.stat] == '已接单'"></i>
+              <i slot="icon" class="progressIcon wancheng" v-if="statusText[item.stat] == '已完成' || statusText[item.stat] == '已关闭'"></i>
+              <i slot="icon" class="progressIcon chaoshi" v-if="statusText[item.stat] == '已超时'"></i>
               
               <div slot="description" >
                 <p v-for="(list) in item.data" :key="list.time">
-                  <span v-if="item.stat !== '已完成' && item.stat !== '已关闭' && item.stat !== '已超时'">{{list.name}}&nbsp;</span> 
-                  <span v-if="item.stat !== '已超时'">{{list.time}}</span>
+                  <span v-if="statusText[item.stat] !== '已完成' && statusText[item.stat] !== '已关闭' && statusText[item.stat] !== '已超时'">{{list.name}}&nbsp;</span> 
+                  <span v-if="statusText[item.stat] !== '已超时'">{{list.time}}</span>
                 </p>
               </div>
             </el-step>
           </el-steps>
-          <!-- 未完成状态下的 -->
+          <!-- 未完成状态下的 显示全部进度节点-->
           <el-steps :active="taskRecords.length - 1" v-else>
             <el-step title="已派单">
               <i slot="icon" class="progressIcon paidan"></i>
@@ -67,7 +67,7 @@
             </el-step>
             <el-step title="已接单">
               <i slot="icon" class="progressIcon jiedan"></i>
-              <div slot="description" v-if="status == '已接单'">
+              <div slot="description" v-if="statusText[status] == '已接单'">
                 
                 <p v-for="(list) in taskRecords[1].data" :key="list.time" >
                   <span >{{list.name}}&nbsp;</span> 
@@ -78,9 +78,9 @@
             </el-step>
             <el-step title="已完成">
               <i slot="icon" class="progressIcon wancheng"></i>
-              <div slot="description">
-                <p>--</p>
-              </div>
+              <!-- <div slot="description">
+                <p></p>
+              </div> -->
             </el-step>
             
           </el-steps>
@@ -89,10 +89,11 @@
         </div>
       </div>
     </div>
+    <!-- 作业结论 -->
     <div style="width:33%;float:left">
       <div class="panel conclusions" style="padding:0 0 3px;min-height:282px;">
         <div class="title" style="margin:0"><div class="label1">作业结论</div></div>
-        <div style="margin:0 12px" v-if="status == '已完成'">
+        <div style="margin:0 12px" v-if="statusText[status] == '已完成'">
           <!-- 维保结果 -->
           <table border="0" class="s_de_details s_de_details2 clearfix" v-if="taskResult.commitType == '0'">
             <tbody>
@@ -173,7 +174,7 @@
             <span class="stf_pic">
               <!-- <img :src="staff.url" alt="" width="104" height="104"/> -->
               <img :src="staff.url" style="background:#ccc;border-radius:50%" alt="" width="104" height="104"/>
-              <div v-if="status == '已派单'" class="mask" @click="deleteStaff(index)"></div>
+              <div v-if="statusText[status] == '已派单'" class="mask" @click="deleteStaff(index)"></div>
             </span>
             <span class="stf_info">
               <div class="stf_name">{{staff.staffName}}
@@ -192,7 +193,7 @@
             </span>
           </div>
           <!-- 新增人员 -->
-          <div class="tabActiveSpan tabActiveSpanSelect" v-if="tab + 2 == max * 2 && status == '已派单'">
+          <div class="tabActiveSpan tabActiveSpanSelect" v-if="tab + 2 == max * 2 && statusText[status] == '已派单'">
             <span class="stf_pic">
             </span> 
             <span class="stf_info">
@@ -291,7 +292,7 @@
         <el-row>
           <el-col :span="8"><div class="grid-content bg-purple">{{elevatorInfo.regCode}}</div></el-col>
           <el-col :span="8"><div class="grid-content bg-purple-light">{{workTime}}</div></el-col>
-          <el-col :span="8"><div class="grid-content bg-purple">{{taskType}}</div></el-col>
+          <el-col :span="8"><div class="grid-content bg-purple">{{typeText[taskType]}}</div></el-col>
           <!-- <el-col :span="6"><div class="grid-content bg-purple-light">{{confirmCloseTask.persons}}</div></el-col> -->
         </el-row>
       </div>
@@ -351,7 +352,25 @@ export default {
       paidanPerson:'',
       paidanTime:'',
       closeModelDialog:false,
-      confirmCloseTask:[]
+      confirmCloseTask:[],
+      statusText:{
+        0:'无计划',
+        1000:'可派单',
+        2000:'未派单',
+        3000:'已派单',
+        4000:'已接单',
+        5000:'已关闭',
+        6000:'已超时',
+        7000:'已完成',
+      },
+      typeText:{
+        1015:'例行维保',
+        1090:'季度维保',
+        1180:'半年维保',
+        1365:'年度维保',
+        2000:'故障处理',
+        4000:'事故救援',
+      }
     }
   },
   components: {
@@ -451,7 +470,7 @@ export default {
               // 重新计算人数
               this.totalPerson = this.getStaffJson.length
 
-              if(this.status == '已派单'){
+              if(this.status == 3000){ // 已派单
                 this.max = this.totalPerson % 2 == 0 ?  Math.ceil(this.totalPerson/2) + 1 : Math.ceil(this.totalPerson/2)
               } else {
                 this.max = Math.ceil(this.totalPerson/2)
@@ -470,7 +489,7 @@ export default {
             // 重新计算人数
             this.totalPerson = this.getStaffJson.length
 
-            if(this.status == '已派单'){
+            if(this.status == 3000){ // 已派单
               this.max = this.totalPerson % 2 == 0 ?  Math.ceil(this.totalPerson/2) + 1 : Math.ceil(this.totalPerson/2)
             } else {
               this.max = Math.ceil(this.totalPerson/2)
@@ -567,7 +586,7 @@ export default {
       api.taskApi.closeTask(id).then((res) => {
         if (res.data.code === 200) {
           this.$message.success('关闭工单成功！');
-          this.status = '已关闭'
+          this.status = 5000 // 5000-已关闭
           this.closeModelDialog = false
         } else {
           this.$message.error(res.data.message);
@@ -580,10 +599,12 @@ export default {
     getMissionDetailData(){
       api.taskApi.getMissionDetail(this.$route.params.id).then((res) => {
         this.taskRecords = res.data.data.taskRecords || []
+        // 派单时间和派单人员
         if(this.taskRecords.length > 0){
           this.paidanPerson = this.taskRecords[0].name
           this.paidanTime = this.taskRecords[0].time
         }
+        // 相同进度的合并处理
         this.taskRecords = this.mergeArrayList(this.taskRecords)
         console.log("this.taskRecords---" + JSON.stringify(this.taskRecords))
         this.elevatorInfo = res.data.data.elevatorInfo || []
@@ -601,7 +622,7 @@ export default {
         // console.log("this.taskImage---" + JSON.stringify(this.taskImage))
         this.getStaffJson = res.data.data.mpList
         this.totalPerson = this.getStaffJson.length
-        if(this.status == '已派单'){
+        if(this.status == 3000){
           this.max = this.totalPerson % 2 == 0 ?  Math.ceil(this.totalPerson/2) + 1 : Math.ceil(this.totalPerson/2)
         } else {
           this.max = Math.ceil(this.totalPerson/2)

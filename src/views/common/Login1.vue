@@ -6,7 +6,7 @@
         <form @submit.prevent="onSubmit" autocomplete="off" class="loginForm">
           <div class="title">
             <div class="title1">Welcome</div>
-            <div class="title2">电梯维保管理后台</div>
+            <div class="title2">电梯通用管理后台</div>
           </div> 
           <div>
             <div v-if="warningTip!==''" class="loginInput warningTip tal">{{warningTip}}</div>
@@ -111,7 +111,7 @@
       
       onSubmit () {
         
-        api.log.login(this.loginForm).then((res) => {
+        api.log.login1(this.loginForm).then((res) => {
           if(res.data.code === 200){
             
             // 存储token,modules,corpId

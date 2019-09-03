@@ -1,4 +1,5 @@
 <template>
+<!-- *已废弃 -->
   <div :class="classes" id="select22">
     <slot name="label"></slot>
     <div class="v-select-1-wrap" :style="selectWrapStyle">

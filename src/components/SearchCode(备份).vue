@@ -1,7 +1,7 @@
 <template>
   <div class="search-container">
     <div class="llcb-search-box">
-      <input class="lsearch-input" type="text" v-model="cCode" placeholder="搜索电梯注册码/详细地址" @keyup="showList($event)" @keyup.enter="search(cCode)" @blur="show = false">
+      <input class="lsearch-input" type="text" v-model="cCode" placeholder="搜索电梯注册码/详细地址" @keyup="showList" @keyup.enter="search(cCode)" @blur="show = false">
       <input class="lsearch-submit" type="button" value="" @click="search(cCode)">
       <div class="code-clear" v-show="cCode" @click="clearCode"></div>
     </div>
@@ -9,7 +9,7 @@
     <!-- 搜索提示下拉 -->
     <div class="llcb-search-tips" v-show="show">
       <div style="color: #909399;font-size: 14px;line-height 60px;text-align: center;" v-show="resultList.length == 0">无搜索结果</div>
-      <div class="search-tip-box" v-for="(item, i) in resultList" :class="i == cur ? 'on' : ''" :key="i" @mousedown="search(item.regCode)">
+      <div class="search-tip-box" v-for="(item, i) in resultList" :key="i" @mousedown="search(item.regCode)">
         <h4>{{item.regCode}}</h4>
         <p>{{item.inNum}}  {{item.address}}</p>
       </div>
@@ -26,16 +26,17 @@ export default {
     return {
       show: false,
       cCode: this.code,
-      resultList: [],
-      cur : -1
+      resultList: []
     }
   },
   mounted() {
     console.log('cCode', this.cCode)
+    
+
   },
   methods: {
     // 展示下拉和搜索结果
-    showList(e) {
+    showList() {
       // 去除所有空格
       let cCode = this.cCode.replace(/\s+/g,"");
       if (!cCode) return
@@ -59,41 +60,11 @@ export default {
           this.resultList = []
         }
       })
-
-      // 键盘上下和enter
-      if(this.resultList.length > 0){
-        switch (e.keyCode) {
-          case 38://上
-              if (this.cur == -1) this.cur = this.resultList.length - 1;
-              else {
-                this.resultList[this.cur].className = ''; this.cur -= 1;
-              }
-              if (this.cur < 0) this.cur = this.resultList.length - 1;
-              // as[this.cur].classList = 'on'
-              break;
-          case 40://下
-              if (this.cur == -1) this.cur = 0;
-              else {
-                  this.resultList[this.cur].className = '';
-                  this.cur++;
-              }
-              if (this.cur >= this.resultList.length) this.cur = 0;
-              // as[this.cur].classList='on'
-              break;
-          case 13://回车选择
-              if (this.cur != -1)
-              this.cCode = this.resultList[this.cur].regCode
-              // this.search(this.resultList[this.cur].regCode)
-              console.log("aaaaa====" + this.resultList[this.cur].regCode)
-              break;
-        }
-      }
-      
     },
     // 将电梯注册码返回给父组件
     search(regCode) {
       this.show = false
-      console.log('cCode' , regCode)
+      console.log(regCode)
       // this.cCode = regCode
       // this.$emit('childCode', this.cCode)
       this.$emit('childCode', regCode)
@@ -101,9 +72,8 @@ export default {
 
     // 清空
     clearCode() {
-      this.cur = -1
       this.cCode = ''
-      this.$emit('clearCode', this.cCode)  
+      this.$emit('clearCode', this.cCode)      
     },
 
   },
@@ -190,9 +160,7 @@ export default {
     color: #7E8A95;
     line-height: 20px;
   }
-  .on{
-    background: rgba(66,114,255,0.10);
-  }
+  
 
 
 }

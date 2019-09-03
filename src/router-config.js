@@ -17,6 +17,15 @@ const router = new Router({
       component: (resolve) => require(['./views/common/Login.vue'], resolve)
     },
     {
+      path: "/log",
+      name: "Login1",
+      meta: {
+        title: "登录通用后台",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/common/Login1.vue'], resolve)
+    },
+    {
       path: "/map",
       name: "map",
       meta: {
@@ -443,6 +452,16 @@ const router = new Router({
       },
       component: (resolve) => require(['./views/example/switchSty.vue'], resolve)
     },
+    {
+      path: "/import",
+      name: "BatchBatchImport",
+      meta: {
+        title: "批量导入企业设备",
+        auto: false // 是否需要权限
+      },
+      component: (resolve) => require(['./views/settings/BatchImport.vue'], resolve)
+    },
+    
   ]
 })
 

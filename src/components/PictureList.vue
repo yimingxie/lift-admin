@@ -13,9 +13,9 @@
       </div>
     </div>
     <!-- <el-dialog :visible.sync="centerDialogVisible" title="提示" width="30%" center> -->
-      <div id="myModal" class="modal">
+      <div id="myModal" class="modal" > 
         <span class="close cursor" @click="closeModal()">×</span>
-        <div class="modal-content">
+        <div class="modal-content" style="z-index:1">
             <!--大图-->
             <div class="mySlides" v-for="(img, index) in images" :key="index">
                 <img :src="images[index]" >
@@ -33,7 +33,8 @@
         <!--小图-->
         <div class="thumbList">
           <div class="column" v-for="(img, index) in images" :key="index" @click="currentSlide(index  + 1)">
-            <img class="demo cursor" :src="images[index]" alt="2017流行色-Niagara,尼加拉蓝">
+            <img class="demo cursor" :src="images[index]" alt="图片">
+            <!-- 蓝色遮罩 -->
             <div class="mask2" >
               <span class="tip">
                 <span class="tip1">{{ index + 1 }}</span> / {{ images.length }}
@@ -41,7 +42,9 @@
             </div> 
           </div>
         </div>
-    
+
+        <!-- 点击空白处关闭 -->
+        <div style="position:absolute;top:0;right:0;bottom:0;left:0;z-index:0;" @click="closeModal()"></div>
       </div>
     <!-- </el-dialog> -->
 </div>
@@ -76,10 +79,32 @@ export default {
      centerDialogVisible:false
    }
   },
+  created:function(){
+    let _this = this;
+    document.onkeydown = function(e){
+      let _key = window.event.keyCode;
+      
+      if(_key === 37){ // 左键
+        _this.plusSlides(-1)
+      } else if(_key === 39){ // 右键
+         _this.plusSlides(1)
+      } else if(_key === 27){ // esc
+        _this.closeModal()
+      }
+    }
+  },
+
   mounted(){
     this.showSlides(this.slideIndex)
+   
   },
   methods: {
+    // close(event) {
+    //   const child = this.$refs.childContent
+    //   if (child.contains(event.target)) {
+    //     console.log('这里可以做关闭面板的操作')
+    //   }
+    // },
     /*打开模态框*/
     openModal() {
       // this.centerDialogVisible = true
@@ -94,11 +119,11 @@ export default {
     plusSlides(n) {
       this.showSlides(this.slideIndex += n);
     },
-	 
+    // 直接点击小图
     currentSlide(n) {
       this.showSlides(this.slideIndex = n);
     },
-	 
+    // 显示所选大图
     showSlides(n) {
       // this.centerDialogVisible = true
       var i;
@@ -320,6 +345,7 @@ export default {
     left:45%;
     top:-12px;
   }
+  // 小图
   .thumbList {
     display: inline-block;
     margin-top: 60px
@@ -330,6 +356,7 @@ export default {
       height: 141px;
       margin: 10px
       padding 3px;
+      cursor: pointer;
       // border: 3px solid #fff;
     }
     img {
