@@ -20,5 +20,12 @@ export default  {
       // `${http.localURL}/domino/login`, params
     )
   },
-  
+  login1(params) {
+    return http.post(
+      // `${url2}/login`, params
+
+      // `${http.localURL}/elevcorp/login`, params
+      `${http.localURL}/gielevbackend/login`, params
+    )
+  },
 }

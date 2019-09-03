@@ -15,8 +15,9 @@
           :http-request="upLoadHeadPic"
           :action="1"
           :show-file-list="false" 
-        
+          
         >
+          <!-- accept="csv" -->
           <!-- <img v-if="imageUrl1" :src="imageUrl1" class="avatar"> -->
           <!-- <i v-else class="uploader-icon"></i> -->
           <div class="uploadBtn">批量导入生产设备</div>
@@ -134,10 +135,11 @@ export default {
       api.device.batchImport(formData).then((res) => {
         if(res.data.code === 200 && res.data.message === 'success'){
           this.$message.success(`成功导入${res.data.data}条设备!`)
+          this.getAllAccount()
           // this.imageUrl1 = api.accountApi.viewPic(res.data.data.fileName)
           // this.addStaffForm.avatarUrl = res.data.data.fileName
         } else {
-
+          this.$message.error(res.data.message)
         }
         
       })

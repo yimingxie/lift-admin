@@ -113,11 +113,12 @@ export default {
     // return http.get(`${http.localURL}/puffer/risinghf/v1/import/devices`)
     // console.log("111----" + `${url2}/puffer/risinghf/v1/import/devices`)
     return http.post(
-      `${url1}/risinghf/v1/import/devices`, file
+      `${http.localURL}/gielevbackend/risinghf/v1/import/devices`, file
     )
   },
+  // 批量导入设备数据
   getImportDeviceData(params){
-    return http.post(`${url1}/risinghf/v1/devices`, params)
+    return http.post(`${http.localURL}/gielevbackend/risinghf/v1/devices`, params)
   }
 
 

@@ -87,7 +87,7 @@
           <button class="btn whiteBtn" :class="(parseInt(checkedDate.substring(5,7)) < parseInt(NowMonth) || checkedDate.length !== 7)? 'disableWhiteBtn' :''">生成任务工单</button>
           <!-- <button class="btn whiteBtn" :class="(parseInt(checkedDate.substring(5,7)) < parseInt(NowMonth) || checkedDate.length !== 7)? 'disableWhiteBtn' :''">生成维保计划</button> -->
         </div>
-        {{checkedDate}}
+        <!-- {{checkedDate}} -->
 
         <calendar :todos="todos" :snycCheckedDate.sync="checkedDate">
           
