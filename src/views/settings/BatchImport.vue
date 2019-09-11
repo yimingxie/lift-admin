@@ -34,14 +34,44 @@
         
             <!-- <el-table-column prop="name" label="真实姓名">
             </el-table-column> -->
-<!--             
-            <el-table-column  label="角色类型">
+            
+            <el-table-column  label="Sn">
               <template slot-scope="scope">
-                <span v-if="scope.row.roleName" v-html="scope.row.roleName" ></span>
-                <span v-if="scope.row.type == 'administrator'" >超级管理员</span>
+                <span v-if="scope.row.devSn" v-html="scope.row.devSn" ></span>
+                <span v-else>--</span>
               </template>
-            </el-table-column> -->
-           
+            </el-table-column>
+           <el-table-column  label="设备型号">
+              <template slot-scope="scope">
+                <span v-if="scope.row.devModel" v-html="scope.row.devModel" ></span>
+                <span v-else>--</span>
+              </template>
+            </el-table-column>
+            <el-table-column  label="设备类型">
+              <template slot-scope="scope">
+                <span v-if="scope.row.devType" v-html="scope.row.devType" ></span>
+                <span v-else>--</span>
+              </template>
+            </el-table-column>
+            <el-table-column  label="厂商ID">
+              <template slot-scope="scope">
+                <span v-if="scope.row.manId" v-html="scope.row.manId" ></span>
+                <span v-else>--</span>
+              </template>
+            </el-table-column>
+            <el-table-column  label="模组类型">
+              <template slot-scope="scope">
+                <span v-if="scope.row.modType" v-html="scope.row.modType" ></span>
+                <span v-else>--</span>
+              </template>
+            </el-table-column>
+            <el-table-column  label="创建时间">
+              <template slot-scope="scope">
+                <span v-if="scope.row.createTime" v-html="scope.row.createTime" ></span>
+                <span v-else>--</span>
+              </template>
+            </el-table-column>
+
             
           </el-table>
           &nbsp;

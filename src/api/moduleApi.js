@@ -7,6 +7,8 @@ let protocol = process.env.NODE_ENV !== 'production' ? 'http:' : window.location
 // let url2 = `${protocol}//192.168.100.2/domino`
 // let url2 = `${protocol}//iot.gidomino.com/domino`
 // let url2 = `${http.localURL}/domino`
+
+// Gi管理平台 模块接口
 let url2 = `${http.localURL}/gielevbackend`
 
 

@@ -2,10 +2,10 @@
 <div class="main-wrap" id="account_api">
   <div class="row" >
     <div class="panel">
-      <el-tag><router-link to='/manager_api'>权限接口</router-link></el-tag>
+      <!-- <el-tag><router-link to='/manager_api'>权限接口</router-link></el-tag> -->
       <el-tag><router-link to='/moduleApi'>模块功能集合</router-link></el-tag>
       <el-tag><router-link to='/roleApi'>为指定公司创建角色</router-link></el-tag>
-      <el-tag><router-link to='/actApi'>创建维保管理员的账户</router-link></el-tag>
+      <!-- <el-tag><router-link to='/actApi'>创建维保管理员的账户</router-link></el-tag> -->
       <el-tag><router-link to='/corpApi'>创建企业公司</router-link></el-tag>
       <h1 class="tac">创建维保管理员的账户</h1>
       <el-form ref="form" :model="sizeForm" :label-width="formLabelWidth" class="demo-ruleForm">

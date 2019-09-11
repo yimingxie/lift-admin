@@ -271,7 +271,7 @@ export default {
       api.accountApi.getStaffDetails(this.$route.params.staffId).then((res) => {
         if(res.data.code === 200 && res.data.message === 'success'){
           this.getStaffInfo = res.data.data.staffInfo
-          var areaName1 = newArea.getAreaName(this.getStaffInfo.manageArea).join('  ')
+          var areaName1 = newArea.getAreaName(this.getStaffInfo.areaCode).join('  ')
           Vue.set(this.getStaffInfo, 'areaName', areaName1)
 
           this.departmentName = res.data.data.departmentName

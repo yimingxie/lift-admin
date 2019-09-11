@@ -1,4 +1,5 @@
 <template>
+<!-- 登录页面 模拟radio -->
   <span>
     <slot name="radio_original"></slot>
     <i class="radio_inner"></i>

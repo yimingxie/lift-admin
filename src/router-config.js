@@ -17,7 +17,7 @@ const router = new Router({
       component: (resolve) => require(['./views/common/Login.vue'], resolve)
     },
     {
-      path: "/log",
+      path: "/gibackend",
       name: "Login1",
       meta: {
         title: "登录通用后台",

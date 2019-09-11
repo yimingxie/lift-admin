@@ -113,7 +113,7 @@ export default {
     return http.get(`${url1}/depStaff`)
   },
   
-  // 批量导入
+  // 批量导入(通用)
   batchImport(file) {
     // return http.get(`${http.localURL}/puffer/risinghf/v1/import/devices`)
     // console.log("111----" + `${url2}/puffer/risinghf/v1/import/devices`)
@@ -121,7 +121,7 @@ export default {
       `${http.localURL}/gielevbackend/risinghf/v1/import/devices`, file
     )
   },
-  // 批量导入设备数据
+  // 批量导入设备数据(通用)
   getImportDeviceData(params){
     return http.post(`${http.localURL}/gielevbackend/risinghf/v1/devices`, params)
   }

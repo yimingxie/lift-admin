@@ -281,13 +281,17 @@
       },
       // 查询账户详情
       getAllAccountData(){
-        api.accountApi.getAccountDetail().then((res) => {
+        // 屏蔽gi管理后台的
+        if(localStorage.getItem('type') !== 'domino'){
+          api.accountApi.getAccountDetail().then((res) => {
 
-          this.getAccountDetail = res.data.data || []
-          
-        }).catch((res) => {
-          
-        })
+            this.getAccountDetail = res.data.data || []
+            
+          }).catch((res) => {
+            
+          })
+        }
+        
         
       },
       gotoCenter(){

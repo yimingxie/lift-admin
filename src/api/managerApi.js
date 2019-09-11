@@ -5,6 +5,8 @@ import http from '../utils/http'
 
 let protocol = process.env.NODE_ENV !== 'production' ? 'http:' : window.location.protocol
 // let url2 = `${protocol}//192.168.100.2/domino`
+
+// Gi管理平台 接口接口
 let url2 = `${http.localURL}/gielevbackend`
 
 

@@ -490,7 +490,7 @@ export default {
     
     // 查询所有角色
     getAllRoleData(){
-      api.roleApi.getRoles(this.roleQueryParam).then((res) => {
+      api.accountApi.getRoles(this.roleQueryParam).then((res) => {
         if (res.data.code === 200) {
           this.rolesJson = res.data.data.records
           this.periods = [{ label: '全部', value: "-1" }]

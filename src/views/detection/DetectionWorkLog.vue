@@ -219,9 +219,33 @@ export default {
           }
 
         result.forEach((item, i) => {
+
+          let taskTypeVal
+          switch(item.taskType) {
+            case 1015:
+            taskTypeVal = '例行维保';
+            break;
+            case 1090:
+            taskTypeVal = '季度维保';
+            break;
+            case 1180:
+            taskTypeVal = '半年维保';
+            break;
+            case 1365:
+            taskTypeVal = '年度维保';
+            break;
+            case 2000:
+            taskTypeVal = '故障处理';
+            break;
+            case 4000:
+            taskTypeVal = '事故救援';
+            break;
+            default:
+            taskTypeVal = '作业类型';
+          }
           let workLogObj = {
             taskId: item.taskId,
-            taskType: item.taskType,
+            taskType: taskTypeVal,
             person: '',
             result: item.result,
             completeTime: item.recordTime,

@@ -227,7 +227,7 @@ export default {
       this.$emit('clear')
     },
     // 选择搜索结果其中一项
-    selectOneselectOne (item) {
+    selectOne (item) {
       item.checked = !item.checked
       this.handleCheck(item)
     },
