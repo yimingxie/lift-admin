@@ -777,9 +777,11 @@ export default {
     width:88px
     height 132px
     display inline-block
-    margin-right 19px
+    margin-right 19px;
+    
     img
       border-radius 4px;
+      object-fit: cover;
   .stf_info
     height 132px
     display inline-block

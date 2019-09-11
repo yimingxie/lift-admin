@@ -492,7 +492,7 @@
           <el-row>
             <el-col :span="8"><div class="grid-content bg-purple">{{item.elevCode}}</div></el-col>
             <el-col :span="6"><div class="grid-content bg-purple-light">{{item.beginTime}}</div></el-col>
-            <el-col :span="4"><div class="grid-content bg-purple">{{item.type}}</div></el-col>
+            <el-col :span="4"><div class="grid-content bg-purple">{{ typeText[item.type] }}</div></el-col>
             <el-col :span="6"><div class="grid-content bg-purple-light">{{item.persons}}</div></el-col>
           </el-row>
         </div>
@@ -983,7 +983,7 @@ export default {
       
     },
     getStatusColor(status){
-      console.log("status==" + status)
+      // console.log("status==" + status)
       var color = ''
       if(status == '未派单' || status == '可派单'){
         color = 'rgb(255, 169, 11)'

@@ -1,5 +1,5 @@
 <template>
-
+<!-- 相册 -->
 <div id="picList">
  
     <div class="row">

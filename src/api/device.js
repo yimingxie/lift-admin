@@ -29,6 +29,11 @@ export default {
     return http.get(`${url1}/elevator/device/monitorval`)
   },
 
+  // 获取设备检测内容表（通用）
+  getMonitorValGi() {
+    return http.get(`${http.localURL}/gielevbackend/elevator/device/monitorval`)
+  },
+
   // 查询通用设备列表
   getDeviceListGi(params) {
     // return http.get(`${url1}/devices`)
@@ -91,11 +96,11 @@ export default {
 
   },
 
-  // 根据设备型号获取监测内容id（多条）
+  // 根据设备型号获取监测内容id（多条，通用）
   // 设备型号和监测内容相互绑定
   // 可以结合“监测内容表”获取id对应的中文内容
   getMonitorValByModel(devModel) {
-    return http.get(`${url1}/elevator/devicemodel/${devModel}`)
+    return http.get(`${http.localURL}/gielevbackend/elevator/devicemodel/${devModel}`)
   },
 
   // 查询设备上下线记录

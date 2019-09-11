@@ -250,7 +250,7 @@ export default {
   methods: {
     // 获取所有监测内容表，重组表，其中的id与设备类型中的监测内容对应
     transformMonitorVal() {
-      api.device.getMonitorVal().then(res => {
+      api.device.getMonitorValGi().then(res => {
         this.modelContentList = {}
         res.data.data.forEach((item, i) => {
           this.modelContentList[item.id] = item.monitorVal

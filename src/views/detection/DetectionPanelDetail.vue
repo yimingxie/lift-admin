@@ -691,7 +691,7 @@ export default {
       console.log('传值并跳转页面', val)
       this.parentCode = val
       this.$router.push({
-        path: '/detection',
+        path: '/detection-panel',
         query: {
           regCode: val
         }

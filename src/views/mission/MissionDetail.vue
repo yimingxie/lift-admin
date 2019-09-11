@@ -113,7 +113,7 @@
             <tbody>
               <tr>
                 <td style="width: 13%;"><span class="tie">维修内容</span><span>{{taskResult.conclusion}}</span></td>
-                <td><span class="tie">配件类型</span><span>{{taskResult.annexType}}</span></td>
+                <td><span class="tie">配件类型</span><span>{{taskResult.annexType.replace("[","").replace("]","")}}</span></td>
               </tr>
               <tr>
                 <td style="width: 13%;"><span class="tie">维修费用</span><span>{{taskResult.repairFee}}</span></td>

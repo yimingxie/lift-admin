@@ -1,4 +1,5 @@
 <template>
+<!-- 选项组 -->
   <div data-toggle="buttons" class="btn-group">
     <slot name="label" ></slot>
     <label v-for="item in items" :class="{'active': item.value === value}" class="btn btn-default " :key="item.value">
